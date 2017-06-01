@@ -243,6 +243,11 @@ namespace AssaultBird2454.VPTU.SaveEditor
                     #region Pokemon
                     foreach (VPTU.Pokedex.Pokemon.PokemonData pokemon in SaveManager.SaveData.PokedexData.Pokemon)
                     {
+                        if(pokemon.Moves == null)
+                        {
+                            pokemon.Moves = new List<Pokedex.Pokemon.Link_Moves>();
+                            continue;
+                        }
                         List<VPTU.Pokedex.Pokemon.Link_Moves> moves = pokemon.Moves.FindAll(x => x.MoveName.ToLower() == Data.Name.ToLower());
                         foreach (VPTU.Pokedex.Pokemon.Link_Moves move in moves)
                         {
