@@ -1,6 +1,10 @@
-Master Branch Build: [![Build status](https://ci.appveyor.com/api/projects/status/frd984wwfwl954dy/branch/master?svg=true)](https://ci.appveyor.com/project/TasmanLeach/virtual-pokemon-tabletop-2/branch/master)  [![Latest version](http://github-release-version.herokuapp.com/github/AssaultBird2454/Virtual-Pokemon-Tabletop/release.png?style=flat)](https://github.com/AssaultBird2454/Virtual-Pokemon-Tabletop/releases)
+[![Master Build branch](https://img.shields.io/appveyor/ci/TasmanLeach/virtual-pokemon-tabletop-2/master.svg?label=Master%20Build)](https://ci.appveyor.com/project/TasmanLeach/virtual-pokemon-tabletop-2)
+[![Alpha Build branch](https://img.shields.io/appveyor/ci/TasmanLeach/virtual-pokemon-tabletop-2/Alpha.svg?label=Alpha%20Build)](https://ci.appveyor.com/project/TasmanLeach/virtual-pokemon-tabletop-2)
+[![GitHub release](https://img.shields.io/github/release/AssaultBird2454/Virtual-Pokemon-Tabletop/all.svg?label=Latest%20Version)](https://github.com/AssaultBird2454/Virtual-Pokemon-Tabletop/releases)
+[![Libraries.io for GitHub](https://img.shields.io/librariesio/github/AssaultBird2454/Virtual-Pokemon-Tabletop.svg)](https://github.com/AssaultBird2454/Virtual-Pokemon-Tabletop)
+[![license](https://img.shields.io/github/license/AssaultBird2454/virtual-pokemon-tabletop.svg?label=Licence)](https://github.com/AssaultBird2454/Virtual-Pokemon-Tabletop/blob/master/LICENSE)
+[![Discord](https://img.shields.io/discord/277549582961868800.svg?colorB=7289DA&label=Discord)](https://discord.gg/fYExGbz)
 
-Alpha Branch Build: [![Build status](https://ci.appveyor.com/api/projects/status/frd984wwfwl954dy/branch/Alpha?svg=true)](https://ci.appveyor.com/project/TasmanLeach/virtual-pokemon-tabletop-2/branch/Alpha)
 
 # Virtual Pokemon Tabletop
 Software designed specifically for running PTU on the internet.  
