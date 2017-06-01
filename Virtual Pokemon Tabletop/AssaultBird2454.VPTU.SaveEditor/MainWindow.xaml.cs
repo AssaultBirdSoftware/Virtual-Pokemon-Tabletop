@@ -145,6 +145,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
         {
             SaveManager = new VPTU.SaveManager.SaveManager(Path);
             SaveManager.Load_SaveData();
+            this.SaveEditor_TabPanel.IsEnabled = true;
 
             PokedexManager_ReloadList();//Reload Pokedex List
             ResourceManager_ReloadList();//Reload Resource List
@@ -229,11 +230,30 @@ namespace AssaultBird2454.VPTU.SaveEditor
                 {
                     Pokedex.Pokemon.PokemonData Data = (Pokedex.Pokemon.PokemonData)((PokedexList_DataBind)PokedexManager_List.SelectedValue).DataTag;
                     SaveManager.SaveData.PokedexData.Pokemon.Remove(Data);
+
+                    Data.Dispose();
+                    Data = null;
                 }
                 else if (((PokedexList_DataBind)PokedexManager_List.SelectedValue).DataType == PokedexList_DataType.Move)
                 {
                     Pokedex.Moves.MoveData Data = (Pokedex.Moves.MoveData)((PokedexList_DataBind)PokedexManager_List.SelectedValue).DataTag;
                     SaveManager.SaveData.PokedexData.Moves.Remove(Data);
+
+                    #region Remove Links to the move
+                    #region Pokemon
+                    foreach (VPTU.Pokedex.Pokemon.PokemonData pokemon in SaveManager.SaveData.PokedexData.Pokemon)
+                    {
+                        List<VPTU.Pokedex.Pokemon.Link_Moves> moves = pokemon.Moves.FindAll(x => x.MoveName.ToLower() == Data.Name.ToLower());
+                        foreach (VPTU.Pokedex.Pokemon.Link_Moves move in moves)
+                        {
+                            pokemon.Moves.Remove(move);
+                        }
+                    }
+                    #endregion
+                    #endregion
+
+                    Data.Dispose();
+                    Data = null;
                 }
 
                 PokedexManager_ReloadList();

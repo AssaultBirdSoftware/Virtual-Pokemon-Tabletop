@@ -29,10 +29,32 @@
         </GroupBox>
         <GroupBox x:Name="groupBox1_Copy2" Header="Battle Details" HorizontalAlignment="Left" Margin="10,116,0,0" VerticalAlignment="Top" Height="449" Width="586">
             <Grid Margin="0">
-                <GroupBox x:Name="groupBox1_Copy1" Header="Range Details" Margin="0,0,207,0" Height="131" VerticalAlignment="Top">
-                    <Grid Margin="0"/>
+                <GroupBox x:Name="groupBox1_Copy1" Header="Range Details" Margin="0,0,207,0" Height="254" VerticalAlignment="Top">
+                    <Grid Margin="0">
+                        <CheckBox x:Name="Range_Enabled" Content="Range" HorizontalAlignment="Left" Margin="10,28,0,0" VerticalAlignment="Top"/>
+                        <xctk:DecimalUpDown x:Name="Range_Distance" HorizontalAlignment="Left" Margin="100,26,0,0" VerticalAlignment="Top" Width="58"/>
+                        <Label Content="Distance" HorizontalAlignment="Left" Margin="100,0,0,0" VerticalAlignment="Top" Width="58"/>
+                        <Label Content="Size" HorizontalAlignment="Left" Margin="163,0,0,0" VerticalAlignment="Top" Width="58"/>
+                        <CheckBox x:Name="Line_Enabled" Content="Line" HorizontalAlignment="Left" Margin="10,53,0,0" VerticalAlignment="Top"/>
+                        <xctk:DecimalUpDown x:Name="Line_Size" HorizontalAlignment="Left" Margin="163,51,0,0" VerticalAlignment="Top" Width="58"/>
+                        <CheckBox x:Name="RangedBlast_Enabled" Content="Ranged Blast" HorizontalAlignment="Left" Margin="10,78,0,0" VerticalAlignment="Top"/>
+                        <xctk:DecimalUpDown x:Name="RangedBlast_Distance" HorizontalAlignment="Left" Margin="100,76,0,0" VerticalAlignment="Top" Width="58"/>
+                        <xctk:DecimalUpDown x:Name="RangedBlast_Size" HorizontalAlignment="Left" Margin="163,76,0,0" VerticalAlignment="Top" Width="58"/>
+                        <CheckBox x:Name="Cone_Enabled" Content="Cone" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top"/>
+                        <xctk:DecimalUpDown x:Name="Cone_Size" HorizontalAlignment="Left" Margin="163,101,0,0" VerticalAlignment="Top" Width="58"/>
+                        <CheckBox x:Name="CloseBlast_Enabled" Content="Close Blast" HorizontalAlignment="Left" Margin="10,128,0,0" VerticalAlignment="Top"/>
+                        <xctk:DecimalUpDown x:Name="CloseBlast_Size" HorizontalAlignment="Left" Margin="163,126,0,0" VerticalAlignment="Top" Width="58"/>
+                        <CheckBox x:Name="Burst_Enabled" Content="Burst" HorizontalAlignment="Left" Margin="10,153,0,0" VerticalAlignment="Top"/>
+                        <xctk:DecimalUpDown x:Name="Burst_Size" HorizontalAlignment="Left" Margin="163,151,0,0" VerticalAlignment="Top" Width="58"/>
+                        <CheckBox x:Name="Self_Enabled" Content="Self" HorizontalAlignment="Left" Margin="10,207,0,0" VerticalAlignment="Top"/>
+                        <CheckBox x:Name="Mele_Enabled" Content="Mele" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="11,186,0,0"/>
+                        <CheckBox x:Name="Field_Enabled" Content="Field" HorizontalAlignment="Left" Margin="114,186,0,0" VerticalAlignment="Top"/>
+                        <CheckBox x:Name="AnyTarget_Enabled" Content="Any Target" HorizontalAlignment="Left" Margin="114,207,0,0" VerticalAlignment="Top"/>
+                        <CheckBox x:Name="CardinallyAdj_Enabled" Content="Cardinally Adjacent" HorizontalAlignment="Left" Margin="217,186,0,0" VerticalAlignment="Top"/>
+                        <CheckBox x:Name="AllAdj_Enabled" Content="All Adjacent Foes" HorizontalAlignment="Left" Margin="217,207,0,0" VerticalAlignment="Top"/>
+                    </Grid>
                 </GroupBox>
-                <GroupBox x:Name="groupBox1_Copy" Header="Move Keywords" Margin="0,136,207,0">
+                <GroupBox x:Name="groupBox1_Copy" Header="Move Keywords" Margin="0,254,207,0">
                     <Grid Margin="0">
                         <WrapPanel ScrollViewer.CanContentScroll="True"/>
                     </Grid>
@@ -58,7 +80,7 @@
                 <Label x:Name="label1" Content="Feature not implemented...&#xD;&#xA;This depends on the&#xD;&#xA;Battle Effect manager lib" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             </Grid>
         </GroupBox>
-        <Button x:Name="Cancel_Button" Content="Cancel" HorizontalAlignment="Left" Margin="521,570,0,0" VerticalAlignment="Top" Width="75" IsCancel="True"/>
+        <Button x:Name="Cancel_Button" Content="Cancel" HorizontalAlignment="Left" Margin="521,570,0,0" VerticalAlignment="Top" Width="75" IsCancel="True" Click="Cancel_Button_Click"/>
         <Button x:Name="Submit_Button" Content="Submit" HorizontalAlignment="Left" Margin="441,570,0,0" VerticalAlignment="Top" Width="75" IsDefault="True" Click="Submit_Button_Click"/>
 
     </Grid>

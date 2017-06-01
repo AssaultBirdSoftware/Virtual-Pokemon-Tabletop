@@ -8,7 +8,7 @@ namespace AssaultBird2454.VPTU.Pokedex.Moves
 {
     public class Move_RangeData
     {
-        public Move_RangeData(BattleManager.Data.Move_Range _Range, bool _Enabled, int _Distance, int _Size)
+        public Move_RangeData(BattleManager.Data.Move_Range _Range, bool _Enabled, int _Size, int _Distance)
         {
             Range = _Range;
             Enabled = _Enabled;
