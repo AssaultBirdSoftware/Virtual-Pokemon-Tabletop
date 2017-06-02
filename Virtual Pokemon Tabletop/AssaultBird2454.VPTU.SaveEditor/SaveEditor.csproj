@@ -110,6 +110,9 @@
     <Compile Include="UI\About\License.xaml.cs">
       <DependentUpon>License.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\BattleEffect\BattleEffect_Designer.xaml.cs">
+      <DependentUpon>BattleEffect_Designer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Pokedex\Link\Link_Evolution.xaml.cs">
       <DependentUpon>Link_Evolution.xaml</DependentUpon>
     </Compile>
@@ -151,6 +154,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\About\License.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\BattleEffect\BattleEffect_Designer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

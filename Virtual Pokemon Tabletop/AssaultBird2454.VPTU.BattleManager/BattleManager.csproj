@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BattleEffect\Data\Data.cs" />
+    <Compile Include="BattleEffect\EffectData.cs" />
     <Compile Include="BattleManager.cs" />
     <Compile Include="Data\Data.cs" />
     <Compile Include="Entity\Data.cs" />
