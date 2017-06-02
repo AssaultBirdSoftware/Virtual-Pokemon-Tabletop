@@ -197,12 +197,14 @@ namespace AssaultBird2454.VPTU.SaveEditor
         {
             EditSelected_Pokedex();
         }
-
+        //When an item on the list is double clicked
         private void PokedexManager_List_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             EditSelected_Pokedex();
         }
-
+        /// <summary>
+        /// Opens the edit page for the selected item in the pokedex panel
+        /// </summary>
         public void EditSelected_Pokedex() {
             try
             {
