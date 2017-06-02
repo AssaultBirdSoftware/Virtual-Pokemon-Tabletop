@@ -202,6 +202,54 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
             catch { }
             #endregion
             #endregion
+
+            #region KeyWords
+            try { Keyword_Aura.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.Aura).Value; } catch { }
+            try { Keyword_Berry.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.Berry).Value; } catch { }
+            try { Keyword_Blessing.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.Blessing).Value; } catch { }
+            try { Keyword_Coat.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.Coat).Value; } catch { }
+            try { Keyword_Dash.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.Dash).Value; } catch { }
+            try { Keyword_DubleStrike.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.DubleStrike).Value; } catch { }
+            try { Keyword_Environ.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.Environ).Value; } catch { }
+            try { Keyword_Execute.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.Execute).Value; } catch { }
+            //try { Keyword_Exhaust.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Exhaust).Value; } catch { }
+            try { Keyword_FiveStrike.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.FiveStrike).Value; } catch { }
+            try { Keyword_Fling.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.Fling).Value; } catch { }
+            try { Keyword_Friendly.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.Friendly).Value; } catch { }
+            try { Keyword_GroundSource.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.Groundsource).Value; } catch { }
+            try { Keyword_Hail.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.Hail).Value; } catch { }
+            try { Keyword_Hazard.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.Hazard).Value; } catch { }
+            try { Keyword_Illusion.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.Illusion).Value; } catch { }
+            try { Keyword_Interupt.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.Interupt).Value; } catch { }
+            try { Keyword_Pass.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.Pass).Value; } catch { }
+            try { Keyword_Pledge.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.Pledge).Value; } catch { }
+            try { Keyword_Powder.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.Powder).Value; } catch { }
+            //try { Keyword_Priority_Type.SelectedItem = MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Priority).Value; } catch { }
+            if (MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.Priority).Value != null)
+            {
+                Keyword_Priority.IsChecked = true;
+            }
+            try { Keyword_Push.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.Push).Value; } catch { }
+            try { Keyword_Rainy.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.Rainy).Value; } catch { }
+            try { Keyword_Reaction.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.Reaction).Value; } catch { }
+            if (MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.Recoil).Value != null)
+            {
+                Keyword_Recoil.IsChecked = true;
+            }
+            //try { Keyword_Recoil_Type.SelectedItem = MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Recoil).Value; } catch { }
+            //try { Keyword_SandStorm.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.SandStorm).Value; } catch { }
+            try { Keyword_Setup.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.SetUp).Value; } catch { }
+            try { Keyword_Shield.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.Shield).Value; } catch { }
+            try { Keyword_Smite.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.Smite).Value; } catch { }
+            try { Keyword_Social.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.Social).Value; } catch { }
+            try { Keyword_Sonic.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.Sonic).Value; } catch { }
+            try { Keyword_SpiritSurge.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.SpiritSurge).Value; } catch { }
+            try { Keyword_Sunny.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.Sunny).Value; } catch { }
+            try { Keyword_Trigger.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.Trigger).Value; } catch { }
+            try { Keyword_Vortex.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.Vortex).Value; } catch { }
+            try { Keyword_Weather.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.Weather).Value; } catch { }
+            try { Keyword_WeightClass.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == VPTU.BattleManager.Data.Move_KeyWords.WeightClass).Value; } catch { }
+            #endregion
         }
 
         /// <summary>
@@ -369,6 +417,55 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
             #endregion
             #endregion
 
+            #region Keywords
+            if (MoveData.KeyWords == null)
+            {
+                MoveData.KeyWords = new List<KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>>();
+            }
+            else
+            {
+                MoveData.KeyWords.Clear();
+            }
+
+            if (Keyword_Aura.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.Aura, true)); }
+            if (Keyword_Berry.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.Berry, true)); }
+            if (Keyword_Blessing.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.Blessing, true)); }
+            if (Keyword_Coat.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.Coat, true)); }
+            if (Keyword_Dash.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.Dash, true)); }
+            if (Keyword_DubleStrike.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.DubleStrike, true)); }
+            if (Keyword_Environ.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.Environ, true)); }
+            if (Keyword_Execute.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.Execute, true)); }
+            //if (Keyword_Exhaust.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.Exhaust, true)); }
+            if (Keyword_FiveStrike.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.FiveStrike, true)); }
+            if (Keyword_Fling.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.Fling, true)); }
+            if (Keyword_Friendly.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.Friendly, true)); }
+            if (Keyword_GroundSource.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.Groundsource, true)); }
+            if (Keyword_Hail.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.Hail, true)); }
+            if (Keyword_Hazard.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.Hazard, true)); }
+            if (Keyword_Illusion.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.Illusion, true)); }
+            if (Keyword_Interupt.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.Interupt, true)); }
+            if (Keyword_Pass.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.Pass, true)); }
+            if (Keyword_Pledge.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.Pledge, true)); }
+            if (Keyword_Powder.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.Powder, true)); }
+            //if (Keyword_Priority.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.Priority, (Priority)Keyword_Priority_Type.SelectedItem)); }
+            if (Keyword_Push.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.Push, true)); }
+            if (Keyword_Rainy.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.Rainy, true)); }
+            if (Keyword_Reaction.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.Reaction, true)); }
+            //if (Keyword_Recoil.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.Recoil, (Recoil)Keyword_Recoil_Type.SelectedItem)); }
+            //if (Keyword_SandStorm.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.SandStorm, true)); }
+            if (Keyword_Setup.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.SetUp, true)); }
+            if (Keyword_Shield.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.Shield, true)); }
+            if (Keyword_Smite.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.Smite, true)); }
+            if (Keyword_Social.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.Social, true)); }
+            if (Keyword_Sonic.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.Sonic, true)); }
+            if (Keyword_SpiritSurge.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.SpiritSurge, true)); }
+            if (Keyword_Sunny.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.Sunny, true)); }
+            if (Keyword_Trigger.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.Trigger, true)); }
+            if (Keyword_Vortex.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.Vortex, true)); }
+            if (Keyword_Weather.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.Weather, true)); }
+            if (Keyword_WeightClass.IsChecked == true) { MoveData.KeyWords.Add(new KeyValuePair<VPTU.BattleManager.Data.Move_KeyWords, object>(VPTU.BattleManager.Data.Move_KeyWords.WeightClass, true)); }
+            #endregion
+
             //Update links in different parts of the save data
             #region Update
             try
@@ -379,7 +476,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
                     {
                         foreach (VPTU.Pokedex.Pokemon.PokemonData pokemon in SaveData.PokedexData.Pokemon)
                         {
-                            if(pokemon.Moves == null)
+                            if (pokemon.Moves == null)
                             {
                                 pokemon.Moves = new List<VPTU.Pokedex.Pokemon.Link_Moves>();
                                 continue;
