@@ -195,6 +195,15 @@ namespace AssaultBird2454.VPTU.SaveEditor
         //When The "Edit" Button is clicked
         private void PokedexManager_ManageDex_Edit_Click(object sender, RoutedEventArgs e)
         {
+            EditSelected_Pokedex();
+        }
+
+        private void PokedexManager_List_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            EditSelected_Pokedex();
+        }
+
+        public void EditSelected_Pokedex() {
             try
             {
                 //Edit Pokemon Here!
