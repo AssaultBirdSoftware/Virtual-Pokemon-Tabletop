@@ -57,42 +57,42 @@
                 <GroupBox x:Name="groupBox1_Copy" Header="Move Keywords" Margin="0,254,10,0">
                     <Grid Margin="0">
                         <WrapPanel ScrollViewer.CanContentScroll="True">
-                            <CheckBox x:Name="Keyword_Aura" Content="Aura"/>
-                            <CheckBox x:Name="Keyword_Berry" Content="Berry"/>
-                            <CheckBox x:Name="Keyword_Blessing" Content="Blessing"/>
-                            <CheckBox x:Name="Keyword_Coat" Content="Coat"/>
-                            <CheckBox x:Name="Keyword_Dash" Content="Dash"/>
-                            <CheckBox x:Name="Keyword_DubleStrike" Content="Duble Strike"/>
-                            <CheckBox x:Name="Keyword_Environ" Content="Environ"/>
-                            <CheckBox x:Name="Keyword_Execute" Content="Execute"/>
-                            <CheckBox x:Name="Keyword_Fling" Content="Fling"/>
-                            <CheckBox x:Name="Keyword_Friendly" Content="Friendly"/>
-                            <CheckBox x:Name="Keyword_Illusion" Content="Illusion"/>
-                            <CheckBox x:Name="Keyword_FiveStrike" Content="FiveStrike"/>
-                            <CheckBox x:Name="Keyword_Interupt" Content="Interupt"/>
-                            <CheckBox x:Name="Keyword_Pass" Content="Pass"/>
-                            <CheckBox x:Name="Keyword_GroundSource" Content="Ground Source"/>
-                            <CheckBox x:Name="Keyword_Hazard" Content="Hazard"/>
-                            <CheckBox x:Name="Keyword_Pledge" Content="Pledge"/>
-                            <CheckBox x:Name="Keyword_Shield" Content="Shield"/>
-                            <CheckBox x:Name="Keyword_Smite" Content="Smite"/>
-                            <CheckBox x:Name="Keyword_Social" Content="Social"/>
-                            <CheckBox x:Name="Keyword_Powder" Content="Powder"/>
-                            <CheckBox x:Name="Keyword_Priority" Content="Priority"/>
-                            <CheckBox x:Name="Keyword_Sonic" Content="Sonic"/>
-                            <CheckBox x:Name="Keyword_SpiritSurge" Content="Spirit Surge"/>
-                            <CheckBox x:Name="Keyword_Trigger" Content="Trigger"/>
-                            <CheckBox x:Name="Keyword_Vortex" Content="Vortex"/>
-                            <CheckBox x:Name="Keyword_Push" Content="Push"/>
-                            <CheckBox x:Name="Keyword_Weather" Content="Weather"/>
-                            <CheckBox x:Name="Keyword_Reaction" Content="Reaction"/>
-                            <CheckBox x:Name="Keyword_Recoil" Content="Recoil"/>
-                            <CheckBox x:Name="Keyword_Setup" Content="Setup"/>
-                            <CheckBox x:Name="Keyword_Hail" Content="Hail"/>
-                            <CheckBox x:Name="Keyword_Rainy" Content="Rainy"/>
-                            <CheckBox x:Name="Keyword_Sandstorm" Content="Sandstorm"/>
-                            <CheckBox x:Name="Keyword_Sunny" Content="Sunny"/>
-                            <CheckBox x:Name="Keyword_WeightClass" Content="Weight Class"/>
+                            <CheckBox x:Name="Keyword_Aura" Content="Aura" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Berry" Content="Berry" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Blessing" Content="Blessing" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Coat" Content="Coat" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Dash" Content="Dash" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_DubleStrike" Content="Duble Strike" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Environ" Content="Environ" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Execute" Content="Execute" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Fling" Content="Fling" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Friendly" Content="Friendly" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Illusion" Content="Illusion" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_FiveStrike" Content="FiveStrike" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Interupt" Content="Interupt" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Pass" Content="Pass" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_GroundSource" Content="Ground Source" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Hazard" Content="Hazard" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Pledge" Content="Pledge" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Shield" Content="Shield" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Smite" Content="Smite" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Social" Content="Social" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Powder" Content="Powder" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Priority" Content="Priority" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Sonic" Content="Sonic" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_SpiritSurge" Content="Spirit Surge" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Trigger" Content="Trigger" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Vortex" Content="Vortex" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Push" Content="Push" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Weather" Content="Weather" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Reaction" Content="Reaction" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Recoil" Content="Recoil" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Setup" Content="Setup" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Hail" Content="Hail" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Rainy" Content="Rainy" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Sandstorm" Content="Sandstorm" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Sunny" Content="Sunny" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_WeightClass" Content="Weight Class" Padding="0,0,5,3"/>
                         </WrapPanel>
                     </Grid>
                 </GroupBox>

@@ -124,6 +124,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
 
                 box.Content = cap.ToString().Replace('_', ' ');
                 box.Tag = cap;
+                box.Padding = new Thickness(0, 0, 5, 3);
 
                 Capabilities_Wrap.Children.Add(box);
             }
