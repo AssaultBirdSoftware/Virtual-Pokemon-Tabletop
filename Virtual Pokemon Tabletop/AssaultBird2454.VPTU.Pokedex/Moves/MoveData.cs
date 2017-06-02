@@ -77,5 +77,11 @@ namespace AssaultBird2454.VPTU.Pokedex.Moves
         /// </summary>
         [Obsolete("Not Complete")]
         public List<object> Move_Effects { get; set; }
+
+        public void Dispose()
+        {
+            Range_Data = null;
+            KeyWords = null;
+        }
     }
 }

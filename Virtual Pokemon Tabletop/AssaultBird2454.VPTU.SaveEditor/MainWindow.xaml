@@ -18,7 +18,7 @@
                 <MenuItem x:Name="Menu_About_LegalNotices" Header="Legal Notices" Click="Menu_About_LegalNotices_Click"/>
             </MenuItem>
         </Menu>
-        <TabControl x:Name="SaveEditor_TabPanel" Margin="0,17.96,0,21.96">
+        <TabControl x:Name="SaveEditor_TabPanel" Margin="0,17.96,0,21.96" IsEnabled="False">
             <TabItem Header="Overview" d:IsLocked="True">
                 <Grid Background="#FFE5E5E5">
                     <Label x:Name="label_Copy2" Content="This Tab is in Development..." Foreground="Red" FontSize="72"/>
