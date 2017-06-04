@@ -599,10 +599,13 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
         {
             RAW_JSON impexp = new RAW_JSON();
             impexp.Export<VPTU.Pokedex.Pokemon.PokemonData>(PokemonData);
-            impexp.ShowDialog();
+            bool? dr = impexp.ShowDialog();
 
-            PokemonData = impexp.Import<VPTU.Pokedex.Pokemon.PokemonData>();
-            Load();
+            if (dr == true)
+            {
+                PokemonData = impexp.Import<VPTU.Pokedex.Pokemon.PokemonData>();
+                Load();
+            }
         }
     }
 

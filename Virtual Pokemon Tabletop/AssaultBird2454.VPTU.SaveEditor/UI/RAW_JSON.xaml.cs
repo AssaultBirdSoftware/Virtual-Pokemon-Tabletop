@@ -24,9 +24,15 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Gets JSON for object and displays it in the panel
+        /// </summary>
+        /// <typeparam name="T">The Type of object used for JSON Serializing</typeparam>
+        /// <param name="Obj">The Object</param>
         public void Export<T>(T Obj)
         {
-            Data_JSON.Text = Newtonsoft.Json.JsonConvert.SerializeObject(Obj, new Newtonsoft.Json.JsonSerializerSettings()
+            Data_JSON.SelectAll();
+            Data_JSON.Selection.Text = Newtonsoft.Json.JsonConvert.SerializeObject(Obj, new Newtonsoft.Json.JsonSerializerSettings()
             {
                 Formatting = Newtonsoft.Json.Formatting.Indented,
                 NullValueHandling = Newtonsoft.Json.NullValueHandling.Include
@@ -35,7 +41,8 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI
 
         public T Import<T>()
         {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(Data_JSON.Text);
+            Data_JSON.SelectAll();
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(Data_JSON.Selection.Text);
         }
 
         private void Submit_Button_Click(object sender, RoutedEventArgs e)
