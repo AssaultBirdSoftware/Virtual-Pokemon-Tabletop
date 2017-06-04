@@ -589,6 +589,21 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
             FormsAndEvos_List.Items.Remove(FormsAndEvos_List.SelectedItem);// Removes Link from list
         }
         #endregion
+
+        private void Save_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Save();
+        }
+
+        private void RawData_Button_Click(object sender, RoutedEventArgs e)
+        {
+            RAW_JSON impexp = new RAW_JSON();
+            impexp.Export<VPTU.Pokedex.Pokemon.PokemonData>(PokemonData);
+            impexp.ShowDialog();
+
+            PokemonData = impexp.Import<VPTU.Pokedex.Pokemon.PokemonData>();
+            Load();
+        }
     }
 
     #region Data Classes

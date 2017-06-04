@@ -131,6 +131,9 @@
     <Compile Include="UI\Pokedex\Select\Select_Pokemon.xaml.cs">
       <DependentUpon>Select_Pokemon.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\RAW_JSON.xaml.cs">
+      <DependentUpon>RAW_JSON.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Resources\Import_ImageResource.xaml.cs">
       <DependentUpon>Import_ImageResource.xaml</DependentUpon>
     </Compile>
@@ -184,6 +187,10 @@
     <Page Include="UI\Pokedex\Select\Select_Pokemon.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\RAW_JSON.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Resources\Import_ImageResource.xaml">
       <SubType>Designer</SubType>

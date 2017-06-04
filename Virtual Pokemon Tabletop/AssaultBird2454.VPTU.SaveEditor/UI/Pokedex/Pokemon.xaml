@@ -209,8 +209,8 @@
                 <xctk:DecimalUpDown x:Name="Skill_Intuition_Mod" HorizontalAlignment="Left" Margin="10,501.32,0,0" VerticalAlignment="Top" Width="80" Grid.Column="2" Value="0" TextAlignment="Center"/>
             </Grid>
         </GroupBox>
-        <Button x:Name="Cancel_Button" Content="Cancel" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="82" Click="Cancel_Button_Click"/>
-        <Button x:Name="Add_Button" Content="Add / Update" HorizontalAlignment="Right" Margin="0,0,97,10" VerticalAlignment="Bottom" Width="82" Click="Add_Button_Click" IsDefault="True"/>
+        <Button x:Name="Cancel_Button" Content="Cancel" HorizontalAlignment="Right" Margin="0,0,10,59.92" VerticalAlignment="Bottom" Width="82" Click="Cancel_Button_Click"/>
+        <Button x:Name="Add_Button" Content="Save &amp; Close" HorizontalAlignment="Right" Margin="0,0,97,59.92" VerticalAlignment="Bottom" Width="82" Click="Add_Button_Click" IsDefault="True"/>
         <GroupBox x:Name="G_Moves_Copy" Header="Ability" HorizontalAlignment="Left" Margin="0,379,0,0" VerticalAlignment="Top" Height="176" Width="465" Background="Red" BorderBrush="Red" Foreground="Black">
             <Grid Margin="0">
                 <Grid.ColumnDefinitions>
@@ -236,6 +236,8 @@
         <GroupBox x:Name="G_SpecialCapabilities" Header="Special Capabilities" Margin="373,560,0,0" VerticalAlignment="Top" Height="211" HorizontalAlignment="Left" Width="677">
             <WrapPanel x:Name="Capabilities_Wrap" Margin="0"/>
         </GroupBox>
+        <Button x:Name="Save_Button" Content="Save" HorizontalAlignment="Right" Margin="0,0,97,34.96" VerticalAlignment="Bottom" Width="82" IsDefault="True" Click="Save_Button_Click"/>
+        <Button x:Name="RawData_Button" Content="Import &amp; Export" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="169" IsDefault="True" Click="RawData_Button_Click"/>
 
     </Grid>
 </Window>

@@ -117,8 +117,10 @@
                 <Label x:Name="label1" Content="Feature not implemented...&#xD;&#xA;This depends on the&#xD;&#xA;Battle Effect manager lib" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             </Grid>
         </GroupBox>
-        <Button x:Name="Cancel_Button" Content="Cancel" HorizontalAlignment="Left" Margin="521,570,0,0" VerticalAlignment="Top" Width="75" IsCancel="True" Click="Cancel_Button_Click"/>
-        <Button x:Name="Submit_Button" Content="Submit" HorizontalAlignment="Left" Margin="441,570,0,0" VerticalAlignment="Top" Width="75" IsDefault="True" Click="Submit_Button_Click"/>
+        <Button x:Name="Cancel_Button" Content="Close" HorizontalAlignment="Left" Margin="521,570,0,0" VerticalAlignment="Top" Width="75" IsCancel="True" Click="Cancel_Button_Click"/>
+        <Button x:Name="Submit_Button" Content="Save &amp; Close" HorizontalAlignment="Left" Margin="441,570,0,0" VerticalAlignment="Top" Width="75" IsDefault="True" Click="Submit_Button_Click"/>
+        <Button x:Name="RawData_Button" Content="Import / Export" HorizontalAlignment="Left" Margin="441,619.92,0,0" VerticalAlignment="Top" Width="155" Click="RawData_Button_Click"/>
+        <Button x:Name="Save_Button" Content="Save" HorizontalAlignment="Left" Margin="441,594.96,0,0" VerticalAlignment="Top" Width="75" Click="Save_Button_Click"/>
 
     </Grid>
 </Window>
