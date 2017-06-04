@@ -14,6 +14,11 @@ namespace AssaultBird2454.VPTU.BattleManager.BattleEffect
         public List<Data.Triggers> Triggers { get; set; }
 
         /// <summary>
+        /// Lists all the variables that this object will have
+        /// </summary>
+        public List<Data.Variables> Variables { get; set; }
+
+        /// <summary>
         /// All the conditions that need to pass to execute the actions
         /// </summary>
         public List<Data.Conditions> Conditions { get; set; }

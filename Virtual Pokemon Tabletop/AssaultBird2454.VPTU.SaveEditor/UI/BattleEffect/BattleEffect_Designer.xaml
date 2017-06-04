@@ -5,8 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect"
         mc:Ignorable="d"
-        Title="BattleEffect_Designer" Height="300" Width="300">
+        Title="BattleEffect_Designer" Height="533.935" Width="663.898">
     <Grid>
-        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="182.4"/>
+            </Grid.ColumnDefinitions>
+            <GroupBox Header="Triggers" Margin="10,0,0,252" HorizontalAlignment="Left" Width="150">
+                <Grid Margin="0"/>
+            </GroupBox>
+            <GroupBox Header="Variables" Margin="10,252,0,0" HorizontalAlignment="Left" Width="150">
+                <Grid Margin="0"/>
+            </GroupBox>
+            <GroupBox Header="Conditions" Margin="165,0,0,0" HorizontalAlignment="Left" Width="150">
+                <Grid Margin="0"/>
+            </GroupBox>
+            <GroupBox Header="Actions" Margin="320,0,0,0" HorizontalAlignment="Left" Width="150">
+                <Grid Margin="0"/>
+            </GroupBox>
+        </Grid>
+
     </Grid>
 </Window>
