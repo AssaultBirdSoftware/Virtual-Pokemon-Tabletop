@@ -118,6 +118,9 @@
                     <Label x:Name="label" Content="This Tab is in Development..." Foreground="Red" FontSize="72"/>
                 </Grid>
             </TabItem>
+            <TabItem Header="Feature Manager" HorizontalAlignment="Left" Height="19.96" VerticalAlignment="Top" d:IsLocked="True">
+                <Label x:Name="label_Copy1" Content="This Tab is in Development..." Foreground="Red" FontSize="72"/>
+            </TabItem>
         </TabControl>
         <StatusBar VerticalAlignment="Bottom" d:IsLocked="True">
             <StatusBarItem Content="StatusBarItem" VerticalAlignment="Bottom"/>
