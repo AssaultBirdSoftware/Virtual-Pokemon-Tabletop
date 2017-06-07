@@ -32,7 +32,20 @@ namespace AssaultBird2454.VPTU.SaveManager
         /// <param name="SaveData_DIR">The Directory to the save data to be compressed into a save file</param>
         public static void Compress_Save(string SaveFile_DIR, string SaveData_DIR)
         {
-            ZipFile.CreateFromDirectory(SaveData_DIR, SaveFile_DIR);
+            using (FileStream stream = new FileStream(SaveFile_DIR, FileMode.Create, FileAccess.ReadWrite))// Creates a stream to write to file
+            {
+                using (ZipArchive Archive = new ZipArchive(stream, ZipArchiveMode.Update))// Creates a ZipArchive to execute save file modifications inside the Archive
+                {
+                    Archive.CreateEntryFromFile(SaveData_DIR + @"\" + SaveManager.GetSaveFile_DataDir(SaveData_Dir.Pokedex_Abilitys), SaveManager.GetSaveFile_DataDir(SaveData_Dir.Pokedex_Abilitys));// Copys the Pokedex/Abilitys data file into the Save File
+                    Archive.CreateEntryFromFile(SaveData_DIR + @"\" + SaveManager.GetSaveFile_DataDir(SaveData_Dir.Pokedex_Items), SaveManager.GetSaveFile_DataDir(SaveData_Dir.Pokedex_Items));// Copys the Pokedex/Items data file into the Save File
+                    Archive.CreateEntryFromFile(SaveData_DIR + @"\" + SaveManager.GetSaveFile_DataDir(SaveData_Dir.Pokedex_Moves), SaveManager.GetSaveFile_DataDir(SaveData_Dir.Pokedex_Moves));// Copys the Pokedex/Moves data file into the Save File
+                    Archive.CreateEntryFromFile(SaveData_DIR + @"\" + SaveManager.GetSaveFile_DataDir(SaveData_Dir.Pokedex_Pokemon), SaveManager.GetSaveFile_DataDir(SaveData_Dir.Pokedex_Pokemon));// Copys the Pokedex/Pokemon data file into the Save File
+
+                    Archive.CreateEntryFromFile(SaveData_DIR + @"\" + SaveManager.GetSaveFile_DataDir(SaveData_Dir.Resource_Image), SaveManager.GetSaveFile_DataDir(SaveData_Dir.Resource_Image));// Copys the Resources/Images data file into the Save File
+
+                    //Code to copy Images that are in the structure here
+                }
+            }
         }
 
         /// <summary>

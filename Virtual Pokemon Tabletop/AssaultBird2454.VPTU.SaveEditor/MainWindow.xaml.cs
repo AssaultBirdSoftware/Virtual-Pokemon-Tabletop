@@ -194,12 +194,39 @@ namespace AssaultBird2454.VPTU.SaveEditor
             }
             else
             {
+                //No Save file open, Cant Un-Pack Anything
                 MessageBox.Show("You cant Un-Pack nothing!\nOpen a Save File and try again", "Un-Packing Save Data");
             }
         }
         private void Menu_SaveTools_Pack_Click(object sender, RoutedEventArgs e)
         {
+            System.Windows.Forms.FolderBrowserDialog fbd = new System.Windows.Forms.FolderBrowserDialog();// creates a FolderBrowser dialog
+            System.Windows.Forms.DialogResult dr = fbd.ShowDialog();// Shows the dialog to select the path containing save data
 
+            if(dr == System.Windows.Forms.DialogResult.Cancel)// Check if Pack Opperation was canceled
+            {
+                MessageBox.Show("Packing Save Data was canceled and no files have been changed.\n\nReasion: Canceled By User", "Pack Save Data Canceled", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            string DataPath = fbd.SelectedPath;// Gets the path to the the save data to pack from
+            string SavePath = Directory.GetParent(DataPath) + @"\Packed Pokemon Tabletop Save.ptu";
+
+            if (!Directory.Exists(DataPath))// Checks if path does not exist
+            {
+                //If Path does not exist, Notify the user that the selected path does not exist
+                MessageBoxResult mbed = MessageBox.Show("The Path specified does not exist...\n\nSelected Directory: " + DataPath, "Path does not Exist", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            VPTU.SaveManager.SaveFileConverter.Compress_Save(SavePath, DataPath);// Pack the data to the a file
+
+            //Ask if the user wants the folder to be opened...
+            MessageBoxResult mbr2 = MessageBox.Show("Packing Complete!\nOpen SaveFile?\n\nPath to File: " + SavePath, "Packing Complete", MessageBoxButton.YesNo, MessageBoxImage.Information, MessageBoxResult.No);
+            if (mbr2 == MessageBoxResult.Yes)
+            {
+                //Open the file
+                Load(SavePath);
+            }
         }
         #endregion
         #endregion
