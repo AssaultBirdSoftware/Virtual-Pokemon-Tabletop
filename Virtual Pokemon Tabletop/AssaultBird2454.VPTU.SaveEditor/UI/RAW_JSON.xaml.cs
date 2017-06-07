@@ -42,7 +42,15 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI
         public T Import<T>()
         {
             Data_JSON.SelectAll();
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(Data_JSON.Selection.Text);
+            try
+            {
+                return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(Data_JSON.Selection.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Invalid JSON!");
+                return (T)Activator.CreateInstance(typeof(T), new object[] { });
+            }
         }
 
         private void Submit_Button_Click(object sender, RoutedEventArgs e)
