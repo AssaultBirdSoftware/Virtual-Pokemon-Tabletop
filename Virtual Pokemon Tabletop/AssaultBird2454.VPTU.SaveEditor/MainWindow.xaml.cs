@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Threading;
@@ -150,6 +151,36 @@ namespace AssaultBird2454.VPTU.SaveEditor
             PokedexManager_ReloadList();//Reload Pokedex List
             ResourceManager_ReloadList();//Reload Resource List
         }
+
+        #region Save Data Tools
+        private void Menu_SaveTools_UnPack_Click(object sender, RoutedEventArgs e)
+        {
+            if (SaveManager != null)
+            {
+                MessageBoxResult mbr = MessageBox.Show("To Un-Pack the open Save Data File, The data needs to be saved...\nSave and Un-Pack?", "Select Save to Un-Pack", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+                if (mbr == MessageBoxResult.Yes)
+                {
+                    string DataPath = Path.GetDirectoryName(SaveManager.SaveFileDir) + @"\" + Path.GetFileName(SaveManager.SaveFileDir).Split('.')[0];
+
+                    VPTU.SaveManager.SaveFileConverter.Extract_Save(SaveManager.SaveFileDir, DataPath);
+
+                    MessageBoxResult mbr2 = MessageBox.Show("Un-Packing Complete!\nOpen Save Data?\n\nPath to Data: " + DataPath, "Un-Pack Complete", MessageBoxButton.YesNo, MessageBoxImage.Information, MessageBoxResult.No);
+                    if(mbr2 == MessageBoxResult.Yes)
+                    {
+                        Process.Start("Explorer.exe", DataPath);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("You cant Un-Pack nothing!\nOpen a Save File and try again", "Un-Packing Save Data");
+            }
+        }
+        private void Menu_SaveTools_Pack_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion
         #endregion
 
         #region Pokedex Manager Code
@@ -205,7 +236,8 @@ namespace AssaultBird2454.VPTU.SaveEditor
         /// <summary>
         /// Opens the edit page for the selected item in the pokedex panel
         /// </summary>
-        public void EditSelected_Pokedex() {
+        public void EditSelected_Pokedex()
+        {
             try
             {
                 //Edit Pokemon Here!
@@ -254,7 +286,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
                     #region Pokemon
                     foreach (VPTU.Pokedex.Pokemon.PokemonData pokemon in SaveManager.SaveData.PokedexData.Pokemon)
                     {
-                        if(pokemon.Moves == null)
+                        if (pokemon.Moves == null)
                         {
                             pokemon.Moves = new List<Pokedex.Pokemon.Link_Moves>();
                             continue;
