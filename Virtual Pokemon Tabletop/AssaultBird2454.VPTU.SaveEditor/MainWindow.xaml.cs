@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Threading;
@@ -150,6 +151,84 @@ namespace AssaultBird2454.VPTU.SaveEditor
             PokedexManager_ReloadList();//Reload Pokedex List
             ResourceManager_ReloadList();//Reload Resource List
         }
+
+        #region Save Data Tools
+        private void Menu_SaveTools_UnPack_Click(object sender, RoutedEventArgs e)
+        {
+            if (SaveManager != null)
+            {
+                MessageBoxResult mbr = MessageBox.Show("To Un-Pack the open Save Data File, The data needs to be saved...\nSave and Un-Pack?", "Select Save to Un-Pack", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+                if (mbr == MessageBoxResult.Yes)
+                {
+                    Save();// Save the Save File
+
+                    string DataPath = Path.GetDirectoryName(SaveManager.SaveFileDir) + @"\" + Path.GetFileName(SaveManager.SaveFileDir).Split('.')[0];// Gets the path to extract the save data
+
+                    if (Directory.Exists(DataPath))// Checks if path exists
+                    {
+                        //If Path Exists, Notify the user that the data will be deleted and offer the ability to acknoledge or cancel the opperation
+                        MessageBoxResult mbed = MessageBox.Show("The Path that the save data will be extracted to already exists...\nAll Data in the folder will be deleted!\n\nDirectory: " + DataPath, "Path Exists", MessageBoxButton.OKCancel, MessageBoxImage.Warning, MessageBoxResult.Cancel);
+                        if (mbed == MessageBoxResult.Cancel)
+                        {
+                            //Cancel the opperation
+                            MessageBox.Show("Un-Packing Save Data was canceled and no files have been changed.\n\nReasion: Canceled By User", "Un-Pack Save Data Canceled", MessageBoxButton.OK, MessageBoxImage.Information);
+                            return;
+                        }
+                        else if (mbed == MessageBoxResult.OK)
+                        {
+                            //Delete the Directory and files, then continue
+                            Directory.Delete(DataPath, true);
+                        }
+                    }
+
+                    VPTU.SaveManager.SaveFileConverter.Extract_Save(SaveManager.SaveFileDir, DataPath);// Extract the data to the Directory
+
+                    //Ask if the user wants the folder to be opened...
+                    MessageBoxResult mbr2 = MessageBox.Show("Un-Packing Complete!\nOpen Save Data?\n\nPath to Data: " + DataPath, "Un-Pack Complete", MessageBoxButton.YesNo, MessageBoxImage.Information, MessageBoxResult.No);
+                    if (mbr2 == MessageBoxResult.Yes)
+                    {
+                        //Open the directory
+                        Process.Start("Explorer.exe", DataPath);
+                    }
+                }
+            }
+            else
+            {
+                //No Save file open, Cant Un-Pack Anything
+                MessageBox.Show("You cant Un-Pack nothing!\nOpen a Save File and try again", "Un-Packing Save Data");
+            }
+        }
+        private void Menu_SaveTools_Pack_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Forms.FolderBrowserDialog fbd = new System.Windows.Forms.FolderBrowserDialog();// creates a FolderBrowser dialog
+            System.Windows.Forms.DialogResult dr = fbd.ShowDialog();// Shows the dialog to select the path containing save data
+
+            if(dr == System.Windows.Forms.DialogResult.Cancel)// Check if Pack Opperation was canceled
+            {
+                MessageBox.Show("Packing Save Data was canceled and no files have been changed.\n\nReasion: Canceled By User", "Pack Save Data Canceled", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            string DataPath = fbd.SelectedPath;// Gets the path to the the save data to pack from
+            string SavePath = Directory.GetParent(DataPath) + @"\Packed Pokemon Tabletop Save.ptu";
+
+            if (!Directory.Exists(DataPath))// Checks if path does not exist
+            {
+                //If Path does not exist, Notify the user that the selected path does not exist
+                MessageBoxResult mbed = MessageBox.Show("The Path specified does not exist...\n\nSelected Directory: " + DataPath, "Path does not Exist", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            VPTU.SaveManager.SaveFileConverter.Compress_Save(SavePath, DataPath);// Pack the data to the a file
+
+            //Ask if the user wants the folder to be opened...
+            MessageBoxResult mbr2 = MessageBox.Show("Packing Complete!\nOpen SaveFile?\n\nPath to File: " + SavePath, "Packing Complete", MessageBoxButton.YesNo, MessageBoxImage.Information, MessageBoxResult.No);
+            if (mbr2 == MessageBoxResult.Yes)
+            {
+                //Open the file
+                Load(SavePath);
+            }
+        }
+        #endregion
         #endregion
 
         #region Pokedex Manager Code
@@ -194,6 +273,18 @@ namespace AssaultBird2454.VPTU.SaveEditor
         }
         //When The "Edit" Button is clicked
         private void PokedexManager_ManageDex_Edit_Click(object sender, RoutedEventArgs e)
+        {
+            EditSelected_Pokedex();
+        }
+        //When an item on the list is double clicked
+        private void PokedexManager_List_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            EditSelected_Pokedex();
+        }
+        /// <summary>
+        /// Opens the edit page for the selected item in the pokedex panel
+        /// </summary>
+        public void EditSelected_Pokedex()
         {
             try
             {
@@ -243,7 +334,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
                     #region Pokemon
                     foreach (VPTU.Pokedex.Pokemon.PokemonData pokemon in SaveManager.SaveData.PokedexData.Pokemon)
                     {
-                        if(pokemon.Moves == null)
+                        if (pokemon.Moves == null)
                         {
                             pokemon.Moves = new List<Pokedex.Pokemon.Link_Moves>();
                             continue;

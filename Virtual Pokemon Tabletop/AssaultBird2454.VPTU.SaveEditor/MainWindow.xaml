@@ -13,6 +13,10 @@
                 <MenuItem x:Name="Menu_Menu_Save" Header="Save File" Click="Menu_Menu_Save_Click"/>
                 <MenuItem x:Name="Menu_Menu_SaveAs" Header="Save File As" IsEnabled="False" Click="Menu_Menu_SaveAs_Click"/>
             </MenuItem>
+            <MenuItem x:Name="Menu_SaveTools" Header="Save Tools">
+                <MenuItem x:Name="Menu_SaveTools_UnPack" Header="Un-Pack Save Data" HorizontalContentAlignment="Stretch" Click="Menu_SaveTools_UnPack_Click"/>
+                <MenuItem x:Name="Menu_SaveTools_Pack" Header="Pack Save Data" HorizontalContentAlignment="Stretch" Click="Menu_SaveTools_Pack_Click"/>
+            </MenuItem>
             <MenuItem x:Name="Menu_About" Header="About">
                 <MenuItem x:Name="Menu_About_Licence" Header="Licence" Click="Menu_About_Licence_Click"/>
                 <MenuItem x:Name="Menu_About_LegalNotices" Header="Legal Notices" Click="Menu_About_LegalNotices_Click"/>
@@ -65,7 +69,7 @@
                         <ColumnDefinition/>
                         <ColumnDefinition Width="150"/>
                     </Grid.ColumnDefinitions>
-                    <ListView x:Name="PokedexManager_List" SelectionChanged="PokedexManager_List_SelectionChanged">
+                    <ListView x:Name="PokedexManager_List" SelectionChanged="PokedexManager_List_SelectionChanged" MouseDoubleClick="PokedexManager_List_MouseDoubleClick">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="ID" Width="50px" DisplayMemberBinding="{Binding ID}"/>
@@ -117,6 +121,9 @@
                 <Grid Background="#FFE5E5E5">
                     <Label x:Name="label" Content="This Tab is in Development..." Foreground="Red" FontSize="72"/>
                 </Grid>
+            </TabItem>
+            <TabItem Header="Feature Manager" HorizontalAlignment="Left" Height="19.96" VerticalAlignment="Top" d:IsLocked="True">
+                <Label x:Name="label_Copy1" Content="This Tab is in Development..." Foreground="Red" FontSize="72"/>
             </TabItem>
         </TabControl>
         <StatusBar VerticalAlignment="Bottom" d:IsLocked="True">

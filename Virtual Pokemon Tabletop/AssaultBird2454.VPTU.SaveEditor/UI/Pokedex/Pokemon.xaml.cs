@@ -134,114 +134,136 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
         /// <summary>
         /// Loads the data from a Dex Entry, Can be used to reset the page
         /// </summary>
-        private void Load()
+        private void Load(VPTU.Pokedex.Pokemon.PokemonData _LoadData = null)
         {
+            VPTU.Pokedex.Pokemon.PokemonData LoadData;
+            if(_LoadData != null)
+            {
+                LoadData = _LoadData;
+            }
+            else
+            {
+                LoadData = PokemonData;
+            }
+
             //Save Basic Pokemon Data
             #region Basic Info
-            Basic_Name.Text = PokemonData.Species_Name;
-            try { Basic_Desc.Text = PokemonData.Species_Desc; } catch { } // Try and catch this as old versions of the save will not be able to read this?
-            Basic_ID.Text = PokemonData.Species_DexID.ToString();
-            Basic_Type1.SelectedItem = PokemonData.Species_Type1;
-            Basic_Type2.SelectedItem = PokemonData.Species_Type2;
-            Basic_Weight.SelectedItem = PokemonData.Species_WeightClass;
-            Basic_Size.SelectedItem = PokemonData.Species_SizeClass;
+            try { Basic_Name.Text = LoadData.Species_Name; } catch { }
+            try { Basic_Desc.Text = LoadData.Species_Desc; } catch { } // Try and catch this as old versions of the save will not be able to read this?
+            try { Basic_ID.Text = LoadData.Species_DexID.ToString(); } catch { }
+            try { Basic_Type1.SelectedItem = LoadData.Species_Type1; } catch { }
+            try { Basic_Type2.SelectedItem = LoadData.Species_Type2; } catch { }
+            try { Basic_Weight.SelectedItem = LoadData.Species_WeightClass; } catch { }
+            try { Basic_Size.SelectedItem = LoadData.Species_SizeClass; } catch { }
             #endregion
             //Load Pokemon Skill Data
             #region Skill Data
             //Skill Rank Data
-            Skill_Acrobatics_Rank.SelectedItem = PokemonData.Species_Skill_Data.Acrobatics_Rank;
-            Skill_Athletics_Rank.SelectedItem = PokemonData.Species_Skill_Data.Athletics_Rank;
-            Skill_Charm_Rank.SelectedItem = PokemonData.Species_Skill_Data.Charm_Rank;
-            Skill_Combat_Rank.SelectedItem = PokemonData.Species_Skill_Data.Combat_Rank;
-            Skill_Command_Rank.SelectedItem = PokemonData.Species_Skill_Data.Command_Rank;
-            Skill_Focus_Rank.SelectedItem = PokemonData.Species_Skill_Data.Focus_Rank;
-            Skill_GeneralEDU_Rank.SelectedItem = PokemonData.Species_Skill_Data.General_Rank;
-            Skill_Gulie_Rank.SelectedItem = PokemonData.Species_Skill_Data.Guile_Rank;
-            Skill_Intimidate_Rank.SelectedItem = PokemonData.Species_Skill_Data.Intimidate_Rank;
-            Skill_Intuition_Rank.SelectedItem = PokemonData.Species_Skill_Data.Intuition_Rank;
-            Skill_MedicineEDU_Rank.SelectedItem = PokemonData.Species_Skill_Data.Medicine_Rank;
-            Skill_OccultEDU_Rank.SelectedItem = PokemonData.Species_Skill_Data.Occult_Rank;
-            Skill_Perception_Rank.SelectedItem = PokemonData.Species_Skill_Data.Perception_Rank;
-            Skill_PokemonEDU_Rank.SelectedItem = PokemonData.Species_Skill_Data.Pokemon_Rank;
-            Skill_Stealth_Rank.SelectedItem = PokemonData.Species_Skill_Data.Stealth_Rank;
-            Skill_Survival_Rank.SelectedItem = PokemonData.Species_Skill_Data.Survival_Rank;
-            Skill_TechnologyEDU_Rank.SelectedItem = PokemonData.Species_Skill_Data.Technology_Rank;
+            try { Skill_Acrobatics_Rank.SelectedItem = LoadData.Species_Skill_Data.Acrobatics_Rank; } catch { }
+            try { Skill_Athletics_Rank.SelectedItem = LoadData.Species_Skill_Data.Athletics_Rank; } catch { }
+            try { Skill_Charm_Rank.SelectedItem = LoadData.Species_Skill_Data.Charm_Rank; } catch { }
+            try { Skill_Combat_Rank.SelectedItem = LoadData.Species_Skill_Data.Combat_Rank; } catch { }
+            try { Skill_Command_Rank.SelectedItem = LoadData.Species_Skill_Data.Command_Rank; } catch { }
+            try { Skill_Focus_Rank.SelectedItem = LoadData.Species_Skill_Data.Focus_Rank; } catch { }
+            try { Skill_GeneralEDU_Rank.SelectedItem = LoadData.Species_Skill_Data.General_Rank; } catch { }
+            try { Skill_Gulie_Rank.SelectedItem = LoadData.Species_Skill_Data.Guile_Rank; } catch { }
+            try { Skill_Intimidate_Rank.SelectedItem = LoadData.Species_Skill_Data.Intimidate_Rank; } catch { }
+            try { Skill_Intuition_Rank.SelectedItem = LoadData.Species_Skill_Data.Intuition_Rank; } catch { }
+            try { Skill_MedicineEDU_Rank.SelectedItem = LoadData.Species_Skill_Data.Medicine_Rank; } catch { }
+            try { Skill_OccultEDU_Rank.SelectedItem = LoadData.Species_Skill_Data.Occult_Rank; } catch { }
+            try { Skill_Perception_Rank.SelectedItem = LoadData.Species_Skill_Data.Perception_Rank; } catch { }
+            try { Skill_PokemonEDU_Rank.SelectedItem = LoadData.Species_Skill_Data.Pokemon_Rank; } catch { }
+            try { Skill_Stealth_Rank.SelectedItem = LoadData.Species_Skill_Data.Stealth_Rank; } catch { }
+            try { Skill_Survival_Rank.SelectedItem = LoadData.Species_Skill_Data.Survival_Rank; } catch { }
+            try { Skill_TechnologyEDU_Rank.SelectedItem = LoadData.Species_Skill_Data.Technology_Rank; } catch { }
 
             //Skill Mod Data
-            Skill_Acrobatics_Mod.Value = PokemonData.Species_Skill_Data.Acrobatics_Mod;
-            Skill_Athletics_Mod.Value = PokemonData.Species_Skill_Data.Athletics_Mod;
-            Skill_Charm_Mod.Value = PokemonData.Species_Skill_Data.Charm_Mod;
-            Skill_Combat_Mod.Value = PokemonData.Species_Skill_Data.Combat_Mod;
-            Skill_Command_Mod.Value = PokemonData.Species_Skill_Data.Command_Mod;
-            Skill_Focus_Mod.Value = PokemonData.Species_Skill_Data.Focus_Mod;
-            Skill_GeneralEDU_Mod.Value = PokemonData.Species_Skill_Data.General_Mod;
-            Skill_Gulie_Mod.Value = PokemonData.Species_Skill_Data.Guile_Mod;
-            Skill_Intimidate_Mod.Value = PokemonData.Species_Skill_Data.Intimidate_Mod;
-            Skill_Intuition_Mod.Value = PokemonData.Species_Skill_Data.Intuition_Mod;
-            Skill_MedicineEDU_Mod.Value = PokemonData.Species_Skill_Data.Medicine_Mod;
-            Skill_OccultEDU_Mod.Value = PokemonData.Species_Skill_Data.Occult_Mod;
-            Skill_Perception_Mod.Value = PokemonData.Species_Skill_Data.Perception_Mod;
-            Skill_PokemonEDU_Mod.Value = PokemonData.Species_Skill_Data.Pokemon_Mod;
-            Skill_Stealth_Mod.Value = PokemonData.Species_Skill_Data.Stealth_Mod;
-            Skill_Survival_Mod.Value = PokemonData.Species_Skill_Data.Survival_Mod;
-            Skill_TechnologyEDU_Mod.Value = PokemonData.Species_Skill_Data.Technology_Mod;
+            try { Skill_Acrobatics_Mod.Value = LoadData.Species_Skill_Data.Acrobatics_Mod; } catch { }
+            try { Skill_Athletics_Mod.Value = LoadData.Species_Skill_Data.Athletics_Mod; } catch { }
+            try { Skill_Charm_Mod.Value = LoadData.Species_Skill_Data.Charm_Mod; } catch { }
+            try { Skill_Combat_Mod.Value = LoadData.Species_Skill_Data.Combat_Mod; } catch { }
+            try { Skill_Command_Mod.Value = LoadData.Species_Skill_Data.Command_Mod; } catch { }
+            try { Skill_Focus_Mod.Value = LoadData.Species_Skill_Data.Focus_Mod; } catch { }
+            try { Skill_GeneralEDU_Mod.Value = LoadData.Species_Skill_Data.General_Mod; } catch { }
+            try { Skill_Gulie_Mod.Value = LoadData.Species_Skill_Data.Guile_Mod; } catch { }
+            try { Skill_Intimidate_Mod.Value = LoadData.Species_Skill_Data.Intimidate_Mod; } catch { }
+            try { Skill_Intuition_Mod.Value = LoadData.Species_Skill_Data.Intuition_Mod; } catch { }
+            try { Skill_MedicineEDU_Mod.Value = LoadData.Species_Skill_Data.Medicine_Mod; } catch { }
+            try { Skill_OccultEDU_Mod.Value = LoadData.Species_Skill_Data.Occult_Mod; } catch { }
+            try { Skill_Perception_Mod.Value = LoadData.Species_Skill_Data.Perception_Mod; } catch { }
+            try { Skill_PokemonEDU_Mod.Value = LoadData.Species_Skill_Data.Pokemon_Mod; } catch { }
+            try { Skill_Stealth_Mod.Value = LoadData.Species_Skill_Data.Stealth_Mod; } catch { }
+            try { Skill_Survival_Mod.Value = LoadData.Species_Skill_Data.Survival_Mod; } catch { }
+            try { Skill_TechnologyEDU_Mod.Value = LoadData.Species_Skill_Data.Technology_Mod; } catch { }
             #endregion
             //Load Pokemon Capabilities Data
             #region Capabilities
-            Capabilities_NatureWalk_1.SelectedItem = PokemonData.Species_Capability_Data.NatureWalk_1;
-            Capabilities_NatureWalk_2.SelectedItem = PokemonData.Species_Capability_Data.NatureWalk_2;
+            try { Capabilities_NatureWalk_1.SelectedItem = LoadData.Species_Capability_Data.NatureWalk_1; } catch { }
+            try { Capabilities_NatureWalk_2.SelectedItem = LoadData.Species_Capability_Data.NatureWalk_2; } catch { }
             #endregion
             //Load Special Capabilities Data
             #region Special Capabilities
-            foreach (CheckBox box in Capabilities_Wrap.Children)
+            try
             {
-                if (PokemonData.Species_SpecialCapability.FindAll(x => x.Key == (VPTU.Pokedex.Pokemon.Pokemon_Capabilities)box.Tag).Count >= 1)
+                foreach (CheckBox box in Capabilities_Wrap.Children)
                 {
-                    box.IsChecked = true;
+                    if (LoadData.Species_SpecialCapability.FindAll(x => x.Key == (VPTU.Pokedex.Pokemon.Pokemon_Capabilities)box.Tag).Count >= 1)
+                    {
+                        box.IsChecked = true;
 
-                    //Set Values (If Applicable)
-                }
-                else
-                {
-                    box.IsChecked = false;
+                        //Set Values (If Applicable)
+                    }
+                    else
+                    {
+                        box.IsChecked = false;
+                    }
                 }
             }
+            catch { }
             #endregion
             //Load Pokemon Base Stat Data
             #region Base Stats
-            BaseStats_HP.Value = PokemonData.Species_BaseStats_HP;
-            BaseStats_Attack.Value = PokemonData.Species_BaseStats_Attack;
-            BaseStats_Defence.Value = PokemonData.Species_BaseStats_Defence;
-            BaseStats_SpAttack.Value = PokemonData.Species_BaseStats_SpAttack;
-            BaseStats_SpDefence.Value = PokemonData.Species_BaseStats_SpDefence;
-            BaseStats_Speed.Value = PokemonData.Species_BaseStats_Speed;
+            try { BaseStats_HP.Value = LoadData.Species_BaseStats_HP; } catch { }
+            try { BaseStats_Attack.Value = LoadData.Species_BaseStats_Attack; } catch { }
+            try { BaseStats_Defence.Value = LoadData.Species_BaseStats_Defence; } catch { }
+            try { BaseStats_SpAttack.Value = LoadData.Species_BaseStats_SpAttack; } catch { }
+            try { BaseStats_SpDefence.Value = LoadData.Species_BaseStats_SpDefence; } catch { }
+            try { BaseStats_Speed.Value = LoadData.Species_BaseStats_Speed; } catch { }
             #endregion
 
             //All the linked objects get loaded here
             #region Links
             //Load Linked Move Data
             #region Moves
-            Moves_List.Items.Clear();
-
-            if (PokemonData.Moves == null) { PokemonData.Moves = new List<VPTU.Pokedex.Pokemon.Link_Moves>(); }
-            foreach (VPTU.Pokedex.Pokemon.Link_Moves ML in PokemonData.Moves)
+            try
             {
-                Moves_List.Items.Add(ML);
+                Moves_List.Items.Clear();
+
+                if (LoadData.Moves == null) { LoadData.Moves = new List<VPTU.Pokedex.Pokemon.Link_Moves>(); }
+                foreach (VPTU.Pokedex.Pokemon.Link_Moves ML in LoadData.Moves)
+                {
+                    Moves_List.Items.Add(ML);
+                }
             }
+            catch { }
             #endregion
             //Load Linked Forms and Evolution Data here
             #region Evo Forms
-            FormsAndEvos_List.Items.Clear();
-
-            if (PokemonData.Evolutions == null) { PokemonData.Evolutions = new List<VPTU.Pokedex.Pokemon.Link_Evolutions>(); }
-            foreach (VPTU.Pokedex.Pokemon.Link_Evolutions EL in PokemonData.Evolutions)
+            try
             {
-                EvoLinks link = new EvoLinks();
-                link.LinkData = EL;
-                link.PokemonName = SaveData.PokedexData.Pokemon.Find(x => x.Species_DexID == EL.Pokemon_Evo).Species_Name;
+                FormsAndEvos_List.Items.Clear();
 
-                FormsAndEvos_List.Items.Add(link);
+                if (LoadData.Evolutions == null) { LoadData.Evolutions = new List<VPTU.Pokedex.Pokemon.Link_Evolutions>(); }
+                foreach (VPTU.Pokedex.Pokemon.Link_Evolutions EL in LoadData.Evolutions)
+                {
+                    EvoLinks link = new EvoLinks();
+                    link.LinkData = EL;
+                    link.PokemonName = SaveData.PokedexData.Pokemon.Find(x => x.Species_DexID == EL.Pokemon_Evo).Species_Name;
+
+                    FormsAndEvos_List.Items.Add(link);
+                }
             }
+            catch { }
             #endregion
             #endregion
         }
@@ -589,6 +611,26 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
             FormsAndEvos_List.Items.Remove(FormsAndEvos_List.SelectedItem);// Removes Link from list
         }
         #endregion
+
+        private void Save_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Save();
+        }
+
+        private void RawData_Button_Click(object sender, RoutedEventArgs e)
+        {
+            RAW_JSON impexp = new RAW_JSON();
+            impexp.Export<VPTU.Pokedex.Pokemon.PokemonData>(PokemonData);
+            bool? dr = impexp.ShowDialog();
+
+            if (dr == true)
+            {
+                PokemonData = impexp.Import<VPTU.Pokedex.Pokemon.PokemonData>();
+                try { Load(); } catch { MessageBox.Show("Failed to load data object!"); }
+
+                //Load(impexp.Import<VPTU.Pokedex.Pokemon.PokemonData>());
+            }
+        }
     }
 
     #region Data Classes

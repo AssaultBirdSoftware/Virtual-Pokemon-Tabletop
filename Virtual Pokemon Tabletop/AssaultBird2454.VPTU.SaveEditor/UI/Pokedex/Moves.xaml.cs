@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -510,10 +511,28 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
             Close();// Closes the dialogue
         }
 
+        private void Save_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Save();// Saves Data
+        }
+
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)
         {
             try { DialogResult = false; } catch { }// Sets the resault to true (Means Fail / Canceled) & the error means it is not a dialogue
             Close();// Closes the dialogue
+        }
+
+        private void RawData_Button_Click(object sender, RoutedEventArgs e)
+        {
+            RAW_JSON impexp = new RAW_JSON();
+            impexp.Export<VPTU.Pokedex.Moves.MoveData>(MoveData);
+            bool? dr = impexp.ShowDialog();
+
+            if (dr == true)
+            {
+                MoveData = impexp.Import<VPTU.Pokedex.Moves.MoveData>();
+                Load();
+            }
         }
     }
 }

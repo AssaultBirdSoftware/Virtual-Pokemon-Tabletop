@@ -134,7 +134,7 @@ namespace AssaultBird2454.VPTU.SaveManager
         /// </summary>
         /// <param name="DirType">File requested</param>
         /// <returns>Path to file</returns>
-        private string GetSaveFile_DataDir(SaveData_Dir DirType)
+        public static string GetSaveFile_DataDir(SaveData_Dir DirType)
         {
             switch (DirType)
             {
