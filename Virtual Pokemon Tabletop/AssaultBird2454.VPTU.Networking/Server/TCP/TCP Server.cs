@@ -195,12 +195,74 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
                 /* Error occured when connecting a client */
             }
         }
+        
+        /// <summary>
+        /// Disconnects a client
+        /// </summary>
+        /// <param name="node">The client being disconected</param>
+        public void Client_Disconnected(TCP_ClientNode node)
+        {
+            TCP_ClientState_Changed.Invoke(node, Data.Client_ConnectionStatus.Disconnected);// Sends Client Disconnect Event
+
+            node.Client.Close();// Closes Connection
+
+            lock (ClientNodes)
+            {
+                ClientNodes.Remove(node);// Removes from list
+            }
+
+            node = null;// Clears the object
+        }
         #endregion
 
         #region Data Events
         private void Client_ReadData(IAsyncResult ar)
         {
+            TCP_ClientNode node = ClientNodes.Find(x => x.ID == ((TcpClient)ar.AsyncState).Client.RemoteEndPoint.ToString());// Gets the node that send the data
+            string Data = "";// The data that was recieved
+            int DataLength = 0;
 
+            try
+            {
+                DataLength = node.Client.GetStream().EndRead(ar);// Gets the length and ends read
+
+                if(DataLength == 0)// If Data has nothing in it
+                {
+
+                    return;
+                }
+                
+                Data = Encoding.UTF8.GetString(node.Rx, 0, DataLength).Trim();// Gets the data and trims it
+
+                //Use Data
+
+                node.Rx = new byte[32768];//Sets the clients recieve buffer
+                node.Client.GetStream().BeginRead(node.Rx, 0, node.Rx.Length, Client_ReadData, node.Client);//Starts to read again
+            }
+            catch
+            {
+
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void Client_SendData(string _Data, TCP_ClientNode node = null)
+        {
+            string Data = "";
+            // Convert Data
+            if(node == null)
+            {
+                foreach (TCP_ClientNode cn in ClientNodes)
+                {
+                    //cn.Send();
+                }
+            }
+            else
+            {
+
+            }
         }
         #endregion
     }

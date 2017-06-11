@@ -23,8 +23,14 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
             Socket = _Client.Client;// Sets the socket
             ID = _ID;// Sets the ID
 
-            Tx = new byte[512];
-            Rx = new byte[512];
+            Tx = new byte[32768];// 32768
+            Rx = new byte[32768];// 32768
+        }
+
+        public void Send(string Data)
+        {
+            Tx = Encoding.UTF8.GetBytes(Data);//Gets Bytes
+            Client.GetStream().BeginWrite(Tx, 0, Tx.Length, onWrite, Client);//Sends Encrypted data to client
         }
     }
 }

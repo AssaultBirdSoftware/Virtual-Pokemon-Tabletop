@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Client\TCP\TCP Client.cs" />
     <Compile Include="Client\UDP\UDP Client.cs" />
+    <Compile Include="Data\Network Data.cs" />
     <Compile Include="Data\States.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Server\TCP\TCP ClientNode.cs" />
