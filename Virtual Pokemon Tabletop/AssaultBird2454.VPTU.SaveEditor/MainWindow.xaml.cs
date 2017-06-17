@@ -34,6 +34,29 @@ namespace AssaultBird2454.VPTU.SaveEditor
 
         public MainWindow()
         {
+            try
+            {
+                if (File.Exists(AssemblyDirectory + "\\SaveEditor.pid"))
+                {
+                    if (Process.GetProcessById(Convert.ToInt32(File.ReadAllText(AssemblyDirectory + "\\SaveEditor.pid"))).ProcessName == Process.GetCurrentProcess().ProcessName)
+                    {
+                        MessageBox.Show("Process Already Running!");
+                        this.Close();
+                        return;
+                    }
+                    else
+                    {
+                        File.Delete(AssemblyDirectory + "\\SaveEditor.pid");
+                    }
+                }
+
+                File.WriteAllText(AssemblyDirectory + "\\SaveEditor.pid", Process.GetCurrentProcess().Id.ToString());
+            }
+            catch
+            {
+
+            }
+
             InitializeComponent();
 
             #region Versioning Info
@@ -48,6 +71,10 @@ namespace AssaultBird2454.VPTU.SaveEditor
             #endregion
 
             Setup();
+        }
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            File.Delete(AssemblyDirectory + "\\SaveEditor.pid");
         }
         private void Menu_About_Licence_Click(object sender, RoutedEventArgs e)
         {

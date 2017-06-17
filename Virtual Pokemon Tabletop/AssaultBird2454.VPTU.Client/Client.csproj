@@ -118,6 +118,14 @@
       <Project>{626acee3-9310-4b55-bb35-ab9c08225797}</Project>
       <Name>BattleManager</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AssaultBird2454.VPTU.ContestManager\ContestManager.csproj">
+      <Project>{f82589cc-b4c1-4433-9bd7-635f508d2702}</Project>
+      <Name>ContestManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AssaultBird2454.VPTU.Networking\Networking.csproj">
+      <Project>{87acc84c-0582-4b05-8bfe-a07286cd365c}</Project>
+      <Name>Networking</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AssaultBird2454.VPTU.Pokedex\Pokedex.csproj">
       <Project>{7e7c28d4-d92f-4d4a-988c-8086fce625a0}</Project>
       <Name>Pokedex</Name>

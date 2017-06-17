@@ -200,6 +200,17 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
             #region Capabilities
             try { Capabilities_NatureWalk_1.SelectedItem = LoadData.Species_Capability_Data.NatureWalk_1; } catch { }
             try { Capabilities_NatureWalk_2.SelectedItem = LoadData.Species_Capability_Data.NatureWalk_2; } catch { }
+
+            try { Capabilities_Burrow.Value = LoadData.Species_Capability_Data.Burrow; } catch { }
+            try { Capabilities_HighJump.Value = LoadData.Species_Capability_Data.HighJump; } catch { }
+            try { Capabilities_Levitate.Value = LoadData.Species_Capability_Data.Levitate; } catch { }
+            try { Capabilities_LongJump.Value = LoadData.Species_Capability_Data.LongJump; } catch { }
+            try { Capabilities_Overland.Value = LoadData.Species_Capability_Data.Overland; } catch { }
+            try { Capabilities_Power.Value = LoadData.Species_Capability_Data.Power; } catch { }
+            try { Capabilities_Sky.Value = LoadData.Species_Capability_Data.Sky; } catch { }
+            try { Capabilities_Swim.Value = LoadData.Species_Capability_Data.Swim; } catch { }
+            try { Capabilities_Teleport.Value = LoadData.Species_Capability_Data.Teleport; } catch { }
+            try { Capabilities_ThrowingRange.Value = LoadData.Species_Capability_Data.ThrowingRange; } catch { }
             #endregion
             //Load Special Capabilities Data
             #region Special Capabilities
@@ -327,6 +338,17 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
             #region Capabilities
             PokemonData.Species_Capability_Data.NatureWalk_1 = (BattleManager.Data.NatureWalk_Type)Capabilities_NatureWalk_1.SelectedItem;
             PokemonData.Species_Capability_Data.NatureWalk_2 = (BattleManager.Data.NatureWalk_Type)Capabilities_NatureWalk_2.SelectedItem;
+
+            PokemonData.Species_Capability_Data.Burrow = (int)Capabilities_Burrow.Value;
+            PokemonData.Species_Capability_Data.HighJump = (int)Capabilities_HighJump.Value;
+            PokemonData.Species_Capability_Data.Levitate = (int)Capabilities_Levitate.Value;
+            PokemonData.Species_Capability_Data.LongJump = (int)Capabilities_LongJump.Value;
+            PokemonData.Species_Capability_Data.Overland = (int)Capabilities_Overland.Value;
+            PokemonData.Species_Capability_Data.Power = (int)Capabilities_Power.Value;
+            PokemonData.Species_Capability_Data.Sky = (int)Capabilities_Sky.Value;
+            PokemonData.Species_Capability_Data.Swim = (int)Capabilities_Swim.Value;
+            PokemonData.Species_Capability_Data.Teleport = (int)Capabilities_Teleport.Value;
+            PokemonData.Species_Capability_Data.ThrowingRange = (int)Capabilities_ThrowingRange.Value;
             #endregion
             //Save Special Capabilities Data
             #region Special Capabilities
