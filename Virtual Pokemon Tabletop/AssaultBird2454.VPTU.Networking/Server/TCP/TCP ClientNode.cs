@@ -15,10 +15,12 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         internal byte[] Tx { get; set; }
         internal byte[] Rx { get; set; }
         public string ID { get; set; }
+        public Server.TCP.TCP_Server Server { get; set; }
         #endregion
 
-        public TCP_ClientNode(TcpClient _Client, string _ID)
+        public TCP_ClientNode(TcpClient _Client, string _ID, TCP_Server _Server)
         {
+            Server = _Server;// Sets the server
             Client = _Client;// Sets the client
             Socket = _Client.Client;// Sets the socket
             ID = _ID;// Sets the ID
@@ -27,10 +29,14 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
             Rx = new byte[32768];// 32768
         }
 
+        /// <summary>
+        /// Sends data to this client, No Encryption or Serialization is performed at this step
+        /// </summary>
+        /// <param name="Data">The String being transmitted</param>
         public void Send(string Data)
         {
             Tx = Encoding.UTF8.GetBytes(Data);//Gets Bytes
-            Client.GetStream().BeginWrite(Tx, 0, Tx.Length, onWrite, Client);//Sends Encrypted data to client
+            Client.GetStream().BeginWrite(Tx, 0, Tx.Length, Server.OnWrite, Client);//Sends Encrypted data to client
         }
     }
 }

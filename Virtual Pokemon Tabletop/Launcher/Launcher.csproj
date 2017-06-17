@@ -64,11 +64,18 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Notice\Data.cs" />
+    <Compile Include="Notice\GetMessages.cs" />
+    <Compile Include="Notice\Notice.xaml.cs">
+      <DependentUpon>Notice.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProjectInfo.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Update\AutoUpdater.cs" />
+    <Compile Include="Update\Data.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -81,6 +88,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Notice\Notice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

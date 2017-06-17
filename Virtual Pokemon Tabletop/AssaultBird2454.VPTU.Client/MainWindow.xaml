@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AssaultBird2454.VPTU.Client"
         mc:Ignorable="d"
-        Title="Virtual Pokemon Tabletop - Client (Version: _____ _._._ Build _) (Commit: _______)" Height="412.278" Width="784.075">
+        Title="Virtual Pokemon Tabletop - Client (Version: _____ _._._ Build _) (Commit: _______)" Height="412.278" Width="784.075" Closed="Main_Closed">
     <Grid>
         <DockPanel LastChildFill="False" Margin="0,17.96,0,0"/>
         <Menu x:Name="Menu" VerticalAlignment="Top">

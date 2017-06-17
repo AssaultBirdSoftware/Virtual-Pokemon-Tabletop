@@ -29,7 +29,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         /// An event that fires when a clients connection state changes
         /// </summary>
         public event TCP_ClientState_Handeler TCP_ClientState_Changed;
-
+        
         /// <summary>
         /// An event that fires when a server state changes
         /// </summary>
@@ -173,7 +173,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
 
                     lock (ClientNodes)
                     {
-                        node = new TCP_ClientNode(tclient, tclient.Client.RemoteEndPoint.ToString());// Creates a new client node object
+                        node = new TCP_ClientNode(tclient, tclient.Client.RemoteEndPoint.ToString(), this);// Creates a new client node object
                         node.Client.GetStream().BeginRead(node.Rx, 0, node.Rx.Length, Client_ReadData, node.Client);// Starts to read the data recieved
                         ClientNodes.Add(node);// Adds the client node to the list
                     }
@@ -195,7 +195,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
                 /* Error occured when connecting a client */
             }
         }
-        
+
         /// <summary>
         /// Disconnects a client
         /// </summary>
@@ -226,12 +226,12 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
             {
                 DataLength = node.Client.GetStream().EndRead(ar);// Gets the length and ends read
 
-                if(DataLength == 0)// If Data has nothing in it
+                if (DataLength == 0)// If Data has nothing in it
                 {
 
                     return;
                 }
-                
+
                 Data = Encoding.UTF8.GetString(node.Rx, 0, DataLength).Trim();// Gets the data and trims it
 
                 //Use Data
@@ -252,7 +252,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         {
             string Data = "";
             // Convert Data
-            if(node == null)
+            if (node == null)
             {
                 foreach (TCP_ClientNode cn in ClientNodes)
                 {
@@ -263,6 +263,16 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
             {
 
             }
+        }
+
+        internal void OnWrite(IAsyncResult ar)
+        {
+            try
+            {
+                TcpClient tcpc = (TcpClient)ar.AsyncState;//Gets the client data is going to
+                tcpc.GetStream().EndWrite(ar);//Ends client write stream
+            }
+            catch { /* Transmition Error */ }
         }
         #endregion
     }

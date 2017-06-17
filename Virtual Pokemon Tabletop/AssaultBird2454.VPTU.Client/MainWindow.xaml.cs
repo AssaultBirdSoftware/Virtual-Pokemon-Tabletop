@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -24,8 +25,45 @@ namespace AssaultBird2454.VPTU.Client
     {
         public ProjectInfo VersioningInfo { get; }
 
+        /// <summary>
+        /// Assembly Directory
+        /// </summary>
+        public static string AssemblyDirectory
+        {
+            get
+            {
+                string codeBase = Assembly.GetExecutingAssembly().CodeBase;
+                UriBuilder uri = new UriBuilder(codeBase);
+                string path = Uri.UnescapeDataString(uri.Path);
+                return System.IO.Path.GetDirectoryName(path);
+            }
+        }
+
         public MainWindow()
         {
+            try
+            {
+                if (File.Exists(AssemblyDirectory + "\\Client.pid"))
+                {
+                    if (Process.GetProcessById(Convert.ToInt32(File.ReadAllText(AssemblyDirectory + "\\Launcher.pid"))).ProcessName == Process.GetCurrentProcess().ProcessName)
+                    {
+                        MessageBox.Show("Process Already Running!");
+                        this.Close();
+                        return;
+                    }
+                    else
+                    {
+                        File.Delete(AssemblyDirectory + "\\Client.pid");
+                    }
+                }
+
+                File.WriteAllText(AssemblyDirectory + "\\Client.pid", Process.GetCurrentProcess().Id.ToString());
+            }
+            catch
+            {
+
+            }
+
             InitializeComponent();
 
             #region Versioning Info
@@ -43,6 +81,11 @@ namespace AssaultBird2454.VPTU.Client
         private void Menu_Menu_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Main_Closed(object sender, EventArgs e)
+        {
+            File.Delete(AssemblyDirectory + "\\Client.pid");
         }
     }
 }
