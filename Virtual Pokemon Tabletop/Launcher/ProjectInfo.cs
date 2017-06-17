@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AssaultBird2454.VPTU.Client
+namespace Launcher
 {
     public class ProjectInfo
     {

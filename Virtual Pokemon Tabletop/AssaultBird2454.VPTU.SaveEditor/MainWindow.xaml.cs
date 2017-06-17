@@ -72,6 +72,10 @@ namespace AssaultBird2454.VPTU.SaveEditor
 
             Setup();
         }
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            File.Delete(AssemblyDirectory + "\\SaveEditor.pid");
+        }
         private void Menu_About_Licence_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -617,11 +621,6 @@ namespace AssaultBird2454.VPTU.SaveEditor
             catch { }
         }
         #endregion
-
-        private void Window_Closed(object sender, EventArgs e)
-        {
-            File.Delete(AssemblyDirectory + "\\SaveEditor.pid");
-        }
     }
 
     /// <summary>

@@ -117,6 +117,11 @@ namespace Launcher
 
             }
 
+            if (Directory.Exists(AssemblyDirectory + "\\Updater"))
+            {
+                Directory.Delete(AssemblyDirectory + "\\Updater");// Delete the Update Folder
+            }
+
             InitializeComponent();
 
             if (File.Exists(ConfigFile_Directory))
@@ -130,13 +135,15 @@ namespace Launcher
 
             VPTU_Settings = new Settings();// Creates a settings class
 
+            Update.AutoUpdater.CheckForUpdates();// Check for updates
+
             NoticeHandel = new Notice.MessageHandeler();// Creates a Notice Class
             NoticeHandel.GetMessages(this);// Gets the notices and loads them
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         /// <summary>
