@@ -216,7 +216,10 @@ namespace AssaultBird2454.VPTU.Updater
 
                 FileVersionInfo FVI = FileVersionInfo.GetVersionInfo(ParentDir + @"\Launcher.exe");
 
-                if (FVI.ProductMajorPart < Version_Info[0] || FVI.ProductMinorPart < Version_Info[1] || FVI.ProductBuildPart < Version_Info[2] || FVI.ProductPrivatePart < Version_Info[3])
+                if (FVI.ProductMajorPart < Version_Info[0] ||
+                    (FVI.ProductMajorPart <= Version_Info[0] && FVI.ProductMinorPart < Version_Info[1]) ||
+                    (FVI.ProductMajorPart <= Version_Info[0] && FVI.ProductMinorPart <= Version_Info[1] && FVI.ProductBuildPart < Version_Info[2]) ||
+                    (FVI.ProductMajorPart <= Version_Info[0] && FVI.ProductMinorPart <= Version_Info[1] && FVI.ProductBuildPart <= Version_Info[2] && FVI.ProductPrivatePart < Version_Info[3]))
                 {
                     //If _.x.x.x is greater than current
                     //If x._.x.x is greater than current

@@ -47,26 +47,21 @@ namespace Launcher.Update
                 FileVersionInfo FVI = FileVersionInfo.GetVersionInfo(MainWindow.AssemblyDirectory + @"\Launcher.exe");
 
                 bool update = false;
-                if (FVI.ProductMajorPart > Version_Info[0])
+
+                if (FVI.ProductMajorPart < Version_Info[0] ||
+                    (FVI.ProductMajorPart <= Version_Info[0] && FVI.ProductMinorPart < Version_Info[1]) ||
+                    (FVI.ProductMajorPart <= Version_Info[0] && FVI.ProductMinorPart <= Version_Info[1] && FVI.ProductBuildPart < Version_Info[2]) ||
+                    (FVI.ProductMajorPart <= Version_Info[0] && FVI.ProductMinorPart <= Version_Info[1] && FVI.ProductBuildPart <= Version_Info[2] && FVI.ProductPrivatePart < Version_Info[3]))
                 {
-                    if (FVI.ProductMinorPart > Version_Info[1])
-                    {
-                        if (FVI.ProductBuildPart > Version_Info[2])
-                        {
-                            if (FVI.ProductPrivatePart > Version_Info[3])
-                            {
-                                //If -.-.-.^ is greater than current
-                            }
-                            else { update = true; }
-                            //If -.-.^.x is greater than current
-                        }
-                        else { update = true; }
-                        //If -.^.x.x is greater than current
-                    }
-                    else { update = true; }
-                    //If ^.x.x.x is greater than current
+                    //If _.x.x.x is greater than current
+                    //If x._.x.x is greater than current
+                    //If x.x._.x is greater than current
+                    //If x.x.x._ is greater than current
+
+                    //Update Avaliable
+                    update = true;
                 }
-                else { update = true; }
+                else { update = false; }
 
                 if (update)
                 {
@@ -80,7 +75,7 @@ namespace Launcher.Update
         {
             MessageBoxResult mbr = MessageBox.Show("An update for Virtual Pokemon Tabletop was found...\n\nCurrent Version: " + VersioningInfo.Version + "\nLatest Version: " + LatestVersion.Version_Name, "Virtual Pokemon Tabletop Update", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
 
-            if(mbr == MessageBoxResult.Yes)
+            if (mbr == MessageBoxResult.Yes)
             {
                 Directory.CreateDirectory(MainWindow.AssemblyDirectory + "/Updater/");
                 WebClient wc = new WebClient();
