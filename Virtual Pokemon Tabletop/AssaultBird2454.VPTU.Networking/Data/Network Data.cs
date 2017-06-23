@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AssaultBird2454.VPTU.Networking.Data
 {
-    public enum Commands { }
+    public enum Commands { OK = 0000000, SetBufferSize = 0000001, Data = 0000002 }
 
     public class NetworkData_Data
     {

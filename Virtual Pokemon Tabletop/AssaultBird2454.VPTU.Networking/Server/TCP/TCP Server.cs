@@ -3,18 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Net.Security;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Security.Cryptography.X509Certificates;
 
 namespace AssaultBird2454.VPTU.Networking.Server.TCP
 {
+    public enum DataDirection { Send, Recieve }
+
     #region Event Delegates
     public delegate void TCP_AcceptClients_Handeler(bool Accepting_Connections);
-
     public delegate void TCP_ClientState_Handeler(TCP_ClientNode Client, Data.Client_ConnectionStatus Client_State);
-
     public delegate void TCP_ServerState_Handeler(Data.Server_Status Server_State);
+
+    public delegate void TCP_Data(string Data, TCP_ClientNode Client, DataDirection Direction);
+    public delegate void TCP_Data_Error(Exception ex, DataDirection Direction);
     #endregion
 
     public class TCP_Server
@@ -29,11 +34,21 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         /// An event that fires when a clients connection state changes
         /// </summary>
         public event TCP_ClientState_Handeler TCP_ClientState_Changed;
-        
+
         /// <summary>
         /// An event that fires when a server state changes
         /// </summary>
         public event TCP_ServerState_Handeler TCP_ServerState_Changed;
+
+        /// <summary>
+        /// An event thst fires when data is sent or recieved
+        /// </summary>
+        public event TCP_Data TCP_Data_Event;
+
+        /// <summary>
+        /// An event that is fired when a data error occures
+        /// </summary>
+        public event TCP_Data_Error TCP_Data_Error_Event;
         #endregion
 
         #region Variables
@@ -50,6 +65,10 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         private IPAddress TCP_ServerAddress;// Servers Address
         private int TCP_ServerPort;// Servers Port
         private int TCP_MaxConnections;// Servers Max Client Connections
+
+        private X509Certificate SSLCert;// SSL Certificate
+
+        public Action<TCP_ClientNode, string> CommandHandeler;
         #endregion
 
         #region Variable Handelers
@@ -70,7 +89,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         }
 
         /// <summary>
-        /// A Setting that defines the ipaddress that the server should listen to for incoming connections
+        /// A Setting that defines the ipaddress that the server should listen to for incoming connections, These changes will take no effect when the server is running...
         /// </summary>
         public IPAddress ServerAddress
         {
@@ -115,11 +134,21 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         }
         #endregion
 
-        public TCP_Server(IPAddress Address, int Port = 25444)
+        public TCP_Server(IPAddress Address, Action<TCP_ClientNode, string> _CommandHandeler, int Port = 25444, X509Certificate _SSLCertificate = null)
         {
-            ServerAddress = Address;
-            ServerPort = Port;// Sets the port
+            TCP_ServerAddress = Address;
+            TCP_ServerPort = Port;// Sets the port
             TCP_AcceptClients = true;// Allows clients to connect
+            CommandHandeler = _CommandHandeler;// Sets the Command Callback
+
+            if(_SSLCertificate == null)
+            {
+                //SSLCert = CreateSelfSignCertificate()
+            }
+            else
+            {
+                SSLCert = _SSLCertificate;// Set the cert
+            }
         }
 
         #region Server Methods
@@ -173,7 +202,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
 
                     lock (ClientNodes)
                     {
-                        node = new TCP_ClientNode(tclient, tclient.Client.RemoteEndPoint.ToString(), this);// Creates a new client node object
+                        node = new TCP_ClientNode(tclient, tclient.Client.RemoteEndPoint.ToString(), this, SSLCert);// Creates a new client node object
                         node.Client.GetStream().BeginRead(node.Rx, 0, node.Rx.Length, Client_ReadData, node.Client);// Starts to read the data recieved
                         ClientNodes.Add(node);// Adds the client node to the list
                     }
@@ -200,11 +229,12 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         /// Disconnects a client
         /// </summary>
         /// <param name="node">The client being disconected</param>
-        public void Client_Disconnected(TCP_ClientNode node)
+        public void Disconnect_Client(TCP_ClientNode node)
         {
             TCP_ClientState_Changed.Invoke(node, Data.Client_ConnectionStatus.Disconnected);// Sends Client Disconnect Event
 
-            node.Client.Close();// Closes Connection
+            try { node.Client.Close(); } catch { }// Closes Client
+            try { node.Socket.Close(); } catch { }// Closes Connection
 
             lock (ClientNodes)
             {
@@ -219,7 +249,6 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         private void Client_ReadData(IAsyncResult ar)
         {
             TCP_ClientNode node = ClientNodes.Find(x => x.ID == ((TcpClient)ar.AsyncState).Client.RemoteEndPoint.ToString());// Gets the node that send the data
-            string Data = "";// The data that was recieved
             int DataLength = 0;
 
             try
@@ -228,40 +257,43 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
 
                 if (DataLength == 0)// If Data has nothing in it
                 {
-
+                    Disconnect_Client(node);// Disconnects Client
                     return;
                 }
 
-                Data = Encoding.UTF8.GetString(node.Rx, 0, DataLength).Trim();// Gets the data and trims it
-
-                //Use Data
+                node.Data = Encoding.UTF8.GetString(node.Rx, 0, DataLength).Trim();// Gets the data and trims it
+                if (node.Data.EndsWith("|<EOD>|"))
+                {
+                    node.Data.Remove(node.Data.Length - 7, 7);// Removes the EOD marker
+                    TCP_Data_Event.Invoke(node.Data, node, DataDirection.Recieve);// Fires the Data Recieved Event
+                    CommandHandeler.Invoke(node, node.Data);// Executes the command handeler
+                    node.Data = "";// Data Recieved
+                }
 
                 node.Rx = new byte[32768];//Sets the clients recieve buffer
                 node.Client.GetStream().BeginRead(node.Rx, 0, node.Rx.Length, Client_ReadData, node.Client);//Starts to read again
             }
             catch
             {
-
+                // Client Dropped
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        private void Client_SendData(string _Data, TCP_ClientNode node = null)
+        public void Client_SendData(string Data, TCP_ClientNode node = null)
         {
-            string Data = "";
-            // Convert Data
             if (node == null)
             {
                 foreach (TCP_ClientNode cn in ClientNodes)
                 {
-                    //cn.Send();
+                    cn.Send(Data);// Send the data to everybody
                 }
             }
             else
             {
-
+                node.Send(Data);// Send the data to a single client
             }
         }
 
@@ -272,7 +304,11 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
                 TcpClient tcpc = (TcpClient)ar.AsyncState;//Gets the client data is going to
                 tcpc.GetStream().EndWrite(ar);//Ends client write stream
             }
-            catch { /* Transmition Error */ }
+            catch (Exception e)
+            {
+                TCP_Data_Error_Event.Invoke(e, DataDirection.Send);
+                /* Transmition Error */
+            }
         }
         #endregion
     }
