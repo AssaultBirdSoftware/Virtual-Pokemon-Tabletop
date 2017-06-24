@@ -166,7 +166,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
 
             if (_SSLCertificate == null)
             {
-                //SSLCert = CreateSelfSignCertificate()
+                
             }
             else
             {
@@ -187,7 +187,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
             ClientNodes = new List<TCP_ClientNode>();
             Listener = new TcpListener(ServerAddress, ServerPort);// Create a new server object
             Listener.Start();// Starts the server
-            Listener.BeginAcceptSocket(Client_Connected, null);// Creates an accept client callback
+            Listener.BeginAcceptSocket(Client_Connected, Listener);// Creates an accept client callback
         }
 
         /// <summary>
@@ -287,7 +287,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
                 node.Data = node.Data + Encoding.UTF8.GetString(node.Rx, 0, DataLength).Trim();// Gets the data and trims it
                 if (node.Data.EndsWith("|<EOD>|"))
                 {
-                    node.Data.Remove(node.Data.Length - 7, 7);// Removes the EOD marker
+                    node.Data.Replace("|<EOD>|", "");// Removes the EOD marker
                     Fire_TCP_Data_Event(node.Data, node, DataDirection.Recieve);// Fires the Data Recieved Event
                     CommandHandeler.Invoke(node, node.Data);// Executes the command handeler
                     node.Data = "";// Data Recieved
