@@ -145,6 +145,7 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
         {
             try
             {
+                
                 Client.GetStream().EndWrite(ar);//Ends client write stream
             }
             catch (Exception e)
