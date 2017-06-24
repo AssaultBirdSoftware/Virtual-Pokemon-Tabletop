@@ -44,7 +44,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         {
             Tx = Encoding.UTF8.GetBytes(Data + @"|<EOD>|");//Gets Bytes and adds |<EOD>| as a end of data marker
             Client.GetStream().BeginWrite(Tx, 0, Tx.Length, Server.OnWrite, Client);//Sends Encrypted data to client
-            Tx = null;
+            Tx = new byte[32768];
         }
     }
 }

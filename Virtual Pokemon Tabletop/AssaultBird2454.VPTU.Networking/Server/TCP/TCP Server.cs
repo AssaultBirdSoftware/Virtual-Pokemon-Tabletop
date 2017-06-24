@@ -261,7 +261,9 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
                     return;
                 }
 
-                node.Data = Encoding.UTF8.GetString(node.Rx, 0, DataLength).Trim();// Gets the data and trims it
+                if(node.Data == null) { node.Data = ""; }// Checks to see if it is null and if it is them set it to an empty string
+
+                node.Data = node.Data + Encoding.UTF8.GetString(node.Rx, 0, DataLength).Trim();// Gets the data and trims it
                 if (node.Data.EndsWith("|<EOD>|"))
                 {
                     node.Data.Remove(node.Data.Length - 7, 7);// Removes the EOD marker

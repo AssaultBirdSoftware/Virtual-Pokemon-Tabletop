@@ -24,6 +24,7 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
 
         private byte[] Tx;
         private byte[] Rx;
+        private string Data = "";
 
         public Action<string> CommandHandeler;
         #endregion
@@ -109,7 +110,55 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
         #region Data Events
         private void Client_DataRecv(IAsyncResult ar)
         {
+            int DataLength = 0;
 
+            try
+            {
+                DataLength = Client.GetStream().EndRead(ar);// Gets the length and ends read
+
+                if (DataLength == 0)// If Data has nothing in it
+                {
+                    Disconnect();// Disconnects
+                    return;
+                }
+
+                if (Data == null) { Data = ""; }// Checks to see if it is null and if it is them set it to an empty string
+                Data = Data + Encoding.UTF8.GetString(Rx, 0, DataLength).Trim();// Gets the data and trims it
+                if (Data.EndsWith("|<EOD>|"))
+                {
+                    Data.Remove(Data.Length - 7, 7);// Removes the EOD marker
+                    //TCP_Data_Event.Invoke(Data, DataDirection.Recieve);// Fires the Data Recieved Event
+                    CommandHandeler.Invoke(Data);// Executes the command handeler
+                    Data = "";// Data Recieved
+                }
+
+                Rx = new byte[32768];//Sets the clients recieve buffer
+                Client.GetStream().BeginRead(Rx, 0, Rx.Length, Client_DataRecv, Client);//Starts to read again
+            }
+            catch
+            {
+                // Client Dropped
+            }
+        }
+
+        private void Client_DataTran(IAsyncResult ar)
+        {
+            try
+            {
+                Client.GetStream().EndWrite(ar);//Ends client write stream
+            }
+            catch (Exception e)
+            {
+                //TCP_Data_Error_Event.Invoke(e, DataDirection.Send);
+                /* Transmition Error */
+            }
+        }
+
+        public void SendData(string Data)
+        {
+            Tx = Encoding.UTF8.GetBytes(Data);
+            Client.GetStream().BeginWrite(Tx, 0, Tx.Length, Client_DataTran, Client);
+            Tx = new byte[32768];
         }
         #endregion
 
