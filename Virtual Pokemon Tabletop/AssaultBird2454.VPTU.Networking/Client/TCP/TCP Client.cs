@@ -123,12 +123,12 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
                 }
 
                 if (Data == null) { Data = ""; }// Checks to see if it is null and if it is them set it to an empty string
+
                 Data = Data + Encoding.UTF8.GetString(Rx, 0, DataLength).Trim();// Gets the data and trims it
                 if (Data.EndsWith("|<EOD>|"))
                 {
-                    Data.Replace("|<EOD>|", "");// Removes the EOD marker
                     //TCP_Data_Event.Invoke(Data, DataDirection.Recieve);// Fires the Data Recieved Event
-                    CommandHandeler.Invoke(Data);// Executes the command handeler
+                    CommandHandeler.Invoke(Data.Remove(Data.Length - 7, 7));// Executes the command handeler
                     Data = "";// Data Recieved
                 }
 
@@ -145,8 +145,8 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
         {
             try
             {
-                
-                Client.GetStream().EndWrite(ar);//Ends client write stream
+                TcpClient tcpc = (TcpClient)ar.AsyncState;//Gets the client data is going to
+                tcpc.GetStream().EndWrite(ar);//Ends client write stream
             }
             catch (Exception e)
             {
@@ -157,7 +157,7 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
 
         public void SendData(string Data)
         {
-            Tx = Encoding.UTF8.GetBytes(Data + @"|<EOD>|");
+            Tx = Encoding.UTF8.GetBytes(Data + "|<EOD>|");
             Client.GetStream().BeginWrite(Tx, 0, Tx.Length, Client_DataTran, Client);
             Tx = new byte[32768];
         }

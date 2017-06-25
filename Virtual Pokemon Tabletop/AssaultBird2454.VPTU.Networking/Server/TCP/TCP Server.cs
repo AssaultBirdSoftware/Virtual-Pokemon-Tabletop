@@ -166,7 +166,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
 
             if (_SSLCertificate == null)
             {
-                
+
             }
             else
             {
@@ -240,7 +240,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
                     Fire_TCP_ClientState_Changed(null, Data.Client_ConnectionStatus.Rejected);// Sends the client rejected event
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 /* Error occured when connecting a client */
             }
@@ -278,7 +278,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
 
                 if (DataLength == 0)// If Data has nothing in it
                 {
-                    Disconnect_Client(node);// Disconnects Client
+                    Disconnect_Client(node);// Disconnects
                     return;
                 }
 
@@ -287,9 +287,8 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
                 node.Data = node.Data + Encoding.UTF8.GetString(node.Rx, 0, DataLength).Trim();// Gets the data and trims it
                 if (node.Data.EndsWith("|<EOD>|"))
                 {
-                    node.Data.Replace("|<EOD>|", "");// Removes the EOD marker
-                    Fire_TCP_Data_Event(node.Data, node, DataDirection.Recieve);// Fires the Data Recieved Event
-                    CommandHandeler.Invoke(node, node.Data);// Executes the command handeler
+                    //TCP_Data_Event.Invoke(Data, DataDirection.Recieve);// Fires the Data Recieved Event
+                    CommandHandeler.Invoke(node, node.Data.Remove(node.Data.Length - 7, 7));// Executes the command handeler
                     node.Data = "";// Data Recieved
                 }
 

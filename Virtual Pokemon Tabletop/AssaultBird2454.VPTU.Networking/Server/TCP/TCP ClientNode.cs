@@ -28,6 +28,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
             Client = _Client;// Sets the client
             Socket = _Client.Client;// Sets the socket
             ID = _ID;// Sets the ID
+            Data = "";
 
             Tx = new byte[32768];// 32768
             Rx = new byte[32768];// 32768
@@ -42,8 +43,8 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         /// <param name="Data">The String being transmitted</param>
         public void Send(string Data)
         {
-            Tx = Encoding.UTF8.GetBytes(Data + @"|<EOD>|");//Gets Bytes and adds |<EOD>| as a end of data marker
-            Client.GetStream().BeginWrite(Tx, 0, Tx.Length, Server.OnWrite, Client);//Sends Encrypted data to client
+            Tx = Encoding.UTF8.GetBytes(Data + "|<EOD>|");
+            Client.GetStream().BeginWrite(Tx, 0, Tx.Length, Server.OnWrite, Client);
             Tx = new byte[32768];
         }
     }
