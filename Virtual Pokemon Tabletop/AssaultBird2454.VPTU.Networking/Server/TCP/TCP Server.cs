@@ -78,7 +78,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         private int TCP_ServerPort;// Servers Port
         private int TCP_MaxConnections;// Servers Max Client Connections
 
-        public Action<TCP_ClientNode, string> CommandHandeler;
+        public Command_Handeler.Server_CommandHandeler CommandHandeler;
         #endregion
 
         #region Variable Handelers
@@ -144,7 +144,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         }
         #endregion
 
-        public TCP_Server(IPAddress Address, Action<TCP_ClientNode, string> _CommandHandeler, int Port = 25444)
+        public TCP_Server(IPAddress Address, Command_Handeler.Server_CommandHandeler _CommandHandeler, int Port = 25444)
         {
             TCP_ServerAddress = Address;
             TCP_ServerPort = Port;// Sets the port
@@ -174,11 +174,11 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         public void Stop()
         {
             bool acceptState = AcceptClients;
-
-            Disconnect_AllClients();
-
+            
             try
             {
+                Disconnect_AllClients();
+
                 Listener.Stop();// Stop the server if it is running
                 Listener = null;// Delete the server object if it exists
 
@@ -239,8 +239,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         {
             Fire_TCP_ClientState_Changed(node, Data.Client_ConnectionStatus.Disconnected);// Sends Client Disconnect Event
 
-            try { node.Client.Close(); } catch { }// Closes Client
-            try { node.StateObject.workSocket.Close(); } catch { }// Closes Connection
+            node.Disconnect();// Disconnects the client from the server
 
             lock (ClientNodes)
             {

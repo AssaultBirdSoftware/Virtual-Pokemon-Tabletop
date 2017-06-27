@@ -54,10 +54,10 @@ namespace Testing_TCP_Server
             catch { }
             try
             {
-                ClientList = new ObservableCollection<TCP_ClientNode>();
+                /*ClientList = new ObservableCollection<TCP_ClientNode>();
                 Clients.ItemsSource = ClientList;
 
-                Server = new AssaultBird2454.VPTU.Networking.Server.TCP.TCP_Server(IPAddress.Any, CMDHandel, 25444);
+                Server = new TCP_Server(IPAddress.Any, CMDHandel, 25444);
                 Server.MaxConnections = 10;
 
                 Server.TCP_ClientState_Changed += Server_TCP_ClientState_Changed;
@@ -68,7 +68,7 @@ namespace Testing_TCP_Server
                     act.Invoke();
                 });
 
-                Server.Start();
+                Server.Start();*/
             }
             catch (Exception ex)
             {

@@ -15,24 +15,44 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
     public class TCP_Client
     {
         #region Events
+        /// <summary>
+        /// An event that is fired when the connection state changes
+        /// </summary>
+        public event TCP_ConnectionState_Handeler ConnectionStateEvent;
+        private void Fire_ConnectionStateEvent(Data.Client_ConnectionStatus state)
+        {
+            ConnectionStateEvent?.Invoke(state);
+        }
+
+        /// <summary>
+        /// An Event that is fired when the client transmitts or recieves data from the server
+        /// </summary>
+        public event TCP_Data DataEvent;
+        private void Fire_DataEvent(string Data, DataDirection Direction)
+        {
+            DataEvent?.Invoke(Data, Direction);
+        }
 
         #endregion
 
         #region Variables
-        private TcpClient Client;
-        private IPAddress TCP_IPAddress;
-        private StateObject StateObject;
-        private string[] delimiter = new string[] { "|<EOD>|" };
-        private int TCP_Port;
+        private TcpClient Client;// Client Object
+        private IPAddress TCP_IPAddress;// Servers IPAddress
+        private StateObject StateObject;// Client State Object
+        private string[] delimiter = new string[] { "|<EOD>|" };// The Delimiting string for commands
+        private int TCP_Port;// The portnumber that the server is running on
 
-        private byte[] Tx;
+        private byte[] Tx;// Buffer for transmitting Data
         #region Data Que
         private Queue<string> DataQue;// Data Que
         private Thread DataQueThread;// A Thread to run the data que
         private readonly EventWaitHandle ReadQueWait;// An event for signaling to the reader that data is in Que
         #endregion
 
-        public Action<string> CommandHandeler;
+        /// <summary>
+        /// The Command Handeler that the server will use to invoke commands
+        /// </summary>
+        public Command_Handeler.Client_CommandHandeler CommandHandeler;
         #endregion
 
         #region Variable Handelers
@@ -88,7 +108,7 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
         }
         #endregion
 
-        public TCP_Client(IPAddress Address, Action<string> _CommandHandeler, int Port = 25444)
+        public TCP_Client(IPAddress Address, Command_Handeler.Client_CommandHandeler _CommandHandeler, int Port = 25444)
         {
             ReadQueWait = new EventWaitHandle(false, EventResetMode.AutoReset, "ReadQue");
             TCP_IPAddress = Address;// Sets the IPAddress
@@ -104,7 +124,7 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
         {
             Disconnect();// Disconnects (No Error if it was never connected)
 
-            // Execute Connection State Change
+            Fire_ConnectionStateEvent(Data.Client_ConnectionStatus.Connecting);
 
             Client = new TcpClient();// Creates a new client object
 
@@ -126,7 +146,7 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
                 Client.Close();// Closes connection
                 Client = null;// Clears Client
 
-                // Execute Connection State Change
+                Fire_ConnectionStateEvent(Data.Client_ConnectionStatus.Disconnected);
             }
             catch
             {
@@ -204,13 +224,22 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
         /// Sends data to the server
         /// </summary>
         /// <param name="Data">The data being sent to the server</param>
-        public void SendData(string Data)
+        public void SendData(object Data)
         {
-            if (IsConnected)
+            if (Data is Data.NetworkCommand)
             {
-                Tx = Encoding.UTF8.GetBytes(Data + "|<EOD>|");// Encodes the data
-                Client.GetStream().BeginWrite(Tx, 0, Tx.Length, Client_DataTran, Client);// Sneds the data to the server
-                Tx = new byte[32768];// Creates a tranmittion buffer
+                if (IsConnected)
+                {
+                    string JSONData = Newtonsoft.Json.JsonConvert.SerializeObject(Data);// Serialises the data to be sent
+                    Tx = Encoding.UTF8.GetBytes(JSONData + "|<EOD>|");// Encodes the data
+                    Fire_DataEvent(JSONData, DataDirection.Send);// Invokes the data recieved event
+                    Client.GetStream().BeginWrite(Tx, 0, Tx.Length, Client_DataTran, Client);// Sneds the data to the server
+                    Tx = new byte[32768];// Creates a tranmittion buffer
+                }
+            }
+            else
+            {
+                throw new NotNetworkDataException();
             }
         }
         #endregion
@@ -224,7 +253,9 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
 
                 while (DataQue.Count >= 1)// While there is data
                 {
-                    CommandHandeler.Invoke(DataQue.Dequeue());// Handel them and remove them from the que
+                    string Data = DataQue.Dequeue();// Gets the data and then removes it from the que
+                    Fire_DataEvent(Data, DataDirection.Recieve);// Invokes the data recieved event
+                    CommandHandeler.InvokeCommand(Data);// Handels the data
                 }
             }
         }
@@ -243,7 +274,8 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
 
             StateObject = new StateObject(Client.Client, 32768);// Creates State Object for Client
             StartListening();// Starts Listening
-            // Execute Connection State Change
+
+            Fire_ConnectionStateEvent(Data.Client_ConnectionStatus.Connected);
         }
         #endregion
     }

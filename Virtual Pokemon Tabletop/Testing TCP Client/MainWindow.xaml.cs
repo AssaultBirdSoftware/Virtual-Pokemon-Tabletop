@@ -39,12 +39,12 @@ namespace Testing_TCP_Client
 
             try
             {
-                TCP_Client = new AssaultBird2454.VPTU.Networking.Client.TCP.TCP_Client(IPAddress.Parse(Address.Text), new Action<string>(new Action<string>((Data) =>
+                /*TCP_Client = new AssaultBird2454.VPTU.Networking.Client.TCP.TCP_Client(IPAddress.Parse(Address.Text), new Action<string>(new Action<string>((Data) =>
                 {
                     console.Dispatcher.Invoke(new Action(() => console.AppendText("\n[" + DateTime.Now.ToShortTimeString() + "] -> " + Data)));
                 })));
 
-                TCP_Client.Connect();
+                TCP_Client.Connect();*/
             }
             catch(Exception ex)
             {

@@ -57,7 +57,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
 
                 while (DataQue.Count >= 1)// While there is data avaliable
                 {
-                    Server.CommandHandeler.Invoke(this, DataQue.Dequeue());// Process the data
+                    Server.CommandHandeler.InvokeCommand(DataQue.Dequeue(), this);// Process the data
                 }
             }
         }
@@ -120,11 +120,19 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         /// Sends data to this client, No Encryption or Serialization is performed at this step
         /// </summary>
         /// <param name="Data">The String being transmitted</param>
-        public void Send(string Data)
+        public void Send(object Data)
         {
-            Tx = Encoding.UTF8.GetBytes(Data + "|<EOD>|");// Encodes the data
-            Client.GetStream().BeginWrite(Tx, 0, Tx.Length, OnWrite, Client);// Sends the data to the client
-            Tx = new byte[32768];// Creates a new transmittion buffer
+            if (Data is Data.NetworkCommand)
+            {
+                string JSONData = Newtonsoft.Json.JsonConvert.SerializeObject(Data);
+                Tx = Encoding.UTF8.GetBytes(JSONData + "|<EOD>|");// Encodes the data
+                Client.GetStream().BeginWrite(Tx, 0, Tx.Length, OnWrite, Client);// Sends the data to the client
+                Tx = new byte[32768];// Creates a new transmittion buffer
+            }
+            else
+            {
+                throw new NotNetworkDataException();
+            }
         }
         private void OnWrite(IAsyncResult ar)
         {
@@ -140,5 +148,19 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
             }
         }
         #endregion
+
+        public void Disconnect()
+        {
+            try
+            {
+                QueReadThread.Abort();// Stopps the thread
+                StateObject.workSocket.Close();// Closes the socket
+                Client.Close();// Closes the client
+
+                QueReadThread = null;// Clears the Thread
+                StateObject = null;
+            }
+            catch { }// Closes Client
+        }
     }
 }
