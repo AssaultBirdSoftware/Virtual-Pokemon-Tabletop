@@ -25,6 +25,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         private Queue<string> DataQue { get; set; }
         public string ID { get; set; }// Connection ID (Connection Endpoint)
         private Thread QueReadThread;
+        private readonly EventWaitHandle ReadQueWait;
         private string[] delimiter = new string[] { "|<EOD>|" };
         #endregion
 
@@ -36,7 +37,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
             //Socket = _Client.Client;// Sets the socket
             ID = _ID;// Sets the ID
             //Data = "";
-
+            ReadQueWait = new EventWaitHandle(false, EventResetMode.AutoReset, ID + " ReadQue");
             Tx = new byte[32768];// 32768
             //Rx = new byte[32768];// 32768
 
@@ -56,10 +57,11 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         {
             while (true)
             {
-                if (DataQue.Count >= 1)
+                ReadQueWait.WaitOne();
+
+                while (DataQue.Count >= 1)
                 {
                     Server.CommandHandeler.Invoke(this, DataQue.Dequeue());
-                    Thread.Sleep(100);
                 }
             }
         }
@@ -92,7 +94,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
             {
                 so.sb.Append(Encoding.ASCII.GetString(so.buffer, 0, read));
 
-                if (so.sb.ToString().EndsWith("|<EOD>|"))
+                if (so.sb.ToString().Contains("|<EOD>|"))
                 {
                     if (so.sb.Length > 1)
                     {
@@ -103,6 +105,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
                         foreach (string data in strContent)
                         {
                             DataQue.Enqueue(data);
+                            ReadQueWait.Set();
                         }
                     }
                 }

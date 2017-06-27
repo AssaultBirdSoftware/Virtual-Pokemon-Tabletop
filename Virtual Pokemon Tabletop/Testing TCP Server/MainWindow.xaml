@@ -22,6 +22,7 @@
         <ToggleButton x:Name="AcceptConnection" Content="Accept Clients" HorizontalAlignment="Left" Margin="117.236,289,0,0" VerticalAlignment="Top" IsChecked="True" Click="AcceptConn_Click"/>
         <TextBox x:Name="Data" HorizontalAlignment="Left" Height="23" Margin="10,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417"/>
         <Button x:Name="Send" Content="Send" HorizontalAlignment="Left" Margin="432,219,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="Send_Click"/>
+        <Button x:Name="Send10" Content="Send 10" HorizontalAlignment="Left" Margin="432,247,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="Send10_Click"/>
 
     </Grid>
 </Window>

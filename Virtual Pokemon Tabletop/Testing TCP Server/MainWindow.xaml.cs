@@ -126,5 +126,19 @@ namespace Testing_TCP_Server
         {
             Server.Client_SendData(Data.Text);
         }
+
+        private void Send10_Click(object sender, RoutedEventArgs e)
+        {
+            Server.Client_SendData(Data.Text);
+            Server.Client_SendData(Data.Text);
+            Server.Client_SendData(Data.Text);
+            Server.Client_SendData(Data.Text);
+            Server.Client_SendData(Data.Text);
+            Server.Client_SendData(Data.Text);
+            Server.Client_SendData(Data.Text);
+            Server.Client_SendData(Data.Text);
+            Server.Client_SendData(Data.Text);
+            Server.Client_SendData(Data.Text);
+        }
     }
 }

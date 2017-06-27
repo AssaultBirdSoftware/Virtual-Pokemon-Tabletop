@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AssaultBird2454.VPTU.Networking.Shared;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -6,6 +7,7 @@ using System.Net.Security;
 using System.Net.Sockets;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace AssaultBird2454.VPTU.Networking.Client.TCP
@@ -19,11 +21,14 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
         #region Variables
         private TcpClient Client;
         private IPAddress TCP_IPAddress;
+        private StateObject StateObject;
+        private string[] delimiter = new string[] { "|<EOD>|" };
         private int TCP_Port;
 
         private byte[] Tx;
-        private byte[] Rx;
-        private string Data = "";
+        private Queue<string> DataQue;
+        private Thread DataQueThread;
+        private readonly EventWaitHandle ReadQueWait;
 
         public Action<string> CommandHandeler;
         #endregion
@@ -83,6 +88,7 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
 
         public TCP_Client(IPAddress Address, Action<string> _CommandHandeler, int Port = 25444)
         {
+            ReadQueWait = new EventWaitHandle(false, EventResetMode.AutoReset, "ReadQue");
             TCP_IPAddress = Address;// Sets the IPAddress
             TCP_Port = Port;// Sets the Port
             CommandHandeler = _CommandHandeler;// Sets the Command Callback
@@ -103,7 +109,6 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
             Client.BeginConnect(TCP_IPAddress, TCP_Port, Client_Connected, null);// Connects to the server and on connect will call the connect call back
 
             Tx = new byte[32768];
-            Rx = new byte[32768];
         }
 
         /// <summary>
@@ -126,13 +131,56 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
         #endregion
 
         #region Data Events
+        private void StartListening()
+        {
+            Client.GetStream().BeginRead(StateObject.buffer, 0, 32768, Client_DataRecv, StateObject);
+        }
+
         private void Client_DataRecv(IAsyncResult ar)
         {
+            StateObject so = (StateObject)ar.AsyncState;
+            //int DataLength = 0;
+            Socket s = so.workSocket;
+            int read;
+
+            try { read = s.EndReceive(ar); }
+            catch
+            {
+                Disconnect();// Disconnects
+                return;
+            }
+
+            if (read > 0)
+            {
+                so.sb.Append(Encoding.ASCII.GetString(so.buffer, 0, read));
+
+                if (so.sb.ToString().Contains("|<EOD>|"))
+                {
+                    if (so.sb.Length > 1)
+                    {
+                        //All of the data has been read, so displays it to the console
+                        string[] strContent;
+                        strContent = so.sb.ToString().Split(delimiter, StringSplitOptions.RemoveEmptyEntries);
+                        so.Reset();
+                        foreach (string data in strContent)
+                        {
+                            DataQue.Enqueue(data);
+                            ReadQueWait.Set();
+                        }
+                    }
+                }
+                StartListening();
+            }
+            else
+            {
+
+            }
+            /*StateObject so = (StateObject)ar.AsyncState;
             int DataLength = 0;
 
             try
             {
-                DataLength = Client.GetStream().EndRead(ar);// Gets the length and ends read
+                DataLength = so.workSocket.EndReceive(ar);// Gets the length and ends read
 
                 if (DataLength == 0)// If Data has nothing in it
                 {
@@ -142,7 +190,7 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
 
                 if (Data == null) { Data = ""; }// Checks to see if it is null and if it is them set it to an empty string
                 
-                Data = Data + Encoding.UTF8.GetString(Rx, 0, DataLength).Trim();// Gets the data and trims it
+                Data = Data + Encoding.UTF8.GetString(so.buffer, 0, DataLength).Trim();// Gets the data and trims it
                 if (Data.EndsWith("|<EOD>|"))
                 {
                     //TCP_Data_Event.Invoke(Data, DataDirection.Recieve);// Fires the Data Recieved Event
@@ -156,7 +204,7 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
             catch
             {
                 // Client Dropped
-            }
+            }*/
         }
 
         private void Client_DataTran(IAsyncResult ar)
@@ -184,10 +232,32 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
         }
         #endregion
 
+        #region RX Message Que
+        public void QueRead()
+        {
+            while (true)
+            {
+                ReadQueWait.WaitOne();
+
+                while (DataQue.Count >= 1)
+                {
+                    CommandHandeler.Invoke(DataQue.Dequeue());
+                }
+            }
+        }
+        #endregion
+
         #region Connection Events
         private void Client_Connected(IAsyncResult ar)
         {
-            Client.GetStream().BeginRead(Rx, 0, 32768, Client_DataRecv, Client);
+            DataQue = new Queue<string>();
+            DataQueThread = new Thread(new ThreadStart(() =>
+            {
+                QueRead();
+            }));
+            DataQueThread.Start();
+            StateObject = new StateObject(Client.Client, 32768);
+            StartListening();
             // Execute Connection State Change
         }
         #endregion
