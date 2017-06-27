@@ -174,7 +174,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         public void Stop()
         {
             bool acceptState = AcceptClients;
-            
+
             try
             {
                 Disconnect_AllClients();
@@ -184,7 +184,8 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
 
                 Fire_TCP_ServerState_Changed(Data.Server_Status.Offline);// Send Server State Changed Event
             }
-            catch { /* Dont Care, this is just to check that the server is stopped */ }
+            catch (Exception e)
+            { /* Dont Care, this is just to check that the server is stopped */ }
             finally
             {
                 AcceptClients = acceptState;
@@ -251,9 +252,10 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         /// </summary>
         public void Disconnect_AllClients()
         {
-            foreach (TCP_ClientNode node in ClientNodes)
+
+            while (ClientNodes.Count >= 1)
             {
-                Disconnect_Client(node);
+                Disconnect_Client(ClientNodes[0]);
             }
         }
         #endregion
