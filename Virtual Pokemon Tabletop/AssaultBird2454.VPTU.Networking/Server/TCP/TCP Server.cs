@@ -263,7 +263,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         /// <summary>
         /// 
         /// </summary>
-        public void Client_SendData(string Data, TCP_ClientNode node = null)
+        public void Client_SendData(object Data, TCP_ClientNode node = null)
         {
             if (node == null)
             {

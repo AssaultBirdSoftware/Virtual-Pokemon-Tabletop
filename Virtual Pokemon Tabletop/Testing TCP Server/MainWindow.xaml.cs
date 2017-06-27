@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using AssaultBird2454.VPTU.Networking.Server.TCP;
 using System.Reflection;
 using System.Collections.ObjectModel;
+using AssaultBird2454.VPTU.Networking.Server.Command_Handeler;
 
 namespace Testing_TCP_Server
 {
@@ -26,6 +27,7 @@ namespace Testing_TCP_Server
     {
         TCP_Server Server;
         private ObservableCollection<TCP_ClientNode> ClientList { get; set; }
+        Server_CommandHandeler cmdhand;
 
         public static string AssemblyDirectory
         {
@@ -41,6 +43,9 @@ namespace Testing_TCP_Server
         public MainWindow()
         {
             InitializeComponent();
+            cmdhand = new Server_CommandHandeler();
+
+            cmdhand.RegisterCommand<MessageData>("Message", CMDHandel);
         }
 
         private void Start_Click(object sender, RoutedEventArgs e)
@@ -54,10 +59,10 @@ namespace Testing_TCP_Server
             catch { }
             try
             {
-                /*ClientList = new ObservableCollection<TCP_ClientNode>();
+                ClientList = new ObservableCollection<TCP_ClientNode>();
                 Clients.ItemsSource = ClientList;
 
-                Server = new TCP_Server(IPAddress.Any, CMDHandel, 25444);
+                Server = new TCP_Server(IPAddress.Any, cmdhand, 25444);
                 Server.MaxConnections = 10;
 
                 Server.TCP_ClientState_Changed += Server_TCP_ClientState_Changed;
@@ -68,7 +73,7 @@ namespace Testing_TCP_Server
                     act.Invoke();
                 });
 
-                Server.Start();*/
+                Server.Start();
             }
             catch (Exception ex)
             {
@@ -76,9 +81,9 @@ namespace Testing_TCP_Server
             }
         }
 
-        private void CMDHandel(TCP_ClientNode Client, string Data)
+        private void CMDHandel(object Data, TCP_ClientNode Client)
         {
-            Console.Dispatcher.Invoke(new Action(() => Console.AppendText("\n[" + DateTime.Now.ToShortTimeString() + "] -> " + Data)));
+            Console.Dispatcher.Invoke(new Action(() => Console.AppendText("\n[" + DateTime.Now.ToShortTimeString() + "] -> " + ((MessageData)Data).Message)));
         }
 
         private void Server_TCP_ClientState_Changed(AssaultBird2454.VPTU.Networking.Server.TCP.TCP_ClientNode Client, AssaultBird2454.VPTU.Networking.Data.Client_ConnectionStatus Client_State)
@@ -125,21 +130,41 @@ namespace Testing_TCP_Server
 
         private void Send_Click(object sender, RoutedEventArgs e)
         {
-            Server.Client_SendData(Data.Text);
+            Server.Client_SendData(new MessageData(Data.Text));
         }
 
         private void Send10_Click(object sender, RoutedEventArgs e)
         {
-            Server.Client_SendData(Data.Text);
-            Server.Client_SendData(Data.Text);
-            Server.Client_SendData(Data.Text);
-            Server.Client_SendData(Data.Text);
-            Server.Client_SendData(Data.Text);
-            Server.Client_SendData(Data.Text);
-            Server.Client_SendData(Data.Text);
-            Server.Client_SendData(Data.Text);
-            Server.Client_SendData(Data.Text);
-            Server.Client_SendData(Data.Text);
+            MessageData DataObj = new MessageData(Data.Text);
+
+            Server.Client_SendData(DataObj);
+            Server.Client_SendData(DataObj);
+            Server.Client_SendData(DataObj);
+            Server.Client_SendData(DataObj);
+            Server.Client_SendData(DataObj);
+            Server.Client_SendData(DataObj);
+            Server.Client_SendData(DataObj);
+            Server.Client_SendData(DataObj);
+            Server.Client_SendData(DataObj);
+            Server.Client_SendData(DataObj);
         }
+    }
+
+    public class MessageData : AssaultBird2454.VPTU.Networking.Data.NetworkCommand
+    {
+        public string Command
+        {
+            get
+            {
+                return "Message";
+            }
+        }
+
+        public MessageData(string _Message)
+        {
+            Message = _Message;
+        }
+
+        public string Message;
     }
 }

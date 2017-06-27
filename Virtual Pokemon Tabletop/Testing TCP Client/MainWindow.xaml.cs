@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AssaultBird2454.VPTU.Networking.Client.Command_Handeler;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -22,10 +23,19 @@ namespace Testing_TCP_Client
     public partial class MainWindow : Window
     {
         AssaultBird2454.VPTU.Networking.Client.TCP.TCP_Client TCP_Client;
+        Client_CommandHandeler cmdhand;
 
         public MainWindow()
         {
             InitializeComponent();
+            cmdhand = new Client_CommandHandeler();
+
+            cmdhand.RegisterCommand<MessageData>("Message", MessageRecv);
+        }
+
+        private void MessageRecv(object Data)
+        {
+            console.Dispatcher.Invoke(new Action(() => console.AppendText("\n[" + DateTime.Now.ToShortTimeString() + "] -> " + ((MessageData)Data).Message)));
         }
 
         private void Connect_Click(object sender, RoutedEventArgs e)
@@ -39,14 +49,11 @@ namespace Testing_TCP_Client
 
             try
             {
-                /*TCP_Client = new AssaultBird2454.VPTU.Networking.Client.TCP.TCP_Client(IPAddress.Parse(Address.Text), new Action<string>(new Action<string>((Data) =>
-                {
-                    console.Dispatcher.Invoke(new Action(() => console.AppendText("\n[" + DateTime.Now.ToShortTimeString() + "] -> " + Data)));
-                })));
+                TCP_Client = new AssaultBird2454.VPTU.Networking.Client.TCP.TCP_Client(IPAddress.Parse(Address.Text), cmdhand);
 
-                TCP_Client.Connect();*/
+                TCP_Client.Connect();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Failed to Connect\n\n" + ex.ToString());
             }
@@ -54,25 +61,46 @@ namespace Testing_TCP_Client
 
         private void Send_Click(object sender, RoutedEventArgs e)
         {
-            TCP_Client.SendData(Data.Text);
+
+            TCP_Client.SendData(new MessageData(Data.Text));
         }
         private void Send10_Click(object sender, RoutedEventArgs e)
         {
-            TCP_Client.SendData(Data.Text);
-            TCP_Client.SendData(Data.Text);
-            TCP_Client.SendData(Data.Text);
-            TCP_Client.SendData(Data.Text);
-            TCP_Client.SendData(Data.Text);
-            TCP_Client.SendData(Data.Text);
-            TCP_Client.SendData(Data.Text);
-            TCP_Client.SendData(Data.Text);
-            TCP_Client.SendData(Data.Text);
-            TCP_Client.SendData(Data.Text);
+            MessageData DataObj = new MessageData(Data.Text);
+
+            TCP_Client.SendData(DataObj);
+            TCP_Client.SendData(DataObj);
+            TCP_Client.SendData(DataObj);
+            TCP_Client.SendData(DataObj);
+            TCP_Client.SendData(DataObj);
+            TCP_Client.SendData(DataObj);
+            TCP_Client.SendData(DataObj);
+            TCP_Client.SendData(DataObj);
+            TCP_Client.SendData(DataObj);
+            TCP_Client.SendData(DataObj);
         }
 
         private void Disconnect_Click(object sender, RoutedEventArgs e)
         {
             TCP_Client.Disconnect();
         }
+    }
+
+    public class MessageData : AssaultBird2454.VPTU.Networking.Data.NetworkCommand
+    {
+        public string Command
+        {
+            get
+            {
+                return "Message";
+            }
+        }
+
+        public MessageData(string _Message)
+        {
+            Message = _Message;
+        }
+
+        public string Message;
     }
 }
