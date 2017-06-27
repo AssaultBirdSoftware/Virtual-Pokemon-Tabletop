@@ -26,9 +26,11 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
         private int TCP_Port;
 
         private byte[] Tx;
-        private Queue<string> DataQue;
-        private Thread DataQueThread;
-        private readonly EventWaitHandle ReadQueWait;
+        #region Data Que
+        private Queue<string> DataQue;// Data Que
+        private Thread DataQueThread;// A Thread to run the data que
+        private readonly EventWaitHandle ReadQueWait;// An event for signaling to the reader that data is in Que
+        #endregion
 
         public Action<string> CommandHandeler;
         #endregion
@@ -73,7 +75,7 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
         {
             get
             {
-                if(Client != null)
+                if (Client != null)
                 {
                     return Client.Connected;
                 }
@@ -81,7 +83,7 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
                 {
                     return false;
                 }
-                
+
             }
         }
         #endregion
@@ -108,7 +110,7 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
 
             Client.BeginConnect(TCP_IPAddress, TCP_Port, Client_Connected, null);// Connects to the server and on connect will call the connect call back
 
-            Tx = new byte[32768];
+            Tx = new byte[32768];// Creates a new Transmittion Buffer
         }
 
         /// <summary>
@@ -118,6 +120,9 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
         {
             try
             {
+                DataQueThread.Abort();// Stopps the read thread
+                DataQueThread = null;// Clears the read Thread
+
                 Client.Close();// Closes connection
                 Client = null;// Clears Client
 
@@ -131,6 +136,9 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
         #endregion
 
         #region Data Events
+        /// <summary>
+        /// A Method to start the reading of network data again
+        /// </summary>
         private void StartListening()
         {
             Client.GetStream().BeginRead(StateObject.buffer, 0, 32768, Client_DataRecv, StateObject);
@@ -173,38 +181,9 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
             }
             else
             {
-
+                Disconnect();// Disconnects
+                return;
             }
-            /*StateObject so = (StateObject)ar.AsyncState;
-            int DataLength = 0;
-
-            try
-            {
-                DataLength = so.workSocket.EndReceive(ar);// Gets the length and ends read
-
-                if (DataLength == 0)// If Data has nothing in it
-                {
-                    Disconnect();// Disconnects
-                    return;
-                }
-
-                if (Data == null) { Data = ""; }// Checks to see if it is null and if it is them set it to an empty string
-                
-                Data = Data + Encoding.UTF8.GetString(so.buffer, 0, DataLength).Trim();// Gets the data and trims it
-                if (Data.EndsWith("|<EOD>|"))
-                {
-                    //TCP_Data_Event.Invoke(Data, DataDirection.Recieve);// Fires the Data Recieved Event
-                    CommandHandeler.Invoke(Data.Remove(Data.Length - 7, 7));// Executes the command handeler
-                    Data = "";// Data Recieved
-                }
-
-                Rx = new byte[32768];//Sets the clients recieve buffer
-                Client.GetStream().BeginRead(Rx, 0, Rx.Length, Client_DataRecv, Client);//Starts to read again
-            }
-            catch
-            {
-                // Client Dropped
-            }*/
         }
 
         private void Client_DataTran(IAsyncResult ar)
@@ -221,13 +200,17 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
             }
         }
 
+        /// <summary>
+        /// Sends data to the server
+        /// </summary>
+        /// <param name="Data">The data being sent to the server</param>
         public void SendData(string Data)
         {
             if (IsConnected)
             {
-                Tx = Encoding.UTF8.GetBytes(Data + "|<EOD>|");
-                Client.GetStream().BeginWrite(Tx, 0, Tx.Length, Client_DataTran, Client);
-                Tx = new byte[32768];
+                Tx = Encoding.UTF8.GetBytes(Data + "|<EOD>|");// Encodes the data
+                Client.GetStream().BeginWrite(Tx, 0, Tx.Length, Client_DataTran, Client);// Sneds the data to the server
+                Tx = new byte[32768];// Creates a tranmittion buffer
             }
         }
         #endregion
@@ -237,11 +220,11 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
         {
             while (true)
             {
-                ReadQueWait.WaitOne();
+                ReadQueWait.WaitOne();// Waits for data
 
-                while (DataQue.Count >= 1)
+                while (DataQue.Count >= 1)// While there is data
                 {
-                    CommandHandeler.Invoke(DataQue.Dequeue());
+                    CommandHandeler.Invoke(DataQue.Dequeue());// Handel them and remove them from the que
                 }
             }
         }
@@ -250,14 +233,16 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
         #region Connection Events
         private void Client_Connected(IAsyncResult ar)
         {
-            DataQue = new Queue<string>();
+            DataQue = new Queue<string>();// Creates the que
+
             DataQueThread = new Thread(new ThreadStart(() =>
             {
                 QueRead();
             }));
-            DataQueThread.Start();
-            StateObject = new StateObject(Client.Client, 32768);
-            StartListening();
+            DataQueThread.Start();// Creates and Starts the Read Thread
+
+            StateObject = new StateObject(Client.Client, 32768);// Creates State Object for Client
+            StartListening();// Starts Listening
             // Execute Connection State Change
         }
         #endregion

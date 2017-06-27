@@ -17,39 +17,35 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         public TCP_Server Server { get; set; }// A Refrence to the server it belongs to
 
         internal TcpClient Client { get; set; }// TCP Client
-        internal StateObject StateObject { get; set; }
-        //internal Socket Socket { get; set; }// Conection Socket
-        internal byte[] Tx { get; set; }// Transmit Buffer
-        //internal byte[] Rx { get; set; }// Recieve Buffer
-        //internal string Data { get; set; }// Processed TCP Data gets stored here...
-        private Queue<string> DataQue { get; set; }
         public string ID { get; set; }// Connection ID (Connection Endpoint)
-        private Thread QueReadThread;
-        private readonly EventWaitHandle ReadQueWait;
-        private string[] delimiter = new string[] { "|<EOD>|" };
+        internal StateObject StateObject { get; set; }
+        internal byte[] Tx { get; set; }// Transmit Buffer
+
+        private Queue<string> DataQue { get; set; }// A Data Que
+        private Thread QueReadThread;// A Thread to read data in the que
+        private readonly EventWaitHandle ReadQueWait;// An event to signal when data is avaliable
+
+        private string[] delimiter = new string[] { "|<EOD>|" };// End Of Data Signal
         #endregion
 
         public TCP_ClientNode(TcpClient _Client, string _ID, TCP_Server _Server)
         {
             Server = _Server;// Sets the server
             Client = _Client;// Sets the client
-            StateObject = new StateObject(Client.Client, 32768);
-            //Socket = _Client.Client;// Sets the socket
+            StateObject = new StateObject(Client.Client, 32768);// Creates a new state object
             ID = _ID;// Sets the ID
-            //Data = "";
-            ReadQueWait = new EventWaitHandle(false, EventResetMode.AutoReset, ID + " ReadQue");
+            ReadQueWait = new EventWaitHandle(false, EventResetMode.AutoReset, ID + " ReadQue");// Creates the handel event
             Tx = new byte[32768];// 32768
-            //Rx = new byte[32768];// 32768
 
-            StartListening();
+            StartListening();// Starts Listening
 
-            DataQue = new Queue<string>();
+            DataQue = new Queue<string>();// Creates Que
 
             QueReadThread = new Thread(new ThreadStart(() =>
             {
                 QueRead();
             }));
-            QueReadThread.Start();
+            QueReadThread.Start();// Creates and Starts the thread to read the que
         }
 
         #region RX Message Que
@@ -57,17 +53,20 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         {
             while (true)
             {
-                ReadQueWait.WaitOne();
+                ReadQueWait.WaitOne();// Waits until it has been signaled that there is data avaliable
 
-                while (DataQue.Count >= 1)
+                while (DataQue.Count >= 1)// While there is data avaliable
                 {
-                    Server.CommandHandeler.Invoke(this, DataQue.Dequeue());
+                    Server.CommandHandeler.Invoke(this, DataQue.Dequeue());// Process the data
                 }
             }
         }
         #endregion
 
         #region RX
+        /// <summary>
+        /// Tells the server to start listening to incoming data
+        /// </summary>
         private void StartListening()
         {
             StateObject.workSocket.BeginReceive(StateObject.buffer, 0, StateObject.BUFFER_SIZE, 0, new AsyncCallback(Client_ReadData), StateObject);
@@ -78,9 +77,8 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         }
         private void Client_ReadData(IAsyncResult ar)
         {
-            StateObject so = (StateObject)ar.AsyncState;
-            //int DataLength = 0;
-            Socket s = so.workSocket;
+            StateObject so = (StateObject)ar.AsyncState;// gets the state object
+            Socket s = so.workSocket;// Gets the stream used
             int read;
 
             try { read = s.EndReceive(ar); }
@@ -92,57 +90,29 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
 
             if (read > 0)
             {
-                so.sb.Append(Encoding.ASCII.GetString(so.buffer, 0, read));
+                so.sb.Append(Encoding.ASCII.GetString(so.buffer, 0, read));// Appends Data
 
                 if (so.sb.ToString().Contains("|<EOD>|"))
                 {
                     if (so.sb.Length > 1)
                     {
                         //All of the data has been read, so displays it to the console
-                        string[] strContent;
-                        strContent = so.sb.ToString().Split(delimiter, StringSplitOptions.RemoveEmptyEntries);
-                        so.Reset();
-                        foreach (string data in strContent)
+                        string[] strContent = so.sb.ToString().Split(delimiter, StringSplitOptions.RemoveEmptyEntries);// Splits the string
+                        so.Reset();// resets the State Object
+                        foreach (string data in strContent)// While Data is abaliable
                         {
-                            DataQue.Enqueue(data);
-                            ReadQueWait.Set();
+                            DataQue.Enqueue(data);// Ques the data
+                            ReadQueWait.Set();// Signals new data is avaliable
                         }
                     }
                 }
-                StartListening();
+                StartListening();// Starts Listening Again
             }
             else
-            {
-
-            }
-            /*
-            try
-            {
-                DataLength = Client.GetStream().EndRead(ar);// Gets the length and ends read
-
-                if (DataLength == 0)// If Data has nothing in it
-                {
-                    Server.Disconnect_Client(this);// Disconnects
-                    return;
-                }
-
-                Data = Data + Encoding.UTF8.GetString(Rx, 0, DataLength).Trim();// Gets the data and trims it
-                if (Data.EndsWith("|<EOD>|"))
-                {
-                    //Fire_TCP_Data_Event(node.Data, node, DataDirection.Recieve);// Fires the Data Recieved Event
-                    Server.CommandHandeler.Invoke(this, Data.Remove(Data.Length - 7, 7));// Executes the command handeler
-                    Data = "";// Data Recieved
-                }
-
-                Rx = new byte[32768];//Sets the clients recieve buffer
-                StartListening();
-            }
-            catch
             {
                 Server.Disconnect_Client(this);// Disconnects
                 return;
             }
-            */
         }
         #endregion
         #region TX
@@ -152,9 +122,9 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         /// <param name="Data">The String being transmitted</param>
         public void Send(string Data)
         {
-            Tx = Encoding.UTF8.GetBytes(Data + "|<EOD>|");
-            Client.GetStream().BeginWrite(Tx, 0, Tx.Length, OnWrite, Client);
-            Tx = new byte[32768];
+            Tx = Encoding.UTF8.GetBytes(Data + "|<EOD>|");// Encodes the data
+            Client.GetStream().BeginWrite(Tx, 0, Tx.Length, OnWrite, Client);// Sends the data to the client
+            Tx = new byte[32768];// Creates a new transmittion buffer
         }
         private void OnWrite(IAsyncResult ar)
         {
