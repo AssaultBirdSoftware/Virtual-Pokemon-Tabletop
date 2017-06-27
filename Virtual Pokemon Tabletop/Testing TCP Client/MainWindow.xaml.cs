@@ -50,6 +50,7 @@ namespace Testing_TCP_Client
             try
             {
                 TCP_Client = new AssaultBird2454.VPTU.Networking.Client.TCP.TCP_Client(IPAddress.Parse(Address.Text), cmdhand);
+                TCP_Client.ConnectionStateEvent += TCP_Client_ConnectionStateEvent;
 
                 TCP_Client.Connect();
             }
@@ -57,6 +58,11 @@ namespace Testing_TCP_Client
             {
                 MessageBox.Show("Failed to Connect\n\n" + ex.ToString());
             }
+        }
+
+        private void TCP_Client_ConnectionStateEvent(AssaultBird2454.VPTU.Networking.Data.Client_ConnectionStatus ConnectionState)
+        {
+            State.Dispatcher.Invoke(new Action(() =>State.Content = ConnectionState.ToString()));
         }
 
         private void Send_Click(object sender, RoutedEventArgs e)
