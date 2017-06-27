@@ -56,6 +56,19 @@ namespace Testing_TCP_Client
         {
             TCP_Client.SendData(Data.Text);
         }
+        private void Send10_Click(object sender, RoutedEventArgs e)
+        {
+            TCP_Client.SendData(Data.Text);
+            TCP_Client.SendData(Data.Text);
+            TCP_Client.SendData(Data.Text);
+            TCP_Client.SendData(Data.Text);
+            TCP_Client.SendData(Data.Text);
+            TCP_Client.SendData(Data.Text);
+            TCP_Client.SendData(Data.Text);
+            TCP_Client.SendData(Data.Text);
+            TCP_Client.SendData(Data.Text);
+            TCP_Client.SendData(Data.Text);
+        }
 
         private void Disconnect_Click(object sender, RoutedEventArgs e)
         {

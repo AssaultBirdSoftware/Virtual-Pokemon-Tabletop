@@ -18,7 +18,6 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
 
         #region Variables
         private TcpClient Client;
-        private SslStream SSL;
         private IPAddress TCP_IPAddress;
         private int TCP_Port;
 
@@ -59,6 +58,25 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
             {
                 //Event Trigger
                 TCP_Port = value;
+            }
+        }
+
+        /// <summary>
+        /// Checks if the client is connected
+        /// </summary>
+        public bool IsConnected
+        {
+            get
+            {
+                if(Client != null)
+                {
+                    return Client.Connected;
+                }
+                else
+                {
+                    return false;
+                }
+                
             }
         }
         #endregion
@@ -123,7 +141,7 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
                 }
 
                 if (Data == null) { Data = ""; }// Checks to see if it is null and if it is them set it to an empty string
-
+                
                 Data = Data + Encoding.UTF8.GetString(Rx, 0, DataLength).Trim();// Gets the data and trims it
                 if (Data.EndsWith("|<EOD>|"))
                 {
@@ -157,23 +175,20 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
 
         public void SendData(string Data)
         {
-            Tx = Encoding.UTF8.GetBytes(Data + "|<EOD>|");
-            Client.GetStream().BeginWrite(Tx, 0, Tx.Length, Client_DataTran, Client);
-            Tx = new byte[32768];
+            if (IsConnected)
+            {
+                Tx = Encoding.UTF8.GetBytes(Data + "|<EOD>|");
+                Client.GetStream().BeginWrite(Tx, 0, Tx.Length, Client_DataTran, Client);
+                Tx = new byte[32768];
+            }
         }
         #endregion
 
         #region Connection Events
         private void Client_Connected(IAsyncResult ar)
         {
-            SSL = new SslStream(Client.GetStream(), false, ValidateCert);// Encrypts connection with SSL
             Client.GetStream().BeginRead(Rx, 0, 32768, Client_DataRecv, Client);
             // Execute Connection State Change
-        }
-
-        private bool ValidateCert(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
-        {
-            return true;// Allow all certs
         }
         #endregion
     }

@@ -57,7 +57,7 @@ namespace Testing_TCP_Server
                 ClientList = new ObservableCollection<TCP_ClientNode>();
                 Clients.ItemsSource = ClientList;
 
-                Server = new AssaultBird2454.VPTU.Networking.Server.TCP.TCP_Server(IPAddress.Any, CMDHandel, 25444, new System.Security.Cryptography.X509Certificates.X509Certificate(AssemblyDirectory + @"\Cert.cer", ""));
+                Server = new AssaultBird2454.VPTU.Networking.Server.TCP.TCP_Server(IPAddress.Any, CMDHandel, 25444);
 
                 Server.TCP_ClientState_Changed += Server_TCP_ClientState_Changed;
                 Server.TCP_AcceptClients_Changed += new AssaultBird2454.VPTU.Networking.Server.TCP.TCP_AcceptClients_Handeler((s) => AcceptConnection.IsChecked = s);

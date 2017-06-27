@@ -11,17 +11,6 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace AssaultBird2454.VPTU.Networking.Server.TCP
 {
-    public enum DataDirection { Send, Recieve }
-
-    #region Event Delegates
-    public delegate void TCP_AcceptClients_Handeler(bool Accepting_Connections);
-    public delegate void TCP_ClientState_Handeler(TCP_ClientNode Client, Data.Client_ConnectionStatus Client_State);
-    public delegate void TCP_ServerState_Handeler(Data.Server_Status Server_State);
-
-    public delegate void TCP_Data(string Data, TCP_ClientNode Client, DataDirection Direction);
-    public delegate void TCP_Data_Error(Exception ex, DataDirection Direction);
-    #endregion
-
     public class TCP_Server
     {
         #region Events
@@ -89,8 +78,6 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         private int TCP_ServerPort;// Servers Port
         private int TCP_MaxConnections;// Servers Max Client Connections
 
-        private X509Certificate SSLCert;// SSL Certificate
-
         public Action<TCP_ClientNode, string> CommandHandeler;
         #endregion
 
@@ -157,21 +144,12 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         }
         #endregion
 
-        public TCP_Server(IPAddress Address, Action<TCP_ClientNode, string> _CommandHandeler, int Port = 25444, X509Certificate _SSLCertificate = null)
+        public TCP_Server(IPAddress Address, Action<TCP_ClientNode, string> _CommandHandeler, int Port = 25444)
         {
             TCP_ServerAddress = Address;
             TCP_ServerPort = Port;// Sets the port
             TCP_AcceptClients = true;// Allows clients to connect
             CommandHandeler = _CommandHandeler;// Sets the Command Callback
-
-            if (_SSLCertificate == null)
-            {
-
-            }
-            else
-            {
-                SSLCert = _SSLCertificate;// Set the cert
-            }
         }
 
         #region Server Methods
@@ -195,6 +173,10 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         /// </summary>
         public void Stop()
         {
+            bool acceptState = AcceptClients;
+
+            Disconnect_AllClients();
+
             try
             {
                 Listener.Stop();// Stop the server if it is running
@@ -203,6 +185,10 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
                 Fire_TCP_ServerState_Changed(Data.Server_Status.Offline);// Send Server State Changed Event
             }
             catch { /* Dont Care, this is just to check that the server is stopped */ }
+            finally
+            {
+                AcceptClients = acceptState;
+            }
         }
         #endregion
 
@@ -223,8 +209,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
 
                     lock (ClientNodes)
                     {
-                        node = new TCP_ClientNode(tclient, tclient.Client.RemoteEndPoint.ToString(), this, SSLCert);// Creates a new client node object
-                        node.Client.GetStream().BeginRead(node.Rx, 0, node.Rx.Length, Client_ReadData, node.Client);// Starts to read the data recieved
+                        node = new TCP_ClientNode(tclient, tclient.Client.RemoteEndPoint.ToString(), this);// Creates a new client node object
                         ClientNodes.Add(node);// Adds the client node to the list
                     }
 
@@ -255,51 +240,26 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
             Fire_TCP_ClientState_Changed(node, Data.Client_ConnectionStatus.Disconnected);// Sends Client Disconnect Event
 
             try { node.Client.Close(); } catch { }// Closes Client
-            try { node.Socket.Close(); } catch { }// Closes Connection
+            try { node.StateObject.workSocket.Close(); } catch { }// Closes Connection
 
             lock (ClientNodes)
             {
                 ClientNodes.Remove(node);// Removes from list
             }
-
-            node = null;// Clears the object
+        }
+        /// <summary>
+        /// Disconnects all clients
+        /// </summary>
+        public void Disconnect_AllClients()
+        {
+            foreach (TCP_ClientNode node in ClientNodes)
+            {
+                Disconnect_Client(node);
+            }
         }
         #endregion
 
         #region Data Events
-        private void Client_ReadData(IAsyncResult ar)
-        {
-            TCP_ClientNode node = ClientNodes.Find(x => x.ID == ((TcpClient)ar.AsyncState).Client.RemoteEndPoint.ToString());// Gets the node that send the data
-            int DataLength = 0;
-
-            try
-            {
-                DataLength = node.Client.GetStream().EndRead(ar);// Gets the length and ends read
-
-                if (DataLength == 0)// If Data has nothing in it
-                {
-                    Disconnect_Client(node);// Disconnects
-                    return;
-                }
-
-                if (node.Data == null) { node.Data = ""; }// Checks to see if it is null and if it is them set it to an empty string
-
-                node.Data = node.Data + Encoding.UTF8.GetString(node.Rx, 0, DataLength).Trim();// Gets the data and trims it
-                if (node.Data.EndsWith("|<EOD>|"))
-                {
-                    //TCP_Data_Event.Invoke(Data, DataDirection.Recieve);// Fires the Data Recieved Event
-                    CommandHandeler.Invoke(node, node.Data.Remove(node.Data.Length - 7, 7));// Executes the command handeler
-                    node.Data = "";// Data Recieved
-                }
-
-                node.Rx = new byte[32768];//Sets the clients recieve buffer
-                node.Client.GetStream().BeginRead(node.Rx, 0, node.Rx.Length, Client_ReadData, node.Client);//Starts to read again
-            }
-            catch
-            {
-                // Client Dropped
-            }
-        }
 
         /// <summary>
         /// 
@@ -316,20 +276,6 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
             else
             {
                 node.Send(Data);// Send the data to a single client
-            }
-        }
-
-        internal void OnWrite(IAsyncResult ar)
-        {
-            try
-            {
-                TcpClient tcpc = (TcpClient)ar.AsyncState;//Gets the client data is going to
-                tcpc.GetStream().EndWrite(ar);//Ends client write stream
-            }
-            catch (Exception e)
-            {
-                Fire_TCP_Data_Error_Event(e, DataDirection.Send);
-                /* Transmition Error */
             }
         }
         #endregion

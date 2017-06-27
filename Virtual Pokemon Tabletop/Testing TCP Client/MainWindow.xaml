@@ -19,7 +19,8 @@
         <TextBox x:Name="Address" HorizontalAlignment="Left" Height="23" Margin="10,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MaxLines="1"/>
         <Button x:Name="Connect" Content="Connect" HorizontalAlignment="Left" Margin="135,286,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="Connect_Click"/>
         <Button x:Name="Disconnect" Content="Disconnect" HorizontalAlignment="Left" Margin="215,286,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="Disconnect_Click"/>
-        <Label x:Name="State" Content="State: Disconnected" HorizontalAlignment="Left" Margin="392,283,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="State" Content="State: Disconnected" HorizontalAlignment="Left" Margin="312,273,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="Send10" Content="Send 10" HorizontalAlignment="Left" Margin="432,273,0,0" VerticalAlignment="Top" Width="75" Height="23" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Send10_Click"/>
 
     </Grid>
 </Window>
