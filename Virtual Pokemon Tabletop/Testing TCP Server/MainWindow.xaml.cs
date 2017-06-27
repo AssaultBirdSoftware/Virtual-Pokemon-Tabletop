@@ -58,6 +58,7 @@ namespace Testing_TCP_Server
                 Clients.ItemsSource = ClientList;
 
                 Server = new AssaultBird2454.VPTU.Networking.Server.TCP.TCP_Server(IPAddress.Any, CMDHandel, 25444);
+                Server.MaxConnections = 10;
 
                 Server.TCP_ClientState_Changed += Server_TCP_ClientState_Changed;
                 Server.TCP_AcceptClients_Changed += new AssaultBird2454.VPTU.Networking.Server.TCP.TCP_AcceptClients_Handeler((s) => AcceptConnection.IsChecked = s);
