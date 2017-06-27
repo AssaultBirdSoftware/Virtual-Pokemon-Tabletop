@@ -128,9 +128,31 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
 
             Client = new TcpClient();// Creates a new client object
 
-            Client.BeginConnect(TCP_IPAddress, TCP_Port, Client_Connected, null);// Connects to the server and on connect will call the connect call back
+            try
+            {
+                Client.Connect(TCP_IPAddress, TCP_Port);// Connects to the server and on connect will call the connect call back
+            }
+            catch (Exception e)
+            {
+                Client = null;
+                Fire_ConnectionStateEvent(Data.Client_ConnectionStatus.Disconnected);
+                return;
+            }
 
             Tx = new byte[32768];// Creates a new Transmittion Buffer
+
+            DataQue = new Queue<string>();// Creates the que
+
+            DataQueThread = new Thread(new ThreadStart(() =>
+            {
+                QueRead();
+            }));
+            DataQueThread.Start();// Creates and Starts the Read Thread
+
+            StateObject = new StateObject(Client.Client, 32768);// Creates State Object for Client
+            StartListening();// Starts Listening
+
+            Fire_ConnectionStateEvent(Data.Client_ConnectionStatus.Connected);
         }
 
         /// <summary>
@@ -258,24 +280,6 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
                     CommandHandeler.InvokeCommand(Data);// Handels the data
                 }
             }
-        }
-        #endregion
-
-        #region Connection Events
-        private void Client_Connected(IAsyncResult ar)
-        {
-            DataQue = new Queue<string>();// Creates the que
-
-            DataQueThread = new Thread(new ThreadStart(() =>
-            {
-                QueRead();
-            }));
-            DataQueThread.Start();// Creates and Starts the Read Thread
-
-            StateObject = new StateObject(Client.Client, 32768);// Creates State Object for Client
-            StartListening();// Starts Listening
-
-            Fire_ConnectionStateEvent(Data.Client_ConnectionStatus.Connected);
         }
         #endregion
     }
