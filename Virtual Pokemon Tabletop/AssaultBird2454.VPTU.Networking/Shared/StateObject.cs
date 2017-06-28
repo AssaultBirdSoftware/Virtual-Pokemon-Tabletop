@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Security;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace AssaultBird2454.VPTU.Networking.Shared
         {
             workSocket = _workSocket;
             BUFFER_SIZE = _BUFFER_SIZE;
+            SSL_BUFFER_SIZE = _BUFFER_SIZE;
             buffer = new byte[BUFFER_SIZE];
             sb = new StringBuilder();
         }
@@ -33,6 +35,16 @@ namespace AssaultBird2454.VPTU.Networking.Shared
             buffer = new byte[BUFFER_SIZE];
             sb = new StringBuilder();
         }
+        public void SSL_Reset()
+        {
+            SSL_buffer = new byte[SSL_BUFFER_SIZE];
+            SSL_sb = new StringBuilder();
+        }
+
+        public SslStream SSL = null;
+        public int SSL_BUFFER_SIZE;
+        public byte[] SSL_buffer;
+        public StringBuilder SSL_sb;
 
         public Socket workSocket;
         public int BUFFER_SIZE;

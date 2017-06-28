@@ -17,6 +17,7 @@ using AssaultBird2454.VPTU.Networking.Server.TCP;
 using System.Reflection;
 using System.Collections.ObjectModel;
 using AssaultBird2454.VPTU.Networking.Server.Command_Handeler;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Testing_TCP_Server
 {
@@ -63,11 +64,16 @@ namespace Testing_TCP_Server
                 Clients.ItemsSource = ClientList;
 
                 Server = new TCP_Server(IPAddress.Any, cmdhand, 25444);
+                try
+                {
+                    Server.SSL_Cert = X509Certificate.CreateFromCertFile(AssemblyDirectory + "/Cert.cer");
+                }
+                catch { MessageBox.Show("Server Has No Certificate"); }
                 Server.MaxConnections = 10;
 
                 Server.TCP_ClientState_Changed += Server_TCP_ClientState_Changed;
-                Server.TCP_AcceptClients_Changed += new AssaultBird2454.VPTU.Networking.Server.TCP.TCP_AcceptClients_Handeler((s) => AcceptConnection.IsChecked = s);
-                Server.TCP_Data_Event += new AssaultBird2454.VPTU.Networking.Server.TCP.TCP_Data((s, c, d) =>
+                Server.TCP_AcceptClients_Changed += new TCP_AcceptClients_Handeler((s) => AcceptConnection.IsChecked = s);
+                Server.TCP_Data_Event += new TCP_Data((s, c, d) =>
                 {
                     Action act = new Action(() => MessageBox.Show("Data Recv\n\nClient ID: " + c.ID + "\nData Direction: " + d.ToString() + "\nData: " + s));
                     act.Invoke();

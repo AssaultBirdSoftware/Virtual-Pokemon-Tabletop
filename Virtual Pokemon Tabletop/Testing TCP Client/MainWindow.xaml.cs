@@ -90,6 +90,11 @@ namespace Testing_TCP_Client
         {
             TCP_Client.Disconnect();
         }
+
+        private void EnableSSL_Click(object sender, RoutedEventArgs e)
+        {
+            TCP_Client.Enable_SSL();
+        }
     }
 
     public class MessageData : AssaultBird2454.VPTU.Networking.Data.NetworkCommand

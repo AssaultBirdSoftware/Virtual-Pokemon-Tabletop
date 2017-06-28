@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Testing_TCP_Client"
         mc:Ignorable="d"
-        Title="Client" Height="350" Width="525">
+        Title="Client" Height="361.765" Width="525">
     <Grid>
         <RichTextBox x:Name="console" HorizontalAlignment="Left" Height="240" VerticalAlignment="Top" Width="517">
             <FlowDocument>
@@ -21,6 +21,7 @@
         <Button x:Name="Disconnect" Content="Disconnect" HorizontalAlignment="Left" Margin="215,286,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="Disconnect_Click"/>
         <Label x:Name="State" Content="State: Disconnected" HorizontalAlignment="Left" Margin="312,273,0,0" VerticalAlignment="Top"/>
         <Button x:Name="Send10" Content="Send 10" HorizontalAlignment="Left" Margin="432,273,0,0" VerticalAlignment="Top" Width="75" Height="23" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Send10_Click"/>
+        <Button x:Name="EnableSSL" Content="SSL" HorizontalAlignment="Left" Margin="432,301,0,0" VerticalAlignment="Top" Width="75" Height="23" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="EnableSSL_Click"/>
 
     </Grid>
 </Window>

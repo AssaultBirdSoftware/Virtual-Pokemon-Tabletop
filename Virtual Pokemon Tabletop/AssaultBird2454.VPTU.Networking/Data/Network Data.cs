@@ -6,22 +6,28 @@ using System.Threading.Tasks;
 
 namespace AssaultBird2454.VPTU.Networking.Data
 {
-    /*internal enum Commands { Data = 0, Response = 1, SetBufferSize = 2, Enable_SSL = 3, Dissable_SSL = 4 }
-    internal enum ResponseCode { OK = 0, Not_Avaliable = 503, Forbiden = 403, Not_Found = 404, Error = 500 }
+    internal enum Commands { SetBufferSize = 1, SSL_Enable = 2, SSL_Dissable = 3, SSL_Active = 4 }
+    internal enum ResponseCode { OK = 0, Ready = 1, None = 2, Avaliable = 100, Not_Implemented = 501, Not_Avaliable = 503, Forbiden = 403, Not_Found = 404, Error = 500 }
 
-    internal class NetworkData_Data
+    internal class InternalNetworkCommand : NetworkCommand
     {
-        public NetworkData_Data(Commands _Command, ResponseCode _Response, object _Data = null)
+        public InternalNetworkCommand(Commands _Command, ResponseCode _Response = ResponseCode.None)
         {
-            Command = _Command;
+            CommandType = _Command;
             Response = _Response;
-            Data = _Data;
         }
 
-        public Commands Command { get; set; }
+        public string Command
+        {
+            get
+            {
+                return "Network Command";
+            }
+        }
+
+        public Commands CommandType { get; set; }
         public ResponseCode Response { get; set; }
-        public object Data { get; set; }
-    }*/
+    }
 
     public interface NetworkCommand
     {
