@@ -158,7 +158,7 @@ namespace AssaultBird2454.VPTU.SaveManager
         #region Resource
         #region Import & Export into SaveFile
         /// <summary>
-        /// 
+        /// Adds a file to the internal save file
         /// </summary>
         /// <param name="FilePath">Path to the file</param>
         /// <param name="Name">The name of the file inside the save file.</param>
@@ -178,6 +178,26 @@ namespace AssaultBird2454.VPTU.SaveManager
         public void ExportFile()
         {
 
+        }
+
+        public bool FileExists(string FileName)
+        {
+            using (FileStream stream = new FileStream(SaveFileDir, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+            {
+                using (ZipArchive archive = new ZipArchive(stream, ZipArchiveMode.Update))
+                {
+                    try
+                    {
+                        ZipArchiveEntry entry = archive.GetEntry(FileName);
+                        if (entry != null)
+                        {
+                            return true;
+                        }
+                    }
+                    catch { /* Dont Care... May Throw an exception if a file does not exist */ }
+                }
+            }
+            return false;
         }
         #endregion
         #region Load File
