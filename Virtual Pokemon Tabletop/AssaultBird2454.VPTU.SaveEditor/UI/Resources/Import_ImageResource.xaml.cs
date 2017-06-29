@@ -40,12 +40,6 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Resources
         private void Submit_Button_Click(object sender, RoutedEventArgs e)
         {
             Import();
-
-            if (Close_On_Complete.IsChecked == true)
-            {
-                DialogResult = true;
-                Close();
-            }
         }
 
         #region Resource Code
@@ -61,23 +55,43 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Resources
 
                 ImportFile(Selected_FileDir.Text, Import_Save.IsChecked);
                 Import_Progress.Dispatcher.Invoke(new Action(() => Import_Progress.Value = 1));
+
+                if (Close_On_Complete.IsChecked == true)
+                {
+                    DialogResult = true;
+                    Close();
+                }
             }
             else if (Directory.Exists(Selected_FileDir.Text))
             {
                 string[] Files = Directory.GetFiles(Selected_FileDir.Text);
                 Import_Progress.Maximum = Files.Count();// Sets the Progress Bar to the amount of file in folder
 
-                foreach (string file in Files)
+                bool? imp = Import_Save.IsChecked;
+
+                ImportThread = new Thread(new ThreadStart(new Action(() =>
                 {
-                    bool? imp = Import_Save.IsChecked;
-                    ImportThread = new Thread(new ThreadStart(new Action(() =>
+                    foreach (string file in Files)
                     {
-                        ImportFile(file, imp);
-                    })));
-                    ImportThread.IsBackground = true;
-                    ImportThread.Start();
-                    Import_Progress.Value++;
-                }
+                        if (file.EndsWith(".jpeg") || file.EndsWith(".png") || file.EndsWith(".jpg") || file.EndsWith(".gif"))
+                        {
+                            ImportFile(file, imp);
+                            Import_Progress.Dispatcher.Invoke(new Action(() => Import_Progress.Value++));
+                        }
+                    }
+
+                    this.Dispatcher.Invoke(new Action(() =>
+                    {
+                        if (Close_On_Complete.IsChecked == true)
+                        {
+                            DialogResult = true;
+                            Close();
+                        }
+                    }));
+                })));
+                ImportThread.Name = "Image Resource Importing";
+                ImportThread.IsBackground = true;
+                ImportThread.Start();
             }
             else { }
         }
@@ -88,16 +102,22 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Resources
             res.Name = System.IO.Path.GetFileName(FileDir);
             res.Type = SaveManager.Resource_Data.Resource_Type.Image;
 
+            if (MainWindow.SaveManager.FileExists("Resource/Images/" + res.Name))
+            {
+                System.Windows.MessageBox.Show("A File was not imported because there is a file with that name in the save file...\n\nFile: " + res.Name, "File Exists", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             if (Import == true)
             {
-                res.Path = "save:" + FileDir;
-                MainWindow.SaveManager.ImportFile(FileDir, res.Name);
+                res.Path = "save:" + "Resource/Images/" + res.Name;
+                MainWindow.SaveManager.ImportFile(FileDir, "Resource/Images/" + res.Name);
             }
             else
             {
                 res.Path = "path:" + FileDir;
             }
-            
+
             MainWindow.SaveManager.SaveData.ImageResources.Add(res);
         }
         #endregion
@@ -127,6 +147,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Resources
         private void File_Import_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dir = new OpenFileDialog();
+            dir.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
             DialogResult dr = dir.ShowDialog();
 
             if (dr == System.Windows.Forms.DialogResult.OK)
@@ -135,5 +156,11 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Resources
             }
         }
         #endregion
+
+        private void Cancel_Button_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
+            Close();
+        }
     }
 }
