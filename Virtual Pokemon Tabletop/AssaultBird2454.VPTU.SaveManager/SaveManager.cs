@@ -180,6 +180,11 @@ namespace AssaultBird2454.VPTU.SaveManager
 
         }
 
+        /// <summary>
+        /// Checks if the file exists in the save file
+        /// </summary>
+        /// <param name="FileName">The Path and File to check</param>
+        /// <returns>If it exists or not</returns>
         public bool FileExists(string FileName)
         {
             using (FileStream stream = new FileStream(SaveFileDir, FileMode.OpenOrCreate, FileAccess.ReadWrite))
