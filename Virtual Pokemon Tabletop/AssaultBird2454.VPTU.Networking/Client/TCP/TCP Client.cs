@@ -209,6 +209,7 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
             {
                 QueRead();
             }));
+            DataQueThread.IsBackground = true;
             DataQueThread.Start();// Creates and Starts the Read Thread
 
             StateObject = new StateObject(Client.Client, 32768);// Creates State Object for Client

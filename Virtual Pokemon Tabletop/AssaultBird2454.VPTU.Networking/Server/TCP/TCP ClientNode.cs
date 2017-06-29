@@ -47,6 +47,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
             {
                 QueRead();
             }));
+            QueReadThread.IsBackground = true;
             QueReadThread.Start();// Creates and Starts the thread to read the que
         }
 
@@ -261,7 +262,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
             }
             else if (code == Data.ResponseCode.Ready)// Client is ready to accept SSL
             {
-                StateObject.SSL = new SslStream(StateObject.workSocket., true);// Creates a new SSL Stream
+                StateObject.SSL = new SslStream(Client.GetStream(), true);// Creates a new SSL Stream
                 StateObject.SSL.AuthenticateAsServer(Server.SSL_Cert, false, System.Security.Authentication.SslProtocols.Default, true);// Authenticate Server
             }
             else if (code == Data.ResponseCode.OK)
