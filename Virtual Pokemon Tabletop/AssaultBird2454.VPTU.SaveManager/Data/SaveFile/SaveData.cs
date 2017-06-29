@@ -75,7 +75,10 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
             {
                 AudioResources = new List<SoundSystem.SaveData.AudioData>();
             }
-            ImageResources = new List<Resource_Data.Resources>();
+            if(ImageResources == null)
+            {
+                ImageResources = new List<Resource_Data.Resources>();
+            }
 
             PokedexData.InitNullObjects();
         }
