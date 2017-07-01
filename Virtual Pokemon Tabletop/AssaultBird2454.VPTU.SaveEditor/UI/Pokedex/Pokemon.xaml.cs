@@ -21,14 +21,14 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
     public partial class Pokemon : Window
     {
         public VPTU.Pokedex.Pokemon.PokemonData PokemonData;
-        private SaveManager.Data.SaveFile.PTUSaveData SaveData;
+        private SaveManager.SaveManager Mgr;
         bool Update = false;
 
-        public Pokemon(SaveManager.Data.SaveFile.PTUSaveData _SaveData, VPTU.Pokedex.Pokemon.PokemonData _PokemonData = null)
+        public Pokemon(SaveManager.SaveManager _Mgr, VPTU.Pokedex.Pokemon.PokemonData _PokemonData = null)
         {
             InitializeComponent();// Sets up the window
 
-            SaveData = _SaveData;// Creates Save Data Reference
+            Mgr = _Mgr;// Creates Save Data Reference
 
             Setup();// Executes Setup Code
 
@@ -137,7 +137,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
         private void Load(VPTU.Pokedex.Pokemon.PokemonData _LoadData = null)
         {
             VPTU.Pokedex.Pokemon.PokemonData LoadData;
-            if(_LoadData != null)
+            if (_LoadData != null)
             {
                 LoadData = _LoadData;
             }
@@ -244,6 +244,10 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
 
             //All the linked objects get loaded here
             #region Links
+            //Load Linked Resources
+            #region Resources
+
+            #endregion
             //Load Linked Move Data
             #region Moves
             try
@@ -269,7 +273,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
                 {
                     EvoLinks link = new EvoLinks();
                     link.LinkData = EL;
-                    link.PokemonName = SaveData.PokedexData.Pokemon.Find(x => x.Species_DexID == EL.Pokemon_Evo).Species_Name;
+                    link.PokemonName = Mgr.SaveData.PokedexData.Pokemon.Find(x => x.Species_DexID == EL.Pokemon_Evo).Species_Name;
 
                     FormsAndEvos_List.Items.Add(link);
                 }
@@ -419,7 +423,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
                     MessageBox.Show("Name is not valid!", "Name Error", MessageBoxButton.OK, MessageBoxImage.Error);// Name is Not Valid
                     Pass = false;
                 }
-                else if (SaveData.PokedexData.Pokemon.FindAll(x => x.Species_Name.ToLower() == Basic_Name.Text.ToLower()).Count >= 1 && !Update)
+                else if (Mgr.SaveData.PokedexData.Pokemon.FindAll(x => x.Species_Name.ToLower() == Basic_Name.Text.ToLower()).Count >= 1 && !Update)
                 {
                     MessageBox.Show("Name taken by another Pokemon!", "Name Error", MessageBoxButton.OK, MessageBoxImage.Error);// Name is Taken
                     Pass = false;
@@ -442,7 +446,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
                 {
                     Decimal ID = Convert.ToDecimal(Basic_ID.Text);
 
-                    if (SaveData.PokedexData.Pokemon.FindAll(x => x.Species_DexID == ID).Count >= 1)
+                    if (Mgr.SaveData.PokedexData.Pokemon.FindAll(x => x.Species_DexID == ID).Count >= 1)
                     {
                         if (!Update || (ID != PokemonData.Species_DexID && Update))
                         {
@@ -606,7 +610,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
 
             if (add == true)
             {
-                string name = SaveData.PokedexData.Pokemon.Find(x => x.Species_DexID == link.LinkData.Pokemon_Evo).Species_Name;
+                string name = Mgr.SaveData.PokedexData.Pokemon.Find(x => x.Species_DexID == link.LinkData.Pokemon_Evo).Species_Name;
                 FormsAndEvos_List.Items.Add(new EvoLinks(link.LinkData, name));// Add EvoLink to list if not canceled
             }
         }
@@ -651,6 +655,42 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
                 try { Load(); } catch { MessageBox.Show("Failed to load data object!"); }
 
                 //Load(impexp.Import<VPTU.Pokedex.Pokemon.PokemonData>());
+            }
+        }
+
+        private void SelectIMG_Normal_Click(object sender, RoutedEventArgs e)
+        {
+            UI.Resources.Search_Resources Select = new UI.Resources.Search_Resources(Mgr);
+
+            bool? dr = Select.ShowDialog();
+
+            if (dr == true)
+            {
+                //PokemonData.Sprite_Normal = Select;
+            }
+        }
+
+        private void SelectIMG_Shiny_Click(object sender, RoutedEventArgs e)
+        {
+            UI.Resources.Search_Resources Select = new UI.Resources.Search_Resources(Mgr);
+
+            bool? dr = Select.ShowDialog();
+
+            if (dr == true)
+            {
+                //PokemonData.Sprite_Shiny = Select;
+            }
+        }
+
+        private void SelectIMG_Egg_Click(object sender, RoutedEventArgs e)
+        {
+            UI.Resources.Search_Resources Select = new UI.Resources.Search_Resources(Mgr);
+
+            bool? dr = Select.ShowDialog();
+
+            if (dr == true)
+            {
+                //PokemonData.Sprite_Egg = Select;
             }
         }
     }

@@ -147,7 +147,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Resources
         private void File_Import_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dir = new OpenFileDialog();
-            dir.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+            //dir.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
             DialogResult dr = dir.ShowDialog();
 
             if (dr == System.Windows.Forms.DialogResult.OK)

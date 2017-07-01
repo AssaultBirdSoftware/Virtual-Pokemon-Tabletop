@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace AssaultBird2454.VPTU.SaveManager
 {
@@ -206,15 +209,47 @@ namespace AssaultBird2454.VPTU.SaveManager
         }
         #endregion
         #region Load File
-        public FileStream LoadFile(string FilePath)
+        public BitmapImage LoadImage(string FilePath)
         {
             if (FilePath.ToLower().StartsWith("save:"))
             {
+                //Creates a stream to read the save file from
+                using (FileStream Reader = new FileStream(SaveFileDir, FileMode.OpenOrCreate))
+                {
+                    //Creates an object to read the archive data from
+                    using (ZipArchive archive = new ZipArchive(Reader, ZipArchiveMode.Update))
+                    {
+                        Stream str = (archive.GetEntry(FilePath.Remove(0, 5))).Open();
 
+                        BitmapImage bmp = new BitmapImage();
+                        bmp.BeginInit();
+
+                        MemoryStream ms = new MemoryStream();
+                        Image.FromStream(str).Save(ms, ImageFormat.Bmp);
+                        ms.Seek(0, SeekOrigin.Begin);
+
+                        bmp.StreamSource = ms;
+                        bmp.EndInit();
+
+                        return bmp;
+                    }
+                }
             }
             else if (FilePath.ToLower().StartsWith("path:"))
             {
+                FileStream str = new FileStream(FilePath.Remove(0, 5), FileMode.Open);
 
+                BitmapImage bmp = new BitmapImage();
+                bmp.BeginInit();
+
+                MemoryStream ms = new MemoryStream();
+                Image.FromStream(str).Save(ms, ImageFormat.Bmp);
+                ms.Seek(0, SeekOrigin.Begin);
+
+                bmp.StreamSource = ms;
+                bmp.EndInit();
+
+                return bmp;
             }
             return null;
         }

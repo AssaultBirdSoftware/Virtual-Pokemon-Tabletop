@@ -59,10 +59,10 @@
                         <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/Unknown_Pokemon_Sprite.png"/>
                     </Border.Background>
                 </Border>
-                <Button x:Name="button" Content="Select Normal" HorizontalAlignment="Left" Margin="0,110,0,0" Width="100" VerticalAlignment="Top"/>
-                <Button x:Name="button_Copy" Content="Select Shiny" HorizontalAlignment="Left" Margin="105,110,0,0" Width="100" VerticalAlignment="Top"/>
-                <Button x:Name="button_Copy1" Content="Select Egg" Margin="210,110,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75"/>
-                <Button x:Name="button_Copy2" Content="Import Resource" Margin="0,134.96,0.697,0" VerticalAlignment="Top"/>
+                <Button x:Name="SelectIMG_Normal" Content="Select Normal" HorizontalAlignment="Left" Margin="0,110,0,0" Width="100" VerticalAlignment="Top" Click="SelectIMG_Normal_Click"/>
+                <Button x:Name="SelectIMG_Shiny" Content="Select Shiny" HorizontalAlignment="Left" Margin="105,110,0,0" Width="100" VerticalAlignment="Top" Click="SelectIMG_Shiny_Click"/>
+                <Button x:Name="SelectIMG_Egg" Content="Select Egg" Margin="210,110,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75" Click="SelectIMG_Egg_Click"/>
+                <Button x:Name="Import_Resource" Content="Import Resource" Margin="0,134.96,0.697,0" VerticalAlignment="Top"/>
             </Grid>
         </GroupBox>
         <GroupBox x:Name="G_BaseStats" Header="Species Base Stats" Margin="302,187,0,0" HorizontalAlignment="Left" Width="163" Height="187" VerticalAlignment="Top">

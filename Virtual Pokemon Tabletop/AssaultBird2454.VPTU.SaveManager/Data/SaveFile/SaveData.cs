@@ -55,19 +55,6 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
         /// </summary>
         public void InitNullObjects()
         {
-            if (Trainers == null)
-            {
-                Trainers = new List<BattleManager.Entity.Trainer.EntityTrainerData>();
-            }
-            if (Pokemon == null)
-            {
-                Pokemon = new List<BattleManager.Entity.Pokemon.EntityPokemonData>();
-            }
-            if (EntityGroups == null)
-            {
-                EntityGroups = new List<BattleManager.Entity.EntityGroup>();
-            }
-
             //MapFiles = new List<Resources.MapFileData>();
             //Maps = new List<Resources.MapData>();
 
@@ -75,7 +62,7 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
             {
                 AudioResources = new List<SoundSystem.SaveData.AudioData>();
             }
-            if(ImageResources == null)
+            if (ImageResources == null)
             {
                 ImageResources = new List<Resource_Data.Resources>();
             }
