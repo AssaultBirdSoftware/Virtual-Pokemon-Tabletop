@@ -1,0 +1,25 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Table"
+        xmlns:Objects="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Table.Objects" x:Class="AssaultBird2454.VPTU.SaveEditor.UI.Table.Table"
+        mc:Ignorable="d"
+        Title="Table" Height="300" Width="300">
+    <Grid>
+        <local:TableLayer x:Name="Tokens" Height="Auto" Width="Auto">
+
+        </local:TableLayer>
+        <local:TableLayer x:Name="Objects" Height="Auto" Width="Auto" IsHitTestVisible="False">
+
+        </local:TableLayer>
+        <local:TableLayer x:Name="Background" Height="Auto" Width="Auto" IsHitTestVisible="False">
+
+        </local:TableLayer>
+        <local:TableLayer x:Name="Gamemaster" Height="Auto" Width="Auto" IsHitTestVisible="False">
+
+        </local:TableLayer>
+
+    </Grid>
+</Window>
