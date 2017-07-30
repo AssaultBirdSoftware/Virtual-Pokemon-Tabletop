@@ -136,7 +136,8 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
 
         private void CM_EffectFunctionItem_Edit_Click(object sender, RoutedEventArgs e)
         {
-            //throw new NotImplementedException();
+            EffectFunction_Designer design = new EffectFunction_Designer();
+            design.ShowDialog();
         }
 
         private void CM_EffectFunctionItem_Delete_Click(object sender, RoutedEventArgs e)

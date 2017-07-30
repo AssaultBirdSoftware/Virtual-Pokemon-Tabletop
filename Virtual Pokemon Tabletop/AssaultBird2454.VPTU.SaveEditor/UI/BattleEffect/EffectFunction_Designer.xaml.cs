@@ -23,5 +23,42 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
         {
             InitializeComponent();
         }
+
+        private void Add_Action_Click(object sender, RoutedEventArgs e)
+        {
+            if (((ComboBoxItem)Add_Action_Selector.SelectedItem).Content.ToString().ToLower().StartsWith("has"))
+            {
+                EffectFunction_ActionItem item = new EffectFunction_ActionItem();
+                item.Name = ((ComboBoxItem)Add_Action_Selector.SelectedItem).Content.ToString();
+                item.Type = "Condition";
+                item.Comment = "Comment Here";
+
+                Actions_Display.Items.Add(item);
+            }
+            else if (((ComboBoxItem)Add_Action_Selector.SelectedItem).Content.ToString().ToLower().StartsWith("execute"))
+            {
+                EffectFunction_ActionItem item = new EffectFunction_ActionItem();
+                item.Name = ((ComboBoxItem)Add_Action_Selector.SelectedItem).Content.ToString();
+                item.Type = "Invoke";
+                item.Comment = "Comment Here";
+
+                Actions_Display.Items.Add(item);
+            }
+            else
+            {
+                EffectFunction_ActionItem item = new EffectFunction_ActionItem();
+                item.Name = ((ComboBoxItem)Add_Action_Selector.SelectedItem).Content.ToString();
+                item.Type = "Action";
+                item.Comment = "Comment Here";
+
+                Actions_Display.Items.Add(item);
+            }
+        }
+    }
+    public class EffectFunction_ActionItem
+    {
+        public string Type { get; set; }
+        public string Name { get; set; }
+        public string Comment { get; set; }
     }
 }
