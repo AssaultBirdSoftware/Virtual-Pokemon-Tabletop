@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect"
         mc:Ignorable="d"
-        Title="EffectFunction_Designer" Height="341.508" Width="512.605">
+        Title="EffectFunction_Designer" Height="365.183" Width="512.605">
     <Grid>
         <ListView x:Name="Actions_Display" HorizontalAlignment="Left" Height="245" VerticalAlignment="Top" Width="505">
             <ListView.View>
@@ -16,7 +16,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="66" Margin="0,245,0,0" VerticalAlignment="Top" Width="505">
+        <Border HorizontalAlignment="Left" Height="89" Margin="0,245,0,0" VerticalAlignment="Top" Width="505">
             <Grid Margin="0,-1,0,0">
                 <ComboBox x:Name="Add_Action_Selector" HorizontalAlignment="Left" VerticalAlignment="Top" Width="185" Margin="10,10,0,0">
                     <ComboBoxItem Content="Add Status Effect"/>
@@ -29,11 +29,14 @@
                     <Separator/>
                     <ComboBoxItem Content="Execute Other Effect Function"/>
                 </ComboBox>
-                <Button x:Name="Add_Action" Content="Add" HorizontalAlignment="Left" Margin="200,10,0,0" VerticalAlignment="Top" Width="70" Height="22" Click="Add_Action_Click"/>
-                <Button x:Name="Move_Action_Up" Content="Move Up" HorizontalAlignment="Left" Margin="423,10,0,0" VerticalAlignment="Top" Width="70" Height="22"/>
-                <Button x:Name="Move_Action_Down" Content="Move Down" HorizontalAlignment="Left" Margin="423,37,0,0" VerticalAlignment="Top" Width="70" Height="22"/>
-                <Button x:Name="Delete_Action" Content="Delete" HorizontalAlignment="Left" Margin="348,37,0,0" VerticalAlignment="Top" Width="70" Height="22"/>
-                <Button x:Name="Edit_Action" Content="Edit" HorizontalAlignment="Left" Margin="348,10,0,0" VerticalAlignment="Top" Width="70" Height="22"/>
+                <Button x:Name="Add_Action" Content="Add" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Width="185" Height="22" Click="Add_Action_Click"/>
+                <Button x:Name="Move_Action_Up" Content="Move Up" HorizontalAlignment="Left" Margin="275,4,0,0" VerticalAlignment="Top" Width="70" Height="22"/>
+                <Button x:Name="Move_Action_Down" Content="Move Down" HorizontalAlignment="Left" Margin="275,31,0,0" VerticalAlignment="Top" Width="70" Height="22"/>
+                <Button x:Name="Delete_Action" Content="Delete" HorizontalAlignment="Left" Margin="425,31,0,0" VerticalAlignment="Top" Width="70" Height="22"/>
+                <Button x:Name="Edit_Action" Content="Edit" HorizontalAlignment="Left" Margin="425,4,0,0" VerticalAlignment="Top" Width="70" Height="22"/>
+                <Button x:Name="Save_Button" Content="Save" HorizontalAlignment="Left" Margin="350,4,0,0" VerticalAlignment="Top" Width="70" Height="22"/>
+                <Button x:Name="Close_Button" Content="Close" HorizontalAlignment="Left" Margin="350,31,0,0" VerticalAlignment="Top" Width="70" Height="22"/>
+                <Button x:Name="Close_Button_Copy" Content="Export / Import" HorizontalAlignment="Left" Margin="350,58,0,0" VerticalAlignment="Top" Width="145" Height="22"/>
             </Grid>
         </Border>
 

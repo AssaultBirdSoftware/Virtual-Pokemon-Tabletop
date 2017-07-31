@@ -19,17 +19,8 @@ namespace AssaultBird2454.VPTU.BattleManager.BattleEffect
         public List<Data.Variables> Variables { get; set; }
 
         /// <summary>
-        /// All the conditions that need to pass to execute the actions
-        /// </summary>
-        public List<Data.Conditions> Conditions { get; set; }
-        /// <summary>
-        /// Defines if all the Conditions need to pass or a mininum of one to execute the actions
-        /// </summary>
-        public bool Conditions_All { get; set; }
-
-        /// <summary>
         /// All the actions that this effect will execute for this effect
         /// </summary>
-        public List<Data.Actions> Actions { get; set; }
+        public List<Data.Action> Actions { get; set; }
     }
 }

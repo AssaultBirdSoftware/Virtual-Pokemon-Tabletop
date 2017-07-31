@@ -47,6 +47,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BattleEffect\Data\Action.cs" />
+    <Compile Include="BattleEffect\Data\Command Handeler\Command.cs" />
+    <Compile Include="BattleEffect\Data\Command Handeler\CommandHandeler.cs" />
     <Compile Include="BattleEffect\Data\Data.cs" />
     <Compile Include="BattleEffect\Data\VariableData.cs" />
     <Compile Include="BattleEffect\EffectData.cs" />

@@ -16,7 +16,7 @@
         <CheckBox x:Name="LevelUp_Move" Content="Level Up Move" HorizontalAlignment="Left" Margin="10,40.96,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="Egg_Move" Content="Egg Move" HorizontalAlignment="Left" Margin="10,61.058,0,0" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment"/>
         <CheckBox x:Name="Tutor_Move" Content="Tutor Move" Margin="113.531,40.96,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-        <CheckBox x:Name="Default_Move" Content="Default Move" Margin="88.295,61.058,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" d:LayoutOverrides="VerticalAlignment"/>
+        <CheckBox x:Name="TMHM_Move" Content="TM / HM Move" Margin="88.295,61.058,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" d:LayoutOverrides="VerticalAlignment"/>
         <Button x:Name="Link_Button" Content="Link Move" Margin="129,0,90,10" VerticalAlignment="Bottom" IsDefault="True" Click="Link_Button_Click"/>
         <Button x:Name="Move_Name_Select" Content="Select Move" Margin="209,13,10,0" VerticalAlignment="Top" IsDefault="True" Click="Move_Name_Select_Click"/>
     </Grid>
