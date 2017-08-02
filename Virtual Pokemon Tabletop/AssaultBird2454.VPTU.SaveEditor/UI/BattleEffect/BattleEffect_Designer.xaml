@@ -6,33 +6,16 @@
         xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect"
         xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock" x:Class="AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect.BattleEffect_Designer"
         mc:Ignorable="d"
-        Title="BattleEffect_Designer" Height="533.935" Width="663.898">
+        Title="BattleEffect_Designer" Height="438.062" Width="663.898">
     <Grid>
         <ToolBarPanel x:Name="Tools" HorizontalAlignment="Left" Height="16" VerticalAlignment="Top" Width="656"/>
         <TreeView x:Name="EffectTree" HorizontalAlignment="Left" Height="302" Margin="0,16,0,0" VerticalAlignment="Top" Width="656">
-            <TreeViewItem Header="Variables" IsEnabled="False">
-                <TreeViewItem Header="Dice Roll"/>
-                <TreeViewItem Header="Damage Roll"/>
-            </TreeViewItem>
-            <TreeViewItem Header="Triggers" IsEnabled="False">
-                <TreeViewItem Header="Static"/>
-                <TreeViewItem Header="Target Hit"/>
-                <TreeViewItem Header="Target Missed"/>
-                <TreeViewItem Header="Target KO"/>
-                <TreeViewItem Header="Friendly Hit"/>
-                <TreeViewItem Header="Friendly Missed"/>
-                <TreeViewItem Header="Friendly KO"/>
-                <TreeViewItem Header="Insert Other Triggers Here"/>
-            </TreeViewItem>
-            <TreeViewItem x:Name="EffectTree_Effects" Header="Effects" IsExpanded="True">
-                <TreeViewItem.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Create Effect Function"/>
-                        <Separator/>
-                    </ContextMenu>
-                </TreeViewItem.ContextMenu>
-            </TreeViewItem>
+            <TreeViewItem x:Name="EffectTree_Triggers" Header="Triggers"/>
+            <TreeViewItem x:Name="EffectTree_Functions" Header="Functions"/>
         </TreeView>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="571,473,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="Cancel_Button" Content="Close" HorizontalAlignment="Right" Margin="0,0,10,60" VerticalAlignment="Bottom" Width="75" IsCancel="True" Click="Cancel_Button_Click"/>
+        <Button x:Name="Submit_Button" Content="Save &amp; Close" HorizontalAlignment="Right" Margin="0,0,90,60" VerticalAlignment="Bottom" Width="75" IsDefault="True" Click="Submit_Button_Click"/>
+        <Button x:Name="RawData_Button" Content="Import / Export" Margin="0,0,10,10" Click="RawData_Button_Click" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="155"/>
+        <Button x:Name="Save_Button" Content="Save" HorizontalAlignment="Right" Margin="0,0,90,35" Width="75" Click="Save_Button_Click" Height="20" VerticalAlignment="Bottom"/>
     </Grid>
 </Window>

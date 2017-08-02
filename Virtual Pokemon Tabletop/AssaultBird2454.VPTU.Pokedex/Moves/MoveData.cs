@@ -73,9 +73,9 @@ namespace AssaultBird2454.VPTU.Pokedex.Moves
         public List<KeyValuePair<BattleManager.Data.Move_KeyWords, object>> KeyWords { get; set; }
 
         /// <summary>
-        /// Defines when effects are used
+        /// Defines when effect are used
         /// </summary>
-        public List<BattleManager.BattleEffect.EffectData> Move_Effects { get; set; }
+        public BattleManager.BattleEffect.EffectData Move_Effects { get; set; }
 
         public void Dispose()
         {

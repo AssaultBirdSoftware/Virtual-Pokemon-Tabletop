@@ -19,14 +19,66 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
     /// </summary>
     public partial class EffectFunction_Designer : Window
     {
-        public EffectFunction_Designer()
+        private BattleManager.BattleEffect.EffectFunction FunctionData;
+
+        public EffectFunction_Designer(BattleManager.BattleEffect.EffectFunction _FunctionData = null)
         {
             InitializeComponent();
+
+            #region Function Data
+            if (_FunctionData == null)
+            {
+                FunctionData = new BattleManager.BattleEffect.EffectFunction();// Creates a new Function Data Class
+            }
+            else
+            {
+                FunctionData = _FunctionData;// Sets the data
+                //Load();// Loads the data
+            }
+            #endregion
         }
+
+        #region Base Functions
+        /// <summary>
+        /// Saves the data
+        /// </summary>
+        public void Save()
+        {
+            FunctionData.Function_Name = Function_Name.Text;// Saves the Function Name
+            FunctionData.Function_Comment = Function_Description.Text;// Saves the Function Description
+
+            #region Actions
+            if (FunctionData.Actions == null) { FunctionData.Actions = new List<object>(); }// Checks if the Actions List is null and creates a new list
+            FunctionData.Actions.Clear();// Clears the Function's Actions
+            #endregion
+            #region Triggers
+            if (FunctionData.Triggers == null) { FunctionData.Triggers = new List<BattleManager.BattleEffect.Data.Triggers>(); }// Checks if the Triggers List is null and creates a new list
+            FunctionData.Triggers.Clear();// Clears the Function's Triggers
+            #endregion
+        }
+
+        /// <summary>
+        /// Loads the data
+        /// </summary>
+        public void Load()
+        {
+            FunctionData.Function_Name = Function_Name.Text;// Saves the Function Name
+            FunctionData.Function_Comment = Function_Description.Text;// Saves the Function Description
+
+            #region Actions
+            if (FunctionData.Actions == null) { FunctionData.Actions = new List<object>(); }// Checks if the Actions List is null and creates a new list
+            Actions_Display.Items.Clear();// Clears the Function's Actions Display
+            #endregion
+            #region Triggers
+            if (FunctionData.Triggers == null) { FunctionData.Triggers = new List<BattleManager.BattleEffect.Data.Triggers>(); }// Checks if the Triggers List is null and creates a new list
+            //FunctionData.Triggers.Clear();// Clears the Function's Triggers Display
+            #endregion
+        }
+        #endregion
 
         private void Add_Action_Click(object sender, RoutedEventArgs e)
         {
-            if (((ComboBoxItem)Add_Action_Selector.SelectedItem).Content.ToString().ToLower().StartsWith("has"))
+            /*if (((ComboBoxItem)Add_Action_Selector.SelectedItem).Content.ToString().ToLower().StartsWith("has"))
             {
                 EffectFunction_ActionItem item = new EffectFunction_ActionItem();
                 item.Name = ((ComboBoxItem)Add_Action_Selector.SelectedItem).Content.ToString();
@@ -53,12 +105,32 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
 
                 Actions_Display.Items.Add(item);
             }
+            */
         }
-    }
-    public class EffectFunction_ActionItem
-    {
-        public string Type { get; set; }
-        public string Name { get; set; }
-        public string Comment { get; set; }
+
+        private void Save_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Save();// Save the data
+        }
+
+        private void Close_Button_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;// Sets the dialog resault
+            Close();// Closes the window
+        }
+
+        private void Actions_Display_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(Actions_Display.SelectedItem == null)
+            {
+                Move_Action_Up.IsEnabled = false;// No Item Selected Dissable Moving
+                Move_Action_Down.IsEnabled = false;// No Item Selected Dissable Moving
+            }
+            else
+            {
+                Move_Action_Up.IsEnabled = true;// Item Selected Enable Moving
+                Move_Action_Down.IsEnabled = true;// Item Selected Enable Moving
+            }
+        }
     }
 }
