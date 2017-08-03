@@ -133,7 +133,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
             else { Function = Function_Effect; }// Set the Functions
 
             TreeViewItem tvi = new TreeViewItem();
-            tvi.Tag = Effect;
+            tvi.Tag = Function;
 
             ContextMenu ctxmnu = new ContextMenu();
             ctxmnu.Opened += CM_EffectFunctionItem_Opened;
@@ -143,7 +143,6 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
             editmenu.Header = "Edit Function";
             editmenu.Click += CM_EffectFunctionItem_Edit_Click;
             ctxmnu.Items.Add(editmenu);
-
 
             MenuItem deletemenu = new MenuItem();
             deletemenu.Header = "Delete Function";
@@ -203,14 +202,17 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
 
         private void CM_EffectFunctionItem_Edit_Click(object sender, RoutedEventArgs e)
         {
-            EffectFunction_Designer design = new EffectFunction_Designer((BattleManager.BattleEffect.EffectFunction)((ContextMenu)((MenuItem)sender).Parent).Tag);
+            BattleManager.BattleEffect.EffectFunction fnc = (BattleManager.BattleEffect.EffectFunction)((TreeViewItem)((ContextMenu)((MenuItem)sender).Parent).Tag).Tag;
+            TreeViewItem tvi = (TreeViewItem)((ContextMenu)((MenuItem)sender).Parent).Tag;
+
+            EffectFunction_Designer design = new EffectFunction_Designer(fnc);
             bool? display = design.ShowDialog();
 
             if(display == true)
             {
                 try
                 {
-                    ((MenuItem)sender).Header = ((BattleManager.BattleEffect.EffectFunction)((ContextMenu)((MenuItem)sender).Parent).Tag).Function_Name;// Updates the name
+                    tvi.Header = fnc.Function_Name;// Updates the name
                 }catch(Exception ex)
                 {
 

@@ -33,7 +33,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
             else
             {
                 FunctionData = _FunctionData;// Sets the data
-                //Load();// Loads the data
+                Load();// Loads the data
             }
             #endregion
         }
@@ -62,8 +62,8 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
         /// </summary>
         public void Load()
         {
-            FunctionData.Function_Name = Function_Name.Text;// Saves the Function Name
-            FunctionData.Function_Comment = Function_Description.Text;// Saves the Function Description
+            Function_Name.Text = FunctionData.Function_Name;// Loads the Function Name
+            Function_Description.Text = FunctionData.Function_Comment;// Loads the Function Description
 
             #region Actions
             if (FunctionData.Actions == null) { FunctionData.Actions = new List<object>(); }// Checks if the Actions List is null and creates a new list
