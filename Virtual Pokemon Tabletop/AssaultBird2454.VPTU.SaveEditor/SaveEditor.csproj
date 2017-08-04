@@ -122,6 +122,9 @@
     <Compile Include="UI\BattleEffect\BattleEffect_Designer.xaml.cs">
       <DependentUpon>BattleEffect_Designer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\BattleEffect\EffectAction_Designer.xaml.cs">
+      <DependentUpon>EffectAction_Designer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\BattleEffect\EffectFunction_Designer.xaml.cs">
       <DependentUpon>EffectFunction_Designer.xaml</DependentUpon>
     </Compile>
@@ -182,6 +185,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\BattleEffect\BattleEffect_Designer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\BattleEffect\EffectAction_Designer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

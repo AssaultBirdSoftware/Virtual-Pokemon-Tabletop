@@ -44,13 +44,21 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
         /// </summary>
         public void Save()
         {
+
+
             FunctionData.Function_Name = Function_Name.Text;// Saves the Function Name
             FunctionData.Function_Comment = Function_Description.Text;// Saves the Function Description
 
             #region Actions
             if (FunctionData.Actions == null) { FunctionData.Actions = new List<object>(); }// Checks if the Actions List is null and creates a new list
             FunctionData.Actions.Clear();// Clears the Function's Actions
+            
+            foreach(object obj in Actions_Display.Items)
+            {
+                FunctionData.Actions.Add(obj);
+            }
             #endregion
+
             #region Triggers
             if (FunctionData.Triggers == null) { FunctionData.Triggers = new List<BattleManager.BattleEffect.Data.Triggers>(); }// Checks if the Triggers List is null and creates a new list
             FunctionData.Triggers.Clear();// Clears the Function's Triggers
@@ -68,7 +76,13 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
             #region Actions
             if (FunctionData.Actions == null) { FunctionData.Actions = new List<object>(); }// Checks if the Actions List is null and creates a new list
             Actions_Display.Items.Clear();// Clears the Function's Actions Display
+
+            foreach (object obj in FunctionData.Actions)
+            {
+                Actions_Display.Items.Add(obj);
+            }
             #endregion
+
             #region Triggers
             if (FunctionData.Triggers == null) { FunctionData.Triggers = new List<BattleManager.BattleEffect.Data.Triggers>(); }// Checks if the Triggers List is null and creates a new list
             //FunctionData.Triggers.Clear();// Clears the Function's Triggers Display
@@ -78,6 +92,39 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
 
         private void Add_Action_Click(object sender, RoutedEventArgs e)
         {
+            if (((ComboBoxItem)Add_Action_Selector.SelectedItem).Name.ToString().ToLower().Equals("statuseffect_add"))
+            {
+                BattleManager.BattleEffect.Data.AddStatusEffect Action = new BattleManager.BattleEffect.Data.AddStatusEffect();
+
+                Actions_Display.Items.Add(Action);
+            }
+            else if (((ComboBoxItem)Add_Action_Selector.SelectedItem).Name.ToString().ToLower().Equals("statuseffect_remove"))
+            {
+                BattleManager.BattleEffect.Data.RemoveStatusEffect Action = new BattleManager.BattleEffect.Data.RemoveStatusEffect();
+
+                Actions_Display.Items.Add(Action);
+            }
+            else if (((ComboBoxItem)Add_Action_Selector.SelectedItem).Name.ToString().ToLower().Equals("target_push"))
+            {
+
+            }
+            else if (((ComboBoxItem)Add_Action_Selector.SelectedItem).Name.ToString().ToLower().Equals("damage_db"))
+            {
+
+            }
+            else if (((ComboBoxItem)Add_Action_Selector.SelectedItem).Name.ToString().ToLower().Equals("damage_roll"))
+            {
+
+            }
+            else if (((ComboBoxItem)Add_Action_Selector.SelectedItem).Name.ToString().ToLower().Equals("condition_status"))
+            {
+
+            }
+            else if (((ComboBoxItem)Add_Action_Selector.SelectedItem).Name.ToString().ToLower().Equals("invoke_executefunction"))
+            {
+
+            }
+
             /*if (((ComboBoxItem)Add_Action_Selector.SelectedItem).Content.ToString().ToLower().StartsWith("has"))
             {
                 EffectFunction_ActionItem item = new EffectFunction_ActionItem();
@@ -121,16 +168,26 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
 
         private void Actions_Display_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(Actions_Display.SelectedItem == null)
+            if (Actions_Display.SelectedItem == null)
             {
                 Move_Action_Up.IsEnabled = false;// No Item Selected Dissable Moving
                 Move_Action_Down.IsEnabled = false;// No Item Selected Dissable Moving
+                Edit_Action.IsEnabled = false;// No Item Selected Dissable Edit Button
+                Delete_Action.IsEnabled = false;// No Item Selected Dissable Delete Button
             }
             else
             {
                 Move_Action_Up.IsEnabled = true;// Item Selected Enable Moving
                 Move_Action_Down.IsEnabled = true;// Item Selected Enable Moving
+                Edit_Action.IsEnabled = true;// Item Selected Enable Edit Button
+                Delete_Action.IsEnabled = true;//Item Selected Enable Delete Button
             }
+        }
+
+        private void Edit_Action_Click(object sender, RoutedEventArgs e)
+        {
+            EffectAction_Designer des = new EffectAction_Designer(Actions_Display.SelectedItems[0]);
+            bool? saved = des.ShowDialog();
         }
     }
 }

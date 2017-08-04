@@ -16,7 +16,7 @@ namespace AssaultBird2454.VPTU.BattleManager.BattleEffect.Data
         /// <summary>
         /// The Command for executing the action
         /// </summary>
-        string Action_Command { get; set; }
+        string Action_Command { get; }
         /// <summary>
         /// A comment to describe the action
         /// </summary>
@@ -25,9 +25,18 @@ namespace AssaultBird2454.VPTU.BattleManager.BattleEffect.Data
 
     public class AddStatusEffect : Action
     {
+        public AddStatusEffect()
+        {
+            Action_Name = "Add Status Effect";
+            Action_Command = "VPTU.Effects.Status.Add";
+            Comment = "Inflicts a status condition";
+
+            StatusEffect = VPTU.BattleManager.Data.Status_Afflictions.Burned;
+        }
+
         /* Action Info */
         public string Action_Name { get; set; }
-        public string Action_Command { get; set; }
+        public string Action_Command { get; }
         public string Comment { get; set; }
 
         /* Effect Info */
@@ -36,6 +45,15 @@ namespace AssaultBird2454.VPTU.BattleManager.BattleEffect.Data
 
     public class RemoveStatusEffect : Action
     {
+        public RemoveStatusEffect()
+        {
+            Action_Name = "Remove Status Effect";
+            Action_Command = "VPTU.Effects.Status.Remove";
+            Comment = "Removes a status condition";
+
+            StatusEffect = VPTU.BattleManager.Data.Status_Afflictions.Burned;
+        }
+
         /* Action Info */
         public string Action_Name { get; set; }
         public string Action_Command { get; set; }

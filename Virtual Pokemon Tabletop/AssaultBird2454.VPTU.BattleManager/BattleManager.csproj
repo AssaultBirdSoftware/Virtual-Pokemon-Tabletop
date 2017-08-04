@@ -38,6 +38,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,6 +52,10 @@
     <Compile Include="BattleEffect\Data\Command Handeler\Command.cs" />
     <Compile Include="BattleEffect\Data\Command Handeler\CommandHandeler.cs" />
     <Compile Include="BattleEffect\Data\Data.cs" />
+    <Compile Include="BattleEffect\Data\UI\EffectAction_Designer.cs" />
+    <Compile Include="BattleEffect\Data\UI\StatusEffect_Add.xaml.cs">
+      <DependentUpon>StatusEffect_Add.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BattleEffect\EffectData.cs" />
     <Compile Include="BattleEffect\Data\Variable.cs" />
     <Compile Include="BattleEffect\EffectFunction.cs" />
@@ -69,8 +74,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="BattleEffect\Data\UI\" />
+    <Page Include="BattleEffect\Data\UI\StatusEffect_Add.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
