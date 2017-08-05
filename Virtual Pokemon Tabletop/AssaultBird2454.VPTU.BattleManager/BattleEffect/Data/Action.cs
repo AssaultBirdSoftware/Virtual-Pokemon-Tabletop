@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,60 +7,54 @@ using System.Threading.Tasks;
 
 namespace AssaultBird2454.VPTU.BattleManager.BattleEffect.Data
 {
-    public interface Action
+    public class Action
     {
+        public Action(string Name, string Command, string Comment, dynamic Data = null)
+        {
+            Action_Name = Name;
+            Action_Command = Command;
+            Action_Comment = Comment;
+
+            if(Data != null)
+            {
+                Action_Data = Data;
+            }
+        }
+
         /* Action Info */
         /// <summary>
         /// The name of the action
         /// </summary>
-        string Action_Name { get; set; }
+        public string Action_Name { get; set; }
         /// <summary>
         /// The Command for executing the action
         /// </summary>
-        string Action_Command { get; }
+        public string Action_Command { get; }
         /// <summary>
         /// A comment to describe the action
         /// </summary>
-        string Comment { get; set; }
+        public string Action_Comment { get; set; }
+
+        public dynamic Action_Data { get; set; }
     }
 
-    public class AddStatusEffect : Action
+    public class AddStatusEffect
     {
         public AddStatusEffect()
         {
-            Action_Name = "Add Status Effect";
-            Action_Command = "VPTU.Effects.Status.Add";
-            Comment = "Inflicts a status condition";
-
             StatusEffect = VPTU.BattleManager.Data.Status_Afflictions.Burned;
         }
 
-        /* Action Info */
-        public string Action_Name { get; set; }
-        public string Action_Command { get; }
-        public string Comment { get; set; }
-
-        /* Effect Info */
         public VPTU.BattleManager.Data.Status_Afflictions StatusEffect { get; set; }
     }
 
-    public class RemoveStatusEffect : Action
+    public class RemoveStatusEffect
     {
         public RemoveStatusEffect()
         {
-            Action_Name = "Remove Status Effect";
-            Action_Command = "VPTU.Effects.Status.Remove";
-            Comment = "Removes a status condition";
-
             StatusEffect = VPTU.BattleManager.Data.Status_Afflictions.Burned;
         }
 
-        /* Action Info */
-        public string Action_Name { get; set; }
-        public string Action_Command { get; set; }
-        public string Comment { get; set; }
-
-        /* Effect Info */
         public VPTU.BattleManager.Data.Status_Afflictions StatusEffect { get; set; }
     }
 }

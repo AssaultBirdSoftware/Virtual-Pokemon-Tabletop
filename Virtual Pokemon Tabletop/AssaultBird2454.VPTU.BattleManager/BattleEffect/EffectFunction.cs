@@ -25,6 +25,6 @@ namespace AssaultBird2454.VPTU.BattleManager.BattleEffect
         /// <summary>
         /// List of Actions to take to perform this function
         /// </summary>
-        public List<object> Actions { get; set; }
+        public List<Data.Action> Actions { get; set; }
     }
 }

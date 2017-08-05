@@ -50,10 +50,10 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
             FunctionData.Function_Comment = Function_Description.Text;// Saves the Function Description
 
             #region Actions
-            if (FunctionData.Actions == null) { FunctionData.Actions = new List<object>(); }// Checks if the Actions List is null and creates a new list
+            if (FunctionData.Actions == null) { FunctionData.Actions = new List<BattleManager.BattleEffect.Data.Action>(); }// Checks if the Actions List is null and creates a new list
             FunctionData.Actions.Clear();// Clears the Function's Actions
             
-            foreach(object obj in Actions_Display.Items)
+            foreach(BattleManager.BattleEffect.Data.Action obj in Actions_Display.Items)
             {
                 FunctionData.Actions.Add(obj);
             }
@@ -74,10 +74,10 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
             Function_Description.Text = FunctionData.Function_Comment;// Loads the Function Description
 
             #region Actions
-            if (FunctionData.Actions == null) { FunctionData.Actions = new List<object>(); }// Checks if the Actions List is null and creates a new list
+            if (FunctionData.Actions == null) { FunctionData.Actions = new List<BattleManager.BattleEffect.Data.Action>(); }// Checks if the Actions List is null and creates a new list
             Actions_Display.Items.Clear();// Clears the Function's Actions Display
 
-            foreach (object obj in FunctionData.Actions)
+            foreach (BattleManager.BattleEffect.Data.Action obj in FunctionData.Actions)
             {
                 Actions_Display.Items.Add(obj);
             }
@@ -94,13 +94,15 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
         {
             if (((ComboBoxItem)Add_Action_Selector.SelectedItem).Name.ToString().ToLower().Equals("statuseffect_add"))
             {
-                BattleManager.BattleEffect.Data.AddStatusEffect Action = new BattleManager.BattleEffect.Data.AddStatusEffect();
+                dynamic data = new BattleManager.BattleEffect.Data.AddStatusEffect();
+                BattleManager.BattleEffect.Data.Action Action = new BattleManager.BattleEffect.Data.Action("Add Status Effect", "VPTU.Effects.Status.Add", "Adds a status condition", data);
 
                 Actions_Display.Items.Add(Action);
             }
             else if (((ComboBoxItem)Add_Action_Selector.SelectedItem).Name.ToString().ToLower().Equals("statuseffect_remove"))
             {
-                BattleManager.BattleEffect.Data.RemoveStatusEffect Action = new BattleManager.BattleEffect.Data.RemoveStatusEffect();
+                dynamic data = new BattleManager.BattleEffect.Data.RemoveStatusEffect();
+                BattleManager.BattleEffect.Data.Action Action = new BattleManager.BattleEffect.Data.Action("Remove Status Effect", "VPTU.Effects.Status.Remove", "Removes a status condition", data);
 
                 Actions_Display.Items.Add(Action);
             }
@@ -153,9 +155,9 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
                 Actions_Display.Items.Add(item);
             }
             */
-        }
+    }
 
-        private void Save_Button_Click(object sender, RoutedEventArgs e)
+    private void Save_Button_Click(object sender, RoutedEventArgs e)
         {
             Save();// Save the data
         }
@@ -186,7 +188,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
 
         private void Edit_Action_Click(object sender, RoutedEventArgs e)
         {
-            EffectAction_Designer des = new EffectAction_Designer(Actions_Display.SelectedItems[0]);
+            EffectAction_Designer des = new EffectAction_Designer((BattleManager.BattleEffect.Data.Action)Actions_Display.SelectedItems[0]);
             bool? saved = des.ShowDialog();
         }
     }

@@ -27,14 +27,14 @@ namespace AssaultBird2454.VPTU.BattleManager.BattleEffect.Data.UI
             Status_Effects.ItemsSource = Enum.GetNames(typeof(VPTU.BattleManager.Data.Status_Afflictions));
         }
 
-        public void Load(object Data)
+        public void Load(dynamic Data)
         {
             AddStatusEffect EffectData = (AddStatusEffect)Data;
 
             Status_Effects.SelectedItem = EffectData.StatusEffect;
         }
 
-        public void Save(object Data)
+        public void Save(dynamic Data)
         {
             AddStatusEffect EffectData = (AddStatusEffect)Data;
 

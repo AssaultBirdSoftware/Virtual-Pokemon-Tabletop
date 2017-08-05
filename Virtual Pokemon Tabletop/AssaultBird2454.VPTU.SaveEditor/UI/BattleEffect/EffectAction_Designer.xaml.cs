@@ -19,18 +19,17 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
     /// </summary>
     public partial class EffectAction_Designer : Window
     {
-        object ActionData;
+        BattleManager.BattleEffect.Data.Action ActionData;
         Control EffectDesign;
 
-        public EffectAction_Designer(object Action)
+        public EffectAction_Designer(BattleManager.BattleEffect.Data.Action Action)
         {
             InitializeComponent();
             ActionData = Action;// Sets the data variable
 
             #region Configures designer
             MessageBox.Show(ActionData.GetType().ToString());
-            BattleManager.BattleEffect.Data.Action act = ActionData as BattleManager.BattleEffect.Data.Action;// Casts to an interface
-            if (act.Action_Command.ToLower().Equals("vptu.effects.status.add"))
+            if (ActionData.Action_Command.ToLower().Equals("vptu.effects.status.add"))
             {
                 EffectDesign = new BattleManager.BattleEffect.Data.UI.StatusEffect_Add();// Loads the Correct Designer
                 Effect_Display.Children.Add(EffectDesign);
@@ -61,11 +60,10 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
         public void Load()
         {
             BattleManager.BattleEffect.Data.UI.EffectAction_Designer design = (BattleManager.BattleEffect.Data.UI.EffectAction_Designer)EffectDesign;
-            BattleManager.BattleEffect.Data.Action act = (BattleManager.BattleEffect.Data.Action)ActionData;// Casts to an interface
-            design.Load(ActionData);// Loads the syb-designer
+            design.Load(ActionData.Action_Data);// Loads the syb-designer
 
-            Action_Name.Text = act.Action_Name;// Loads the name
-            Action_Comment.Text = act.Comment;// Loads the comment
+            Action_Name.Text = ActionData.Action_Name;// Loads the name
+            Action_Comment.Text = ActionData.Action_Comment;// Loads the comment
         }
         /// <summary>
         /// Saves the designer and sub-designer
@@ -73,11 +71,10 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
         public void Save()
         {
             BattleManager.BattleEffect.Data.UI.EffectAction_Designer design = (BattleManager.BattleEffect.Data.UI.EffectAction_Designer)EffectDesign;
-            BattleManager.BattleEffect.Data.Action act = (BattleManager.BattleEffect.Data.Action)ActionData;// Casts to an interface
-            design.Save(ActionData);// Saves the sub-designer
+            design.Save(ActionData.Action_Data);// Saves the sub-designer
 
-            act.Action_Name = Action_Name.Text;// Saves the Name
-            act.Comment = Action_Comment.Text;// Saves the comment
+            ActionData.Action_Name = Action_Name.Text;// Saves the Name
+            ActionData.Action_Comment = Action_Comment.Text;// Saves the comment
         }
     }
 }
