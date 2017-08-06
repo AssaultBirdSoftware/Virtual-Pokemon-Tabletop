@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect"
         mc:Ignorable="d"
-        Title="Action Designer" Height="385.955" Width="426.404">
+        Title="Action Designer" Height="385.955" Width="426.404" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
     <Grid>
         <TextBox x:Name="Action_Name" Height="23" Margin="77,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxLines="1"/>
         <TextBox x:Name="Action_Comment" Height="80" Margin="77,38,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>

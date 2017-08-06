@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Pokedex"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Pokemon"
         mc:Ignorable="d"
-        Title="Pokemon" ResizeMode="NoResize" Width="1438" Height="814.5">
+        Title="Pokemon" ResizeMode="NoResize" Width="1438" Height="814.5" WindowStartupLocation="CenterOwner">
     <Grid>
         <GroupBox x:Name="G_BasicInfo" Header="Basic Information" HorizontalAlignment="Left" VerticalAlignment="Top" Width="465">
             <Grid Margin="0">

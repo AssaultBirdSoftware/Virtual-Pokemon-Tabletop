@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Pokedex"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Moves"
         mc:Ignorable="d"
-        Title="Moves" Height="802" Width="614">
+        Title="Moves" Height="802" Width="614" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
     <Grid>
         <GroupBox x:Name="groupBox" Header="GroupBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="101" Width="383">
             <Grid Margin="0">
@@ -15,7 +15,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBox x:Name="Basic_Name" Margin="90,4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="271"/>
                 <Label Content="Move Name" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <TextBox x:Name="Basic_Desc" HorizontalAlignment="Left" Margin="90,27,0,0" TextWrapping="Wrap" Width="271" Height="45" VerticalAlignment="Top"/>
+                <TextBox x:Name="Basic_Desc" HorizontalAlignment="Left" Height="42" Margin="90,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="271" AcceptsReturn="True"/>
             </Grid>
         </GroupBox>
         <GroupBox x:Name="groupBox1" Header="Contest Details" HorizontalAlignment="Left" Margin="398,10,0,0" VerticalAlignment="Top" Height="101" Width="206">
@@ -114,7 +114,7 @@
             </Grid>
         </GroupBox>
         <Button x:Name="Cancel_Button" Content="Close" HorizontalAlignment="Left" Margin="521,570,0,0" VerticalAlignment="Top" Width="75" IsCancel="True" Click="Cancel_Button_Click"/>
-        <Button x:Name="Submit_Button" Content="Save &amp; Close" HorizontalAlignment="Left" Margin="441,570,0,0" VerticalAlignment="Top" Width="75" IsDefault="True" Click="Submit_Button_Click"/>
+        <Button x:Name="Submit_Button" Content="Save &amp; Close" HorizontalAlignment="Left" Margin="441,570,0,0" VerticalAlignment="Top" Width="75" Click="Submit_Button_Click"/>
         <Button x:Name="RawData_Button" Content="Import / Export" HorizontalAlignment="Left" Margin="441,619.92,0,0" VerticalAlignment="Top" Width="155" Click="RawData_Button_Click"/>
         <Button x:Name="Save_Button" Content="Save" HorizontalAlignment="Left" Margin="441,594.96,0,0" VerticalAlignment="Top" Width="75" Click="Save_Button_Click"/>
 

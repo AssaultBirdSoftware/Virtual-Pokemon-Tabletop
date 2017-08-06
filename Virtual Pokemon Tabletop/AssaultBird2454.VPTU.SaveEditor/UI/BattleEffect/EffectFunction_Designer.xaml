@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect"
         mc:Ignorable="d"
-        Title="Effect Function Designer" Height="503.849" Width="512.605">
+        Title="Effect Function Designer" Height="503.849" Width="512.605" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
     <Grid>
         <ListView x:Name="Actions_Display" HorizontalAlignment="Left" Height="284" VerticalAlignment="Top" Width="505" Margin="0,98,0,0" SelectionChanged="Actions_Display_SelectionChanged">
             <ListView.View>
