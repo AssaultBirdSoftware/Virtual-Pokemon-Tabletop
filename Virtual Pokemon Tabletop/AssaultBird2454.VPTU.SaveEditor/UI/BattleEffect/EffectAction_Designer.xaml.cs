@@ -28,7 +28,6 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
             ActionData = Action;// Sets the data variable
 
             #region Configures designer
-            MessageBox.Show(ActionData.GetType().ToString());
             if (ActionData.Action_Command.ToLower().Equals("vptu.effects.status.add"))
             {
                 EffectDesign = new BattleManager.BattleEffect.Data.UI.StatusEffect_Add();// Loads the Correct Designer
