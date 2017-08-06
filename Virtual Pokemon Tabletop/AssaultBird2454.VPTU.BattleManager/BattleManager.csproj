@@ -56,6 +56,9 @@
     <Compile Include="BattleEffect\Data\UI\StatusEffect_Add.xaml.cs">
       <DependentUpon>StatusEffect_Add.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BattleEffect\Data\UI\StatusEffect_Remove.xaml.cs">
+      <DependentUpon>StatusEffect_Remove.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BattleEffect\EffectData.cs" />
     <Compile Include="BattleEffect\Data\Variable.cs" />
     <Compile Include="BattleEffect\EffectFunction.cs" />
@@ -79,6 +82,10 @@
     <Page Include="BattleEffect\Data\UI\StatusEffect_Add.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BattleEffect\Data\UI\StatusEffect_Remove.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
