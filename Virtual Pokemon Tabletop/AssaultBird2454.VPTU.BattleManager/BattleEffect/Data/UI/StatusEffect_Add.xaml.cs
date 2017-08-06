@@ -24,7 +24,7 @@ namespace AssaultBird2454.VPTU.BattleManager.BattleEffect.Data.UI
         {
             InitializeComponent();
 
-            Status_Effects.ItemsSource = Enum.GetNames(typeof(VPTU.BattleManager.Data.Status_Afflictions));
+            Status_Effects.ItemsSource = Enum.GetValues(typeof(VPTU.BattleManager.Data.Status_Afflictions));
         }
 
         public void Load(dynamic Data)

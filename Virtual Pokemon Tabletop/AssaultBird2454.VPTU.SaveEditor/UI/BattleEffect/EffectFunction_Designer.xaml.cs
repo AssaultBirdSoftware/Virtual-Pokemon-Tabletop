@@ -52,8 +52,8 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
             #region Actions
             if (FunctionData.Actions == null) { FunctionData.Actions = new List<BattleManager.BattleEffect.Data.Action>(); }// Checks if the Actions List is null and creates a new list
             FunctionData.Actions.Clear();// Clears the Function's Actions
-            
-            foreach(BattleManager.BattleEffect.Data.Action obj in Actions_Display.Items)
+
+            foreach (BattleManager.BattleEffect.Data.Action obj in Actions_Display.Items)
             {
                 FunctionData.Actions.Add(obj);
             }
@@ -155,9 +155,9 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
                 Actions_Display.Items.Add(item);
             }
             */
-    }
+        }
 
-    private void Save_Button_Click(object sender, RoutedEventArgs e)
+        private void Save_Button_Click(object sender, RoutedEventArgs e)
         {
             Save();// Save the data
         }
@@ -190,6 +190,54 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
         {
             EffectAction_Designer des = new EffectAction_Designer((BattleManager.BattleEffect.Data.Action)Actions_Display.SelectedItems[0]);
             bool? saved = des.ShowDialog();
+
+            if (saved == true)
+            {
+                Actions_Display.Items.Refresh();
+            }
+        }
+
+        private void Move_Action_Up_Click(object sender, RoutedEventArgs e)
+        {
+            BattleManager.BattleEffect.Data.Action act = (BattleManager.BattleEffect.Data.Action)Actions_Display.SelectedItem;// Gets the data
+            int pos = Actions_Display.SelectedIndex;// Gets and changes index
+
+            try
+            {
+                Actions_Display.Items.Remove(act);// Removes object from list
+                Actions_Display.Items.Insert(pos - 1, act);// Inserts into new position
+
+                Actions_Display.SelectedItem = act;// Sets the Selection
+            }
+            catch
+            {
+                Actions_Display.Items.Insert(pos, act);// Inserts into new position
+                /* Dont Care */
+            }
+        }
+
+        private void Move_Action_Down_Click(object sender, RoutedEventArgs e)
+        {
+            BattleManager.BattleEffect.Data.Action act = (BattleManager.BattleEffect.Data.Action)Actions_Display.SelectedItem;// Gets the data
+            int pos = Actions_Display.SelectedIndex;// Gets and changes index
+
+            try
+            {
+                Actions_Display.Items.Remove(act);// Removes object from list
+                Actions_Display.Items.Insert(pos + 1, act);// Inserts into new position
+
+                Actions_Display.SelectedItem = act;// Sets the Selection
+            }
+            catch
+            {
+                Actions_Display.Items.Insert(pos, act);
+                /* Dont Care */
+            }
+        }
+
+        private void Delete_Action_Click(object sender, RoutedEventArgs e)
+        {
+            Actions_Display.Items.Remove(Actions_Display.SelectedItem);// Removes object from list
         }
     }
 }

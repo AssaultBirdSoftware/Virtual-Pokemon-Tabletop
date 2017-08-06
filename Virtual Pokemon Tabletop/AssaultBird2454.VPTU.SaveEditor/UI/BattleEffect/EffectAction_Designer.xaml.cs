@@ -76,5 +76,21 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
             ActionData.Action_Name = Action_Name.Text;// Saves the Name
             ActionData.Action_Comment = Action_Comment.Text;// Saves the comment
         }
+
+        private void SaveClose_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Save();
+            Close();
+        }
+
+        private void Save_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Save();
+        }
+
+        private void Close_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

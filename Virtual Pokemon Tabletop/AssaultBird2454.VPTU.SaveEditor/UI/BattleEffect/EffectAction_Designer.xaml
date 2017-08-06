@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect"
         mc:Ignorable="d"
-        Title="EffectAction_Designer" Height="385.955" Width="426.404">
+        Title="Action Designer" Height="385.955" Width="426.404">
     <Grid>
         <TextBox x:Name="Action_Name" Height="23" Margin="77,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxLines="1"/>
         <TextBox x:Name="Action_Comment" Height="80" Margin="77,38,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <Label Content="Name" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top"/>
         <Label Content="Comment" HorizontalAlignment="Left" Margin="10,34,0,0" VerticalAlignment="Top"/>
         <Grid x:Name="Effect_Display" Margin="0,123,0,34"/>
-        <Button x:Name="Close_Button" Content="Close" HorizontalAlignment="Right" Margin="0,0,10,9" VerticalAlignment="Bottom" Width="75"/>
-        <Button x:Name="Save_Button" Content="Save" HorizontalAlignment="Right" Margin="0,0,90,9" VerticalAlignment="Bottom" Width="75"/>
-        <Button x:Name="SaveClose_Button" Content="Save &amp; Close" HorizontalAlignment="Right" Margin="0,0,170,9" Width="75" Height="20" VerticalAlignment="Bottom"/>
+        <Button x:Name="Close_Button" Content="Close" HorizontalAlignment="Right" Margin="0,0,10,9" VerticalAlignment="Bottom" Width="75" Click="Close_Button_Click"/>
+        <Button x:Name="Save_Button" Content="Save" HorizontalAlignment="Right" Margin="0,0,90,9" VerticalAlignment="Bottom" Width="75" Click="Save_Button_Click"/>
+        <Button x:Name="SaveClose_Button" Content="Save &amp; Close" HorizontalAlignment="Right" Margin="0,0,170,9" Width="75" Height="20" VerticalAlignment="Bottom" Click="SaveClose_Button_Click"/>
 
     </Grid>
 </Window>
