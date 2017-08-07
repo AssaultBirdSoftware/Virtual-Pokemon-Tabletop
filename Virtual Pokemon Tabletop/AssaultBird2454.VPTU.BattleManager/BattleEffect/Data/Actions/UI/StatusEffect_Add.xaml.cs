@@ -31,7 +31,11 @@ namespace AssaultBird2454.VPTU.BattleManager.BattleEffect.Data.Actions.UI
         {
             AddStatusEffect EffectData = (AddStatusEffect)Data;
 
-            Status_Effects.SelectedItem = EffectData.StatusEffect;
+            try { Status_Effects.SelectedItem = EffectData.StatusEffect; } catch { }
+            //try { Expiry_Method.SelectedItem = EffectData.StatusExpiry_Method; } catch{ }
+            try { Expiry_Turns.Value = EffectData.StatusExpiry_Time; } catch { }
+            try { Effect_Forced.IsChecked = EffectData.StatusEffect_Force; } catch { }
+            try { Effect_Persistant.IsChecked = EffectData.StatusEffect_Persistant; } catch { }
         }
 
         public void Save(dynamic Data)
@@ -39,6 +43,10 @@ namespace AssaultBird2454.VPTU.BattleManager.BattleEffect.Data.Actions.UI
             AddStatusEffect EffectData = (AddStatusEffect)Data;
 
             EffectData.StatusEffect = (VPTU.BattleManager.Data.Status_Afflictions)Status_Effects.SelectedItem;
+            //EffectData.StatusExpiry_Method = (object)Expiry_Method.SelectedItem;
+            EffectData.StatusExpiry_Time = (int)Expiry_Turns.Value;
+            EffectData.StatusEffect_Force = (bool)Effect_Forced.IsChecked;
+            EffectData.StatusEffect_Persistant = (bool)Effect_Persistant.IsChecked;
         }
     }
 }
