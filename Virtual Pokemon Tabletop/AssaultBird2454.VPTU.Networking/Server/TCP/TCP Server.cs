@@ -178,7 +178,8 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
             TCP_AcceptClients = true;// Allows clients to connect
             CommandHandeler = _CommandHandeler;// Sets the Command Callback
 
-            CommandHandeler.RegisterCommand<Data.InternalNetworkCommand>("Network Command", Server_Commands);
+            if (!CommandHandeler.HasCommandName("Network Command"))
+                CommandHandeler.RegisterCommand<Data.InternalNetworkCommand>("Network Command", Server_Commands);
         }
 
         #region Server Methods
