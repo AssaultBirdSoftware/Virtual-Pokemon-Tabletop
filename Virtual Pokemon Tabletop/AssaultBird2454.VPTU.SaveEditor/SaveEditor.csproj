@@ -148,15 +148,6 @@
     <Compile Include="UI\Resources\Search_Resources.xaml.cs">
       <DependentUpon>Search_Resources.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Table\Objects\Token.xaml.cs">
-      <DependentUpon>Token.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Table\Table.xaml.cs">
-      <DependentUpon>Table.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Table\TableLayer.xaml.cs">
-      <DependentUpon>TableLayer.xaml</DependentUpon>
-    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -222,18 +213,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Resources\Search_Resources.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Table\Objects\Token.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Table\Table.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Table\TableLayer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
