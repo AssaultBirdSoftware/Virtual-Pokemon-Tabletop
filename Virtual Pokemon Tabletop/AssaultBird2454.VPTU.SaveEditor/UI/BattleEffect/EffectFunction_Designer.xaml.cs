@@ -94,14 +94,14 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
         {
             if (((ComboBoxItem)Add_Action_Selector.SelectedItem).Name.ToString().ToLower().Equals("statuseffect_add"))
             {
-                dynamic data = new BattleManager.BattleEffect.Data.AddStatusEffect();
+                dynamic data = new BattleManager.BattleEffect.Data.Actions.AddStatusEffect();
                 BattleManager.BattleEffect.Data.Action Action = new BattleManager.BattleEffect.Data.Action("Add Status Effect", "VPTU.Effects.Status.Add", "Adds a status condition", data);
 
                 Actions_Display.Items.Add(Action);
             }
             else if (((ComboBoxItem)Add_Action_Selector.SelectedItem).Name.ToString().ToLower().Equals("statuseffect_remove"))
             {
-                dynamic data = new BattleManager.BattleEffect.Data.RemoveStatusEffect();
+                dynamic data = new BattleManager.BattleEffect.Data.Actions.RemoveStatusEffect();
                 BattleManager.BattleEffect.Data.Action Action = new BattleManager.BattleEffect.Data.Action("Remove Status Effect", "VPTU.Effects.Status.Remove", "Removes a status condition", data);
 
                 Actions_Display.Items.Add(Action);
@@ -112,7 +112,10 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
             }
             else if (((ComboBoxItem)Add_Action_Selector.SelectedItem).Name.ToString().ToLower().Equals("damage_db"))
             {
+                dynamic data = new BattleManager.BattleEffect.Data.Actions.SetDB();
+                BattleManager.BattleEffect.Data.Action Action = new BattleManager.BattleEffect.Data.Action("Set DamageBase Value", "VPTU.Effects.Move.DB", "Sets the moves DamageBase value for that action", data);
 
+                Actions_Display.Items.Add(Action);
             }
             else if (((ComboBoxItem)Add_Action_Selector.SelectedItem).Name.ToString().ToLower().Equals("damage_roll"))
             {

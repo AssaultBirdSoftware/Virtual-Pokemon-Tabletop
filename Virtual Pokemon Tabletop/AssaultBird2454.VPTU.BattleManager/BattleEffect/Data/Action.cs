@@ -15,7 +15,7 @@ namespace AssaultBird2454.VPTU.BattleManager.BattleEffect.Data
             Action_Command = Command;
             Action_Comment = Comment;
 
-            if(Data != null)
+            if (Data != null)
             {
                 Action_Data = Data;
             }
@@ -36,25 +36,5 @@ namespace AssaultBird2454.VPTU.BattleManager.BattleEffect.Data
         public string Action_Comment { get; set; }
 
         public dynamic Action_Data { get; set; }
-    }
-
-    public class AddStatusEffect
-    {
-        public AddStatusEffect()
-        {
-            StatusEffect = VPTU.BattleManager.Data.Status_Afflictions.Burned;
-        }
-
-        public VPTU.BattleManager.Data.Status_Afflictions StatusEffect { get; set; }
-    }
-
-    public class RemoveStatusEffect
-    {
-        public RemoveStatusEffect()
-        {
-            StatusEffect = VPTU.BattleManager.Data.Status_Afflictions.Burned;
-        }
-
-        public VPTU.BattleManager.Data.Status_Afflictions StatusEffect { get; set; }
     }
 }

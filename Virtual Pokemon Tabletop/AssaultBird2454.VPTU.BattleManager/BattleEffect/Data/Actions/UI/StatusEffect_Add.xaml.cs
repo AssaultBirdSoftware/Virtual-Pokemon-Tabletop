@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AssaultBird2454.VPTU.BattleManager.BattleEffect.Data.UI
+namespace AssaultBird2454.VPTU.BattleManager.BattleEffect.Data.Actions.UI
 {
     /// <summary>
     /// Interaction logic for StatusEffect_Add.xaml

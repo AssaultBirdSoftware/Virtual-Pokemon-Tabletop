@@ -30,12 +30,17 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
             #region Configures designer
             if (ActionData.Action_Command.ToLower().Equals("vptu.effects.status.add"))
             {
-                EffectDesign = new BattleManager.BattleEffect.Data.UI.StatusEffect_Add();// Loads the Correct Designer
+                EffectDesign = new BattleManager.BattleEffect.Data.Actions.UI.StatusEffect_Add();// Loads the Correct Designer
                 Effect_Display.Children.Add(EffectDesign);
             }
             else if (ActionData.Action_Command.ToLower().Equals("vptu.effects.status.remove"))
             {
-                EffectDesign = new BattleManager.BattleEffect.Data.UI.StatusEffect_Remove();// Loads the Correct Designer
+                EffectDesign = new BattleManager.BattleEffect.Data.Actions.UI.StatusEffect_Remove();// Loads the Correct Designer
+                Effect_Display.Children.Add(EffectDesign);
+            }
+            else if (ActionData.Action_Command.ToLower().Equals("vptu.effects.move.db"))
+            {
+                EffectDesign = new BattleManager.BattleEffect.Data.Actions.UI.SetDB();// Loads the Correct Designer
                 Effect_Display.Children.Add(EffectDesign);
             }
             else
@@ -65,7 +70,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
         /// </summary>
         public void Load()
         {
-            BattleManager.BattleEffect.Data.UI.EffectAction_Designer design = (BattleManager.BattleEffect.Data.UI.EffectAction_Designer)EffectDesign;
+            BattleManager.BattleEffect.Data.Actions.UI.EffectAction_Designer design = (BattleManager.BattleEffect.Data.Actions.UI.EffectAction_Designer)EffectDesign;
             design.Load(ActionData.Action_Data);// Loads the syb-designer
 
             Action_Name.Text = ActionData.Action_Name;// Loads the name
@@ -76,7 +81,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
         /// </summary>
         public void Save()
         {
-            BattleManager.BattleEffect.Data.UI.EffectAction_Designer design = (BattleManager.BattleEffect.Data.UI.EffectAction_Designer)EffectDesign;
+            BattleManager.BattleEffect.Data.Actions.UI.EffectAction_Designer design = (BattleManager.BattleEffect.Data.Actions.UI.EffectAction_Designer)EffectDesign;
             design.Save(ActionData.Action_Data);// Saves the sub-designer
 
             ActionData.Action_Name = Action_Name.Text;// Saves the Name
