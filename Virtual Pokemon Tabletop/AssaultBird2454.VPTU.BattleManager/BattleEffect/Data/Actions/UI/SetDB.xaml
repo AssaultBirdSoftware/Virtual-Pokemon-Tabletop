@@ -9,7 +9,7 @@
     <Grid>
         <Label Content="DB Value" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
 
-        <xctk:IntegerUpDown x:Name="DB_Value" Margin="72.233,10,6.799,10"/>
+        <xctk:IntegerUpDown x:Name="DB_Value" Margin="72.233,10,6.799,10" Minimum="0" Maximum="28"/>
 
     </Grid>
 </UserControl>

@@ -68,7 +68,11 @@
     <Compile Include="BattleEffect\Data\Action.cs" />
     <Compile Include="BattleEffect\Data\Actions\AddStatusEffect.cs" />
     <Compile Include="BattleEffect\Data\Actions\RemoveStatusEffect.cs" />
+    <Compile Include="BattleEffect\Data\Actions\SetAC.cs" />
     <Compile Include="BattleEffect\Data\Actions\SetDB.cs" />
+    <Compile Include="BattleEffect\Data\Actions\UI\SetAC.xaml.cs">
+      <DependentUpon>SetAC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BattleEffect\Data\Command Handeler\Command.cs" />
     <Compile Include="BattleEffect\Data\Command Handeler\CommandHandeler.cs" />
     <Compile Include="BattleEffect\Data\Data.cs" />
@@ -102,6 +106,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Page Include="BattleEffect\Data\Actions\UI\SetAC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BattleEffect\Data\Actions\UI\SetDB.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
