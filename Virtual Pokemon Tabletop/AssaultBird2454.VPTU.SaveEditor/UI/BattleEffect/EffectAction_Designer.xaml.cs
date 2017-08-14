@@ -47,16 +47,15 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
             {
                 EffectDesign = new BattleManager.BattleEffect.Data.Actions.UI.SetAC();// Loads the Correct Designer
                 Effect_Display.Children.Add(EffectDesign);
-            }else if (ActionData.Action_Command.ToLower().Equals("VPTU.Condition.HasStatus"))
+            }else if (ActionData.Action_Command.ToLower().Equals("vptu.condition.hasstatus"))
             {
                 EffectDesign = new BattleManager.BattleEffect.Data.Actions.UI.HasStatus();// Loads the Correct Designer
                 Effect_Display.Children.Add(EffectDesign);
             }
             else
             {
-                MessageBox.Show("Unknown effect commend...\nClosing Action Designer");
-                Close();
-                return;
+                MessageBox.Show("Unknown effect commend...\nClose the Action Designer and check the data...");
+                //Close();
             }
             #endregion
 
