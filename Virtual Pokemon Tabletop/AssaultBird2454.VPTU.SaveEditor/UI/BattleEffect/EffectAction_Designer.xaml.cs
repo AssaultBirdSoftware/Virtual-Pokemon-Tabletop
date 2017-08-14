@@ -47,6 +47,10 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
             {
                 EffectDesign = new BattleManager.BattleEffect.Data.Actions.UI.SetAC();// Loads the Correct Designer
                 Effect_Display.Children.Add(EffectDesign);
+            }else if (ActionData.Action_Command.ToLower().Equals("VPTU.Condition.HasStatus"))
+            {
+                EffectDesign = new BattleManager.BattleEffect.Data.Actions.UI.HasStatus();// Loads the Correct Designer
+                Effect_Display.Children.Add(EffectDesign);
             }
             else
             {

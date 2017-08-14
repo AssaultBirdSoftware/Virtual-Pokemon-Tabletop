@@ -123,7 +123,10 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
             }
             else if (((ComboBoxItem)Add_Action_Selector.SelectedItem).Name.ToString().ToLower().Equals("condition_status"))
             {
+                dynamic data = new BattleManager.BattleEffect.Data.Actions.HasStatus();
+                BattleManager.BattleEffect.Data.Action Action = new BattleManager.BattleEffect.Data.Action("Add Status Effect", "VPTU.Condition.HasStatus", "Checks if the user or the targets have any or all of the specified status conditions, and invokes a function if it does", data);
 
+                Actions_Display.Items.Add(Action);
             }
             else if (((ComboBoxItem)Add_Action_Selector.SelectedItem).Name.ToString().ToLower().Equals("invoke_executefunction"))
             {
