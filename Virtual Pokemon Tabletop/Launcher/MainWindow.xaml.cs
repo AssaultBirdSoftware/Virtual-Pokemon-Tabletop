@@ -119,6 +119,10 @@ namespace Launcher
 
             if (Directory.Exists(AssemblyDirectory + "\\Updater"))
             {
+                foreach(string file in Directory.GetFiles(AssemblyDirectory + "\\Updater"))
+                {
+                    File.Delete(file);
+                }
                 Directory.Delete(AssemblyDirectory + "\\Updater");// Delete the Update Folder
             }
 
@@ -126,14 +130,12 @@ namespace Launcher
 
             if (File.Exists(ConfigFile_Directory))
             {
-
+                VPTU_Settings = Newtonsoft.Json.JsonConvert.DeserializeObject<Settings>(File.ReadAllText(ConfigFile_Directory));// Loads the settings file
             }
             else
             {
-
+                VPTU_Settings = new Settings();// Creates a settings class
             }
-
-            VPTU_Settings = new Settings();// Creates a settings class
 
             Update.AutoUpdater.CheckForUpdates();// Check for updates
 

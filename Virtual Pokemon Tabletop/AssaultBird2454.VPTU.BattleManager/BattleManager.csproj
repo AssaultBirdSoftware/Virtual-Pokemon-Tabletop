@@ -31,13 +31,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,12 +45,54 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.1\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.1\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.1\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BattleEffect\Data\Action.cs" />
+    <Compile Include="BattleEffect\Data\Actions\AddStatusEffect.cs" />
+    <Compile Include="BattleEffect\Data\Actions\HasStatus.cs" />
+    <Compile Include="BattleEffect\Data\Actions\RemoveStatusEffect.cs" />
+    <Compile Include="BattleEffect\Data\Actions\SetAC.cs" />
+    <Compile Include="BattleEffect\Data\Actions\SetDB.cs" />
+    <Compile Include="BattleEffect\Data\Actions\UI\HasStatus.xaml.cs">
+      <DependentUpon>HasStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BattleEffect\Data\Actions\UI\SetAC.xaml.cs">
+      <DependentUpon>SetAC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BattleEffect\Data\Command Handeler\Command.cs" />
+    <Compile Include="BattleEffect\Data\Command Handeler\CommandHandeler.cs" />
     <Compile Include="BattleEffect\Data\Data.cs" />
-    <Compile Include="BattleEffect\Data\VariableData.cs" />
+    <Compile Include="BattleEffect\Data\Actions\UI\EffectAction_Designer.cs" />
+    <Compile Include="BattleEffect\Data\Actions\UI\SetDB.xaml.cs">
+      <DependentUpon>SetDB.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BattleEffect\Data\Actions\UI\StatusEffect_Add.xaml.cs">
+      <DependentUpon>StatusEffect_Add.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BattleEffect\Data\Actions\UI\StatusEffect_Remove.xaml.cs">
+      <DependentUpon>StatusEffect_Remove.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BattleEffect\EffectData.cs" />
-    <Compile Include="BattleEffect\EffectVariable.cs" />
+    <Compile Include="BattleEffect\Data\Variable.cs" />
+    <Compile Include="BattleEffect\EffectFunction.cs" />
     <Compile Include="BattleManager.cs" />
     <Compile Include="Data\Data.cs" />
     <Compile Include="Entity\Data.cs" />
@@ -67,7 +109,32 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BattleEffect\Data\UI\" />
+    <ProjectReference Include="..\External\MultiSelectComboBox\MultiSelectComboBox.csproj">
+      <Project>{ce17a54e-0661-429f-afdc-272e8668b14e}</Project>
+      <Name>MultiSelectComboBox</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="BattleEffect\Data\Actions\UI\HasStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BattleEffect\Data\Actions\UI\SetAC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BattleEffect\Data\Actions\UI\SetDB.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BattleEffect\Data\Actions\UI\StatusEffect_Add.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BattleEffect\Data\Actions\UI\StatusEffect_Remove.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

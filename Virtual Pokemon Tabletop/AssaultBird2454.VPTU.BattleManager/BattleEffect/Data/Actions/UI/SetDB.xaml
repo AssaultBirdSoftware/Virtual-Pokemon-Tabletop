@@ -1,0 +1,15 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AssaultBird2454.VPTU.BattleManager.BattleEffect.Data.Actions.UI"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="AssaultBird2454.VPTU.BattleManager.BattleEffect.Data.Actions.UI.SetDB"
+             mc:Ignorable="d" Height="43.2" Width="176.727">
+    <Grid>
+        <Label Content="DB Value" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+
+        <xctk:IntegerUpDown x:Name="DB_Value" Margin="72.233,10,6.799,10" Minimum="0" Maximum="28"/>
+
+    </Grid>
+</UserControl>

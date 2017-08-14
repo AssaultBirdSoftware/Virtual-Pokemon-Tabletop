@@ -267,7 +267,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
         //When The "Add Pokemon" Button is clicked
         private void PokedexManager_AddDex_Pokemon_Click(object sender, RoutedEventArgs e)
         {
-            UI.Pokedex.Pokemon pokemon = new UI.Pokedex.Pokemon(SaveManager.SaveData);// Creates Pokemon Editor Page
+            UI.Pokedex.Pokemon pokemon = new UI.Pokedex.Pokemon(SaveManager);// Creates Pokemon Editor Page
             bool? OK = pokemon.ShowDialog();// Shows the dialog, waits for return
 
             if (OK == true)// When Return
@@ -319,7 +319,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
                 if (((PokedexList_DataBind)PokedexManager_List.SelectedValue).DataType == PokedexList_DataType.Pokemon)
                 {
                     Pokedex.Pokemon.PokemonData Data = (Pokedex.Pokemon.PokemonData)((PokedexList_DataBind)PokedexManager_List.SelectedValue).DataTag;// Gets the Data
-                    UI.Pokedex.Pokemon pokemon = new UI.Pokedex.Pokemon(SaveManager.SaveData, Data);// Creates a new window
+                    UI.Pokedex.Pokemon pokemon = new UI.Pokedex.Pokemon(SaveManager, Data);// Creates a new window
                     pokemon.ShowDialog();// Shows the window
 
                     PokedexManager_ReloadList();// Updates the list

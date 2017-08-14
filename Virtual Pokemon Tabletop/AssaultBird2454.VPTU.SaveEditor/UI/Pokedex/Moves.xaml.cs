@@ -534,5 +534,16 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
                 Load();
             }
         }
+
+        private void Effect_Designer_Click(object sender, RoutedEventArgs e)
+        {
+            UI.BattleEffect.BattleEffect_Designer designer = new BattleEffect.BattleEffect_Designer(MoveData.Move_Effects);
+            bool? save = designer.ShowDialog();
+
+            if (save == true)
+            {
+                MoveData.Move_Effects = designer.EffectData;// Save Designer
+            }
+        }
     }
 }

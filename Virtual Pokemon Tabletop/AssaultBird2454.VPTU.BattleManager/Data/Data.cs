@@ -11,6 +11,10 @@ namespace AssaultBird2454.VPTU.BattleManager.Data
     /// </summary>
     public enum Type { Normal = 1, Fire, Fighting, Water, Flying, Grass, Poison, Electric, Ground, Psychic, Rock, Ice, Bug, Dragon, Ghost, Dark, Steel, Fairy }
     /// <summary>
+    /// Defines all the different status conditions
+    /// </summary>
+    public enum Status_Afflictions { Burned = 1, Frozen, Paralysis, Poision, Sleep, BadSleep, Suppressed, Confusion, Cursed, Dissabled, Rage, Flinch, Infatuation, Fainted, Slowed, Stuck, Blindness, TotalBlindness, Trapped, Tripped, Vulnerable, Vortex }
+    /// <summary>
     /// Defines Move Classes
     /// </summary>
     public enum MoveClass { Status, Physical, Special, Static }

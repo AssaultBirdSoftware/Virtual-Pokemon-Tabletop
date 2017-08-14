@@ -44,7 +44,7 @@
                     </ListView>
                     <GroupBox x:Name="ResourceManager_AddRes" Grid.Column="1" Header="Add Pokedex Entry's" Margin="10,10,10,0" VerticalAlignment="Top" Height="75">
                         <Grid Margin="0,0,-2,-12.96">
-                            <Button x:Name="ResourceManager_AddRes_Audio" Content="Add Audio" VerticalAlignment="Top" Click="ResourceManager_AddRes_Audio_Click" IsEnabled="False"/>
+                            <Button x:Name="ResourceManager_AddRes_Audio" Content="Add Audio" VerticalAlignment="Top" Click="ResourceManager_AddRes_Audio_Click"/>
                             <Button x:Name="ResourceManager_AddRes_Images" Content="Add Image" VerticalAlignment="Top" Margin="0,24.96,0,0" Click="ResourceManager_AddRes_Images_Click"/>
                         </Grid>
                     </GroupBox>
