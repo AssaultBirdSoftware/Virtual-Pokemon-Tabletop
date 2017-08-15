@@ -42,11 +42,16 @@ namespace AssaultBird2454.VPTU.BattleManager.BattleEffect.Data.Actions.UI
 
             HasAll.IsChecked = HasStatusData.HasAll;
             FunctionName.Text = HasStatusData.FunctionName;
-            
-            foreach (VPTU.BattleManager.Data.Status_Afflictions effect in HasStatusData.CheckedStatus)
+
+            Dictionary<string, object> selecteditems = new Dictionary<string, object>();
+            foreach (KeyValuePair<string, object> effect in Effects.ItemsSource)
             {
-                
+                if (HasStatusData.CheckedStatus.Contains((VPTU.BattleManager.Data.Status_Afflictions)effect.Value))
+                {
+                    selecteditems.Add(effect.Key, effect.Value);
+                }
             }
+            Effects.SelectedItems = selecteditems;
         }
 
         public void Save(object Data)
