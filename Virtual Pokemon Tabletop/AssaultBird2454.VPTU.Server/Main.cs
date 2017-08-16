@@ -10,8 +10,27 @@ namespace AssaultBird2454.VPTU.Server
 {
     public class Main
     {
+        /// <summary>
+        /// A ConsoleLogger Instance
+        /// </summary>
+        public Class.Logging.Logger ConsoleLogger;
+
+        /// <summary>
+        /// Assembly Directory
+        /// </summary>
+        public static string AssemblyDirectory
+        {
+            get
+            {
+                string codeBase = Assembly.GetExecutingAssembly().CodeBase;
+                UriBuilder uri = new UriBuilder(codeBase);
+                string path = Uri.UnescapeDataString(uri.Path);
+                return System.IO.Path.GetDirectoryName(path);
+            }
+        }
         public ProjectInfo VersioningInfo { get; }
-        public Main()
+
+        public Main(string[] args = null)
         {
             #region Versioning Info
             using (Stream str = Assembly.GetExecutingAssembly().GetManifestResourceStream("AssaultBird2454.VPTU.Server.ProjectVariables.json"))
@@ -22,6 +41,18 @@ namespace AssaultBird2454.VPTU.Server
                 }
             }
             #endregion
+
+            ConsoleLogger = new Class.Logging.Logger();
+            ConsoleLogger.Setup(AssemblyDirectory + "/Logs/" + DateTime.Now.ToShortDateString() + ".txt");
+        }
+
+        /// <summary>
+        /// Returns the instance of the console logger used for this server instance
+        /// </summary>
+        /// <returns>Console Logger</returns>
+        public Class.Logging.Logger getLogger()
+        {
+            return ConsoleLogger;
         }
     }
 }
