@@ -33,7 +33,6 @@ namespace AssaultBird2454.VPTU.Networking.Shared
         public void Reset()
         {
             buffer = new byte[BUFFER_SIZE];
-            sb = new StringBuilder();
         }
         public void SSL_Reset()
         {
