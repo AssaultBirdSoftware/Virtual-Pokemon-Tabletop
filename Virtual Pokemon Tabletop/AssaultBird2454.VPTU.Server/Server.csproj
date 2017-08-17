@@ -49,6 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\ConsoleCommands\Command Handeler.cs" />
+    <Compile Include="Class\ConsoleCommands\Command Listener.cs" />
+    <Compile Include="Class\ConsoleCommands\Command.cs" />
     <Compile Include="Class\Logging\Logger.cs" />
     <Compile Include="Class\Setup.cs" />
     <Compile Include="Main.cs" />

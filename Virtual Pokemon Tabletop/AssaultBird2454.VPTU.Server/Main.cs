@@ -30,7 +30,9 @@ namespace AssaultBird2454.VPTU.Server
         }
         public static ProjectInfo VersioningInfo { get; private set; }
 
-        public Main(string[] args = null)
+        public static string SQLConnectionString = "";
+
+        public Main()
         {
             #region Versioning Info
             using (Stream str = Assembly.GetExecutingAssembly().GetManifestResourceStream("AssaultBird2454.VPTU.Server.ProjectVariables.json"))
@@ -41,7 +43,33 @@ namespace AssaultBird2454.VPTU.Server
                 }
             }
             #endregion
+        }
 
+        /// <summary>
+        /// Starts a VPTU suitable for non dedicated instances
+        /// </summary>
+        public void Start_Intergrated()
+        {
+            
+        }
+        /// <summary>
+        /// Starts the dedicated VPTU Server
+        /// </summary>
+        public void Start_Dedicated()
+        {
+            Class.Setup.Start_Dedicated();
+
+            while (true)
+            {
+                string Command = Class.ConsoleCommands.Command_Listener.Console_Listen();
+                // Handel Command
+            }
+        }
+        /// <summary>
+        /// Starts the management and networking VPTU server
+        /// </summary>
+        public void Start_Management()
+        {
 
         }
 

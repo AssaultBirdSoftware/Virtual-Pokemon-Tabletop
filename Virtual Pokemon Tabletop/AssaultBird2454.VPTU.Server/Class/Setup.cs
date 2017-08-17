@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace AssaultBird2454.VPTU.Server.Class
 {
-    public class Setup
+    public static class Setup
     {
-        #region Server Start
-        public void Start()
+        #region Dedicated Server Start
+        public static void Start_Dedicated()
         {
             Start_LoggerInit();// Configures Logger
 
@@ -21,7 +21,7 @@ namespace AssaultBird2454.VPTU.Server.Class
 
             Start_Database();// Load & Connect to Database
 
-            Start_LoadServerSettings();// Load Server Settings
+            Start_LoadDedicatedServerSettings();// Load Server Settings
 
             Start_TCPInit();// Load TCP Servers
 
@@ -33,42 +33,94 @@ namespace AssaultBird2454.VPTU.Server.Class
         }
 
         #region Start Methods
-        private void Start_LoggerInit()
+        private static void Start_LoggerInit()
         {
             Main.ConsoleLogger = new Class.Logging.Logger();
             Main.ConsoleLogger.Setup(Main.AssemblyDirectory + "/Logs/" + DateTime.Now.ToShortDateString() + ".txt");
         }
 
-        private void Start_Database()
+        private static void Start_Database()
         {
             Main.ConsoleLogger.Log("Loading and Connecting to Database Server", Logging.LoggerLevel.Debug);
+
+            try
+            {
+                using (System.Data.SqlClient.SqlConnection Nconn = new System.Data.SqlClient.SqlConnection(Main.SQLConnectionString))
+                {
+                    Nconn.Open();
+                    Nconn.Close();
+                    Main.ConsoleLogger.Log("Database Connection Check Passed!", Logging.LoggerLevel.Info);
+                }
+            }
+            catch (Exception e)
+            {
+                Main.ConsoleLogger.Log("Database Connection Check Failed!", Logging.LoggerLevel.Fatil);
+                Main.ConsoleLogger.Log(e.ToString(), Logging.LoggerLevel.Debug);
+            }
         }
 
-        private void Start_LoadServerSettings()
+        private static void Start_LoadDedicatedServerSettings()
         {
+            Main.ConsoleLogger.Log("Loading Server Settings From Database Server", Logging.LoggerLevel.Info);
 
-        }
+            try
+            {
+                using (System.Data.SqlClient.SqlConnection Nconn = new System.Data.SqlClient.SqlConnection(Main.SQLConnectionString))
+                {
+                    Nconn.Open();// Open Connection
 
-        private void Start_TCPInit()
-        {
+                    using (System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand())
+                    {
+                        cmd.Connection = Nconn;// Sets connection
+                        cmd.CommandText = "";// Sets Command
 
-        }
+                        //Add Params Here
 
-        private void Start_TCPSubscribe()
-        {
+                        using (System.Data.SqlClient.SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            // Get Server Config here
+                            // Debug the settings retrieved
+                        }
 
-        }
+                        cmd.Dispose();// Deletes the command
+                    }
+                    Nconn.Close();// Closes Connection
+                }
+            }
+            catch
+            {
 
-        private void Start_RegisterCommands()
-        {
-
-        }
-
-        private void Start_TCPStart()
-        {
-
+            }
         }
         #endregion
+        #endregion
+        #region Intergrated Server Start
+
+        #endregion
+        #region Management Server Start
+
+        #endregion
+
+        #region Generic Start Methods
+        private static void Start_TCPInit()
+        {
+
+        }
+
+        private static void Start_TCPSubscribe()
+        {
+
+        }
+
+        private static void Start_RegisterCommands()
+        {
+
+        }
+
+        private static void Start_TCPStart()
+        {
+
+        }
         #endregion
     }
 }
