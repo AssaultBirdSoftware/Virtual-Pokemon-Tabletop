@@ -95,8 +95,6 @@
     <Compile Include="BattleEffect\EffectFunction.cs" />
     <Compile Include="BattleManager.cs" />
     <Compile Include="Data\Data.cs" />
-    <Compile Include="Entity\Data.cs" />
-    <Compile Include="Entity\EntityGroup.cs" />
     <Compile Include="Entity\Pokemon\EntityPokemonData.cs" />
     <Compile Include="Entity\Trainer\EntityTrainerData.cs" />
     <Compile Include="ProjectInfo.cs" />

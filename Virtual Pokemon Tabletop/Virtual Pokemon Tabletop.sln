@@ -72,6 +72,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiSelectComboBox", "Exte
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerConsole", "AssaultBird2454.VPTU.ServerConsole\ServerConsole.csproj", "{CFC60B1C-1416-4E09-8999-3F6FBEAF912E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharacterManager", "AssaultBird2454.VPTU.CharacterManager\CharacterManager.csproj", "{15257654-E518-4586-8FB9-B70C73449D20}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -142,6 +144,10 @@ Global
 		{CFC60B1C-1416-4E09-8999-3F6FBEAF912E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFC60B1C-1416-4E09-8999-3F6FBEAF912E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFC60B1C-1416-4E09-8999-3F6FBEAF912E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15257654-E518-4586-8FB9-B70C73449D20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15257654-E518-4586-8FB9-B70C73449D20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15257654-E518-4586-8FB9-B70C73449D20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15257654-E518-4586-8FB9-B70C73449D20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -164,5 +170,6 @@ Global
 		{195821B5-7CFF-42CD-9CE2-32D3A8673C17} = {C1729FAC-DB65-4179-9817-EDCE648E5D11}
 		{CE17A54E-0661-429F-AFDC-272E8668B14E} = {71F3832E-44F5-447B-96F7-8E29D83B9DA8}
 		{CFC60B1C-1416-4E09-8999-3F6FBEAF912E} = {BE5EB1E2-3DE9-4DFB-ABA9-20C1CF7A99C8}
+		{15257654-E518-4586-8FB9-B70C73449D20} = {C1729FAC-DB65-4179-9817-EDCE648E5D11}
 	EndGlobalSection
 EndGlobal

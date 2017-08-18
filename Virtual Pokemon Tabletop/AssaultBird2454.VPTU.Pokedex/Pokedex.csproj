@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="Ability\AbilityData.cs" />
     <Compile Include="Ability\Data.cs" />
+    <Compile Include="Entity\Data.cs" />
+    <Compile Include="Entity\EntityGroup.cs" />
     <Compile Include="Items\ItemData.cs" />
     <Compile Include="Moves\MoveData.cs" />
     <Compile Include="Moves\Move_RangeData.cs" />
