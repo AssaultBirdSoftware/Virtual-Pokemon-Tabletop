@@ -41,7 +41,7 @@ namespace AssaultBird2454.VPTU.BattleManager.BattleEffect.Data.Actions.UI
             Actions.HasStatus HasStatusData = (Actions.HasStatus)Data;
 
             HasAll.IsChecked = HasStatusData.HasAll;
-            FunctionName.Text = HasStatusData.FunctionName;
+            Invoke_Function_Name.Text = HasStatusData.FunctionName;
 
             Dictionary<string, object> selecteditems = new Dictionary<string, object>();
             foreach (KeyValuePair<string, object> effect in Effects.ItemsSource)
@@ -59,7 +59,7 @@ namespace AssaultBird2454.VPTU.BattleManager.BattleEffect.Data.Actions.UI
             Actions.HasStatus HasStatusData = (Actions.HasStatus)Data;
 
             HasStatusData.HasAll = (bool)HasAll.IsChecked;
-            HasStatusData.FunctionName = FunctionName.Text;
+            HasStatusData.FunctionName = Invoke_Function_Name.Text;
 
             List<VPTU.BattleManager.Data.Status_Afflictions> status = new List<VPTU.BattleManager.Data.Status_Afflictions>();
             foreach(KeyValuePair<string, object> sel in Effects.SelectedItems)
