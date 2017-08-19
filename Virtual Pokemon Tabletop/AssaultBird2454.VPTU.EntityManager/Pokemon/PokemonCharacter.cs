@@ -28,6 +28,7 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         public int Base_SpAttack { get; set; }
         public int Base_SpDefence { get; set; }
         public int Base_Speed { get; set; }
+
         public int Contest_Beauty { get; set; }
         public int Contest_Cool { get; set; }
         public int Contest_Cute { get; set; }
@@ -40,5 +41,10 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         public int Injuries { get; set; }
 
         public List<string> Moves { get; set; }
+
+        /// <summary>
+        /// Data containing information about battle effects like Status Conditions
+        /// </summary>
+        public BattleManager.Entity.Effects BattleEffects { get; set; }
     }
 }
