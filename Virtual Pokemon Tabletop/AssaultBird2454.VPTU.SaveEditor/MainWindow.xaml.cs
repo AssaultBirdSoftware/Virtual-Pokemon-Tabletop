@@ -177,6 +177,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
 
             PokedexManager_ReloadList();//Reload Pokedex List
             ResourceManager_ReloadList();//Reload Resource List
+            EntityManager_ReloadList();// Reloads Characters List
         }
 
         #region Save Data Tools
@@ -230,7 +231,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
             System.Windows.Forms.FolderBrowserDialog fbd = new System.Windows.Forms.FolderBrowserDialog();// creates a FolderBrowser dialog
             System.Windows.Forms.DialogResult dr = fbd.ShowDialog();// Shows the dialog to select the path containing save data
 
-            if(dr == System.Windows.Forms.DialogResult.Cancel)// Check if Pack Opperation was canceled
+            if (dr == System.Windows.Forms.DialogResult.Cancel)// Check if Pack Opperation was canceled
             {
                 MessageBox.Show("Packing Save Data was canceled and no files have been changed.\n\nReasion: Canceled By User", "Pack Save Data Canceled", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
@@ -448,7 +449,6 @@ namespace AssaultBird2454.VPTU.SaveEditor
         /// <summary>
         /// Reloads the Pokedex list
         /// </summary>
-        /// <param name="Search">Limits only Pokemon and Moves where the name contains the Search value (Not Case Sensitive)</param>
         public void PokedexManager_ReloadList()
         {
             try
@@ -501,7 +501,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
                     }
                 }
             }
-            catch { }
+            catch { /* Dont Care */ }
         }
         #endregion
 
@@ -621,6 +621,45 @@ namespace AssaultBird2454.VPTU.SaveEditor
             catch { }
         }
         #endregion
+
+        #region Entity Manager Code
+        #region Entity Manager Variables
+
+        #endregion
+
+        #region Right SideBar Events
+        private void EntityManager_AddPokemon_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion
+
+        #region List Events
+
+        #endregion
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void EntityManager_ReloadList()
+        {
+            try
+            {
+                EntityManager_List.Items.Clear();
+
+                if (SaveManager == null) { return; }
+
+                if(EntityManager_SearchEntity_WildPokemon.IsChecked == true)
+                {
+                    foreach(EntityManager.Pokemon.PokemonCharacter pokemon in SaveManager.SaveData.Pokemon)
+                    {
+                        EntityManager_DataBind db = new EntityManager_DataBind(pokemon.Species_DexID, pokemon.Name, pokemon.Species_DexID + " (" + "Name Here" + ")", "", EntityManager_DataType.WildPokemon);
+                        EntityManager_List.Items.Add(db);
+                    }
+                }
+            } catch { /* Dont Care */ }
+        }
+        #endregion
     }
 
     /// <summary>
@@ -668,6 +707,27 @@ namespace AssaultBird2454.VPTU.SaveEditor
         public string EntryType { get; set; }
 
         public PokedexList_DataType DataType { get; set; }
+        public object DataTag { get; set; }
+    }
+
+    public enum EntityManager_DataType { WildPokemon }
+    public class EntityManager_DataBind
+    {
+        public EntityManager_DataBind(decimal _ID, string _Name, string _Species, string _Owner, EntityManager_DataType _Type)
+        {
+            ID = _ID;
+            Name = _Name;
+            Species = _Species;
+            Owner = _Owner;
+            Type = _Type;
+        }
+
+        public decimal ID { get; set; }
+        public string Name { get; set; }
+        public string Species { get; set; }
+        public string Owner { get; set; }
+        public EntityManager_DataType Type { get; set; }
+
         public object DataTag { get; set; }
     }
 }

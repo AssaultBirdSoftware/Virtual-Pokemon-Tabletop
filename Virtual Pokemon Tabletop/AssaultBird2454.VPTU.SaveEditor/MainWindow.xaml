@@ -118,36 +118,38 @@
                         <ColumnDefinition/>
                         <ColumnDefinition Width="150"/>
                     </Grid.ColumnDefinitions>
-                    <ListView x:Name="PokedexManager_List1" SelectionChanged="PokedexManager_List_SelectionChanged" MouseDoubleClick="PokedexManager_List_MouseDoubleClick">
+                    <ListView x:Name="EntityManager_List" SelectionChanged="PokedexManager_List_SelectionChanged" MouseDoubleClick="PokedexManager_List_MouseDoubleClick">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="ID" Width="50px" DisplayMemberBinding="{Binding ID}"/>
                                 <GridViewColumn Header="Name" Width="200px" DisplayMemberBinding="{Binding Name}"/>
-                                <GridViewColumn Header="Owner" Width="200px" DisplayMemberBinding="{Binding Name}"/>
+                                <GridViewColumn Header="Species" Width="200px" DisplayMemberBinding="{Binding Species}"/>
+                                <GridViewColumn Header="Owner" Width="200px" DisplayMemberBinding="{Binding Owner}"/>
+                                <GridViewColumn Header="Character Type" Width="150px" DisplayMemberBinding="{Binding Type}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
                     <GroupBox x:Name="PokedexManager_AddDex1" Grid.Column="1" Header="Add Pokedex Entry's" Margin="10,10,10,0" VerticalAlignment="Top" Height="70">
                         <Grid Margin="0,0,-2,-12.96">
-                            <Button x:Name="EntityManager_AddPokemon" Content="Add Pokemon" VerticalAlignment="Top" Click="PokedexManager_AddDex_Pokemon_Click"/>
-                            <Button x:Name="EntityManager_AddTrainer" Content="Add Trainer / NPC" VerticalAlignment="Top" Margin="0,24.96,0,0" Click="PokedexManager_AddDex_Move_Click"/>
+                            <Button x:Name="EntityManager_AddPokemon" Content="Add Pokemon" VerticalAlignment="Top" Click="EntityManager_AddPokemon_Click"/>
+                            <Button x:Name="EntityManager_AddTrainer" Content="Add Trainer / NPC" VerticalAlignment="Top" Margin="0,24.96,0,0"/>
                         </Grid>
                     </GroupBox>
                     <GroupBox x:Name="PokedexManager_ManageDex1" Grid.Column="1" Header="Edit / Delete" Margin="10,85,10,0" VerticalAlignment="Top" Height="71">
                         <Grid Margin="0,0,-2,-12.96">
-                            <Button x:Name="EntityManager_ManageEntity_Edit" Content="Edit" VerticalAlignment="Top" Click="PokedexManager_ManageDex_Edit_Click"/>
-                            <Button x:Name="EntityManager_ManageEntity_Delete" Content="Delete" VerticalAlignment="Top" Margin="0,24.96,0,0" Click="PokedexManager_ManageDex_Delete_Click"/>
+                            <Button x:Name="EntityManager_ManageEntity_Edit" Content="Edit" VerticalAlignment="Top"/>
+                            <Button x:Name="EntityManager_ManageEntity_Delete" Content="Delete" VerticalAlignment="Top" Margin="0,24.96,0,0"/>
                         </Grid>
                     </GroupBox>
                     <GroupBox x:Name="PokedexManager_SearchDex1" Grid.Column="1" Header="Search" Margin="10,161,10,0" Height="187" VerticalAlignment="Top">
                         <Grid Margin="0,0,-2,-12.96">
                             <TextBox x:Name="EntityManager_SearchEntity_Search" Margin="0,0,10,0" TextWrapping="Wrap" VerticalAlignment="Top" UndoLimit="200" TextChanged="PokedexManager_SearchDex_Search_TextChanged"/>
-                            <CheckBox x:Name="EntityManager_SearchEntity_WildPokemon" Content="Wild Pokemon" Margin="0,22.96,0,0" VerticalAlignment="Top" IsChecked="True" Checked="PokedexManager_SearchDex_Pokemon_Checked" Unchecked="PokedexManager_SearchDex_Pokemon_Unchecked"/>
-                            <CheckBox x:Name="EntityManager_SearchEntity_PC" Content="Player's Trainers" Margin="0,88,0,0" VerticalAlignment="Top" IsChecked="True" Checked="PokedexManager_SearchDex_Moves_Checked" Unchecked="PokedexManager_SearchDex_Moves_Unchecked"/>
-                            <CheckBox x:Name="EntityManager_SearchEntity_NPC" Content="NPC's Trainers" Margin="0,104,0,0" VerticalAlignment="Top" IsChecked="True" Checked="PokedexManager_SearchDex_Moves_Checked" Unchecked="PokedexManager_SearchDex_Moves_Unchecked"/>
-                            <CheckBox x:Name="EntityManager_SearchEntity_PartyPokemon" Margin="0,53,0,0" VerticalAlignment="Top" Checked="PokedexManager_SearchDex_Pokemon_Checked" Unchecked="PokedexManager_SearchDex_Pokemon_Unchecked" Content="Party Pokemon"/>
-                            <CheckBox x:Name="EntityManager_SearchEntity_PlayerPokemon" Content="Player's Pokemon" Margin="0,68,0,0" VerticalAlignment="Top" Checked="PokedexManager_SearchDex_Pokemon_Checked" Unchecked="PokedexManager_SearchDex_Pokemon_Unchecked"/>
-                            <CheckBox x:Name="EntityManager_SearchEntity_NPCPokemon" Content="NPC's Pokemon" VerticalAlignment="Top" Checked="PokedexManager_SearchDex_Pokemon_Checked" Unchecked="PokedexManager_SearchDex_Pokemon_Unchecked" Margin="0,38,0,0"/>
+                            <CheckBox x:Name="EntityManager_SearchEntity_WildPokemon" Content="Wild Pokemon" Margin="0,22.96,0,0" VerticalAlignment="Top" IsChecked="True" Unchecked="PokedexManager_SearchDex_Pokemon_Unchecked"/>
+                            <CheckBox x:Name="EntityManager_SearchEntity_PC" Content="Player's Trainers" Margin="0,88,0,0" VerticalAlignment="Top" IsChecked="True" Unchecked="PokedexManager_SearchDex_Moves_Unchecked"/>
+                            <CheckBox x:Name="EntityManager_SearchEntity_NPC" Content="NPC's Trainers" Margin="0,104,0,0" VerticalAlignment="Top" IsChecked="True" Unchecked="PokedexManager_SearchDex_Moves_Unchecked"/>
+                            <CheckBox x:Name="EntityManager_SearchEntity_PartyPokemon" Margin="0,53,0,0" VerticalAlignment="Top" Unchecked="PokedexManager_SearchDex_Pokemon_Unchecked" Content="Party Pokemon"/>
+                            <CheckBox x:Name="EntityManager_SearchEntity_PlayerPokemon" Content="Player's Pokemon" Margin="0,68,0,0" VerticalAlignment="Top" Unchecked="PokedexManager_SearchDex_Pokemon_Unchecked"/>
+                            <CheckBox x:Name="EntityManager_SearchEntity_NPCPokemon" Content="NPC's Pokemon" VerticalAlignment="Top" Unchecked="PokedexManager_SearchDex_Pokemon_Unchecked" Margin="0,38,0,0"/>
                         </Grid>
                     </GroupBox>
                     <GroupBox x:Name="PokedexManager_DisplaySettings1" Grid.Column="1" Header="Display Settings" Margin="10,0,10,10" Height="108.127" VerticalAlignment="Bottom" IsEnabled="False" d:IsLocked="True">

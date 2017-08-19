@@ -121,6 +121,12 @@
     <Compile Include="UI\BattleEffect\EffectFunction_Designer.xaml.cs">
       <DependentUpon>EffectFunction_Designer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Entity\Pokemon_Character.xaml.cs">
+      <DependentUpon>Pokemon_Character.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Entity\Trainer_Character.xaml.cs">
+      <DependentUpon>Trainer_Character.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Pokedex\Link\Link_Evolution.xaml.cs">
       <DependentUpon>Link_Evolution.xaml</DependentUpon>
     </Compile>
@@ -177,6 +183,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\BattleEffect\EffectFunction_Designer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Entity\Pokemon_Character.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Entity\Trainer_Character.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -274,6 +288,10 @@
       <Project>{f82589cc-b4c1-4433-9bd7-635f508d2702}</Project>
       <Name>ContestManager</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AssaultBird2454.VPTU.EntityManager\EntityManager.csproj">
+      <Project>{013d732a-3a9e-4e12-8683-32bf9bbcc8d9}</Project>
+      <Name>EntityManager</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AssaultBird2454.VPTU.Pokedex\Pokedex.csproj">
       <Project>{7e7c28d4-d92f-4d4a-988c-8086fce625a0}</Project>
       <Name>Pokedex</Name>
@@ -300,7 +318,10 @@
   <ItemGroup>
     <Resource Include="pokeball_B98_icon.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="UI\Entity\Pokemon\" />
+    <Folder Include="UI\Entity\Trainer\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

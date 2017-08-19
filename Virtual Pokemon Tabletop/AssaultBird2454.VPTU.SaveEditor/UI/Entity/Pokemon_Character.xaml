@@ -1,0 +1,36 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Entity"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="AssaultBird2454.VPTU.SaveEditor.UI.Entity.Pokemon_Character"
+        mc:Ignorable="d"
+        Title="Character Designer - Pokemon" Height="553.563" Width="1115.126">
+    <Grid>
+
+        <GroupBox x:Name="G_BasicInfo" Header="Basic Information" HorizontalAlignment="Left" VerticalAlignment="Top" Width="465" Margin="0,0,-173,0">
+            <Grid Margin="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250*"/>
+                    <ColumnDefinition Width="203*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="Basic_Name" Margin="90,4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150"/>
+                <Label Content="Species Name" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Label Content="Species" Margin="0,26,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                <Label Content="Type 1" HorizontalAlignment="Left" Margin="0,52,0,0" VerticalAlignment="Top"/>
+                <ComboBox x:Name="Basic_Type1" Margin="90,53,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150"/>
+                <Label Content="Type 2" Margin="0,79,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                <ComboBox x:Name="Basic_Type2" Margin="90,80,0,0" HorizontalAlignment="Left" Width="150" VerticalAlignment="Top"/>
+                <Label Content="Size Class" HorizontalAlignment="Left" Margin="0,106,0,0" VerticalAlignment="Top"/>
+                <ComboBox x:Name="Basic_Size" Margin="90,107,0,0" HorizontalAlignment="Left" Width="150" VerticalAlignment="Top"/>
+                <Label Content="Weight Class" Margin="0,133,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                <ComboBox x:Name="Basic_Weight" Margin="90,134,0,0" HorizontalAlignment="Left" Width="150" VerticalAlignment="Top"/>
+                <Label x:Name="label3" Content="Pokedex Description" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="183" Grid.Column="1" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="Basic_Desc" HorizontalAlignment="Left" Height="119" Margin="10,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Grid.Column="1"/>
+                <ComboBox x:Name="Basic_Species" HorizontalAlignment="Left" Margin="90,27,0,0" VerticalAlignment="Top" Width="150" SelectionChanged="Basic_Species_SelectionChanged"/>
+            </Grid>
+        </GroupBox>
+
+    </Grid>
+</Window>
