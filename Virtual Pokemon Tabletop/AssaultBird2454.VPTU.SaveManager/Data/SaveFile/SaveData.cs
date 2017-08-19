@@ -35,8 +35,8 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
         {
             if (InitNewSave)
             {
-                Trainers = new List<CharacterManager.Trainer.TrainerCharacter>();
-                Pokemon = new List<CharacterManager.Pokemon.PokemonCharacter>();
+                Trainers = new List<EntityManager.Trainer.TrainerCharacter>();
+                Pokemon = new List<EntityManager.Pokemon.PokemonCharacter>();
 
                 EntityGroups = new List<Pokedex.Entity.EntityGroup>();
 
@@ -75,8 +75,8 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
         #endregion
 
         #region Entity Data
-        public List<CharacterManager.Trainer.TrainerCharacter> Trainers;
-        public List<CharacterManager.Pokemon.PokemonCharacter> Pokemon;
+        public List<EntityManager.Trainer.TrainerCharacter> Trainers;
+        public List<EntityManager.Pokemon.PokemonCharacter> Pokemon;
 
         public List<Pokedex.Entity.EntityGroup> EntityGroups;
         #endregion
