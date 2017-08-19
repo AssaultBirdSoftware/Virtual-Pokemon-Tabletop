@@ -1,0 +1,18 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AssaultBird2454.VPTU.BattleManager.BattleEffect.Data.Actions.UI"
+             xmlns:MultiSelectComboBox="clr-namespace:MultiSelectComboBox;assembly=MultiSelectComboBox" x:Class="AssaultBird2454.VPTU.BattleManager.BattleEffect.Data.Actions.UI.HasStatus"
+             mc:Ignorable="d" Height="93.615" Width="303.359">
+    <Grid>
+
+        <MultiSelectComboBox:MultiSelectComboBox x:Name="Effects" HorizontalAlignment="Left" Height="26" Margin="108,10,0,0" VerticalAlignment="Top" Width="185"/>
+        <Label Content="Checked Effects" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="HasAll" Content="Has all status effects" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+        <Label Content="Function to invoke" HorizontalAlignment="Left" Margin="10,61,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="FunctionName" HorizontalAlignment="Left" Margin="124,61,0,0" VerticalAlignment="Top" Width="169" Height="26"/>
+
+    </Grid>
+</UserControl>

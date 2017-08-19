@@ -40,7 +40,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Link
             LinkData.LevelUp_Move = (bool)LevelUp_Move.IsChecked;
             LinkData.Tutor_Move = (bool)Tutor_Move.IsChecked;
             LinkData.Egg_Move = (bool)Egg_Move.IsChecked;
-            LinkData.Default_Move = (bool)Default_Move.IsChecked;
+            LinkData.TMHM_Move = (bool)TMHM_Move.IsChecked;
 
             LinkData.LevelUp_Level = (int)Level_Learned.Value;
         }
@@ -51,7 +51,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Link
             LevelUp_Move.IsChecked = LinkData.LevelUp_Move;
             Tutor_Move.IsChecked = LinkData.Tutor_Move;
             Egg_Move.IsChecked = LinkData.Egg_Move;
-            Default_Move.IsChecked = LinkData.Default_Move;
+            TMHM_Move.IsChecked = LinkData.TMHM_Move;
 
             Level_Learned.Value = (decimal)LinkData.LevelUp_Level;
         }

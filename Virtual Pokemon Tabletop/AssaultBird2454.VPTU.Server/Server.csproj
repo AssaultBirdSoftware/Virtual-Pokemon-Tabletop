@@ -31,8 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -52,9 +51,6 @@
     <EmbeddedResource Include="ProjectVariables.json" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\AssaultBird2454.PTU.SoundSystem\SoundSystem.csproj">
       <Project>{85b341bf-b2bc-4fac-9f9d-3ae1e9ea5a83}</Project>
       <Name>SoundSystem</Name>
@@ -62,6 +58,14 @@
     <ProjectReference Include="..\AssaultBird2454.VPTU.BattleManager\BattleManager.csproj">
       <Project>{626acee3-9310-4b55-bb35-ab9c08225797}</Project>
       <Name>BattleManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AssaultBird2454.VPTU.ContestManager\ContestManager.csproj">
+      <Project>{f82589cc-b4c1-4433-9bd7-635f508d2702}</Project>
+      <Name>ContestManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AssaultBird2454.VPTU.Networking\Networking.csproj">
+      <Project>{87acc84c-0582-4b05-8bfe-a07286cd365c}</Project>
+      <Name>Networking</Name>
     </ProjectReference>
     <ProjectReference Include="..\AssaultBird2454.VPTU.Pokedex\Pokedex.csproj">
       <Project>{7e7c28d4-d92f-4d4a-988c-8086fce625a0}</Project>
@@ -71,6 +75,9 @@
       <Project>{0b460ae1-322a-43bd-8f5a-4d383506cb8e}</Project>
       <Name>SaveManager</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

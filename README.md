@@ -1,4 +1,5 @@
 [![Master Build branch](https://img.shields.io/appveyor/ci/TasmanLeach/virtual-pokemon-tabletop-2/master.svg?label=Master%20Build)](https://ci.appveyor.com/project/TasmanLeach/virtual-pokemon-tabletop-2)
+[![Beta Build branch](https://img.shields.io/appveyor/ci/TasmanLeach/virtual-pokemon-tabletop-2/Beta.svg?label=Beta%20Build)](https://ci.appveyor.com/project/TasmanLeach/virtual-pokemon-tabletop-2)
 [![Alpha Build branch](https://img.shields.io/appveyor/ci/TasmanLeach/virtual-pokemon-tabletop-2/Alpha.svg?label=Alpha%20Build)](https://ci.appveyor.com/project/TasmanLeach/virtual-pokemon-tabletop-2)
 [![GitHub release](https://img.shields.io/github/release/AssaultBird2454/Virtual-Pokemon-Tabletop/all.svg?label=Latest%20Version)](https://github.com/AssaultBird2454/Virtual-Pokemon-Tabletop/releases)
 [![Libraries.io for GitHub](https://img.shields.io/librariesio/github/AssaultBird2454/Virtual-Pokemon-Tabletop.svg)](https://github.com/AssaultBird2454/Virtual-Pokemon-Tabletop)
@@ -17,7 +18,7 @@ So, when I went to make this I decided to take the useful features from Roll20.n
 Want to help? Just make a fork and follow these rules
 
 1: Code needs to be Commented, Documented, Formatted and Tested.  
-2: Changes made need to be made in the "Alpha" Branch. This is where all the latest changes are.  
+2: The code we are working on is in the "Alpha" Branch, Edit and make changes in here to keep upto date
 3: Pull request into the "Alpha" branch, I will look and accept it there.  
 
 All help would be appreciated. and this project is done in C# Using WPF.
@@ -32,6 +33,9 @@ All help would be appreciated. and this project is done in C# Using WPF.
 | PC (Linux)      | Not Started   | Not Started   | Not Started   | Not Started   |
 | Mobile (IOS)    |               |               | Not Started   | Not Started   |
 | Mobile (Android)|               |               | Not Started   | Not Started   |
+
+This software is supported on x64 architecture (64 Bit) systems only! Sorry if you are using a system that is x86 (32 Bit)
+This software may support x86 in the future but for now, only x64 is officialy supported
 
 ### Official Server's Status / Info
 No Servers exist or have been developed at the moment... more info will be available at a later date. The wiki will have a page about these servers later.

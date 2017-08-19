@@ -1,0 +1,21 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect"
+        xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock" x:Class="AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect.BattleEffect_Designer"
+        mc:Ignorable="d"
+        Title="Effect Designer" Height="438.062" Width="663.898" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+    <Grid>
+        <ToolBarPanel x:Name="Tools" HorizontalAlignment="Left" Height="16" VerticalAlignment="Top" Width="656"/>
+        <TreeView x:Name="EffectTree" HorizontalAlignment="Left" Height="302" Margin="0,16,0,0" VerticalAlignment="Top" Width="656">
+            <TreeViewItem x:Name="EffectTree_Triggers" Header="Triggers"/>
+            <TreeViewItem x:Name="EffectTree_Functions" Header="Functions"/>
+        </TreeView>
+        <Button x:Name="Cancel_Button" Content="Close" HorizontalAlignment="Right" Margin="0,0,10,60" VerticalAlignment="Bottom" Width="75" IsCancel="True" Click="Cancel_Button_Click"/>
+        <Button x:Name="Submit_Button" Content="Save &amp; Close" HorizontalAlignment="Right" Margin="0,0,90,60" VerticalAlignment="Bottom" Width="75" IsDefault="True" Click="Submit_Button_Click"/>
+        <Button x:Name="RawData_Button" Content="Import / Export" Margin="0,0,10,10" Click="RawData_Button_Click" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="155"/>
+        <Button x:Name="Save_Button" Content="Save" HorizontalAlignment="Right" Margin="0,0,90,35" Width="75" Click="Save_Button_Click" Height="20" VerticalAlignment="Bottom"/>
+    </Grid>
+</Window>

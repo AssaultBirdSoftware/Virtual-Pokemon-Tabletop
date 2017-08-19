@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Pokedex"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Moves"
         mc:Ignorable="d"
-        Title="Moves" Height="802" Width="614">
+        Title="Moves" Height="802" Width="614" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
     <Grid>
         <GroupBox x:Name="groupBox" Header="GroupBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="101" Width="383">
             <Grid Margin="0">
@@ -15,7 +15,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBox x:Name="Basic_Name" Margin="90,4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="271"/>
                 <Label Content="Move Name" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <TextBox x:Name="Basic_Desc" HorizontalAlignment="Left" Margin="90,27,0,0" TextWrapping="Wrap" Width="271" Height="45" VerticalAlignment="Top"/>
+                <TextBox x:Name="Basic_Desc" HorizontalAlignment="Left" Height="42" Margin="90,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="271" AcceptsReturn="True"/>
             </Grid>
         </GroupBox>
         <GroupBox x:Name="groupBox1" Header="Contest Details" HorizontalAlignment="Left" Margin="398,10,0,0" VerticalAlignment="Top" Height="101" Width="206">
@@ -29,37 +29,94 @@
         </GroupBox>
         <GroupBox x:Name="groupBox1_Copy2" Header="Battle Details" HorizontalAlignment="Left" Margin="10,116,0,0" VerticalAlignment="Top" Height="449" Width="586">
             <Grid Margin="0">
-                <GroupBox x:Name="groupBox1_Copy1" Header="Range Details" Margin="0,0,207,0" Height="131" VerticalAlignment="Top">
-                    <Grid Margin="0"/>
-                </GroupBox>
-                <GroupBox x:Name="groupBox1_Copy" Header="Move Keywords" Margin="0,136,207,0">
+                <GroupBox x:Name="groupBox1_Copy1" Header="Range Details" Margin="0,0,207,0" Height="254" VerticalAlignment="Top">
                     <Grid Margin="0">
-                        <WrapPanel ScrollViewer.CanContentScroll="True"/>
+                        <CheckBox x:Name="Range_Enabled" Content="Range" HorizontalAlignment="Left" Margin="10,28,0,0" VerticalAlignment="Top"/>
+                        <xctk:DecimalUpDown x:Name="Range_Distance" HorizontalAlignment="Left" Margin="100,26,0,0" VerticalAlignment="Top" Width="58"/>
+                        <Label Content="Distance" HorizontalAlignment="Left" Margin="100,0,0,0" VerticalAlignment="Top" Width="58"/>
+                        <Label Content="Size" HorizontalAlignment="Left" Margin="163,0,0,0" VerticalAlignment="Top" Width="58"/>
+                        <CheckBox x:Name="Line_Enabled" Content="Line" HorizontalAlignment="Left" Margin="10,53,0,0" VerticalAlignment="Top"/>
+                        <xctk:DecimalUpDown x:Name="Line_Size" HorizontalAlignment="Left" Margin="163,51,0,0" VerticalAlignment="Top" Width="58"/>
+                        <CheckBox x:Name="RangedBlast_Enabled" Content="Ranged Blast" HorizontalAlignment="Left" Margin="10,78,0,0" VerticalAlignment="Top"/>
+                        <xctk:DecimalUpDown x:Name="RangedBlast_Distance" HorizontalAlignment="Left" Margin="100,76,0,0" VerticalAlignment="Top" Width="58"/>
+                        <xctk:DecimalUpDown x:Name="RangedBlast_Size" HorizontalAlignment="Left" Margin="163,76,0,0" VerticalAlignment="Top" Width="58"/>
+                        <CheckBox x:Name="Cone_Enabled" Content="Cone" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top"/>
+                        <xctk:DecimalUpDown x:Name="Cone_Size" HorizontalAlignment="Left" Margin="163,101,0,0" VerticalAlignment="Top" Width="58"/>
+                        <CheckBox x:Name="CloseBlast_Enabled" Content="Close Blast" HorizontalAlignment="Left" Margin="10,128,0,0" VerticalAlignment="Top"/>
+                        <xctk:DecimalUpDown x:Name="CloseBlast_Size" HorizontalAlignment="Left" Margin="163,126,0,0" VerticalAlignment="Top" Width="58"/>
+                        <CheckBox x:Name="Burst_Enabled" Content="Burst" HorizontalAlignment="Left" Margin="10,153,0,0" VerticalAlignment="Top"/>
+                        <xctk:DecimalUpDown x:Name="Burst_Size" HorizontalAlignment="Left" Margin="163,151,0,0" VerticalAlignment="Top" Width="58"/>
+                        <CheckBox x:Name="Self_Enabled" Content="Self" HorizontalAlignment="Left" Margin="10,207,0,0" VerticalAlignment="Top"/>
+                        <CheckBox x:Name="Mele_Enabled" Content="Mele" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="11,186,0,0"/>
+                        <CheckBox x:Name="Field_Enabled" Content="Field" HorizontalAlignment="Left" Margin="114,186,0,0" VerticalAlignment="Top"/>
+                        <CheckBox x:Name="AnyTarget_Enabled" Content="Any Target" HorizontalAlignment="Left" Margin="114,207,0,0" VerticalAlignment="Top"/>
+                        <CheckBox x:Name="CardinallyAdj_Enabled" Content="Cardinally Adjacent" HorizontalAlignment="Left" Margin="217,186,0,0" VerticalAlignment="Top"/>
+                        <CheckBox x:Name="AllAdj_Enabled" Content="All Adjacent Foes" HorizontalAlignment="Left" Margin="217,207,0,0" VerticalAlignment="Top"/>
+                    </Grid>
+                </GroupBox>
+                <GroupBox x:Name="groupBox1_Copy" Header="Move Keywords" Margin="0,254,10,0">
+                    <Grid Margin="0">
+                        <WrapPanel ScrollViewer.CanContentScroll="True">
+                            <CheckBox x:Name="Keyword_Aura" Content="Aura" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Berry" Content="Berry" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Blessing" Content="Blessing" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Coat" Content="Coat" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Dash" Content="Dash" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_DubleStrike" Content="Duble Strike" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Environ" Content="Environ" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Execute" Content="Execute" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Fling" Content="Fling" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Friendly" Content="Friendly" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Illusion" Content="Illusion" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_FiveStrike" Content="FiveStrike" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Interupt" Content="Interupt" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Pass" Content="Pass" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_GroundSource" Content="Ground Source" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Hazard" Content="Hazard" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Pledge" Content="Pledge" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Shield" Content="Shield" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Smite" Content="Smite" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Social" Content="Social" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Powder" Content="Powder" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Priority" Content="Priority" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Sonic" Content="Sonic" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_SpiritSurge" Content="Spirit Surge" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Trigger" Content="Trigger" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Vortex" Content="Vortex" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Push" Content="Push" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Weather" Content="Weather" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Reaction" Content="Reaction" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Recoil" Content="Recoil" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Setup" Content="Setup" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Hail" Content="Hail" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Rainy" Content="Rainy" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Sandstorm" Content="Sandstorm" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_Sunny" Content="Sunny" Padding="0,0,5,3"/>
+                            <CheckBox x:Name="Keyword_WeightClass" Content="Weight Class" Padding="0,0,5,3"/>
+                        </WrapPanel>
                     </Grid>
                 </GroupBox>
                 <Label Content="Move Type" HorizontalAlignment="Right" Margin="0,13,133,0" VerticalAlignment="Top"/>
                 <ComboBox x:Name="Battle_Type" Margin="0,15,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="117"/>
                 <Label Content="Move Class" Margin="0,40,132,0" VerticalAlignment="Top" HorizontalAlignment="Right"/>
                 <ComboBox x:Name="Battle_Class" Margin="0,42,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="117"/>
-                <Label Content="Action Type" HorizontalAlignment="Right" Margin="0,173,129,0" VerticalAlignment="Top"/>
-                <ComboBox x:Name="Battle_ActionType" Margin="0,175,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="117"/>
-                <Label Content="Frequency" Margin="0,200,137,0" VerticalAlignment="Top" HorizontalAlignment="Right"/>
-                <ComboBox x:Name="Battle_Frequency" Margin="0,202,10,0" HorizontalAlignment="Right" Width="117" VerticalAlignment="Top"/>
-                <xctk:DecimalUpDown x:Name="Battle_UseLimit" HorizontalAlignment="Right" Margin="0,229,10,0" Width="117" Watermark="Pokedex ID" TextAlignment="Center" VerticalAlignment="Top" Value="0" Text="" Minimum="0" Maximum="10000"/>
-                <Label Content="Freq Limit" Margin="0,226,139,0" VerticalAlignment="Top" HorizontalAlignment="Right"/>
-                <Label Content="DB" Margin="0,251,177,0" VerticalAlignment="Top" HorizontalAlignment="Right"/>
-                <xctk:DecimalUpDown x:Name="Battle_DB" HorizontalAlignment="Right" Margin="0,254,10,0" Width="117" Watermark="Pokedex ID" TextAlignment="Center" VerticalAlignment="Top" Value="0" Text="" Minimum="0" Maximum="28"/>
-                <Label Content="AC" Margin="0,276,177,0" VerticalAlignment="Top" HorizontalAlignment="Right"/>
-                <xctk:DecimalUpDown x:Name="Battle_AC" HorizontalAlignment="Right" Margin="0,279,10,0" Width="117" Watermark="Pokedex ID" TextAlignment="Center" VerticalAlignment="Top" Value="0" Text="" Minimum="0" Maximum="28"/>
+                <Label Content="Action Type" HorizontalAlignment="Right" Margin="0,67,129,0" VerticalAlignment="Top"/>
+                <ComboBox x:Name="Battle_ActionType" Margin="0,69,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="117"/>
+                <Label Content="Frequency" Margin="0,94,137,0" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+                <ComboBox x:Name="Battle_Frequency" Margin="0,96,10,0" HorizontalAlignment="Right" Width="117" VerticalAlignment="Top"/>
+                <xctk:DecimalUpDown x:Name="Battle_UseLimit" HorizontalAlignment="Right" Margin="0,123,10,0" Width="117" Watermark="Pokedex ID" TextAlignment="Center" VerticalAlignment="Top" Value="0" Text="" Minimum="0" Maximum="10000"/>
+                <Label Content="Freq Limit" Margin="0,120,139,0" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+                <Label Content="DB" Margin="0,145,177,0" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+                <xctk:DecimalUpDown x:Name="Battle_DB" HorizontalAlignment="Right" Margin="0,148,10,0" Width="117" Watermark="Pokedex ID" TextAlignment="Center" VerticalAlignment="Top" Value="0" Text="" Minimum="0" Maximum="28"/>
+                <Label Content="AC" Margin="0,170,177,0" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+                <xctk:DecimalUpDown x:Name="Battle_AC" HorizontalAlignment="Right" Margin="0,173,10,0" Width="117" Watermark="Pokedex ID" TextAlignment="Center" VerticalAlignment="Top" Value="0" Text="" Minimum="0" Maximum="28"/>
+                <Button x:Name="Effect_Designer" Content="Open Effect Designer" HorizontalAlignment="Left" Margin="372.47,200.96,0,0" VerticalAlignment="Top" Width="191.53" Click="Effect_Designer_Click"/>
             </Grid>
         </GroupBox>
-        <GroupBox x:Name="groupBox2" Header="Battle Effects" HorizontalAlignment="Left" Margin="10,570,0,0" VerticalAlignment="Top" Height="190" Width="395">
-            <Grid Margin="0">
-                <Label x:Name="label1" Content="Feature not implemented...&#xD;&#xA;This depends on the&#xD;&#xA;Battle Effect manager lib" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-            </Grid>
-        </GroupBox>
-        <Button x:Name="Cancel_Button" Content="Cancel" HorizontalAlignment="Left" Margin="521,570,0,0" VerticalAlignment="Top" Width="75" IsCancel="True"/>
-        <Button x:Name="Submit_Button" Content="Submit" HorizontalAlignment="Left" Margin="441,570,0,0" VerticalAlignment="Top" Width="75" IsDefault="True" Click="Submit_Button_Click"/>
+        <Button x:Name="Cancel_Button" Content="Close" HorizontalAlignment="Left" Margin="521,570,0,0" VerticalAlignment="Top" Width="75" IsCancel="True" Click="Cancel_Button_Click"/>
+        <Button x:Name="Submit_Button" Content="Save &amp; Close" HorizontalAlignment="Left" Margin="441,570,0,0" VerticalAlignment="Top" Width="75" Click="Submit_Button_Click"/>
+        <Button x:Name="RawData_Button" Content="Import / Export" HorizontalAlignment="Left" Margin="441,619.92,0,0" VerticalAlignment="Top" Width="155" Click="RawData_Button_Click"/>
+        <Button x:Name="Save_Button" Content="Save" HorizontalAlignment="Left" Margin="441,594.96,0,0" VerticalAlignment="Top" Width="75" Click="Save_Button_Click"/>
 
     </Grid>
 </Window>

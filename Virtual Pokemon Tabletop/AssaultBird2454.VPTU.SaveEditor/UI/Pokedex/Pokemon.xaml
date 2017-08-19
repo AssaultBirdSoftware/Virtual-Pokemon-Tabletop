@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Pokedex"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Pokemon"
         mc:Ignorable="d"
-        Title="Pokemon" ResizeMode="NoResize" Width="1438" Height="814.5">
+        Title="Pokemon" ResizeMode="NoResize" Width="1438" Height="814.5" WindowStartupLocation="CenterOwner">
     <Grid>
         <GroupBox x:Name="G_BasicInfo" Header="Basic Information" HorizontalAlignment="Left" VerticalAlignment="Top" Width="465">
             <Grid Margin="0">
@@ -59,10 +59,10 @@
                         <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/Unknown_Pokemon_Sprite.png"/>
                     </Border.Background>
                 </Border>
-                <Button x:Name="button" Content="Select Normal" HorizontalAlignment="Left" Margin="0,110,0,0" Width="100" VerticalAlignment="Top"/>
-                <Button x:Name="button_Copy" Content="Select Shiny" HorizontalAlignment="Left" Margin="105,110,0,0" Width="100" VerticalAlignment="Top"/>
-                <Button x:Name="button_Copy1" Content="Select Egg" Margin="210,110,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75"/>
-                <Button x:Name="button_Copy2" Content="Import Resource" Margin="0,134.96,0.697,0" VerticalAlignment="Top"/>
+                <Button x:Name="SelectIMG_Normal" Content="Select Normal" HorizontalAlignment="Left" Margin="0,110,0,0" Width="100" VerticalAlignment="Top" Click="SelectIMG_Normal_Click"/>
+                <Button x:Name="SelectIMG_Shiny" Content="Select Shiny" HorizontalAlignment="Left" Margin="105,110,0,0" Width="100" VerticalAlignment="Top" Click="SelectIMG_Shiny_Click"/>
+                <Button x:Name="SelectIMG_Egg" Content="Select Egg" Margin="210,110,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75" Click="SelectIMG_Egg_Click"/>
+                <Button x:Name="Import_Resource" Content="Import Resource" Margin="0,134.96,0.697,0" VerticalAlignment="Top"/>
             </Grid>
         </GroupBox>
         <GroupBox x:Name="G_BaseStats" Header="Species Base Stats" Margin="302,187,0,0" HorizontalAlignment="Left" Width="163" Height="187" VerticalAlignment="Top">
@@ -97,7 +97,7 @@
                             <GridViewColumn Header="Level Up" Width="50px" DisplayMemberBinding="{Binding LevelUp_Move}"/>
                             <GridViewColumn Header="Tutor" Width="50px" DisplayMemberBinding="{Binding Tutor_Move}"/>
                             <GridViewColumn Header="Egg" Width="50px" DisplayMemberBinding="{Binding Egg_Move}"/>
-                            <GridViewColumn Header="Default" Width="50px" DisplayMemberBinding="{Binding Default_Move}"/>
+                            <GridViewColumn Header="TM / HM" Width="50px" DisplayMemberBinding="{Binding TMHM_Move}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -209,8 +209,8 @@
                 <xctk:DecimalUpDown x:Name="Skill_Intuition_Mod" HorizontalAlignment="Left" Margin="10,501.32,0,0" VerticalAlignment="Top" Width="80" Grid.Column="2" Value="0" TextAlignment="Center"/>
             </Grid>
         </GroupBox>
-        <Button x:Name="Cancel_Button" Content="Cancel" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="82" Click="Cancel_Button_Click"/>
-        <Button x:Name="Add_Button" Content="Add / Update" HorizontalAlignment="Right" Margin="0,0,97,10" VerticalAlignment="Bottom" Width="82" Click="Add_Button_Click" IsDefault="True"/>
+        <Button x:Name="Cancel_Button" Content="Cancel" HorizontalAlignment="Right" Margin="0,0,10,59.92" VerticalAlignment="Bottom" Width="82" Click="Cancel_Button_Click"/>
+        <Button x:Name="Add_Button" Content="Save &amp; Close" HorizontalAlignment="Right" Margin="0,0,97,59.92" VerticalAlignment="Bottom" Width="82" Click="Add_Button_Click" IsDefault="True"/>
         <GroupBox x:Name="G_Moves_Copy" Header="Ability" HorizontalAlignment="Left" Margin="0,379,0,0" VerticalAlignment="Top" Height="176" Width="465" Background="Red" BorderBrush="Red" Foreground="Black">
             <Grid Margin="0">
                 <Grid.ColumnDefinitions>
@@ -236,6 +236,8 @@
         <GroupBox x:Name="G_SpecialCapabilities" Header="Special Capabilities" Margin="373,560,0,0" VerticalAlignment="Top" Height="211" HorizontalAlignment="Left" Width="677">
             <WrapPanel x:Name="Capabilities_Wrap" Margin="0"/>
         </GroupBox>
+        <Button x:Name="Save_Button" Content="Save" HorizontalAlignment="Right" Margin="0,0,97,34.96" VerticalAlignment="Bottom" Width="82" Click="Save_Button_Click"/>
+        <Button x:Name="RawData_Button" Content="Import &amp; Export" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="169" Click="RawData_Button_Click"/>
 
     </Grid>
 </Window>

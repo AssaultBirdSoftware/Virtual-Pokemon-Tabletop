@@ -74,5 +74,15 @@ namespace AssaultBird2454.VPTU.Pokedex.Pokemon
         public List<Link_Moves> Moves { get; set; }
         public List<Link_Ability> Abilitys { get; set; }
         public List<Link_Evolutions> Evolutions { get; set; }
+
+        public void Dispose()
+        {
+            Moves = null;
+            Abilitys = null;
+            Evolutions = null;
+            Species_Capability_Data = null;
+            Species_SpecialCapability = null;
+            Species_Skill_Data = null;
+        }
     }
 }

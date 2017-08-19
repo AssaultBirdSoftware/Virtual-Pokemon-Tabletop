@@ -69,6 +69,7 @@ namespace Launcher
                 return AssemblyDirectory + "/SaveEditor.exe";
             }
         }
+        internal Notice.MessageHandeler NoticeHandel { get; set; }
         #endregion
 
         #region Settings
@@ -77,7 +78,8 @@ namespace Launcher
         /// </summary>
         private void Load_Settings()
         {
-            using(FileStream stream = new FileStream(ConfigFile_Directory, FileMode.Open)){
+            using (FileStream stream = new FileStream(ConfigFile_Directory, FileMode.Open))
+            {
                 //string configjson =
             }
         }
@@ -92,23 +94,58 @@ namespace Launcher
 
         public MainWindow()
         {
+            try
+            {
+                if (File.Exists(AssemblyDirectory + "\\Launcher.pid"))
+                {
+                    if (Process.GetProcessById(Convert.ToInt32(File.ReadAllText(AssemblyDirectory + "\\Launcher.pid"))).ProcessName == Process.GetCurrentProcess().ProcessName)
+                    {
+                        MessageBox.Show("Process Already Running!");
+                        this.Close();
+                        return;
+                    }
+                    else
+                    {
+                        File.Delete(AssemblyDirectory + "\\Launcher.pid");
+                    }
+                }
+
+                File.WriteAllText(AssemblyDirectory + "\\Launcher.pid", Process.GetCurrentProcess().Id.ToString());
+            }
+            catch
+            {
+
+            }
+
+            if (Directory.Exists(AssemblyDirectory + "\\Updater"))
+            {
+                foreach(string file in Directory.GetFiles(AssemblyDirectory + "\\Updater"))
+                {
+                    File.Delete(file);
+                }
+                Directory.Delete(AssemblyDirectory + "\\Updater");// Delete the Update Folder
+            }
+
             InitializeComponent();
 
             if (File.Exists(ConfigFile_Directory))
             {
-
+                VPTU_Settings = Newtonsoft.Json.JsonConvert.DeserializeObject<Settings>(File.ReadAllText(ConfigFile_Directory));// Loads the settings file
             }
             else
             {
-
+                VPTU_Settings = new Settings();// Creates a settings class
             }
 
-            VPTU_Settings = new Settings();
+            Update.AutoUpdater.CheckForUpdates();// Check for updates
+
+            NoticeHandel = new Notice.MessageHandeler();// Creates a Notice Class
+            NoticeHandel.GetMessages(this);// Gets the notices and loads them
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         /// <summary>
@@ -140,5 +177,10 @@ namespace Launcher
             SaveEditProcess.Start();
         }
         #endregion
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            File.Delete(AssemblyDirectory + "\\Launcher.pid");
+        }
     }
 }
