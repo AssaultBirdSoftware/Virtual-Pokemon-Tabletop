@@ -282,6 +282,10 @@
       <Project>{0b460ae1-322a-43bd-8f5a-4d383506cb8e}</Project>
       <Name>SaveManager</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AssaultBird2454.VPTU.Server\Server.csproj">
+      <Project>{1dd97708-079f-47e0-96a7-6b50d1674437}</Project>
+      <Name>Server</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\VPTU_Logo.png">

@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{87ACC84C-0582-4B05-8BFE-A07286CD365C}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AssaultBird2454.VPTU.Networking</RootNamespace>
-    <AssemblyName>AssaultBird2454.VPTU.Networking</AssemblyName>
+    <ProjectGuid>{CFC60B1C-1416-4E09-8999-3F6FBEAF912E}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>AssaultBird2454.VPTU.ServerConsole</RootNamespace>
+    <AssemblyName>AssaultBird2454.VPTU.ServerConsole</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,12 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,30 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client\TCP\Command Handeler\Command.cs" />
-    <Compile Include="Client\TCP\Command Handeler\CommandHandeler.cs" />
-    <Compile Include="Client\TCP\Data.cs" />
-    <Compile Include="Client\TCP\Delegates.cs" />
-    <Compile Include="Client\TCP\Exceptions.cs" />
-    <Compile Include="Client\TCP\TCP Client.cs" />
-    <Compile Include="Client\UDP\UDP Client.cs" />
-    <Compile Include="Data\Network Data.cs" />
-    <Compile Include="Data\States.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Server\TCP\Command Handeler\Command.cs" />
-    <Compile Include="Server\TCP\Command Handeler\CommandHandeler.cs" />
-    <Compile Include="Server\TCP\Data.cs" />
-    <Compile Include="Server\TCP\Delegates.cs" />
-    <Compile Include="Server\TCP\Exceptions.cs" />
-    <Compile Include="Server\TCP\TCP ClientNode.cs" />
-    <Compile Include="Server\TCP\TCP Server.cs" />
-    <Compile Include="Server\UDP\UDP ClientNode.cs" />
-    <Compile Include="Server\UDP\UDP Server.cs" />
-    <Compile Include="Shared\Helper.cs" />
-    <Compile Include="Shared\StateObject.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AssaultBird2454.VPTU.Server\Server.csproj">
+      <Project>{1dd97708-079f-47e0-96a7-6b50d1674437}</Project>
+      <Name>Server</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

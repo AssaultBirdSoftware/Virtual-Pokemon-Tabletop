@@ -34,7 +34,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         {
             Server = _Server;// Sets the server
             Client = _Client;// Sets the client
-            StateObject = new StateObject(Client.Client, 32768);// Creates a new state object
+            StateObject = new StateObject(Client.Client, 32768);// Creates a new state object 32768
             ID = _ID;// Sets the ID
             ReadQueWait = new EventWaitHandle(false, EventResetMode.AutoReset, ID + " ReadQue");// Creates the handel event
             NetMode = NetworkMode.Standard;
@@ -70,7 +70,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         /// <summary>
         /// Tells the server to start listening to incoming data
         /// </summary>
-        private void StartListening()
+        private void StartListening(bool reset = false)
         {
             if (NetMode == NetworkMode.Standard)
             {
@@ -108,9 +108,8 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
                 {
                     if (so.sb.Length > 1)
                     {
-                        //All of the data has been read, so displays it to the console
-                        string[] strContent = so.sb.ToString().Split(delimiter, StringSplitOptions.RemoveEmptyEntries);// Splits the string
-                        foreach (string data in strContent)// While Data is abaliable
+                        string data = Helper.GetUntilOrEmpty(so.sb, "|<EOD>|");
+                        if (!String.IsNullOrWhiteSpace(data))
                         {
                             DataQue.Enqueue(data);// Ques the data
                             ReadQueWait.Set();// Signals new data is avaliable
@@ -118,10 +117,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
                     }
                 }
 
-                if (NetMode == NetworkMode.Standard)
-                {
-                    StartListening();// Starts Listening Again
-                }
+                StartListening();// Starts Listening Again
             }
             else
             {
@@ -150,9 +146,8 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
                 {
                     if (so.sb.Length > 1)
                     {
-                        //All of the data has been read, so displays it to the console
-                        string[] strContent = so.sb.ToString().Split(delimiter, StringSplitOptions.RemoveEmptyEntries);// Splits the string
-                        foreach (string data in strContent)// While Data is abaliable
+                        string data = Helper.GetUntilOrEmpty(so.sb, "|<EOD>|");
+                        if (!String.IsNullOrWhiteSpace(data))
                         {
                             DataQue.Enqueue(data);// Ques the data
                             ReadQueWait.Set();// Signals new data is avaliable
@@ -160,10 +155,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
                     }
                 }
 
-                if (NetMode == NetworkMode.SSL)
-                {
-                    StartListening();// Starts Listening Again
-                }
+                StartListening();// Starts Listening Again
             }
             else
             {

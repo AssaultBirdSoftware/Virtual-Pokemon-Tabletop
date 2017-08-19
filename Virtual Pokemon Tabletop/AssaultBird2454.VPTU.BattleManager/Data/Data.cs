@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 namespace AssaultBird2454.VPTU.BattleManager.Data
 {
     /// <summary>
+    /// Defines the natures that a pokemon can have
+    /// </summary>
+    public enum Nature { Cuddly = 1, Distracted, Proud, Decisive, Patient, Desperate, Lonely, Adamant, Naughty, Brave, Stark, Bold, Impish, Lax, Relaxed, Curious, Modest, Mild, Rash, Quiet, Dreamy, Calm, Gentle, Careful, Sassy, Skittish, Timid, Hasty, Jolly, Naive, Composed, Hardy, Docile, Bashful, Quirky, Serious }
+    /// <summary>
     /// Defines Pokemon & Move Types
     /// </summary>
     public enum Type { Normal = 1, Fire, Fighting, Water, Flying, Grass, Poison, Electric, Ground, Psychic, Rock, Ice, Bug, Dragon, Ghost, Dark, Steel, Fairy }

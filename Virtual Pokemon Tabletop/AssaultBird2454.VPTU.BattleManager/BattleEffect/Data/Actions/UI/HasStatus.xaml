@@ -12,7 +12,7 @@
         <Label Content="Checked Effects" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="HasAll" Content="Has all status effects" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
         <Label Content="Function to invoke" HorizontalAlignment="Left" Margin="10,61,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="FunctionName" HorizontalAlignment="Left" Margin="124,61,0,0" VerticalAlignment="Top" Width="169" Height="26"/>
+        <TextBox x:Name="Invoke_Function_Name" HorizontalAlignment="Left" Height="23" Margin="124,65,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="169"/>
 
     </Grid>
 </UserControl>

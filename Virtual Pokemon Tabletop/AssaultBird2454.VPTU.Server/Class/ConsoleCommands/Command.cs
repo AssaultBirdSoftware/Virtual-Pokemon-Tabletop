@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AssaultBird2454.VPTU.BattleManager.Entity
+namespace AssaultBird2454.VPTU.Server.Class.ConsoleCommands
 {
-    public class EntityGroup
+    class Command
     {
     }
 }

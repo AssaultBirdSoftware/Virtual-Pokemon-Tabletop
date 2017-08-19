@@ -1,4 +1,5 @@
 ﻿using AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Link;
+using AssaultBird2454.VPTU.Pokedex.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,27 +55,27 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
             //Basic Data
             Basic_Type1.ItemsSource = Enum.GetValues(typeof(BattleManager.Data.Type));
             Basic_Type2.ItemsSource = Enum.GetValues(typeof(BattleManager.Data.Type));
-            Basic_Weight.ItemsSource = Enum.GetValues(typeof(BattleManager.Entity.WeightClass));
-            Basic_Size.ItemsSource = Enum.GetValues(typeof(BattleManager.Entity.SizeClass));
+            Basic_Weight.ItemsSource = Enum.GetValues(typeof(WeightClass));
+            Basic_Size.ItemsSource = Enum.GetValues(typeof(SizeClass));
 
             //Skill Data
-            Skill_Acrobatics_Rank.ItemsSource = Enum.GetValues(typeof(BattleManager.Entity.SkillRank));
-            Skill_Athletics_Rank.ItemsSource = Enum.GetValues(typeof(BattleManager.Entity.SkillRank));
-            Skill_Charm_Rank.ItemsSource = Enum.GetValues(typeof(BattleManager.Entity.SkillRank));
-            Skill_Combat_Rank.ItemsSource = Enum.GetValues(typeof(BattleManager.Entity.SkillRank));
-            Skill_Command_Rank.ItemsSource = Enum.GetValues(typeof(BattleManager.Entity.SkillRank));
-            Skill_Focus_Rank.ItemsSource = Enum.GetValues(typeof(BattleManager.Entity.SkillRank));
-            Skill_GeneralEDU_Rank.ItemsSource = Enum.GetValues(typeof(BattleManager.Entity.SkillRank));
-            Skill_Gulie_Rank.ItemsSource = Enum.GetValues(typeof(BattleManager.Entity.SkillRank));
-            Skill_Intimidate_Rank.ItemsSource = Enum.GetValues(typeof(BattleManager.Entity.SkillRank));
-            Skill_Intuition_Rank.ItemsSource = Enum.GetValues(typeof(BattleManager.Entity.SkillRank));
-            Skill_MedicineEDU_Rank.ItemsSource = Enum.GetValues(typeof(BattleManager.Entity.SkillRank));
-            Skill_OccultEDU_Rank.ItemsSource = Enum.GetValues(typeof(BattleManager.Entity.SkillRank));
-            Skill_Perception_Rank.ItemsSource = Enum.GetValues(typeof(BattleManager.Entity.SkillRank));
-            Skill_PokemonEDU_Rank.ItemsSource = Enum.GetValues(typeof(BattleManager.Entity.SkillRank));
-            Skill_Stealth_Rank.ItemsSource = Enum.GetValues(typeof(BattleManager.Entity.SkillRank));
-            Skill_Survival_Rank.ItemsSource = Enum.GetValues(typeof(BattleManager.Entity.SkillRank));
-            Skill_TechnologyEDU_Rank.ItemsSource = Enum.GetValues(typeof(BattleManager.Entity.SkillRank));
+            Skill_Acrobatics_Rank.ItemsSource = Enum.GetValues(typeof(SkillRank));
+            Skill_Athletics_Rank.ItemsSource = Enum.GetValues(typeof(SkillRank));
+            Skill_Charm_Rank.ItemsSource = Enum.GetValues(typeof(SkillRank));
+            Skill_Combat_Rank.ItemsSource = Enum.GetValues(typeof(SkillRank));
+            Skill_Command_Rank.ItemsSource = Enum.GetValues(typeof(SkillRank));
+            Skill_Focus_Rank.ItemsSource = Enum.GetValues(typeof(SkillRank));
+            Skill_GeneralEDU_Rank.ItemsSource = Enum.GetValues(typeof(SkillRank));
+            Skill_Gulie_Rank.ItemsSource = Enum.GetValues(typeof(SkillRank));
+            Skill_Intimidate_Rank.ItemsSource = Enum.GetValues(typeof(SkillRank));
+            Skill_Intuition_Rank.ItemsSource = Enum.GetValues(typeof(SkillRank));
+            Skill_MedicineEDU_Rank.ItemsSource = Enum.GetValues(typeof(SkillRank));
+            Skill_OccultEDU_Rank.ItemsSource = Enum.GetValues(typeof(SkillRank));
+            Skill_Perception_Rank.ItemsSource = Enum.GetValues(typeof(SkillRank));
+            Skill_PokemonEDU_Rank.ItemsSource = Enum.GetValues(typeof(SkillRank));
+            Skill_Stealth_Rank.ItemsSource = Enum.GetValues(typeof(SkillRank));
+            Skill_Survival_Rank.ItemsSource = Enum.GetValues(typeof(SkillRank));
+            Skill_TechnologyEDU_Rank.ItemsSource = Enum.GetValues(typeof(SkillRank));
 
             //Capabilities Data
             Capabilities_NatureWalk_1.ItemsSource = Enum.GetValues(typeof(BattleManager.Data.NatureWalk_Type));
@@ -295,29 +296,29 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
             PokemonData.Species_DexID = Convert.ToDecimal(Basic_ID.Value);
             PokemonData.Species_Type1 = (BattleManager.Data.Type)Basic_Type1.SelectedItem;
             PokemonData.Species_Type2 = (BattleManager.Data.Type)Basic_Type2.SelectedItem;
-            PokemonData.Species_WeightClass = (BattleManager.Entity.WeightClass)Basic_Weight.SelectedItem;
-            PokemonData.Species_SizeClass = (BattleManager.Entity.SizeClass)Basic_Size.SelectedItem;
+            PokemonData.Species_WeightClass = (WeightClass)Basic_Weight.SelectedItem;
+            PokemonData.Species_SizeClass = (SizeClass)Basic_Size.SelectedItem;
             #endregion
             //Save Pokemon Skill Data
             #region Skill Data
             //Skill Rank Data
-            PokemonData.Species_Skill_Data.Acrobatics_Rank = (BattleManager.Entity.SkillRank)Skill_Acrobatics_Rank.SelectedItem;
-            PokemonData.Species_Skill_Data.Athletics_Rank = (BattleManager.Entity.SkillRank)Skill_Athletics_Rank.SelectedItem;
-            PokemonData.Species_Skill_Data.Charm_Rank = (BattleManager.Entity.SkillRank)Skill_Charm_Rank.SelectedItem;
-            PokemonData.Species_Skill_Data.Combat_Rank = (BattleManager.Entity.SkillRank)Skill_Combat_Rank.SelectedItem;
-            PokemonData.Species_Skill_Data.Command_Rank = (BattleManager.Entity.SkillRank)Skill_Command_Rank.SelectedItem;
-            PokemonData.Species_Skill_Data.Focus_Rank = (BattleManager.Entity.SkillRank)Skill_Focus_Rank.SelectedItem;
-            PokemonData.Species_Skill_Data.General_Rank = (BattleManager.Entity.SkillRank)Skill_GeneralEDU_Rank.SelectedItem;
-            PokemonData.Species_Skill_Data.Guile_Rank = (BattleManager.Entity.SkillRank)Skill_Gulie_Rank.SelectedItem;
-            PokemonData.Species_Skill_Data.Intimidate_Rank = (BattleManager.Entity.SkillRank)Skill_Intimidate_Rank.SelectedItem;
-            PokemonData.Species_Skill_Data.Intuition_Rank = (BattleManager.Entity.SkillRank)Skill_Intuition_Rank.SelectedItem;
-            PokemonData.Species_Skill_Data.Medicine_Rank = (BattleManager.Entity.SkillRank)Skill_MedicineEDU_Rank.SelectedItem;
-            PokemonData.Species_Skill_Data.Occult_Rank = (BattleManager.Entity.SkillRank)Skill_OccultEDU_Rank.SelectedItem;
-            PokemonData.Species_Skill_Data.Perception_Rank = (BattleManager.Entity.SkillRank)Skill_Perception_Rank.SelectedItem;
-            PokemonData.Species_Skill_Data.Pokemon_Rank = (BattleManager.Entity.SkillRank)Skill_PokemonEDU_Rank.SelectedItem;
-            PokemonData.Species_Skill_Data.Stealth_Rank = (BattleManager.Entity.SkillRank)Skill_Stealth_Rank.SelectedItem;
-            PokemonData.Species_Skill_Data.Survival_Rank = (BattleManager.Entity.SkillRank)Skill_Survival_Rank.SelectedItem;
-            PokemonData.Species_Skill_Data.Technology_Rank = (BattleManager.Entity.SkillRank)Skill_TechnologyEDU_Rank.SelectedItem;
+            PokemonData.Species_Skill_Data.Acrobatics_Rank = (SkillRank)Skill_Acrobatics_Rank.SelectedItem;
+            PokemonData.Species_Skill_Data.Athletics_Rank = (SkillRank)Skill_Athletics_Rank.SelectedItem;
+            PokemonData.Species_Skill_Data.Charm_Rank = (SkillRank)Skill_Charm_Rank.SelectedItem;
+            PokemonData.Species_Skill_Data.Combat_Rank = (SkillRank)Skill_Combat_Rank.SelectedItem;
+            PokemonData.Species_Skill_Data.Command_Rank = (SkillRank)Skill_Command_Rank.SelectedItem;
+            PokemonData.Species_Skill_Data.Focus_Rank = (SkillRank)Skill_Focus_Rank.SelectedItem;
+            PokemonData.Species_Skill_Data.General_Rank = (SkillRank)Skill_GeneralEDU_Rank.SelectedItem;
+            PokemonData.Species_Skill_Data.Guile_Rank = (SkillRank)Skill_Gulie_Rank.SelectedItem;
+            PokemonData.Species_Skill_Data.Intimidate_Rank = (SkillRank)Skill_Intimidate_Rank.SelectedItem;
+            PokemonData.Species_Skill_Data.Intuition_Rank = (SkillRank)Skill_Intuition_Rank.SelectedItem;
+            PokemonData.Species_Skill_Data.Medicine_Rank = (SkillRank)Skill_MedicineEDU_Rank.SelectedItem;
+            PokemonData.Species_Skill_Data.Occult_Rank = (SkillRank)Skill_OccultEDU_Rank.SelectedItem;
+            PokemonData.Species_Skill_Data.Perception_Rank = (SkillRank)Skill_Perception_Rank.SelectedItem;
+            PokemonData.Species_Skill_Data.Pokemon_Rank = (SkillRank)Skill_PokemonEDU_Rank.SelectedItem;
+            PokemonData.Species_Skill_Data.Stealth_Rank = (SkillRank)Skill_Stealth_Rank.SelectedItem;
+            PokemonData.Species_Skill_Data.Survival_Rank = (SkillRank)Skill_Survival_Rank.SelectedItem;
+            PokemonData.Species_Skill_Data.Technology_Rank = (SkillRank)Skill_TechnologyEDU_Rank.SelectedItem;
 
             //Skill Mod Data
             PokemonData.Species_Skill_Data.Acrobatics_Mod = (int)Skill_Acrobatics_Mod.Value;
