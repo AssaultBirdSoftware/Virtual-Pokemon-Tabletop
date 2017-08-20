@@ -630,7 +630,8 @@ namespace AssaultBird2454.VPTU.SaveEditor
         #region Right SideBar Events
         private void EntityManager_AddPokemon_Click(object sender, RoutedEventArgs e)
         {
-
+            UI.Entity.Pokemon_Character data = new UI.Entity.Pokemon_Character(SaveManager);
+            data.Show();
         }
         #endregion
 
@@ -653,7 +654,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
                 {
                     foreach(EntityManager.Pokemon.PokemonCharacter pokemon in SaveManager.SaveData.Pokemon)
                     {
-                        EntityManager_DataBind db = new EntityManager_DataBind(pokemon.Species_DexID, pokemon.Name, pokemon.Species_DexID + " (" + "Name Here" + ")", "", EntityManager_DataType.WildPokemon);
+                        EntityManager_DataBind db = new EntityManager_DataBind(pokemon.Species_DexID, pokemon.Name, pokemon.Species_DexID + " (" + SaveManager.SaveData.PokedexData.Pokemon.Find(x => x.Species_DexID == pokemon.Species_DexID).Species_Name + ")", "", EntityManager_DataType.WildPokemon);
                         EntityManager_List.Items.Add(db);
                     }
                 }

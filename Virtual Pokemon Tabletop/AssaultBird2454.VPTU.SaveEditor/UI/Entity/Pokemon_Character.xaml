@@ -6,31 +6,205 @@
         xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Entity"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="AssaultBird2454.VPTU.SaveEditor.UI.Entity.Pokemon_Character"
         mc:Ignorable="d"
-        Title="Character Designer - Pokemon" Height="553.563" Width="1115.126">
+        Title="Character Designer - Pokemon" Height="696.063" Width="996.626">
     <Grid>
 
-        <GroupBox x:Name="G_BasicInfo" Header="Basic Information" HorizontalAlignment="Left" VerticalAlignment="Top" Width="465" Margin="0,0,-173,0">
+        <GroupBox x:Name="G_BasicInfo" Header="Basic Information" HorizontalAlignment="Left" VerticalAlignment="Top" Width="849">
             <Grid Margin="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="250*"/>
-                    <ColumnDefinition Width="203*"/>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="135"/>
                 </Grid.ColumnDefinitions>
-                <TextBox x:Name="Basic_Name" Margin="90,4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150"/>
-                <Label Content="Species Name" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <Label Content="Species" Margin="0,26,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                <Label Content="Type 1" HorizontalAlignment="Left" Margin="0,52,0,0" VerticalAlignment="Top"/>
-                <ComboBox x:Name="Basic_Type1" Margin="90,53,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150"/>
-                <Label Content="Type 2" Margin="0,79,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                <ComboBox x:Name="Basic_Type2" Margin="90,80,0,0" HorizontalAlignment="Left" Width="150" VerticalAlignment="Top"/>
-                <Label Content="Size Class" HorizontalAlignment="Left" Margin="0,106,0,0" VerticalAlignment="Top"/>
-                <ComboBox x:Name="Basic_Size" Margin="90,107,0,0" HorizontalAlignment="Left" Width="150" VerticalAlignment="Top"/>
-                <Label Content="Weight Class" Margin="0,133,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                <ComboBox x:Name="Basic_Weight" Margin="90,134,0,0" HorizontalAlignment="Left" Width="150" VerticalAlignment="Top"/>
-                <Label x:Name="label3" Content="Pokedex Description" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="183" Grid.Column="1" HorizontalContentAlignment="Center"/>
-                <TextBox x:Name="Basic_Desc" HorizontalAlignment="Left" Height="119" Margin="10,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Grid.Column="1"/>
-                <ComboBox x:Name="Basic_Species" HorizontalAlignment="Left" Margin="90,27,0,0" VerticalAlignment="Top" Width="150" SelectionChanged="Basic_Species_SelectionChanged"/>
+                <TextBox x:Name="Basic_Name" Margin="90,4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Height="18"/>
+                <Label Content="Species Name" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="85"/>
+                <Label Content="Species" Margin="0,26,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="50"/>
+                <Label Content="Type 1" HorizontalAlignment="Left" Margin="0,52,0,0" VerticalAlignment="Top" Height="26" Width="45"/>
+                <ComboBox x:Name="Basic_Type1" Margin="90,53,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Height="22"/>
+                <Label Content="Type 2" Margin="0,79,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="45"/>
+                <ComboBox x:Name="Basic_Type2" Margin="90,80,0,0" HorizontalAlignment="Left" Width="150" VerticalAlignment="Top" Height="22"/>
+                <Label Content="Size Class" HorizontalAlignment="Left" Margin="0,106,0,0" VerticalAlignment="Top" Height="26" Width="61"/>
+                <ComboBox x:Name="Basic_Size" Margin="90,107,0,0" HorizontalAlignment="Left" Width="150" VerticalAlignment="Top" Height="22"/>
+                <Label Content="Weight Class" Margin="0,133,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="78"/>
+                <ComboBox x:Name="Basic_Weight" Margin="90,134,0,0" HorizontalAlignment="Left" Width="150" VerticalAlignment="Top" Height="22"/>
+                <Label x:Name="label3" Content="Pokedex Notes" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="183" Grid.Column="2" HorizontalContentAlignment="Center" Height="26"/>
+                <TextBox x:Name="Basic_Desc" HorizontalAlignment="Left" Height="119" Margin="10,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Grid.Column="2"/>
+                <ComboBox x:Name="Basic_Species" HorizontalAlignment="Left" Margin="90,27,0,0" VerticalAlignment="Top" Width="150" SelectionChanged="Basic_Species_SelectionChanged" Height="22"/>
+                <RadioButton x:Name="Breeding_MaleOnly" Content="Male" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="3" Margin="10,7,0,0" Height="15" Width="45"/>
+                <RadioButton x:Name="Breeding_FemaleOnly" Content="Female" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,27,0,0" Grid.Column="3" Height="15" Width="57"/>
+                <RadioButton x:Name="Breeding_Genderless" Content="Genderless" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,47,0,0" Grid.Column="3" Height="15" Width="77"/>
+                <Label Content="Nature" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="78" Grid.Column="1"/>
+                <ComboBox x:Name="Basic_Weight_Copy" Margin="90,1,0,0" HorizontalAlignment="Left" Width="150" VerticalAlignment="Top" Height="22" Grid.Column="1"/>
             </Grid>
         </GroupBox>
+        <TabControl HorizontalAlignment="Left" Height="465" Margin="0,187,0,0" VerticalAlignment="Top" Width="978">
+            <TabItem Header="Moves">
+                <Grid/>
+            </TabItem>
+            <TabItem Header="Abilities">
+                <Grid/>
+            </TabItem>
+            <TabItem Header="Stats" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top">
+                <Grid>
+                    <ListView HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Width="816">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Stat Name" Width="100"/>
+
+                                <GridViewColumn Header="Species Base" DisplayMemberBinding="{Binding Species}" Width="100"/>
+
+                                <GridViewColumn Header="Modifier" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <xctk:IntegerUpDown Width="85" Value="0" Minimum="0" TextAlignment="Center"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Header="Base" Width="100" DisplayMemberBinding="{Binding Base}"/>
+
+
+                                <GridViewColumn Header="Add" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <xctk:IntegerUpDown Width="85" Value="0" Minimum="0" TextAlignment="Center"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Header="Total" DisplayMemberBinding="{Binding Base}" Width="100"/>
+
+                                <GridViewColumn Header="Combat Stage" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <xctk:IntegerUpDown Width="85" Value="0" Minimum="-6" Maximum="6" TextAlignment="Center"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Header="Adjusted" DisplayMemberBinding="{Binding Base}" Width="100"/>
+                            </GridView>
+                        </ListView.View>
+                        <ListViewItem Content="HP" Margin="0"/>
+                        <ListViewItem Content="Attack" Margin="0"/>
+                        <ListViewItem Content="Defence" Margin="0"/>
+                        <ListViewItem Content="Sp. Attack" Margin="0"/>
+                        <ListViewItem Content="Sp. Defence" Margin="0"/>
+                        <ListViewItem Content="Speed" Margin="0"/>
+                    </ListView>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Skills" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top">
+                <Grid>
+                    <GroupBox x:Name="G_Skills_B" Header="Body" HorizontalAlignment="Left" Width="320" Height="437" VerticalAlignment="Top">
+                        <Grid Margin="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="103.104"/>
+                                <ColumnDefinition Width="104.92"/>
+                                <ColumnDefinition Width="98.636"/>
+                            </Grid.ColumnDefinitions>
+                            <Label x:Name="label1" Content="Acrobatics" VerticalAlignment="Top" Height="26" Margin="0,0,37,0"/>
+                            <Label x:Name="label1_Copy" Content="Athletics" Margin="0,30.96,47.27,0" VerticalAlignment="Top" Height="25.96" d:LayoutOverrides="Width"/>
+                            <Label x:Name="label1_Copy1" Content="Combat" Margin="0,61.92,50.636,0" VerticalAlignment="Top" Height="25.96" d:LayoutOverrides="Width"/>
+                            <Label x:Name="label1_Copy2" Content="Intimidate" Margin="0,92.88,38.943,0" VerticalAlignment="Top" Height="25.96" d:LayoutOverrides="Width"/>
+                            <Label x:Name="label1_Copy3" Content="Stealth" Margin="0,123.84,0,0" VerticalAlignment="Top" Height="25.96" HorizontalAlignment="Left"/>
+                            <Label x:Name="label1_Copy4" Content="Survival" Margin="0,154.8,0,0" VerticalAlignment="Top" Height="25.96" HorizontalAlignment="Left"/>
+                            <ComboBox x:Name="Skill_Acrobatics_Rank" Grid.Column="1" Margin="0,4,0,0" VerticalAlignment="Top" Height="21.96" HorizontalAlignment="Left" Width="104.92"/>
+                            <ComboBox x:Name="Skill_Athletics_Rank" Grid.Column="1" Margin="0,34.96,0,0" VerticalAlignment="Top" Height="21.96" HorizontalAlignment="Left" Width="104.92"/>
+                            <ComboBox x:Name="Skill_Combat_Rank" Grid.Column="1" Margin="0,65.92,0,0" VerticalAlignment="Top" Height="21.96" d:LayoutOverrides="TopMargin, BottomMargin" HorizontalAlignment="Left" Width="104.92"/>
+                            <ComboBox x:Name="Skill_Intimidate_Rank" Grid.Column="1" Margin="0,96.88,0,0" VerticalAlignment="Top" Height="21.96" d:LayoutOverrides="TopMargin, BottomMargin" HorizontalAlignment="Left" Width="104.92"/>
+                            <ComboBox x:Name="Skill_Stealth_Rank" Grid.Column="1" Margin="0,127.84,0,0" VerticalAlignment="Top" Height="21.96" d:LayoutOverrides="TopMargin, BottomMargin" HorizontalAlignment="Left" Width="104.92"/>
+                            <ComboBox x:Name="Skill_Survival_Rank" Grid.Column="1" Margin="0,158.8,0,0" VerticalAlignment="Top" Height="21.96" d:LayoutOverrides="TopMargin, BottomMargin" HorizontalAlignment="Left" Width="104.92"/>
+                            <xctk:DecimalUpDown x:Name="Skill_Acrobatics_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,5.96,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
+                            <xctk:DecimalUpDown x:Name="Skill_Athletics_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,36.92,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
+                            <xctk:DecimalUpDown x:Name="Skill_Combat_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,67.88,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
+                            <xctk:DecimalUpDown x:Name="Skill_Intimidate_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,98.84,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
+                            <xctk:DecimalUpDown x:Name="Skill_Stealth_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,129.8,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
+                            <xctk:DecimalUpDown x:Name="Skill_Survival_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,160.76,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox x:Name="G_Skills_M" Header="Mind" Margin="325,0,0,0" HorizontalAlignment="Left" Width="320" Height="437" VerticalAlignment="Top">
+                        <Grid Margin="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="103.104"/>
+                                <ColumnDefinition Width="104.92"/>
+                                <ColumnDefinition Width="98.636"/>
+                            </Grid.ColumnDefinitions>
+                            <Label x:Name="label1_Copy5" Content="General Edu" VerticalAlignment="Top" Height="26" HorizontalAlignment="Left"/>
+                            <Label x:Name="label1_Copy6" Content="Medicine Edu" Margin="0,31,0,0" VerticalAlignment="Top" Height="26" HorizontalAlignment="Left"/>
+                            <Label x:Name="label1_Copy7" Content="Occult Edu" Margin="0,62,0,0" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top"/>
+                            <Label x:Name="label1_Copy8" Content="Pokemon Edu" Margin="0,93,0,0" VerticalAlignment="Top" Height="26" HorizontalAlignment="Left"/>
+                            <Label x:Name="label1_Copy9" Content="Technology Edu" Margin="0,124,0,0" VerticalAlignment="Top" Height="26" HorizontalAlignment="Left"/>
+                            <Label x:Name="label1_Copy10" Content="Gulie" Margin="0,155,0,0" VerticalAlignment="Top" Height="26" HorizontalAlignment="Left"/>
+                            <Label x:Name="label1_Copy15" Content="Perception" Margin="0,186,0,0" VerticalAlignment="Top" Height="26" HorizontalAlignment="Left"/>
+                            <ComboBox x:Name="Skill_GeneralEDU_Rank" Grid.Column="1" VerticalAlignment="Top" Height="22"/>
+                            <ComboBox x:Name="Skill_MedicineEDU_Rank" Grid.Column="1" Margin="0,31,0,0" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105"/>
+                            <ComboBox x:Name="Skill_OccultEDU_Rank" Grid.Column="1" Margin="0,62,0,0" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105"/>
+                            <ComboBox x:Name="Skill_PokemonEDU_Rank" Grid.Column="1" Margin="0,93,0,0" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105"/>
+                            <ComboBox x:Name="Skill_TechnologyEDU_Rank" Grid.Column="1" Margin="0,124,0,0" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105"/>
+                            <ComboBox x:Name="Skill_Gulie_Rank" Grid.Column="1" Margin="0,155,0,0" VerticalAlignment="Top" Height="22"/>
+                            <ComboBox x:Name="Skill_Perception_Rank" Grid.Column="1" Margin="0,186,0,0" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105"/>
+                            <xctk:DecimalUpDown x:Name="Skill_GeneralEDU_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
+                            <xctk:DecimalUpDown x:Name="Skill_MedicineEDU_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
+                            <xctk:DecimalUpDown x:Name="Skill_OccultEDU_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,62,0,0" Width="80" VerticalAlignment="Top" Value="0" TextAlignment="Center"/>
+                            <xctk:DecimalUpDown x:Name="Skill_PokemonEDU_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,93,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
+                            <xctk:DecimalUpDown x:Name="Skill_TechnologyEDU_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,124,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
+                            <xctk:DecimalUpDown x:Name="Skill_Gulie_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,155,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
+                            <xctk:DecimalUpDown x:Name="Skill_Perception_Mod" HorizontalAlignment="Left" Margin="10,186,0,0" VerticalAlignment="Top" Width="80" Grid.Column="2" Value="0" TextAlignment="Center"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox x:Name="G_Skills_S" Header="Spirit" Margin="645,0,0,0" HorizontalAlignment="Left" Width="320" Height="437" VerticalAlignment="Top">
+                        <Grid Margin="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="103.104"/>
+                                <ColumnDefinition Width="104.92"/>
+                                <ColumnDefinition Width="98.636"/>
+                            </Grid.ColumnDefinitions>
+                            <Label x:Name="label1_Copy11" Content="Charm" VerticalAlignment="Top" Height="26" HorizontalAlignment="Left" Width="45"/>
+                            <Label x:Name="label1_Copy12" Content="Command" Margin="0,31,36,0" VerticalAlignment="Top" Height="26"/>
+                            <Label x:Name="label1_Copy13" Content="Focus" Margin="0,62,0,0" VerticalAlignment="Top" Height="26" HorizontalAlignment="Left" Width="40"/>
+                            <Label x:Name="label1_Copy14" Content="Intuition" Margin="0,93,49,0" VerticalAlignment="Top" Height="26"/>
+                            <ComboBox x:Name="Skill_Charm_Rank" Grid.Column="1" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105"/>
+                            <ComboBox x:Name="Skill_Command_Rank" Grid.Column="1" Margin="0,31,0,0" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105"/>
+                            <ComboBox x:Name="Skill_Focus_Rank" Grid.Column="1" Margin="0,62,0,0" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105"/>
+                            <ComboBox x:Name="Skill_Intuition_Rank" Grid.Column="1" Margin="0,93,0,0" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105"/>
+                            <xctk:DecimalUpDown x:Name="Skill_Charm_Mod" HorizontalAlignment="Left" Margin="10,0,0,0" Width="80" Grid.Column="2" VerticalAlignment="Top" Value="0" TextAlignment="Center"/>
+                            <xctk:DecimalUpDown x:Name="Skill_Command_Mod" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Width="80" Grid.Column="2" Value="0" TextAlignment="Center"/>
+                            <xctk:DecimalUpDown x:Name="Skill_Focus_Mod" HorizontalAlignment="Left" Margin="10,62,0,0" Width="80" Grid.Column="2" VerticalAlignment="Top" Value="0" TextAlignment="Center"/>
+                            <xctk:DecimalUpDown x:Name="Skill_Intuition_Mod" HorizontalAlignment="Left" Margin="10,93,0,0" VerticalAlignment="Top" Width="80" Grid.Column="2" Value="0" TextAlignment="Center"/>
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Capabilities" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Grid>
+                    <ComboBox x:Name="Capabilities_NatureWalk_2" HorizontalAlignment="Left" Margin="172,163,0,0" VerticalAlignment="Top" Width="79"/>
+                    <ComboBox x:Name="Capabilities_NatureWalk_1" HorizontalAlignment="Left" Margin="88,163,0,0" VerticalAlignment="Top" Width="79"/>
+                    <Label x:Name="label2" Content="Nature Walks" HorizontalAlignment="Left" Margin="2,159,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="label1_Copy16" Content="Overland" VerticalAlignment="Top" Height="26" Margin="2,4,0,0" HorizontalAlignment="Left"/>
+                    <xctk:DecimalUpDown x:Name="Capabilities_Overland" HorizontalAlignment="Left" Margin="65,8,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
+                    <Label x:Name="label1_Copy17" Content="Swim" VerticalAlignment="Top" Height="26" Margin="2,35,0,0" HorizontalAlignment="Left"/>
+                    <xctk:DecimalUpDown x:Name="Capabilities_Swim" HorizontalAlignment="Left" Margin="65,39,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
+                    <Label x:Name="label1_Copy18" Content="Jump (L)" VerticalAlignment="Top" Height="26" Margin="2,66,0,0" HorizontalAlignment="Left"/>
+                    <xctk:DecimalUpDown x:Name="Capabilities_LongJump" HorizontalAlignment="Left" Margin="65,70,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
+                    <Label x:Name="label1_Copy19" Content="Jump (H)" VerticalAlignment="Top" Height="26" Margin="2,97,0,0" HorizontalAlignment="Left"/>
+                    <xctk:DecimalUpDown x:Name="Capabilities_HighJump" HorizontalAlignment="Left" Margin="65,101,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
+                    <Label x:Name="label1_Copy20" Content="Power" VerticalAlignment="Top" Height="26" Margin="2,128,0,0" HorizontalAlignment="Left"/>
+                    <xctk:DecimalUpDown x:Name="Capabilities_Power" HorizontalAlignment="Left" Margin="65,132,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
+                    <Label x:Name="label1_Copy21" Content="Burrow" VerticalAlignment="Top" Height="26" Margin="158,4,0,0" HorizontalAlignment="Left"/>
+                    <xctk:DecimalUpDown x:Name="Capabilities_Burrow" HorizontalAlignment="Left" Margin="259,8,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
+                    <Label x:Name="label1_Copy22" Content="Sky" VerticalAlignment="Top" Height="26" Margin="158,35,0,0" HorizontalAlignment="Left"/>
+                    <xctk:DecimalUpDown x:Name="Capabilities_Sky" HorizontalAlignment="Left" Margin="259,39,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
+                    <Label x:Name="label1_Copy23" Content="Levitate" VerticalAlignment="Top" Height="26" Margin="158,66,0,0" HorizontalAlignment="Left"/>
+                    <xctk:DecimalUpDown x:Name="Capabilities_Levitate" HorizontalAlignment="Left" Margin="259,70,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
+                    <Label x:Name="label1_Copy24" Content="Teleport" VerticalAlignment="Top" Height="26" Margin="158,97,0,0" HorizontalAlignment="Left"/>
+                    <xctk:DecimalUpDown x:Name="Capabilities_Teleport" HorizontalAlignment="Left" Margin="259,101,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
+                    <Label x:Name="label1_Copy25" Content="Throwing Range" VerticalAlignment="Top" Margin="158,128,0,0" Height="26" HorizontalAlignment="Left"/>
+                    <xctk:DecimalUpDown x:Name="Capabilities_ThrowingRange" HorizontalAlignment="Left" Margin="259,132,0,0" VerticalAlignment="Top" Width="80" IsReadOnly="True" Value="0" TextAlignment="Center"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
 
     </Grid>
 </Window>

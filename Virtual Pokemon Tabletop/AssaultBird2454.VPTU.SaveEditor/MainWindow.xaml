@@ -23,12 +23,22 @@
             </MenuItem>
         </Menu>
         <TabControl x:Name="SaveEditor_TabPanel" Margin="0,17.96,0,21.96" IsEnabled="False">
-            <TabItem Header="Overview" d:IsLocked="True">
+            <TabItem Header="Overview &amp; Settings" d:IsLocked="True">
                 <Grid Background="#FFE5E5E5">
-                    <Label x:Name="label_Copy2" Content="This Tab is in Development..." Foreground="Red" FontSize="72"/>
+                    <TabControl HorizontalAlignment="Left" Height="611" VerticalAlignment="Top" Width="984">
+                        <TabItem Header="Basic Settings">
+                            <Grid Background="#FFE5E5E5"/>
+                        </TabItem>
+                        <TabItem Header="Features">
+                            <Grid Background="#FFE5E5E5"/>
+                        </TabItem>
+                        <TabItem Header="Save File Settings" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top">
+                            <Grid Background="#FFE5E5E5"/>
+                        </TabItem>
+                    </TabControl>
                 </Grid>
             </TabItem>
-            <TabItem Header="Resource Manager">
+            <TabItem Header="Resource Manager" d:IsLocked="True">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -63,7 +73,7 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem Header="Pokedex Manager">
+            <TabItem Header="Pokedex Manager" d:IsLocked="True">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>

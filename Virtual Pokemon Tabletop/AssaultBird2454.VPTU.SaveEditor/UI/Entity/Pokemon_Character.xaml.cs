@@ -36,11 +36,11 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         {
             foreach (VPTU.Pokedex.Pokemon.PokemonData data in Manager.SaveData.PokedexData.Pokemon)
             {
-                MenuItem mi = new MenuItem();
-                mi.Header = data.Species_DexID + " (" + data.Species_Name + ")";
-                mi.Tag = data;
+                ComboBoxItem cbi = new ComboBoxItem();
+                cbi.Content = data.Species_DexID + " (" + data.Species_Name + ")";
+                cbi.Tag = data;
 
-                Basic_Species.Items.Add(mi);
+                Basic_Species.Items.Add(cbi);
             }
         }
 
@@ -74,7 +74,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         /// <param name="e"></param>
         private void Basic_Species_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            MessageBox.Show("Updating pokemon with species data", "Selected Species", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }
