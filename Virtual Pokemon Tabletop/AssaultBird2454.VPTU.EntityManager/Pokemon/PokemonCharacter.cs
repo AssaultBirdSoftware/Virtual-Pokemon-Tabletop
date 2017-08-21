@@ -21,13 +21,12 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         public AssaultBird2454.VPTU.Pokedex.Entity.Capability_Data Capabilities { get; set; }
         public AssaultBird2454.VPTU.Pokedex.Entity.Skill_Data Skills { get; set; }
 
-        public int Base_HP { get; set; }
-        public int Current_HP { get; set; }
-        public int Base_Attack { get; set; }
-        public int Base_Defence { get; set; }
-        public int Base_SpAttack { get; set; }
-        public int Base_SpDefence { get; set; }
-        public int Base_Speed { get; set; }
+        public Data.Stats Stat_HP { get; set; }
+        public Data.Stats Stat_Attack { get; set; }
+        public Data.Stats Stat_Defence { get; set; }
+        public Data.Stats Stat_SpAttack { get; set; }
+        public Data.Stats Stat_SpDefence { get; set; }
+        public Data.Stats Stat_Speed { get; set; }
 
         public int Contest_Beauty { get; set; }
         public int Contest_Cool { get; set; }
@@ -39,6 +38,7 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         public int Special_Evasion { get; set; }
         public int Speed_Evasion { get; set; }
         public int Injuries { get; set; }
+        public int Current_HP { get; set; }
 
         public List<string> Moves { get; set; }
 

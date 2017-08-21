@@ -18,7 +18,7 @@
                     <ColumnDefinition Width="135"/>
                 </Grid.ColumnDefinitions>
                 <TextBox x:Name="Basic_Name" Margin="90,4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Height="18"/>
-                <Label Content="Species Name" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="85"/>
+                <Label Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="85"/>
                 <Label Content="Species" Margin="0,26,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="50"/>
                 <Label Content="Type 1" HorizontalAlignment="Left" Margin="0,52,0,0" VerticalAlignment="Top" Height="26" Width="45"/>
                 <ComboBox x:Name="Basic_Type1" Margin="90,53,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Height="22"/>
@@ -47,17 +47,17 @@
             </TabItem>
             <TabItem Header="Stats" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top">
                 <Grid>
-                    <ListView HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Width="816">
+                    <ListView x:Name="Stats_Editor" HorizontalAlignment="Left" Height="171" VerticalAlignment="Top" Width="972">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Stat Name" Width="100"/>
+                                <GridViewColumn Header="Stat Name" Width="100" DisplayMemberBinding="{Binding Name}"/>
 
                                 <GridViewColumn Header="Species Base" DisplayMemberBinding="{Binding Species}" Width="100"/>
 
                                 <GridViewColumn Header="Modifier" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <xctk:IntegerUpDown Width="85" Value="0" Minimum="0" TextAlignment="Center"/>
+                                            <xctk:IntegerUpDown Width="85" Value="{Binding Mod}" Minimum="0" TextAlignment="Center"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -68,31 +68,29 @@
                                 <GridViewColumn Header="Add" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <xctk:IntegerUpDown Width="85" Value="0" Minimum="0" TextAlignment="Center"/>
+                                            <xctk:IntegerUpDown Width="85" Value="{Binding Add}" Minimum="0" TextAlignment="Center"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn Header="Total" DisplayMemberBinding="{Binding Base}" Width="100"/>
+                                <GridViewColumn Header="Total" DisplayMemberBinding="{Binding Total}" Width="100"/>
 
                                 <GridViewColumn Header="Combat Stage" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <xctk:IntegerUpDown Width="85" Value="0" Minimum="-6" Maximum="6" TextAlignment="Center"/>
+                                            <xctk:IntegerUpDown Width="85" Value="{Binding CS}" Minimum="-6" Maximum="6" TextAlignment="Center"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn Header="Adjusted" DisplayMemberBinding="{Binding Base}" Width="100"/>
+                                <GridViewColumn Header="Adjusted" DisplayMemberBinding="{Binding Adjusted}" Width="100"/>
                             </GridView>
                         </ListView.View>
-                        <ListViewItem Content="HP" Margin="0"/>
-                        <ListViewItem Content="Attack" Margin="0"/>
-                        <ListViewItem Content="Defence" Margin="0"/>
-                        <ListViewItem Content="Sp. Attack" Margin="0"/>
-                        <ListViewItem Content="Sp. Defence" Margin="0"/>
-                        <ListViewItem Content="Speed" Margin="0"/>
                     </ListView>
+                    <Label Content="Curent HP: " HorizontalAlignment="Left" Margin="0,176,0,0" VerticalAlignment="Top"/>
+                    <xctk:IntegerUpDown Margin="70,176,840,234"/>
+                    <Label Content="Curent HP: " HorizontalAlignment="Left" Margin="0,207,0,0" VerticalAlignment="Top"/>
+                    <xctk:IntegerUpDown Margin="70,207,840,203"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Skills" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top">

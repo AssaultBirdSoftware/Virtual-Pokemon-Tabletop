@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using AssaultBird2454.VPTU.EntityManager.Data;
 
 namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
 {
@@ -30,6 +31,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             InitializeComponent();
 
             LoadSpecies();
+            Stats_Test();
         }
 
         private void LoadSpecies()
@@ -49,14 +51,14 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         /// </summary>
         public void Load()
         {
-
+            Reload_Stats();
         }
         /// <summary>
         /// Loads the pokemon from the species list (Used when creating a new pokemon)
         /// </summary>
         public void LoadFromSpecies()
         {
-
+            Reload_Stats();
         }
 
         /// <summary>
@@ -67,6 +69,11 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             
         }
 
+        public void Reload_Stats()
+        {
+
+        }
+
         /// <summary>
         /// Invokes a check to make sure that the species to to change because it will reset everything
         /// </summary>
@@ -75,6 +82,53 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         private void Basic_Species_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             MessageBox.Show("Updating pokemon with species data", "Selected Species", MessageBoxButton.OK, MessageBoxImage.Information);
+            LoadFromSpecies();
+        }
+
+        private void Stats_Test()
+        {
+            EntityManager.Data.Stats HP = new EntityManager.Data.Stats();
+            EntityManager.Data.Stats Attack = new EntityManager.Data.Stats();
+            EntityManager.Data.Stats Defence = new EntityManager.Data.Stats();
+            EntityManager.Data.Stats SpAttack = new EntityManager.Data.Stats();
+            EntityManager.Data.Stats SpDefence = new EntityManager.Data.Stats();
+            EntityManager.Data.Stats Speed = new EntityManager.Data.Stats();
+
+            HP.Species = 5;
+            HP.StatsChanged += StatsChanged;
+            HP.Name = "HP";
+
+            Attack.Species = 8;
+            Attack.StatsChanged += StatsChanged;
+            Attack.Name = "Attack";
+
+            Defence.Species = 7;
+            Defence.StatsChanged += StatsChanged;
+            Defence.Name = "Defence";
+
+            SpAttack.Species = 10;
+            SpAttack.StatsChanged += StatsChanged;
+            SpAttack.Name = "Special Attack";
+
+            SpDefence.Species = 15;
+            SpDefence.StatsChanged += StatsChanged;
+            SpDefence.Name = "Special Defence";
+
+            Speed.Species = 3;
+            Speed.StatsChanged += StatsChanged;
+            Speed.Name = "Speed";
+
+            Stats_Editor.Items.Add(HP);
+            Stats_Editor.Items.Add(Attack);
+            Stats_Editor.Items.Add(Defence);
+            Stats_Editor.Items.Add(SpAttack);
+            Stats_Editor.Items.Add(SpDefence);
+            Stats_Editor.Items.Add(Speed);
+        }
+
+        private void StatsChanged()
+        {
+            Stats_Editor.Items.Refresh();
         }
     }
 }
