@@ -87,48 +87,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
 
         private void Stats_Test()
         {
-            EntityManager.Data.Stats HP = new EntityManager.Data.Stats();
-            EntityManager.Data.Stats Attack = new EntityManager.Data.Stats();
-            EntityManager.Data.Stats Defence = new EntityManager.Data.Stats();
-            EntityManager.Data.Stats SpAttack = new EntityManager.Data.Stats();
-            EntityManager.Data.Stats SpDefence = new EntityManager.Data.Stats();
-            EntityManager.Data.Stats Speed = new EntityManager.Data.Stats();
-
-            HP.Species = 5;
-            HP.StatsChanged += StatsChanged;
-            HP.Name = "HP";
-
-            Attack.Species = 8;
-            Attack.StatsChanged += StatsChanged;
-            Attack.Name = "Attack";
-
-            Defence.Species = 7;
-            Defence.StatsChanged += StatsChanged;
-            Defence.Name = "Defence";
-
-            SpAttack.Species = 10;
-            SpAttack.StatsChanged += StatsChanged;
-            SpAttack.Name = "Special Attack";
-
-            SpDefence.Species = 15;
-            SpDefence.StatsChanged += StatsChanged;
-            SpDefence.Name = "Special Defence";
-
-            Speed.Species = 3;
-            Speed.StatsChanged += StatsChanged;
-            Speed.Name = "Speed";
-
-            Stats_Editor.Items.Add(HP);
-            Stats_Editor.Items.Add(Attack);
-            Stats_Editor.Items.Add(Defence);
-            Stats_Editor.Items.Add(SpAttack);
-            Stats_Editor.Items.Add(SpDefence);
-            Stats_Editor.Items.Add(Speed);
-        }
-
-        private void StatsChanged()
-        {
-            Stats_Editor.Items.Refresh();
+            
         }
     }
 }
