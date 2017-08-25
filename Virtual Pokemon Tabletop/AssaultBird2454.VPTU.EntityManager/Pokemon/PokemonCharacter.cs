@@ -89,13 +89,12 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         }
         #endregion
 
-        #region Value
+        #region Stat Max HP
         public int Stat_HP_Max
         {
             get
             {
-                //HP = Pokemon Level + (HP x3) + 10
-                return 0;
+                return (Level + (HP_Total * 3) + 10);
             }
         }
         #endregion
@@ -229,6 +228,542 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
 
                     default:
                         return Attack_Total;
+                }
+            }
+        }
+        #endregion
+        #endregion
+        #region Defence
+        #region Species Base
+        private int Stat_Defence_SpeciesBase;
+        public int Defence_SpeciesBase
+        {
+            get
+            {
+                return Stat_Defence_SpeciesBase;
+            }
+            set
+            {
+                Stat_Defence_SpeciesBase = value;
+            }
+        }
+        #endregion
+
+        #region Base Mod
+        private int Stat_Defence_BaseMod;
+        public int Defence_BaseMod
+        {
+            get
+            {
+                return Stat_Defence_BaseMod;
+            }
+            set
+            {
+                Stat_Defence_BaseMod = value;
+            }
+        }
+        #endregion
+
+        #region Base Stat
+        public int Defence_Base
+        {
+            get
+            {
+                return Defence_SpeciesBase + Defence_BaseMod;
+            }
+        }
+        #endregion
+
+        #region Add Stat
+        private int Stat_Defence_AddStat;
+        public int Defence_AddStat
+        {
+            get
+            {
+                return Stat_Defence_AddStat;
+            }
+            set
+            {
+                Stat_Defence_AddStat = value;
+            }
+        }
+        #endregion
+
+        #region Total
+        public int Defence_Total
+        {
+            get
+            {
+                return Defence_Base + Defence_AddStat;
+            }
+        }
+        #endregion
+
+        #region Combat Stage
+        private int Stat_Defence_CombatStage;
+        public int Defence_CombatStage
+        {
+            get
+            {
+                return Stat_Defence_CombatStage;
+            }
+            set
+            {
+                Stat_Defence_CombatStage = value;
+            }
+        }
+        #endregion
+
+        #region Combat Stage Adjusted
+        public int Defence_Adjusted
+        {
+            get
+            {
+                switch (Stat_Defence_CombatStage)
+                {
+                    case -6:
+                        return (int)Math.Floor(Defence_Total * 0.4);
+
+                    case -5:
+                        return (int)Math.Floor(Defence_Total * 0.5);
+
+                    case -4:
+                        return (int)Math.Floor(Defence_Total * 0.6);
+
+                    case -3:
+                        return (int)Math.Floor(Defence_Total * 0.7);
+
+                    case -2:
+                        return (int)Math.Floor(Defence_Total * 0.8);
+
+                    case -1:
+                        return (int)Math.Floor(Defence_Total * 0.9);
+
+                    case 0:
+                        return Defence_Total;
+
+                    case 1:
+                        return (int)Math.Floor(Defence_Total * 1.2);
+
+                    case 2:
+                        return (int)Math.Floor(Defence_Total * 1.4);
+
+                    case 3:
+                        return (int)Math.Floor(Defence_Total * 1.6);
+
+                    case 4:
+                        return (int)Math.Floor(Defence_Total * 1.8);
+
+                    case 5:
+                        return (int)Math.Floor(Defence_Total * 2.0);
+
+                    case 6:
+                        return (int)Math.Floor(Defence_Total * 2.2);
+
+                    default:
+                        return Defence_Total;
+                }
+            }
+        }
+        #endregion
+        #endregion
+        #region SpAttack
+        #region Species Base
+        private int Stat_SpAttack_SpeciesBase;
+        public int SpAttack_SpeciesBase
+        {
+            get
+            {
+                return Stat_SpAttack_SpeciesBase;
+            }
+            set
+            {
+                Stat_SpAttack_SpeciesBase = value;
+            }
+        }
+        #endregion
+
+        #region Base Mod
+        private int Stat_SpAttack_BaseMod;
+        public int SpAttack_BaseMod
+        {
+            get
+            {
+                return Stat_SpAttack_BaseMod;
+            }
+            set
+            {
+                Stat_SpAttack_BaseMod = value;
+            }
+        }
+        #endregion
+
+        #region Base Stat
+        public int SpAttack_Base
+        {
+            get
+            {
+                return SpAttack_SpeciesBase + SpAttack_BaseMod;
+            }
+        }
+        #endregion
+
+        #region Add Stat
+        private int Stat_SpAttack_AddStat;
+        public int SpAttack_AddStat
+        {
+            get
+            {
+                return Stat_SpAttack_AddStat;
+            }
+            set
+            {
+                Stat_SpAttack_AddStat = value;
+            }
+        }
+        #endregion
+
+        #region Total
+        public int SpAttack_Total
+        {
+            get
+            {
+                return SpAttack_Base + SpAttack_AddStat;
+            }
+        }
+        #endregion
+
+        #region Combat Stage
+        private int Stat_SpAttack_CombatStage;
+        public int SpAttack_CombatStage
+        {
+            get
+            {
+                return Stat_SpAttack_CombatStage;
+            }
+            set
+            {
+                Stat_SpAttack_CombatStage = value;
+            }
+        }
+        #endregion
+
+        #region Combat Stage Adjusted
+        public int SpAttack_Adjusted
+        {
+            get
+            {
+                switch (Stat_SpAttack_CombatStage)
+                {
+                    case -6:
+                        return (int)Math.Floor(SpAttack_Total * 0.4);
+
+                    case -5:
+                        return (int)Math.Floor(SpAttack_Total * 0.5);
+
+                    case -4:
+                        return (int)Math.Floor(SpAttack_Total * 0.6);
+
+                    case -3:
+                        return (int)Math.Floor(SpAttack_Total * 0.7);
+
+                    case -2:
+                        return (int)Math.Floor(SpAttack_Total * 0.8);
+
+                    case -1:
+                        return (int)Math.Floor(SpAttack_Total * 0.9);
+
+                    case 0:
+                        return SpAttack_Total;
+
+                    case 1:
+                        return (int)Math.Floor(SpAttack_Total * 1.2);
+
+                    case 2:
+                        return (int)Math.Floor(SpAttack_Total * 1.4);
+
+                    case 3:
+                        return (int)Math.Floor(SpAttack_Total * 1.6);
+
+                    case 4:
+                        return (int)Math.Floor(SpAttack_Total * 1.8);
+
+                    case 5:
+                        return (int)Math.Floor(SpAttack_Total * 2.0);
+
+                    case 6:
+                        return (int)Math.Floor(SpAttack_Total * 2.2);
+
+                    default:
+                        return SpAttack_Total;
+                }
+            }
+        }
+        #endregion
+        #endregion
+        #region SpDefence
+        #region Species Base
+        private int Stat_SpDefence_SpeciesBase;
+        public int SpDefence_SpeciesBase
+        {
+            get
+            {
+                return Stat_SpDefence_SpeciesBase;
+            }
+            set
+            {
+                Stat_SpDefence_SpeciesBase = value;
+            }
+        }
+        #endregion
+
+        #region Base Mod
+        private int Stat_SpDefence_BaseMod;
+        public int SpDefence_BaseMod
+        {
+            get
+            {
+                return Stat_SpDefence_BaseMod;
+            }
+            set
+            {
+                Stat_SpDefence_BaseMod = value;
+            }
+        }
+        #endregion
+
+        #region Base Stat
+        public int SpDefence_Base
+        {
+            get
+            {
+                return SpDefence_SpeciesBase + SpDefence_BaseMod;
+            }
+        }
+        #endregion
+
+        #region Add Stat
+        private int Stat_SpDefence_AddStat;
+        public int SpDefence_AddStat
+        {
+            get
+            {
+                return Stat_SpDefence_AddStat;
+            }
+            set
+            {
+                Stat_SpDefence_AddStat = value;
+            }
+        }
+        #endregion
+
+        #region Total
+        public int SpDefence_Total
+        {
+            get
+            {
+                return SpDefence_Base + SpDefence_AddStat;
+            }
+        }
+        #endregion
+
+        #region Combat Stage
+        private int Stat_SpDefence_CombatStage;
+        public int SpDefence_CombatStage
+        {
+            get
+            {
+                return Stat_SpDefence_CombatStage;
+            }
+            set
+            {
+                Stat_SpDefence_CombatStage = value;
+            }
+        }
+        #endregion
+
+        #region Combat Stage Adjusted
+        public int SpDefence_Adjusted
+        {
+            get
+            {
+                switch (Stat_SpDefence_CombatStage)
+                {
+                    case -6:
+                        return (int)Math.Floor(SpDefence_Total * 0.4);
+
+                    case -5:
+                        return (int)Math.Floor(SpDefence_Total * 0.5);
+
+                    case -4:
+                        return (int)Math.Floor(SpDefence_Total * 0.6);
+
+                    case -3:
+                        return (int)Math.Floor(SpDefence_Total * 0.7);
+
+                    case -2:
+                        return (int)Math.Floor(SpDefence_Total * 0.8);
+
+                    case -1:
+                        return (int)Math.Floor(SpDefence_Total * 0.9);
+
+                    case 0:
+                        return SpDefence_Total;
+
+                    case 1:
+                        return (int)Math.Floor(SpDefence_Total * 1.2);
+
+                    case 2:
+                        return (int)Math.Floor(SpDefence_Total * 1.4);
+
+                    case 3:
+                        return (int)Math.Floor(SpDefence_Total * 1.6);
+
+                    case 4:
+                        return (int)Math.Floor(SpDefence_Total * 1.8);
+
+                    case 5:
+                        return (int)Math.Floor(SpDefence_Total * 2.0);
+
+                    case 6:
+                        return (int)Math.Floor(SpDefence_Total * 2.2);
+
+                    default:
+                        return SpDefence_Total;
+                }
+            }
+        }
+        #endregion
+        #endregion
+        #region Speed
+        #region Species Base
+        private int Stat_Speed_SpeciesBase;
+        public int Speed_SpeciesBase
+        {
+            get
+            {
+                return Stat_Speed_SpeciesBase;
+            }
+            set
+            {
+                Stat_Speed_SpeciesBase = value;
+            }
+        }
+        #endregion
+
+        #region Base Mod
+        private int Stat_Speed_BaseMod;
+        public int Speed_BaseMod
+        {
+            get
+            {
+                return Stat_Speed_BaseMod;
+            }
+            set
+            {
+                Stat_Speed_BaseMod = value;
+            }
+        }
+        #endregion
+
+        #region Base Stat
+        public int Speed_Base
+        {
+            get
+            {
+                return Speed_SpeciesBase + Speed_BaseMod;
+            }
+        }
+        #endregion
+
+        #region Add Stat
+        private int Stat_Speed_AddStat;
+        public int Speed_AddStat
+        {
+            get
+            {
+                return Stat_Speed_AddStat;
+            }
+            set
+            {
+                Stat_Speed_AddStat = value;
+            }
+        }
+        #endregion
+
+        #region Total
+        public int Speed_Total
+        {
+            get
+            {
+                return Speed_Base + Speed_AddStat;
+            }
+        }
+        #endregion
+
+        #region Combat Stage
+        private int Stat_Speed_CombatStage;
+        public int Speed_CombatStage
+        {
+            get
+            {
+                return Stat_Speed_CombatStage;
+            }
+            set
+            {
+                Stat_Speed_CombatStage = value;
+            }
+        }
+        #endregion
+
+        #region Combat Stage Adjusted
+        public int Speed_Adjusted
+        {
+            get
+            {
+                switch (Stat_Speed_CombatStage)
+                {
+                    case -6:
+                        return (int)Math.Floor(Speed_Total * 0.4);
+
+                    case -5:
+                        return (int)Math.Floor(Speed_Total * 0.5);
+
+                    case -4:
+                        return (int)Math.Floor(Speed_Total * 0.6);
+
+                    case -3:
+                        return (int)Math.Floor(Speed_Total * 0.7);
+
+                    case -2:
+                        return (int)Math.Floor(Speed_Total * 0.8);
+
+                    case -1:
+                        return (int)Math.Floor(Speed_Total * 0.9);
+
+                    case 0:
+                        return Speed_Total;
+
+                    case 1:
+                        return (int)Math.Floor(Speed_Total * 1.2);
+
+                    case 2:
+                        return (int)Math.Floor(Speed_Total * 1.4);
+
+                    case 3:
+                        return (int)Math.Floor(Speed_Total * 1.6);
+
+                    case 4:
+                        return (int)Math.Floor(Speed_Total * 1.8);
+
+                    case 5:
+                        return (int)Math.Floor(Speed_Total * 2.0);
+
+                    case 6:
+                        return (int)Math.Floor(Speed_Total * 2.2);
+
+                    default:
+                        return Speed_Total;
                 }
             }
         }
