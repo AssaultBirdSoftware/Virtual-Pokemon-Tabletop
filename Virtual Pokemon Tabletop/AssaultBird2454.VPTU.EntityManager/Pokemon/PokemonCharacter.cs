@@ -59,7 +59,18 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         {
             get
             {
-                return HP_SpeciesBase + HP_BaseMod;
+                int NatureBonus = 0;
+
+                if (Nature == BattleManager.Data.Nature.Cuddly || Nature == BattleManager.Data.Nature.Distracted || Nature == BattleManager.Data.Nature.Proud || Nature == BattleManager.Data.Nature.Decisive || Nature == BattleManager.Data.Nature.Patient)
+                {
+                    NatureBonus = 2;
+                }
+                else if (Nature == BattleManager.Data.Nature.Desperate || Nature == BattleManager.Data.Nature.Stark || Nature == BattleManager.Data.Nature.Curious || Nature == BattleManager.Data.Nature.Dreamy || Nature == BattleManager.Data.Nature.Skittish)
+                {
+                    NatureBonus = -2;
+                }
+
+                return HP_SpeciesBase + HP_BaseMod + NatureBonus;
             }
         }
         #endregion
@@ -135,7 +146,18 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         {
             get
             {
-                return Attack_SpeciesBase + Attack_BaseMod;
+                int NatureBonus = 0;
+
+                if (Nature == BattleManager.Data.Nature.Desperate || Nature == BattleManager.Data.Nature.Lonely || Nature == BattleManager.Data.Nature.Adamant || Nature == BattleManager.Data.Nature.Naughty || Nature == BattleManager.Data.Nature.Brave)
+                {
+                    NatureBonus = 2;
+                }
+                else if (Nature == BattleManager.Data.Nature.Cuddly || Nature == BattleManager.Data.Nature.Bold || Nature == BattleManager.Data.Nature.Modest || Nature == BattleManager.Data.Nature.Calm || Nature == BattleManager.Data.Nature.Timid)
+                {
+                    NatureBonus = -2;
+                }
+
+                return Attack_SpeciesBase + Attack_BaseMod + NatureBonus;
             }
         }
         #endregion
@@ -269,7 +291,18 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         {
             get
             {
-                return Defence_SpeciesBase + Defence_BaseMod;
+                int NatureBonus = 0;
+
+                if (Nature == BattleManager.Data.Nature.Stark || Nature == BattleManager.Data.Nature.Bold || Nature == BattleManager.Data.Nature.Impish || Nature == BattleManager.Data.Nature.Lax || Nature == BattleManager.Data.Nature.Relaxed)
+                {
+                    NatureBonus = 2;
+                }
+                else if (Nature == BattleManager.Data.Nature.Distracted || Nature == BattleManager.Data.Nature.Lonely || Nature == BattleManager.Data.Nature.Mild || Nature == BattleManager.Data.Nature.Gentle || Nature == BattleManager.Data.Nature.Hasty)
+                {
+                    NatureBonus = -2;
+                }
+
+                return Defence_SpeciesBase + Defence_BaseMod + NatureBonus;
             }
         }
         #endregion
@@ -403,7 +436,18 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         {
             get
             {
-                return SpAttack_SpeciesBase + SpAttack_BaseMod;
+                int NatureBonus = 0;
+
+                if (Nature == BattleManager.Data.Nature.Curious || Nature == BattleManager.Data.Nature.Modest || Nature == BattleManager.Data.Nature.Mild || Nature == BattleManager.Data.Nature.Rash || Nature == BattleManager.Data.Nature.Quiet)
+                {
+                    NatureBonus = 2;
+                }
+                else if (Nature == BattleManager.Data.Nature.Proud || Nature == BattleManager.Data.Nature.Adamant || Nature == BattleManager.Data.Nature.Impish || Nature == BattleManager.Data.Nature.Careful || Nature == BattleManager.Data.Nature.Jolly)
+                {
+                    NatureBonus = -2;
+                }
+
+                return SpAttack_SpeciesBase + SpAttack_BaseMod + NatureBonus;
             }
         }
         #endregion
@@ -537,7 +581,18 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         {
             get
             {
-                return SpDefence_SpeciesBase + SpDefence_BaseMod;
+                int NatureBonus = 0;
+
+                if (Nature == BattleManager.Data.Nature.Dreamy || Nature == BattleManager.Data.Nature.Calm || Nature == BattleManager.Data.Nature.Gentle || Nature == BattleManager.Data.Nature.Careful || Nature == BattleManager.Data.Nature.Sassy)
+                {
+                    NatureBonus = 2;
+                }
+                else if (Nature == BattleManager.Data.Nature.Decisive || Nature == BattleManager.Data.Nature.Naughty || Nature == BattleManager.Data.Nature.Lax || Nature == BattleManager.Data.Nature.Rash || Nature == BattleManager.Data.Nature.Naive)
+                {
+                    NatureBonus = -2;
+                }
+
+                return SpDefence_SpeciesBase + SpDefence_BaseMod + NatureBonus;
             }
         }
         #endregion
@@ -671,7 +726,18 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         {
             get
             {
-                return Speed_SpeciesBase + Speed_BaseMod;
+                int NatureBonus = 0;
+
+                if (Nature == BattleManager.Data.Nature.Skittish || Nature == BattleManager.Data.Nature.Timid || Nature == BattleManager.Data.Nature.Hasty || Nature == BattleManager.Data.Nature.Jolly || Nature == BattleManager.Data.Nature.Naive)
+                {
+                    NatureBonus = 2;
+                }
+                else if (Nature == BattleManager.Data.Nature.Patient || Nature == BattleManager.Data.Nature.Brave || Nature == BattleManager.Data.Nature.Relaxed || Nature == BattleManager.Data.Nature.Quiet || Nature == BattleManager.Data.Nature.Sassy)
+                {
+                    NatureBonus = -2;
+                }
+
+                return Speed_SpeciesBase + Speed_BaseMod + NatureBonus;
             }
         }
         #endregion
