@@ -4,12 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Entity"
-        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="AssaultBird2454.VPTU.SaveEditor.UI.Entity.Pokemon_Character"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:MultiSelectComboBox="clr-namespace:MultiSelectComboBox;assembly=MultiSelectComboBox" x:Class="AssaultBird2454.VPTU.SaveEditor.UI.Entity.Pokemon_Character"
         mc:Ignorable="d"
         Title="Character Designer - Pokemon" Height="696.063" Width="996.626">
     <Grid>
 
-        <GroupBox x:Name="G_BasicInfo" Header="Basic Information" HorizontalAlignment="Left" VerticalAlignment="Top" Width="849">
+        <GroupBox x:Name="G_BasicInfo" Header="Basic Information" HorizontalAlignment="Left" VerticalAlignment="Top" Width="849" Height="187">
             <Grid Margin="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="250"/>
@@ -20,22 +20,20 @@
                 <TextBox x:Name="Basic_Name" Margin="90,4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Height="18"/>
                 <Label Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="85"/>
                 <Label Content="Species" Margin="0,26,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="50"/>
-                <Label Content="Type 1" HorizontalAlignment="Left" Margin="0,52,0,0" VerticalAlignment="Top" Height="26" Width="45"/>
-                <ComboBox x:Name="Basic_Type1" Margin="90,53,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Height="22"/>
-                <Label Content="Type 2" Margin="0,79,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="45"/>
-                <ComboBox x:Name="Basic_Type2" Margin="90,80,0,0" HorizontalAlignment="Left" Width="150" VerticalAlignment="Top" Height="22"/>
-                <Label Content="Size Class" HorizontalAlignment="Left" Margin="0,106,0,0" VerticalAlignment="Top" Height="26" Width="61"/>
-                <ComboBox x:Name="Basic_Size" Margin="90,107,0,0" HorizontalAlignment="Left" Width="150" VerticalAlignment="Top" Height="22"/>
-                <Label Content="Weight Class" Margin="0,133,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="78"/>
-                <ComboBox x:Name="Basic_Weight" Margin="90,134,0,0" HorizontalAlignment="Left" Width="150" VerticalAlignment="Top" Height="22"/>
+                <Label Content="Type" HorizontalAlignment="Left" Margin="0,52,0,0" VerticalAlignment="Top" Height="26" Width="45"/>
+                <Label Content="Size Class" HorizontalAlignment="Left" Margin="0,83,0,0" VerticalAlignment="Top" Height="26" Width="61"/>
+                <ComboBox x:Name="Basic_Size" Margin="90,84,0,0" HorizontalAlignment="Left" Width="150" VerticalAlignment="Top" Height="22"/>
+                <Label Content="Weight Class" Margin="0,110,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="78"/>
+                <ComboBox x:Name="Basic_Weight" Margin="90,111,0,0" HorizontalAlignment="Left" Width="150" VerticalAlignment="Top" Height="22"/>
                 <Label x:Name="label3" Content="Pokedex Notes" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="183" Grid.Column="2" HorizontalContentAlignment="Center" Height="26"/>
                 <TextBox x:Name="Basic_Desc" HorizontalAlignment="Left" Height="119" Margin="10,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Grid.Column="2"/>
                 <ComboBox x:Name="Basic_Species" HorizontalAlignment="Left" Margin="90,27,0,0" VerticalAlignment="Top" Width="150" SelectionChanged="Basic_Species_SelectionChanged" Height="22"/>
-                <RadioButton x:Name="Breeding_MaleOnly" Content="Male" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="3" Margin="10,7,0,0" Height="15" Width="45"/>
-                <RadioButton x:Name="Breeding_FemaleOnly" Content="Female" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,27,0,0" Grid.Column="3" Height="15" Width="57"/>
-                <RadioButton x:Name="Breeding_Genderless" Content="Genderless" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,47,0,0" Grid.Column="3" Height="15" Width="77"/>
+                <RadioButton x:Name="Basic_SexMale" Content="Male" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="3" Margin="10,7,0,0" Height="15" Width="45"/>
+                <RadioButton x:Name="Basic_SexFemale" Content="Female" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,27,0,0" Grid.Column="3" Height="15" Width="57"/>
+                <RadioButton x:Name="Basic_SexNone" Content="Genderless" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,47,0,0" Grid.Column="3" Height="15" Width="77"/>
                 <Label Content="Nature" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="78" Grid.Column="1"/>
-                <ComboBox x:Name="Basic_Weight_Copy" Margin="90,1,0,0" HorizontalAlignment="Left" Width="150" VerticalAlignment="Top" Height="22" Grid.Column="1"/>
+                <ComboBox x:Name="Basic_Nature" Margin="90,1,0,0" HorizontalAlignment="Left" Width="150" VerticalAlignment="Top" Height="22" Grid.Column="1"/>
+                <MultiSelectComboBox:MultiSelectComboBox x:Name="Basic_Types" HorizontalAlignment="Left" Height="24" Margin="90,54,0,0" VerticalAlignment="Top" Width="150"/>
             </Grid>
         </GroupBox>
         <TabControl HorizontalAlignment="Left" Height="465" Margin="0,187,0,0" VerticalAlignment="Top" Width="978">

@@ -303,6 +303,10 @@
       <Project>{1dd97708-079f-47e0-96a7-6b50d1674437}</Project>
       <Name>Server</Name>
     </ProjectReference>
+    <ProjectReference Include="..\External\MultiSelectComboBox\MultiSelectComboBox.csproj">
+      <Project>{CE17A54E-0661-429F-AFDC-272E8668B14E}</Project>
+      <Name>MultiSelectComboBox</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\VPTU_Logo.png">

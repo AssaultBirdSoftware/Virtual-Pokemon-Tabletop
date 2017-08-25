@@ -29,9 +29,30 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             PokemonData = _PokemonData;
 
             InitializeComponent();
-
+            Init();
             LoadSpecies();
-            Stats_Test();
+
+            //Stats_Test();
+        }
+
+        private void Init()
+        {
+            Dictionary<string, object> itemSource = new Dictionary<string, object>();
+            foreach (BattleManager.Data.Type effect in Enum.GetValues(typeof(BattleManager.Data.Type)))
+            {
+                itemSource.Add(effect.ToString(), effect);
+            }
+            Basic_Types.ItemsSource = itemSource;
+
+            Basic_Weight.ItemsSource = Enum.GetValues(typeof(VPTU.Pokedex.Entity.WeightClass));
+            Basic_Size.ItemsSource = Enum.GetValues(typeof(VPTU.Pokedex.Entity.SizeClass));
+            Basic_Nature.ItemsSource = Enum.GetValues(typeof(BattleManager.Data.Nature));
+
+            #region Defaulting
+            Basic_Weight.SelectedIndex = 0;
+            Basic_Size.SelectedIndex = 0;
+            Basic_Nature.SelectedIndex = 0;
+            #endregion
         }
 
         private void LoadSpecies()
@@ -66,7 +87,39 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         /// </summary>
         public void Save()
         {
-            
+            PokemonData.Name = Basic_Name.Text;
+            PokemonData.Species_DexID = (decimal)((VPTU.Pokedex.Pokemon.PokemonData)((ComboBoxItem)Basic_Species.SelectedItem).Tag).Species_DexID;
+            #region Pokemon Types
+            if (PokemonData.PokemonType == null)
+                PokemonData.PokemonType = new List<BattleManager.Data.Type>();
+
+            PokemonData.PokemonType.Clear();
+
+            foreach (KeyValuePair<string, object> typesel in Basic_Types.SelectedItems)
+            {
+                BattleManager.Data.Type type = (BattleManager.Data.Type)typesel.Value;
+
+                PokemonData.PokemonType.Add(type);
+            }
+            #endregion
+            PokemonData.SizeClass = (VPTU.Pokedex.Entity.SizeClass)Basic_Size.SelectedItem;
+            PokemonData.WeightClass = (VPTU.Pokedex.Entity.WeightClass)Basic_Weight.SelectedItem;
+            PokemonData.Nature = (BattleManager.Data.Nature)Basic_Nature.SelectedItem;
+            PokemonData.Notes = Basic_Desc.Text;
+            #region Gender
+            if (Basic_SexMale.IsChecked == true)
+            {
+                PokemonData.Gender = VPTU.Pokedex.Entity.Gender.Male;
+            }
+            else if (Basic_SexFemale.IsChecked == true)
+            {
+                PokemonData.Gender = VPTU.Pokedex.Entity.Gender.Female;
+            }
+            else if (Basic_SexNone.IsChecked == true)
+            {
+                PokemonData.Gender = VPTU.Pokedex.Entity.Gender.Genderless;
+            }
+            #endregion
         }
 
         public void Reload_Stats()
@@ -87,7 +140,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
 
         private void Stats_Test()
         {
-            
+
         }
     }
 }
