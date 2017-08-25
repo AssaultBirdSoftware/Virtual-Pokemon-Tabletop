@@ -23,6 +23,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         private SaveManager.SaveManager Manager;
         private EntityManager.Pokemon.PokemonCharacter PokemonData;
 
+        #region Base Functions
         public Pokemon_Character(SaveManager.SaveManager _Mgr, EntityManager.Pokemon.PokemonCharacter _PokemonData = null)
         {
             Manager = _Mgr;
@@ -31,10 +32,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             InitializeComponent();
             Init();
             LoadSpecies();
-
-            //Stats_Test();
         }
-
         private void Init()
         {
             Dictionary<string, object> itemSource = new Dictionary<string, object>();
@@ -54,7 +52,9 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             Basic_Nature.SelectedIndex = 0;
             #endregion
         }
-
+        /// <summary>
+        /// Loads the pokemon species into the selection combobox
+        /// </summary>
         private void LoadSpecies()
         {
             foreach (VPTU.Pokedex.Pokemon.PokemonData data in Manager.SaveData.PokedexData.Pokemon)
@@ -66,7 +66,9 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
                 Basic_Species.Items.Add(cbi);
             }
         }
+        #endregion
 
+        #region Save & Load Functions
         /// <summary>
         /// Load the pokemon from the data
         /// </summary>
@@ -122,11 +124,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             #endregion
         }
 
-        public void Reload_Stats()
-        {
-
-        }
-
+        #region Events
         /// <summary>
         /// Invokes a check to make sure that the species to to change because it will reset everything
         /// </summary>
@@ -137,10 +135,31 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             MessageBox.Show("Updating pokemon with species data", "Selected Species", MessageBoxButton.OK, MessageBoxImage.Information);
             LoadFromSpecies();
         }
+        #endregion
+        #endregion
 
-        private void Stats_Test()
+        #region Stats
+        public void Reload_Stats()
         {
 
         }
+
+        #region HP
+        private void Stats_Mod_HP_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            try
+            {
+                PokemonData.HP_BaseMod = (int)Stats_Mod_HP.Value;
+
+                Stats_Base_HP.Content = PokemonData.HP_Base;
+            }
+            catch { }
+        }
+        private void Stats_Add_HP_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+
+        }
+        #endregion
+        #endregion
     }
 }
