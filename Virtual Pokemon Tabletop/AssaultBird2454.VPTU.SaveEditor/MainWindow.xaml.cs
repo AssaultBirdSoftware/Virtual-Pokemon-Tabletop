@@ -631,7 +631,9 @@ namespace AssaultBird2454.VPTU.SaveEditor
         private void EntityManager_AddPokemon_Click(object sender, RoutedEventArgs e)
         {
             UI.Entity.Pokemon_Character data = new UI.Entity.Pokemon_Character(SaveManager);
-            data.Show();
+            SaveManager.SaveData.Pokemon.Add(data.PokemonData);
+            data.ShowDialog();
+            EntityManager_ReloadList();
         }
         #endregion
 

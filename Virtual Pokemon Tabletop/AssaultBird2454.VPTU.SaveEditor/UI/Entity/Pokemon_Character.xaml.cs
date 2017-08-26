@@ -20,14 +20,22 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
     /// </summary>
     public partial class Pokemon_Character : Window
     {
-        private SaveManager.SaveManager Manager;
-        private EntityManager.Pokemon.PokemonCharacter PokemonData;
+        public SaveManager.SaveManager Manager;
+        public EntityManager.Pokemon.PokemonCharacter PokemonData;
 
         #region Base Functions
         public Pokemon_Character(SaveManager.SaveManager _Mgr, EntityManager.Pokemon.PokemonCharacter _PokemonData = null)
         {
             Manager = _Mgr;
-            PokemonData = _PokemonData;
+
+            if (_PokemonData == null)
+            {
+                PokemonData = new EntityManager.Pokemon.PokemonCharacter();
+            }
+            else
+            {
+                PokemonData = _PokemonData;
+            }
 
             InitializeComponent();
             Init();
@@ -35,6 +43,10 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         }
         private void Init()
         {
+            #region Events
+            Basic_Types.SelectionChangedEvent += Basic_Types_SelectionChangedEvent;
+            #endregion
+
             Dictionary<string, object> itemSource = new Dictionary<string, object>();
             foreach (BattleManager.Data.Type effect in Enum.GetValues(typeof(BattleManager.Data.Type)))
             {
@@ -52,6 +64,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             Basic_Nature.SelectedIndex = 0;
             #endregion
         }
+
         /// <summary>
         /// Loads the pokemon species into the selection combobox
         /// </summary>
@@ -74,6 +87,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         /// </summary>
         public void Load()
         {
+
             Reload_Stats();
         }
         /// <summary>
@@ -123,19 +137,6 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             }
             #endregion
         }
-
-        #region Events
-        /// <summary>
-        /// Invokes a check to make sure that the species to to change because it will reset everything
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Basic_Species_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            MessageBox.Show("Updating pokemon with species data", "Selected Species", MessageBoxButton.OK, MessageBoxImage.Information);
-            LoadFromSpecies();
-        }
-        #endregion
         #endregion
 
         #region Stats
@@ -160,6 +161,61 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
 
         }
         #endregion
+
+        #endregion
+
+        #region Basic Info (Change Events)
+        private void Basic_Name_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try { PokemonData.Name = Basic_Name.Text; } catch { }
+        }
+        /// <summary>
+        /// Invokes a check to make sure that the species to to change because it will reset everything
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Basic_Species_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MessageBox.Show("Updating pokemon with species data", "Selected Species", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            PokemonData.Species_DexID = (decimal)((VPTU.Pokedex.Pokemon.PokemonData)((ComboBoxItem)Basic_Species.SelectedItem).Tag).Species_DexID;
+            LoadFromSpecies();
+        }
+        private void Basic_Size_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            PokemonData.SizeClass = (VPTU.Pokedex.Entity.SizeClass)Basic_Size.SelectedItem;
+        }
+        private void Basic_Weight_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            PokemonData.WeightClass = (VPTU.Pokedex.Entity.WeightClass)Basic_Weight.SelectedItem;
+        }
+        private void Basic_Nature_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            PokemonData.Nature = (BattleManager.Data.Nature)Basic_Nature.SelectedItem;
+        }
+        private void Basic_SexMale_Checked(object sender, RoutedEventArgs e)
+        {
+            PokemonData.Gender = VPTU.Pokedex.Entity.Gender.Male;
+        }
+        private void Basic_SexFemale_Checked(object sender, RoutedEventArgs e)
+        {
+            PokemonData.Gender = VPTU.Pokedex.Entity.Gender.Female;
+        }
+        private void Basic_SexNone_Checked(object sender, RoutedEventArgs e)
+        {
+            PokemonData.Gender = VPTU.Pokedex.Entity.Gender.Genderless;
+        }
+        private void Basic_Types_SelectionChangedEvent()
+        {
+            if (PokemonData.PokemonType == null)
+                PokemonData.PokemonType = new List<BattleManager.Data.Type>();
+
+            PokemonData.PokemonType.Clear();
+            foreach (KeyValuePair<string, object> seltype in Basic_Types.SelectedItems)
+            {
+                PokemonData.PokemonType.Add((BattleManager.Data.Type)seltype.Value);
+            }
+        }
         #endregion
     }
 }
