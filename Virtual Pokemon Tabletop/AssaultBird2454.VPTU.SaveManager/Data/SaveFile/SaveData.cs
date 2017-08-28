@@ -67,6 +67,11 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
                 ImageResources = new List<Resource_Data.Resources>();
             }
 
+            if(Pokemon == null)
+            {
+                Pokemon = new List<EntityManager.Pokemon.PokemonCharacter>();
+            }
+
             PokedexData.InitNullObjects();
         }
 

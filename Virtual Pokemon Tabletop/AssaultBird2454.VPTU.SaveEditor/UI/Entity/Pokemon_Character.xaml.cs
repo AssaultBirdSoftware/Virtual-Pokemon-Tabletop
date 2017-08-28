@@ -39,7 +39,8 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
 
             InitializeComponent();
             Init();
-            LoadSpecies();
+
+            Load();
         }
         private void Init()
         {
@@ -63,6 +64,8 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             Basic_Size.SelectedIndex = 0;
             Basic_Nature.SelectedIndex = 0;
             #endregion
+
+            LoadSpecies();
         }
 
         /// <summary>
@@ -87,15 +90,54 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         /// </summary>
         public void Load()
         {
+            try { Basic_Name.Text = PokemonData.Name; } catch { }
+            try { Basic_Species.SelectedItem = Manager.SaveData.PokedexData.Pokemon.Find(x => x.Species_DexID == PokemonData.Species_DexID); } catch { }
 
-            Reload_Stats();
+            try
+            {
+                #region Pokemon Types
+                Dictionary<string, object> settypes = new Dictionary<string, object>();
+
+                foreach (VPTU.BattleManager.Data.Type type in PokemonData.PokemonType)
+                {
+                    settypes.Add(type.ToString(), type);
+                }
+
+                Basic_Types.SelectedItems = settypes;
+                #endregion
+            }
+            catch { }
+
+            try { Basic_Size.SelectedItem = PokemonData.SizeClass; } catch { }
+            try { Basic_Weight.SelectedItem = PokemonData.WeightClass; } catch { }
+            try { Basic_Nature.SelectedItem = PokemonData.Nature; } catch { }
+            try { Basic_Desc.Text = PokemonData.Notes; } catch { }
+
+            try
+            {
+                #region Gender
+                if (PokemonData.Gender == VPTU.Pokedex.Entity.Gender.Male)
+                {
+                    Basic_SexMale.IsChecked = true;
+                }
+                else if (PokemonData.Gender == VPTU.Pokedex.Entity.Gender.Female)
+                {
+                    Basic_SexFemale.IsChecked = true;
+                }
+                else if (PokemonData.Gender == VPTU.Pokedex.Entity.Gender.Genderless)
+                {
+                    Basic_SexNone.IsChecked = true;
+                }
+                #endregion
+            }
+            catch { }
         }
         /// <summary>
         /// Loads the pokemon from the species list (Used when creating a new pokemon)
         /// </summary>
         public void LoadFromSpecies()
         {
-            Reload_Stats();
+
         }
 
         /// <summary>

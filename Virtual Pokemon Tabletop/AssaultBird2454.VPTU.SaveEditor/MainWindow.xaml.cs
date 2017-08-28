@@ -657,6 +657,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
                     foreach(EntityManager.Pokemon.PokemonCharacter pokemon in SaveManager.SaveData.Pokemon)
                     {
                         EntityManager_DataBind db = new EntityManager_DataBind(pokemon.Species_DexID, pokemon.Name, pokemon.Species_DexID + " (" + SaveManager.SaveData.PokedexData.Pokemon.Find(x => x.Species_DexID == pokemon.Species_DexID).Species_Name + ")", "", EntityManager_DataType.WildPokemon);
+                        db.DataTag = pokemon;
                         EntityManager_List.Items.Add(db);
                     }
                 }
