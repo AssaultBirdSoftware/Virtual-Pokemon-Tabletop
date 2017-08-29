@@ -219,7 +219,28 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         #region Stats
         public void Reload_Stats()
         {
+            Stats_Base_HP.Content = PokemonData.HP_Base;
+            Stats_Total_HP.Content = PokemonData.HP_Total;
 
+            Stats_Base_Attack.Content = PokemonData.Attack_Base;
+            Stats_Total_Attack.Content = PokemonData.Attack_Total;
+            Stats_Adj_Attack.Content = PokemonData.Attack_Adjusted;
+
+            Stats_Base_Defence.Content = PokemonData.Defence_Base;
+            Stats_Total_Defence.Content = PokemonData.Defence_Total;
+            Stats_Adj_Defence.Content = PokemonData.Defence_Adjusted;
+
+            Stats_Base_SpAttack.Content = PokemonData.SpAttack_Base;
+            Stats_Total_SpAttack.Content = PokemonData.SpAttack_Total;
+            Stats_Adj_SpAttack.Content = PokemonData.SpAttack_Adjusted;
+
+            Stats_Base_SpDefence.Content = PokemonData.SpDefence_Base;
+            Stats_Total_SpDefence.Content = PokemonData.SpDefence_Total;
+            Stats_Adj_SpDefence.Content = PokemonData.SpDefence_Adjusted;
+
+            Stats_Base_Speed.Content = PokemonData.Speed_Base;
+            Stats_Total_Speed.Content = PokemonData.Speed_Total;
+            Stats_Adj_Speed.Content = PokemonData.Speed_Adjusted;
         }
 
         #region HP
@@ -230,15 +251,196 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
                 PokemonData.HP_BaseMod = (int)Stats_Mod_HP.Value;
 
                 Stats_Base_HP.Content = PokemonData.HP_Base;
+                Stats_Total_HP.Content = PokemonData.HP_Total;
             }
             catch { }
         }
         private void Stats_Add_HP_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
+            try
+            {
+                PokemonData.HP_AddStat = (int)Stats_Add_HP.Value;
 
+                Stats_Total_HP.Content = PokemonData.HP_Total;
+            }
+            catch { }
         }
         #endregion
+        #region Attack
+        private void Stats_Mod_Attack_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            try
+            {
+                PokemonData.Attack_BaseMod = (int)Stats_Mod_Attack.Value;
 
+                Stats_Base_Attack.Content = PokemonData.Attack_Base;
+                Stats_Total_Attack.Content = PokemonData.Attack_Total;
+                Stats_Adj_Attack.Content = PokemonData.Attack_Adjusted;
+            }
+            catch { }
+        }
+        private void Stats_Add_Attack_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            try
+            {
+                PokemonData.Attack_AddStat = (int)Stats_Add_Attack.Value;
+                
+                Stats_Total_Attack.Content = PokemonData.Attack_Total;
+                Stats_Adj_Attack.Content = PokemonData.Attack_Adjusted;
+            }
+            catch { }
+        }
+        private void Stats_CS_Attack_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            try
+            {
+                PokemonData.Attack_CombatStage = (int)Stats_CS_Attack.Value;
+                
+                Stats_Adj_Attack.Content = PokemonData.Attack_Adjusted;
+            }
+            catch { }
+        }
+        #endregion
+        #region Defence
+        private void Stats_Mod_Defence_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            try
+            {
+                PokemonData.Defence_BaseMod = (int)Stats_Mod_Defence.Value;
+
+                Stats_Base_Defence.Content = PokemonData.Defence_Base;
+                Stats_Total_Defence.Content = PokemonData.Defence_Total;
+                Stats_Adj_Defence.Content = PokemonData.Defence_Adjusted;
+            }
+            catch { }
+        }
+        private void Stats_Add_Defence_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            try
+            {
+                PokemonData.Defence_AddStat = (int)Stats_Add_Defence.Value;
+
+                Stats_Total_Defence.Content = PokemonData.Defence_Total;
+                Stats_Adj_Defence.Content = PokemonData.Defence_Adjusted;
+            }
+            catch { }
+        }
+        private void Stats_CS_Defence_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            try
+            {
+                PokemonData.Defence_CombatStage = (int)Stats_CS_Defence.Value;
+
+                Stats_Adj_Defence.Content = PokemonData.Defence_Adjusted;
+            }
+            catch { }
+        }
+        #endregion
+        #region Sp. Attack
+        private void Stats_Mod_SpAttack_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            try
+            {
+                PokemonData.SpAttack_BaseMod = (int)Stats_Mod_SpAttack.Value;
+
+                Stats_Base_SpAttack.Content = PokemonData.SpAttack_Base;
+                Stats_Total_SpAttack.Content = PokemonData.SpAttack_Total;
+                Stats_Adj_SpAttack.Content = PokemonData.SpAttack_Adjusted;
+            }
+            catch { }
+        }
+        private void Stats_Add_SpAttack_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            try
+            {
+                PokemonData.SpAttack_AddStat = (int)Stats_Add_SpAttack.Value;
+
+                Stats_Total_SpAttack.Content = PokemonData.SpAttack_Total;
+                Stats_Adj_SpAttack.Content = PokemonData.SpAttack_Adjusted;
+            }
+            catch { }
+        }
+        private void Stats_CS_SpAttack_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            try
+            {
+                PokemonData.SpAttack_CombatStage = (int)Stats_CS_SpAttack.Value;
+
+                Stats_Adj_SpAttack.Content = PokemonData.SpAttack_Adjusted;
+            }
+            catch { }
+        }
+        #endregion
+        #region Sp. Defence
+        private void Stats_Mod_SpDefence_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            try
+            {
+                PokemonData.SpDefence_BaseMod = (int)Stats_Mod_SpDefence.Value;
+
+                Stats_Base_SpDefence.Content = PokemonData.SpDefence_Base;
+                Stats_Total_SpDefence.Content = PokemonData.SpDefence_Total;
+                Stats_Adj_SpDefence.Content = PokemonData.SpDefence_Adjusted;
+            }
+            catch { }
+        }
+        private void Stats_Add_SpDefence_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            try
+            {
+                PokemonData.SpDefence_AddStat = (int)Stats_Add_SpDefence.Value;
+
+                Stats_Total_SpDefence.Content = PokemonData.SpDefence_Total;
+                Stats_Adj_SpDefence.Content = PokemonData.SpDefence_Adjusted;
+            }
+            catch { }
+        }
+        private void Stats_CS_SpDefence_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            try
+            {
+                PokemonData.SpDefence_CombatStage = (int)Stats_CS_SpDefence.Value;
+
+                Stats_Adj_SpDefence.Content = PokemonData.SpDefence_Adjusted;
+            }
+            catch { }
+        }
+        #endregion
+        #region Speed
+        private void Stats_Mod_Speed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            try
+            {
+                PokemonData.Speed_BaseMod = (int)Stats_Mod_Speed.Value;
+
+                Stats_Base_Speed.Content = PokemonData.Speed_Base;
+                Stats_Total_Speed.Content = PokemonData.Speed_Total;
+                Stats_Adj_Speed.Content = PokemonData.Speed_Adjusted;
+            }
+            catch { }
+        }
+        private void Stats_Add_Speed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            try
+            {
+                PokemonData.Speed_AddStat = (int)Stats_Add_Speed.Value;
+
+                Stats_Total_Speed.Content = PokemonData.Speed_Total;
+                Stats_Adj_Speed.Content = PokemonData.Speed_Adjusted;
+            }
+            catch { }
+        }
+        private void Stats_CS_Speed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            try
+            {
+                PokemonData.Speed_CombatStage = (int)Stats_CS_Speed.Value;
+
+                Stats_Adj_Speed.Content = PokemonData.Speed_Adjusted;
+            }
+            catch { }
+        }
+        #endregion
         #endregion
 
         #region Basic Info (Change Events)
@@ -269,6 +471,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         private void Basic_Nature_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             PokemonData.Nature = (BattleManager.Data.Nature)Basic_Nature.SelectedItem;
+            Reload_Stats();
         }
         private void Basic_SexMale_Checked(object sender, RoutedEventArgs e)
         {
@@ -293,6 +496,12 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
                 PokemonData.PokemonType.Add((BattleManager.Data.Type)seltype.Value);
             }
         }
+
+
         #endregion
+
+        
+
+        
     }
 }
