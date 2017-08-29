@@ -128,7 +128,7 @@
                         <ColumnDefinition/>
                         <ColumnDefinition Width="150"/>
                     </Grid.ColumnDefinitions>
-                    <ListView x:Name="EntityManager_List" SelectionChanged="PokedexManager_List_SelectionChanged" MouseDoubleClick="PokedexManager_List_MouseDoubleClick">
+                    <ListView x:Name="EntityManager_List" SelectionChanged="PokedexManager_List_SelectionChanged" MouseDoubleClick="EntityManager_List_MouseDoubleClick">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="ID" Width="50px" DisplayMemberBinding="{Binding ID}"/>
@@ -147,8 +147,8 @@
                     </GroupBox>
                     <GroupBox x:Name="PokedexManager_ManageDex1" Grid.Column="1" Header="Edit / Delete" Margin="10,85,10,0" VerticalAlignment="Top" Height="71">
                         <Grid Margin="0,0,-2,-12.96">
-                            <Button x:Name="EntityManager_ManageEntity_Edit" Content="Edit" VerticalAlignment="Top"/>
-                            <Button x:Name="EntityManager_ManageEntity_Delete" Content="Delete" VerticalAlignment="Top" Margin="0,24.96,0,0"/>
+                            <Button x:Name="EntityManager_ManageEntity_Edit" Content="Edit" VerticalAlignment="Top" Click="EntityManager_ManageEntity_Edit_Click"/>
+                            <Button x:Name="EntityManager_ManageEntity_Delete" Content="Delete" VerticalAlignment="Top" Margin="0,24.96,0,0" Click="EntityManager_ManageEntity_Delete_Click"/>
                         </Grid>
                     </GroupBox>
                     <GroupBox x:Name="PokedexManager_SearchDex1" Grid.Column="1" Header="Search" Margin="10,161,10,0" Height="187" VerticalAlignment="Top">

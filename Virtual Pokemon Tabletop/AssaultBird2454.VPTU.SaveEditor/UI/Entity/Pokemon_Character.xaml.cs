@@ -27,7 +27,6 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         public Pokemon_Character(SaveManager.SaveManager _Mgr, EntityManager.Pokemon.PokemonCharacter _PokemonData = null)
         {
             Manager = _Mgr;
-
             if (_PokemonData == null)
             {
                 PokemonData = new EntityManager.Pokemon.PokemonCharacter();
@@ -91,7 +90,11 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         public void Load()
         {
             try { Basic_Name.Text = PokemonData.Name; } catch { }
-            try { Basic_Species.SelectedItem = Manager.SaveData.PokedexData.Pokemon.Find(x => x.Species_DexID == PokemonData.Species_DexID); } catch { }
+            try
+            {
+                Basic_Species.SelectedItem = Manager.SaveData.PokedexData.Pokemon.Find(x => x.Species_DexID == PokemonData.Species_DexID);
+            }
+            catch { }
 
             try
             {
@@ -138,12 +141,8 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         public void LoadFromSpecies()
         {
             VPTU.Pokedex.Pokemon.PokemonData NewPokemon = (VPTU.Pokedex.Pokemon.PokemonData)((ComboBoxItem)Basic_Species.SelectedItem).Tag;
-            VPTU.Pokedex.Pokemon.PokemonData OldPokemon = Manager.SaveData.PokedexData.Pokemon.Find(x => x.Species_DexID == PokemonData.Species_DexID);
 
-            if (String.IsNullOrWhiteSpace(PokemonData.Name) || PokemonData.Name.ToLower() == OldPokemon.Species_Name.ToLower())
-            {
-                try { PokemonData.Name = NewPokemon.Species_Name; } catch { }
-            }
+            //try { PokemonData.Name = NewPokemon.Species_Name; } catch { }
             try { Basic_Species.SelectedItem = NewPokemon.Species_DexID; } catch { }
 
             try
@@ -219,25 +218,31 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         #region Stats
         public void Reload_Stats()
         {
+            Stats_SBase_HP.Content = PokemonData.HP_SpeciesBase;
             Stats_Base_HP.Content = PokemonData.HP_Base;
             Stats_Total_HP.Content = PokemonData.HP_Total;
 
+            Stats_SBase_Attack.Content = PokemonData.Attack_SpeciesBase;
             Stats_Base_Attack.Content = PokemonData.Attack_Base;
             Stats_Total_Attack.Content = PokemonData.Attack_Total;
             Stats_Adj_Attack.Content = PokemonData.Attack_Adjusted;
 
+            Stats_SBase_Defence.Content = PokemonData.Defence_SpeciesBase;
             Stats_Base_Defence.Content = PokemonData.Defence_Base;
             Stats_Total_Defence.Content = PokemonData.Defence_Total;
             Stats_Adj_Defence.Content = PokemonData.Defence_Adjusted;
 
+            Stats_SBase_SpAttack.Content = PokemonData.SpAttack_SpeciesBase;
             Stats_Base_SpAttack.Content = PokemonData.SpAttack_Base;
             Stats_Total_SpAttack.Content = PokemonData.SpAttack_Total;
             Stats_Adj_SpAttack.Content = PokemonData.SpAttack_Adjusted;
 
+            Stats_SBase_SpDefence.Content = PokemonData.SpDefence_SpeciesBase;
             Stats_Base_SpDefence.Content = PokemonData.SpDefence_Base;
             Stats_Total_SpDefence.Content = PokemonData.SpDefence_Total;
             Stats_Adj_SpDefence.Content = PokemonData.SpDefence_Adjusted;
 
+            Stats_SBase_Speed.Content = PokemonData.Speed_SpeciesBase;
             Stats_Base_Speed.Content = PokemonData.Speed_Base;
             Stats_Total_Speed.Content = PokemonData.Speed_Total;
             Stats_Adj_Speed.Content = PokemonData.Speed_Adjusted;
@@ -284,7 +289,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             try
             {
                 PokemonData.Attack_AddStat = (int)Stats_Add_Attack.Value;
-                
+
                 Stats_Total_Attack.Content = PokemonData.Attack_Total;
                 Stats_Adj_Attack.Content = PokemonData.Attack_Adjusted;
             }
@@ -295,7 +300,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             try
             {
                 PokemonData.Attack_CombatStage = (int)Stats_CS_Attack.Value;
-                
+
                 Stats_Adj_Attack.Content = PokemonData.Attack_Adjusted;
             }
             catch { }
@@ -448,14 +453,9 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         {
             try { PokemonData.Name = Basic_Name.Text; } catch { }
         }
-        /// <summary>
-        /// Invokes a check to make sure that the species to to change because it will reset everything
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void Basic_Species_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MessageBox.Show("Updating pokemon with species data", "Selected Species", MessageBoxButton.OK, MessageBoxImage.Information);
+            //MessageBox.Show("Updating pokemon with species data", "Selected Species", MessageBoxButton.OK, MessageBoxImage.Information);
 
             PokemonData.Species_DexID = (decimal)((VPTU.Pokedex.Pokemon.PokemonData)((ComboBoxItem)Basic_Species.SelectedItem).Tag).Species_DexID;
             LoadFromSpecies();
@@ -496,12 +496,6 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
                 PokemonData.PokemonType.Add((BattleManager.Data.Type)seltype.Value);
             }
         }
-
-
         #endregion
-
-        
-
-        
     }
 }

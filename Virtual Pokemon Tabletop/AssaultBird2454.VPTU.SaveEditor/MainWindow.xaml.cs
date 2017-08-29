@@ -309,37 +309,6 @@ namespace AssaultBird2454.VPTU.SaveEditor
         {
             EditSelected_Pokedex();
         }
-        /// <summary>
-        /// Opens the edit page for the selected item in the pokedex panel
-        /// </summary>
-        public void EditSelected_Pokedex()
-        {
-            try
-            {
-                //Edit Pokemon Here!
-                if (((PokedexList_DataBind)PokedexManager_List.SelectedValue).DataType == PokedexList_DataType.Pokemon)
-                {
-                    Pokedex.Pokemon.PokemonData Data = (Pokedex.Pokemon.PokemonData)((PokedexList_DataBind)PokedexManager_List.SelectedValue).DataTag;// Gets the Data
-                    UI.Pokedex.Pokemon pokemon = new UI.Pokedex.Pokemon(SaveManager, Data);// Creates a new window
-                    pokemon.ShowDialog();// Shows the window
-
-                    PokedexManager_ReloadList();// Updates the list
-                }
-                //Edit Moves Here!
-                else if (((PokedexList_DataBind)PokedexManager_List.SelectedValue).DataType == PokedexList_DataType.Move)
-                {
-                    Pokedex.Moves.MoveData Data = (Pokedex.Moves.MoveData)((PokedexList_DataBind)PokedexManager_List.SelectedItem).DataTag;// Gets the Data
-                    UI.Pokedex.Moves move = new UI.Pokedex.Moves(SaveManager.SaveData, Data);// Creates a new window
-                    move.ShowDialog();// Shows the window
-
-                    PokedexManager_ReloadList();// Updates the list
-                }
-            }
-            catch (NullReferenceException)
-            {
-                MessageBox.Show("You cant edit nothing! or can you?");
-            }
-        }
         //When The "Delete" Button is clicked
         private void PokedexManager_ManageDex_Delete_Click(object sender, RoutedEventArgs e)
         {
@@ -501,6 +470,38 @@ namespace AssaultBird2454.VPTU.SaveEditor
             }
             catch { /* Dont Care */ }
         }
+
+        /// <summary>
+        /// Opens the edit page for the selected item in the pokedex panel
+        /// </summary>
+        public void EditSelected_Pokedex()
+        {
+            try
+            {
+                //Edit Pokemon Here!
+                if (((PokedexList_DataBind)PokedexManager_List.SelectedValue).DataType == PokedexList_DataType.Pokemon)
+                {
+                    Pokedex.Pokemon.PokemonData Data = (Pokedex.Pokemon.PokemonData)((PokedexList_DataBind)PokedexManager_List.SelectedValue).DataTag;// Gets the Data
+                    UI.Pokedex.Pokemon pokemon = new UI.Pokedex.Pokemon(SaveManager, Data);// Creates a new window
+                    pokemon.ShowDialog();// Shows the window
+
+                    PokedexManager_ReloadList();// Updates the list
+                }
+                //Edit Moves Here!
+                else if (((PokedexList_DataBind)PokedexManager_List.SelectedValue).DataType == PokedexList_DataType.Move)
+                {
+                    Pokedex.Moves.MoveData Data = (Pokedex.Moves.MoveData)((PokedexList_DataBind)PokedexManager_List.SelectedItem).DataTag;// Gets the Data
+                    UI.Pokedex.Moves move = new UI.Pokedex.Moves(SaveManager.SaveData, Data);// Creates a new window
+                    move.ShowDialog();// Shows the window
+
+                    PokedexManager_ReloadList();// Updates the list
+                }
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("You cant edit nothing! or can you?");
+            }
+        }
         #endregion
 
         #region Resource Manager Code
@@ -633,10 +634,21 @@ namespace AssaultBird2454.VPTU.SaveEditor
             data.ShowDialog();
             EntityManager_ReloadList();
         }
+        private void EntityManager_ManageEntity_Edit_Click(object sender, RoutedEventArgs e)
+        {
+            EditSelected_Entity();
+        }
+        private void EntityManager_ManageEntity_Delete_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
         #endregion
 
         #region List Events
-
+        private void EntityManager_List_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            EditSelected_Entity();
+        }
         #endregion
 
         /// <summary>
@@ -662,7 +674,39 @@ namespace AssaultBird2454.VPTU.SaveEditor
             }
             catch { /* Dont Care */ }
         }
-        #endregion
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void EditSelected_Entity()
+        {
+            try
+            {
+                //Edit Pokemon Here!
+                if (((EntityManager_DataBind)EntityManager_List.SelectedValue).Type == EntityManager_DataType.WildPokemon)
+                {
+                    EntityManager.Pokemon.PokemonCharacter Data = (EntityManager.Pokemon.PokemonCharacter)((EntityManager_DataBind)EntityManager_List.SelectedValue).DataTag;// Gets the Data
+                    UI.Entity.Pokemon_Character pokemon = new UI.Entity.Pokemon_Character(SaveManager, Data);// Creates a new window
+                    pokemon.ShowDialog();// Shows the window
+
+                    EntityManager_ReloadList();// Updates the list
+                }
+                //Edit Moves Here!
+                /*else if (((PokedexList_DataBind)PokedexManager_List.SelectedValue).DataType == PokedexList_DataType.Move)
+                {
+                    Pokedex.Moves.MoveData Data = (Pokedex.Moves.MoveData)((PokedexList_DataBind)PokedexManager_List.SelectedItem).DataTag;// Gets the Data
+                    UI.Pokedex.Moves move = new UI.Pokedex.Moves(SaveManager.SaveData, Data);// Creates a new window
+                    move.ShowDialog();// Shows the window
+
+                    EntityManager_ReloadList();// Updates the list
+                }*/
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("You cant edit nothing! or can you?");
+            }
+        }
+        #endregion        
     }
 
     /// <summary>
