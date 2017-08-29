@@ -31,9 +31,16 @@
                 <RadioButton x:Name="Basic_SexMale" Content="Male" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="3" Margin="10,7,0,0" Height="15" Width="45" Checked="Basic_SexMale_Checked" IsChecked="True"/>
                 <RadioButton x:Name="Basic_SexFemale" Content="Female" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,27,0,0" Grid.Column="3" Height="15" Width="57" Checked="Basic_SexFemale_Checked"/>
                 <RadioButton x:Name="Basic_SexNone" Content="Genderless" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,47,0,0" Grid.Column="3" Height="15" Width="77" Checked="Basic_SexNone_Checked"/>
-                <Label Content="Nature" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="78" Grid.Column="1"/>
-                <ComboBox x:Name="Basic_Nature" Margin="90,1,0,0" HorizontalAlignment="Left" Width="150" VerticalAlignment="Top" Height="22" Grid.Column="1" SelectionChanged="Basic_Nature_SelectionChanged"/>
+                <Label Content="Nature" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="51" Grid.Column="1"/>
+                <ComboBox x:Name="Basic_Nature" Margin="56,2,0,0" HorizontalAlignment="Left" Width="185" VerticalAlignment="Top" Height="22" Grid.Column="1" SelectionChanged="Basic_Nature_SelectionChanged"/>
                 <MultiSelectComboBox:MultiSelectComboBox x:Name="Basic_Types" HorizontalAlignment="Left" Height="24" Margin="90,54,0,0" VerticalAlignment="Top" Width="150"/>
+                <Label Content="XP" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="51" Grid.Column="1" Margin="0,31,0,0"/>
+                <Label Content="HP" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="51" Grid.Column="1" Margin="0,110,0,0"/>
+                <xctk:IntegerUpDown x:Name="Basic_CurrentHP" HorizontalAlignment="Left" Margin="56,110,0,0" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Minimum="-6" Maximum="6" Value="0" TextAlignment="Center" ValueChanged="Stats_CS_Attack_ValueChanged"/>
+                <Label x:Name="Basic_MaxHP" Content="/ 500" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="76" Grid.Column="1" Margin="141,110,0,0"/>
+                <xctk:IntegerUpDown x:Name="Basic_XP" HorizontalAlignment="Left" Margin="56,31,0,0" VerticalAlignment="Top" Width="74" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Minimum="0" Maximum="20555" Value="0" TextAlignment="Center" ValueChanged="Basic_XP_ValueChanged"/>
+                <Label x:Name="Basic_REXP" Content="Remaining: 20555" VerticalAlignment="Top" HorizontalAlignment="Left" Width="106" Grid.Column="1" Margin="135,29,0,0"/>
+                <Label x:Name="Basic_Level" Content="Level: 100" VerticalAlignment="Top" HorizontalAlignment="Left" Width="106" Grid.Column="1" Margin="135,55,0,0"/>
             </Grid>
         </GroupBox>
         <TabControl HorizontalAlignment="Left" Height="465" Margin="0,187,0,0" VerticalAlignment="Top" Width="978">

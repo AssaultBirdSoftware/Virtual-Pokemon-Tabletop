@@ -225,7 +225,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         {
             Stats_SBase_HP.Content = PokemonData.HP_SpeciesBase;
             Stats_Base_HP.Content = PokemonData.HP_Base;
-            Stats_Total_HP.Content = PokemonData.HP_Total;
+            Stats_Total_HP.Content = PokemonData.Stat_HP_Max;
 
             Stats_SBase_Attack.Content = PokemonData.Attack_SpeciesBase;
             Stats_Base_Attack.Content = PokemonData.Attack_Base;
@@ -261,7 +261,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
                 PokemonData.HP_BaseMod = (int)Stats_Mod_HP.Value;
 
                 Stats_Base_HP.Content = PokemonData.HP_Base;
-                Stats_Total_HP.Content = PokemonData.HP_Total;
+                Stats_Total_HP.Content = PokemonData.Stat_HP_Max;
             }
             catch { }
         }
@@ -271,7 +271,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             {
                 PokemonData.HP_AddStat = (int)Stats_Add_HP.Value;
 
-                Stats_Total_HP.Content = PokemonData.HP_Total;
+                Stats_Total_HP.Content = PokemonData.Stat_HP_Max;
             }
             catch { }
         }
@@ -505,5 +505,19 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             }
         }
         #endregion
+
+        private void Basic_XP_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            try
+            {
+                PokemonData.EXP = (int)Math.Floor((decimal)Basic_XP.Value);
+
+                Basic_REXP.Content = "Required: " + "????";
+                Basic_Level.Content = "Level: " + PokemonData.Level;
+
+                Reload_Stats();
+            }
+            catch { }
+        }
     }
 }

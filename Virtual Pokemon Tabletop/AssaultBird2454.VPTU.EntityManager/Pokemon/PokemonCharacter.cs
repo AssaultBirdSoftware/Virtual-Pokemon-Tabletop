@@ -90,22 +90,12 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         }
         #endregion
 
-        #region Total
-        public int HP_Total
-        {
-            get
-            {
-                return HP_Base + HP_AddStat;
-            }
-        }
-        #endregion
-
         #region Stat Max HP
         public int Stat_HP_Max
         {
             get
             {
-                return (Level + (HP_Total * 3) + 10);
+                return (Level + (HP_Base + HP_AddStat * 3) + 10);
             }
         }
         #endregion
