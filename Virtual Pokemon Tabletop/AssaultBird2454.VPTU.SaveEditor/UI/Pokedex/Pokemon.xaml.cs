@@ -53,8 +53,14 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
         {
             #region Populating Fields
             //Basic Data
-            Basic_Type1.ItemsSource = Enum.GetValues(typeof(BattleManager.Data.Type));
-            Basic_Type2.ItemsSource = Enum.GetValues(typeof(BattleManager.Data.Type));
+            #region Types
+            Dictionary<string, object> itemSource = new Dictionary<string, object>();
+            foreach (BattleManager.Data.Type effect in Enum.GetValues(typeof(BattleManager.Data.Type)))
+            {
+                itemSource.Add(effect.ToString(), effect);
+            }
+            Basic_Types.ItemsSource = itemSource;
+            #endregion
             Basic_Weight.ItemsSource = Enum.GetValues(typeof(WeightClass));
             Basic_Size.ItemsSource = Enum.GetValues(typeof(SizeClass));
 
@@ -152,8 +158,16 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
             try { Basic_Name.Text = LoadData.Species_Name; } catch { }
             try { Basic_Desc.Text = LoadData.Species_Desc; } catch { } // Try and catch this as old versions of the save will not be able to read this?
             try { Basic_ID.Text = LoadData.Species_DexID.ToString(); } catch { }
-            try { Basic_Type1.SelectedItem = LoadData.Species_Type1; } catch { }
-            try { Basic_Type2.SelectedItem = LoadData.Species_Type2; } catch { }
+            try
+            {
+                Dictionary<string, object> itemso = new Dictionary<string, object>();
+                foreach (VPTU.BattleManager.Data.Type type in PokemonData.Species_Types)
+                {
+                    itemso.Add(type.ToString(), type);
+                }
+                Basic_Types.SelectedItems = itemso;
+            }
+            catch { }// Types
             try { Basic_Weight.SelectedItem = LoadData.Species_WeightClass; } catch { }
             try { Basic_Size.SelectedItem = LoadData.Species_SizeClass; } catch { }
             #endregion
@@ -294,8 +308,25 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
             PokemonData.Species_Name = Basic_Name.Text;
             PokemonData.Species_Desc = Basic_Desc.Text;
             PokemonData.Species_DexID = Convert.ToDecimal(Basic_ID.Value);
-            PokemonData.Species_Type1 = (BattleManager.Data.Type)Basic_Type1.SelectedItem;
-            PokemonData.Species_Type2 = (BattleManager.Data.Type)Basic_Type2.SelectedItem;
+
+            #region Pokemon Types
+            if (PokemonData.Species_Types == null)
+                PokemonData.Species_Types = new List<BattleManager.Data.Type>();
+
+            PokemonData.Species_Types.Clear();
+
+            try
+            {
+                foreach (KeyValuePair<string, object> typesel in Basic_Types.SelectedItems)
+                {
+                    BattleManager.Data.Type type = (BattleManager.Data.Type)typesel.Value;
+
+                    PokemonData.Species_Types.Add(type);
+                }
+            }
+            catch { }
+            #endregion
+
             PokemonData.Species_WeightClass = (WeightClass)Basic_Weight.SelectedItem;
             PokemonData.Species_SizeClass = (SizeClass)Basic_Size.SelectedItem;
             #endregion
@@ -431,16 +462,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
                 }
                 #endregion
                 #region Typeing
-                if (Basic_Type1.SelectedIndex == -1)// Check if the Primary Type is set, if not set it will fail the validation check
-                {
-                    MessageBox.Show("You have not selected the pokemons primary type!", "Basic Information Error -> Typeing Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    Pass = false;
-                }
-                else if (Basic_Type2.SelectedIndex == -1)// Check if the Secondary Type is set, if not set it to Primary Type
-                {
-                    MessageBox.Show("You have not selected the pokemons secondary type, making pokemon Solo Type", "Basic Information Notice -> Typeing Noteice", MessageBoxButton.OK, MessageBoxImage.Information);
-                    Basic_Type2.SelectedItem = Basic_Type1.SelectedItem;
-                }
+                // Mechanic Changed... No Validation Avaliable
                 #endregion
                 #region ID
                 try

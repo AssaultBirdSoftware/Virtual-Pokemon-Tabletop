@@ -48,12 +48,12 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             Basic_Types.SelectionChangedEvent += Basic_Types_SelectionChangedEvent;
             #endregion
 
-            Dictionary<string, object> itemSource = new Dictionary<string, object>();
+            Dictionary<string, object> itemso = new Dictionary<string, object>();
             foreach (BattleManager.Data.Type effect in Enum.GetValues(typeof(BattleManager.Data.Type)))
             {
-                itemSource.Add(effect.ToString(), effect);
+                itemso.Add(effect.ToString(), effect);
             }
-            Basic_Types.ItemsSource = itemSource;
+            Basic_Types.ItemsSource = itemso;
 
             Basic_Weight.ItemsSource = Enum.GetValues(typeof(VPTU.Pokedex.Entity.WeightClass));
             Basic_Size.ItemsSource = Enum.GetValues(typeof(VPTU.Pokedex.Entity.SizeClass));
@@ -96,14 +96,12 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             try
             {
                 #region Pokemon Types
-                Dictionary<string, object> settypes = new Dictionary<string, object>();
-
+                Dictionary<string, object> itemso = new Dictionary<string, object>();
                 foreach (VPTU.BattleManager.Data.Type type in PokemonData.PokemonType)
                 {
-                    settypes.Add(type.ToString(), type);
+                    itemso.Add(type.ToString(), type);
                 }
-
-                Basic_Types.SelectedItems = settypes;
+                Basic_Types.SelectedItems = itemso;
                 #endregion
             }
             catch { }
@@ -131,13 +129,50 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
                 #endregion
             }
             catch { }
+
+            Reload_Stats();
         }
         /// <summary>
         /// Loads the pokemon from the species list (Used when creating a new pokemon)
         /// </summary>
         public void LoadFromSpecies()
         {
+            VPTU.Pokedex.Pokemon.PokemonData NewPokemon = (VPTU.Pokedex.Pokemon.PokemonData)((ComboBoxItem)Basic_Species.SelectedItem).Tag;
+            VPTU.Pokedex.Pokemon.PokemonData OldPokemon = Manager.SaveData.PokedexData.Pokemon.Find(x => x.Species_DexID == PokemonData.Species_DexID);
 
+            if (String.IsNullOrWhiteSpace(PokemonData.Name) || PokemonData.Name.ToLower() == OldPokemon.Species_Name.ToLower())
+            {
+                try { PokemonData.Name = NewPokemon.Species_Name; } catch { }
+            }
+            try { Basic_Species.SelectedItem = NewPokemon.Species_DexID; } catch { }
+
+            try
+            {
+                #region Pokemon Types
+                PokemonData.PokemonType.Clear();
+                foreach (VPTU.BattleManager.Data.Type type in NewPokemon.Species_Types)
+                {
+                    PokemonData.PokemonType.Add(type);
+                }
+                #endregion
+            }
+            catch { }
+
+            try { PokemonData.SizeClass = NewPokemon.Species_SizeClass; } catch { }
+            try { PokemonData.WeightClass = NewPokemon.Species_WeightClass; } catch { }
+
+            try
+            {
+                PokemonData.HP_SpeciesBase = NewPokemon.Species_BaseStats_HP;
+                PokemonData.Attack_SpeciesBase = NewPokemon.Species_BaseStats_Attack;
+                PokemonData.Defence_SpeciesBase = NewPokemon.Species_BaseStats_Defence;
+                PokemonData.SpAttack_SpeciesBase = NewPokemon.Species_BaseStats_SpAttack;
+                PokemonData.SpDefence_SpeciesBase = NewPokemon.Species_BaseStats_SpDefence;
+                PokemonData.Speed_SpeciesBase = NewPokemon.Species_BaseStats_Speed;
+            }
+            catch { }
+
+            Load();
         }
 
         /// <summary>

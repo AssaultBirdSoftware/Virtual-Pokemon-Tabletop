@@ -466,8 +466,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
                             PokedexList_DataBind PokemonDB = new PokedexList_DataBind();
                             PokemonDB.Name = Pokemon.Species_Name;
                             PokemonDB.ID = Pokemon.Species_DexID;
-                            PokemonDB.Type1 = Pokemon.Species_Type1.ToString();
-                            PokemonDB.Type2 = Pokemon.Species_Type2.ToString();
+                            PokemonDB.Types = Pokemon.Species_Types;
                             PokemonDB.Class = "";
                             PokemonDB.EntryType = "Pokemon";
 
@@ -488,8 +487,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
                             PokedexList_DataBind MoveDB = new PokedexList_DataBind();
                             MoveDB.Name = Move.Name;
                             MoveDB.ID = (SaveManager.SaveData.PokedexData.Moves.IndexOf(Move) + 1);
-                            MoveDB.Type1 = Move.Move_Type.ToString();
-                            MoveDB.Type2 = "";
+                            MoveDB.Types = new List<BattleManager.Data.Type> { Move.Move_Type };
                             MoveDB.Class = Move.Move_Class.ToString();
                             MoveDB.EntryType = "Move";
 
@@ -652,16 +650,17 @@ namespace AssaultBird2454.VPTU.SaveEditor
 
                 if (SaveManager == null) { return; }
 
-                if(EntityManager_SearchEntity_WildPokemon.IsChecked == true)
+                if (EntityManager_SearchEntity_WildPokemon.IsChecked == true)
                 {
-                    foreach(EntityManager.Pokemon.PokemonCharacter pokemon in SaveManager.SaveData.Pokemon)
+                    foreach (EntityManager.Pokemon.PokemonCharacter pokemon in SaveManager.SaveData.Pokemon)
                     {
                         EntityManager_DataBind db = new EntityManager_DataBind(pokemon.Species_DexID, pokemon.Name, pokemon.Species_DexID + " (" + SaveManager.SaveData.PokedexData.Pokemon.Find(x => x.Species_DexID == pokemon.Species_DexID).Species_Name + ")", "", EntityManager_DataType.WildPokemon);
                         db.DataTag = pokemon;
                         EntityManager_List.Items.Add(db);
                     }
                 }
-            } catch { /* Dont Care */ }
+            }
+            catch { /* Dont Care */ }
         }
         #endregion
     }
@@ -698,11 +697,26 @@ namespace AssaultBird2454.VPTU.SaveEditor
         /// <summary>
         /// The Type of the Pokemon or Move
         /// </summary>
-        public string Type1 { get; set; }
-        /// <summary>
-        /// The Secondary Type of the Pokemon
-        /// </summary>
-        public string Type2 { get; set; }
+        public List<BattleManager.Data.Type> Types { get; set; }
+        public string Type
+        {
+            get
+            {
+                string str = "";
+                int i = 0;
+                foreach (BattleManager.Data.Type type in Types)
+                {
+                    if (i >= 1)
+                    {
+                        str = str + ", ";
+                    }
+                    str = str + type.ToString();
+                    i++;
+                }
+
+                return str;
+            }
+        }
         /// <summary>
         /// The Class of move
         /// </summary>
