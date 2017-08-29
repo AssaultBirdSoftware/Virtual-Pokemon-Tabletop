@@ -67,11 +67,13 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             LoadSpecies();
         }
 
+        private List<ComboBoxItem> Species_List;
         /// <summary>
         /// Loads the pokemon species into the selection combobox
         /// </summary>
         private void LoadSpecies()
         {
+            Species_List = new List<ComboBoxItem>();
             foreach (VPTU.Pokedex.Pokemon.PokemonData data in Manager.SaveData.PokedexData.Pokemon)
             {
                 ComboBoxItem cbi = new ComboBoxItem();
@@ -79,6 +81,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
                 cbi.Tag = data;
 
                 Basic_Species.Items.Add(cbi);
+                Species_List.Add(cbi);
             }
         }
         #endregion
@@ -92,7 +95,8 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             try { Basic_Name.Text = PokemonData.Name; } catch { }
             try
             {
-                Basic_Species.SelectedItem = Manager.SaveData.PokedexData.Pokemon.Find(x => x.Species_DexID == PokemonData.Species_DexID);
+                VPTU.Pokedex.Pokemon.PokemonData pokemon = Manager.SaveData.PokedexData.Pokemon.Find(x => x.Species_DexID == PokemonData.Species_DexID);
+                Basic_Species.SelectedItem = Species_List.Find(x => x.Tag == pokemon);
             }
             catch { }
 
@@ -134,6 +138,8 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             catch { }
 
             Reload_Stats();
+
+            Basic_Species.IsEnabled = true;
         }
         /// <summary>
         /// Loads the pokemon from the species list (Used when creating a new pokemon)
@@ -143,7 +149,6 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             VPTU.Pokedex.Pokemon.PokemonData NewPokemon = (VPTU.Pokedex.Pokemon.PokemonData)((ComboBoxItem)Basic_Species.SelectedItem).Tag;
 
             //try { PokemonData.Name = NewPokemon.Species_Name; } catch { }
-            try { Basic_Species.SelectedItem = NewPokemon.Species_DexID; } catch { }
 
             try
             {
@@ -457,8 +462,11 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         {
             //MessageBox.Show("Updating pokemon with species data", "Selected Species", MessageBoxButton.OK, MessageBoxImage.Information);
 
-            PokemonData.Species_DexID = (decimal)((VPTU.Pokedex.Pokemon.PokemonData)((ComboBoxItem)Basic_Species.SelectedItem).Tag).Species_DexID;
-            LoadFromSpecies();
+            if (Basic_Species.IsEnabled == true)
+            {
+                PokemonData.Species_DexID = (decimal)((VPTU.Pokedex.Pokemon.PokemonData)((ComboBoxItem)Basic_Species.SelectedItem).Tag).Species_DexID;
+                LoadFromSpecies();
+            }
         }
         private void Basic_Size_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
