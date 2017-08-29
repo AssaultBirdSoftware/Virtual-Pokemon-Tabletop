@@ -63,11 +63,11 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
 
                 if (Nature == BattleManager.Data.Nature.Cuddly || Nature == BattleManager.Data.Nature.Distracted || Nature == BattleManager.Data.Nature.Proud || Nature == BattleManager.Data.Nature.Decisive || Nature == BattleManager.Data.Nature.Patient)
                 {
-                    NatureBonus = 2;
+                    NatureBonus = 1;
                 }
                 else if (Nature == BattleManager.Data.Nature.Desperate || Nature == BattleManager.Data.Nature.Stark || Nature == BattleManager.Data.Nature.Curious || Nature == BattleManager.Data.Nature.Dreamy || Nature == BattleManager.Data.Nature.Skittish)
                 {
-                    NatureBonus = -2;
+                    NatureBonus = -1;
                 }
 
                 return HP_SpeciesBase + HP_BaseMod + NatureBonus;
