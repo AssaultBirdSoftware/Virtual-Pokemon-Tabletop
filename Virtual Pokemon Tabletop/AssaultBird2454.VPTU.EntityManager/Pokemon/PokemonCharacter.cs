@@ -852,403 +852,403 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
             get
             {
                 /* Level 1 - 20 (EXP 0 - 459) */
-                if (Enumerable.Range(0, 9).Contains(EXP))
+                if (Between(0, 9, EXP))
                 {
                     return 1;
                 }
-                else if (Enumerable.Range(10, 19).Contains(EXP))
+                else if (Between(10, 19, EXP))
                 {
                     return 2;
                 }
-                else if (Enumerable.Range(20, 29).Contains(EXP))
+                else if (Between(20, 29, EXP))
                 {
                     return 3;
                 }
-                else if (Enumerable.Range(30, 39).Contains(EXP))
+                else if (Between(30, 39, EXP))
                 {
                     return 4;
                 }
-                else if (Enumerable.Range(40, 49).Contains(EXP))
+                else if (Between(40, 49, EXP))
                 {
                     return 5;
                 }
-                else if (Enumerable.Range(50, 59).Contains(EXP))
+                else if (Between(50, 59, EXP))
                 {
                     return 6;
                 }
-                else if (Enumerable.Range(60, 69).Contains(EXP))
+                else if (Between(60, 69, EXP))
                 {
                     return 7;
                 }
-                else if (Enumerable.Range(70, 79).Contains(EXP))
+                else if (Between(70, 79, EXP))
                 {
                     return 8;
                 }
-                else if (Enumerable.Range(80, 89).Contains(EXP))
+                else if (Between(80, 89, EXP))
                 {
                     return 9;
                 }
-                else if (Enumerable.Range(90, 109).Contains(EXP))
+                else if (Between(90, 109, EXP))
                 {
                     return 10;
                 }
-                else if (Enumerable.Range(110, 134).Contains(EXP))
+                else if (Between(110, 134, EXP))
                 {
                     return 11;
                 }
-                else if (Enumerable.Range(135, 159).Contains(EXP))
+                else if (Between(135, 159, EXP))
                 {
                     return 12;
                 }
-                else if (Enumerable.Range(160, 189).Contains(EXP))
+                else if (Between(160, 189, EXP))
                 {
                     return 13;
                 }
-                else if (Enumerable.Range(190, 219).Contains(EXP))
+                else if (Between(190, 219, EXP))
                 {
                     return 14;
                 }
-                else if (Enumerable.Range(220, 249).Contains(EXP))
+                else if (Between(220, 249, EXP))
                 {
                     return 15;
                 }
-                else if (Enumerable.Range(250, 284).Contains(EXP))
+                else if (Between(250, 284, EXP))
                 {
                     return 16;
                 }
-                else if (Enumerable.Range(285, 319).Contains(EXP))
+                else if (Between(285, 319, EXP))
                 {
                     return 17;
                 }
-                else if (Enumerable.Range(320, 359).Contains(EXP))
+                else if (Between(320, 359, EXP))
                 {
                     return 18;
                 }
-                else if (Enumerable.Range(360, 399).Contains(EXP))
+                else if (Between(360, 399, EXP))
                 {
                     return 19;
                 }
-                else if (Enumerable.Range(400, 459).Contains(EXP))
+                else if (Between(400, 459, EXP))
                 {
                     return 20;
                 }
                 /* Level 21 - 40 (EXP 460 - 2354) */
-                else if (Enumerable.Range(460, 529).Contains(EXP))
+                else if (Between(460, 529, EXP))
                 {
                     return 21;
                 }
-                else if (Enumerable.Range(530, 599).Contains(EXP))
+                else if (Between(530, 599, EXP))
                 {
                     return 22;
                 }
-                else if (Enumerable.Range(600, 669).Contains(EXP))
+                else if (Between(600, 669, EXP))
                 {
                     return 23;
                 }
-                else if (Enumerable.Range(670, 744).Contains(EXP))
+                else if (Between(670, 744, EXP))
                 {
                     return 24;
                 }
-                else if (Enumerable.Range(745, 819).Contains(EXP))
+                else if (Between(745, 819, EXP))
                 {
                     return 25;
                 }
-                else if (Enumerable.Range(820, 899).Contains(EXP))
+                else if (Between(820, 899, EXP))
                 {
                     return 26;
                 }
-                else if (Enumerable.Range(900, 989).Contains(EXP))
+                else if (Between(900, 989, EXP))
                 {
                     return 27;
                 }
-                else if (Enumerable.Range(990, 1074).Contains(EXP))
+                else if (Between(990, 1074, EXP))
                 {
                     return 28;
                 }
-                else if (Enumerable.Range(1075, 1164).Contains(EXP))
+                else if (Between(1075, 1164, EXP))
                 {
                     return 29;
                 }
-                else if (Enumerable.Range(1165, 1259).Contains(EXP))
+                else if (Between(1165, 1259, EXP))
                 {
                     return 30;
                 }
-                else if (Enumerable.Range(1260, 1354).Contains(EXP))
+                else if (Between(1260, 1354, EXP))
                 {
                     return 31;
                 }
-                else if (Enumerable.Range(1355, 1454).Contains(EXP))
+                else if (Between(1355, 1454, EXP))
                 {
                     return 32;
                 }
-                else if (Enumerable.Range(1455, 1554).Contains(EXP))
+                else if (Between(1455, 1554, EXP))
                 {
                     return 33;
                 }
-                else if (Enumerable.Range(1555, 1659).Contains(EXP))
+                else if (Between(1555, 1659, EXP))
                 {
                     return 34;
                 }
-                else if (Enumerable.Range(1660, 1769).Contains(EXP))
+                else if (Between(1660, 1769, EXP))
                 {
                     return 35;
                 }
-                else if (Enumerable.Range(1770, 1879).Contains(EXP))
+                else if (Between(1770, 1879, EXP))
                 {
                     return 36;
                 }
-                else if (Enumerable.Range(1880, 1994).Contains(EXP))
+                else if (Between(1880, 1994, EXP))
                 {
                     return 37;
                 }
-                else if (Enumerable.Range(1995, 2109).Contains(EXP))
+                else if (Between(1995, 2109, EXP))
                 {
                     return 38;
                 }
-                else if (Enumerable.Range(2110, 2229).Contains(EXP))
+                else if (Between(2110, 2229, EXP))
                 {
                     return 39;
                 }
-                else if (Enumerable.Range(2230, 2354).Contains(EXP))
+                else if (Between(2230, 2354, EXP))
                 {
                     return 40;
                 }
                 /* Level 41 - 60 (EXP 2355 - 0) */
-                else if (Enumerable.Range(2355, 2479).Contains(EXP))
+                else if (Between(2355, 2479, EXP))
                 {
                     return 41;
                 }
-                else if (Enumerable.Range(2480, 2609).Contains(EXP))
+                else if (Between(2480, 2609, EXP))
                 {
                     return 42;
                 }
-                else if (Enumerable.Range(2610, 2739).Contains(EXP))
+                else if (Between(2610, 2739, EXP))
                 {
                     return 43;
                 }
-                else if (Enumerable.Range(2740, 2874).Contains(EXP))
+                else if (Between(2740, 2874, EXP))
                 {
                     return 44;
                 }
-                else if (Enumerable.Range(2875, 3014).Contains(EXP))
+                else if (Between(2875, 3014, EXP))
                 {
                     return 45;
                 }
-                else if (Enumerable.Range(3015, 3154).Contains(EXP))
+                else if (Between(3015, 3154, EXP))
                 {
                     return 46;
                 }
-                else if (Enumerable.Range(3155, 3299).Contains(EXP))
+                else if (Between(3155, 3299, EXP))
                 {
                     return 47;
                 }
-                else if (Enumerable.Range(3300, 3444).Contains(EXP))
+                else if (Between(3300, 3444, EXP))
                 {
                     return 48;
                 }
-                else if (Enumerable.Range(3445, 3644).Contains(EXP))
+                else if (Between(3445, 3644, EXP))
                 {
                     return 49;
                 }
-                else if (Enumerable.Range(3645, 3849).Contains(EXP))
+                else if (Between(3645, 3849, EXP))
                 {
                     return 50;
                 }
-                else if (Enumerable.Range(3850, 4059).Contains(EXP))
+                else if (Between(3850, 4059, EXP))
                 {
                     return 51;
                 }
-                else if (Enumerable.Range(4060, 4169).Contains(EXP))
+                else if (Between(4060, 4169, EXP))
                 {
                     return 52;
                 }
-                else if (Enumerable.Range(4270, 4484).Contains(EXP))
+                else if (Between(4270, 4484, EXP))
                 {
                     return 53;
                 }
-                else if (Enumerable.Range(4485, 4704).Contains(EXP))
+                else if (Between(4485, 4704, EXP))
                 {
                     return 54;
                 }
-                else if (Enumerable.Range(4705, 4929).Contains(EXP))
+                else if (Between(4705, 4929, EXP))
                 {
                     return 55;
                 }
-                else if (Enumerable.Range(4930, 5159).Contains(EXP))
+                else if (Between(4930, 5159, EXP))
                 {
                     return 56;
                 }
-                else if (Enumerable.Range(5160, 5389).Contains(EXP))
+                else if (Between(5160, 5389, EXP))
                 {
                     return 57;
                 }
-                else if (Enumerable.Range(5390, 5624).Contains(EXP))
+                else if (Between(5390, 5624, EXP))
                 {
                     return 58;
                 }
-                else if (Enumerable.Range(5625, 5864).Contains(EXP))
+                else if (Between(5625, 5864, EXP))
                 {
                     return 59;
                 }
-                else if (Enumerable.Range(5865, 6109).Contains(EXP))
+                else if (Between(5865, 6109, EXP))
                 {
                     return 60;
                 }
                 /* Level 61 - 80 (EXP 0 - 0) */
-                else if (Enumerable.Range(6110, 6359).Contains(EXP))
+                else if (Between(6110, 6359, EXP))
                 {
                     return 61;
                 }
-                else if (Enumerable.Range(6360, 6609).Contains(EXP))
+                else if (Between(6360, 6609, EXP))
                 {
                     return 62;
                 }
-                else if (Enumerable.Range(6610, 6864).Contains(EXP))
+                else if (Between(6610, 6864, EXP))
                 {
                     return 63;
                 }
-                else if (Enumerable.Range(6865, 7124).Contains(EXP))
+                else if (Between(6865, 7124, EXP))
                 {
                     return 64;
                 }
-                else if (Enumerable.Range(7125, 7389).Contains(EXP))
+                else if (Between(7125, 7389, EXP))
                 {
                     return 65;
                 }
-                else if (Enumerable.Range(7390, 7659).Contains(EXP))
+                else if (Between(7390, 7659, EXP))
                 {
                     return 66;
                 }
-                else if (Enumerable.Range(7660, 7924).Contains(EXP))
+                else if (Between(7660, 7924, EXP))
                 {
                     return 67;
                 }
-                else if (Enumerable.Range(7925, 8204).Contains(EXP))
+                else if (Between(7925, 8204, EXP))
                 {
                     return 68;
                 }
-                else if (Enumerable.Range(8205, 8484).Contains(EXP))
+                else if (Between(8205, 8484, EXP))
                 {
                     return 69;
                 }
-                else if (Enumerable.Range(8485, 8769).Contains(EXP))
+                else if (Between(8485, 8769, EXP))
                 {
                     return 70;
                 }
-                else if (Enumerable.Range(8770, 9059).Contains(EXP))
+                else if (Between(8770, 9059, EXP))
                 {
                     return 71;
                 }
-                else if (Enumerable.Range(9060, 9344).Contains(EXP))
+                else if (Between(9060, 9344, EXP))
                 {
                     return 72;
                 }
-                else if (Enumerable.Range(9350, 9644).Contains(EXP))
+                else if (Between(9350, 9644, EXP))
                 {
                     return 73;
                 }
-                else if (Enumerable.Range(9645, 9944).Contains(EXP))
+                else if (Between(9645, 9944, EXP))
                 {
                     return 74;
                 }
-                else if (Enumerable.Range(9945, 10249).Contains(EXP))
+                else if (Between(9945, 10249, EXP))
                 {
                     return 75;
                 }
-                else if (Enumerable.Range(10250, 10559).Contains(EXP))
+                else if (Between(10250, 10559, EXP))
                 {
                     return 76;
                 }
-                else if (Enumerable.Range(10560, 10869).Contains(EXP))
+                else if (Between(10560, 10869, EXP))
                 {
                     return 77;
                 }
-                else if (Enumerable.Range(10870, 11184).Contains(EXP))
+                else if (Between(10870, 11184, EXP))
                 {
                     return 78;
                 }
-                else if (Enumerable.Range(11185, 11504).Contains(EXP))
+                else if (Between(11185, 11504, EXP))
                 {
                     return 79;
                 }
-                else if (Enumerable.Range(11505, 11909).Contains(EXP))
+                else if (Between(11505, 11909, EXP))
                 {
                     return 80;
                 }
                 /* Level 81 - 99 (EXP 0 - 0) */
-                else if (Enumerable.Range(11910, 12319).Contains(EXP))
+                else if (Between(11910, 12319, EXP))
                 {
                     return 81;
                 }
-                else if (Enumerable.Range(12320, 12734).Contains(EXP))
+                else if (Between(12320, 12734, EXP))
                 {
                     return 82;
                 }
-                else if (Enumerable.Range(12735, 13154).Contains(EXP))
+                else if (Between(12735, 13154, EXP))
                 {
                     return 83;
                 }
-                else if (Enumerable.Range(13155, 13579).Contains(EXP))
+                else if (Between(13155, 13579, EXP))
                 {
                     return 84;
                 }
-                else if (Enumerable.Range(13580, 14009).Contains(EXP))
+                else if (Between(13580, 14009, EXP))
                 {
                     return 85;
                 }
-                else if (Enumerable.Range(14010, 14444).Contains(EXP))
+                else if (Between(14010, 14444, EXP))
                 {
                     return 86;
                 }
-                else if (Enumerable.Range(14445, 14884).Contains(EXP))
+                else if (Between(14445, 14884, EXP))
                 {
                     return 87;
                 }
-                else if (Enumerable.Range(14885, 15329).Contains(EXP))
+                else if (Between(14885, 15329, EXP))
                 {
                     return 88;
                 }
-                else if (Enumerable.Range(15330, 15779).Contains(EXP))
+                else if (Between(15330, 15779, EXP))
                 {
                     return 89;
                 }
-                else if (Enumerable.Range(15780, 16234).Contains(EXP))
+                else if (Between(15780, 16234, EXP))
                 {
                     return 90;
                 }
-                else if (Enumerable.Range(16235, 16694).Contains(EXP))
+                else if (Between(16235, 16694, EXP))
                 {
                     return 91;
                 }
-                else if (Enumerable.Range(16695, 17159).Contains(EXP))
+                else if (Between(16695, 17159, EXP))
                 {
                     return 92;
                 }
-                else if (Enumerable.Range(17160, 17629).Contains(EXP))
+                else if (Between(17160, 17629, EXP))
                 {
                     return 93;
                 }
-                else if (Enumerable.Range(17630, 18104).Contains(EXP))
+                else if (Between(17630, 18104, EXP))
                 {
                     return 94;
                 }
-                else if (Enumerable.Range(18105, 18584).Contains(EXP))
+                else if (Between(18105, 18584, EXP))
                 {
                     return 95;
                 }
-                else if (Enumerable.Range(18585, 19069).Contains(EXP))
+                else if (Between(18585, 19069, EXP))
                 {
                     return 96;
                 }
-                else if (Enumerable.Range(19070, 19559).Contains(EXP))
+                else if (Between(19070, 19559, EXP))
                 {
                     return 97;
                 }
-                else if (Enumerable.Range(19560, 20054).Contains(EXP))
+                else if (Between(19560, 20054, EXP))
                 {
                     return 98;
                 }
-                else if (Enumerable.Range(20055, 20554).Contains(EXP))
+                else if (Between(20055, 20554, EXP))
                 {
                     return 99;
                 }
@@ -1261,6 +1261,18 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
 
                 // less than 0... Default to level 0
                 return 0;
+            }
+        }
+
+        private bool Between(int Low, int High, int Val)
+        {
+            if (Val >= Low && Val <= High)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
         #endregion

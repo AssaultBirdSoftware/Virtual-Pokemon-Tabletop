@@ -137,6 +137,8 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             }
             catch { }
 
+            try { Basic_XP.Value = PokemonData.EXP; } catch { }
+
             Reload_Stats();
 
             Basic_Species.IsEnabled = true;
@@ -226,6 +228,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             Stats_SBase_HP.Content = PokemonData.HP_SpeciesBase;
             Stats_Base_HP.Content = PokemonData.HP_Base;
             Stats_Total_HP.Content = PokemonData.Stat_HP_Max;
+            Basic_MaxHP.Content = "/ " + PokemonData.Stat_HP_Max;
 
             Stats_SBase_Attack.Content = PokemonData.Attack_SpeciesBase;
             Stats_Base_Attack.Content = PokemonData.Attack_Base;
@@ -262,6 +265,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
 
                 Stats_Base_HP.Content = PokemonData.HP_Base;
                 Stats_Total_HP.Content = PokemonData.Stat_HP_Max;
+                Basic_MaxHP.Content = "/ " + PokemonData.Stat_HP_Max;
             }
             catch { }
         }
@@ -272,6 +276,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
                 PokemonData.HP_AddStat = (int)Stats_Add_HP.Value;
 
                 Stats_Total_HP.Content = PokemonData.Stat_HP_Max;
+                Basic_MaxHP.Content = "/ " + PokemonData.Stat_HP_Max;
             }
             catch { }
         }

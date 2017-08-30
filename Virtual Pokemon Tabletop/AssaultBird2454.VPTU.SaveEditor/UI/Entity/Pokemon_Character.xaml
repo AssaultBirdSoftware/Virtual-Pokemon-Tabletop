@@ -36,7 +36,7 @@
                 <MultiSelectComboBox:MultiSelectComboBox x:Name="Basic_Types" HorizontalAlignment="Left" Height="24" Margin="90,54,0,0" VerticalAlignment="Top" Width="150"/>
                 <Label Content="XP" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="51" Grid.Column="1" Margin="0,31,0,0"/>
                 <Label Content="HP" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="51" Grid.Column="1" Margin="0,110,0,0"/>
-                <xctk:IntegerUpDown x:Name="Basic_CurrentHP" HorizontalAlignment="Left" Margin="56,110,0,0" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Minimum="-6" Maximum="6" Value="0" TextAlignment="Center" ValueChanged="Stats_CS_Attack_ValueChanged"/>
+                <xctk:IntegerUpDown x:Name="Basic_CurrentHP" HorizontalAlignment="Left" Margin="56,110,0,0" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Minimum="0" Maximum="99999" Value="0" TextAlignment="Center" ValueChanged="Stats_CS_Attack_ValueChanged"/>
                 <Label x:Name="Basic_MaxHP" Content="/ 500" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="76" Grid.Column="1" Margin="141,110,0,0"/>
                 <xctk:IntegerUpDown x:Name="Basic_XP" HorizontalAlignment="Left" Margin="56,31,0,0" VerticalAlignment="Top" Width="74" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Minimum="0" Maximum="20555" Value="0" TextAlignment="Center" ValueChanged="Basic_XP_ValueChanged"/>
                 <Label x:Name="Basic_REXP" Content="Remaining: 20555" VerticalAlignment="Top" HorizontalAlignment="Left" Width="106" Grid.Column="1" Margin="135,29,0,0"/>
@@ -73,8 +73,6 @@
             </TabItem>
             <TabItem Header="Stats" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top">
                 <Grid>
-                    <Label Content="Curent HP: " HorizontalAlignment="Left" Margin="576,321,0,0" VerticalAlignment="Top"/>
-                    <xctk:IntegerUpDown Margin="646,321,264,89"/>
                     <Label Content="Temp HP" HorizontalAlignment="Left" Margin="576,352,0,0" VerticalAlignment="Top"/>
                     <xctk:IntegerUpDown Margin="646,352,264,58"/>
                     <Label Content="Temp HP" HorizontalAlignment="Left" Margin="576,383,0,0" VerticalAlignment="Top"/>
