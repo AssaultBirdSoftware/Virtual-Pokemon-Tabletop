@@ -53,10 +53,10 @@
     <Compile Include="Class\ConsoleCommands\Command Listener.cs" />
     <Compile Include="Class\ConsoleCommands\Command.cs" />
     <Compile Include="Class\Logging\Logger.cs" />
-    <Compile Include="Class\Setup.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="ProjectInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Server\ServerInstance.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ProjectVariables.json" />

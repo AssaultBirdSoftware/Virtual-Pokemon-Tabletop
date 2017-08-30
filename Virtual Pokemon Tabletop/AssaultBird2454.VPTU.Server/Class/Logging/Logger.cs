@@ -32,7 +32,9 @@ namespace AssaultBird2454.VPTU.Server.Class.Logging
                 // Load the file
             }
         }
-        public StreamWriter FileStream;
+        private StreamWriter SR;
+        private FileStream FS;
+
 
         private bool _LogDebug = false;
         /// <summary>
@@ -67,7 +69,11 @@ namespace AssaultBird2454.VPTU.Server.Class.Logging
 
             LogFile_Dir = Dir;
 
-            FileStream = new StreamWriter(LogFile_Dir, true);
+            if (!Directory.Exists(Path.GetDirectoryName(LogFile_Dir)))
+                Directory.CreateDirectory(Path.GetDirectoryName(LogFile_Dir));
+
+            FS = new FileStream(LogFile_Dir, FileMode.OpenOrCreate);
+            SR = new StreamWriter(FS);
         }
 
         public void Log(string Data, LoggerLevel Level)
@@ -94,7 +100,7 @@ namespace AssaultBird2454.VPTU.Server.Class.Logging
             }
             else if (Level == LoggerLevel.Fatil)
             {
-                Console.ForegroundColor = ConsoleColor.Black;
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.BackgroundColor = ConsoleColor.DarkRed;
             }
             else if (Level == LoggerLevel.Debug)
@@ -114,7 +120,8 @@ namespace AssaultBird2454.VPTU.Server.Class.Logging
             string Write = DateTime.Now.ToString() + " [" + Level.ToString() + "] -> " + Data;
 
             Console.WriteLine(Write);
-            FileStream.WriteLine(Write);
+            SR.WriteLine(Write);
+            SR.Flush();
         }
     }
 }
