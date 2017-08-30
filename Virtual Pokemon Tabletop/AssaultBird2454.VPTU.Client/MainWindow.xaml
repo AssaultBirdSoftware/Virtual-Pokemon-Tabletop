@@ -3,11 +3,25 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:avalonDock="http://schemas.xceed.com/wpf/xaml/avalondock"
         xmlns:local="clr-namespace:AssaultBird2454.VPTU.Client"
         mc:Ignorable="d"
         Title="Virtual Pokemon Tabletop - Client (Version: _____ _._._ Build _) (Commit: _______)" Height="412.278" Width="784.075" Closed="Main_Closed">
     <Grid>
-        <DockPanel LastChildFill="False" Margin="0,17.96,0,0"/>
+        <avalonDock:DockingManager x:Name="Dock" Margin="0,18,0,0">
+            <avalonDock:LayoutRoot>
+                <avalonDock:LayoutPanel Orientation="Horizontal">
+                    <avalonDock:LayoutDocumentPane/>
+                    <avalonDock:LayoutAnchorablePane DockWidth="150">
+                        <avalonDock:LayoutAnchorable Title="Turn Order">
+                            
+                        </avalonDock:LayoutAnchorable>
+                    </avalonDock:LayoutAnchorablePane>
+                </avalonDock:LayoutPanel>
+            </avalonDock:LayoutRoot>
+
+        </avalonDock:DockingManager>
+
         <Menu x:Name="Menu" VerticalAlignment="Top">
             <MenuItem x:Name="Menu_Menu" Header="Menu">
                 <MenuItem x:Name="Menu_Menu_Connect" Header="Connect to Table"/>
@@ -40,7 +54,6 @@
                 <MenuItem x:Name="Menu_Window_ManageLayout" Header="Manage Layouts"/>
             </MenuItem>
         </Menu>
-
     </Grid>
 </Window>
 <!-- https://msdn.microsoft.com/en-us/magazine/dd419663.aspx-->

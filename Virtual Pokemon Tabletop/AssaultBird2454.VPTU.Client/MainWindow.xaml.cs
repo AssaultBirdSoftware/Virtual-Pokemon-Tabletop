@@ -66,6 +66,8 @@ namespace AssaultBird2454.VPTU.Client
 
             InitializeComponent();
 
+            Dock.LayoutRootPanel.Children.Add();
+
             #region Versioning Info
             using (Stream str = Assembly.GetExecutingAssembly().GetManifestResourceStream("AssaultBird2454.VPTU.Client.ProjectVariables.json"))
             {
