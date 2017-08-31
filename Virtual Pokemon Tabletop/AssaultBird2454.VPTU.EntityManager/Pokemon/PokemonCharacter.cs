@@ -1264,7 +1264,415 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
             }
         }
 
-        private bool Between(int Low, int High, int Val)
+        public static int EXP_Markers(int _Level)
+        {
+            if (_Level == 1)
+            {
+                return 0;
+            }
+            else if (_Level == 2)
+            {
+                return 10;
+            }
+            else if (_Level == 3)
+            {
+                return 20;
+            }
+            else if (_Level == 4)
+            {
+                return 30;
+            }
+            else if (_Level == 5)
+            {
+                return 40;
+            }
+            else if (_Level == 6)
+            {
+                return 50;
+            }
+            else if (_Level == 7)
+            {
+                return 60;
+            }
+            else if (_Level == 8)
+            {
+                return 70;
+            }
+            else if (_Level == 9)
+            {
+                return 80;
+            }
+            else if (_Level == 10)
+            {
+                return 90;
+            }
+            else if (_Level == 11)
+            {
+                return 110;
+            }
+            else if (_Level == 12)
+            {
+                return 135;
+            }
+            else if (_Level == 13)
+            {
+                return 160;
+            }
+            else if (_Level == 14)
+            {
+                return 190;
+            }
+            else if (_Level == 15)
+            {
+                return 220;
+            }
+            else if (_Level == 16)
+            {
+                return 250;
+            }
+            else if (_Level == 17)
+            {
+                return 285;
+            }
+            else if (_Level == 18)
+            {
+                return 320;
+            }
+            else if (_Level == 19)
+            {
+                return 360;
+            }
+            else if (_Level == 20)
+            {
+                return 400;
+            }
+            else if (_Level == 21)
+            {
+                return 460;
+            }
+            else if (_Level == 22)
+            {
+                return 530;
+            }
+            else if (_Level == 23)
+            {
+                return 600;
+            }
+            else if (_Level == 24)
+            {
+                return 670;
+            }
+            else if (_Level == 25)
+            {
+                return 745;
+            }
+            else if (_Level == 26)
+            {
+                return 820;
+            }
+            else if (_Level == 27)
+            {
+                return 900;
+            }
+            else if (_Level == 28)
+            {
+                return 990;
+            }
+            else if (_Level == 29)
+            {
+                return 1075;
+            }
+            else if (_Level == 30)
+            {
+                return 1165;
+            }
+            else if (_Level == 31)
+            {
+                return 1260;
+            }
+            else if (_Level == 32)
+            {
+                return 1355;
+            }
+            else if (_Level == 33)
+            {
+                return 1455;
+            }
+            else if (_Level == 34)
+            {
+                return 1555;
+            }
+            else if (_Level == 35)
+            {
+                return 1660;
+            }
+            else if (_Level == 36)
+            {
+                return 1770;
+            }
+            else if (_Level == 37)
+            {
+                return 1880;
+            }
+            else if (_Level == 38)
+            {
+                return 1995;
+            }
+            else if (_Level == 39)
+            {
+                return 2110;
+            }
+            else if (_Level == 40)
+            {
+                return 2230;
+            }
+            else if (_Level == 41)
+            {
+                return 2355;
+            }
+            else if (_Level == 42)
+            {
+                return 2480;
+            }
+            else if (_Level == 43)
+            {
+                return 2610;
+            }
+            else if (_Level == 44)
+            {
+                return 2740;
+            }
+            else if (_Level == 45)
+            {
+                return 2875;
+            }
+            else if (_Level == 46)
+            {
+                return 3015;
+            }
+            else if (_Level == 47)
+            {
+                return 3155;
+            }
+            else if (_Level == 48)
+            {
+                return 3300;
+            }
+            else if (_Level == 49)
+            {
+                return 3445;
+            }
+            else if (_Level == 50)
+            {
+                return 3645;
+            }
+            else if (_Level == 51)
+            {
+                return 3850;
+            }
+            else if (_Level == 52)
+            {
+                return 4060;
+            }
+            else if (_Level == 53)
+            {
+                return 4270;
+            }
+            else if (_Level == 54)
+            {
+                return 4485;
+            }
+            else if (_Level == 55)
+            {
+                return 4705;
+            }
+            else if (_Level == 56)
+            {
+                return 4930;
+            }
+            else if (_Level == 57)
+            {
+                return 5160;
+            }
+            else if (_Level == 58)
+            {
+                return 5390;
+            }
+            else if (_Level == 59)
+            {
+                return 5625;
+            }
+            else if (_Level == 60)
+            {
+                return 5865;
+            }
+            else if (_Level == 61)
+            {
+                return 6110;
+            }
+            else if (_Level == 62)
+            {
+                return 6360;
+            }
+            else if (_Level == 63)
+            {
+                return 6610;
+            }
+            else if (_Level == 64)
+            {
+                return 6865;
+            }
+            else if (_Level == 65)
+            {
+                return 7125;
+            }
+            else if (_Level == 66)
+            {
+                return 7390;
+            }
+            else if (_Level == 67)
+            {
+                return 7660;
+            }
+            else if (_Level == 68)
+            {
+                return 7925;
+            }
+            else if (_Level == 69)
+            {
+                return 8205;
+            }
+            else if (_Level == 70)
+            {
+                return 8485;
+            }
+            else if (_Level == 71)
+            {
+                return 8770;
+            }
+            else if (_Level == 72)
+            {
+                return 9060;
+            }
+            else if (_Level == 73)
+            {
+                return 9350;
+            }
+            else if (_Level == 74)
+            {
+                return 9645;
+            }
+            else if (_Level == 75)
+            {
+                return 9945;
+            }
+            else if (_Level == 76)
+            {
+                return 10250;
+            }
+            else if (_Level == 77)
+            {
+                return 10560;
+            }
+            else if (_Level == 78)
+            {
+                return 10870;
+            }
+            else if (_Level == 79)
+            {
+                return 11185;
+            }
+            else if (_Level == 80)
+            {
+                return 11505;
+            }
+            else if (_Level == 81)
+            {
+                return 11910;
+            }
+            else if (_Level == 82)
+            {
+                return 12320;
+            }
+            else if (_Level == 83)
+            {
+                return 12735;
+            }
+            else if (_Level == 84)
+            {
+                return 13155;
+            }
+            else if (_Level == 85)
+            {
+                return 13580;
+            }
+            else if (_Level == 86)
+            {
+                return 14010;
+            }
+            else if (_Level == 87)
+            {
+                return 14445;
+            }
+            else if (_Level == 88)
+            {
+                return 14885;
+            }
+            else if (_Level == 89)
+            {
+                return 15330;
+            }
+            else if (_Level == 90)
+            {
+                return 15780;
+            }
+            else if (_Level == 91)
+            {
+                return 16235;
+            }
+            else if (_Level == 92)
+            {
+                return 16695;
+            }
+            else if (_Level == 93)
+            {
+                return 17160;
+            }
+            else if (_Level == 94)
+            {
+                return 17630;
+            }
+            else if (_Level == 95)
+            {
+                return 18105;
+            }
+            else if (_Level == 96)
+            {
+                return 18585;
+            }
+            else if (_Level == 97)
+            {
+                return 19070;
+            }
+            else if (_Level == 98)
+            {
+                return 19560;
+            }
+            else if (_Level == 99)
+            {
+                return 20055;
+            }
+            else if (_Level == 100)
+            {
+                return 20555;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        private static bool Between(int Low, int High, int Val)
         {
             if (Val >= Low && Val <= High)
             {

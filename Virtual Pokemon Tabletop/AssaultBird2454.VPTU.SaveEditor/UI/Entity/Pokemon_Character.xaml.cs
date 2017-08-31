@@ -516,9 +516,10 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             try
             {
                 PokemonData.EXP = (int)Math.Floor((decimal)Basic_XP.Value);
+                int level = PokemonData.Level;
 
-                Basic_REXP.Content = "Required: " + "????";
-                Basic_Level.Content = "Level: " + PokemonData.Level;
+                Basic_REXP.Content = "Required: " + (EntityManager.Pokemon.PokemonCharacter.EXP_Markers(level + 1) - PokemonData.EXP);
+                Basic_Level.Content = "Level: " + level;
 
                 Reload_Stats();
             }
