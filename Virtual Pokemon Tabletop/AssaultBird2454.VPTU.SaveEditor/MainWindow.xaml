@@ -131,11 +131,21 @@
                     <ListView x:Name="EntityManager_List" SelectionChanged="PokedexManager_List_SelectionChanged" MouseDoubleClick="EntityManager_List_MouseDoubleClick">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="ID" Width="50px" DisplayMemberBinding="{Binding ID}"/>
-                                <GridViewColumn Header="Name" Width="200px" DisplayMemberBinding="{Binding Name}"/>
+                                <GridViewColumn Header="Name" Width="150px" DisplayMemberBinding="{Binding Name}"/>
                                 <GridViewColumn Header="Species" Width="200px" DisplayMemberBinding="{Binding Species}"/>
                                 <GridViewColumn Header="Owner" Width="200px" DisplayMemberBinding="{Binding Owner}"/>
                                 <GridViewColumn Header="Character Type" Width="150px" DisplayMemberBinding="{Binding Type}"/>
+                                <GridViewColumn Header="Stats" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <WrapPanel>
+                                                <ProgressBar Minimum="0" Maximum="{Binding DataTag.Stat_HP_Max}" Value="{Binding DataTag.Current_HP}" Width="100" Height="5" Foreground="Green"></ProgressBar>
+                                                <ProgressBar Minimum="0" Maximum="{Binding DataTag.Required_EXP}" Value="{Binding DataTag.EXP}" Width="100" Height="5" Foreground="Blue"></ProgressBar>
+                                                <ProgressBar Minimum="0" Maximum="10" Value="{Binding DataTag.Injuries}" Width="100" Height="5" Foreground="Red"></ProgressBar>
+                                            </WrapPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>

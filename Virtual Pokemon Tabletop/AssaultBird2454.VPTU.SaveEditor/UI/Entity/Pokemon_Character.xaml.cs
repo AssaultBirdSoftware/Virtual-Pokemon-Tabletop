@@ -137,7 +137,9 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             }
             catch { }
 
-            try { Basic_XP.Value = PokemonData.EXP; } catch { }
+            try { Basic_EXP.Value = PokemonData.EXP; } catch { }
+            try { Basic_CurrentHP.Value = PokemonData.Current_HP; } catch { }
+            try { Basic_Injuries.Value = PokemonData.Injuries; } catch { }
 
             Reload_Stats();
 
@@ -180,51 +182,29 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
 
             Load();
         }
-
-        /// <summary>
-        /// Saves the data
-        /// </summary>
-        public void Save()
-        {
-            PokemonData.Name = Basic_Name.Text;
-            PokemonData.Species_DexID = (decimal)((VPTU.Pokedex.Pokemon.PokemonData)((ComboBoxItem)Basic_Species.SelectedItem).Tag).Species_DexID;
-            #region Pokemon Types
-            if (PokemonData.PokemonType == null)
-                PokemonData.PokemonType = new List<BattleManager.Data.Type>();
-
-            PokemonData.PokemonType.Clear();
-
-            foreach (KeyValuePair<string, object> typesel in Basic_Types.SelectedItems)
-            {
-                BattleManager.Data.Type type = (BattleManager.Data.Type)typesel.Value;
-
-                PokemonData.PokemonType.Add(type);
-            }
-            #endregion
-            PokemonData.SizeClass = (VPTU.Pokedex.Entity.SizeClass)Basic_Size.SelectedItem;
-            PokemonData.WeightClass = (VPTU.Pokedex.Entity.WeightClass)Basic_Weight.SelectedItem;
-            PokemonData.Nature = (BattleManager.Data.Nature)Basic_Nature.SelectedItem;
-            PokemonData.Notes = Basic_Desc.Text;
-            #region Gender
-            if (Basic_SexMale.IsChecked == true)
-            {
-                PokemonData.Gender = VPTU.Pokedex.Entity.Gender.Male;
-            }
-            else if (Basic_SexFemale.IsChecked == true)
-            {
-                PokemonData.Gender = VPTU.Pokedex.Entity.Gender.Female;
-            }
-            else if (Basic_SexNone.IsChecked == true)
-            {
-                PokemonData.Gender = VPTU.Pokedex.Entity.Gender.Genderless;
-            }
-            #endregion
-        }
         #endregion
 
         #region Stats
         public void Reload_Stats()
         {
+            Stats_Mod_HP.Value = PokemonData.HP_BaseMod;
+            Stats_Add_HP.Value = PokemonData.HP_AddStat;
+            Stats_Mod_Attack.Value = PokemonData.Attack_BaseMod;
+            Stats_Add_Attack.Value = PokemonData.Attack_AddStat;
+            Stats_CS_Attack.Value = PokemonData.Attack_CombatStage;
+            Stats_Mod_Defence.Value = PokemonData.Defence_BaseMod;
+            Stats_Add_Defence.Value = PokemonData.Defence_AddStat;
+            Stats_CS_Defence.Value = PokemonData.Defence_CombatStage;
+            Stats_Mod_SpAttack.Value = PokemonData.SpAttack_BaseMod;
+            Stats_Add_SpAttack.Value = PokemonData.SpAttack_AddStat;
+            Stats_CS_SpAttack.Value = PokemonData.SpAttack_CombatStage;
+            Stats_Mod_SpDefence.Value = PokemonData.SpDefence_BaseMod;
+            Stats_Add_SpDefence.Value = PokemonData.SpDefence_AddStat;
+            Stats_CS_SpDefence.Value = PokemonData.SpDefence_CombatStage;
+            Stats_Mod_Speed.Value = PokemonData.Speed_BaseMod;
+            Stats_Add_Speed.Value = PokemonData.Speed_AddStat;
+
+            Stats_CS_Speed.Value = PokemonData.Speed_CombatStage;
             Stats_SBase_HP.Content = PokemonData.HP_SpeciesBase;
             Stats_Base_HP.Content = PokemonData.HP_Base;
             Stats_Total_HP.Content = PokemonData.Stat_HP_Max;
@@ -259,201 +239,218 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         #region HP
         private void Stats_Mod_HP_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            try
-            {
-                PokemonData.HP_BaseMod = (int)Stats_Mod_HP.Value;
+            if (Basic_Species.IsEnabled)
+                try
+                {
+                    PokemonData.HP_BaseMod = (int)Stats_Mod_HP.Value;
 
-                Stats_Base_HP.Content = PokemonData.HP_Base;
-                Stats_Total_HP.Content = PokemonData.Stat_HP_Max;
-                Basic_MaxHP.Content = "/ " + PokemonData.Stat_HP_Max;
-            }
-            catch { }
+                    Stats_Base_HP.Content = PokemonData.HP_Base;
+                    Stats_Total_HP.Content = PokemonData.Stat_HP_Max;
+                    Basic_MaxHP.Content = "/ " + PokemonData.Stat_HP_Max;
+                }
+                catch { }
         }
         private void Stats_Add_HP_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            try
-            {
-                PokemonData.HP_AddStat = (int)Stats_Add_HP.Value;
+            if (Basic_Species.IsEnabled)
+                try
+                {
+                    PokemonData.HP_AddStat = (int)Stats_Add_HP.Value;
 
-                Stats_Total_HP.Content = PokemonData.Stat_HP_Max;
-                Basic_MaxHP.Content = "/ " + PokemonData.Stat_HP_Max;
-            }
-            catch { }
+                    Stats_Total_HP.Content = PokemonData.Stat_HP_Max;
+                    Basic_MaxHP.Content = "/ " + PokemonData.Stat_HP_Max;
+                }
+                catch { }
         }
         #endregion
         #region Attack
         private void Stats_Mod_Attack_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            try
-            {
-                PokemonData.Attack_BaseMod = (int)Stats_Mod_Attack.Value;
+            if (Basic_Species.IsEnabled)
+                try
+                {
+                    PokemonData.Attack_BaseMod = (int)Stats_Mod_Attack.Value;
 
-                Stats_Base_Attack.Content = PokemonData.Attack_Base;
-                Stats_Total_Attack.Content = PokemonData.Attack_Total;
-                Stats_Adj_Attack.Content = PokemonData.Attack_Adjusted;
-            }
-            catch { }
+                    Stats_Base_Attack.Content = PokemonData.Attack_Base;
+                    Stats_Total_Attack.Content = PokemonData.Attack_Total;
+                    Stats_Adj_Attack.Content = PokemonData.Attack_Adjusted;
+                }
+                catch { }
         }
         private void Stats_Add_Attack_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            try
-            {
-                PokemonData.Attack_AddStat = (int)Stats_Add_Attack.Value;
+            if (Basic_Species.IsEnabled)
+                try
+                {
+                    PokemonData.Attack_AddStat = (int)Stats_Add_Attack.Value;
 
-                Stats_Total_Attack.Content = PokemonData.Attack_Total;
-                Stats_Adj_Attack.Content = PokemonData.Attack_Adjusted;
-            }
-            catch { }
+                    Stats_Total_Attack.Content = PokemonData.Attack_Total;
+                    Stats_Adj_Attack.Content = PokemonData.Attack_Adjusted;
+                }
+                catch { }
         }
         private void Stats_CS_Attack_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            try
-            {
-                PokemonData.Attack_CombatStage = (int)Stats_CS_Attack.Value;
+            if (Basic_Species.IsEnabled)
+                try
+                {
+                    PokemonData.Attack_CombatStage = (int)Stats_CS_Attack.Value;
 
-                Stats_Adj_Attack.Content = PokemonData.Attack_Adjusted;
-            }
-            catch { }
+                    Stats_Adj_Attack.Content = PokemonData.Attack_Adjusted;
+                }
+                catch { }
         }
         #endregion
         #region Defence
         private void Stats_Mod_Defence_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            try
-            {
-                PokemonData.Defence_BaseMod = (int)Stats_Mod_Defence.Value;
+            if (Basic_Species.IsEnabled)
+                try
+                {
+                    PokemonData.Defence_BaseMod = (int)Stats_Mod_Defence.Value;
 
-                Stats_Base_Defence.Content = PokemonData.Defence_Base;
-                Stats_Total_Defence.Content = PokemonData.Defence_Total;
-                Stats_Adj_Defence.Content = PokemonData.Defence_Adjusted;
-            }
-            catch { }
+                    Stats_Base_Defence.Content = PokemonData.Defence_Base;
+                    Stats_Total_Defence.Content = PokemonData.Defence_Total;
+                    Stats_Adj_Defence.Content = PokemonData.Defence_Adjusted;
+                }
+                catch { }
         }
         private void Stats_Add_Defence_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            try
-            {
-                PokemonData.Defence_AddStat = (int)Stats_Add_Defence.Value;
+            if (Basic_Species.IsEnabled)
+                try
+                {
+                    PokemonData.Defence_AddStat = (int)Stats_Add_Defence.Value;
 
-                Stats_Total_Defence.Content = PokemonData.Defence_Total;
-                Stats_Adj_Defence.Content = PokemonData.Defence_Adjusted;
-            }
-            catch { }
+                    Stats_Total_Defence.Content = PokemonData.Defence_Total;
+                    Stats_Adj_Defence.Content = PokemonData.Defence_Adjusted;
+                }
+                catch { }
         }
         private void Stats_CS_Defence_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            try
-            {
-                PokemonData.Defence_CombatStage = (int)Stats_CS_Defence.Value;
+            if (Basic_Species.IsEnabled)
+                try
+                {
+                    PokemonData.Defence_CombatStage = (int)Stats_CS_Defence.Value;
 
-                Stats_Adj_Defence.Content = PokemonData.Defence_Adjusted;
-            }
-            catch { }
+                    Stats_Adj_Defence.Content = PokemonData.Defence_Adjusted;
+                }
+                catch { }
         }
         #endregion
         #region Sp. Attack
         private void Stats_Mod_SpAttack_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            try
-            {
-                PokemonData.SpAttack_BaseMod = (int)Stats_Mod_SpAttack.Value;
+            if (Basic_Species.IsEnabled)
+                try
+                {
+                    PokemonData.SpAttack_BaseMod = (int)Stats_Mod_SpAttack.Value;
 
-                Stats_Base_SpAttack.Content = PokemonData.SpAttack_Base;
-                Stats_Total_SpAttack.Content = PokemonData.SpAttack_Total;
-                Stats_Adj_SpAttack.Content = PokemonData.SpAttack_Adjusted;
-            }
-            catch { }
+                    Stats_Base_SpAttack.Content = PokemonData.SpAttack_Base;
+                    Stats_Total_SpAttack.Content = PokemonData.SpAttack_Total;
+                    Stats_Adj_SpAttack.Content = PokemonData.SpAttack_Adjusted;
+                }
+                catch { }
         }
         private void Stats_Add_SpAttack_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            try
-            {
-                PokemonData.SpAttack_AddStat = (int)Stats_Add_SpAttack.Value;
+            if (Basic_Species.IsEnabled)
+                try
+                {
+                    PokemonData.SpAttack_AddStat = (int)Stats_Add_SpAttack.Value;
 
-                Stats_Total_SpAttack.Content = PokemonData.SpAttack_Total;
-                Stats_Adj_SpAttack.Content = PokemonData.SpAttack_Adjusted;
-            }
-            catch { }
+                    Stats_Total_SpAttack.Content = PokemonData.SpAttack_Total;
+                    Stats_Adj_SpAttack.Content = PokemonData.SpAttack_Adjusted;
+                }
+                catch { }
         }
         private void Stats_CS_SpAttack_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            try
-            {
-                PokemonData.SpAttack_CombatStage = (int)Stats_CS_SpAttack.Value;
+            if (Basic_Species.IsEnabled)
+                try
+                {
+                    PokemonData.SpAttack_CombatStage = (int)Stats_CS_SpAttack.Value;
 
-                Stats_Adj_SpAttack.Content = PokemonData.SpAttack_Adjusted;
-            }
-            catch { }
+                    Stats_Adj_SpAttack.Content = PokemonData.SpAttack_Adjusted;
+                }
+                catch { }
         }
         #endregion
         #region Sp. Defence
         private void Stats_Mod_SpDefence_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            try
-            {
-                PokemonData.SpDefence_BaseMod = (int)Stats_Mod_SpDefence.Value;
+            if (Basic_Species.IsEnabled)
+                try
+                {
+                    PokemonData.SpDefence_BaseMod = (int)Stats_Mod_SpDefence.Value;
 
-                Stats_Base_SpDefence.Content = PokemonData.SpDefence_Base;
-                Stats_Total_SpDefence.Content = PokemonData.SpDefence_Total;
-                Stats_Adj_SpDefence.Content = PokemonData.SpDefence_Adjusted;
-            }
-            catch { }
+                    Stats_Base_SpDefence.Content = PokemonData.SpDefence_Base;
+                    Stats_Total_SpDefence.Content = PokemonData.SpDefence_Total;
+                    Stats_Adj_SpDefence.Content = PokemonData.SpDefence_Adjusted;
+                }
+                catch { }
         }
         private void Stats_Add_SpDefence_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            try
-            {
-                PokemonData.SpDefence_AddStat = (int)Stats_Add_SpDefence.Value;
+            if (Basic_Species.IsEnabled)
+                try
+                {
+                    PokemonData.SpDefence_AddStat = (int)Stats_Add_SpDefence.Value;
 
-                Stats_Total_SpDefence.Content = PokemonData.SpDefence_Total;
-                Stats_Adj_SpDefence.Content = PokemonData.SpDefence_Adjusted;
-            }
-            catch { }
+                    Stats_Total_SpDefence.Content = PokemonData.SpDefence_Total;
+                    Stats_Adj_SpDefence.Content = PokemonData.SpDefence_Adjusted;
+                }
+                catch { }
         }
         private void Stats_CS_SpDefence_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            try
-            {
-                PokemonData.SpDefence_CombatStage = (int)Stats_CS_SpDefence.Value;
+            if (Basic_Species.IsEnabled)
+                try
+                {
+                    PokemonData.SpDefence_CombatStage = (int)Stats_CS_SpDefence.Value;
 
-                Stats_Adj_SpDefence.Content = PokemonData.SpDefence_Adjusted;
-            }
-            catch { }
+                    Stats_Adj_SpDefence.Content = PokemonData.SpDefence_Adjusted;
+                }
+                catch { }
         }
         #endregion
         #region Speed
         private void Stats_Mod_Speed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            try
-            {
-                PokemonData.Speed_BaseMod = (int)Stats_Mod_Speed.Value;
+            if (Basic_Species.IsEnabled)
+                try
+                {
+                    PokemonData.Speed_BaseMod = (int)Stats_Mod_Speed.Value;
 
-                Stats_Base_Speed.Content = PokemonData.Speed_Base;
-                Stats_Total_Speed.Content = PokemonData.Speed_Total;
-                Stats_Adj_Speed.Content = PokemonData.Speed_Adjusted;
-            }
-            catch { }
+                    Stats_Base_Speed.Content = PokemonData.Speed_Base;
+                    Stats_Total_Speed.Content = PokemonData.Speed_Total;
+                    Stats_Adj_Speed.Content = PokemonData.Speed_Adjusted;
+                }
+                catch { }
         }
         private void Stats_Add_Speed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            try
-            {
-                PokemonData.Speed_AddStat = (int)Stats_Add_Speed.Value;
+            if (Basic_Species.IsEnabled)
+                try
+                {
+                    PokemonData.Speed_AddStat = (int)Stats_Add_Speed.Value;
 
-                Stats_Total_Speed.Content = PokemonData.Speed_Total;
-                Stats_Adj_Speed.Content = PokemonData.Speed_Adjusted;
-            }
-            catch { }
+                    Stats_Total_Speed.Content = PokemonData.Speed_Total;
+                    Stats_Adj_Speed.Content = PokemonData.Speed_Adjusted;
+                }
+                catch { }
         }
         private void Stats_CS_Speed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            try
-            {
-                PokemonData.Speed_CombatStage = (int)Stats_CS_Speed.Value;
+            if (Basic_Species.IsEnabled)
+                try
+                {
+                    PokemonData.Speed_CombatStage = (int)Stats_CS_Speed.Value;
 
-                Stats_Adj_Speed.Content = PokemonData.Speed_Adjusted;
-            }
-            catch { }
+                    Stats_Adj_Speed.Content = PokemonData.Speed_Adjusted;
+                }
+                catch { }
         }
         #endregion
         #endregion
@@ -461,7 +458,10 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         #region Basic Info (Change Events)
         private void Basic_Name_TextChanged(object sender, TextChangedEventArgs e)
         {
-            try { PokemonData.Name = Basic_Name.Text; } catch { }
+            if (Basic_Species.IsEnabled)
+            {
+                try { PokemonData.Name = Basic_Name.Text; } catch { }
+            }
         }
         private void Basic_Species_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -475,55 +475,90 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         }
         private void Basic_Size_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            PokemonData.SizeClass = (VPTU.Pokedex.Entity.SizeClass)Basic_Size.SelectedItem;
+            if (Basic_Species.IsEnabled)
+            {
+                PokemonData.SizeClass = (VPTU.Pokedex.Entity.SizeClass)Basic_Size.SelectedItem;
+            }
         }
         private void Basic_Weight_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            PokemonData.WeightClass = (VPTU.Pokedex.Entity.WeightClass)Basic_Weight.SelectedItem;
+            if (Basic_Species.IsEnabled)
+            {
+                PokemonData.WeightClass = (VPTU.Pokedex.Entity.WeightClass)Basic_Weight.SelectedItem;
+            }
         }
         private void Basic_Nature_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            PokemonData.Nature = (BattleManager.Data.Nature)Basic_Nature.SelectedItem;
-            Reload_Stats();
+            if (Basic_Species.IsEnabled)
+            {
+                PokemonData.Nature = (BattleManager.Data.Nature)Basic_Nature.SelectedItem;
+                Reload_Stats();
+            }
         }
         private void Basic_SexMale_Checked(object sender, RoutedEventArgs e)
         {
-            PokemonData.Gender = VPTU.Pokedex.Entity.Gender.Male;
+            if (Basic_Species.IsEnabled)
+            {
+                PokemonData.Gender = VPTU.Pokedex.Entity.Gender.Male;
+            }
         }
         private void Basic_SexFemale_Checked(object sender, RoutedEventArgs e)
         {
-            PokemonData.Gender = VPTU.Pokedex.Entity.Gender.Female;
+            if (Basic_Species.IsEnabled)
+            {
+                PokemonData.Gender = VPTU.Pokedex.Entity.Gender.Female;
+            }
         }
         private void Basic_SexNone_Checked(object sender, RoutedEventArgs e)
         {
-            PokemonData.Gender = VPTU.Pokedex.Entity.Gender.Genderless;
+            if (Basic_Species.IsEnabled)
+            {
+                PokemonData.Gender = VPTU.Pokedex.Entity.Gender.Genderless;
+            }
         }
         private void Basic_Types_SelectionChangedEvent()
         {
-            if (PokemonData.PokemonType == null)
-                PokemonData.PokemonType = new List<BattleManager.Data.Type>();
-
-            PokemonData.PokemonType.Clear();
-            foreach (KeyValuePair<string, object> seltype in Basic_Types.SelectedItems)
+            if (Basic_Species.IsEnabled)
             {
-                PokemonData.PokemonType.Add((BattleManager.Data.Type)seltype.Value);
+                if (PokemonData.PokemonType == null)
+                    PokemonData.PokemonType = new List<BattleManager.Data.Type>();
+
+                PokemonData.PokemonType.Clear();
+                foreach (KeyValuePair<string, object> seltype in Basic_Types.SelectedItems)
+                {
+                    PokemonData.PokemonType.Add((BattleManager.Data.Type)seltype.Value);
+                }
+            }
+        }
+        private void Basic_XP_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (Basic_Species.IsEnabled)
+            {
+                try
+                {
+                    PokemonData.EXP = (int)Basic_EXP.Value;
+                    Basic_REXP.Content = "Required: " + PokemonData.Required_EXP;
+                    Basic_Level.Content = "Level: " + PokemonData.Level;
+
+                    Reload_Stats();
+                }
+                catch { }
+            }
+        }
+        private void Basic_CurrentHP_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (Basic_Species.IsEnabled)
+            {
+                PokemonData.Current_HP = (int)Basic_CurrentHP.Value;
+            }
+        }
+        private void Basic_Injuries_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (Basic_Species.IsEnabled)
+            {
+                PokemonData.Injuries = (int)Basic_Injuries.Value;
             }
         }
         #endregion
-
-        private void Basic_XP_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        {
-            try
-            {
-                PokemonData.EXP = (int)Math.Floor((decimal)Basic_XP.Value);
-                int level = PokemonData.Level;
-
-                Basic_REXP.Content = "Required: " + (EntityManager.Pokemon.PokemonCharacter.EXP_Markers(level + 1) - PokemonData.EXP);
-                Basic_Level.Content = "Level: " + level;
-
-                Reload_Stats();
-            }
-            catch { }
-        }
     }
 }

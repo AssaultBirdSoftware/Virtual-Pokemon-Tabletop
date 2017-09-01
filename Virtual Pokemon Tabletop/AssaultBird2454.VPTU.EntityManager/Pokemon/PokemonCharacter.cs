@@ -12,6 +12,13 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         public decimal Species_DexID { get; set; }
         public List<AssaultBird2454.VPTU.BattleManager.Data.Type> PokemonType { get; set; }
         public int EXP { get; set; }
+        public int Required_EXP
+        {
+            get
+            {
+                return (EXP_Markers(Level + 1) - EXP);
+            }
+        }
         public string Held_Item { get; set; }
         public int Loyalty { get; set; }
         public AssaultBird2454.VPTU.Pokedex.Entity.Gender Gender { get; set; }
