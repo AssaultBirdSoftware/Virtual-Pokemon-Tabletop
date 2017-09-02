@@ -51,23 +51,17 @@
                     <ListView x:Name="Moves_List" HorizontalAlignment="Left" Height="437" VerticalAlignment="Top" Width="882">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Move Name" Width="150"/>
-                                <GridViewColumn Header="Move Range" Width="100"/>
-                                <GridViewColumn Header="Move Type" Width="100"/>
-                                <GridViewColumn Header="Move Class" Width="100"/>
-                                <GridViewColumn Header="DB" Width="50"/>
-                                <GridViewColumn Header="AC" Width="50"/>
+                                <GridViewColumn Header="Move Name" Width="150" DisplayMemberBinding="{Binding Name}"/>
+                                <GridViewColumn Header="Move Range" Width="100" DisplayMemberBinding="{Binding Range}"/>
+                                <GridViewColumn Header="Move Type" Width="100" DisplayMemberBinding="{Binding Type}"/>
+                                <GridViewColumn Header="Move Class" Width="100" DisplayMemberBinding="{Binding Class}"/>
+                                <GridViewColumn Header="DB" Width="50" DisplayMemberBinding="{Binding DB}"/>
+                                <GridViewColumn Header="AC" Width="50" DisplayMemberBinding="{Binding AC}"/>
                             </GridView>
                         </ListView.View>
-                        <ListViewItem Content="Move 1"/>
-                        <ListViewItem Content="Move 2"/>
-                        <ListViewItem Content="Move 3"/>
-                        <ListViewItem Content="Move 4"/>
-                        <ListViewItem Content="Move 5"/>
-                        <ListViewItem Content="Move 6"/>
                     </ListView>
-                    <Button Content="Add Move" HorizontalAlignment="Left" Margin="887,10,0,0" VerticalAlignment="Top" Width="75"/>
-                    <Button Content="Delete Move" HorizontalAlignment="Left" Margin="887,35,0,0" VerticalAlignment="Top" Width="75"/>
+                    <Button x:Name="Moves_Add" Content="Add Move" HorizontalAlignment="Left" Margin="887,10,0,0" VerticalAlignment="Top" Width="75" Click="Moves_Add_Click"/>
+                    <Button x:Name="Moves_Remove" Content="Delete Move" HorizontalAlignment="Left" Margin="887,35,0,0" VerticalAlignment="Top" Width="75" Click="Moves_Remove_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Abilities">

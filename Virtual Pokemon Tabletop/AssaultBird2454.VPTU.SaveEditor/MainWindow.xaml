@@ -140,7 +140,7 @@
                                         <DataTemplate>
                                             <WrapPanel>
                                                 <ProgressBar Minimum="0" Maximum="{Binding DataTag.Stat_HP_Max}" Value="{Binding DataTag.Current_HP}" Width="100" Height="5" Foreground="Green"></ProgressBar>
-                                                <ProgressBar Minimum="0" Maximum="{Binding DataTag.Required_EXP}" Value="{Binding DataTag.EXP}" Width="100" Height="5" Foreground="Blue"></ProgressBar>
+                                                <ProgressBar Minimum="{Binding DataTag.Prev_EXP_Requirement}" Maximum="{Binding DataTag.Next_EXP_Requirement}" Value="{Binding DataTag.EXP}" Width="100" Height="5" Foreground="Blue"></ProgressBar>
                                                 <ProgressBar Minimum="0" Maximum="10" Value="{Binding DataTag.Injuries}" Width="100" Height="5" Foreground="Red"></ProgressBar>
                                             </WrapPanel>
                                         </DataTemplate>

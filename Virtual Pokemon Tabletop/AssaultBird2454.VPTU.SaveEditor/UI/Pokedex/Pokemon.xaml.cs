@@ -588,7 +588,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
         /// <param name="e"></param>
         private void LinkMove_Button_Click(object sender, RoutedEventArgs e)
         {
-            Move_Link link = new Move_Link();// Create a new MoveLink Window to create a link with
+            Move_Link link = new Move_Link(Mgr);// Create a new MoveLink Window to create a link with
             bool? add = link.ShowDialog();// Shows the Link Window, Creates a Dialog to return true if it added successfully
 
             if (add == true)
@@ -605,7 +605,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
         {
             if (Moves_List.SelectedItem == null) { return; }// Returns if selection is null
 
-            Move_Link link = new Move_Link((VPTU.Pokedex.Pokemon.Link_Moves)Moves_List.SelectedItem);// Creates a new MoveLink Window to modify link with
+            Move_Link link = new Move_Link(Mgr, (VPTU.Pokedex.Pokemon.Link_Moves)Moves_List.SelectedItem);// Creates a new MoveLink Window to modify link with
             link.ShowDialog();// Shows the Link Window
         }
         /// <summary>

@@ -600,18 +600,19 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         }
         private void Basic_XP_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (Ready)
+            try
             {
-                try
+                if (Ready)
                 {
                     PokemonData.EXP = (int)Basic_EXP.Value;
-                    Basic_REXP.Content = "Required: " + PokemonData.Required_EXP;
-                    Basic_Level.Content = "Level: " + PokemonData.Level;
 
                     Reload_Stats();
                 }
-                catch { }
+
+                Basic_REXP.Content = "Required: " + (PokemonData.Next_EXP_Requirement - PokemonData.EXP);
+                Basic_Level.Content = "Level: " + PokemonData.Level;
             }
+            catch { }
         }
         private void Basic_CurrentHP_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
@@ -947,6 +948,73 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             }
         }
         #endregion
+
         #endregion
+
+        private void Reload_Moves()
+        {
+            if (PokemonData.Moves == null)
+            {
+                PokemonData.Moves = new List<string>();
+                return;
+            }
+
+            Moves_List.Items.Clear();
+            foreach (string move in PokemonData.Moves)
+            {
+                Moves_DB db = new Moves_DB(Manager.SaveData.PokedexData.Moves.Find(x => x.Name.ToLower() == move.ToLower()));
+                Moves_List.Items.Add(db);
+            }
+        }
+
+        private void Moves_Add_Click(object sender, RoutedEventArgs e)
+        {
+            UI.Pokedex.Select.Select_Move Move = new Pokedex.Select.Select_Move(Manager);
+            bool? pass = Move.ShowDialog();
+
+            if (pass == true)
+            {
+                if (PokemonData.Moves == null)
+                    PokemonData.Moves = new List<string>();
+
+                PokemonData.Moves.Add(Move.Selected_Move.Name);
+                Reload_Moves();
+            }
+        }
+        private void Moves_Remove_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+    }
+
+    internal class Moves_DB
+    {
+        internal Moves_DB(VPTU.Pokedex.Moves.MoveData Move)
+        {
+            Name = Move.Name;
+
+            string RangeSB = "";
+            int RangeSBS = 0;
+            foreach (VPTU.Pokedex.Moves.Move_RangeData rd in Move.Range_Data)
+            {
+                if (RangeSBS >= 1)
+                {
+                    RangeSB = RangeSB + ", ";
+                }
+
+                RangeSB = RangeSB + rd.Range.ToString() + " (D: " + rd.Distance + " S: " + rd.Size + ")";
+            }
+            Type = Move.Move_Type.ToString();
+            Class = Move.Move_Class.ToString();
+            DB = (int)Move.Move_DamageBase;
+            AC = Move.Move_Accuracy;
+        }
+
+        internal string Name { get; private set; }
+        internal string Range { get; private set; }
+        internal string Type { get; private set; }
+        internal string Class { get; private set; }
+        internal int DB { get; private set; }
+        internal int AC { get; private set; }
     }
 }
