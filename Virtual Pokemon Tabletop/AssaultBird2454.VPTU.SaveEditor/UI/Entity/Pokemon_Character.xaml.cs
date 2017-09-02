@@ -22,6 +22,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
     {
         public SaveManager.SaveManager Manager;
         public EntityManager.Pokemon.PokemonCharacter PokemonData;
+        private bool Ready = false;
 
         #region Base Functions
         public Pokemon_Character(SaveManager.SaveManager _Mgr, EntityManager.Pokemon.PokemonCharacter _PokemonData = null)
@@ -58,6 +59,26 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             Basic_Size.ItemsSource = Enum.GetValues(typeof(VPTU.Pokedex.Entity.SizeClass));
             Basic_Nature.ItemsSource = Enum.GetValues(typeof(BattleManager.Data.Nature));
 
+            #region Skills
+            Skill_Acrobatics_Rank.ItemsSource = Enum.GetValues(typeof(VPTU.Pokedex.Entity.SkillRank));
+            Skill_Athletics_Rank.ItemsSource = Enum.GetValues(typeof(VPTU.Pokedex.Entity.SkillRank));
+            Skill_Charm_Rank.ItemsSource = Enum.GetValues(typeof(VPTU.Pokedex.Entity.SkillRank));
+            Skill_Combat_Rank.ItemsSource = Enum.GetValues(typeof(VPTU.Pokedex.Entity.SkillRank));
+            Skill_Command_Rank.ItemsSource = Enum.GetValues(typeof(VPTU.Pokedex.Entity.SkillRank));
+            Skill_Focus_Rank.ItemsSource = Enum.GetValues(typeof(VPTU.Pokedex.Entity.SkillRank));
+            Skill_GeneralEDU_Rank.ItemsSource = Enum.GetValues(typeof(VPTU.Pokedex.Entity.SkillRank));
+            Skill_Gulie_Rank.ItemsSource = Enum.GetValues(typeof(VPTU.Pokedex.Entity.SkillRank));
+            Skill_Intimidate_Rank.ItemsSource = Enum.GetValues(typeof(VPTU.Pokedex.Entity.SkillRank));
+            Skill_Intuition_Rank.ItemsSource = Enum.GetValues(typeof(VPTU.Pokedex.Entity.SkillRank));
+            Skill_MedicineEDU_Rank.ItemsSource = Enum.GetValues(typeof(VPTU.Pokedex.Entity.SkillRank));
+            Skill_OccultEDU_Rank.ItemsSource = Enum.GetValues(typeof(VPTU.Pokedex.Entity.SkillRank));
+            Skill_Perception_Rank.ItemsSource = Enum.GetValues(typeof(VPTU.Pokedex.Entity.SkillRank));
+            Skill_PokemonEDU_Rank.ItemsSource = Enum.GetValues(typeof(VPTU.Pokedex.Entity.SkillRank));
+            Skill_Stealth_Rank.ItemsSource = Enum.GetValues(typeof(VPTU.Pokedex.Entity.SkillRank));
+            Skill_Survival_Rank.ItemsSource = Enum.GetValues(typeof(VPTU.Pokedex.Entity.SkillRank));
+            Skill_TechnologyEDU_Rank.ItemsSource = Enum.GetValues(typeof(VPTU.Pokedex.Entity.SkillRank));
+            #endregion
+
             #region Defaulting
             Basic_Weight.SelectedIndex = 0;
             Basic_Size.SelectedIndex = 0;
@@ -92,6 +113,8 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         /// </summary>
         public void Load()
         {
+            Ready = false;
+
             try { Basic_Name.Text = PokemonData.Name; } catch { }
             try
             {
@@ -141,9 +164,54 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             try { Basic_CurrentHP.Value = PokemonData.Current_HP; } catch { }
             try { Basic_Injuries.Value = PokemonData.Injuries; } catch { }
 
+            #region Skills
+            if (PokemonData.Skills == null)
+                PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+
+            Skill_Acrobatics_Rank.SelectedItem = PokemonData.Skills.Acrobatics_Rank;
+            Skill_Athletics_Rank.SelectedItem = PokemonData.Skills.Athletics_Rank;
+            Skill_Combat_Rank.SelectedItem = PokemonData.Skills.Combat_Rank;
+            Skill_Intimidate_Rank.SelectedItem = PokemonData.Skills.Intimidate_Rank;
+            Skill_Stealth_Rank.SelectedItem = PokemonData.Skills.Stealth_Rank;
+            Skill_Survival_Rank.SelectedItem = PokemonData.Skills.Survival_Rank;
+
+            Skill_Acrobatics_Mod.Value = PokemonData.Skills.Acrobatics_Mod;
+            Skill_Athletics_Mod.Value = PokemonData.Skills.Athletics_Mod;
+            Skill_Combat_Mod.Value = PokemonData.Skills.Combat_Mod;
+            Skill_Intimidate_Mod.Value = PokemonData.Skills.Intimidate_Mod;
+            Skill_Stealth_Mod.Value = PokemonData.Skills.Stealth_Mod;
+            Skill_Survival_Mod.Value = PokemonData.Skills.Survival_Mod;
+
+            Skill_GeneralEDU_Rank.SelectedItem = PokemonData.Skills.General_Rank;
+            Skill_MedicineEDU_Rank.SelectedItem = PokemonData.Skills.Medicine_Rank;
+            Skill_OccultEDU_Rank.SelectedItem = PokemonData.Skills.Occult_Rank;
+            Skill_PokemonEDU_Rank.SelectedItem = PokemonData.Skills.Pokemon_Rank;
+            Skill_TechnologyEDU_Rank.SelectedItem = PokemonData.Skills.Technology_Rank;
+            Skill_Gulie_Rank.SelectedItem = PokemonData.Skills.Guile_Rank;
+            Skill_Perception_Rank.SelectedItem = PokemonData.Skills.Perception_Rank;
+
+            Skill_GeneralEDU_Mod.Value = PokemonData.Skills.General_Mod;
+            Skill_MedicineEDU_Mod.Value = PokemonData.Skills.Medicine_Mod;
+            Skill_OccultEDU_Mod.Value = PokemonData.Skills.Occult_Mod;
+            Skill_PokemonEDU_Mod.Value = PokemonData.Skills.Pokemon_Mod;
+            Skill_TechnologyEDU_Mod.Value = PokemonData.Skills.Technology_Mod;
+            Skill_Gulie_Mod.Value = PokemonData.Skills.Guile_Mod;
+            Skill_Perception_Mod.Value = PokemonData.Skills.Perception_Mod;
+
+            Skill_Charm_Rank.SelectedItem = PokemonData.Skills.Charm_Rank;
+            Skill_Command_Rank.SelectedItem = PokemonData.Skills.Command_Rank;
+            Skill_Focus_Rank.SelectedItem = PokemonData.Skills.Focus_Rank;
+            Skill_Intuition_Rank.SelectedItem = PokemonData.Skills.Intuition_Rank;
+
+            Skill_Charm_Mod.Value = PokemonData.Skills.Charm_Mod;
+            Skill_Command_Mod.Value = PokemonData.Skills.Command_Mod;
+            Skill_Focus_Mod.Value = PokemonData.Skills.Focus_Mod;
+            Skill_Intuition_Mod.Value = PokemonData.Skills.Intuition_Mod;
+            #endregion
+
             Reload_Stats();
 
-            Basic_Species.IsEnabled = true;
+            Ready = true;
         }
         /// <summary>
         /// Loads the pokemon from the species list (Used when creating a new pokemon)
@@ -239,7 +307,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         #region HP
         private void Stats_Mod_HP_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (Basic_Species.IsEnabled)
+            if (Ready)
                 try
                 {
                     PokemonData.HP_BaseMod = (int)Stats_Mod_HP.Value;
@@ -252,7 +320,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         }
         private void Stats_Add_HP_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (Basic_Species.IsEnabled)
+            if (Ready)
                 try
                 {
                     PokemonData.HP_AddStat = (int)Stats_Add_HP.Value;
@@ -266,7 +334,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         #region Attack
         private void Stats_Mod_Attack_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (Basic_Species.IsEnabled)
+            if (Ready)
                 try
                 {
                     PokemonData.Attack_BaseMod = (int)Stats_Mod_Attack.Value;
@@ -279,7 +347,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         }
         private void Stats_Add_Attack_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (Basic_Species.IsEnabled)
+            if (Ready)
                 try
                 {
                     PokemonData.Attack_AddStat = (int)Stats_Add_Attack.Value;
@@ -291,7 +359,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         }
         private void Stats_CS_Attack_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (Basic_Species.IsEnabled)
+            if (Ready)
                 try
                 {
                     PokemonData.Attack_CombatStage = (int)Stats_CS_Attack.Value;
@@ -304,7 +372,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         #region Defence
         private void Stats_Mod_Defence_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (Basic_Species.IsEnabled)
+            if (Ready)
                 try
                 {
                     PokemonData.Defence_BaseMod = (int)Stats_Mod_Defence.Value;
@@ -317,7 +385,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         }
         private void Stats_Add_Defence_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (Basic_Species.IsEnabled)
+            if (Ready)
                 try
                 {
                     PokemonData.Defence_AddStat = (int)Stats_Add_Defence.Value;
@@ -329,7 +397,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         }
         private void Stats_CS_Defence_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (Basic_Species.IsEnabled)
+            if (Ready)
                 try
                 {
                     PokemonData.Defence_CombatStage = (int)Stats_CS_Defence.Value;
@@ -342,7 +410,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         #region Sp. Attack
         private void Stats_Mod_SpAttack_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (Basic_Species.IsEnabled)
+            if (Ready)
                 try
                 {
                     PokemonData.SpAttack_BaseMod = (int)Stats_Mod_SpAttack.Value;
@@ -355,7 +423,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         }
         private void Stats_Add_SpAttack_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (Basic_Species.IsEnabled)
+            if (Ready)
                 try
                 {
                     PokemonData.SpAttack_AddStat = (int)Stats_Add_SpAttack.Value;
@@ -367,7 +435,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         }
         private void Stats_CS_SpAttack_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (Basic_Species.IsEnabled)
+            if (Ready)
                 try
                 {
                     PokemonData.SpAttack_CombatStage = (int)Stats_CS_SpAttack.Value;
@@ -380,7 +448,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         #region Sp. Defence
         private void Stats_Mod_SpDefence_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (Basic_Species.IsEnabled)
+            if (Ready)
                 try
                 {
                     PokemonData.SpDefence_BaseMod = (int)Stats_Mod_SpDefence.Value;
@@ -393,7 +461,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         }
         private void Stats_Add_SpDefence_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (Basic_Species.IsEnabled)
+            if (Ready)
                 try
                 {
                     PokemonData.SpDefence_AddStat = (int)Stats_Add_SpDefence.Value;
@@ -405,7 +473,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         }
         private void Stats_CS_SpDefence_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (Basic_Species.IsEnabled)
+            if (Ready)
                 try
                 {
                     PokemonData.SpDefence_CombatStage = (int)Stats_CS_SpDefence.Value;
@@ -418,7 +486,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         #region Speed
         private void Stats_Mod_Speed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (Basic_Species.IsEnabled)
+            if (Ready)
                 try
                 {
                     PokemonData.Speed_BaseMod = (int)Stats_Mod_Speed.Value;
@@ -431,7 +499,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         }
         private void Stats_Add_Speed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (Basic_Species.IsEnabled)
+            if (Ready)
                 try
                 {
                     PokemonData.Speed_AddStat = (int)Stats_Add_Speed.Value;
@@ -443,7 +511,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         }
         private void Stats_CS_Speed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (Basic_Species.IsEnabled)
+            if (Ready)
                 try
                 {
                     PokemonData.Speed_CombatStage = (int)Stats_CS_Speed.Value;
@@ -458,7 +526,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         #region Basic Info (Change Events)
         private void Basic_Name_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (Basic_Species.IsEnabled)
+            if (Ready)
             {
                 try { PokemonData.Name = Basic_Name.Text; } catch { }
             }
@@ -467,7 +535,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         {
             //MessageBox.Show("Updating pokemon with species data", "Selected Species", MessageBoxButton.OK, MessageBoxImage.Information);
 
-            if (Basic_Species.IsEnabled == true)
+            if (Ready == true)
             {
                 PokemonData.Species_DexID = (decimal)((VPTU.Pokedex.Pokemon.PokemonData)((ComboBoxItem)Basic_Species.SelectedItem).Tag).Species_DexID;
                 LoadFromSpecies();
@@ -475,21 +543,21 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         }
         private void Basic_Size_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (Basic_Species.IsEnabled)
+            if (Ready)
             {
                 PokemonData.SizeClass = (VPTU.Pokedex.Entity.SizeClass)Basic_Size.SelectedItem;
             }
         }
         private void Basic_Weight_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (Basic_Species.IsEnabled)
+            if (Ready)
             {
                 PokemonData.WeightClass = (VPTU.Pokedex.Entity.WeightClass)Basic_Weight.SelectedItem;
             }
         }
         private void Basic_Nature_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (Basic_Species.IsEnabled)
+            if (Ready)
             {
                 PokemonData.Nature = (BattleManager.Data.Nature)Basic_Nature.SelectedItem;
                 Reload_Stats();
@@ -497,28 +565,28 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         }
         private void Basic_SexMale_Checked(object sender, RoutedEventArgs e)
         {
-            if (Basic_Species.IsEnabled)
+            if (Ready)
             {
                 PokemonData.Gender = VPTU.Pokedex.Entity.Gender.Male;
             }
         }
         private void Basic_SexFemale_Checked(object sender, RoutedEventArgs e)
         {
-            if (Basic_Species.IsEnabled)
+            if (Ready)
             {
                 PokemonData.Gender = VPTU.Pokedex.Entity.Gender.Female;
             }
         }
         private void Basic_SexNone_Checked(object sender, RoutedEventArgs e)
         {
-            if (Basic_Species.IsEnabled)
+            if (Ready)
             {
                 PokemonData.Gender = VPTU.Pokedex.Entity.Gender.Genderless;
             }
         }
         private void Basic_Types_SelectionChangedEvent()
         {
-            if (Basic_Species.IsEnabled)
+            if (Ready)
             {
                 if (PokemonData.PokemonType == null)
                     PokemonData.PokemonType = new List<BattleManager.Data.Type>();
@@ -532,7 +600,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         }
         private void Basic_XP_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (Basic_Species.IsEnabled)
+            if (Ready)
             {
                 try
                 {
@@ -547,18 +615,338 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         }
         private void Basic_CurrentHP_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (Basic_Species.IsEnabled)
+            if (Ready)
             {
                 PokemonData.Current_HP = (int)Basic_CurrentHP.Value;
             }
         }
         private void Basic_Injuries_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (Basic_Species.IsEnabled)
+            if (Ready)
             {
                 PokemonData.Injuries = (int)Basic_Injuries.Value;
             }
         }
+        #endregion
+
+        #region Skills
+        #region Body
+        private void Skill_Acrobatics_Rank_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.Acrobatics_Rank = (VPTU.Pokedex.Entity.SkillRank)Skill_Acrobatics_Rank.SelectedItem;
+            }
+        }
+        private void Skill_Athletics_Rank_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.Athletics_Rank = (VPTU.Pokedex.Entity.SkillRank)Skill_Athletics_Rank.SelectedItem;
+            }
+        }
+        private void Skill_Combat_Rank_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.Combat_Rank = (VPTU.Pokedex.Entity.SkillRank)Skill_Combat_Rank.SelectedItem;
+            }
+        }
+        private void Skill_Intimidate_Rank_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.Intimidate_Rank = (VPTU.Pokedex.Entity.SkillRank)Skill_Intimidate_Rank.SelectedItem;
+            }
+        }
+        private void Skill_Stealth_Rank_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.Stealth_Rank = (VPTU.Pokedex.Entity.SkillRank)Skill_Stealth_Rank.SelectedItem;
+            }
+        }
+        private void Skill_Survival_Rank_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.Survival_Rank = (VPTU.Pokedex.Entity.SkillRank)Skill_Survival_Rank.SelectedItem;
+            }
+        }
+
+        private void Skill_Acrobatics_Mod_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.Acrobatics_Mod = (int)Skill_Acrobatics_Mod.Value;
+            }
+        }
+        private void Skill_Athletics_Mod_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.Athletics_Mod = (int)Skill_Athletics_Mod.Value;
+            }
+        }
+        private void Skill_Combat_Mod_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.Combat_Mod = (int)Skill_Combat_Mod.Value;
+            }
+        }
+        private void Skill_Intimidate_Mod_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.Intimidate_Mod = (int)Skill_Intimidate_Mod.Value;
+            }
+        }
+        private void Skill_Stealth_Mod_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.Stealth_Mod = (int)Skill_Stealth_Mod.Value;
+            }
+        }
+        private void Skill_Survival_Mod_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.Survival_Mod = (int)Skill_Survival_Mod.Value;
+            }
+        }
+        #endregion
+
+        #region Mind
+        private void Skill_GeneralEDU_Rank_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.General_Rank = (VPTU.Pokedex.Entity.SkillRank)Skill_GeneralEDU_Rank.SelectedItem;
+            }
+        }
+        private void Skill_MedicineEDU_Rank_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.Medicine_Rank = (VPTU.Pokedex.Entity.SkillRank)Skill_MedicineEDU_Rank.SelectedItem;
+            }
+        }
+        private void Skill_OccultEDU_Rank_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.Occult_Rank = (VPTU.Pokedex.Entity.SkillRank)Skill_OccultEDU_Rank.SelectedItem;
+            }
+        }
+        private void Skill_PokemonEDU_Rank_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.Pokemon_Rank = (VPTU.Pokedex.Entity.SkillRank)Skill_PokemonEDU_Rank.SelectedItem;
+            }
+        }
+        private void Skill_TechnologyEDU_Rank_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.Technology_Rank = (VPTU.Pokedex.Entity.SkillRank)Skill_TechnologyEDU_Rank.SelectedItem;
+            }
+        }
+        private void Skill_Gulie_Rank_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.Guile_Rank = (VPTU.Pokedex.Entity.SkillRank)Skill_Gulie_Rank.SelectedItem;
+            }
+        }
+        private void Skill_Perception_Rank_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.Perception_Rank = (VPTU.Pokedex.Entity.SkillRank)Skill_Perception_Rank.SelectedItem;
+            }
+        }
+
+        private void Skill_GeneralEDU_Mod_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.General_Mod = (int)Skill_GeneralEDU_Mod.Value;
+            }
+        }
+        private void Skill_MedicineEDU_Mod_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.Medicine_Mod = (int)Skill_MedicineEDU_Mod.Value;
+            }
+        }
+        private void Skill_OccultEDU_Mod_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.Occult_Mod = (int)Skill_OccultEDU_Mod.Value;
+            }
+        }
+        private void Skill_PokemonEDU_Mod_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.Pokemon_Mod = (int)Skill_PokemonEDU_Mod.Value;
+            }
+        }
+        private void Skill_TechnologyEDU_Mod_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.Technology_Mod = (int)Skill_TechnologyEDU_Mod.Value;
+            }
+        }
+        private void Skill_Gulie_Mod_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.Guile_Mod = (int)Skill_Gulie_Mod.Value;
+            }
+        }
+        private void Skill_Perception_Mod_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.Perception_Mod = (int)Skill_Perception_Mod.Value;
+            }
+        }
+        #endregion
+
+        #region Spirit
+        private void Skill_Charm_Rank_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.Charm_Rank = (VPTU.Pokedex.Entity.SkillRank)Skill_Charm_Rank.SelectedItem;
+            }
+        }
+        private void Skill_Command_Rank_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.Command_Rank = (VPTU.Pokedex.Entity.SkillRank)Skill_Command_Rank.SelectedItem;
+            }
+        }
+        private void Skill_Focus_Rank_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.Focus_Rank = (VPTU.Pokedex.Entity.SkillRank)Skill_Focus_Rank.SelectedItem;
+            }
+        }
+        private void Skill_Intuition_Rank_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.Intuition_Rank = (VPTU.Pokedex.Entity.SkillRank)Skill_Intuition_Rank.SelectedItem;
+            }
+        }
+
+        private void Skill_Charm_Mod_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.Charm_Mod = (int)Skill_Charm_Mod.Value;
+            }
+        }
+        private void Skill_Command_Mod_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.Command_Mod = (int)Skill_Command_Mod.Value;
+            }
+        }
+        private void Skill_Focus_Mod_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.Focus_Mod = (int)Skill_Focus_Mod.Value;
+            }
+        }
+        private void Skill_Intuition_Mod_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (Ready)
+            {
+                if (PokemonData.Skills == null)
+                    PokemonData.Skills = new VPTU.Pokedex.Entity.Skill_Data();
+                PokemonData.Skills.Intuition_Mod = (int)Skill_Intuition_Mod.Value;
+            }
+        }
+        #endregion
         #endregion
     }
 }

@@ -27,7 +27,7 @@
                 <ComboBox x:Name="Basic_Weight" Margin="90,111,0,0" HorizontalAlignment="Left" Width="150" VerticalAlignment="Top" Height="22" SelectionChanged="Basic_Weight_SelectionChanged"/>
                 <Label x:Name="label3" Content="Pokedex Notes" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="183" Grid.Column="2" HorizontalContentAlignment="Center" Height="26"/>
                 <TextBox x:Name="Basic_Desc" HorizontalAlignment="Left" Height="119" Margin="10,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Grid.Column="2"/>
-                <ComboBox x:Name="Basic_Species" HorizontalAlignment="Left" Margin="90,27,0,0" VerticalAlignment="Top" Width="150" SelectionChanged="Basic_Species_SelectionChanged" Height="22" IsEnabled="False"/>
+                <ComboBox x:Name="Basic_Species" HorizontalAlignment="Left" Margin="90,27,0,0" VerticalAlignment="Top" Width="150" SelectionChanged="Basic_Species_SelectionChanged" Height="22"/>
                 <RadioButton x:Name="Basic_SexMale" Content="Male" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="3" Margin="10,7,0,0" Height="15" Width="45" Checked="Basic_SexMale_Checked" IsChecked="True"/>
                 <RadioButton x:Name="Basic_SexFemale" Content="Female" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,27,0,0" Grid.Column="3" Height="15" Width="57" Checked="Basic_SexFemale_Checked"/>
                 <RadioButton x:Name="Basic_SexNone" Content="Genderless" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,47,0,0" Grid.Column="3" Height="15" Width="77" Checked="Basic_SexNone_Checked"/>
@@ -168,18 +168,18 @@
                             <Label x:Name="label1_Copy2" Content="Intimidate" Margin="0,92.88,38.943,0" VerticalAlignment="Top" Height="25.96" d:LayoutOverrides="Width"/>
                             <Label x:Name="label1_Copy3" Content="Stealth" Margin="0,123.84,0,0" VerticalAlignment="Top" Height="25.96" HorizontalAlignment="Left"/>
                             <Label x:Name="label1_Copy4" Content="Survival" Margin="0,154.8,0,0" VerticalAlignment="Top" Height="25.96" HorizontalAlignment="Left"/>
-                            <ComboBox x:Name="Skill_Acrobatics_Rank" Grid.Column="1" Margin="0,4,0,0" VerticalAlignment="Top" Height="21.96" HorizontalAlignment="Left" Width="104.92"/>
-                            <ComboBox x:Name="Skill_Athletics_Rank" Grid.Column="1" Margin="0,34.96,0,0" VerticalAlignment="Top" Height="21.96" HorizontalAlignment="Left" Width="104.92"/>
-                            <ComboBox x:Name="Skill_Combat_Rank" Grid.Column="1" Margin="0,65.92,0,0" VerticalAlignment="Top" Height="21.96" d:LayoutOverrides="TopMargin, BottomMargin" HorizontalAlignment="Left" Width="104.92"/>
-                            <ComboBox x:Name="Skill_Intimidate_Rank" Grid.Column="1" Margin="0,96.88,0,0" VerticalAlignment="Top" Height="21.96" d:LayoutOverrides="TopMargin, BottomMargin" HorizontalAlignment="Left" Width="104.92"/>
-                            <ComboBox x:Name="Skill_Stealth_Rank" Grid.Column="1" Margin="0,127.84,0,0" VerticalAlignment="Top" Height="21.96" d:LayoutOverrides="TopMargin, BottomMargin" HorizontalAlignment="Left" Width="104.92"/>
-                            <ComboBox x:Name="Skill_Survival_Rank" Grid.Column="1" Margin="0,158.8,0,0" VerticalAlignment="Top" Height="21.96" d:LayoutOverrides="TopMargin, BottomMargin" HorizontalAlignment="Left" Width="104.92"/>
-                            <xctk:DecimalUpDown x:Name="Skill_Acrobatics_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,5.96,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
-                            <xctk:DecimalUpDown x:Name="Skill_Athletics_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,36.92,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
-                            <xctk:DecimalUpDown x:Name="Skill_Combat_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,67.88,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
-                            <xctk:DecimalUpDown x:Name="Skill_Intimidate_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,98.84,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
-                            <xctk:DecimalUpDown x:Name="Skill_Stealth_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,129.8,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
-                            <xctk:DecimalUpDown x:Name="Skill_Survival_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,160.76,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
+                            <ComboBox x:Name="Skill_Acrobatics_Rank" Grid.Column="1" Margin="0,4,0,0" VerticalAlignment="Top" Height="21.96" HorizontalAlignment="Left" Width="104.92" SelectionChanged="Skill_Acrobatics_Rank_SelectionChanged"/>
+                            <ComboBox x:Name="Skill_Athletics_Rank" Grid.Column="1" Margin="0,34.96,0,0" VerticalAlignment="Top" Height="21.96" HorizontalAlignment="Left" Width="104.92" SelectionChanged="Skill_Athletics_Rank_SelectionChanged"/>
+                            <ComboBox x:Name="Skill_Combat_Rank" Grid.Column="1" Margin="0,65.92,0,0" VerticalAlignment="Top" Height="21.96" d:LayoutOverrides="TopMargin, BottomMargin" HorizontalAlignment="Left" Width="104.92" SelectionChanged="Skill_Combat_Rank_SelectionChanged"/>
+                            <ComboBox x:Name="Skill_Intimidate_Rank" Grid.Column="1" Margin="0,96.88,0,0" VerticalAlignment="Top" Height="21.96" d:LayoutOverrides="TopMargin, BottomMargin" HorizontalAlignment="Left" Width="104.92" SelectionChanged="Skill_Intimidate_Rank_SelectionChanged"/>
+                            <ComboBox x:Name="Skill_Stealth_Rank" Grid.Column="1" Margin="0,127.84,0,0" VerticalAlignment="Top" Height="21.96" d:LayoutOverrides="TopMargin, BottomMargin" HorizontalAlignment="Left" Width="104.92" SelectionChanged="Skill_Stealth_Rank_SelectionChanged"/>
+                            <ComboBox x:Name="Skill_Survival_Rank" Grid.Column="1" Margin="0,158.8,0,0" VerticalAlignment="Top" Height="21.96" d:LayoutOverrides="TopMargin, BottomMargin" HorizontalAlignment="Left" Width="104.92" SelectionChanged="Skill_Survival_Rank_SelectionChanged"/>
+                            <xctk:DecimalUpDown x:Name="Skill_Acrobatics_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,5.96,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center" ValueChanged="Skill_Acrobatics_Mod_ValueChanged"/>
+                            <xctk:DecimalUpDown x:Name="Skill_Athletics_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,36.92,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center" ValueChanged="Skill_Athletics_Mod_ValueChanged"/>
+                            <xctk:DecimalUpDown x:Name="Skill_Combat_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,67.88,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center" ValueChanged="Skill_Combat_Mod_ValueChanged"/>
+                            <xctk:DecimalUpDown x:Name="Skill_Intimidate_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,98.84,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center" ValueChanged="Skill_Intimidate_Mod_ValueChanged"/>
+                            <xctk:DecimalUpDown x:Name="Skill_Stealth_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,129.8,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center" ValueChanged="Skill_Stealth_Mod_ValueChanged"/>
+                            <xctk:DecimalUpDown x:Name="Skill_Survival_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,160.76,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center" ValueChanged="Skill_Survival_Mod_ValueChanged"/>
                         </Grid>
                     </GroupBox>
                     <GroupBox x:Name="G_Skills_M" Header="Mind" Margin="325,0,0,0" HorizontalAlignment="Left" Width="320" Height="437" VerticalAlignment="Top">
@@ -196,20 +196,20 @@
                             <Label x:Name="label1_Copy9" Content="Technology Edu" Margin="0,124,0,0" VerticalAlignment="Top" Height="26" HorizontalAlignment="Left"/>
                             <Label x:Name="label1_Copy10" Content="Gulie" Margin="0,155,0,0" VerticalAlignment="Top" Height="26" HorizontalAlignment="Left"/>
                             <Label x:Name="label1_Copy15" Content="Perception" Margin="0,186,0,0" VerticalAlignment="Top" Height="26" HorizontalAlignment="Left"/>
-                            <ComboBox x:Name="Skill_GeneralEDU_Rank" Grid.Column="1" VerticalAlignment="Top" Height="22"/>
-                            <ComboBox x:Name="Skill_MedicineEDU_Rank" Grid.Column="1" Margin="0,31,0,0" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105"/>
-                            <ComboBox x:Name="Skill_OccultEDU_Rank" Grid.Column="1" Margin="0,62,0,0" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105"/>
-                            <ComboBox x:Name="Skill_PokemonEDU_Rank" Grid.Column="1" Margin="0,93,0,0" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105"/>
-                            <ComboBox x:Name="Skill_TechnologyEDU_Rank" Grid.Column="1" Margin="0,124,0,0" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105"/>
-                            <ComboBox x:Name="Skill_Gulie_Rank" Grid.Column="1" Margin="0,155,0,0" VerticalAlignment="Top" Height="22"/>
-                            <ComboBox x:Name="Skill_Perception_Rank" Grid.Column="1" Margin="0,186,0,0" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105"/>
-                            <xctk:DecimalUpDown x:Name="Skill_GeneralEDU_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
-                            <xctk:DecimalUpDown x:Name="Skill_MedicineEDU_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
-                            <xctk:DecimalUpDown x:Name="Skill_OccultEDU_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,62,0,0" Width="80" VerticalAlignment="Top" Value="0" TextAlignment="Center"/>
-                            <xctk:DecimalUpDown x:Name="Skill_PokemonEDU_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,93,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
-                            <xctk:DecimalUpDown x:Name="Skill_TechnologyEDU_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,124,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
-                            <xctk:DecimalUpDown x:Name="Skill_Gulie_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,155,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
-                            <xctk:DecimalUpDown x:Name="Skill_Perception_Mod" HorizontalAlignment="Left" Margin="10,186,0,0" VerticalAlignment="Top" Width="80" Grid.Column="2" Value="0" TextAlignment="Center"/>
+                            <ComboBox x:Name="Skill_GeneralEDU_Rank" Grid.Column="1" VerticalAlignment="Top" Height="22" SelectionChanged="Skill_GeneralEDU_Rank_SelectionChanged"/>
+                            <ComboBox x:Name="Skill_MedicineEDU_Rank" Grid.Column="1" Margin="0,31,0,0" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105" SelectionChanged="Skill_MedicineEDU_Rank_SelectionChanged"/>
+                            <ComboBox x:Name="Skill_OccultEDU_Rank" Grid.Column="1" Margin="0,62,0,0" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105" SelectionChanged="Skill_OccultEDU_Rank_SelectionChanged"/>
+                            <ComboBox x:Name="Skill_PokemonEDU_Rank" Grid.Column="1" Margin="0,93,0,0" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105" SelectionChanged="Skill_PokemonEDU_Rank_SelectionChanged"/>
+                            <ComboBox x:Name="Skill_TechnologyEDU_Rank" Grid.Column="1" Margin="0,124,0,0" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105" SelectionChanged="Skill_TechnologyEDU_Rank_SelectionChanged"/>
+                            <ComboBox x:Name="Skill_Gulie_Rank" Grid.Column="1" Margin="0,155,0,0" VerticalAlignment="Top" Height="22" SelectionChanged="Skill_Gulie_Rank_SelectionChanged"/>
+                            <ComboBox x:Name="Skill_Perception_Rank" Grid.Column="1" Margin="0,186,0,0" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105" SelectionChanged="Skill_Perception_Rank_SelectionChanged"/>
+                            <xctk:DecimalUpDown x:Name="Skill_GeneralEDU_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center" ValueChanged="Skill_GeneralEDU_Mod_ValueChanged"/>
+                            <xctk:DecimalUpDown x:Name="Skill_MedicineEDU_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center" ValueChanged="Skill_MedicineEDU_Mod_ValueChanged"/>
+                            <xctk:DecimalUpDown x:Name="Skill_OccultEDU_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,62,0,0" Width="80" VerticalAlignment="Top" Value="0" TextAlignment="Center" ValueChanged="Skill_OccultEDU_Mod_ValueChanged"/>
+                            <xctk:DecimalUpDown x:Name="Skill_PokemonEDU_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,93,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center" ValueChanged="Skill_PokemonEDU_Mod_ValueChanged"/>
+                            <xctk:DecimalUpDown x:Name="Skill_TechnologyEDU_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,124,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center" ValueChanged="Skill_TechnologyEDU_Mod_ValueChanged"/>
+                            <xctk:DecimalUpDown x:Name="Skill_Gulie_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,155,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center" ValueChanged="Skill_Gulie_Mod_ValueChanged"/>
+                            <xctk:DecimalUpDown x:Name="Skill_Perception_Mod" HorizontalAlignment="Left" Margin="10,186,0,0" VerticalAlignment="Top" Width="80" Grid.Column="2" Value="0" TextAlignment="Center" ValueChanged="Skill_Perception_Mod_ValueChanged"/>
                         </Grid>
                     </GroupBox>
                     <GroupBox x:Name="G_Skills_S" Header="Spirit" Margin="645,0,0,0" HorizontalAlignment="Left" Width="320" Height="437" VerticalAlignment="Top">
@@ -223,14 +223,14 @@
                             <Label x:Name="label1_Copy12" Content="Command" Margin="0,31,36,0" VerticalAlignment="Top" Height="26"/>
                             <Label x:Name="label1_Copy13" Content="Focus" Margin="0,62,0,0" VerticalAlignment="Top" Height="26" HorizontalAlignment="Left" Width="40"/>
                             <Label x:Name="label1_Copy14" Content="Intuition" Margin="0,93,49,0" VerticalAlignment="Top" Height="26"/>
-                            <ComboBox x:Name="Skill_Charm_Rank" Grid.Column="1" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105"/>
-                            <ComboBox x:Name="Skill_Command_Rank" Grid.Column="1" Margin="0,31,0,0" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105"/>
-                            <ComboBox x:Name="Skill_Focus_Rank" Grid.Column="1" Margin="0,62,0,0" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105"/>
-                            <ComboBox x:Name="Skill_Intuition_Rank" Grid.Column="1" Margin="0,93,0,0" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105"/>
-                            <xctk:DecimalUpDown x:Name="Skill_Charm_Mod" HorizontalAlignment="Left" Margin="10,0,0,0" Width="80" Grid.Column="2" VerticalAlignment="Top" Value="0" TextAlignment="Center"/>
-                            <xctk:DecimalUpDown x:Name="Skill_Command_Mod" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Width="80" Grid.Column="2" Value="0" TextAlignment="Center"/>
-                            <xctk:DecimalUpDown x:Name="Skill_Focus_Mod" HorizontalAlignment="Left" Margin="10,62,0,0" Width="80" Grid.Column="2" VerticalAlignment="Top" Value="0" TextAlignment="Center"/>
-                            <xctk:DecimalUpDown x:Name="Skill_Intuition_Mod" HorizontalAlignment="Left" Margin="10,93,0,0" VerticalAlignment="Top" Width="80" Grid.Column="2" Value="0" TextAlignment="Center"/>
+                            <ComboBox x:Name="Skill_Charm_Rank" Grid.Column="1" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105" SelectionChanged="Skill_Charm_Rank_SelectionChanged"/>
+                            <ComboBox x:Name="Skill_Command_Rank" Grid.Column="1" Margin="0,31,0,0" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105" SelectionChanged="Skill_Command_Rank_SelectionChanged"/>
+                            <ComboBox x:Name="Skill_Focus_Rank" Grid.Column="1" Margin="0,62,0,0" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105" SelectionChanged="Skill_Focus_Rank_SelectionChanged"/>
+                            <ComboBox x:Name="Skill_Intuition_Rank" Grid.Column="1" Margin="0,93,0,0" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105" SelectionChanged="Skill_Intuition_Rank_SelectionChanged"/>
+                            <xctk:DecimalUpDown x:Name="Skill_Charm_Mod" HorizontalAlignment="Left" Margin="10,0,0,0" Width="80" Grid.Column="2" VerticalAlignment="Top" Value="0" TextAlignment="Center" ValueChanged="Skill_Charm_Mod_ValueChanged"/>
+                            <xctk:DecimalUpDown x:Name="Skill_Command_Mod" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Width="80" Grid.Column="2" Value="0" TextAlignment="Center" ValueChanged="Skill_Command_Mod_ValueChanged"/>
+                            <xctk:DecimalUpDown x:Name="Skill_Focus_Mod" HorizontalAlignment="Left" Margin="10,62,0,0" Width="80" Grid.Column="2" VerticalAlignment="Top" Value="0" TextAlignment="Center" ValueChanged="Skill_Focus_Mod_ValueChanged"/>
+                            <xctk:DecimalUpDown x:Name="Skill_Intuition_Mod" HorizontalAlignment="Left" Margin="10,93,0,0" VerticalAlignment="Top" Width="80" Grid.Column="2" Value="0" TextAlignment="Center" ValueChanged="Skill_Intuition_Mod_ValueChanged"/>
                         </Grid>
                     </GroupBox>
                 </Grid>
