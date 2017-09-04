@@ -210,6 +210,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             #endregion
 
             Reload_Stats();
+            Reload_Moves();
 
             Ready = true;
         }
@@ -987,9 +988,9 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         }
     }
 
-    internal class Moves_DB
+    public class Moves_DB
     {
-        internal Moves_DB(VPTU.Pokedex.Moves.MoveData Move)
+        public Moves_DB(VPTU.Pokedex.Moves.MoveData Move)
         {
             Name = Move.Name;
 
@@ -1002,19 +1003,29 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
                     RangeSB = RangeSB + ", ";
                 }
 
-                RangeSB = RangeSB + rd.Range.ToString() + " (D: " + rd.Distance + " S: " + rd.Size + ")";
+                RangeSB = RangeSB + rd.Range.ToString();
+
+                //if (rd.Range == BattleManager.Data.Move_Range) { }
             }
+            Range = RangeSB;
             Type = Move.Move_Type.ToString();
             Class = Move.Move_Class.ToString();
             DB = (int)Move.Move_DamageBase;
             AC = Move.Move_Accuracy;
+
+            Frequency = Move.Move_Frequency.ToString();
+            if (Move.Move_Frequency == BattleManager.Data.Move_Frequency.Daily || Move.Move_Frequency == BattleManager.Data.Move_Frequency.Scene || Move.Move_Frequency == BattleManager.Data.Move_Frequency.Static)
+            {
+                Frequency = Frequency + " (Limit: " + Move.Move_Frequency_Limit + ")";
+            }
         }
 
-        internal string Name { get; private set; }
-        internal string Range { get; private set; }
-        internal string Type { get; private set; }
-        internal string Class { get; private set; }
-        internal int DB { get; private set; }
-        internal int AC { get; private set; }
+        public string Name { get; private set; }
+        public string Range { get; private set; }
+        public string Type { get; private set; }
+        public string Class { get; private set; }
+        public int DB { get; private set; }
+        public int AC { get; private set; }
+        public string Frequency { get; private set; }
     }
 }

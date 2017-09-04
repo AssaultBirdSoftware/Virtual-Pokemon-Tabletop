@@ -52,7 +52,8 @@
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Move Name" Width="150" DisplayMemberBinding="{Binding Name}"/>
-                                <GridViewColumn Header="Move Range" Width="100" DisplayMemberBinding="{Binding Range}"/>
+                                <GridViewColumn Header="Move Range" Width="200" DisplayMemberBinding="{Binding Range}"/>
+                                <GridViewColumn Header="Move Frequency" Width="100" DisplayMemberBinding="{Binding Frequency}"/>
                                 <GridViewColumn Header="Move Type" Width="100" DisplayMemberBinding="{Binding Type}"/>
                                 <GridViewColumn Header="Move Class" Width="100" DisplayMemberBinding="{Binding Class}"/>
                                 <GridViewColumn Header="DB" Width="50" DisplayMemberBinding="{Binding DB}"/>

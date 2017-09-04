@@ -73,7 +73,7 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem Header="Pokedex Manager" d:IsLocked="True">
+            <TabItem Header="Pokedex Manager">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -139,9 +139,9 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <WrapPanel>
-                                                <ProgressBar Minimum="0" Maximum="{Binding DataTag.Stat_HP_Max}" Value="{Binding DataTag.Current_HP}" Width="100" Height="5" Foreground="Green"></ProgressBar>
-                                                <ProgressBar Minimum="{Binding DataTag.Prev_EXP_Requirement}" Maximum="{Binding DataTag.Next_EXP_Requirement}" Value="{Binding DataTag.EXP}" Width="100" Height="5" Foreground="Blue"></ProgressBar>
-                                                <ProgressBar Minimum="0" Maximum="10" Value="{Binding DataTag.Injuries}" Width="100" Height="5" Foreground="Red"></ProgressBar>
+                                                <ProgressBar Minimum="0" Maximum="{Binding DataTag.Stat_HP_Max}" Value="{Binding DataTag.Current_HP}" Width="90" Height="5" Foreground="Green"></ProgressBar>
+                                                <ProgressBar Minimum="{Binding DataTag.Prev_EXP_Requirement}" Maximum="{Binding DataTag.Next_EXP_Requirement}" Value="{Binding DataTag.EXP}" Width="90" Height="5" Foreground="Blue"></ProgressBar>
+                                                <ProgressBar Minimum="0" Maximum="10" Value="{Binding DataTag.Injuries}" Width="90" Height="5" Foreground="Red"></ProgressBar>
                                             </WrapPanel>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -164,12 +164,12 @@
                     <GroupBox x:Name="PokedexManager_SearchDex1" Grid.Column="1" Header="Search" Margin="10,161,10,0" Height="187" VerticalAlignment="Top">
                         <Grid Margin="0,0,-2,-12.96">
                             <TextBox x:Name="EntityManager_SearchEntity_Search" Margin="0,0,10,0" TextWrapping="Wrap" VerticalAlignment="Top" UndoLimit="200" TextChanged="PokedexManager_SearchDex_Search_TextChanged"/>
-                            <CheckBox x:Name="EntityManager_SearchEntity_WildPokemon" Content="Wild Pokemon" Margin="0,22.96,0,0" VerticalAlignment="Top" IsChecked="True" Unchecked="PokedexManager_SearchDex_Pokemon_Unchecked"/>
-                            <CheckBox x:Name="EntityManager_SearchEntity_PC" Content="Player's Trainers" Margin="0,88,0,0" VerticalAlignment="Top" IsChecked="True" Unchecked="PokedexManager_SearchDex_Moves_Unchecked"/>
-                            <CheckBox x:Name="EntityManager_SearchEntity_NPC" Content="NPC's Trainers" Margin="0,104,0,0" VerticalAlignment="Top" IsChecked="True" Unchecked="PokedexManager_SearchDex_Moves_Unchecked"/>
-                            <CheckBox x:Name="EntityManager_SearchEntity_PartyPokemon" Margin="0,53,0,0" VerticalAlignment="Top" Unchecked="PokedexManager_SearchDex_Pokemon_Unchecked" Content="Party Pokemon"/>
-                            <CheckBox x:Name="EntityManager_SearchEntity_PlayerPokemon" Content="Player's Pokemon" Margin="0,68,0,0" VerticalAlignment="Top" Unchecked="PokedexManager_SearchDex_Pokemon_Unchecked"/>
-                            <CheckBox x:Name="EntityManager_SearchEntity_NPCPokemon" Content="NPC's Pokemon" VerticalAlignment="Top" Unchecked="PokedexManager_SearchDex_Pokemon_Unchecked" Margin="0,38,0,0"/>
+                            <CheckBox x:Name="EntityManager_SearchEntity_WildPokemon" Content="Wild Pokemon" Margin="0,22.96,0,0" VerticalAlignment="Top" IsChecked="True"/>
+                            <CheckBox x:Name="EntityManager_SearchEntity_PC" Content="Player's Trainers" Margin="0,88,0,0" VerticalAlignment="Top" IsChecked="True"/>
+                            <CheckBox x:Name="EntityManager_SearchEntity_NPC" Content="NPC's Trainers" Margin="0,104,0,0" VerticalAlignment="Top" IsChecked="True"/>
+                            <CheckBox x:Name="EntityManager_SearchEntity_PartyPokemon" Margin="0,53,0,0" VerticalAlignment="Top" Content="Party Pokemon"/>
+                            <CheckBox x:Name="EntityManager_SearchEntity_PlayerPokemon" Content="Player's Pokemon" Margin="0,68,0,0" VerticalAlignment="Top"/>
+                            <CheckBox x:Name="EntityManager_SearchEntity_NPCPokemon" Content="NPC's Pokemon" VerticalAlignment="Top" Margin="0,38,0,0"/>
                         </Grid>
                     </GroupBox>
                     <GroupBox x:Name="PokedexManager_DisplaySettings1" Grid.Column="1" Header="Display Settings" Margin="10,0,10,10" Height="108.127" VerticalAlignment="Bottom" IsEnabled="False" d:IsLocked="True">
