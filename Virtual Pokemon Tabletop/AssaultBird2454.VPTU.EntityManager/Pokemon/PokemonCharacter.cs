@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace AssaultBird2454.VPTU.EntityManager.Pokemon
 {
@@ -12,7 +13,7 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         public decimal Species_DexID { get; set; }
         public List<AssaultBird2454.VPTU.BattleManager.Data.Type> PokemonType { get; set; }
         public int EXP { get; set; }
-        //[JsonIgnore]
+        [JsonIgnore]
         public int Next_EXP_Requirement
         {
             get
@@ -20,7 +21,7 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
                 return (EXP_Markers(Level + 1));
             }
         }
-        //[JsonIgnore]
+        [JsonIgnore]
         public int Prev_EXP_Requirement
         {
             get
@@ -71,7 +72,7 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         #endregion
 
         #region Base Stat
-        //[JsonIgnore]
+        [JsonIgnore]
         public int HP_Base
         {
             get
@@ -108,7 +109,7 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         #endregion
 
         #region Stat Max HP
-        //[JsonIgnore]
+        [JsonIgnore]
         public int Stat_HP_Max
         {
             get
@@ -150,7 +151,7 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         #endregion
 
         #region Base Stat
-        //[JsonIgnore]
+        [JsonIgnore]
         public int Attack_Base
         {
             get
@@ -187,7 +188,7 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         #endregion
 
         #region Total
-        //[JsonIgnore]
+        [JsonIgnore]
         public int Attack_Total
         {
             get
@@ -213,7 +214,7 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         #endregion
 
         #region Combat Stage Adjusted
-        //[JsonIgnore]
+        [JsonIgnore]
         public int Attack_Adjusted
         {
             get
@@ -298,7 +299,7 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         #endregion
 
         #region Base Stat
-        //[JsonIgnore]
+        [JsonIgnore]
         public int Defence_Base
         {
             get
@@ -335,7 +336,7 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         #endregion
 
         #region Total
-        //[JsonIgnore]
+        [JsonIgnore]
         public int Defence_Total
         {
             get
@@ -361,7 +362,7 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         #endregion
 
         #region Combat Stage Adjusted
-        //[JsonIgnore]
+        [JsonIgnore]
         public int Defence_Adjusted
         {
             get
@@ -446,7 +447,7 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         #endregion
 
         #region Base Stat
-        //[JsonIgnore]
+        [JsonIgnore]
         public int SpAttack_Base
         {
             get
@@ -483,7 +484,7 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         #endregion
 
         #region Total
-        //[JsonIgnore]
+        [JsonIgnore]
         public int SpAttack_Total
         {
             get
@@ -509,7 +510,7 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         #endregion
 
         #region Combat Stage Adjusted
-        //[JsonIgnore]
+        [JsonIgnore]
         public int SpAttack_Adjusted
         {
             get
@@ -594,7 +595,7 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         #endregion
 
         #region Base Stat
-        //[JsonIgnore]
+        [JsonIgnore]
         public int SpDefence_Base
         {
             get
@@ -631,7 +632,7 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         #endregion
 
         #region Total
-        //[JsonIgnore]
+        [JsonIgnore]
         public int SpDefence_Total
         {
             get
@@ -657,7 +658,7 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         #endregion
 
         #region Combat Stage Adjusted
-        //[JsonIgnore]
+        [JsonIgnore]
         public int SpDefence_Adjusted
         {
             get
@@ -742,7 +743,7 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         #endregion
 
         #region Base Stat
-        //[JsonIgnore]
+        [JsonIgnore]
         public int Speed_Base
         {
             get
@@ -779,7 +780,7 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         #endregion
 
         #region Total
-        //[JsonIgnore]
+        [JsonIgnore]
         public int Speed_Total
         {
             get
@@ -805,7 +806,7 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         #endregion
 
         #region Combat Stage Adjusted
-        //[JsonIgnore]
+        [JsonIgnore]
         public int Speed_Adjusted
         {
             get
@@ -880,7 +881,7 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         public BattleManager.Entity.Effects BattleEffects { get; set; }
 
         #region Functions
-        //[JsonIgnore]
+        [JsonIgnore]
         public int Level
         {
             get
