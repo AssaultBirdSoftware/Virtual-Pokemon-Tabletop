@@ -257,6 +257,9 @@
                     <xctk:DecimalUpDown x:Name="Capabilities_ThrowingRange" HorizontalAlignment="Left" Margin="259,132,0,0" VerticalAlignment="Top" Width="80" IsReadOnly="True" Value="0" TextAlignment="Center"/>
                 </Grid>
             </TabItem>
+            <TabItem Header="Battle Effects" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
         </TabControl>
 
     </Grid>
