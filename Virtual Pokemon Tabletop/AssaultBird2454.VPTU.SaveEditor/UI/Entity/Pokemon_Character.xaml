@@ -27,7 +27,6 @@
                 <ComboBox x:Name="Basic_Weight" Margin="90,111,0,0" HorizontalAlignment="Left" Width="150" VerticalAlignment="Top" Height="22" SelectionChanged="Basic_Weight_SelectionChanged"/>
                 <Label x:Name="label3" Content="Pokedex Notes" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="183" Grid.Column="2" HorizontalContentAlignment="Center" Height="26"/>
                 <TextBox x:Name="Basic_Desc" HorizontalAlignment="Left" Height="119" Margin="10,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Grid.Column="2"/>
-                <ComboBox x:Name="Basic_Species" HorizontalAlignment="Left" Margin="90,27,0,0" VerticalAlignment="Top" Width="150" SelectionChanged="Basic_Species_SelectionChanged" Height="22"/>
                 <RadioButton x:Name="Basic_SexMale" Content="Male" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="3" Margin="10,7,0,0" Height="15" Width="45" Checked="Basic_SexMale_Checked" IsChecked="True"/>
                 <RadioButton x:Name="Basic_SexFemale" Content="Female" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,27,0,0" Grid.Column="3" Height="15" Width="57" Checked="Basic_SexFemale_Checked"/>
                 <RadioButton x:Name="Basic_SexNone" Content="Genderless" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,47,0,0" Grid.Column="3" Height="15" Width="77" Checked="Basic_SexNone_Checked"/>
@@ -43,6 +42,8 @@
                 <Label x:Name="Basic_Level" Content="Level: 100" VerticalAlignment="Top" HorizontalAlignment="Left" Width="106" Grid.Column="1" Margin="135,55,0,0"/>
                 <Label Content="Injuries" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="51" Grid.Column="1" Margin="0.4,119,0,0"/>
                 <xctk:IntegerUpDown x:Name="Basic_Injuries" HorizontalAlignment="Left" Margin="56.4,119,0,0" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Minimum="0" Maximum="10" Value="0" TextAlignment="Center" ValueChanged="Basic_Injuries_ValueChanged"/>
+                <Label x:Name="Basic_Species" Content="1 (Charmander)" HorizontalAlignment="Left" Margin="90,27,0,0" VerticalAlignment="Top" Height="25"/>
+                <Button x:Name="Change_Species" Content="Change" HorizontalAlignment="Left" Margin="195,31,0,0" VerticalAlignment="Top" Width="45" Click="Change_Species_Click"/>
             </Grid>
         </GroupBox>
         <TabControl HorizontalAlignment="Left" Height="465" Margin="0,187,0,0" VerticalAlignment="Top" Width="978">

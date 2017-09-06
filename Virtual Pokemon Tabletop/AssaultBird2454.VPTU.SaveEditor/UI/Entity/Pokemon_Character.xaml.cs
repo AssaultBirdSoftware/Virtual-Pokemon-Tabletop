@@ -84,27 +84,9 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             Basic_Size.SelectedIndex = 0;
             Basic_Nature.SelectedIndex = 0;
             #endregion
-
-            LoadSpecies();
         }
 
         private List<ComboBoxItem> Species_List;
-        /// <summary>
-        /// Loads the pokemon species into the selection combobox
-        /// </summary>
-        private void LoadSpecies()
-        {
-            Species_List = new List<ComboBoxItem>();
-            foreach (VPTU.Pokedex.Pokemon.PokemonData data in Manager.SaveData.PokedexData.Pokemon)
-            {
-                ComboBoxItem cbi = new ComboBoxItem();
-                cbi.Content = data.Species_DexID + " (" + data.Species_Name + ")";
-                cbi.Tag = data;
-
-                Basic_Species.Items.Add(cbi);
-                Species_List.Add(cbi);
-            }
-        }
         #endregion
 
         #region Save & Load Functions
@@ -119,7 +101,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             try
             {
                 VPTU.Pokedex.Pokemon.PokemonData pokemon = Manager.SaveData.PokedexData.Pokemon.Find(x => x.Species_DexID == PokemonData.Species_DexID);
-                Basic_Species.SelectedItem = Species_List.Find(x => x.Tag == pokemon);
+                Basic_Species.Content = pokemon.Species_DexID + " (" + pokemon.Species_Name + ")";
             }
             catch { }
 
@@ -219,7 +201,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         /// </summary>
         public void LoadFromSpecies()
         {
-            VPTU.Pokedex.Pokemon.PokemonData NewPokemon = (VPTU.Pokedex.Pokemon.PokemonData)((ComboBoxItem)Basic_Species.SelectedItem).Tag;
+            VPTU.Pokedex.Pokemon.PokemonData NewPokemon = (VPTU.Pokedex.Pokemon.PokemonData)Manager.SaveData.PokedexData.Pokemon.Find(x => x.Species_DexID == PokemonData.Species_DexID);
 
             //try { PokemonData.Name = NewPokemon.Species_Name; } catch { }
 
@@ -530,16 +512,6 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             if (Ready)
             {
                 try { PokemonData.Name = Basic_Name.Text; } catch { }
-            }
-        }
-        private void Basic_Species_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //MessageBox.Show("Updating pokemon with species data", "Selected Species", MessageBoxButton.OK, MessageBoxImage.Information);
-
-            if (Ready == true)
-            {
-                PokemonData.Species_DexID = (decimal)((VPTU.Pokedex.Pokemon.PokemonData)((ComboBoxItem)Basic_Species.SelectedItem).Tag).Species_DexID;
-                LoadFromSpecies();
             }
         }
         private void Basic_Size_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -985,6 +957,18 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         private void Moves_Remove_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Change_Species_Click(object sender, RoutedEventArgs e)
+        {
+            UI.Pokedex.Select.Select_Pokemon pokemon = new Pokedex.Select.Select_Pokemon(Manager);
+            bool? pass = pokemon.ShowDialog();
+
+            if (pass == true)
+            {
+                PokemonData.Species_DexID = pokemon.Selected_Pokemon.Species_DexID;
+                LoadFromSpecies();
+            }
         }
     }
 

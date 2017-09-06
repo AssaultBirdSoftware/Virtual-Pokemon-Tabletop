@@ -628,7 +628,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
         /// <param name="e"></param>
         private void LinkEvo_Button_Click(object sender, RoutedEventArgs e)
         {
-            Link_Evolution link = new Link_Evolution();// Create a new EvoLink Window to create a link with
+            Link_Evolution link = new Link_Evolution(Mgr);// Create a new EvoLink Window to create a link with
             bool? add = link.ShowDialog();// Shows the Link Window, Creates a Dialog to return true if it added successfully
 
             if (add == true)
@@ -646,7 +646,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
         {
             if (FormsAndEvos_List.SelectedItem == null) { return; }// Returns if selection is null
 
-            Link_Evolution link = new Link_Evolution(((EvoLinks)FormsAndEvos_List.SelectedItem).LinkData);// Creates a new EvoLink Window to modify link with
+            Link_Evolution link = new Link_Evolution(Mgr, ((EvoLinks)FormsAndEvos_List.SelectedItem).LinkData);// Creates a new EvoLink Window to modify link with
             link.ShowDialog();// Shows the Link Window
         }
         /// <summary>

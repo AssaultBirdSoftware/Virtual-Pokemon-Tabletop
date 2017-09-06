@@ -435,10 +435,9 @@ namespace AssaultBird2454.VPTU.SaveEditor
                             PokedexList_DataBind PokemonDB = new PokedexList_DataBind();
                             PokemonDB.Name = Pokemon.Species_Name;
                             PokemonDB.ID = Pokemon.Species_DexID;
-                            PokemonDB.Types = Pokemon.Species_Types;
                             PokemonDB.Class = "";
                             PokemonDB.EntryType = "Pokemon";
-
+                            //PokemonDB.Type = "";
                             PokemonDB.DataType = PokedexList_DataType.Pokemon;
                             PokemonDB.DataTag = Pokemon;
 
@@ -456,7 +455,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
                             PokedexList_DataBind MoveDB = new PokedexList_DataBind();
                             MoveDB.Name = Move.Name;
                             MoveDB.ID = (SaveManager.SaveData.PokedexData.Moves.IndexOf(Move) + 1);
-                            MoveDB.Types = new List<BattleManager.Data.Type> { Move.Move_Type };
+                            //MoveDB.Type = Move.Move_Type.ToString();
                             MoveDB.Class = Move.Move_Class.ToString();
                             MoveDB.EntryType = "Move";
 
@@ -468,7 +467,10 @@ namespace AssaultBird2454.VPTU.SaveEditor
                     }
                 }
             }
-            catch { /* Dont Care */ }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Error occured while loading the Pokedex Manager's List!\n\n" + ex.ToString(), "Pokedex Manager - Loading Error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
+            }
         }
 
         /// <summary>
@@ -738,29 +740,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
         /// </summary>
         public string Name { get; set; }
 
-        /// <summary>
-        /// The Type of the Pokemon or Move
-        /// </summary>
-        public List<BattleManager.Data.Type> Types { get; set; }
-        public string Type
-        {
-            get
-            {
-                string str = "";
-                int i = 0;
-                foreach (BattleManager.Data.Type type in Types)
-                {
-                    if (i >= 1)
-                    {
-                        str = str + ", ";
-                    }
-                    str = str + type.ToString();
-                    i++;
-                }
-
-                return str;
-            }
-        }
+        public string Type { get; set; }
         /// <summary>
         /// The Class of move
         /// </summary>

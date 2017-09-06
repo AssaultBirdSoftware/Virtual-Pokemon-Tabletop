@@ -84,8 +84,7 @@
                             <GridView>
                                 <GridViewColumn Header="ID" Width="50px" DisplayMemberBinding="{Binding ID}"/>
                                 <GridViewColumn Header="Name" Width="150px" DisplayMemberBinding="{Binding Name}"/>
-                                <GridViewColumn Header="Type 1" Width="80px" DisplayMemberBinding="{Binding Type1}"/>
-                                <GridViewColumn Header="Type 2" Width="80px" DisplayMemberBinding="{Binding Type2}"/>
+                                <GridViewColumn Header="Type" Width="100px" DisplayMemberBinding="{Binding Type_String}"/>
                                 <GridViewColumn Header="Class" Width="80px" DisplayMemberBinding="{Binding Class}"/>
                                 <GridViewColumn Header="Entry Type" Width="100" DisplayMemberBinding="{Binding EntryType}"/>
                             </GridView>
