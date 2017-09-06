@@ -4,9 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Entity"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+        xmlns:StatusEffects_Data="clr-namespace:AssaultBird2454.VPTU.BattleManager.Data;assembly=AssaultBird2454.VPTU.BattleManager"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:MultiSelectComboBox="clr-namespace:MultiSelectComboBox;assembly=MultiSelectComboBox" x:Class="AssaultBird2454.VPTU.SaveEditor.UI.Entity.Pokemon_Character"
         mc:Ignorable="d"
         Title="Character Designer - Pokemon" Height="696.063" Width="996.626">
+    <Window.Resources>
+        <ObjectDataProvider x:Key="StatusEffects" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="StatusEffects_Data:Status_Afflictions"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+
     <Grid>
 
         <GroupBox x:Name="G_BasicInfo" Header="Basic Information" HorizontalAlignment="Left" VerticalAlignment="Top" Width="849" Height="187">
@@ -259,7 +269,34 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Battle Effects" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid>
+                    <ListView x:Name="Status_List" Margin="0,0,184,0">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Status Effect" Width="150">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <WrapPanel>
+                                                <ComboBox Width="135" ItemsSource="{Binding Source={StaticResource StatusEffects}}"/>
+                                            </WrapPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Header="Duration" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <WrapPanel>
+                                                <xctk:IntegerUpDown Width="85" TextAlignment="Center" Value="0"/>
+                                            </WrapPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                        <ListViewItem/>
+                    </ListView>
+                </Grid>
             </TabItem>
         </TabControl>
 
