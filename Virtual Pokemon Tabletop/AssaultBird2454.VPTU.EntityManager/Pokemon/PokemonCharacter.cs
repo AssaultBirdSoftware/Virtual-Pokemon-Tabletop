@@ -876,9 +876,11 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         public List<string> Moves { get; set; }
 
         /// <summary>
-        /// Data containing information about battle effects like Status Conditions
+        /// Lists all the status afflictions that this pokemon has
+        /// Key: Status Condition
+        /// Value: Duration in turns (0 = Ended, -1 = No Limit)
         /// </summary>
-        public BattleManager.Entity.Effects BattleEffects { get; set; }
+        public List<KeyValuePair<BattleManager.Data.Status_Afflictions, int>> Status { get; set; }
 
         #region Functions
         [JsonIgnore]
