@@ -6,15 +6,21 @@
         xmlns:avalonDock="http://schemas.xceed.com/wpf/xaml/avalondock"
         xmlns:local="clr-namespace:AssaultBird2454.VPTU.Client"
         mc:Ignorable="d"
-        Title="Virtual Pokemon Tabletop - Client (Version: _____ _._._ Build _) (Commit: _______)" Height="412.278" Width="784.075" Closed="Main_Closed">
+        Title="Virtual Pokemon Tabletop - Client (Version: _____ _._._ Build _) (Commit: _______)" Height="412.278" Width="784.075" Closed="Main_Closed" Closing="Main_Closing" Initialized="Main_Initialized">
     <Grid>
         <avalonDock:DockingManager x:Name="Dock" Margin="0,18,0,0">
             <avalonDock:LayoutRoot>
                 <avalonDock:LayoutPanel Orientation="Horizontal">
                     <avalonDock:LayoutDocumentPane/>
                     <avalonDock:LayoutAnchorablePane DockWidth="150">
+                        <avalonDock:LayoutAnchorable Title="Trainer">
+
+                        </avalonDock:LayoutAnchorable>
                         <avalonDock:LayoutAnchorable Title="Turn Order">
-                            
+
+                        </avalonDock:LayoutAnchorable>
+                        <avalonDock:LayoutAnchorable Title="Chat">
+
                         </avalonDock:LayoutAnchorable>
                     </avalonDock:LayoutAnchorablePane>
                 </avalonDock:LayoutPanel>
@@ -26,7 +32,7 @@
             <MenuItem x:Name="Menu_Menu" Header="Menu">
                 <MenuItem x:Name="Menu_Menu_Connect" Header="Connect to Table"/>
                 <MenuItem x:Name="Menu_Menu_Disconnect" Header="Disconnect from Table"/>
-                <Separator x:Name="Menu_Menu_S1"/>
+                <Separator x:Name="Menu_Menu_S1" Height="5"/>
                 <MenuItem x:Name="Menu_Menu_Quit" Header="Quit"/>
             </MenuItem>
             <MenuItem x:Name="Menu_View" Header="View">
@@ -49,9 +55,12 @@
                 <MenuItem x:Name="Menu_View_ServerSettings" Header="Server Settings"/>
             </MenuItem>
             <MenuItem x:Name="Menu_Window" Header="Window">
-                <MenuItem x:Name="Menu_Window_SaveLayout" Header="Save Layout"/>
-                <MenuItem x:Name="Menu_Window_LoadLayout" Header="Load Layout"/>
+                <MenuItem x:Name="Menu_Window_SaveLayout" Header="Save Layout" Click="Menu_Window_SaveLayout_Click"/>
+                <MenuItem x:Name="Menu_Window_LoadLayout" Header="Load Layout" Click="Menu_Window_LoadLayout_Click"/>
                 <MenuItem x:Name="Menu_Window_ManageLayout" Header="Manage Layouts"/>
+                <Separator x:Name="Menu_Window_S1" HorizontalAlignment="Left" Width="172" Height="5"/>
+                <MenuItem x:Name="Menu_Window_ReloadLayouts" Header="Reload Layout's" HorizontalAlignment="Left" Width="172"/>
+                <Separator x:Name="Menu_Window_S2" HorizontalAlignment="Left" Height="5" Width="172"/>
             </MenuItem>
         </Menu>
     </Grid>

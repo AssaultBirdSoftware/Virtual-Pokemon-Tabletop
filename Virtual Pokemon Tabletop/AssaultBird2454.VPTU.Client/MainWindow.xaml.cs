@@ -89,5 +89,28 @@ namespace AssaultBird2454.VPTU.Client
         {
             File.Delete(AssemblyDirectory + "\\Client.pid");
         }
+
+        private void Menu_Window_SaveLayout_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Main_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (!Directory.Exists(AssemblyDirectory + "/Layouts"))
+                Directory.CreateDirectory(AssemblyDirectory + "/Layouts");
+
+            Layout.MainClient.SaveLayout(AssemblyDirectory + "/Layouts/Default.xml", Dock);
+        }
+
+        private void Main_Initialized(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Menu_Window_LoadLayout_Click(object sender, RoutedEventArgs e)
+        {
+            Layout.MainClient.LoadLayout(AssemblyDirectory + "/Layouts/Default.xml", Dock);
+        }
     }
 }
