@@ -924,6 +924,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
 
         #endregion
 
+        #region Moves
         private void Reload_Moves()
         {
             if (PokemonData.Moves == null)
@@ -956,8 +957,14 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         }
         private void Moves_Remove_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                PokemonData.Moves.Remove(((Moves_DB)Moves_List.SelectedItem).Name);
+                Reload_Moves();
+            }
+            catch { /* Ignore */}
         }
+        #endregion
 
         private void Change_Species_Click(object sender, RoutedEventArgs e)
         {
