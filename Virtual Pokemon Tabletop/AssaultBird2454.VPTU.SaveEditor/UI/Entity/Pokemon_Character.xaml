@@ -81,10 +81,6 @@
             </TabItem>
             <TabItem Header="Stats" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top">
                 <Grid>
-                    <Label Content="Temp HP" HorizontalAlignment="Left" Margin="576,352,0,0" VerticalAlignment="Top"/>
-                    <xctk:IntegerUpDown Margin="646,352,264,58"/>
-                    <Label Content="Temp HP" HorizontalAlignment="Left" Margin="576,383,0,0" VerticalAlignment="Top"/>
-                    <xctk:IntegerUpDown Margin="646,383,264,27" Minimum="0" Maximum="10"/>
                     <GroupBox Header="Base Stats" HorizontalAlignment="Left" Height="236" VerticalAlignment="Top" Width="972">
                         <Grid Margin="0">
                             <Grid.ColumnDefinitions>

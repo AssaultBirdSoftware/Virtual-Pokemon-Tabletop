@@ -83,10 +83,28 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             Basic_Weight.SelectedIndex = 0;
             Basic_Size.SelectedIndex = 0;
             Basic_Nature.SelectedIndex = 0;
+
+            Skill_Acrobatics_Rank.SelectedIndex = 1;
+            Skill_Athletics_Rank.SelectedIndex = 1;
+            Skill_Charm_Rank.SelectedIndex = 1;
+            Skill_Combat_Rank.SelectedIndex = 1;
+            Skill_Command_Rank.SelectedIndex = 1;
+            Skill_Focus_Rank.SelectedIndex = 1;
+            Skill_GeneralEDU_Rank.SelectedIndex = 1;
+            Skill_Gulie_Rank.SelectedIndex = 1;
+            Skill_Intimidate_Rank.SelectedIndex = 1;
+            Skill_Intuition_Rank.SelectedIndex = 1;
+            Skill_MedicineEDU_Rank.SelectedIndex = 1;
+            Skill_OccultEDU_Rank.SelectedIndex = 1;
+            Skill_Perception_Rank.SelectedIndex = 1;
+            Skill_PokemonEDU_Rank.SelectedIndex = 1;
+            Skill_Stealth_Rank.SelectedIndex = 1;
+            Skill_Survival_Rank.SelectedIndex = 1;
+            Skill_TechnologyEDU_Rank.SelectedIndex = 1;
             #endregion
         }
 
-        private List<ComboBoxItem> Species_List;
+        //private List<ComboBoxItem> Species_List;
         #endregion
 
         #region Save & Load Functions
