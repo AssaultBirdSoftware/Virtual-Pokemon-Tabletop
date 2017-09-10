@@ -880,7 +880,7 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         /// Key: Status Condition
         /// Value: Duration in turns (0 = Ended, -1 = No Limit)
         /// </summary>
-        public List<KeyValuePair<BattleManager.Data.Status_Afflictions, int>> Status { get; set; }
+        public List<KeyValuePair<BattleManager.Data.Status_Afflictions, string>> Status { get; set; }
 
         #region Functions
         [JsonIgnore]

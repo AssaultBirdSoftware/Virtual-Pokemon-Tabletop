@@ -995,6 +995,17 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
                 LoadFromSpecies();
             }
         }
+
+
+        private void Status_Persistant_Burned_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void Status_Persistant_Burned_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 
     public class Moves_DB
