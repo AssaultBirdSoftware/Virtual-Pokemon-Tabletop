@@ -124,4 +124,19 @@ namespace AssaultBird2454.VPTU.Server.Class.Logging
             SR.Flush();
         }
     }
+
+    public interface I_Logger
+    {
+        /// <summary>
+        /// Configures the logging class
+        /// </summary>
+        /// <param name="Dir">A optional path to define where the log fil will be saved</param>
+        void Setup(string Dir);
+        /// <summary>
+        /// Sends a log entry to the logger
+        /// </summary>
+        /// <param name="Data">The Log Message</param>
+        /// <param name="Level">Defines log type</param>
+        void Log(string Data, LoggerLevel Level);
+    }
 }
