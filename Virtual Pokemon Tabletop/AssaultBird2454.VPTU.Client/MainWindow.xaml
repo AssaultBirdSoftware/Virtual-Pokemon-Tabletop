@@ -3,32 +3,30 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:avalonDock="http://schemas.xceed.com/wpf/xaml/avalondock"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
         xmlns:local="clr-namespace:AssaultBird2454.VPTU.Client"
         mc:Ignorable="d"
-        Title="Virtual Pokemon Tabletop - Client (Version: _____ _._._ Build _) (Commit: _______)" Height="412.278" Width="784.075" Closed="Main_Closed" Closing="Main_Closing" Initialized="Main_Initialized">
+        Title="Virtual Pokemon Tabletop - Client (Version: _____ _._._ Build _) (Commit: _______)" Height="440.278" Width="852.075" Closed="Main_Closed" Closing="Main_Closing" Loaded="Main_Loaded">
     <Grid>
-        <avalonDock:DockingManager x:Name="Dock" Margin="0,18,0,0">
-            <avalonDock:LayoutRoot>
-                <avalonDock:LayoutPanel Orientation="Horizontal">
-                    <avalonDock:LayoutDocumentPane/>
-                    <avalonDock:LayoutAnchorablePane DockWidth="150">
-                        <avalonDock:LayoutAnchorable Title="Trainer">
+        <syncfusion:DockingManager x:Name="Dock" Margin="0,18,0,27" DockTabAlignment="Bottom" ContainerMode="TDI" UseDocumentContainer="True">
+            <ContentControl x:Name="Map" syncfusion:DockingManager.Header="Map" />
 
-                        </avalonDock:LayoutAnchorable>
-                        <avalonDock:LayoutAnchorable Title="Turn Order">
+            <ContentControl x:Name="Server_Console" syncfusion:DockingManager.Header="Server Console" />
 
-                        </avalonDock:LayoutAnchorable>
-                        <avalonDock:LayoutAnchorable Title="Chat">
+            <ContentControl x:Name="Chat" syncfusion:DockingManager.Header="Chat" />
 
-                        </avalonDock:LayoutAnchorable>
-                    </avalonDock:LayoutAnchorablePane>
-                </avalonDock:LayoutPanel>
-            </avalonDock:LayoutRoot>
+            <ContentControl x:Name="Battle_Log" syncfusion:DockingManager.Header="Battle Log"/>
 
-        </avalonDock:DockingManager>
+            <ContentControl x:Name="Turn_Order" syncfusion:DockingManager.Header="Turn Order" />
 
-        <Menu x:Name="Menu" VerticalAlignment="Top">
+            <ContentControl x:Name="Tool_Box" syncfusion:DockingManager.Header="Tool Box" />
+
+            <ContentControl x:Name="Trainer" syncfusion:DockingManager.Header="Trainer" />
+
+            <ContentControl x:Name="Party" syncfusion:DockingManager.Header="Party" />
+        </syncfusion:DockingManager>
+
+        <Menu x:Name="Menu" VerticalAlignment="Top" Grid.ColumnSpan="2">
             <MenuItem x:Name="Menu_Menu" Header="Menu">
                 <MenuItem x:Name="Menu_Menu_Connect" Header="Connect to Table"/>
                 <MenuItem x:Name="Menu_Menu_Disconnect" Header="Disconnect from Table"/>
@@ -63,6 +61,14 @@
                 <Separator x:Name="Menu_Window_S2" HorizontalAlignment="Left" Height="5" Width="172"/>
             </MenuItem>
         </Menu>
+        <StatusBar x:Name="Status" Height="27" VerticalAlignment="Bottom">
+            <StatusBarItem x:Name="Status_ServerType" Content="Server Type: " HorizontalAlignment="Left" Padding="3,3,15,3"/>
+            <StatusBarItem x:Name="Status_ServerAddress" Content="Server Address: " HorizontalAlignment="Left" Padding="3,3,15,3"/>
+            <StatusBarItem x:Name="Status_ServerPing" Content="Server Ping: " HorizontalAlignment="Left" Padding="3,3,25,3"/>
+
+            <StatusBarItem x:Name="Status_CampaignName" Content="Campaign Name: " HorizontalAlignment="Left" Padding="3,3,15,3"/>
+            <StatusBarItem x:Name="Status_CampaignGM" Content="Campaign GM: " HorizontalAlignment="Left" Padding="3,3,15,3"/>
+        </StatusBar>
     </Grid>
 </Window>
 <!-- https://msdn.microsoft.com/en-us/magazine/dd419663.aspx-->

@@ -95,22 +95,25 @@ namespace AssaultBird2454.VPTU.Client
 
         }
 
+        #region Layout
         private void Main_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (!Directory.Exists(AssemblyDirectory + "/Layouts"))
                 Directory.CreateDirectory(AssemblyDirectory + "/Layouts");
 
-            Layout.MainClient.SaveLayout(AssemblyDirectory + "/Layouts/Default.xml", Dock);
+            Dock.SaveDockState(AssemblyDirectory + "/Layouts/Default.xml");
         }
-
-        private void Main_Initialized(object sender, EventArgs e)
+        private void Main_Loaded(object sender, RoutedEventArgs e)
         {
+            if (!File.Exists(AssemblyDirectory + "/Layouts/Default.xml"))
+                return;
 
+            Dock.LoadDockState(AssemblyDirectory + "/Layouts/Default.xml");
         }
-
         private void Menu_Window_LoadLayout_Click(object sender, RoutedEventArgs e)
         {
-            Layout.MainClient.LoadLayout(AssemblyDirectory + "/Layouts/Default.xml", Dock);
+            Dock.LoadDockState(AssemblyDirectory + "/Layouts/Default.xml");
         }
+        #endregion
     }
 }
