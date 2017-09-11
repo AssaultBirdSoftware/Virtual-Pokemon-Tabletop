@@ -256,6 +256,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         #region Stats
         public void Reload_Stats()
         {
+            // Values
             Stats_Mod_HP.Value = PokemonData.HP_BaseMod;
             Stats_Add_HP.Value = PokemonData.HP_AddStat;
             Stats_Mod_Attack.Value = PokemonData.Attack_BaseMod;
@@ -272,37 +273,46 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             Stats_CS_SpDefence.Value = PokemonData.SpDefence_CombatStage;
             Stats_Mod_Speed.Value = PokemonData.Speed_BaseMod;
             Stats_Add_Speed.Value = PokemonData.Speed_AddStat;
-
             Stats_CS_Speed.Value = PokemonData.Speed_CombatStage;
+            // HP
             Stats_SBase_HP.Content = PokemonData.HP_SpeciesBase;
             Stats_Base_HP.Content = PokemonData.HP_Base;
             Stats_Total_HP.Content = PokemonData.Stat_HP_Max;
             Basic_MaxHP.Content = "/ " + PokemonData.Stat_HP_Max;
-
+            // Attack
             Stats_SBase_Attack.Content = PokemonData.Attack_SpeciesBase;
             Stats_Base_Attack.Content = PokemonData.Attack_Base;
             Stats_Total_Attack.Content = PokemonData.Attack_Total;
             Stats_Adj_Attack.Content = PokemonData.Attack_Adjusted;
-
+            // Defence
             Stats_SBase_Defence.Content = PokemonData.Defence_SpeciesBase;
             Stats_Base_Defence.Content = PokemonData.Defence_Base;
             Stats_Total_Defence.Content = PokemonData.Defence_Total;
             Stats_Adj_Defence.Content = PokemonData.Defence_Adjusted;
-
+            // Sp. Attack
             Stats_SBase_SpAttack.Content = PokemonData.SpAttack_SpeciesBase;
             Stats_Base_SpAttack.Content = PokemonData.SpAttack_Base;
             Stats_Total_SpAttack.Content = PokemonData.SpAttack_Total;
             Stats_Adj_SpAttack.Content = PokemonData.SpAttack_Adjusted;
-
+            // Sp. Defence
             Stats_SBase_SpDefence.Content = PokemonData.SpDefence_SpeciesBase;
             Stats_Base_SpDefence.Content = PokemonData.SpDefence_Base;
             Stats_Total_SpDefence.Content = PokemonData.SpDefence_Total;
             Stats_Adj_SpDefence.Content = PokemonData.SpDefence_Adjusted;
-
+            // Speed
             Stats_SBase_Speed.Content = PokemonData.Speed_SpeciesBase;
             Stats_Base_Speed.Content = PokemonData.Speed_Base;
             Stats_Total_Speed.Content = PokemonData.Speed_Total;
             Stats_Adj_Speed.Content = PokemonData.Speed_Adjusted;
+            // Physical Evasion
+            Stats_Mod_PhyEvasion.Value = PokemonData.Evasion_Physical_Mod;
+            Stats_Value_PhyEvasion.Content = PokemonData.Evasion_Physical;
+            // Special Evasion
+            Stats_Mod_SpEvasion.Value = PokemonData.Evasion_Special_Mod;
+            Stats_Value_SpEvasion.Content = PokemonData.Evasion_Special;
+            // Speed Evasion
+            Stats_Mod_SpeedEvasion.Value = PokemonData.Evasion_Speed_Mod;
+            Stats_Value_SpeedEvasion.Content = PokemonData.Evasion_Speed;
         }
 
         #region HP
@@ -381,6 +391,8 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
                     Stats_Base_Defence.Content = PokemonData.Defence_Base;
                     Stats_Total_Defence.Content = PokemonData.Defence_Total;
                     Stats_Adj_Defence.Content = PokemonData.Defence_Adjusted;
+
+                    Stats_Value_PhyEvasion.Content = PokemonData.Evasion_Physical;
                 }
                 catch { }
         }
@@ -393,6 +405,8 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
 
                     Stats_Total_Defence.Content = PokemonData.Defence_Total;
                     Stats_Adj_Defence.Content = PokemonData.Defence_Adjusted;
+
+                    Stats_Value_PhyEvasion.Content = PokemonData.Evasion_Physical;
                 }
                 catch { }
         }
@@ -404,6 +418,8 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
                     PokemonData.Defence_CombatStage = (int)Stats_CS_Defence.Value;
 
                     Stats_Adj_Defence.Content = PokemonData.Defence_Adjusted;
+
+                    Stats_Value_PhyEvasion.Content = PokemonData.Evasion_Physical;
                 }
                 catch { }
         }
@@ -457,6 +473,8 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
                     Stats_Base_SpDefence.Content = PokemonData.SpDefence_Base;
                     Stats_Total_SpDefence.Content = PokemonData.SpDefence_Total;
                     Stats_Adj_SpDefence.Content = PokemonData.SpDefence_Adjusted;
+
+                    Stats_Value_SpEvasion.Content = PokemonData.Evasion_Special;
                 }
                 catch { }
         }
@@ -469,6 +487,8 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
 
                     Stats_Total_SpDefence.Content = PokemonData.SpDefence_Total;
                     Stats_Adj_SpDefence.Content = PokemonData.SpDefence_Adjusted;
+
+                    Stats_Value_SpEvasion.Content = PokemonData.Evasion_Special;
                 }
                 catch { }
         }
@@ -480,6 +500,8 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
                     PokemonData.SpDefence_CombatStage = (int)Stats_CS_SpDefence.Value;
 
                     Stats_Adj_SpDefence.Content = PokemonData.SpDefence_Adjusted;
+
+                    Stats_Value_SpEvasion.Content = PokemonData.Evasion_Special;
                 }
                 catch { }
         }
@@ -495,6 +517,8 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
                     Stats_Base_Speed.Content = PokemonData.Speed_Base;
                     Stats_Total_Speed.Content = PokemonData.Speed_Total;
                     Stats_Adj_Speed.Content = PokemonData.Speed_Adjusted;
+
+                    Stats_Value_SpeedEvasion.Content = PokemonData.Evasion_Speed;
                 }
                 catch { }
         }
@@ -507,6 +531,8 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
 
                     Stats_Total_Speed.Content = PokemonData.Speed_Total;
                     Stats_Adj_Speed.Content = PokemonData.Speed_Adjusted;
+
+                    Stats_Value_SpeedEvasion.Content = PokemonData.Evasion_Speed;
                 }
                 catch { }
         }
@@ -518,10 +544,55 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
                     PokemonData.Speed_CombatStage = (int)Stats_CS_Speed.Value;
 
                     Stats_Adj_Speed.Content = PokemonData.Speed_Adjusted;
+
+                    Stats_Value_SpeedEvasion.Content = PokemonData.Evasion_Speed;
                 }
                 catch { }
         }
         #endregion
+
+        // Physical Evasion
+        private void Stats_Mod_PhyEvasion_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (Ready)
+            {
+                try
+                {
+                    PokemonData.Evasion_Physical_Mod = (int)Stats_Mod_PhyEvasion.Value;
+
+                    Stats_Value_PhyEvasion.Content = PokemonData.Evasion_Physical;
+                }
+                catch { /* Dont Care */ }
+            }
+        }
+        // Special Evasion
+        private void Stats_Mod_SpEvasion_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (Ready)
+            {
+                try
+                {
+                    PokemonData.Evasion_Special_Mod = (int)Stats_Mod_SpEvasion.Value;
+
+                    Stats_Value_SpEvasion.Content = PokemonData.Evasion_Special;
+                }
+                catch { /* Dont Care */ }
+            }
+        }
+        // Speed Evasion
+        private void Stats_Mod_SpeedEvasion_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (Ready)
+            {
+                try
+                {
+                    PokemonData.Evasion_Speed_Mod = (int)Stats_Mod_SpeedEvasion.Value;
+
+                    Stats_Value_SpeedEvasion.Content = PokemonData.Evasion_Speed;
+                }
+                catch { /* Dont Care */ }
+            }
+        }
         #endregion
 
         #region Basic Info (Change Events)
@@ -1005,7 +1076,6 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         {
 
         }
-
     }
 
     public class Moves_DB

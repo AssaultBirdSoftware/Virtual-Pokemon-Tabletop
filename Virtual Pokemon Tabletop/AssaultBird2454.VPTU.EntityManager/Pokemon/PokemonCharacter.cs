@@ -859,6 +859,107 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         }
         #endregion
         #endregion
+
+        //ToDo: Add a call to check effects that gain a mod to evasion stats
+        #region Physical Evasion
+        private int Stat_Physical_Evasion_Mod;
+        public int Evasion_Physical_Mod
+        {
+            get
+            {
+                return Stat_Physical_Evasion_Mod;
+            }
+            set
+            {
+                Stat_Physical_Evasion_Mod = value;
+            }
+        }
+
+        [JsonIgnore]
+        public int Evasion_Physical
+        {
+            get
+            {
+                int stat = (int)Math.Floor((decimal)Defence_Total / 5);
+
+                if(stat >= 6)
+                {
+                    return 6 + Evasion_Physical_Mod;
+                }
+                else
+                {
+
+                    return stat + Evasion_Physical_Mod;
+                }
+            }
+        }
+        #endregion
+        #region Special Evasion
+        private int Stat_Special_Evasion_Mod;
+        public int Evasion_Special_Mod
+        {
+            get
+            {
+                return Stat_Special_Evasion_Mod;
+            }
+            set
+            {
+                Stat_Special_Evasion_Mod = value;
+            }
+        }
+
+        [JsonIgnore]
+        public int Evasion_Special
+        {
+            get
+            {
+                int stat = (int)Math.Floor((decimal)SpDefence_Total / 5);
+
+                if (stat >= 6)
+                {
+                    return 6 + Evasion_Special_Mod;
+                }
+                else
+                {
+
+                    return stat + Evasion_Special_Mod;
+                }
+            }
+        }
+        #endregion
+        #region Speed Evasion
+        private int Stat_Speed_Evasion_Mod;
+        public int Evasion_Speed_Mod
+        {
+            get
+            {
+                return Stat_Speed_Evasion_Mod;
+            }
+            set
+            {
+                Stat_Speed_Evasion_Mod = value;
+            }
+        }
+
+        [JsonIgnore]
+        public int Evasion_Speed
+        {
+            get
+            {
+                int stat = (int)Math.Floor((decimal)Speed_Total / 5);
+
+                if (stat >= 6)
+                {
+                    return 6 + Evasion_Speed_Mod;
+                }
+                else
+                {
+
+                    return stat + Evasion_Speed_Mod;
+                }
+            }
+        }
+        #endregion
         #endregion
 
         public int Contest_Beauty { get; set; }

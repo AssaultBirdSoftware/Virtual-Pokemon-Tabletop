@@ -125,14 +125,13 @@
                             <Label x:Name="Stats_Total_SpDefence" Content="0" HorizontalAlignment="Left" Margin="79.8,155,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="4"/>
                             <Label x:Name="Stats_Total_Speed" Content="0" HorizontalAlignment="Left" Margin="79.8,186,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="4"/>
                             <xctk:IntegerUpDown x:Name="Stats_Mod_HP" HorizontalAlignment="Left" Margin="79.8,31,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Mod_HP_ValueChanged"/>
-                            <xctk:IntegerUpDown HorizontalAlignment="Left" Margin="79.8,62,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="1" Height="26"/>
-                            <xctk:IntegerUpDown x:Name="Stats_Mod_Attack" HorizontalAlignment="Left" Margin="79.8,62,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Mod_Attack_ValueChanged"/>
+                            <xctk:IntegerUpDown x:Name="Stats_Mod_Attack" HorizontalAlignment="Left" Margin="0,62,0,0" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center" Grid.Column="2" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Mod_Attack_ValueChanged"/>
                             <xctk:IntegerUpDown x:Name="Stats_Mod_Defence" HorizontalAlignment="Left" Margin="79.8,93,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Mod_Defence_ValueChanged"/>
                             <xctk:IntegerUpDown x:Name="Stats_Mod_SpAttack" HorizontalAlignment="Left" Margin="79.8,124,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Mod_SpAttack_ValueChanged"/>
                             <xctk:IntegerUpDown x:Name="Stats_Mod_SpDefence" HorizontalAlignment="Left" Margin="79.8,155,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Mod_SpDefence_ValueChanged"/>
                             <xctk:IntegerUpDown x:Name="Stats_Mod_Speed" HorizontalAlignment="Left" Margin="79.8,186,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Mod_Speed_ValueChanged"/>
                             <xctk:IntegerUpDown x:Name="Stats_Add_HP" HorizontalAlignment="Left" Margin="79.8,31,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="3" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Add_HP_ValueChanged"/>
-                            <xctk:IntegerUpDown x:Name="Stats_Add_Attack" HorizontalAlignment="Left" Margin="79.8,62,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="3" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Add_Attack_ValueChanged"/>
+                            <xctk:IntegerUpDown x:Name="Stats_Add_Attack" HorizontalAlignment="Left" Margin="0,62,0,0" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center" Grid.Column="4" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Add_Attack_ValueChanged"/>
                             <xctk:IntegerUpDown x:Name="Stats_Add_Defence" HorizontalAlignment="Left" Margin="79.8,93,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="3" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Add_Defence_ValueChanged"/>
                             <xctk:IntegerUpDown x:Name="Stats_Add_SpAttack" HorizontalAlignment="Left" Margin="79.8,124,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="3" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Add_SpAttack_ValueChanged"/>
                             <xctk:IntegerUpDown x:Name="Stats_Add_SpDefence" HorizontalAlignment="Left" Margin="79.8,155,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="3" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Add_SpDefence_ValueChanged"/>
@@ -151,6 +150,28 @@
                             <Label x:Name="Stats_Adj_SpDefence" Content="0" HorizontalAlignment="Left" Margin="79.8,155,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="6"/>
                             <Label x:Name="Stats_Adj_Speed" Content="0" HorizontalAlignment="Left" Margin="79.8,186,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="6"/>
                             <Label Content="N / A" HorizontalAlignment="Left" Margin="0,31,0,0" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center" Grid.Column="7" Foreground="Red"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Base Stats" HorizontalAlignment="Left" Height="172" VerticalAlignment="Top" Width="972" Margin="0,236,0,0">
+                        <Grid Margin="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="95"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="Physical Evasion" VerticalAlignment="Top" Margin="0,31,0,0" HorizontalContentAlignment="Center"/>
+                            <Label Content="Special Evasion" VerticalAlignment="Top" Margin="0,62,0,0" HorizontalContentAlignment="Center"/>
+                            <Label Content="Speed Evasion" VerticalAlignment="Top" Margin="0,93,0,0" HorizontalContentAlignment="Center"/>
+                            <Label Content="Stat Name" VerticalAlignment="Top" HorizontalContentAlignment="Center"/>
+                            <Label Content="Mod" VerticalAlignment="Top" Grid.Column="1" HorizontalContentAlignment="Center"/>
+                            <xctk:IntegerUpDown x:Name="Stats_Mod_PhyEvasion" Margin="0,31,0,0" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Mod_PhyEvasion_ValueChanged"/>
+                            <xctk:IntegerUpDown x:Name="Stats_Mod_SpEvasion" Margin="0,62,0,0" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Mod_SpEvasion_ValueChanged"/>
+                            <xctk:IntegerUpDown x:Name="Stats_Mod_SpeedEvasion" Margin="0,93,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Mod_SpeedEvasion_ValueChanged"/>
+                            <Label x:Name="Stats_Value_PhyEvasion" Content="0" Margin="0,31,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Grid.Column="2"/>
+                            <Label x:Name="Stats_Value_SpEvasion" Content="0" Margin="0,62,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Grid.Column="2"/>
+                            <Label x:Name="Stats_Value_SpeedEvasion" Content="0" Margin="0,93,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Grid.Column="2"/>
+                            <Label Content="Value" VerticalAlignment="Top" Grid.Column="2" HorizontalContentAlignment="Center"/>
                         </Grid>
                     </GroupBox>
                 </Grid>
