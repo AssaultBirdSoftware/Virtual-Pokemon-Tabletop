@@ -29,17 +29,11 @@ namespace AssaultBird2454.VPTU.Server.Server
         /// </summary>
         public SaveManager.SaveManager SaveManager { get; private set; }
 
-        public ServerInstance(string SaveData, Class.Logging.Logger _Logger = null)
+        public ServerInstance(string SaveData, Class.Logging.Logger _Logger)
         {
             #region Logs
-            if (_Logger == null)
-            {
-                Server_Logger = new Class.Logging.Logger();
-            }
-            else
-            {
-                Server_Logger = _Logger;
-            }
+            Server_Logger = _Logger;
+            ((Class.Logging.I_Logger)Server_Logger).Setup(Main.AssemblyDirectory + @"\Logs\" + DateTime.Now.ToLongDateString());
             #endregion
             #region SaveManager
             ((Class.Logging.I_Logger)Server_Logger).Log("Initilizing Save Manager", Class.Logging.LoggerLevel.Debug);
@@ -53,6 +47,8 @@ namespace AssaultBird2454.VPTU.Server.Server
             Server_CommandHandeler = new Networking.Server.Command_Handeler.Server_CommandHandeler();
             Server_CommandHandeler.CommandRegistered += Server_CommandHandeler_CommandRegistered;
             Server_CommandHandeler.CommandUnRegistered += Server_CommandHandeler_CommandUnRegistered;
+
+            ((Class.Logging.I_Logger)Server_Logger).Log("Registering Base Server Commands", Class.Logging.LoggerLevel.Debug);
             #endregion
             #region Networking
             ((Class.Logging.I_Logger)Server_Logger).Log("Initilizing Base Network", Class.Logging.LoggerLevel.Debug);
