@@ -642,7 +642,13 @@ namespace AssaultBird2454.VPTU.SaveEditor
         }
         private void EntityManager_ManageEntity_Delete_Click(object sender, RoutedEventArgs e)
         {
+            if (((EntityManager_DataBind)EntityManager_List.SelectedValue).Type == EntityManager_DataType.WildPokemon)
+            {
+                EntityManager.Pokemon.PokemonCharacter Data = (EntityManager.Pokemon.PokemonCharacter)((EntityManager_DataBind)EntityManager_List.SelectedValue).DataTag;// Gets the Data
+                SaveManager.SaveData.Pokemon.Remove(Data);
 
+                EntityManager_ReloadList();// Updates the list
+            }
         }
         #endregion
 

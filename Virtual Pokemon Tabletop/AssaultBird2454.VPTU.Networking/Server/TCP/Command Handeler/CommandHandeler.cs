@@ -78,13 +78,20 @@ namespace AssaultBird2454.VPTU.Networking.Server.Command_Handeler
 
         internal void InvokeCommand(string Data, TCP_ClientNode node)
         {
-            var DataForm = new { Command = "" };
+            try
+            {
+                var DataForm = new { Command = "" };
 
-            var CommandData = Newtonsoft.Json.JsonConvert.DeserializeAnonymousType(Data, DataForm);// Deserializes an interface for command pharsing
+                var CommandData = Newtonsoft.Json.JsonConvert.DeserializeAnonymousType(Data, DataForm);// Deserializes an interface for command pharsing
 
-            Command cmd = (Command)Commands.First(x => x.Key == CommandData.Command).Value;// Gets the command by searching
+                Command cmd = (Command)Commands.First(x => x.Key == CommandData.Command).Value;// Gets the command by searching
 
-            cmd.Invoke(Newtonsoft.Json.JsonConvert.DeserializeObject(Data, cmd.DataType), node);
+                cmd.Invoke(Newtonsoft.Json.JsonConvert.DeserializeObject(Data, cmd.DataType), node);
+            }
+            catch
+            {
+
+            }
         }
     }
 }

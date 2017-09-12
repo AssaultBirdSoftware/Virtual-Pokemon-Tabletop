@@ -12,8 +12,17 @@ namespace AssaultBird2454.VPTU.Server.Class.Logging
     /// </summary>
     public enum LoggerLevel { Info, Notice, Warning, Error, Fatil, Debug, Audit }
 
-    public class Logger
+    public class Logger : I_Logger
     {
+        public Logger()
+        {
+
+        }
+        public Logger(bool Debug)
+        {
+            LogDebug = Debug;
+        }
+
         #region Variables, Properties & Events
         private string _LogFile_Dir = "";
         /// <summary>
@@ -53,11 +62,6 @@ namespace AssaultBird2454.VPTU.Server.Class.Logging
             }
         }
         #endregion
-
-        public Logger()
-        {
-
-        }
 
         /// <summary>
         /// Configures the Logger
@@ -120,8 +124,12 @@ namespace AssaultBird2454.VPTU.Server.Class.Logging
             string Write = DateTime.Now.ToString() + " [" + Level.ToString() + "] -> " + Data;
 
             Console.WriteLine(Write);
-            SR.WriteLine(Write);
-            SR.Flush();
+            try
+            {
+                SR.WriteLine(Write);
+                SR.Flush();
+            }
+            catch { /* File Logging not configured */ }
         }
     }
 
