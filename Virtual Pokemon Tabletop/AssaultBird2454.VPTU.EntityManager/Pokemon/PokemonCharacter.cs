@@ -8,6 +8,16 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
 {
     public class PokemonCharacter
     {
+        public PokemonCharacter(string _ID)
+        {
+            ID = _ID;
+        }
+        public PokemonCharacter()
+        {
+
+        }
+
+        public string ID { get; set; }
         public string Name { get; set; }
         public string Notes { get; set; }
         public decimal Species_DexID { get; set; }
@@ -882,7 +892,7 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
             {
                 int stat = (int)Math.Floor((decimal)Defence_Total / 5);
 
-                if(stat >= 6)
+                if (stat >= 6)
                 {
                     return 6 + Evasion_Physical_Mod;
                 }
@@ -982,6 +992,52 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         /// Value: Duration in turns (0 = Ended, -1 = No Limit)
         /// </summary>
         public List<KeyValuePair<BattleManager.Data.Status_Afflictions, string>> Status { get; set; }
+
+        public void AddStatus(BattleManager.Data.Status_Afflictions Effect, string Effect_Data)
+        {
+            if (Status == null)
+                Status = new List<KeyValuePair<BattleManager.Data.Status_Afflictions, string>>();
+
+            KeyValuePair<BattleManager.Data.Status_Afflictions, string> Data = new KeyValuePair<BattleManager.Data.Status_Afflictions, string>(Effect, Effect_Data);
+            if (HasStatus(Effect))
+            {
+                RemoveStatus(Effect);
+                Status.Add(Data);
+            }
+            else
+            {
+                Status.Add(Data);
+            }
+        }
+        public string GetStatusData(BattleManager.Data.Status_Afflictions Effect)
+        {
+            if (Status == null)
+                Status = new List<KeyValuePair<BattleManager.Data.Status_Afflictions, string>>();
+
+            return Status.Find(x => x.Key == Effect).Value;
+        }
+        public void SetStatusData(BattleManager.Data.Status_Afflictions Effect, string Effect_Data)
+        {
+            if (Status == null)
+                Status = new List<KeyValuePair<BattleManager.Data.Status_Afflictions, string>>();
+
+            RemoveStatus(Effect);
+            AddStatus(Effect, Effect_Data);
+        }
+        public bool HasStatus(BattleManager.Data.Status_Afflictions Effect)
+        {
+            if (Status == null)
+                Status = new List<KeyValuePair<BattleManager.Data.Status_Afflictions, string>>();
+
+            if (Status.FindAll(x => x.Key == Effect).Count >= 1) { return true; } else { return false; }
+        }
+        public void RemoveStatus(BattleManager.Data.Status_Afflictions Effect)
+        {
+            if (Status == null)
+                Status = new List<KeyValuePair<BattleManager.Data.Status_Afflictions, string>>();
+
+            Status.RemoveAll(x => x.Key == Effect);
+        }
 
         #region Functions
         [JsonIgnore]

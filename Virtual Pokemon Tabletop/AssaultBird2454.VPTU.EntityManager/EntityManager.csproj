@@ -56,6 +56,10 @@
       <Project>{7e7c28d4-d92f-4d4a-988c-8086fce625a0}</Project>
       <Name>Pokedex</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AssaultBird2454.VPTU.RNG\RNG.csproj">
+      <Project>{e84417f1-e891-474e-a793-d94e33b3c2ed}</Project>
+      <Name>RNG</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

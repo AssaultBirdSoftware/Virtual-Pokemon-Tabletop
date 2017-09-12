@@ -27,14 +27,14 @@
                     <ColumnDefinition Width="200"/>
                     <ColumnDefinition Width="135"/>
                 </Grid.ColumnDefinitions>
-                <TextBox x:Name="Basic_Name" Margin="90,4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Height="18" TextChanged="Basic_Name_TextChanged"/>
-                <Label Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="85"/>
-                <Label Content="Species" Margin="0,26,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="50"/>
-                <Label Content="Type" HorizontalAlignment="Left" Margin="0,52,0,0" VerticalAlignment="Top" Height="26" Width="45"/>
-                <Label Content="Size Class" HorizontalAlignment="Left" Margin="0,83,0,0" VerticalAlignment="Top" Height="26" Width="61"/>
-                <ComboBox x:Name="Basic_Size" Margin="90,84,0,0" HorizontalAlignment="Left" Width="150" VerticalAlignment="Top" Height="22" SelectionChanged="Basic_Size_SelectionChanged"/>
-                <Label Content="Weight Class" Margin="0,110,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="78"/>
-                <ComboBox x:Name="Basic_Weight" Margin="90,111,0,0" HorizontalAlignment="Left" Width="150" VerticalAlignment="Top" Height="22" SelectionChanged="Basic_Weight_SelectionChanged"/>
+                <TextBox x:Name="Basic_Name" Margin="90,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Height="18" TextChanged="Basic_Name_TextChanged"/>
+                <Label Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="85" Margin="0,23,0,0"/>
+                <Label Content="Species" Margin="0,49,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="50"/>
+                <Label Content="Type" HorizontalAlignment="Left" Margin="0,75,0,0" VerticalAlignment="Top" Height="26" Width="45"/>
+                <Label Content="Size Class" HorizontalAlignment="Left" Margin="0,106,0,0" VerticalAlignment="Top" Height="26" Width="61"/>
+                <ComboBox x:Name="Basic_Size" Margin="90,107,0,0" HorizontalAlignment="Left" Width="150" VerticalAlignment="Top" Height="22" SelectionChanged="Basic_Size_SelectionChanged"/>
+                <Label Content="Weight Class" Margin="0,133,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="78"/>
+                <ComboBox x:Name="Basic_Weight" Margin="90,134,0,0" HorizontalAlignment="Left" Width="150" VerticalAlignment="Top" Height="22" SelectionChanged="Basic_Weight_SelectionChanged"/>
                 <Label x:Name="label3" Content="Pokedex Notes" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="183" Grid.Column="2" HorizontalContentAlignment="Center" Height="26"/>
                 <TextBox x:Name="Basic_Desc" HorizontalAlignment="Left" Height="119" Margin="10,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Grid.Column="2"/>
                 <RadioButton x:Name="Basic_SexMale" Content="Male" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="3" Margin="10,7,0,0" Height="15" Width="45" Checked="Basic_SexMale_Checked" IsChecked="True"/>
@@ -42,7 +42,7 @@
                 <RadioButton x:Name="Basic_SexNone" Content="Genderless" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,47,0,0" Grid.Column="3" Height="15" Width="77" Checked="Basic_SexNone_Checked"/>
                 <Label Content="Nature" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="51" Grid.Column="1"/>
                 <ComboBox x:Name="Basic_Nature" Margin="56,2,0,0" HorizontalAlignment="Left" Width="185" VerticalAlignment="Top" Height="22" Grid.Column="1" SelectionChanged="Basic_Nature_SelectionChanged"/>
-                <MultiSelectComboBox:MultiSelectComboBox x:Name="Basic_Types" HorizontalAlignment="Left" Height="24" Margin="90,54,0,0" VerticalAlignment="Top" Width="150"/>
+                <MultiSelectComboBox:MultiSelectComboBox x:Name="Basic_Types" HorizontalAlignment="Left" Height="24" Margin="90,77,0,0" VerticalAlignment="Top" Width="150"/>
                 <Label Content="XP" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="51" Grid.Column="1" Margin="0,31,0,0"/>
                 <Label Content="HP" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="51" Grid.Column="1" Margin="0.4,88,0,0"/>
                 <xctk:IntegerUpDown x:Name="Basic_CurrentHP" HorizontalAlignment="Left" Margin="56.4,88,0,0" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Minimum="0" Maximum="99999" Value="0" TextAlignment="Center" ValueChanged="Basic_CurrentHP_ValueChanged"/>
@@ -52,8 +52,10 @@
                 <Label x:Name="Basic_Level" Content="Level: 100" VerticalAlignment="Top" HorizontalAlignment="Left" Width="106" Grid.Column="1" Margin="135,55,0,0"/>
                 <Label Content="Injuries" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="51" Grid.Column="1" Margin="0.4,119,0,0"/>
                 <xctk:IntegerUpDown x:Name="Basic_Injuries" HorizontalAlignment="Left" Margin="56.4,119,0,0" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Minimum="0" Maximum="10" Value="0" TextAlignment="Center" ValueChanged="Basic_Injuries_ValueChanged"/>
-                <Label x:Name="Basic_Species" Content="1 (Charmander)" HorizontalAlignment="Left" Margin="90,27,0,0" VerticalAlignment="Top" Height="25"/>
-                <Button x:Name="Change_Species" Content="Change" HorizontalAlignment="Left" Margin="195,31,0,0" VerticalAlignment="Top" Width="45" Click="Change_Species_Click"/>
+                <Label x:Name="Basic_Species" Content="1 (Charmander)" HorizontalAlignment="Left" Margin="90,50,0,0" VerticalAlignment="Top" Height="25"/>
+                <Button x:Name="Change_Species" Content="Change" HorizontalAlignment="Left" Margin="195,54,0,0" VerticalAlignment="Top" Width="45" Click="Change_Species_Click"/>
+                <TextBox x:Name="Basic_ID" Margin="90,4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Height="18" IsReadOnly="True"/>
+                <Label Content="ID" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="85"/>
             </Grid>
         </GroupBox>
         <TabControl HorizontalAlignment="Left" Height="465" Margin="0,187,0,0" VerticalAlignment="Top" Width="978">
@@ -294,9 +296,9 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <CheckBox x:Name="Status_Persistant_Burned" Content="Burned" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Checked="Status_Persistant_Burned_Checked" Unchecked="Status_Persistant_Burned_Unchecked"/>
-                            <CheckBox x:Name="Status_Persistant_Frozen" Content="Frozen" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top"/>
-                            <CheckBox x:Name="Status_Persistant_Paralysis" Content="Paralysis" HorizontalAlignment="Left" Margin="0,50,0,0" VerticalAlignment="Top"/>
-                            <CheckBox x:Name="Status_Persistant_Poisioned" Content="Poisoned" HorizontalAlignment="Left" Margin="0,70,0,0" VerticalAlignment="Top"/>
+                            <CheckBox x:Name="Status_Persistant_Frozen" Content="Frozen" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" Checked="Status_Persistant_Frozen_Checked" Unchecked="Status_Persistant_Frozen_Unchecked"/>
+                            <CheckBox x:Name="Status_Persistant_Paralysis" Content="Paralysis" HorizontalAlignment="Left" Margin="0,50,0,0" VerticalAlignment="Top" Checked="Status_Persistant_Paralysis_Checked" Unchecked="Status_Persistant_Paralysis_Unchecked"/>
+                            <CheckBox x:Name="Status_Persistant_Poisioned" Content="Poisoned" HorizontalAlignment="Left" Margin="0,70,0,0" VerticalAlignment="Top" Checked="Status_Persistant_Poisioned_Checked" Unchecked="Status_Persistant_Poisioned_Unchecked"/>
                             <Label Content="No Options Available for &quot;Persistant&quot; Status Effects" Margin="10,10,10,0" Grid.Row="1" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
                         </Grid>
                     </GroupBox>
@@ -306,12 +308,12 @@
                                 <RowDefinition Height="215"/>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
-                            <CheckBox x:Name="Status_Volatile_BadSleep" Content="Bad Sleep" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Height="15" Width="72"/>
-                            <CheckBox x:Name="Status_Volatile_Confused" Content="Confused" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" Height="15" Width="70"/>
-                            <CheckBox x:Name="Status_Volatile_Cursed" Content="Cursed" HorizontalAlignment="Left" Margin="0,50,0,0" VerticalAlignment="Top" Height="15" Width="57"/>
-                            <CheckBox x:Name="Status_Volatile_Disable" Content="Disabled" HorizontalAlignment="Left" Margin="0,70,0,0" VerticalAlignment="Top" Height="15" Width="66"/>
-                            <CheckBox x:Name="Status_Volatile_Rage" Content="Rage" HorizontalAlignment="Left" Margin="0,90,0,0" VerticalAlignment="Top" Height="15" Width="47"/>
-                            <CheckBox x:Name="Status_Volatile_Flinch" Content="Flinch" HorizontalAlignment="Left" Margin="0,110,0,0" VerticalAlignment="Top" Height="15" Width="51"/>
+                            <CheckBox x:Name="Status_Volatile_BadSleep" Content="Bad Sleep" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Height="15" Width="72" Checked="Status_Volatile_BadSleep_Checked" Unchecked="Status_Volatile_BadSleep_Unchecked"/>
+                            <CheckBox x:Name="Status_Volatile_Confused" Content="Confused" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" Height="15" Width="70" Checked="Status_Volatile_Confused_Checked" Unchecked="Status_Volatile_Confused_Unchecked"/>
+                            <CheckBox x:Name="Status_Volatile_Cursed" Content="Cursed" HorizontalAlignment="Left" Margin="0,50,0,0" VerticalAlignment="Top" Height="15" Width="57" Checked="Status_Volatile_Cursed_Checked" Unchecked="Status_Volatile_Cursed_Unchecked"/>
+                            <CheckBox x:Name="Status_Volatile_Disable" Content="Disabled" HorizontalAlignment="Left" Margin="0,70,0,0" VerticalAlignment="Top" Height="15" Width="66" Checked="Status_Volatile_Disable_Checked" Unchecked="Status_Volatile_Disable_Unchecked"/>
+                            <CheckBox x:Name="Status_Volatile_Rage" Content="Rage" HorizontalAlignment="Left" Margin="0,90,0,0" VerticalAlignment="Top" Height="15" Width="47" Checked="Status_Volatile_Rage_Checked" Unchecked="Status_Volatile_Rage_Unchecked"/>
+                            <CheckBox x:Name="Status_Volatile_Flinch" Content="Flinch" HorizontalAlignment="Left" Margin="0,110,0,0" VerticalAlignment="Top" Height="15" Width="51" Checked="Status_Volatile_Flinch_Checked" Unchecked="Status_Volatile_Flinch_Unchecked"/>
                             <CheckBox x:Name="Status_Volatile_Inflatuation" Content="Inflatuation" HorizontalAlignment="Left" Margin="0,130,0,0" VerticalAlignment="Top" Height="15" Width="81"/>
                             <CheckBox x:Name="Status_Volatile_Sleep" Content="Sleep" HorizontalAlignment="Left" Margin="0,150,0,0" VerticalAlignment="Top" Height="15" Width="49"/>
                             <CheckBox x:Name="Status_Volatile_Suppressed" Content="Suppressed" HorizontalAlignment="Left" Margin="0,170,0,0" VerticalAlignment="Top" Height="15" Width="81"/>
@@ -321,7 +323,7 @@
                             <MultiSelectComboBox:MultiSelectComboBox x:Name="Status_Volatile_Disable_Value" Margin="99,10,10,0" Grid.Row="1" VerticalAlignment="Top" Height="29" IsEnabled="False"/>
                             <Label Content="Inflatuation Subject:" Margin="0,44,0,0" VerticalAlignment="Top" Grid.Row="1" HorizontalAlignment="Left" Width="115" Height="26"/>
                             <Label x:Name="Status_Volatile_Inflatuation_Value" Content="Subject" Margin="120,44,59,0" VerticalAlignment="Top" Grid.Row="1" Height="26"/>
-                            <Button x:Name="Status_Volatile_Inflatuation_Select" Content="Select" Margin="0,47,10,0" Grid.Row="1" HorizontalAlignment="Right" Width="44" Height="20" VerticalAlignment="Top" IsEnabled="False"/>
+                            <Button x:Name="Status_Volatile_Inflatuation_Select" Content="Select" Margin="0,46.8,11.2,0" Grid.Row="1" HorizontalAlignment="Right" Width="44" Height="20" VerticalAlignment="Top" IsEnabled="False"/>
                             <Label Content="Sleep Duration" HorizontalAlignment="Left" Margin="0,75,0,0" VerticalAlignment="Top" Grid.Row="1" Height="26" Width="88"/>
                             <xctk:IntegerUpDown x:Name="Status_Volatile_Sleep_Duration" Margin="93,75,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Value="0" TextAlignment="Center" Maximum="9999" Minimum="-1" HorizontalAlignment="Left" Width="89" IsEnabled="False"/>
                             <Label Content="Temp Hit Points" HorizontalAlignment="Left" Margin="0,106,0,0" VerticalAlignment="Top" Grid.Row="1" Height="26" Width="95"/>

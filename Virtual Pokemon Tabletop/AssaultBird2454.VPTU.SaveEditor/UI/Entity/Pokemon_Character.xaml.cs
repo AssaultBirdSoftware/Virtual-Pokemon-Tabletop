@@ -25,12 +25,12 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         private bool Ready = false;
 
         #region Base Functions
-        public Pokemon_Character(SaveManager.SaveManager _Mgr, EntityManager.Pokemon.PokemonCharacter _PokemonData = null)
+        public Pokemon_Character(SaveManager.SaveManager _Mgr, EntityManager.Pokemon.PokemonCharacter _PokemonData)
         {
             Manager = _Mgr;
             if (_PokemonData == null)
             {
-                PokemonData = new EntityManager.Pokemon.PokemonCharacter();
+                PokemonData = new EntityManager.Pokemon.PokemonCharacter(RNG.Generators.RSG.GenerateString(10));
             }
             else
             {
@@ -115,6 +115,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         {
             Ready = false;
 
+            try { Basic_ID.Text = PokemonData.ID; } catch { }
             try { Basic_Name.Text = PokemonData.Name; } catch { }
             try
             {
@@ -211,6 +212,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
 
             Reload_Stats();
             Reload_Moves();
+            LoadStatusEffects();
 
             Ready = true;
         }
@@ -1067,12 +1069,126 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             }
         }
 
-
+        #region Battle Effects
+        #region Status Effects
+        public void LoadStatusEffects()
+        {
+            Status_Persistant_Burned.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.Burned);
+            Status_Persistant_Frozen.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.Frozen);
+            Status_Persistant_Paralysis.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.Paralysis);
+            Status_Persistant_Poisioned.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.Poision);
+        }
+        #region Persistant Effects
         private void Status_Persistant_Burned_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.AddStatus(BattleManager.Data.Status_Afflictions.Burned, "");
+        }
+        private void Status_Persistant_Burned_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.RemoveStatus(BattleManager.Data.Status_Afflictions.Burned);
+        }
+        private void Status_Persistant_Frozen_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.AddStatus(BattleManager.Data.Status_Afflictions.Frozen, "");
+        }
+        private void Status_Persistant_Frozen_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.RemoveStatus(BattleManager.Data.Status_Afflictions.Frozen);
+        }
+        private void Status_Persistant_Paralysis_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.AddStatus(BattleManager.Data.Status_Afflictions.Paralysis, "");
+        }
+        private void Status_Persistant_Paralysis_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.RemoveStatus(BattleManager.Data.Status_Afflictions.Paralysis);
+        }
+        private void Status_Persistant_Poisioned_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.AddStatus(BattleManager.Data.Status_Afflictions.Poision, "");
+        }
+        private void Status_Persistant_Poisioned_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.RemoveStatus(BattleManager.Data.Status_Afflictions.Poision);
+        }
+        #endregion
+
+        #region Volitile Effects
+
+        #endregion
+
+        #region Other Effects
+
+        #endregion
+
+        #endregion
+
+        #endregion
+
+        private void Status_Volatile_BadSleep_Checked(object sender, RoutedEventArgs e)
         {
 
         }
-        private void Status_Persistant_Burned_Unchecked(object sender, RoutedEventArgs e)
+
+        private void Status_Volatile_BadSleep_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Status_Volatile_Confused_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Status_Volatile_Confused_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Status_Volatile_Cursed_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Status_Volatile_Cursed_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Status_Volatile_Disable_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Status_Volatile_Disable_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Status_Volatile_Rage_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Status_Volatile_Rage_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Status_Volatile_Flinch_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Status_Volatile_Flinch_Unchecked(object sender, RoutedEventArgs e)
         {
 
         }
