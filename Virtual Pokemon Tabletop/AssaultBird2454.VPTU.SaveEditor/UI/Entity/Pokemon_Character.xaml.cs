@@ -1071,18 +1071,31 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
 
         #region Battle Effects
         #region Status Effects
+        private string Status_Volitile_Inflatuation_PokemonID = "";
+
         public void LoadStatusEffects()
         {
             Status_Persistant_Burned.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.Burned);
             Status_Persistant_Frozen.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.Frozen);
             Status_Persistant_Paralysis.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.Paralysis);
             Status_Persistant_Poisioned.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.Poision);
+
+            Status_Volatile_BadSleep.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.BadSleep);
+            Status_Volatile_Confused.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.Confusion);
+            Status_Volatile_Cursed.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.Cursed);
+            Status_Volatile_Disable.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.Dissabled);
+            Status_Volatile_Rage.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.Rage);
+            Status_Volatile_Flinch.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.Flinch);
+            Status_Volatile_Inflatuation.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.Infatuation);
+            Status_Volatile_Sleep.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.Sleep);
+            Status_Volatile_Suppressed.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.Suppressed);
+            Status_Volatile_TemporaryHitPoints.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.TemporaryHitPoints);
         }
         #region Persistant Effects
         private void Status_Persistant_Burned_Checked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.AddStatus(BattleManager.Data.Status_Afflictions.Burned, "");
+                PokemonData.AddStatus(BattleManager.Data.Status_Afflictions.Burned);
         }
         private void Status_Persistant_Burned_Unchecked(object sender, RoutedEventArgs e)
         {
@@ -1092,7 +1105,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         private void Status_Persistant_Frozen_Checked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.AddStatus(BattleManager.Data.Status_Afflictions.Frozen, "");
+                PokemonData.AddStatus(BattleManager.Data.Status_Afflictions.Frozen);
         }
         private void Status_Persistant_Frozen_Unchecked(object sender, RoutedEventArgs e)
         {
@@ -1102,7 +1115,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         private void Status_Persistant_Paralysis_Checked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.AddStatus(BattleManager.Data.Status_Afflictions.Paralysis, "");
+                PokemonData.AddStatus(BattleManager.Data.Status_Afflictions.Paralysis);
         }
         private void Status_Persistant_Paralysis_Unchecked(object sender, RoutedEventArgs e)
         {
@@ -1112,7 +1125,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         private void Status_Persistant_Poisioned_Checked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.AddStatus(BattleManager.Data.Status_Afflictions.Poision, "");
+                PokemonData.AddStatus(BattleManager.Data.Status_Afflictions.Poision);
         }
         private void Status_Persistant_Poisioned_Unchecked(object sender, RoutedEventArgs e)
         {
@@ -1122,7 +1135,131 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         #endregion
 
         #region Volitile Effects
+        private void Status_Volatile_BadSleep_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.AddStatus(BattleManager.Data.Status_Afflictions.BadSleep);
+        }
+        private void Status_Volatile_BadSleep_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.RemoveStatus(BattleManager.Data.Status_Afflictions.BadSleep);
+        }
+        private void Status_Volatile_Confused_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.AddStatus(BattleManager.Data.Status_Afflictions.Confusion);
+        }
+        private void Status_Volatile_Confused_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.RemoveStatus(BattleManager.Data.Status_Afflictions.Confusion);
+        }
+        private void Status_Volatile_Cursed_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.AddStatus(BattleManager.Data.Status_Afflictions.Cursed);
+        }
+        private void Status_Volatile_Cursed_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.RemoveStatus(BattleManager.Data.Status_Afflictions.Cursed);
+        }
+        private void Status_Volatile_Disable_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+            {
+                List<string> Moves = new List<string>();
+                try
+                {
+                    foreach (KeyValuePair<string, object> data in Status_Volatile_Disable_Value.SelectedItems)
+                    {
+                        Moves.Add(data.Key);
+                    }
+                }
+                catch { }
 
+                PokemonData.AddStatus(BattleManager.Data.Status_Afflictions.Dissabled, Moves);
+            }
+            Status_Volatile_Disable_Value.IsEnabled = true;
+        }
+        private void Status_Volatile_Disable_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.RemoveStatus(BattleManager.Data.Status_Afflictions.Dissabled);
+            Status_Volatile_Disable_Value.IsEnabled = false;
+            Status_Volatile_Disable_Value.SelectedItems = null;
+        }
+        private void Status_Volatile_Rage_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.AddStatus(BattleManager.Data.Status_Afflictions.Rage);
+        }
+        private void Status_Volatile_Rage_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.RemoveStatus(BattleManager.Data.Status_Afflictions.Rage);
+        }
+        private void Status_Volatile_Flinch_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.AddStatus(BattleManager.Data.Status_Afflictions.Flinch);
+        }
+        private void Status_Volatile_Flinch_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.RemoveStatus(BattleManager.Data.Status_Afflictions.Flinch);
+        }
+        private void Status_Volatile_Inflatuation_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.AddStatus(BattleManager.Data.Status_Afflictions.Infatuation, Status_Volitile_Inflatuation_PokemonID);
+            Status_Volatile_Inflatuation_Select.IsEnabled = true;
+        }
+        private void Status_Volatile_Inflatuation_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.RemoveStatus(BattleManager.Data.Status_Afflictions.Infatuation);
+            Status_Volatile_Inflatuation_Select.IsEnabled = false;
+            Status_Volatile_Inflatuation_Value.Content = "No Selected Entity";
+            Status_Volitile_Inflatuation_PokemonID = "";
+        }
+        private void Status_Volatile_Sleep_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.AddStatus(BattleManager.Data.Status_Afflictions.Sleep, Status_Volatile_Sleep_Duration.Value);
+            Status_Volatile_Sleep_Duration.IsEnabled = true;
+        }
+        private void Status_Volatile_Sleep_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.RemoveStatus(BattleManager.Data.Status_Afflictions.Sleep);
+            Status_Volatile_Sleep_Duration.IsEnabled = false;
+            Status_Volatile_Sleep_Duration.Value = 0;
+        }
+        private void Status_Volatile_Suppressed_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.AddStatus(BattleManager.Data.Status_Afflictions.Suppressed);
+        }
+        private void Status_Volatile_Suppressed_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.RemoveStatus(BattleManager.Data.Status_Afflictions.Suppressed);
+        }
+        private void Status_Volatile_TemporaryHitPoints_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.AddStatus(BattleManager.Data.Status_Afflictions.TemporaryHitPoints, Status_Volatile_TemporaryHitPoints_Value.Value);
+            Status_Volatile_TemporaryHitPoints_Value.IsEnabled = true;
+        }
+        private void Status_Volatile_TemporaryHitPoints_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.RemoveStatus(BattleManager.Data.Status_Afflictions.TemporaryHitPoints);
+            Status_Volatile_TemporaryHitPoints_Value.IsEnabled = false;
+            Status_Volatile_TemporaryHitPoints_Value.Value = 0;
+        }
         #endregion
 
         #region Other Effects
@@ -1133,62 +1270,12 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
 
         #endregion
 
-        private void Status_Volatile_BadSleep_Checked(object sender, RoutedEventArgs e)
+        private void Status_Volatile_Disable_Value_SelectionChangedEvent()
         {
 
         }
 
-        private void Status_Volatile_BadSleep_Unchecked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Status_Volatile_Confused_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Status_Volatile_Confused_Unchecked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Status_Volatile_Cursed_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Status_Volatile_Cursed_Unchecked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Status_Volatile_Disable_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Status_Volatile_Disable_Unchecked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Status_Volatile_Rage_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Status_Volatile_Rage_Unchecked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Status_Volatile_Flinch_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Status_Volatile_Flinch_Unchecked(object sender, RoutedEventArgs e)
+        private void Status_Volatile_Inflatuation_Select_Click(object sender, RoutedEventArgs e)
         {
 
         }

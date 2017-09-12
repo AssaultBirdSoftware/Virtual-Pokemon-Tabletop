@@ -991,14 +991,14 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         /// Key: Status Condition
         /// Value: Duration in turns (0 = Ended, -1 = No Limit)
         /// </summary>
-        public List<KeyValuePair<BattleManager.Data.Status_Afflictions, string>> Status { get; set; }
+        public List<KeyValuePair<BattleManager.Data.Status_Afflictions, dynamic>> Status { get; set; }
 
-        public void AddStatus(BattleManager.Data.Status_Afflictions Effect, string Effect_Data)
+        public void AddStatus(BattleManager.Data.Status_Afflictions Effect, dynamic Effect_Data = null)
         {
             if (Status == null)
-                Status = new List<KeyValuePair<BattleManager.Data.Status_Afflictions, string>>();
+                Status = new List<KeyValuePair<BattleManager.Data.Status_Afflictions, dynamic>>();
 
-            KeyValuePair<BattleManager.Data.Status_Afflictions, string> Data = new KeyValuePair<BattleManager.Data.Status_Afflictions, string>(Effect, Effect_Data);
+            KeyValuePair<BattleManager.Data.Status_Afflictions, dynamic> Data = new KeyValuePair<BattleManager.Data.Status_Afflictions, dynamic>(Effect, Effect_Data);
             if (HasStatus(Effect))
             {
                 RemoveStatus(Effect);
@@ -1009,17 +1009,17 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
                 Status.Add(Data);
             }
         }
-        public string GetStatusData(BattleManager.Data.Status_Afflictions Effect)
+        public dynamic GetStatusData(BattleManager.Data.Status_Afflictions Effect)
         {
             if (Status == null)
-                Status = new List<KeyValuePair<BattleManager.Data.Status_Afflictions, string>>();
+                Status = new List<KeyValuePair<BattleManager.Data.Status_Afflictions, dynamic>>();
 
             return Status.Find(x => x.Key == Effect).Value;
         }
         public void SetStatusData(BattleManager.Data.Status_Afflictions Effect, string Effect_Data)
         {
             if (Status == null)
-                Status = new List<KeyValuePair<BattleManager.Data.Status_Afflictions, string>>();
+                Status = new List<KeyValuePair<BattleManager.Data.Status_Afflictions, dynamic>>();
 
             RemoveStatus(Effect);
             AddStatus(Effect, Effect_Data);
@@ -1027,14 +1027,14 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         public bool HasStatus(BattleManager.Data.Status_Afflictions Effect)
         {
             if (Status == null)
-                Status = new List<KeyValuePair<BattleManager.Data.Status_Afflictions, string>>();
+                Status = new List<KeyValuePair<BattleManager.Data.Status_Afflictions, dynamic>>();
 
             if (Status.FindAll(x => x.Key == Effect).Count >= 1) { return true; } else { return false; }
         }
         public void RemoveStatus(BattleManager.Data.Status_Afflictions Effect)
         {
             if (Status == null)
-                Status = new List<KeyValuePair<BattleManager.Data.Status_Afflictions, string>>();
+                Status = new List<KeyValuePair<BattleManager.Data.Status_Afflictions, dynamic>>();
 
             Status.RemoveAll(x => x.Key == Effect);
         }
