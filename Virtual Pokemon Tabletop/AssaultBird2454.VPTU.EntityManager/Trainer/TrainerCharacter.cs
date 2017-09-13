@@ -46,6 +46,8 @@ namespace AssaultBird2454.VPTU.EntityManager.Trainer
         /// </summary>
         public BattleManager.Entity.Effects BattleEffects { get; set; }
 
+        public List<Pokemon.PokemonCharacter> PartyPokemon { get; set; }
+
         #region Methods
         /// <summary>
         /// Gets the characters level based on a formula

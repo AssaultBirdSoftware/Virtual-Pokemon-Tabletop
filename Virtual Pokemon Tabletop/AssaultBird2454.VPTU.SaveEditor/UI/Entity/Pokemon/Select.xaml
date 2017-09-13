@@ -1,0 +1,38 @@
+﻿<Window x:Class="AssaultBird2454.VPTU.SaveEditor.UI.Entity.Pokemon.Select"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Entity.Pokemon"
+        mc:Ignorable="d"
+        Title="Select" Height="398.701" Width="682.124">
+    <Grid Margin="0">
+        <ListView x:Name="Pokemon_List" Margin="0,41,-0.6,34.4">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" Width="150px" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Species" Width="200px" DisplayMemberBinding="{Binding Species}"/>
+                    <GridViewColumn Header="Owner" Width="200px" DisplayMemberBinding="{Binding Owner}"/>
+                    <GridViewColumn Header="Stats" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <WrapPanel>
+                                    <ProgressBar Minimum="0" Maximum="{Binding DataTag.Stat_HP_Max}" Value="{Binding DataTag.Current_HP}" Width="90" Height="5" Foreground="Green"/>
+                                    <ProgressBar Minimum="{Binding DataTag.Prev_EXP_Requirement}" Maximum="{Binding DataTag.Next_EXP_Requirement}" Value="{Binding DataTag.EXP}" Width="90" Height="5" Foreground="Blue"/>
+                                    <ProgressBar Minimum="0" Maximum="10" Value="{Binding DataTag.Injuries}" Width="90" Height="5" Foreground="Red"/>
+                                </WrapPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label Content="Search Entitys" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
+        <TextBox x:Name="Search_Name" HorizontalAlignment="Left" Height="26" Margin="98,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151" VerticalContentAlignment="Center"/>
+        <CheckBox x:Name="Search_Trainer_Pokemon" Content="Search Trainers Pokemon" HorizontalAlignment="Left" Margin="254,10,0,0" VerticalAlignment="Top" IsEnabled="False" IsChecked="True"/>
+        <CheckBox x:Name="Search_WildPokemon" Content="Search Wild Pokemon" HorizontalAlignment="Left" Margin="411,10,0,0" VerticalAlignment="Top" IsEnabled="False" IsChecked="True"/>
+        <Button x:Name="Select1" Content="Select" HorizontalAlignment="Left" Margin="10,0,0,10" Width="75" Height="19" VerticalAlignment="Bottom"/>
+        <Button x:Name="Cancel" Content="Cancel" HorizontalAlignment="Left" Margin="90,0,0,10" Width="75" Height="19" VerticalAlignment="Bottom"/>
+
+    </Grid>
+</Window>

@@ -1265,9 +1265,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         #region Other Effects
 
         #endregion
-
         #endregion
-
         #endregion
 
         private void Status_Volatile_Disable_Value_SelectionChangedEvent()

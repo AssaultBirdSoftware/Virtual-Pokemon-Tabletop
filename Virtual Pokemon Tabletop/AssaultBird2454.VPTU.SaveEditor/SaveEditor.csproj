@@ -120,8 +120,14 @@
     <Compile Include="UI\BattleEffect\EffectFunction_Designer.xaml.cs">
       <DependentUpon>EffectFunction_Designer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Entity\Pokemon\Select.xaml.cs">
+      <DependentUpon>Select.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Entity\Pokemon_Character.xaml.cs">
       <DependentUpon>Pokemon_Character.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Entity\Trainer\Select.xaml.cs">
+      <DependentUpon>Select.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Entity\Trainer_Character.xaml.cs">
       <DependentUpon>Trainer_Character.xaml</DependentUpon>
@@ -185,7 +191,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Entity\Pokemon\Select.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Entity\Pokemon_Character.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Entity\Trainer\Select.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -325,10 +339,7 @@
   <ItemGroup>
     <Resource Include="pokeball_B98_icon.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UI\Entity\Pokemon\" />
-    <Folder Include="UI\Entity\Trainer\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
