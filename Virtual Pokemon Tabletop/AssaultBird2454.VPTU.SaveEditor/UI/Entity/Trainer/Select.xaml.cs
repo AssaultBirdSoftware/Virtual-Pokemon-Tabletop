@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AssaultBird2454.VPTU.Tabletop
+namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity.Trainer
 {
     /// <summary>
-    /// Interaction logic for Token.xaml
+    /// Interaction logic for Select.xaml
     /// </summary>
-    public partial class Token : UserControl
+    public partial class Select : Window
     {
-        public Token()
+        public Select()
         {
             InitializeComponent();
         }

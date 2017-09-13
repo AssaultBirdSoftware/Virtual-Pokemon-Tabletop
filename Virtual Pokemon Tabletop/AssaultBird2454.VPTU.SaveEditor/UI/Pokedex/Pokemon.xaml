@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Pokedex"
-        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Pokemon"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:MultiSelectComboBox="clr-namespace:MultiSelectComboBox;assembly=MultiSelectComboBox" x:Class="AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Pokemon"
         mc:Ignorable="d"
         Title="Pokemon" ResizeMode="NoResize" Width="1438" Height="814.5" WindowStartupLocation="CenterOwner">
     <Grid>
@@ -17,17 +17,15 @@
                 <TextBox x:Name="Basic_Name" Margin="90,4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150"/>
                 <Label Content="Species Name" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                 <Label Content="Species Dex#" Margin="0,26,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                <Label Content="Type 1" HorizontalAlignment="Left" Margin="0,52,0,0" VerticalAlignment="Top"/>
-                <ComboBox x:Name="Basic_Type1" Margin="90,53,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150"/>
-                <Label Content="Type 2" Margin="0,79,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                <ComboBox x:Name="Basic_Type2" Margin="90,80,0,0" HorizontalAlignment="Left" Width="150" VerticalAlignment="Top"/>
-                <Label Content="Size Class" HorizontalAlignment="Left" Margin="0,106,0,0" VerticalAlignment="Top"/>
-                <ComboBox x:Name="Basic_Size" Margin="90,107,0,0" HorizontalAlignment="Left" Width="150" VerticalAlignment="Top"/>
-                <Label Content="Weight Class" Margin="0,133,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                <ComboBox x:Name="Basic_Weight" Margin="90,134,0,0" HorizontalAlignment="Left" Width="150" VerticalAlignment="Top"/>
+                <Label Content="Typing" HorizontalAlignment="Left" Margin="0,52,0,0" VerticalAlignment="Top"/>
+                <Label Content="Size Class" HorizontalAlignment="Left" Margin="0,82,0,0" VerticalAlignment="Top"/>
+                <ComboBox x:Name="Basic_Size" Margin="90,83,0,0" HorizontalAlignment="Left" Width="150" VerticalAlignment="Top"/>
+                <Label Content="Weight Class" Margin="0,109,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                <ComboBox x:Name="Basic_Weight" Margin="90,110,0,0" HorizontalAlignment="Left" Width="150" VerticalAlignment="Top"/>
                 <Label x:Name="label3" Content="Pokedex Description" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="183" Grid.Column="1" HorizontalContentAlignment="Center"/>
                 <TextBox x:Name="Basic_Desc" HorizontalAlignment="Left" Height="119" Margin="10,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Grid.Column="1"/>
                 <xctk:DecimalUpDown x:Name="Basic_ID" HorizontalAlignment="Left" Margin="90,29,0,0" Width="150" Watermark="Pokedex ID" TextAlignment="Center" VerticalAlignment="Top" Value="0" Text=""/>
+                <MultiSelectComboBox:MultiSelectComboBox x:Name="Basic_Types" HorizontalAlignment="Left" Height="22" Margin="90,56,0,0" VerticalAlignment="Top" Width="150"/>
             </Grid>
         </GroupBox>
         <GroupBox x:Name="G_BreedingInfo" Header="Gender &amp; Breading Information" Margin="470,0,0,0" VerticalAlignment="Top" Height="211" HorizontalAlignment="Left" Width="207">

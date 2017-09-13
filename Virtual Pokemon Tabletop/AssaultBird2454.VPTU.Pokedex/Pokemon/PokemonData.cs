@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,8 @@ namespace AssaultBird2454.VPTU.Pokedex.Pokemon
     {
         public PokemonData()
         {
-            Species_Capability_Data = new BattleManager.Entity.Capability_Data();
-            Species_Skill_Data = new BattleManager.Entity.Skill_Data();
+            Species_Capability_Data = new Entity.Capability_Data();
+            Species_Skill_Data = new Entity.Skill_Data();
             Moves = new List<Link_Moves>();
             Abilitys = new List<Link_Ability>();
             Evolutions = new List<Pokemon.Link_Evolutions>();
@@ -34,20 +35,19 @@ namespace AssaultBird2454.VPTU.Pokedex.Pokemon
         /// <summary>
         /// Data Class for tracking Skill Data
         /// </summary>
-        public BattleManager.Entity.Skill_Data Species_Skill_Data { get; set; }
+        public Entity.Skill_Data Species_Skill_Data { get; set; }
         /// <summary>
         /// Data Class for tracking Capability's
         /// </summary>
-        public BattleManager.Entity.Capability_Data Species_Capability_Data { get; set; }
+        public Entity.Capability_Data Species_Capability_Data { get; set; }
         /// <summary>
         /// List for tracking Special Capabilities and their values (If no value is kept with it then the value = null)
         /// </summary>
         public List<KeyValuePair<Pokemon_Capabilities, object>> Species_SpecialCapability { get; set; }
 
-        public BattleManager.Data.Type Species_Type1 { get; set; }
-        public BattleManager.Data.Type Species_Type2 { get; set; }
-        public BattleManager.Entity.SizeClass Species_SizeClass { get; set; }
-        public BattleManager.Entity.WeightClass Species_WeightClass { get; set; }
+        public List<BattleManager.Data.Type> Species_Types { get; set; }
+        public Entity.SizeClass Species_SizeClass { get; set; }
+        public Entity.WeightClass Species_WeightClass { get; set; }
 
         #region Breeding and Gender
         public PokemonGender Species_Genders { get; set; }

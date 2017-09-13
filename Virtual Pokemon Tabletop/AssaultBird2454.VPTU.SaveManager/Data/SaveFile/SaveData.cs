@@ -35,10 +35,10 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
         {
             if (InitNewSave)
             {
-                Trainers = new List<BattleManager.Entity.Trainer.EntityTrainerData>();
-                Pokemon = new List<BattleManager.Entity.Pokemon.EntityPokemonData>();
+                Trainers = new List<EntityManager.Trainer.TrainerCharacter>();
+                Pokemon = new List<EntityManager.Pokemon.PokemonCharacter>();
 
-                EntityGroups = new List<BattleManager.Entity.EntityGroup>();
+                EntityGroups = new List<Pokedex.Entity.EntityGroup>();
 
                 //MapFiles = new List<Resources.MapFileData>();
                 //Maps = new List<Resources.MapData>();
@@ -67,6 +67,11 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
                 ImageResources = new List<Resource_Data.Resources>();
             }
 
+            if(Pokemon == null)
+            {
+                Pokemon = new List<EntityManager.Pokemon.PokemonCharacter>();
+            }
+
             PokedexData.InitNullObjects();
         }
 
@@ -75,10 +80,10 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
         #endregion
 
         #region Entity Data
-        public List<BattleManager.Entity.Trainer.EntityTrainerData> Trainers;
-        public List<BattleManager.Entity.Pokemon.EntityPokemonData> Pokemon;
+        public List<EntityManager.Trainer.TrainerCharacter> Trainers;
+        public List<EntityManager.Pokemon.PokemonCharacter> Pokemon;
 
-        public List<BattleManager.Entity.EntityGroup> EntityGroups;
+        public List<Pokedex.Entity.EntityGroup> EntityGroups;
         #endregion
 
         #region Tabletop

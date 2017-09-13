@@ -8,20 +8,33 @@ using System.Threading.Tasks;
 
 namespace AssaultBird2454.VPTU.Server
 {
-    public class Main
+    public static class Main
     {
-        public ProjectInfo VersioningInfo { get; }
-        public Main()
+        /// <summary>
+        /// Assembly Directory
+        /// </summary>
+        public static string AssemblyDirectory
         {
-            #region Versioning Info
-            using (Stream str = Assembly.GetExecutingAssembly().GetManifestResourceStream("AssaultBird2454.VPTU.Server.ProjectVariables.json"))
+            get
             {
-                using (StreamReader read = new StreamReader(str))
+                string codeBase = Assembly.GetExecutingAssembly().CodeBase;
+                UriBuilder uri = new UriBuilder(codeBase);
+                string path = Uri.UnescapeDataString(uri.Path);
+                return System.IO.Path.GetDirectoryName(path);
+            }
+        }
+        public static ProjectInfo VersioningInfo
+        {
+            get
+            {
+                using (Stream str = Assembly.GetExecutingAssembly().GetManifestResourceStream("AssaultBird2454.VPTU.Server.ProjectVariables.json"))
                 {
-                    VersioningInfo = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectInfo>(read.ReadToEnd());
+                    using (StreamReader read = new StreamReader(str))
+                    {
+                        return Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectInfo>(read.ReadToEnd());
+                    }
                 }
             }
-            #endregion
         }
     }
 }

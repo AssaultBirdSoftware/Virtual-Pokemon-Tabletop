@@ -26,19 +26,16 @@ All help would be appreciated. and this project is done in C# Using WPF.
 ## Platform Status
 
 ### Supported Platform Status
-| Platform Type   | Server        | Save Editor   | Client        | API           |
-|-----------------|---------------|---------------|---------------|---------------|
-| PC (Windows)    | Not Started   | In Development| Not Started   | Not Started   |
-| PC (Mac)        | Not Started   | Not Started   | Not Started   | Not Started   |
-| PC (Linux)      | Not Started   | Not Started   | Not Started   | Not Started   |
-| Mobile (IOS)    |               |               | Not Started   | Not Started   |
-| Mobile (Android)|               |               | Not Started   | Not Started   |
+| Platform Type   | Server               | Save Editor   | Client               | API           |
+|-----------------|----------------------|---------------|----------------------|---------------|
+| PC (Windows)    | Starting Development | Alpha Stages  | Starting Development | Not Started   |
+| PC (Mac)        | Not Started          | Not Started   | Not Started          | Not Started   |
+| PC (Linux)      | Not Started          | Not Started   | Not Started          | Not Started   |
+| Mobile (IOS)    |                      |               | Not Started          | Not Started   |
+| Mobile (Android)|                      |               | Not Started          | Not Started   |
 
 This software is supported on x64 architecture (64 Bit) systems only! Sorry if you are using a system that is x86 (32 Bit)
 This software may support x86 in the future but for now, only x64 is officialy supported
-
-### Official Server's Status / Info
-No Servers exist or have been developed at the moment... more info will be available at a later date. The wiki will have a page about these servers later.
 
 ## Links
 Road Map: https://trello.com/b/G8V5Musv/  

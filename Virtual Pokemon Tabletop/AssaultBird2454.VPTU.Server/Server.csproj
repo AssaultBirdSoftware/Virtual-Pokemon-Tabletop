@@ -35,6 +35,12 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Common, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.Common.4.3.0\lib\net451\System.Data.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SqlClient, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SqlClient.4.4.0\lib\net451\System.Data.SqlClient.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,9 +49,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\ConsoleCommands\Command Handeler.cs" />
+    <Compile Include="Class\ConsoleCommands\Command Listener.cs" />
+    <Compile Include="Class\ConsoleCommands\Command.cs" />
+    <Compile Include="Class\Logging\Logger.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="ProjectInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Server\ServerInstance.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ProjectVariables.json" />
@@ -63,6 +74,10 @@
       <Project>{f82589cc-b4c1-4433-9bd7-635f508d2702}</Project>
       <Name>ContestManager</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AssaultBird2454.VPTU.EntityManager\EntityManager.csproj">
+      <Project>{013d732a-3a9e-4e12-8683-32bf9bbcc8d9}</Project>
+      <Name>EntityManager</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AssaultBird2454.VPTU.Networking\Networking.csproj">
       <Project>{87acc84c-0582-4b05-8bfe-a07286cd365c}</Project>
       <Name>Networking</Name>
@@ -75,9 +90,16 @@
       <Project>{0b460ae1-322a-43bd-8f5a-4d383506cb8e}</Project>
       <Name>SaveManager</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AssaultBird2454.VPTU.Tabletop\Tabletop.csproj">
+      <Project>{195821b5-7cff-42cd-9ce2-32d3a8673c17}</Project>
+      <Name>Tabletop</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Class\Session\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
