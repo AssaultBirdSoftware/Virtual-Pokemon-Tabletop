@@ -1086,10 +1086,17 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             Status_Volatile_Disable.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.Dissabled);
             Status_Volatile_Rage.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.Rage);
             Status_Volatile_Flinch.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.Flinch);
-            Status_Volatile_Inflatuation.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.Infatuation);
+            Status_Volatile_Inflatuation.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.Inflatuation);
             Status_Volatile_Sleep.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.Sleep);
             Status_Volatile_Suppressed.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.Suppressed);
             Status_Volatile_TemporaryHitPoints.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.TemporaryHitPoints);
+
+            try
+            {
+                Status_Volitile_Inflatuation_PokemonID = (string)PokemonData.GetStatusData(BattleManager.Data.Status_Afflictions.Inflatuation);
+                Status_Volatile_Inflatuation_Value.Content = Manager.SaveData.Pokemon.Find(x => x.ID == Status_Volitile_Inflatuation_PokemonID).Name;
+            }
+            catch { }
         }
         #region Persistant Effects
         private void Status_Persistant_Burned_Checked(object sender, RoutedEventArgs e)
@@ -1213,13 +1220,13 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         private void Status_Volatile_Inflatuation_Checked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.AddStatus(BattleManager.Data.Status_Afflictions.Infatuation, Status_Volitile_Inflatuation_PokemonID);
+                PokemonData.AddStatus(BattleManager.Data.Status_Afflictions.Inflatuation, Status_Volitile_Inflatuation_PokemonID);
             Status_Volatile_Inflatuation_Select.IsEnabled = true;
         }
         private void Status_Volatile_Inflatuation_Unchecked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.RemoveStatus(BattleManager.Data.Status_Afflictions.Infatuation);
+                PokemonData.RemoveStatus(BattleManager.Data.Status_Afflictions.Inflatuation);
             Status_Volatile_Inflatuation_Select.IsEnabled = false;
             Status_Volatile_Inflatuation_Value.Content = "No Selected Entity";
             Status_Volitile_Inflatuation_PokemonID = "";
@@ -1275,7 +1282,15 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
 
         private void Status_Volatile_Inflatuation_Select_Click(object sender, RoutedEventArgs e)
         {
+            Pokemon.Select select = new Pokemon.Select(Manager);
+            bool? pass = select.ShowDialog();
 
+            if (pass == true)
+            {
+                Status_Volitile_Inflatuation_PokemonID = select.SelectedPokemon.ID;
+                Status_Volatile_Inflatuation_Value.Content = select.SelectedPokemon.Name;
+                PokemonData.SetStatusData(BattleManager.Data.Status_Afflictions.Inflatuation, select.SelectedPokemon.ID);
+            }
         }
     }
 
