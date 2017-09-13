@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 
 namespace AssaultBird2454.VPTU.SaveManager
 {
-    public enum SaveData_Dir { Pokedex_Pokemon, Pokedex_Moves, Pokedex_Abilitys, Pokedex_Items, Resource_Image }
+    public enum SaveData_Dir { Pokedex_Pokemon, Pokedex_Moves, Pokedex_Abilitys, Pokedex_Items, Resource_Image, Entity_Pokemon, Entity_Trainers }
 
     public class SaveManager
     {
@@ -63,9 +63,11 @@ namespace AssaultBird2454.VPTU.SaveManager
 
                 SaveData.ImageResources = LoadData_FromSave<List<Resource_Data.Resources>>(GetSaveFile_DataDir(SaveData_Dir.Resource_Image));
 
+                SaveData.Pokemon = LoadData_FromSave<List<EntityManager.Pokemon.PokemonCharacter>>(GetSaveFile_DataDir(SaveData_Dir.Entity_Pokemon));
+
                 SaveData.InitNullObjects();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 MessageBox.Show("There was an error while loading the save file...\nPlease confirm that the savefile has no errors...", "Save file loading error");
             }
@@ -81,6 +83,8 @@ namespace AssaultBird2454.VPTU.SaveManager
             SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Pokedex_Items), SaveData.PokedexData.Items);
 
             SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Resource_Image), SaveData.ImageResources);
+
+            SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Entity_Pokemon), SaveData.Pokemon);
         }
 
         #region Load and Save
@@ -159,6 +163,10 @@ namespace AssaultBird2454.VPTU.SaveManager
                     return "Pokedex/Items.json";
                 case SaveData_Dir.Resource_Image:
                     return "Resource/Data.json";
+                case SaveData_Dir.Entity_Pokemon:
+                    return "Entity/Pokemon.json";
+                case SaveData_Dir.Entity_Trainers:
+                    return "Entity/Trainers.json";
 
                 default:
                     return null;

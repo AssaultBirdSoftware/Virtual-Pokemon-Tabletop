@@ -177,6 +177,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
 
             PokedexManager_ReloadList();//Reload Pokedex List
             ResourceManager_ReloadList();//Reload Resource List
+            EntityManager_ReloadList();// Reloads Characters List
         }
 
         #region Save Data Tools
@@ -230,7 +231,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
             System.Windows.Forms.FolderBrowserDialog fbd = new System.Windows.Forms.FolderBrowserDialog();// creates a FolderBrowser dialog
             System.Windows.Forms.DialogResult dr = fbd.ShowDialog();// Shows the dialog to select the path containing save data
 
-            if(dr == System.Windows.Forms.DialogResult.Cancel)// Check if Pack Opperation was canceled
+            if (dr == System.Windows.Forms.DialogResult.Cancel)// Check if Pack Opperation was canceled
             {
                 MessageBox.Show("Packing Save Data was canceled and no files have been changed.\n\nReasion: Canceled By User", "Pack Save Data Canceled", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
@@ -307,37 +308,6 @@ namespace AssaultBird2454.VPTU.SaveEditor
         private void PokedexManager_List_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             EditSelected_Pokedex();
-        }
-        /// <summary>
-        /// Opens the edit page for the selected item in the pokedex panel
-        /// </summary>
-        public void EditSelected_Pokedex()
-        {
-            try
-            {
-                //Edit Pokemon Here!
-                if (((PokedexList_DataBind)PokedexManager_List.SelectedValue).DataType == PokedexList_DataType.Pokemon)
-                {
-                    Pokedex.Pokemon.PokemonData Data = (Pokedex.Pokemon.PokemonData)((PokedexList_DataBind)PokedexManager_List.SelectedValue).DataTag;// Gets the Data
-                    UI.Pokedex.Pokemon pokemon = new UI.Pokedex.Pokemon(SaveManager, Data);// Creates a new window
-                    pokemon.ShowDialog();// Shows the window
-
-                    PokedexManager_ReloadList();// Updates the list
-                }
-                //Edit Moves Here!
-                else if (((PokedexList_DataBind)PokedexManager_List.SelectedValue).DataType == PokedexList_DataType.Move)
-                {
-                    Pokedex.Moves.MoveData Data = (Pokedex.Moves.MoveData)((PokedexList_DataBind)PokedexManager_List.SelectedItem).DataTag;// Gets the Data
-                    UI.Pokedex.Moves move = new UI.Pokedex.Moves(SaveManager.SaveData, Data);// Creates a new window
-                    move.ShowDialog();// Shows the window
-
-                    PokedexManager_ReloadList();// Updates the list
-                }
-            }
-            catch (NullReferenceException)
-            {
-                MessageBox.Show("You cant edit nothing! or can you?");
-            }
         }
         //When The "Delete" Button is clicked
         private void PokedexManager_ManageDex_Delete_Click(object sender, RoutedEventArgs e)
@@ -448,7 +418,6 @@ namespace AssaultBird2454.VPTU.SaveEditor
         /// <summary>
         /// Reloads the Pokedex list
         /// </summary>
-        /// <param name="Search">Limits only Pokemon and Moves where the name contains the Search value (Not Case Sensitive)</param>
         public void PokedexManager_ReloadList()
         {
             try
@@ -466,11 +435,9 @@ namespace AssaultBird2454.VPTU.SaveEditor
                             PokedexList_DataBind PokemonDB = new PokedexList_DataBind();
                             PokemonDB.Name = Pokemon.Species_Name;
                             PokemonDB.ID = Pokemon.Species_DexID;
-                            PokemonDB.Type1 = Pokemon.Species_Type1.ToString();
-                            PokemonDB.Type2 = Pokemon.Species_Type2.ToString();
                             PokemonDB.Class = "";
                             PokemonDB.EntryType = "Pokemon";
-
+                            //PokemonDB.Type = "";
                             PokemonDB.DataType = PokedexList_DataType.Pokemon;
                             PokemonDB.DataTag = Pokemon;
 
@@ -488,8 +455,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
                             PokedexList_DataBind MoveDB = new PokedexList_DataBind();
                             MoveDB.Name = Move.Name;
                             MoveDB.ID = (SaveManager.SaveData.PokedexData.Moves.IndexOf(Move) + 1);
-                            MoveDB.Type1 = Move.Move_Type.ToString();
-                            MoveDB.Type2 = "";
+                            //MoveDB.Type = Move.Move_Type.ToString();
                             MoveDB.Class = Move.Move_Class.ToString();
                             MoveDB.EntryType = "Move";
 
@@ -501,7 +467,42 @@ namespace AssaultBird2454.VPTU.SaveEditor
                     }
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An Error occured while loading the Pokedex Manager's List!\n\n" + ex.ToString(), "Pokedex Manager - Loading Error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
+            }
+        }
+
+        /// <summary>
+        /// Opens the edit page for the selected item in the pokedex panel
+        /// </summary>
+        public void EditSelected_Pokedex()
+        {
+            try
+            {
+                //Edit Pokemon Here!
+                if (((PokedexList_DataBind)PokedexManager_List.SelectedValue).DataType == PokedexList_DataType.Pokemon)
+                {
+                    Pokedex.Pokemon.PokemonData Data = (Pokedex.Pokemon.PokemonData)((PokedexList_DataBind)PokedexManager_List.SelectedValue).DataTag;// Gets the Data
+                    UI.Pokedex.Pokemon pokemon = new UI.Pokedex.Pokemon(SaveManager, Data);// Creates a new window
+                    pokemon.ShowDialog();// Shows the window
+
+                    PokedexManager_ReloadList();// Updates the list
+                }
+                //Edit Moves Here!
+                else if (((PokedexList_DataBind)PokedexManager_List.SelectedValue).DataType == PokedexList_DataType.Move)
+                {
+                    Pokedex.Moves.MoveData Data = (Pokedex.Moves.MoveData)((PokedexList_DataBind)PokedexManager_List.SelectedItem).DataTag;// Gets the Data
+                    UI.Pokedex.Moves move = new UI.Pokedex.Moves(SaveManager.SaveData, Data);// Creates a new window
+                    move.ShowDialog();// Shows the window
+
+                    PokedexManager_ReloadList();// Updates the list
+                }
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("You cant edit nothing! or can you?");
+            }
         }
         #endregion
 
@@ -621,6 +622,99 @@ namespace AssaultBird2454.VPTU.SaveEditor
             catch { }
         }
         #endregion
+
+        #region Entity Manager Code
+        #region Entity Manager Variables
+
+        #endregion
+
+        #region Right SideBar Events
+        private void EntityManager_AddPokemon_Click(object sender, RoutedEventArgs e)
+        {
+            UI.Entity.Pokemon_Character data = new UI.Entity.Pokemon_Character(SaveManager, new EntityManager.Pokemon.PokemonCharacter(RNG.Generators.RSG.GenerateString(10)));
+            SaveManager.SaveData.Pokemon.Add(data.PokemonData);
+            data.ShowDialog();
+            EntityManager_ReloadList();
+        }
+        private void EntityManager_ManageEntity_Edit_Click(object sender, RoutedEventArgs e)
+        {
+            EditSelected_Entity();
+        }
+        private void EntityManager_ManageEntity_Delete_Click(object sender, RoutedEventArgs e)
+        {
+            if (((EntityManager_DataBind)EntityManager_List.SelectedValue).Type == EntityManager_DataType.WildPokemon)
+            {
+                EntityManager.Pokemon.PokemonCharacter Data = (EntityManager.Pokemon.PokemonCharacter)((EntityManager_DataBind)EntityManager_List.SelectedValue).DataTag;// Gets the Data
+                SaveManager.SaveData.Pokemon.Remove(Data);
+
+                EntityManager_ReloadList();// Updates the list
+            }
+        }
+        #endregion
+
+        #region List Events
+        private void EntityManager_List_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            EditSelected_Entity();
+        }
+        #endregion
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void EntityManager_ReloadList()
+        {
+            try
+            {
+                EntityManager_List.Items.Clear();
+
+                if (SaveManager == null) { return; }
+
+                if (EntityManager_SearchEntity_WildPokemon.IsChecked == true)
+                {
+                    foreach (EntityManager.Pokemon.PokemonCharacter pokemon in SaveManager.SaveData.Pokemon)
+                    {
+                        EntityManager_DataBind db = new EntityManager_DataBind(pokemon.Species_DexID, pokemon.Name, pokemon.Species_DexID + " (" + SaveManager.SaveData.PokedexData.Pokemon.Find(x => x.Species_DexID == pokemon.Species_DexID).Species_Name + ")", "", EntityManager_DataType.WildPokemon);
+                        db.DataTag = pokemon;
+                        EntityManager_List.Items.Add(db);
+                    }
+                }
+            }
+            catch { /* Dont Care */ }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void EditSelected_Entity()
+        {
+            try
+            {
+                //Edit Pokemon Here!
+                if (((EntityManager_DataBind)EntityManager_List.SelectedValue).Type == EntityManager_DataType.WildPokemon)
+                {
+                    EntityManager.Pokemon.PokemonCharacter Data = (EntityManager.Pokemon.PokemonCharacter)((EntityManager_DataBind)EntityManager_List.SelectedValue).DataTag;// Gets the Data
+                    UI.Entity.Pokemon_Character pokemon = new UI.Entity.Pokemon_Character(SaveManager, Data);// Creates a new window
+                    pokemon.ShowDialog();// Shows the window
+
+                    EntityManager_ReloadList();// Updates the list
+                }
+                //Edit Moves Here!
+                /*else if (((PokedexList_DataBind)PokedexManager_List.SelectedValue).DataType == PokedexList_DataType.Move)
+                {
+                    Pokedex.Moves.MoveData Data = (Pokedex.Moves.MoveData)((PokedexList_DataBind)PokedexManager_List.SelectedItem).DataTag;// Gets the Data
+                    UI.Pokedex.Moves move = new UI.Pokedex.Moves(SaveManager.SaveData, Data);// Creates a new window
+                    move.ShowDialog();// Shows the window
+
+                    EntityManager_ReloadList();// Updates the list
+                }*/
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("You cant edit nothing! or can you?");
+            }
+        }
+        #endregion        
     }
 
     /// <summary>
@@ -652,14 +746,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
         /// </summary>
         public string Name { get; set; }
 
-        /// <summary>
-        /// The Type of the Pokemon or Move
-        /// </summary>
-        public string Type1 { get; set; }
-        /// <summary>
-        /// The Secondary Type of the Pokemon
-        /// </summary>
-        public string Type2 { get; set; }
+        public string Type { get; set; }
         /// <summary>
         /// The Class of move
         /// </summary>
@@ -668,6 +755,27 @@ namespace AssaultBird2454.VPTU.SaveEditor
         public string EntryType { get; set; }
 
         public PokedexList_DataType DataType { get; set; }
+        public object DataTag { get; set; }
+    }
+
+    public enum EntityManager_DataType { WildPokemon }
+    public class EntityManager_DataBind
+    {
+        public EntityManager_DataBind(decimal _ID, string _Name, string _Species, string _Owner, EntityManager_DataType _Type)
+        {
+            ID = _ID;
+            Name = _Name;
+            Species = _Species;
+            Owner = _Owner;
+            Type = _Type;
+        }
+
+        public decimal ID { get; set; }
+        public string Name { get; set; }
+        public string Species { get; set; }
+        public string Owner { get; set; }
+        public EntityManager_DataType Type { get; set; }
+
         public object DataTag { get; set; }
     }
 }

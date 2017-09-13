@@ -1,0 +1,18 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AssaultBird2454.VPTU.Tabletop.Map"
+             xmlns:Token="clr-namespace:AssaultBird2454.VPTU.Tabletop.Token" x:Class="AssaultBird2454.VPTU.Tabletop.Map.Table"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Canvas x:Name="Layer_Background"/>
+        <Canvas x:Name="Layer_Objects"/>
+        <Canvas x:Name="Layer_Tokens"/>
+        <Canvas x:Name="Layer_GM_Info"/>
+        <Canvas x:Name="Fog"/>
+        <Canvas x:Name="Dynamic_Lighting"/>
+    </Grid>
+</UserControl>

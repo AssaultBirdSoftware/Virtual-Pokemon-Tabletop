@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -44,8 +45,7 @@ namespace AssaultBird2454.VPTU.Pokedex.Pokemon
         /// </summary>
         public List<KeyValuePair<Pokemon_Capabilities, object>> Species_SpecialCapability { get; set; }
 
-        public BattleManager.Data.Type Species_Type1 { get; set; }
-        public BattleManager.Data.Type Species_Type2 { get; set; }
+        public List<BattleManager.Data.Type> Species_Types { get; set; }
         public Entity.SizeClass Species_SizeClass { get; set; }
         public Entity.WeightClass Species_WeightClass { get; set; }
 

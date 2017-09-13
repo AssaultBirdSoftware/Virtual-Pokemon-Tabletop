@@ -17,7 +17,7 @@ namespace AssaultBird2454.VPTU.BattleManager.Data
     /// <summary>
     /// Defines all the different status conditions
     /// </summary>
-    public enum Status_Afflictions { Burned = 1, Frozen, Paralysis, Poision, Sleep, BadSleep, Suppressed, Confusion, Cursed, Dissabled, Rage, Flinch, Infatuation, Fainted, Slowed, Stuck, Blindness, TotalBlindness, Trapped, Tripped, Vulnerable, Vortex }
+    public enum Status_Afflictions { Burned = 1, Frozen, Paralysis, Poision, Sleep, BadSleep, Suppressed, Confusion, Cursed, Dissabled, Rage, Flinch, Inflatuation, Fainted, Slowed, Stuck, Blindness, TotalBlindness, Trapped, Tripped, Vulnerable, Vortex, TemporaryHitPoints }
     /// <summary>
     /// Defines Move Classes
     /// </summary>

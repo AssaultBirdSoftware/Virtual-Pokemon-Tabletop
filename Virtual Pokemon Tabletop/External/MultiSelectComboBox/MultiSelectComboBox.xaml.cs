@@ -16,11 +16,15 @@ using System.ComponentModel;
 
 namespace MultiSelectComboBox
 {
+    public delegate void SelectionChangedEvent();
+
     /// <summary>
     /// Interaction logic for MultiSelectComboBox.xaml
     /// </summary>
     public partial class MultiSelectComboBox : UserControl
     {
+        public event SelectionChangedEvent SelectionChangedEvent;
+
         private ObservableCollection<Node> _nodeList;
         public MultiSelectComboBox()
         {
@@ -129,6 +133,7 @@ namespace MultiSelectComboBox
             SetSelectedItems();
             SetText();
 
+            SelectionChangedEvent?.Invoke();
         }
         #endregion
 

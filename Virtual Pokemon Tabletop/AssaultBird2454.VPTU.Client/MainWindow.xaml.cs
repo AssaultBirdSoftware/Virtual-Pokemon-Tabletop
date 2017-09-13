@@ -66,6 +66,8 @@ namespace AssaultBird2454.VPTU.Client
 
             InitializeComponent();
 
+            //Dock.LayoutRootPanel.Children.Add();
+
             #region Versioning Info
             using (Stream str = Assembly.GetExecutingAssembly().GetManifestResourceStream("AssaultBird2454.VPTU.Client.ProjectVariables.json"))
             {
@@ -87,5 +89,31 @@ namespace AssaultBird2454.VPTU.Client
         {
             File.Delete(AssemblyDirectory + "\\Client.pid");
         }
+
+        private void Menu_Window_SaveLayout_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        #region Layout
+        private void Main_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (!Directory.Exists(AssemblyDirectory + "/Layouts"))
+                Directory.CreateDirectory(AssemblyDirectory + "/Layouts");
+
+            Dock.SaveDockState(AssemblyDirectory + "/Layouts/Default.xml");
+        }
+        private void Main_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (!File.Exists(AssemblyDirectory + "/Layouts/Default.xml"))
+                return;
+
+            Dock.LoadDockState(AssemblyDirectory + "/Layouts/Default.xml");
+        }
+        private void Menu_Window_LoadLayout_Click(object sender, RoutedEventArgs e)
+        {
+            Dock.LoadDockState(AssemblyDirectory + "/Layouts/Default.xml");
+        }
+        #endregion
     }
 }

@@ -12,8 +12,17 @@ namespace AssaultBird2454.VPTU.Server.Class.Logging
     /// </summary>
     public enum LoggerLevel { Info, Notice, Warning, Error, Fatil, Debug, Audit }
 
-    public class Logger
+    public class Logger : I_Logger
     {
+        public Logger()
+        {
+
+        }
+        public Logger(bool Debug)
+        {
+            LogDebug = Debug;
+        }
+
         #region Variables, Properties & Events
         private string _LogFile_Dir = "";
         /// <summary>
@@ -32,7 +41,9 @@ namespace AssaultBird2454.VPTU.Server.Class.Logging
                 // Load the file
             }
         }
-        public StreamWriter FileStream;
+        private StreamWriter SR;
+        private FileStream FS;
+
 
         private bool _LogDebug = false;
         /// <summary>
@@ -52,11 +63,6 @@ namespace AssaultBird2454.VPTU.Server.Class.Logging
         }
         #endregion
 
-        public Logger()
-        {
-
-        }
-
         /// <summary>
         /// Configures the Logger
         /// </summary>
@@ -67,7 +73,11 @@ namespace AssaultBird2454.VPTU.Server.Class.Logging
 
             LogFile_Dir = Dir;
 
-            FileStream = new StreamWriter(LogFile_Dir, true);
+            if (!Directory.Exists(Path.GetDirectoryName(LogFile_Dir)))
+                Directory.CreateDirectory(Path.GetDirectoryName(LogFile_Dir));
+
+            FS = new FileStream(LogFile_Dir, FileMode.OpenOrCreate);
+            SR = new StreamWriter(FS);
         }
 
         public void Log(string Data, LoggerLevel Level)
@@ -94,7 +104,7 @@ namespace AssaultBird2454.VPTU.Server.Class.Logging
             }
             else if (Level == LoggerLevel.Fatil)
             {
-                Console.ForegroundColor = ConsoleColor.Black;
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.BackgroundColor = ConsoleColor.DarkRed;
             }
             else if (Level == LoggerLevel.Debug)
@@ -114,7 +124,27 @@ namespace AssaultBird2454.VPTU.Server.Class.Logging
             string Write = DateTime.Now.ToString() + " [" + Level.ToString() + "] -> " + Data;
 
             Console.WriteLine(Write);
-            FileStream.WriteLine(Write);
+            try
+            {
+                SR.WriteLine(Write);
+                SR.Flush();
+            }
+            catch { /* File Logging not configured */ }
         }
+    }
+
+    public interface I_Logger
+    {
+        /// <summary>
+        /// Configures the logging class
+        /// </summary>
+        /// <param name="Dir">A optional path to define where the log fil will be saved</param>
+        void Setup(string Dir);
+        /// <summary>
+        /// Sends a log entry to the logger
+        /// </summary>
+        /// <param name="Data">The Log Message</param>
+        /// <param name="Level">Defines log type</param>
+        void Log(string Data, LoggerLevel Level);
     }
 }
