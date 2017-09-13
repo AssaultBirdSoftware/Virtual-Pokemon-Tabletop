@@ -37,9 +37,6 @@ All help would be appreciated. and this project is done in C# Using WPF.
 This software is supported on x64 architecture (64 Bit) systems only! Sorry if you are using a system that is x86 (32 Bit)
 This software may support x86 in the future but for now, only x64 is officialy supported
 
-### Official Server's Status / Info
-No Servers exist or have been developed at the moment... more info will be available at a later date. The wiki will have a page about these servers later.
-
 ## Links
 Road Map: https://trello.com/b/G8V5Musv/  
 Forum Post About This: http://forums.pokemontabletop.com/topic/30059453/1/  
