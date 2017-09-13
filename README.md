@@ -26,13 +26,13 @@ All help would be appreciated. and this project is done in C# Using WPF.
 ## Platform Status
 
 ### Supported Platform Status
-| Platform Type   | Server        | Save Editor   | Client        | API           |
-|-----------------|---------------|---------------|---------------|---------------|
-| PC (Windows)    | Not Started   | In Development| Not Started   | Not Started   |
-| PC (Mac)        | Not Started   | Not Started   | Not Started   | Not Started   |
-| PC (Linux)      | Not Started   | Not Started   | Not Started   | Not Started   |
-| Mobile (IOS)    |               |               | Not Started   | Not Started   |
-| Mobile (Android)|               |               | Not Started   | Not Started   |
+| Platform Type   | Server               | Save Editor   | Client               | API           |
+|-----------------|----------------------|---------------|----------------------|---------------|
+| PC (Windows)    | Starting Development | Alpha Stages  | Starting Development | Not Started   |
+| PC (Mac)        | Not Started          | Not Started   | Not Started          | Not Started   |
+| PC (Linux)      | Not Started          | Not Started   | Not Started          | Not Started   |
+| Mobile (IOS)    |                      |               | Not Started          | Not Started   |
+| Mobile (Android)|                      |               | Not Started          | Not Started   |
 
 This software is supported on x64 architecture (64 Bit) systems only! Sorry if you are using a system that is x86 (32 Bit)
 This software may support x86 in the future but for now, only x64 is officialy supported
