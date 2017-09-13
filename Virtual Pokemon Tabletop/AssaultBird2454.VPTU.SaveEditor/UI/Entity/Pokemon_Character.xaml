@@ -52,7 +52,7 @@
                 <Label x:Name="Basic_Level" Content="Level: 100" VerticalAlignment="Top" HorizontalAlignment="Left" Width="106" Grid.Column="1" Margin="135,55,0,0"/>
                 <Label Content="Injuries" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="51" Grid.Column="1" Margin="0.4,119,0,0"/>
                 <xctk:IntegerUpDown x:Name="Basic_Injuries" HorizontalAlignment="Left" Margin="56.4,119,0,0" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Minimum="0" Maximum="10" Value="0" TextAlignment="Center" ValueChanged="Basic_Injuries_ValueChanged"/>
-                <Label x:Name="Basic_Species" Content="1 (Charmander)" HorizontalAlignment="Left" Margin="90,50,0,0" VerticalAlignment="Top" Height="25"/>
+                <Label x:Name="Basic_Species" Content="Species Undefined" HorizontalAlignment="Left" Margin="90,50,0,0" VerticalAlignment="Top" Height="25"/>
                 <Button x:Name="Change_Species" Content="Change" HorizontalAlignment="Left" Margin="195,54,0,0" VerticalAlignment="Top" Width="45" Click="Change_Species_Click"/>
                 <TextBox x:Name="Basic_ID" Margin="90,4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Height="18" IsReadOnly="True"/>
                 <Label Content="ID" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="85"/>

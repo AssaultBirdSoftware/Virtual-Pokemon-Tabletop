@@ -1267,18 +1267,6 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             Status_Volatile_TemporaryHitPoints_Value.IsEnabled = false;
             Status_Volatile_TemporaryHitPoints_Value.Value = 0;
         }
-        #endregion
-
-        #region Other Effects
-
-        #endregion
-        #endregion
-        #endregion
-
-        private void Status_Volatile_Disable_Value_SelectionChangedEvent()
-        {
-
-        }
 
         private void Status_Volatile_Inflatuation_Select_Click(object sender, RoutedEventArgs e)
         {
@@ -1291,6 +1279,18 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
                 Status_Volatile_Inflatuation_Value.Content = select.SelectedPokemon.Name;
                 PokemonData.SetStatusData(BattleManager.Data.Status_Afflictions.Inflatuation, select.SelectedPokemon.ID);
             }
+        }
+        #endregion
+
+        #region Other Effects
+
+        #endregion
+        #endregion
+        #endregion
+
+        private void Status_Volatile_Disable_Value_SelectionChangedEvent()
+        {
+
         }
     }
 
