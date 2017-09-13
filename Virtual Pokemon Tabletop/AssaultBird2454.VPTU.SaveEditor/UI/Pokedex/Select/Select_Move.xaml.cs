@@ -24,42 +24,10 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Select
         /// The Move Data that was selected
         /// </summary>
         public VPTU.Pokedex.Moves.MoveData Selected_Move;
-        private SaveManager.SaveManager SaveManager;
 
-        private List<VPTU.Pokedex.Pokemon.Link_Moves> Obtainable_Moves;
-        private bool SearchPokemon = true;
-
-        public Select_Move(SaveManager.SaveManager _SaveManager, VPTU.Pokedex.Pokemon.PokemonData _Pokemon = null)
+        public Select_Move()
         {
-            SaveManager = _SaveManager;
-
-            if (_Pokemon != null)
-            {
-                Obtainable_Moves = _Pokemon.Moves;
-                if(Obtainable_Moves == null)
-                {
-                    Obtainable_Moves = new List<VPTU.Pokedex.Pokemon.Link_Moves>();
-                }
-                
-                SearchPokemon = true;
-            }
-
-            if (_Pokemon == null)
-            {
-                Obtainable_Moves = new List<VPTU.Pokedex.Pokemon.Link_Moves>();
-                SearchPokemon = false;
-            }
-
             InitializeComponent();
-
-            if (SearchPokemon)
-            {
-                Hide_Unobtainable.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                Hide_Unobtainable.Visibility = Visibility.Hidden;
-            }
 
             ReloadList();
         }
@@ -73,8 +41,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Select
             {
                 SearchThread.Abort();
                 SearchThread = null;
-            }
-            catch { }
+            }catch { }
             string Filter = textBox.Text;
 
             SearchThread = new Thread(new ThreadStart(new Action(() => ReloadList(Filter))));
@@ -87,22 +54,11 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Select
         {
             this.Dispatcher.Invoke(new Action(() => Moves.Items.Clear()));
 
-            foreach (VPTU.Pokedex.Moves.MoveData data in SaveManager.SaveData.PokedexData.Moves)
+            foreach (VPTU.Pokedex.Moves.MoveData data in MainWindow.SaveManager.SaveData.PokedexData.Moves)
             {
                 if (data.Name.ToLower().Contains(SearchName.ToLower()))
                 {
-                    if (!SearchPokemon)
-                    {
-                        this.Dispatcher.Invoke(new Action(() => Moves.Items.Add(data)));
-                        continue;
-                    }
-                    else if (Hide_Unobtainable.IsChecked == true && Obtainable_Moves.Find(x => x.MoveName.ToLower() == data.Name.ToLower()) != null)
-                    {
-                        this.Dispatcher.Invoke(new Action(() => Moves.Items.Add(data)));
-                    }else if(Hide_Unobtainable.IsChecked == false)
-                    {
-                        this.Dispatcher.Invoke(new Action(() => Moves.Items.Add(data)));
-                    }
+                    this.Dispatcher.Invoke(new Action(() => Moves.Items.Add(data)));
                 }
             }
         }
@@ -130,15 +86,6 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Select
             }
 
             Close();
-        }
-
-        private void Hide_Unobtainable_Checked(object sender, RoutedEventArgs e)
-        {
-            ReloadList();
-        }
-        private void Hide_Unobtainable_Unchecked(object sender, RoutedEventArgs e)
-        {
-            ReloadList();
         }
     }
 }

@@ -16,21 +16,9 @@ namespace AssaultBird2454.VPTU.Networking.Server.Command_Handeler
         public CommandNameTakenException(string Name) : base("The Command Name \"" + Name + "\" is taken... Use another name for that command") { }
     }
     #endregion
-    #region Delegates
-    public delegate void CommandEvent(string Command, string Callback = "");
-    #endregion
 
     public class Server_CommandHandeler
     {
-        /// <summary>
-        /// An event that is fired when a command is registered
-        /// </summary>
-        public event CommandEvent CommandRegistered;
-        /// <summary>
-        /// An event that is fired when a command is unregistered
-        /// </summary>
-        public event CommandEvent CommandUnRegistered;
-
         private Dictionary<string, object> Commands;
 
         public Server_CommandHandeler()
@@ -53,7 +41,6 @@ namespace AssaultBird2454.VPTU.Networking.Server.Command_Handeler
             }
 
             Commands.Add(CommandName, new Command(CommandName, typeof(T), Callback));// Add the command to the command list
-            CommandRegistered?.Invoke(CommandName, Callback.ToString());// Fire Event
         }
 
         /// <summary>
@@ -71,27 +58,19 @@ namespace AssaultBird2454.VPTU.Networking.Server.Command_Handeler
             try
             {
                 Commands.Remove(Name);// Removes the command
-                CommandUnRegistered?.Invoke(Name);
             }
             catch { /* Does not exist, dont not matter */ }
         }
 
         internal void InvokeCommand(string Data, TCP_ClientNode node)
         {
-            try
-            {
-                var DataForm = new { Command = "" };
+            var DataForm = new { Command = "" };
 
-                var CommandData = Newtonsoft.Json.JsonConvert.DeserializeAnonymousType(Data, DataForm);// Deserializes an interface for command pharsing
+            var CommandData = Newtonsoft.Json.JsonConvert.DeserializeAnonymousType(Data, DataForm);// Deserializes an interface for command pharsing
 
-                Command cmd = (Command)Commands.First(x => x.Key == CommandData.Command).Value;// Gets the command by searching
+            Command cmd = (Command)Commands.First(x => x.Key == CommandData.Command).Value;// Gets the command by searching
 
-                cmd.Invoke(Newtonsoft.Json.JsonConvert.DeserializeObject(Data, cmd.DataType), node);
-            }
-            catch
-            {
-
-            }
+            cmd.Invoke(Newtonsoft.Json.JsonConvert.DeserializeObject(Data, cmd.DataType), node);
         }
     }
 }

@@ -20,12 +20,9 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Link
     public partial class Link_Evolution : Window
     {
         public VPTU.Pokedex.Pokemon.Link_Evolutions LinkData;
-        private SaveManager.SaveManager Manager;
 
-        public Link_Evolution(SaveManager.SaveManager _Manager, VPTU.Pokedex.Pokemon.Link_Evolutions _LinkData = null)
+        public Link_Evolution(VPTU.Pokedex.Pokemon.Link_Evolutions _LinkData = null)
         {
-            Manager = _Manager;
-
             InitializeComponent();
 
             if(_LinkData != null)
@@ -63,7 +60,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Link
         #region Search For Move
         private void Move_Name_Select_Click(object sender, RoutedEventArgs e)
         {
-            Select.Select_Pokemon sp = new Select.Select_Pokemon(Manager);
+            Select.Select_Pokemon sp = new Select.Select_Pokemon();
             bool? pass = sp.ShowDialog();
 
             if(pass == true && sp.Selected_Pokemon != null)

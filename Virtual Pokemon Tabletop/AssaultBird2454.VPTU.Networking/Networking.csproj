@@ -63,7 +63,6 @@
     <Compile Include="Server\TCP\TCP Server.cs" />
     <Compile Include="Server\UDP\UDP ClientNode.cs" />
     <Compile Include="Server\UDP\UDP Server.cs" />
-    <Compile Include="Shared\Helper.cs" />
     <Compile Include="Shared\StateObject.cs" />
   </ItemGroup>
   <ItemGroup>
