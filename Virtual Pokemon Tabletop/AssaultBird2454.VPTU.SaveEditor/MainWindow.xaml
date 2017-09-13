@@ -23,22 +23,12 @@
             </MenuItem>
         </Menu>
         <TabControl x:Name="SaveEditor_TabPanel" Margin="0,17.96,0,21.96" IsEnabled="False">
-            <TabItem Header="Overview &amp; Settings" d:IsLocked="True">
+            <TabItem Header="Overview" d:IsLocked="True">
                 <Grid Background="#FFE5E5E5">
-                    <TabControl HorizontalAlignment="Left" Height="611" VerticalAlignment="Top" Width="984">
-                        <TabItem Header="Basic Settings">
-                            <Grid Background="#FFE5E5E5"/>
-                        </TabItem>
-                        <TabItem Header="Features">
-                            <Grid Background="#FFE5E5E5"/>
-                        </TabItem>
-                        <TabItem Header="Save File Settings" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top">
-                            <Grid Background="#FFE5E5E5"/>
-                        </TabItem>
-                    </TabControl>
+                    <Label x:Name="label_Copy2" Content="This Tab is in Development..." Foreground="Red" FontSize="72"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Resource Manager" d:IsLocked="True">
+            <TabItem Header="Resource Manager">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -84,7 +74,8 @@
                             <GridView>
                                 <GridViewColumn Header="ID" Width="50px" DisplayMemberBinding="{Binding ID}"/>
                                 <GridViewColumn Header="Name" Width="150px" DisplayMemberBinding="{Binding Name}"/>
-                                <GridViewColumn Header="Type" Width="100px" DisplayMemberBinding="{Binding Type_String}"/>
+                                <GridViewColumn Header="Type 1" Width="80px" DisplayMemberBinding="{Binding Type1}"/>
+                                <GridViewColumn Header="Type 2" Width="80px" DisplayMemberBinding="{Binding Type2}"/>
                                 <GridViewColumn Header="Class" Width="80px" DisplayMemberBinding="{Binding Class}"/>
                                 <GridViewColumn Header="Entry Type" Width="100" DisplayMemberBinding="{Binding EntryType}"/>
                             </GridView>
@@ -121,62 +112,9 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem Header="Entity Manager">
+            <TabItem Header="Entity Manager" d:IsLocked="True">
                 <Grid Background="#FFE5E5E5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="150"/>
-                    </Grid.ColumnDefinitions>
-                    <ListView x:Name="EntityManager_List" SelectionChanged="PokedexManager_List_SelectionChanged" MouseDoubleClick="EntityManager_List_MouseDoubleClick">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Header="Name" Width="150px" DisplayMemberBinding="{Binding Name}"/>
-                                <GridViewColumn Header="Species" Width="200px" DisplayMemberBinding="{Binding Species}"/>
-                                <GridViewColumn Header="Owner" Width="200px" DisplayMemberBinding="{Binding Owner}"/>
-                                <GridViewColumn Header="Character Type" Width="150px" DisplayMemberBinding="{Binding Type}"/>
-                                <GridViewColumn Header="Stats" Width="100">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <WrapPanel>
-                                                <ProgressBar Minimum="0" Maximum="{Binding DataTag.Stat_HP_Max}" Value="{Binding DataTag.Current_HP}" Width="90" Height="5" Foreground="Green"></ProgressBar>
-                                                <ProgressBar Minimum="{Binding DataTag.Prev_EXP_Requirement}" Maximum="{Binding DataTag.Next_EXP_Requirement}" Value="{Binding DataTag.EXP}" Width="90" Height="5" Foreground="Blue"></ProgressBar>
-                                                <ProgressBar Minimum="0" Maximum="10" Value="{Binding DataTag.Injuries}" Width="90" Height="5" Foreground="Red"></ProgressBar>
-                                            </WrapPanel>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                    <GroupBox x:Name="PokedexManager_AddDex1" Grid.Column="1" Header="Add Pokedex Entry's" Margin="10,10,10,0" VerticalAlignment="Top" Height="70">
-                        <Grid Margin="0,0,-2,-12.96">
-                            <Button x:Name="EntityManager_AddPokemon" Content="Add Pokemon" VerticalAlignment="Bottom" Click="EntityManager_AddPokemon_Click" Margin="0,0,-0.4,41.96"/>
-                            <Button x:Name="EntityManager_AddTrainer" Content="Add Trainer / NPC" VerticalAlignment="Top" Margin="0,24.96,0,0"/>
-                        </Grid>
-                    </GroupBox>
-                    <GroupBox x:Name="PokedexManager_ManageDex1" Grid.Column="1" Header="Edit / Delete" Margin="10,85,10,0" VerticalAlignment="Top" Height="71">
-                        <Grid Margin="0,0,-2,-12.96">
-                            <Button x:Name="EntityManager_ManageEntity_Edit" Content="Edit" VerticalAlignment="Top" Click="EntityManager_ManageEntity_Edit_Click"/>
-                            <Button x:Name="EntityManager_ManageEntity_Delete" Content="Delete" VerticalAlignment="Top" Margin="0,24.96,0,0" Click="EntityManager_ManageEntity_Delete_Click"/>
-                        </Grid>
-                    </GroupBox>
-                    <GroupBox x:Name="PokedexManager_SearchDex1" Grid.Column="1" Header="Search" Margin="10,161,10,0" Height="187" VerticalAlignment="Top">
-                        <Grid Margin="0,0,-2,-12.96">
-                            <TextBox x:Name="EntityManager_SearchEntity_Search" Margin="0,0,10,0" TextWrapping="Wrap" VerticalAlignment="Top" UndoLimit="200" TextChanged="PokedexManager_SearchDex_Search_TextChanged"/>
-                            <CheckBox x:Name="EntityManager_SearchEntity_WildPokemon" Content="Wild Pokemon" Margin="0,22.96,0,0" VerticalAlignment="Top" IsChecked="True"/>
-                            <CheckBox x:Name="EntityManager_SearchEntity_PC" Content="Player's Trainers" Margin="0,88,0,0" VerticalAlignment="Top" IsChecked="True"/>
-                            <CheckBox x:Name="EntityManager_SearchEntity_NPC" Content="NPC's Trainers" Margin="0,104,0,0" VerticalAlignment="Top" IsChecked="True"/>
-                            <CheckBox x:Name="EntityManager_SearchEntity_PartyPokemon" Margin="0,53,0,0" VerticalAlignment="Top" Content="Party Pokemon"/>
-                            <CheckBox x:Name="EntityManager_SearchEntity_PlayerPokemon" Content="Player's Pokemon" Margin="0,68,0,0" VerticalAlignment="Top"/>
-                            <CheckBox x:Name="EntityManager_SearchEntity_NPCPokemon" Content="NPC's Pokemon" VerticalAlignment="Top" Margin="0,38,0,0"/>
-                        </Grid>
-                    </GroupBox>
-                    <GroupBox x:Name="PokedexManager_DisplaySettings1" Grid.Column="1" Header="Display Settings" Margin="10,0,10,10" Height="108.127" VerticalAlignment="Bottom" IsEnabled="False" d:IsLocked="True">
-                        <Grid Margin="0,0,-2,-12.96">
-                            <RadioButton x:Name="radioButton_Copy2" Content="" VerticalAlignment="Top"/>
-                            <RadioButton x:Name="radioButton_Copy3" Content="RadioButton" VerticalAlignment="Top" Margin="0,14.96,0,0"/>
-                        </Grid>
-                    </GroupBox>
+                    <Label x:Name="label_Copy" Content="This Tab is in Development..." Foreground="Red" FontSize="72"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Map Manager" d:IsLocked="True">

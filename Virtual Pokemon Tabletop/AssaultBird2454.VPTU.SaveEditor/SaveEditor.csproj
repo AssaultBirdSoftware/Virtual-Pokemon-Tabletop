@@ -63,6 +63,8 @@
     <DelaySign>false</DelaySign>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Expression.Prototyping.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -70,6 +72,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -79,11 +82,9 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="WindowsFormsIntegration" />
     <Reference Include="Xceed.Wpf.AvalonDock, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
       <HintPath>..\packages\Extended.Wpf.Toolkit.3.1\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
     </Reference>
@@ -119,18 +120,6 @@
     </Compile>
     <Compile Include="UI\BattleEffect\EffectFunction_Designer.xaml.cs">
       <DependentUpon>EffectFunction_Designer.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Entity\Pokemon\Select.xaml.cs">
-      <DependentUpon>Select.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Entity\Pokemon_Character.xaml.cs">
-      <DependentUpon>Pokemon_Character.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Entity\Trainer\Select.xaml.cs">
-      <DependentUpon>Select.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Entity\Trainer_Character.xaml.cs">
-      <DependentUpon>Trainer_Character.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Pokedex\Link\Link_Evolution.xaml.cs">
       <DependentUpon>Link_Evolution.xaml</DependentUpon>
@@ -188,22 +177,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\BattleEffect\EffectFunction_Designer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Entity\Pokemon\Select.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Entity\Pokemon_Character.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Entity\Trainer\Select.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Entity\Trainer_Character.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -301,29 +274,13 @@
       <Project>{f82589cc-b4c1-4433-9bd7-635f508d2702}</Project>
       <Name>ContestManager</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AssaultBird2454.VPTU.EntityManager\EntityManager.csproj">
-      <Project>{013d732a-3a9e-4e12-8683-32bf9bbcc8d9}</Project>
-      <Name>EntityManager</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AssaultBird2454.VPTU.Pokedex\Pokedex.csproj">
       <Project>{7e7c28d4-d92f-4d4a-988c-8086fce625a0}</Project>
       <Name>Pokedex</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AssaultBird2454.VPTU.RNG\RNG.csproj">
-      <Project>{e84417f1-e891-474e-a793-d94e33b3c2ed}</Project>
-      <Name>RNG</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AssaultBird2454.VPTU.SaveManager\SaveManager.csproj">
       <Project>{0b460ae1-322a-43bd-8f5a-4d383506cb8e}</Project>
       <Name>SaveManager</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AssaultBird2454.VPTU.Server\Server.csproj">
-      <Project>{1dd97708-079f-47e0-96a7-6b50d1674437}</Project>
-      <Name>Server</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\External\MultiSelectComboBox\MultiSelectComboBox.csproj">
-      <Project>{CE17A54E-0661-429F-AFDC-272E8668B14E}</Project>
-      <Name>MultiSelectComboBox</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

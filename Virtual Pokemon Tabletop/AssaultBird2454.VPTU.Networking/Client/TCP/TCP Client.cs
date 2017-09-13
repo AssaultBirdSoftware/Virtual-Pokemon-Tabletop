@@ -253,11 +253,11 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
         {
             if (NetMode == NetworkMode.Standard)
             {
-                Client.GetStream().BeginRead(StateObject.buffer, 0, StateObject.BUFFER_SIZE, Client_DataRecv, StateObject);
+                Client.GetStream().BeginRead(StateObject.buffer, 0, 32768, Client_DataRecv, StateObject);
             }
             else if (NetMode == NetworkMode.SSL)
             {
-                StateObject.SSL.BeginRead(StateObject.buffer, 0, StateObject.BUFFER_SIZE, Client_DataSslRecv, StateObject);
+                StateObject.SSL.BeginRead(StateObject.buffer, 0, 32768, Client_DataSslRecv, StateObject);
             }
         }
 
@@ -282,16 +282,21 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
                 {
                     if (so.sb.Length > 1)
                     {
-                        string data = Helper.GetUntilOrEmpty(so.sb, "|<EOD>|");
-                        if (!String.IsNullOrWhiteSpace(data))
+                        //All of the data has been read, so displays it to the console
+                        string[] strContent;
+                        strContent = so.sb.ToString().Split(delimiter, StringSplitOptions.RemoveEmptyEntries);
+                        so.Reset();
+                        foreach (string data in strContent)
                         {
-                            DataQue.Enqueue(data);// Ques the data
-                            ReadQueWait.Set();// Signals new data is avaliable
+                            DataQue.Enqueue(data);
+                            ReadQueWait.Set();
                         }
                     }
                 }
-
-                StartListening();
+                if (NetMode == NetworkMode.Standard)
+                {
+                    StartListening();
+                }
             }
             else
             {
@@ -320,16 +325,21 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
                 {
                     if (so.sb.Length > 1)
                     {
-                        string data = Helper.GetUntilOrEmpty(so.sb, "|<EOD>|");
-                        if (!String.IsNullOrWhiteSpace(data))
+                        //All of the data has been read, so displays it to the console
+                        string[] strContent;
+                        strContent = so.sb.ToString().Split(delimiter, StringSplitOptions.RemoveEmptyEntries);
+                        so.Reset();
+                        foreach (string data in strContent)
                         {
-                            DataQue.Enqueue(data);// Ques the data
-                            ReadQueWait.Set();// Signals new data is avaliable
+                            DataQue.Enqueue(data);
+                            ReadQueWait.Set();
                         }
                     }
                 }
-
-                StartListening();
+                if (NetMode == NetworkMode.SSL)
+                {
+                    StartListening();
+                }
             }
             else
             {

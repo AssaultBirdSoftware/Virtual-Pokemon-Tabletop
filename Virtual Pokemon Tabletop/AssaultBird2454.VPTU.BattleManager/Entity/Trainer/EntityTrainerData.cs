@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AssaultBird2454.VPTU.BattleManager.Entity
+namespace AssaultBird2454.VPTU.BattleManager.Entity.Trainer
 {
-    public class Effects
+    public class EntityTrainerData
     {
 
     }

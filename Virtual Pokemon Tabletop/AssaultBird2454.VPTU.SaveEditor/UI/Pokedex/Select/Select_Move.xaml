@@ -23,7 +23,6 @@
         </ListView>
         <Button x:Name="button" Content="Select" HorizontalAlignment="Left" Margin="10,0,0,10" Width="75" Height="20" VerticalAlignment="Bottom" IsDefault="True" Click="button_Click"/>
         <Button x:Name="button_Copy" Content="Cancel" HorizontalAlignment="Left" Margin="90,0,0,10" Width="75" Height="20" VerticalAlignment="Bottom" IsCancel="True" Click="button_Copy_Click"/>
-        <CheckBox x:Name="Hide_Unobtainable" Content="Hide Unobtainable Moves" HorizontalAlignment="Left" Margin="262,16,0,0" VerticalAlignment="Top" IsChecked="True" Checked="Hide_Unobtainable_Checked" Unchecked="Hide_Unobtainable_Unchecked"/>
 
     </Grid>
 </Window>

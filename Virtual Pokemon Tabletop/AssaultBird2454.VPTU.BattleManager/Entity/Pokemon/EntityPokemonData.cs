@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AssaultBird2454.VPTU.Server.Class.ConsoleCommands
+namespace AssaultBird2454.VPTU.BattleManager.Entity.Pokemon
 {
-    class Command_Handeler
+    public class EntityPokemonData
     {
     }
 }

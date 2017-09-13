@@ -73,10 +73,6 @@
       <Project>{626acee3-9310-4b55-bb35-ab9c08225797}</Project>
       <Name>BattleManager</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AssaultBird2454.VPTU.EntityManager\EntityManager.csproj">
-      <Project>{013d732a-3a9e-4e12-8683-32bf9bbcc8d9}</Project>
-      <Name>EntityManager</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AssaultBird2454.VPTU.Pokedex\Pokedex.csproj">
       <Project>{7e7c28d4-d92f-4d4a-988c-8086fce625a0}</Project>
       <Name>Pokedex</Name>

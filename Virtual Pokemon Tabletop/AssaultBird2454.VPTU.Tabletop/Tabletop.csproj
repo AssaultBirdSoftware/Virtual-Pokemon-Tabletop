@@ -37,7 +37,6 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -66,33 +65,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Map\Table.xaml.cs">
-      <DependentUpon>Table.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Objects\MoveThumb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Token\Pokemon_Token.xaml.cs">
-      <DependentUpon>Pokemon_Token.xaml</DependentUpon>
+    <Compile Include="Token.xaml.cs">
+      <DependentUpon>Token.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AssaultBird2454.VPTU.EntityManager\EntityManager.csproj">
-      <Project>{013d732a-3a9e-4e12-8683-32bf9bbcc8d9}</Project>
-      <Name>EntityManager</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AssaultBird2454.VPTU.SaveManager\SaveManager.csproj">
-      <Project>{0b460ae1-322a-43bd-8f5a-4d383506cb8e}</Project>
-      <Name>SaveManager</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Map\Table.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Token\Pokemon_Token.xaml">
+    <Page Include="Token.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

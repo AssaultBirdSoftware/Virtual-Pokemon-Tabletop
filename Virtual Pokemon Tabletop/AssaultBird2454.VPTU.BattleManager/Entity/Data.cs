@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AssaultBird2454.VPTU.Pokedex.Entity
+namespace AssaultBird2454.VPTU.BattleManager.Entity
 {
     /// <summary>
     /// Defines the gender
@@ -50,8 +50,8 @@ namespace AssaultBird2454.VPTU.Pokedex.Entity
         public int Levitate { get; set; }
         public int Teleport { get; set; }
 
-        public BattleManager.Data.NatureWalk_Type NatureWalk_1 { get; set; }
-        public BattleManager.Data.NatureWalk_Type NatureWalk_2 { get; set; }
+        public Data.NatureWalk_Type NatureWalk_1 { get; set; }
+        public Data.NatureWalk_Type NatureWalk_2 { get; set; }
     }
 
     public class Skill_Data
