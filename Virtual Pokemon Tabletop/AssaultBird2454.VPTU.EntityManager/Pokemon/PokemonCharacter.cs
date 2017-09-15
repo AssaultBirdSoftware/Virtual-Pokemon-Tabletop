@@ -1021,8 +1021,11 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
             if (Status == null)
                 Status = new List<KeyValuePair<BattleManager.Data.Status_Afflictions, object>>();
 
-            RemoveStatus(Effect);
-            AddStatus(Effect, Effect_Data);
+            if (HasStatus(Effect))
+            {
+                RemoveStatus(Effect);
+                AddStatus(Effect, Effect_Data);
+            }
         }
         public bool HasStatus(BattleManager.Data.Status_Afflictions Effect)
         {
