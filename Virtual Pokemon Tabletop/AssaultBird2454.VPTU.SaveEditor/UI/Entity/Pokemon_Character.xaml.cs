@@ -1025,11 +1025,14 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             }
 
             Moves_List.Items.Clear();
+            Dictionary<string, object> Effects_Moves = new Dictionary<string, object>();
             foreach (string move in PokemonData.Moves)
             {
                 Moves_DB db = new Moves_DB(Manager.SaveData.PokedexData.Moves.Find(x => x.Name.ToLower() == move.ToLower()));
+                Effects_Moves.Add(move, move);
                 Moves_List.Items.Add(db);
             }
+            Status_Volatile_Disable_Value.ItemsSource = Effects_Moves;
         }
 
         private void Moves_Add_Click(object sender, RoutedEventArgs e)
@@ -1116,6 +1119,17 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             try
             {
                 Status_Volatile_TemporaryHitPoints_Value.Value = (int)PokemonData.GetStatusData(BattleManager.Data.Status_Afflictions.TemporaryHitPoints);
+            }
+            catch { }
+
+            try
+            {
+                Dictionary<string, object> dis_moves = new Dictionary<string, object>();
+                foreach (string move in (List<string>)PokemonData.GetStatusData(BattleManager.Data.Status_Afflictions.Dissabled))
+                {
+                    dis_moves.Add(move, move);
+                }
+                Status_Volatile_Disable_Value.SelectedItems = dis_moves;
             }
             catch { }
         }
@@ -1387,7 +1401,15 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         #endregion
         private void Status_Volatile_Disable_Value_SelectionChangedEvent()
         {
-
+            if (Ready)
+            {
+                List<string> dis_moves = new List<string>();
+                foreach (KeyValuePair<string, object> obj in Status_Volatile_Disable_Value.SelectedItems)
+                {
+                    dis_moves.Add((string)obj.Value);
+                }
+                PokemonData.SetStatusData(BattleManager.Data.Status_Afflictions.Dissabled, dis_moves);
+            }
         }
         private void Status_Volatile_Sleep_Duration_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
