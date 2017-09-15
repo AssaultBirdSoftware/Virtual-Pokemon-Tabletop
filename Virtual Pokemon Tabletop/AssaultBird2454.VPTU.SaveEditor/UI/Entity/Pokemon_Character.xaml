@@ -337,14 +337,14 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Button x:Name="Status_Other_ClearAll" Content="Clear All" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Grid.Row="1"/>
-                            <CheckBox Content="Fainted" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top"/>
-                            <CheckBox Content="Blindness" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top"/>
-                            <CheckBox Content="Total Blindness" HorizontalAlignment="Left" Margin="0,50,0,0" VerticalAlignment="Top"/>
-                            <CheckBox Content="Slowed" HorizontalAlignment="Left" Margin="0,70,0,0" VerticalAlignment="Top"/>
-                            <CheckBox Content="Stuck" HorizontalAlignment="Left" Margin="0,90,0,0" VerticalAlignment="Top"/>
-                            <CheckBox Content="Trapped" HorizontalAlignment="Left" Margin="0,110,0,0" VerticalAlignment="Top"/>
-                            <CheckBox Content="Tripped" HorizontalAlignment="Left" Margin="0,130,0,0" VerticalAlignment="Top"/>
-                            <CheckBox Content="Vulnerable" HorizontalAlignment="Left" Margin="0,150,0,0" VerticalAlignment="Top"/>
+                            <CheckBox x:Name="Status_Other_Fainted" Content="Fainted" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Checked="Status_Other_Fainted_Checked" Unchecked="Status_Other_Fainted_Unchecked"/>
+                            <CheckBox x:Name="Status_Other_Blindness" Content="Blindness" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" Checked="Status_Other_Blindness_Checked" Unchecked="Status_Other_Blindness_Unchecked"/>
+                            <CheckBox x:Name="Status_Other_TotalBlindness" Content="Total Blindness" HorizontalAlignment="Left" Margin="0,50,0,0" VerticalAlignment="Top" Checked="Status_Other_TotalBlindness_Checked" Unchecked="Status_Other_TotalBlindness_Unchecked"/>
+                            <CheckBox x:Name="Status_Other_Slowed" Content="Slowed" HorizontalAlignment="Left" Margin="0,70,0,0" VerticalAlignment="Top" Checked="Status_Other_Slowed_Checked" Unchecked="Status_Other_Slowed_Unchecked"/>
+                            <CheckBox x:Name="Status_Other_Stuck" Content="Stuck" HorizontalAlignment="Left" Margin="0,90,0,0" VerticalAlignment="Top" Checked="Status_Other_Stuck_Checked" Unchecked="Status_Other_Stuck_Unchecked"/>
+                            <CheckBox x:Name="Status_Other_Trapped" Content="Trapped" HorizontalAlignment="Left" Margin="0,110,0,0" VerticalAlignment="Top" Checked="Status_Other_Trapped_Checked" Unchecked="Status_Other_Trapped_Unchecked"/>
+                            <CheckBox x:Name="Status_Other_Tripped" Content="Tripped" HorizontalAlignment="Left" Margin="0,130,0,0" VerticalAlignment="Top" Checked="Status_Other_Tripped_Checked" Unchecked="Status_Other_Tripped_Unchecked"/>
+                            <CheckBox x:Name="Status_Other_Vulnerable" Content="Vulnerable" HorizontalAlignment="Left" Margin="0,150,0,0" VerticalAlignment="Top" Checked="Status_Other_Vulnerable_Checked" Unchecked="Status_Other_Vulnerable_Unchecked"/>
                             <Label Content="No Options Available for &quot;Other&quot; Status Effects" Margin="10,10,10,0" Grid.Row="1" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
                         </Grid>
                     </GroupBox>

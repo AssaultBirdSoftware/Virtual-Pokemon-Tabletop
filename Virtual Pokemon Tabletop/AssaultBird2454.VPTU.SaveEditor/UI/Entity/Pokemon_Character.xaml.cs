@@ -1091,6 +1091,15 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             Status_Volatile_Suppressed.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.Suppressed);
             Status_Volatile_TemporaryHitPoints.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.TemporaryHitPoints);
 
+            Status_Other_Fainted.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.Fainted);
+            Status_Other_Blindness.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.Blindness);
+            Status_Other_TotalBlindness.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.TotalBlindness);
+            Status_Other_Slowed.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.Slowed);
+            Status_Other_Stuck.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.Stuck);
+            Status_Other_Trapped.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.Trapped);
+            Status_Other_Tripped.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.Tripped);
+            Status_Other_Vulnerable.IsChecked = PokemonData.HasStatus(BattleManager.Data.Status_Afflictions.Vulnerable);
+
             try
             {
                 Status_Volitile_Inflatuation_PokemonID = (string)PokemonData.GetStatusData(BattleManager.Data.Status_Afflictions.Inflatuation);
@@ -1283,15 +1292,93 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         #endregion
 
         #region Other Effects
-
+        private void Status_Other_Fainted_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.AddStatus(BattleManager.Data.Status_Afflictions.Fainted);
+        }
+        private void Status_Other_Fainted_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.RemoveStatus(BattleManager.Data.Status_Afflictions.Fainted);
+        }
+        private void Status_Other_Blindness_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.AddStatus(BattleManager.Data.Status_Afflictions.Blindness);
+        }
+        private void Status_Other_Blindness_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.RemoveStatus(BattleManager.Data.Status_Afflictions.Blindness);
+        }
+        private void Status_Other_TotalBlindness_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.AddStatus(BattleManager.Data.Status_Afflictions.TotalBlindness);
+        }
+        private void Status_Other_TotalBlindness_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.RemoveStatus(BattleManager.Data.Status_Afflictions.TotalBlindness);
+        }
+        private void Status_Other_Slowed_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.AddStatus(BattleManager.Data.Status_Afflictions.Slowed);
+        }
+        private void Status_Other_Slowed_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.RemoveStatus(BattleManager.Data.Status_Afflictions.Slowed);
+        }
+        private void Status_Other_Stuck_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.AddStatus(BattleManager.Data.Status_Afflictions.Stuck);
+        }
+        private void Status_Other_Stuck_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.RemoveStatus(BattleManager.Data.Status_Afflictions.Stuck);
+        }
+        private void Status_Other_Trapped_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.AddStatus(BattleManager.Data.Status_Afflictions.Trapped);
+        }
+        private void Status_Other_Trapped_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.RemoveStatus(BattleManager.Data.Status_Afflictions.Trapped);
+        }
+        private void Status_Other_Tripped_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.AddStatus(BattleManager.Data.Status_Afflictions.Tripped);
+        }
+        private void Status_Other_Tripped_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.RemoveStatus(BattleManager.Data.Status_Afflictions.Tripped);
+        }
+        private void Status_Other_Vulnerable_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.AddStatus(BattleManager.Data.Status_Afflictions.Vulnerable);
+        }
+        private void Status_Other_Vulnerable_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (Ready)
+                PokemonData.RemoveStatus(BattleManager.Data.Status_Afflictions.Vulnerable);
+        }
         #endregion
-        #endregion
-        #endregion
-
         private void Status_Volatile_Disable_Value_SelectionChangedEvent()
         {
 
         }
+        #endregion
+        #endregion
     }
 
     public class Moves_DB
