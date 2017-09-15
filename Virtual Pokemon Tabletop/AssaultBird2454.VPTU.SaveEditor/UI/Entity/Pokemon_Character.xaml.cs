@@ -1055,6 +1055,8 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             {
                 PokemonData.Moves.Remove(((Moves_DB)Moves_List.SelectedItem).Name);
                 Reload_Moves();
+                Status_Volatile_Disable_Value.SelectedItems.Remove(((Moves_DB)Moves_List.SelectedItem).Name);
+                Status_Volatile_Disable_Value.ItemsSource.Remove(((Moves_DB)Moves_List.SelectedItem).Name);
             }
             catch { /* Ignore */}
         }
@@ -1127,7 +1129,10 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
                 Dictionary<string, object> dis_moves = new Dictionary<string, object>();
                 foreach (string move in (List<string>)PokemonData.GetStatusData(BattleManager.Data.Status_Afflictions.Dissabled))
                 {
-                    dis_moves.Add(move, move);
+                    if (PokemonData.Moves.Contains(move))
+                    {
+                        dis_moves.Add(move, move);
+                    }
                 }
                 Status_Volatile_Disable_Value.SelectedItems = dis_moves;
             }
