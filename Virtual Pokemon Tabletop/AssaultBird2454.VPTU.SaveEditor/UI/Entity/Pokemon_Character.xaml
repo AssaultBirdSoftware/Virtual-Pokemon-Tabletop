@@ -325,9 +325,9 @@
                             <Label x:Name="Status_Volatile_Inflatuation_Value" Content="No Selected Entity" Margin="120,44,59,0" VerticalAlignment="Top" Grid.Row="1" Height="26"/>
                             <Button x:Name="Status_Volatile_Inflatuation_Select" Content="Select" Margin="0,46.8,11.2,0" Grid.Row="1" HorizontalAlignment="Right" Width="44" Height="20" VerticalAlignment="Top" IsEnabled="False" Click="Status_Volatile_Inflatuation_Select_Click"/>
                             <Label Content="Sleep Duration" HorizontalAlignment="Left" Margin="0,75,0,0" VerticalAlignment="Top" Grid.Row="1" Height="26" Width="88"/>
-                            <xctk:IntegerUpDown x:Name="Status_Volatile_Sleep_Duration" Margin="93,75,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Value="0" TextAlignment="Center" Maximum="9999" Minimum="-1" HorizontalAlignment="Left" Width="89" IsEnabled="False"/>
+                            <xctk:IntegerUpDown x:Name="Status_Volatile_Sleep_Duration" Margin="93,75,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Value="0" TextAlignment="Center" Maximum="9999" Minimum="-1" HorizontalAlignment="Left" Width="89" IsEnabled="False" ValueChanged="Status_Volatile_Sleep_Duration_ValueChanged"/>
                             <Label Content="Temp Hit Points" HorizontalAlignment="Left" Margin="0,106,0,0" VerticalAlignment="Top" Grid.Row="1" Height="26" Width="95"/>
-                            <xctk:IntegerUpDown x:Name="Status_Volatile_TemporaryHitPoints_Value" HorizontalAlignment="Left" Margin="100,106,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="89" Value="0" TextAlignment="Center" Maximum="9999" Minimum="0" IsEnabled="False"/>
+                            <xctk:IntegerUpDown x:Name="Status_Volatile_TemporaryHitPoints_Value" HorizontalAlignment="Left" Margin="100,106,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="89" Value="0" TextAlignment="Center" Maximum="9999" Minimum="0" IsEnabled="False" ValueChanged="Status_Volatile_TemporaryHitPoints_Value_ValueChanged"/>
                         </Grid>
                     </GroupBox>
                     <GroupBox Header="Other Status" HorizontalAlignment="Left" Height="437" VerticalAlignment="Top" Width="321" Margin="651,0,0,0">

@@ -1106,6 +1106,18 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
                 Status_Volatile_Inflatuation_Value.Content = Manager.SaveData.Pokemon.Find(x => x.ID == Status_Volitile_Inflatuation_PokemonID).Name;
             }
             catch { }
+
+            try
+            {
+                Status_Volatile_Sleep_Duration.Value = (int)PokemonData.GetStatusData(BattleManager.Data.Status_Afflictions.Sleep);
+            }
+            catch { }
+
+            try
+            {
+                Status_Volatile_TemporaryHitPoints_Value.Value = (int)PokemonData.GetStatusData(BattleManager.Data.Status_Afflictions.TemporaryHitPoints);
+            }
+            catch { }
         }
         #region Persistant Effects
         private void Status_Persistant_Burned_Checked(object sender, RoutedEventArgs e)
@@ -1377,7 +1389,18 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         {
 
         }
+        private void Status_Volatile_Sleep_Duration_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (Ready)
+                PokemonData.SetStatusData(BattleManager.Data.Status_Afflictions.Sleep, (int)Status_Volatile_Sleep_Duration.Value);
+        }
+        private void Status_Volatile_TemporaryHitPoints_Value_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (Ready)
+                PokemonData.SetStatusData(BattleManager.Data.Status_Afflictions.TemporaryHitPoints, (int)Status_Volatile_TemporaryHitPoints_Value.Value);
+        }
         #endregion
+
         #endregion
     }
 
