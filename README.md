@@ -5,6 +5,7 @@
 [![Libraries.io for GitHub](https://img.shields.io/librariesio/github/AssaultBird2454/Virtual-Pokemon-Tabletop.svg)](https://github.com/AssaultBird2454/Virtual-Pokemon-Tabletop)
 [![license](https://img.shields.io/github/license/AssaultBird2454/virtual-pokemon-tabletop.svg?label=Licence)](https://github.com/AssaultBird2454/Virtual-Pokemon-Tabletop/blob/master/LICENSE)
 [![Discord](https://img.shields.io/discord/277549582961868800.svg?colorB=7289DA&label=Discord)](https://discord.gg/fYExGbz)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FAssaultBird2454%2FVirtual-Pokemon-Tabletop.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FAssaultBird2454%2FVirtual-Pokemon-Tabletop?ref=badge_shield)
 
 
 # Virtual Pokemon Tabletop
@@ -64,3 +65,7 @@ Discord Server: https://discordapp.com/invite/fYExGbz
 
 ## Bugs
 Please report all crashes to the Issues Tab above. This will help us in fixing these bugs quickly and patch them in a new release. Please if you see a report for a similar bug please don’t open a new issue.
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FAssaultBird2454%2FVirtual-Pokemon-Tabletop.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FAssaultBird2454%2FVirtual-Pokemon-Tabletop?ref=badge_large)
