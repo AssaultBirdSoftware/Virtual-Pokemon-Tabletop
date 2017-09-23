@@ -1404,6 +1404,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
                 PokemonData.RemoveStatus(BattleManager.Data.Status_Afflictions.Vulnerable);
         }
         #endregion
+
         private void Status_Volatile_Disable_Value_SelectionChangedEvent()
         {
             if (Ready)

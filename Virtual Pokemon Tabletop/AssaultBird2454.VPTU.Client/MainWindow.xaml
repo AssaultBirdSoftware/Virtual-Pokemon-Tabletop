@@ -9,26 +9,6 @@
         mc:Ignorable="d"
         Title="Virtual Pokemon Tabletop - Client (Version: _____ _._._ Build _) (Commit: _______)" Height="440.278" Width="852.075" Closed="Main_Closed" Closing="Main_Closing" Loaded="Main_Loaded">
     <Grid>
-        <syncfusion:DockingManager x:Name="Dock" Margin="0,18,0,27" DockTabAlignment="Bottom" ContainerMode="TDI" UseDocumentContainer="True">
-            <ContentControl x:Name="Map" syncfusion:DockingManager.Header="Map" >
-                <Map:Table x:Name="Client_Map" Margin="0"/>
-            </ContentControl>
-
-            <ContentControl x:Name="Server_Console" syncfusion:DockingManager.Header="Server Console" />
-
-            <ContentControl x:Name="Chat" syncfusion:DockingManager.Header="Chat" />
-
-            <ContentControl x:Name="Battle_Log" syncfusion:DockingManager.Header="Battle Log"/>
-
-            <ContentControl x:Name="Turn_Order" syncfusion:DockingManager.Header="Turn Order" />
-
-            <ContentControl x:Name="Tool_Box" syncfusion:DockingManager.Header="Tool Box" />
-
-            <ContentControl x:Name="Trainer" syncfusion:DockingManager.Header="Trainer" />
-
-            <ContentControl x:Name="Party" syncfusion:DockingManager.Header="Party" />
-        </syncfusion:DockingManager>
-
         <Menu x:Name="Menu" VerticalAlignment="Top" Grid.ColumnSpan="2">
             <MenuItem x:Name="Menu_Menu" Header="Menu">
                 <MenuItem x:Name="Menu_Menu_Connect" Header="Connect to Table"/>

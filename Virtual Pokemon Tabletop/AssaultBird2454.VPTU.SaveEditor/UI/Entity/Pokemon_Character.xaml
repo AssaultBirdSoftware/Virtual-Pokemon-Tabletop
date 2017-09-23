@@ -154,7 +154,7 @@
                             <Label Content="N / A" HorizontalAlignment="Left" Margin="0,31,0,0" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center" Grid.Column="7" Foreground="Red"/>
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="Base Stats" HorizontalAlignment="Left" Height="172" VerticalAlignment="Top" Width="972" Margin="0,236,0,0">
+                    <GroupBox Header="Evasion Stats" HorizontalAlignment="Left" Height="172" VerticalAlignment="Top" Width="266" Margin="0,236,0,0">
                         <Grid Margin="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="95"/>
