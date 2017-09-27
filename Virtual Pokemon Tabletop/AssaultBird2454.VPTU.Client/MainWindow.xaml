@@ -3,12 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
         xmlns:local="clr-namespace:AssaultBird2454.VPTU.Client"
         xmlns:Map="clr-namespace:AssaultBird2454.VPTU.Tabletop.Map;assembly=AssaultBird2454.VPTU.Tabletop" x:Name="Main" x:Class="AssaultBird2454.VPTU.Client.MainWindow"
         mc:Ignorable="d"
         Title="Virtual Pokemon Tabletop - Client (Version: _____ _._._ Build _) (Commit: _______)" Height="440.278" Width="852.075" Closed="Main_Closed" Closing="Main_Closing" Loaded="Main_Loaded">
     <Grid>
+        <xcad:DockingManager x:Name="Dock" Grid.Row="0" MaxHeight="425" AllowMixedOrientation="True" BorderBrush="Black" BorderThickness="1" Margin="0,18,0,27" HorizontalAlignment="Stretch" Width="Auto" Height="Auto" VerticalAlignment="Stretch">
+            <xcad:LayoutRoot x:Name="_layoutRoot">
+                <xcad:LayoutPanel Orientation="Horizontal">
+                    
+                </xcad:LayoutPanel>
+            </xcad:LayoutRoot>
+        </xcad:DockingManager>
         <Menu x:Name="Menu" VerticalAlignment="Top" Grid.ColumnSpan="2">
             <MenuItem x:Name="Menu_Menu" Header="Menu">
                 <MenuItem x:Name="Menu_Menu_Connect" Header="Connect to Table"/>
