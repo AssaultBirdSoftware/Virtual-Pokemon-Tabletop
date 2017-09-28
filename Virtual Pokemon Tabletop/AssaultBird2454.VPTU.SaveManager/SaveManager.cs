@@ -13,7 +13,12 @@ using System.Windows.Media.Imaging;
 
 namespace AssaultBird2454.VPTU.SaveManager
 {
-    public enum SaveData_Dir { Pokedex_Pokemon, Pokedex_Moves, Pokedex_Abilitys, Pokedex_Items, Resource_Image, Entity_Pokemon, Entity_Trainers }
+    public enum SaveData_Dir { Pokedex_Pokemon, Pokedex_Moves, Pokedex_Abilitys, Pokedex_Items, Resource_Image, Entity_Pokemon, Entity_Trainers, Basic_CampaignSettings }
+
+    public class No_Data_Found_In_Save_Exception : Exception
+    {
+
+    }
 
     public class SaveManager
     {
@@ -56,6 +61,13 @@ namespace AssaultBird2454.VPTU.SaveManager
             try
             {
                 SaveData = new Data.SaveFile.PTUSaveData(true);
+
+                try
+                {
+                    SaveData.Campaign_Data = LoadData_FromSave<Data.Campaign_Data>(GetSaveFile_DataDir(SaveData_Dir.Basic_CampaignSettings));
+                }
+                catch (No_Data_Found_In_Save_Exception) { SaveData.Campaign_Data = new Data.Campaign_Data(true); }// Basic Campaign Settings
+
                 SaveData.PokedexData.Pokemon = LoadData_FromSave<List<Pokedex.Pokemon.PokemonData>>(GetSaveFile_DataDir(SaveData_Dir.Pokedex_Pokemon));
                 SaveData.PokedexData.Moves = LoadData_FromSave<List<Pokedex.Moves.MoveData>>(GetSaveFile_DataDir(SaveData_Dir.Pokedex_Moves));
                 SaveData.PokedexData.Abilitys = LoadData_FromSave<List<Pokedex.Abilitys.AbilityData>>(GetSaveFile_DataDir(SaveData_Dir.Pokedex_Abilitys));
@@ -77,6 +89,8 @@ namespace AssaultBird2454.VPTU.SaveManager
         /// </summary>
         public void Save_SaveData()
         {
+            SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Basic_CampaignSettings), SaveData.Campaign_Data);
+
             SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Pokedex_Pokemon), SaveData.PokedexData.Pokemon);
             SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Pokedex_Moves), SaveData.PokedexData.Moves);
             SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Pokedex_Abilitys), SaveData.PokedexData.Abilitys);
@@ -105,7 +119,7 @@ namespace AssaultBird2454.VPTU.SaveManager
                     ZipArchiveEntry entry = archive.GetEntry(SaveFile_DataDir);// Gets the entry to be read from
                     if (entry == null)
                     {
-                        return default(T);
+                        throw new No_Data_Found_In_Save_Exception();
                     }
                     //Creates a stream to read the data from
                     using (StreamReader DataReader = new StreamReader(entry.Open()))
@@ -167,6 +181,8 @@ namespace AssaultBird2454.VPTU.SaveManager
                     return "Entity/Pokemon.json";
                 case SaveData_Dir.Entity_Trainers:
                     return "Entity/Trainers.json";
+                case SaveData_Dir.Basic_CampaignSettings:
+                    return "CampaignInfo.json";
 
                 default:
                     return null;

@@ -74,6 +74,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Campaign Data.cs" />
     <Compile Include="Resource Data\Resources.cs" />
     <Compile Include="Data\SaveFile\SaveData.cs" />
     <Compile Include="ProjectInfo.cs" />

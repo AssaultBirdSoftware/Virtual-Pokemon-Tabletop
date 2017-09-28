@@ -78,7 +78,7 @@
                     <Button x:Name="Moves_Remove" Content="Delete Move" HorizontalAlignment="Left" Margin="887,35,0,0" VerticalAlignment="Top" Width="75" Click="Moves_Remove_Click"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Abilities">
+            <TabItem Header="Abilities" IsEnabled="False">
                 <Grid/>
             </TabItem>
             <TabItem Header="Stats" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top">

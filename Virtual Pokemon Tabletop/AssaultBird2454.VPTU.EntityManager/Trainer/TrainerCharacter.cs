@@ -40,11 +40,62 @@ namespace AssaultBird2454.VPTU.EntityManager.Trainer
         public int Injuries { get; set; }
 
         public List<string> Moves { get; set; }
-
+        
         /// <summary>
-        /// Data containing information about battle effects like Status Conditions
+        /// Lists all the status afflictions that this pokemon has
+        /// Key: Status Condition
+        /// Value: Duration in turns (0 = Ended, -1 = No Limit)
         /// </summary>
-        public BattleManager.Entity.Effects BattleEffects { get; set; }
+        public List<KeyValuePair<BattleManager.Data.Status_Afflictions, object>> Status { get; set; }
+
+        public void AddStatus(BattleManager.Data.Status_Afflictions Effect, object Effect_Data = null)
+        {
+            if (Status == null)
+                Status = new List<KeyValuePair<BattleManager.Data.Status_Afflictions, object>>();
+
+            KeyValuePair<BattleManager.Data.Status_Afflictions, object> Data = new KeyValuePair<BattleManager.Data.Status_Afflictions, object>(Effect, Effect_Data);
+            if (HasStatus(Effect))
+            {
+                RemoveStatus(Effect);
+                Status.Add(Data);
+            }
+            else
+            {
+                Status.Add(Data);
+            }
+        }
+        public object GetStatusData(BattleManager.Data.Status_Afflictions Effect)
+        {
+            if (Status == null)
+                Status = new List<KeyValuePair<BattleManager.Data.Status_Afflictions, object>>();
+
+            return Status.Find(x => x.Key == Effect).Value;
+        }
+        public void SetStatusData(BattleManager.Data.Status_Afflictions Effect, object Effect_Data)
+        {
+            if (Status == null)
+                Status = new List<KeyValuePair<BattleManager.Data.Status_Afflictions, object>>();
+
+            if (HasStatus(Effect))
+            {
+                RemoveStatus(Effect);
+                AddStatus(Effect, Effect_Data);
+            }
+        }
+        public bool HasStatus(BattleManager.Data.Status_Afflictions Effect)
+        {
+            if (Status == null)
+                Status = new List<KeyValuePair<BattleManager.Data.Status_Afflictions, object>>();
+
+            if (Status.FindAll(x => x.Key == Effect).Count >= 1) { return true; } else { return false; }
+        }
+        public void RemoveStatus(BattleManager.Data.Status_Afflictions Effect)
+        {
+            if (Status == null)
+                Status = new List<KeyValuePair<BattleManager.Data.Status_Afflictions, object>>();
+
+            Status.RemoveAll(x => x.Key == Effect);
+        }
 
         public List<Pokemon.PokemonCharacter> PartyPokemon { get; set; }
 

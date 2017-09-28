@@ -175,9 +175,10 @@ namespace AssaultBird2454.VPTU.SaveEditor
             SaveManager.Load_SaveData();
             this.SaveEditor_TabPanel.IsEnabled = true;
 
+            OverViewSettings_Reload();// Reload Settings and other info
             PokedexManager_ReloadList();//Reload Pokedex List
             ResourceManager_ReloadList();//Reload Resource List
-            EntityManager_ReloadList();// Reloads Characters List
+            EntityManager_ReloadList();// Reload Characters List
         }
 
         #region Save Data Tools
@@ -714,7 +715,46 @@ namespace AssaultBird2454.VPTU.SaveEditor
                 MessageBox.Show("You cant edit nothing! or can you?");
             }
         }
-        #endregion        
+        #endregion
+
+        #region Overview and Settings Tab
+        /// <summary>
+        /// Loads Campaign Info
+        /// </summary>
+        public void OverViewSettings_Reload()
+        {
+            OverViewSettings_Basic_CampaignName.Text = SaveManager.SaveData.Campaign_Data.Campaign_Name;
+            OverViewSettings_Basic_GMName.Text = SaveManager.SaveData.Campaign_Data.Campaign_GM_Name;
+            OverViewSettings_Basic_Description.Text = SaveManager.SaveData.Campaign_Data.Campaign_Desc;
+        }
+
+        private void OverViewSettings_Basic_CampaignName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                SaveManager.SaveData.Campaign_Data.Campaign_Name = OverViewSettings_Basic_CampaignName.Text;
+            }
+            catch { }
+        }
+
+        private void OverViewSettings_Basic_GMName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                SaveManager.SaveData.Campaign_Data.Campaign_GM_Name = OverViewSettings_Basic_GMName.Text;
+            }
+            catch { }
+        }
+
+        private void OverViewSettings_Basic_Description_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                SaveManager.SaveData.Campaign_Data.Campaign_Desc = OverViewSettings_Basic_Description.Text;
+            }
+            catch { }
+        }
+        #endregion
     }
 
     /// <summary>

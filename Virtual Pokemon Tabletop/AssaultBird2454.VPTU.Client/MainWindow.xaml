@@ -13,15 +13,18 @@
         <xcad:DockingManager x:Name="Dock" Grid.Row="0" MaxHeight="425" AllowMixedOrientation="True" BorderBrush="Black" BorderThickness="1" Margin="0,18,0,27" HorizontalAlignment="Stretch" Width="Auto" Height="Auto" VerticalAlignment="Stretch">
             <xcad:LayoutRoot x:Name="_layoutRoot">
                 <xcad:LayoutPanel Orientation="Horizontal">
-                    
+
                 </xcad:LayoutPanel>
             </xcad:LayoutRoot>
         </xcad:DockingManager>
         <Menu x:Name="Menu" VerticalAlignment="Top" Grid.ColumnSpan="2">
             <MenuItem x:Name="Menu_Menu" Header="Menu">
                 <MenuItem x:Name="Menu_Menu_Connect" Header="Connect to Table"/>
-                <MenuItem x:Name="Menu_Menu_Disconnect" Header="Disconnect from Table"/>
+                <MenuItem x:Name="Menu_Menu_Disconnect" Header="Disconnect from Table" IsEnabled="False"/>
                 <Separator x:Name="Menu_Menu_S1" Height="5"/>
+                <MenuItem x:Name="Menu_Menu_OpenGame" Header="Open Campaign" HorizontalAlignment="Left" Width="204"/>
+                <MenuItem x:Name="Menu_Menu_CloseGame" Header="Close Campaign" HorizontalAlignment="Left" Width="204" IsEnabled="False"/>
+                <Separator x:Name="Menu_Menu_S2" Height="5"/>
                 <MenuItem x:Name="Menu_Menu_Quit" Header="Quit"/>
             </MenuItem>
             <MenuItem x:Name="Menu_View" Header="View">
@@ -53,12 +56,12 @@
             </MenuItem>
         </Menu>
         <StatusBar x:Name="Status" Height="27" VerticalAlignment="Bottom">
-            <StatusBarItem x:Name="Status_ServerType" Content="Server Type: " HorizontalAlignment="Left" Padding="3,3,15,3"/>
-            <StatusBarItem x:Name="Status_ServerAddress" Content="Server Address: " HorizontalAlignment="Left" Padding="3,3,15,3"/>
-            <StatusBarItem x:Name="Status_ServerPing" Content="Server Ping: " HorizontalAlignment="Left" Padding="3,3,25,3"/>
+            <StatusBarItem x:Name="Status_ServerType" Content="Server Type: None" HorizontalAlignment="Left" Padding="3,3,15,3"/>
+            <StatusBarItem x:Name="Status_ServerAddress" Content="Server Address: N/A" HorizontalAlignment="Left" Padding="3,3,15,3"/>
+            <StatusBarItem x:Name="Status_ServerPing" Content="Server Ping: N/A" HorizontalAlignment="Left" Padding="3,3,25,3"/>
 
-            <StatusBarItem x:Name="Status_CampaignName" Content="Campaign Name: " HorizontalAlignment="Left" Padding="3,3,15,3"/>
-            <StatusBarItem x:Name="Status_CampaignGM" Content="Campaign GM: " HorizontalAlignment="Left" Padding="3,3,15,3"/>
+            <StatusBarItem x:Name="Status_CampaignName" Content="Campaign Name: N/A" HorizontalAlignment="Left" Padding="3,3,15,3"/>
+            <StatusBarItem x:Name="Status_CampaignGM" Content="Campaign GM: N/A" HorizontalAlignment="Left" Padding="3,3,15,3"/>
         </StatusBar>
     </Grid>
 </Window>

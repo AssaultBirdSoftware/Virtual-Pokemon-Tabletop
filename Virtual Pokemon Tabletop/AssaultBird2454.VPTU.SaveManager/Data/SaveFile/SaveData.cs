@@ -7,22 +7,6 @@ using System.Threading.Tasks;
 namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
 {
     /// <summary>
-    /// A Save Data Class designed for backup purposes. It supports checking if a part of the save has been modified outside the Client/Server
-    /// </summary>
-    public class PTUSaveData_ECC
-    {
-        public PTUSaveData_ECC() { }
-        public PTUSaveData_ECC(string _Hash, PTUSaveData _Data)
-        {
-            Hash = _Hash;
-            Data = _Data;
-        }
-
-        public string Hash { get; set; }
-        public PTUSaveData Data { get; set; }
-    }
-
-    /// <summary>
     /// A Save Data Class designed to handle the save data
     /// </summary>
     public class PTUSaveData
@@ -35,6 +19,8 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
         {
             if (InitNewSave)
             {
+                Campaign_Data = new Campaign_Data(true);
+
                 Trainers = new List<EntityManager.Trainer.TrainerCharacter>();
                 Pokemon = new List<EntityManager.Pokemon.PokemonCharacter>();
 
@@ -67,17 +53,20 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
                 ImageResources = new List<Resource_Data.Resources>();
             }
 
-            if(Pokemon == null)
+            if (Pokemon == null)
             {
                 Pokemon = new List<EntityManager.Pokemon.PokemonCharacter>();
             }
 
             PokedexData.InitNullObjects();
+            Campaign_Data.InitNullObjects();
         }
 
         #region Data
-        public Pokedex.Save_Data.Pokedex PokedexData;
+        public Data.Campaign_Data Campaign_Data;
         #endregion
+
+        public Pokedex.Save_Data.Pokedex PokedexData;
 
         #region Entity Data
         public List<EntityManager.Trainer.TrainerCharacter> Trainers;

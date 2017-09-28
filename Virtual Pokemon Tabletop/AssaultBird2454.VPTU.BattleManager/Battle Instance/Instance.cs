@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AssaultBird2454.VPTU.BattleManager.Entity
+namespace AssaultBird2454.VPTU.BattleManager.Battle_Instance
 {
-    public class Effects
+    public class Instance
     {
-
+        //public 
     }
 }

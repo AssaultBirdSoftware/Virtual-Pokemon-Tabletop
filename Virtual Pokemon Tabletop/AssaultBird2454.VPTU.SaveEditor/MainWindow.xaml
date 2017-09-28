@@ -23,11 +23,26 @@
             </MenuItem>
         </Menu>
         <TabControl x:Name="SaveEditor_TabPanel" Margin="0,17.96,0,21.96" IsEnabled="False">
-            <TabItem Header="Overview &amp; Settings" d:IsLocked="True">
+            <TabItem Header="Overview &amp; Settings">
                 <Grid Background="#FFE5E5E5">
-                    <TabControl HorizontalAlignment="Left" Height="611" VerticalAlignment="Top" Width="984">
+                    <TabControl>
                         <TabItem Header="Basic Settings">
-                            <Grid Background="#FFE5E5E5"/>
+                            <Grid x:Name="CD_OverViewSettings_Basic" Background="#FFE5E5E5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition x:Name="CD_OverViewSettings_Basic_1" Width="326"/>
+                                    <ColumnDefinition x:Name="CD_OverViewSettings_Basic_2" Width="326"/>
+                                    <ColumnDefinition x:Name="CD_OverViewSettings_Basic_3" Width="326"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Content="Campaign Name:" HorizontalAlignment="Left" Margin="0,26,0,0" VerticalAlignment="Top"/>
+                                <TextBox x:Name="OverViewSettings_Basic_CampaignName" Height="23" Margin="106,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxLines="1" TextChanged="OverViewSettings_Basic_CampaignName_TextChanged"/>
+                                <Label Content="GM Name:" HorizontalAlignment="Left" Margin="0,54,0,0" VerticalAlignment="Top"/>
+                                <TextBox x:Name="OverViewSettings_Basic_GMName" Height="23" Margin="106,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxLines="1" TextChanged="OverViewSettings_Basic_GMName_TextChanged"/>
+                                <Label Content="Description:" HorizontalAlignment="Left" Margin="0,82,0,0" VerticalAlignment="Top"/>
+                                <TextBox x:Name="OverViewSettings_Basic_Description" Height="208" Margin="106,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="OverViewSettings_Basic_Description_TextChanged"/>
+                                <Label Content="Basic Game Info" Margin="10,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <Label Content="" Margin="10,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="1"/>
+                                <Label Content="" Margin="10,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="2"/>
+                            </Grid>
                         </TabItem>
                         <TabItem Header="Features">
                             <Grid Background="#FFE5E5E5"/>
@@ -38,7 +53,7 @@
                     </TabControl>
                 </Grid>
             </TabItem>
-            <TabItem Header="Resource Manager" d:IsLocked="True">
+            <TabItem Header="Resource Manager">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -179,16 +194,16 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem Header="Map Manager" d:IsLocked="True">
+            <TabItem Header="Map Manager">
                 <Grid Background="#FFE5E5E5">
                     <Label x:Name="label" Content="This Tab is in Development..." Foreground="Red" FontSize="72"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Feature Manager" HorizontalAlignment="Left" Height="19.96" VerticalAlignment="Top" d:IsLocked="True">
+            <TabItem Header="Feature Manager" HorizontalAlignment="Left" Height="19.96" VerticalAlignment="Top">
                 <Label x:Name="label_Copy1" Content="This Tab is in Development..." Foreground="Red" FontSize="72"/>
             </TabItem>
         </TabControl>
-        <StatusBar VerticalAlignment="Bottom" d:IsLocked="True">
+        <StatusBar VerticalAlignment="Bottom">
             <StatusBarItem Content="StatusBarItem" VerticalAlignment="Bottom"/>
         </StatusBar>
 
