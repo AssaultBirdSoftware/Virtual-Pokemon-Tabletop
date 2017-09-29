@@ -9,6 +9,7 @@ namespace AssaultBird2454.VPTU.Server.Server
 {
     public class ServerInstance
     {
+        #region Variables and Objects
         /// <summary>
         /// Server class for handeling server communications
         /// </summary>
@@ -19,21 +20,40 @@ namespace AssaultBird2454.VPTU.Server.Server
         /// </summary>
         public Networking.Server.Command_Handeler.Server_CommandHandeler Server_CommandHandeler { get; private set; }
 
+        private object Logger;
         /// <summary>
         /// Server_Logger contains functions for server logging
         /// </summary>
-        public object Server_Logger { get; set; }
+        public object Server_Logger
+        {
+            get
+            {
+                return Logger;
+            }
+            set
+            {
+                if (value is Class.Logging.I_Logger)
+                {
+                    Logger = value;
+                }
+                else
+                {
+                    throw new Class.Logging.Invalid_Logger_Class_Exception();
+                }
+            }
+        }
 
         /// <summary>
         /// Save Manager class, contains Save Data
         /// </summary>
         public SaveManager.SaveManager SaveManager { get; private set; }
+        #endregion
 
-        public ServerInstance(string SaveData, Class.Logging.Logger _Logger)
+        public ServerInstance(string SaveData, Class.Logging.I_Logger _Logger)
         {
             #region Logs
             Server_Logger = _Logger;
-            ((Class.Logging.I_Logger)Server_Logger).Setup(Main.AssemblyDirectory + @"\Logs\" + DateTime.Now.ToLongDateString());
+            ((Class.Logging.I_Logger)Server_Logger).Setup();
             #endregion
             #region SaveManager
             ((Class.Logging.I_Logger)Server_Logger).Log("Initilizing Save Manager", Class.Logging.LoggerLevel.Debug);
@@ -71,6 +91,11 @@ namespace AssaultBird2454.VPTU.Server.Server
 
             #endregion
 
+            ((Class.Logging.I_Logger)Server_Logger).Log("Server Ready!", Class.Logging.LoggerLevel.Info);
+        }
+
+        public void StartServerInstance()
+        {
             #region Start Server
             ((Class.Logging.I_Logger)Server_Logger).Log("Starting Base Network", Class.Logging.LoggerLevel.Info);
             try
@@ -78,18 +103,31 @@ namespace AssaultBird2454.VPTU.Server.Server
                 Server.Start();
                 ((Class.Logging.I_Logger)Server_Logger).Log("Base Network Started", Class.Logging.LoggerLevel.Info);
             }
-            catch
+            catch (Exception e)
             {
                 ((Class.Logging.I_Logger)Server_Logger).Log("Base Network Failed to Start", Class.Logging.LoggerLevel.Fatil);
-                StopInstance();
+                ((Class.Logging.I_Logger)Server_Logger).Log(e.ToString(), Class.Logging.LoggerLevel.Debug);
+                StopServerInstance();
                 return;
             }
             #endregion
         }
-
-        public void StopInstance()
+        public void StopServerInstance()
         {
-
+            #region Start Server
+            ((Class.Logging.I_Logger)Server_Logger).Log("Stopping Base Network", Class.Logging.LoggerLevel.Info);
+            try
+            {
+                Server.Stop();
+                ((Class.Logging.I_Logger)Server_Logger).Log("Base Network Stopped", Class.Logging.LoggerLevel.Info);
+            }
+            catch (Exception e)
+            {
+                ((Class.Logging.I_Logger)Server_Logger).Log("Base Network Failed to Stop", Class.Logging.LoggerLevel.Fatil);
+                ((Class.Logging.I_Logger)Server_Logger).Log(e.ToString(), Class.Logging.LoggerLevel.Debug);
+                return;
+            }
+            #endregion
         }
 
         private void Server_CommandHandeler_CommandUnRegistered(string Command, string Callback = "")
@@ -164,3 +202,4 @@ namespace AssaultBird2454.VPTU.Server.Server
         }
     }
 }
+// ((Class.Logging.I_Logger)Server_Logger).Log("", Class.Logging.LoggerLevel.Info);

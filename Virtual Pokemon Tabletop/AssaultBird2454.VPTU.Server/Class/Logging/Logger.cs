@@ -12,13 +12,13 @@ namespace AssaultBird2454.VPTU.Server.Class.Logging
     /// </summary>
     public enum LoggerLevel { Info, Notice, Warning, Error, Fatil, Debug, Audit }
 
-    public class Logger : I_Logger
+    public class Console_Logger : I_Logger
     {
-        public Logger()
+        public Console_Logger()
         {
 
         }
-        public Logger(bool Debug)
+        public Console_Logger(bool Debug)
         {
             LogDebug = Debug;
         }
@@ -67,11 +67,11 @@ namespace AssaultBird2454.VPTU.Server.Class.Logging
         /// Configures the Logger
         /// </summary>
         /// <param name="Dir">The Directory to write the file to</param>
-        public void Setup(string Dir)
+        public void Setup()
         {
             //TODO: Add an option to dissable logging to file
 
-            LogFile_Dir = Dir;
+            LogFile_Dir = Main.AssemblyDirectory + @"\Logs\" + DateTime.Now.ToLongDateString();
 
             if (!Directory.Exists(Path.GetDirectoryName(LogFile_Dir)))
                 Directory.CreateDirectory(Path.GetDirectoryName(LogFile_Dir));
@@ -139,12 +139,20 @@ namespace AssaultBird2454.VPTU.Server.Class.Logging
         /// Configures the logging class
         /// </summary>
         /// <param name="Dir">A optional path to define where the log fil will be saved</param>
-        void Setup(string Dir);
+        void Setup();
         /// <summary>
         /// Sends a log entry to the logger
         /// </summary>
         /// <param name="Data">The Log Message</param>
         /// <param name="Level">Defines log type</param>
         void Log(string Data, LoggerLevel Level);
+    }
+
+    public class Invalid_Logger_Class_Exception : Exception
+    {
+        public Invalid_Logger_Class_Exception()
+        {
+
+        }
     }
 }

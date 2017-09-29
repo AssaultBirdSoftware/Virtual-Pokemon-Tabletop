@@ -23,6 +23,7 @@ namespace AssaultBird2454.VPTU.Client
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region Base Data
         public ProjectInfo VersioningInfo { get; }
 
         /// <summary>
@@ -79,7 +80,7 @@ namespace AssaultBird2454.VPTU.Client
             }
             #endregion
         }
-
+        #endregion
         private void Menu_Menu_Click(object sender, RoutedEventArgs e)
         {
 
@@ -96,23 +97,70 @@ namespace AssaultBird2454.VPTU.Client
         }
 
         #region Layout
+        public void Dock_SaveCurrent(string File)
+        {
+            new Xceed.Wpf.AvalonDock.Layout.Serialization.XmlLayoutSerializer(Dock).Serialize(File);
+        }
+        public void Dock_LoadLayout(string File)
+        {
+            new Xceed.Wpf.AvalonDock.Layout.Serialization.XmlLayoutSerializer(Dock).Deserialize(File);
+        }
+
         private void Main_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (!Directory.Exists(AssemblyDirectory + "/Layouts"))
                 Directory.CreateDirectory(AssemblyDirectory + "/Layouts");
 
-            Dock.SaveDockState(AssemblyDirectory + "/Layouts/Default.xml");
+            Dock_SaveCurrent(AssemblyDirectory + "/Layouts/Default.xml");
         }
         private void Main_Loaded(object sender, RoutedEventArgs e)
         {
-            if (!File.Exists(AssemblyDirectory + "/Layouts/Default.xml"))
-                return;
-
-            Dock.LoadDockState(AssemblyDirectory + "/Layouts/Default.xml");
+            if (File.Exists(AssemblyDirectory + "/Layouts/Default.xml"))
+            {
+                Dock_LoadLayout(AssemblyDirectory + "/Layouts/Default.xml");
+            }
         }
         private void Menu_Window_LoadLayout_Click(object sender, RoutedEventArgs e)
         {
-            Dock.LoadDockState(AssemblyDirectory + "/Layouts/Default.xml");
+
+        }
+        #endregion
+
+        #region Open / Close Campaign Session (LAN SESSION)
+        /// <summary>
+        /// Defines an object that acts as a server over a LAN
+        /// </summary>
+        public Networking.Server.TCP.TCP_Server Session_LanServer { get; set; }
+
+        private void Menu_Menu_OpenGame_Click(object sender, RoutedEventArgs e)
+        {
+            Menu_Menu_OpenGame.IsEnabled = false;
+            Menu_Menu_CloseGame.IsEnabled = true;
+            Menu_Menu_Connect.IsEnabled = false;
+            Menu_Menu_Disconnect.IsEnabled = false;
+        }
+        private void Menu_Menu_CloseGame_Click(object sender, RoutedEventArgs e)
+        {
+            Menu_Menu_OpenGame.IsEnabled = true;
+            Menu_Menu_CloseGame.IsEnabled = false;
+            Menu_Menu_Connect.IsEnabled = true;
+            Menu_Menu_Disconnect.IsEnabled = false;
+        }
+        #endregion
+        #region Connect to / Disconnect from Session (INTERNET OR LAN SESSIONS)
+        private void Menu_Menu_Connect_Click(object sender, RoutedEventArgs e)
+        {
+            Menu_Menu_OpenGame.IsEnabled = false;
+            Menu_Menu_CloseGame.IsEnabled = false;
+            Menu_Menu_Connect.IsEnabled = false;
+            Menu_Menu_Disconnect.IsEnabled = true;
+        }
+        private void Menu_Menu_Disconnect_Click(object sender, RoutedEventArgs e)
+        {
+            Menu_Menu_OpenGame.IsEnabled = true;
+            Menu_Menu_CloseGame.IsEnabled = false;
+            Menu_Menu_Connect.IsEnabled = true;
+            Menu_Menu_Disconnect.IsEnabled = false;
         }
         #endregion
     }
