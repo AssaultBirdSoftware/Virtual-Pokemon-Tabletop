@@ -15,9 +15,21 @@ namespace AssaultBird2454.VPTU.Networking.Client.Command_Handeler
         public CommandNameTakenException(string Name) : base("The Command Name \"" + Name + "\" is taken... Use another name for that command") { }
     }
     #endregion
+    #region Delegates
+    public delegate void CommandEvent(string Command, string Callback = "");
+    #endregion
 
     public class Client_CommandHandeler
     {
+        /// <summary>
+        /// An event that is fired when a command is registered
+        /// </summary>
+        public event CommandEvent CommandRegistered;
+        /// <summary>
+        /// An event that is fired when a command is unregistered
+        /// </summary>
+        public event CommandEvent CommandUnRegistered;
+
         private Dictionary<string, object> Commands;
 
         public Client_CommandHandeler()
@@ -40,6 +52,7 @@ namespace AssaultBird2454.VPTU.Networking.Client.Command_Handeler
             }
 
             Commands.Add(CommandName, new Command(CommandName, typeof(T), Callback));// Add the command to the command list
+            CommandRegistered?.Invoke(CommandName, Callback.ToString());// Fire Event
         }
 
         /// <summary>
@@ -57,6 +70,7 @@ namespace AssaultBird2454.VPTU.Networking.Client.Command_Handeler
             try
             {
                 Commands.Remove(Name);// Removes the command
+                CommandUnRegistered?.Invoke(Name);
             }
             catch { /* Does not exist, dont not matter */ }
         }
