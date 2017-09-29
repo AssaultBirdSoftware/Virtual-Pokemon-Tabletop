@@ -360,19 +360,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
         //When The Search Box has been changed
         private void PokedexManager_SearchDex_Search_TextChanged(object sender, TextChangedEventArgs e)
         {
-            try
-            {
-                PokedexSearchThread.Abort();
-                PokedexSearchThread = null;
-            }
-            catch { }
-
-            PokedexSearchThread = new Thread(new ThreadStart(() =>
-            {
-                this.Dispatcher.Invoke(new Action(() => PokedexManager_ReloadList()));
-            }));
-            PokedexSearchThread.IsBackground = true;
-            PokedexSearchThread.Start();
+            PokedexManager_ReloadList();
         }
         #endregion
 
@@ -423,55 +411,70 @@ namespace AssaultBird2454.VPTU.SaveEditor
         {
             try
             {
-                PokedexManager_List.Items.Clear();
-
-                if (SaveManager == null) { return; }
-
-                if (PokedexManager_SearchDex_Pokemon.IsChecked == true)
-                {
-                    foreach (Pokedex.Pokemon.PokemonData Pokemon in SaveManager.SaveData.PokedexData.Pokemon)
-                    {
-                        if (Pokemon.Species_Name.ToLower().Contains(PokedexManager_SearchDex_Search.Text.ToLower()))
-                        {
-                            PokedexList_DataBind PokemonDB = new PokedexList_DataBind();
-                            PokemonDB.Name = Pokemon.Species_Name;
-                            PokemonDB.ID = Pokemon.Species_DexID;
-                            PokemonDB.Class = "";
-                            PokemonDB.EntryType = "Pokemon";
-                            //PokemonDB.Type = "";
-                            PokemonDB.DataType = PokedexList_DataType.Pokemon;
-                            PokemonDB.DataTag = Pokemon;
-
-                            PokedexManager_List.Items.Add(PokemonDB);
-                        }
-                    }
-                }
-
-                if (PokedexManager_SearchDex_Moves.IsChecked == true)
-                {
-                    foreach (Pokedex.Moves.MoveData Move in SaveManager.SaveData.PokedexData.Moves)
-                    {
-                        if (Move.Name.ToLower().Contains(PokedexManager_SearchDex_Search.Text.ToLower()))
-                        {
-                            PokedexList_DataBind MoveDB = new PokedexList_DataBind();
-                            MoveDB.Name = Move.Name;
-                            MoveDB.ID = (SaveManager.SaveData.PokedexData.Moves.IndexOf(Move) + 1);
-                            //MoveDB.Type = Move.Move_Type.ToString();
-                            MoveDB.Class = Move.Move_Class.ToString();
-                            MoveDB.EntryType = "Move";
-
-                            MoveDB.DataType = PokedexList_DataType.Move;
-                            MoveDB.DataTag = Move;
-
-                            PokedexManager_List.Items.Add(MoveDB);
-                        }
-                    }
-                }
+                PokedexSearchThread.Abort();
+                PokedexSearchThread = null;
             }
-            catch (Exception ex)
+            catch { }
+
+            PokedexSearchThread = new Thread(new ThreadStart(() =>
             {
-                MessageBox.Show("An Error occured while loading the Pokedex Manager's List!\n\n" + ex.ToString(), "Pokedex Manager - Loading Error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
-            }
+                this.Dispatcher.Invoke(new Action(() =>
+                {
+                    try
+                    {
+                        PokedexManager_List.Items.Clear();
+
+                        if (SaveManager == null) { return; }
+
+                        if (PokedexManager_SearchDex_Pokemon.IsChecked == true)
+                        {
+                            foreach (Pokedex.Pokemon.PokemonData Pokemon in SaveManager.SaveData.PokedexData.Pokemon)
+                            {
+                                if (Pokemon.Species_Name.ToLower().Contains(PokedexManager_SearchDex_Search.Text.ToLower()))
+                                {
+                                    PokedexList_DataBind PokemonDB = new PokedexList_DataBind();
+                                    PokemonDB.Name = Pokemon.Species_Name;
+                                    PokemonDB.ID = Pokemon.Species_DexID;
+                                    PokemonDB.Class = "";
+                                    PokemonDB.EntryType = "Pokemon";
+                                    //PokemonDB.Type = "";
+                                    PokemonDB.DataType = PokedexList_DataType.Pokemon;
+                                    PokemonDB.DataTag = Pokemon;
+
+                                    PokedexManager_List.Items.Add(PokemonDB);
+                                }
+                            }
+                        }
+
+                        if (PokedexManager_SearchDex_Moves.IsChecked == true)
+                        {
+                            foreach (Pokedex.Moves.MoveData Move in SaveManager.SaveData.PokedexData.Moves)
+                            {
+                                if (Move.Name.ToLower().Contains(PokedexManager_SearchDex_Search.Text.ToLower()))
+                                {
+                                    PokedexList_DataBind MoveDB = new PokedexList_DataBind();
+                                    MoveDB.Name = Move.Name;
+                                    MoveDB.ID = (SaveManager.SaveData.PokedexData.Moves.IndexOf(Move) + 1);
+                                    //MoveDB.Type = Move.Move_Type.ToString();
+                                    MoveDB.Class = Move.Move_Class.ToString();
+                                    MoveDB.EntryType = "Move";
+
+                                    MoveDB.DataType = PokedexList_DataType.Move;
+                                    MoveDB.DataTag = Move;
+
+                                    PokedexManager_List.Items.Add(MoveDB);
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("An Error occured while loading the Pokedex Manager's List!\n\n" + ex.ToString(), "Pokedex Manager - Loading Error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
+                    }
+                }));
+            }));
+            PokedexSearchThread.IsBackground = true;
+            PokedexSearchThread.Start();
         }
 
         /// <summary>
@@ -626,7 +629,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
 
         #region Entity Manager Code
         #region Entity Manager Variables
-
+        Thread EntitySearchThread;
         #endregion
 
         #region Right SideBar Events
@@ -651,6 +654,71 @@ namespace AssaultBird2454.VPTU.SaveEditor
                 EntityManager_ReloadList();// Updates the list
             }
         }
+
+        private void EntityManager_SearchEntity_WildPokemon_Checked(object sender, RoutedEventArgs e)
+        {
+            EntityManager_ReloadList();// Updates the list
+        }
+
+        private void EntityManager_SearchEntity_WildPokemon_Unchecked(object sender, RoutedEventArgs e)
+        {
+            EntityManager_ReloadList();// Updates the list
+        }
+
+        private void EntityManager_SearchEntity_NPCPokemon_Checked(object sender, RoutedEventArgs e)
+        {
+            EntityManager_ReloadList();// Updates the list
+        }
+
+        private void EntityManager_SearchEntity_NPCPokemon_Unchecked(object sender, RoutedEventArgs e)
+        {
+            EntityManager_ReloadList();// Updates the list
+        }
+
+        private void EntityManager_SearchEntity_PartyPokemon_Checked(object sender, RoutedEventArgs e)
+        {
+            EntityManager_ReloadList();// Updates the list
+        }
+
+        private void EntityManager_SearchEntity_PartyPokemon_Unchecked(object sender, RoutedEventArgs e)
+        {
+            EntityManager_ReloadList();// Updates the list
+        }
+
+        private void EntityManager_SearchEntity_PlayerPokemon_Checked(object sender, RoutedEventArgs e)
+        {
+            EntityManager_ReloadList();// Updates the list
+        }
+
+        private void EntityManager_SearchEntity_PlayerPokemon_Unchecked(object sender, RoutedEventArgs e)
+        {
+            EntityManager_ReloadList();// Updates the list
+        }
+
+        private void EntityManager_SearchEntity_PC_Checked(object sender, RoutedEventArgs e)
+        {
+            EntityManager_ReloadList();// Updates the list
+        }
+
+        private void EntityManager_SearchEntity_PC_Unchecked(object sender, RoutedEventArgs e)
+        {
+            EntityManager_ReloadList();// Updates the list
+        }
+
+        private void EntityManager_SearchEntity_NPC_Checked(object sender, RoutedEventArgs e)
+        {
+            EntityManager_ReloadList();// Updates the list
+        }
+
+        private void EntityManager_SearchEntity_NPC_Unchecked(object sender, RoutedEventArgs e)
+        {
+            EntityManager_ReloadList();// Updates the list
+        }
+
+        private void EntityManager_SearchEntity_Search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            EntityManager_ReloadList();
+        }
         #endregion
 
         #region List Events
@@ -667,21 +735,39 @@ namespace AssaultBird2454.VPTU.SaveEditor
         {
             try
             {
-                EntityManager_List.Items.Clear();
-
-                if (SaveManager == null) { return; }
-
-                if (EntityManager_SearchEntity_WildPokemon.IsChecked == true)
-                {
-                    foreach (EntityManager.Pokemon.PokemonCharacter pokemon in SaveManager.SaveData.Pokemon)
-                    {
-                        EntityManager_DataBind db = new EntityManager_DataBind(pokemon.Species_DexID, pokemon.Name, pokemon.Species_DexID + " (" + SaveManager.SaveData.PokedexData.Pokemon.Find(x => x.Species_DexID == pokemon.Species_DexID).Species_Name + ")", "", EntityManager_DataType.WildPokemon);
-                        db.DataTag = pokemon;
-                        EntityManager_List.Items.Add(db);
-                    }
-                }
+                EntitySearchThread.Abort();
+                EntitySearchThread = null;
             }
-            catch { /* Dont Care */ }
+            catch { }
+
+            EntitySearchThread = new Thread(new ThreadStart(() =>
+            {
+                this.Dispatcher.Invoke(new Action(() =>
+                {
+                    try
+                    {
+                        EntityManager_List.Items.Clear();
+
+                        if (SaveManager == null) { return; }
+
+                        if (EntityManager_SearchEntity_WildPokemon.IsChecked == true)
+                        {
+                            foreach (EntityManager.Pokemon.PokemonCharacter pokemon in SaveManager.SaveData.Pokemon)
+                            {
+                                if (pokemon.Name.ToLower().Contains(EntityManager_SearchEntity_Search.Text.ToLower()))
+                                {
+                                    EntityManager_DataBind db = new EntityManager_DataBind(pokemon.Species_DexID, pokemon.Name, pokemon.Species_DexID + " (" + SaveManager.SaveData.PokedexData.Pokemon.Find(x => x.Species_DexID == pokemon.Species_DexID).Species_Name + ")", "", EntityManager_DataType.WildPokemon);
+                                    db.DataTag = pokemon;
+                                    EntityManager_List.Items.Add(db);
+                                }
+                            }
+                        }
+                    }
+                    catch { /* Dont Care */ }
+                }));
+            }));
+            EntitySearchThread.IsBackground = true;
+            EntitySearchThread.Start();
         }
 
         /// <summary>
