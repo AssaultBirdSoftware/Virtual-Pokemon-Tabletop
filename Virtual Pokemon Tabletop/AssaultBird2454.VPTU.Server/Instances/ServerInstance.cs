@@ -5,7 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AssaultBird2454.VPTU.Server.Server
+namespace AssaultBird2454.VPTU.Server.Instances
 {
     public class ServerInstance
     {
@@ -19,6 +19,7 @@ namespace AssaultBird2454.VPTU.Server.Server
         /// Server_CommandHandeler contains functions for creating and calling command callbacks
         /// </summary>
         public Networking.Server.Command_Handeler.Server_CommandHandeler Server_CommandHandeler { get; private set; }
+        public Server.Base_Commands Base_Server_Commands { get; private set; }
 
         private object Logger;
         /// <summary>
@@ -53,7 +54,7 @@ namespace AssaultBird2454.VPTU.Server.Server
         {
             #region Logs
             Server_Logger = _Logger;
-            ((Class.Logging.I_Logger)Server_Logger).Setup();
+            ((Class.Logging.I_Logger)Server_Logger).Setup(Class.Logging.Logger_Type.Server);
             #endregion
             #region SaveManager
             ((Class.Logging.I_Logger)Server_Logger).Log("Initilizing Save Manager", Class.Logging.LoggerLevel.Debug);
@@ -68,7 +69,10 @@ namespace AssaultBird2454.VPTU.Server.Server
             Server_CommandHandeler.CommandRegistered += Server_CommandHandeler_CommandRegistered;
             Server_CommandHandeler.CommandUnRegistered += Server_CommandHandeler_CommandUnRegistered;
 
+            Base_Server_Commands = new Instances.Server.Base_Commands(this);
+
             ((Class.Logging.I_Logger)Server_Logger).Log("Registering Base Server Commands", Class.Logging.LoggerLevel.Debug);
+            Base_Server_Commands.Register_Commands(Server_CommandHandeler);
             #endregion
             #region Networking
             ((Class.Logging.I_Logger)Server_Logger).Log("Initilizing Base Network", Class.Logging.LoggerLevel.Debug);

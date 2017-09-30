@@ -1,4 +1,4 @@
-﻿<Window
+﻿<Window xmlns:Controls="clr-namespace:AssaultBird2454.VPTU.Client.Class.Controls"  xmlns:ServerConsole="clr-namespace:AssaultBird2454.VPTU.Client.Class.ServerConsole" 
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -21,7 +21,7 @@
                     <xcad:LayoutDocumentPaneGroup>
                         <xcad:LayoutDocumentPane>
                             <xcad:LayoutDocument Title="Map">
-                                <Map:Table/>
+                                <Map:Table x:Name="Table"/>
                             </xcad:LayoutDocument>
                         </xcad:LayoutDocumentPane>
                     </xcad:LayoutDocumentPaneGroup>
@@ -39,10 +39,19 @@
                             <xcad:LayoutAnchorable Title="Actions (Selected Entity)">
                                 <TextBox/>
                             </xcad:LayoutAnchorable>
+                            <xcad:LayoutAnchorable Title="Properties">
+                                <TextBox/>
+                            </xcad:LayoutAnchorable>
+                            <xcad:LayoutAnchorable Title="Pokedex">
+                                <Controls:Pokedex x:Name="Client_Pokedex"/>
+                            </xcad:LayoutAnchorable>
                         </xcad:LayoutAnchorablePane>
                         <xcad:LayoutAnchorablePane>
                             <xcad:LayoutAnchorable Title="Server Console">
-                                <TextBox/>
+                                <ServerConsole:ServerConsole x:Name="Server_Console_Pane" />
+                            </xcad:LayoutAnchorable>
+                            <xcad:LayoutAnchorable Title="Client Console">
+                                <ServerConsole:ServerConsole x:Name="Client_Console_Pane" />
                             </xcad:LayoutAnchorable>
                             <xcad:LayoutAnchorable Title="Battle Log">
                                 <TextBox/>

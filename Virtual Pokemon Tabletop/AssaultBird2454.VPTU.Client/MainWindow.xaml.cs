@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -126,11 +128,15 @@ namespace AssaultBird2454.VPTU.Client
         }
         #endregion
 
+        #region Client
+        Server.Instances.ClientInstance Client_Instance { get; set; }
+        #endregion
+
         #region Open / Close Campaign Session (LAN SESSION)
         /// <summary>
         /// Defines an object that acts as a server over a LAN
         /// </summary>
-        public Networking.Server.TCP.TCP_Server Session_LanServer { get; set; }
+        public Server.Instances.ServerInstance Session_LanServer { get; set; }
 
         private void Menu_Menu_OpenGame_Click(object sender, RoutedEventArgs e)
         {
@@ -138,6 +144,34 @@ namespace AssaultBird2454.VPTU.Client
             Menu_Menu_CloseGame.IsEnabled = true;
             Menu_Menu_Connect.IsEnabled = false;
             Menu_Menu_Disconnect.IsEnabled = false;
+
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.CheckFileExists = true;
+            openFile.CheckPathExists = true;
+            openFile.Multiselect = false;
+            openFile.Title = "Open Virtual PTU Save File";
+            openFile.DefaultExt = ".ptu";
+
+            bool? Open = openFile.ShowDialog();
+
+            if (Open == true)
+            {
+                Client_Console_Pane.LogDebug = true;
+                Server_Console_Pane.LogDebug = true;
+
+                Session_LanServer = new Server.Instances.ServerInstance(openFile.FileName, Server_Console_Pane);
+                Session_LanServer.StartServerInstance();
+
+                Client_Instance = new Server.Instances.ClientInstance(Client_Console_Pane, IPAddress.Parse("127.0.0.1"));
+                Client_Instance.StartClientInstance();
+            }
+            else
+            {
+                Menu_Menu_OpenGame.IsEnabled = true;
+                Menu_Menu_CloseGame.IsEnabled = false;
+                Menu_Menu_Connect.IsEnabled = true;
+                Menu_Menu_Disconnect.IsEnabled = false;
+            }
         }
         private void Menu_Menu_CloseGame_Click(object sender, RoutedEventArgs e)
         {

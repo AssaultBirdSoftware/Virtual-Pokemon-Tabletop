@@ -26,6 +26,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.Command_Handeler
         /// An event that is fired when a command is registered
         /// </summary>
         public event CommandEvent CommandRegistered;
+
         /// <summary>
         /// An event that is fired when a command is unregistered
         /// </summary>

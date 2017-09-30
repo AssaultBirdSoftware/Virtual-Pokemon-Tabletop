@@ -69,10 +69,16 @@
     <Compile Include="Class\ConsoleCommands\Command Listener.cs" />
     <Compile Include="Class\ConsoleCommands\Command.cs" />
     <Compile Include="Class\Logging\Logger.cs" />
+    <Compile Include="Instances\ClientInstance.cs" />
+    <Compile Include="Instances\Client\Base_Commands.cs" />
+    <Compile Include="Instances\Client\Commands\Pokedex.cs" />
+    <Compile Include="Instances\Server\Base_Commands.cs" />
+    <Compile Include="Instances\CommandData\Pokedex\Pokedex.cs" />
+    <Compile Include="Instances\Server\Commands\Pokedex.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="ProjectInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Server\ServerInstance.cs" />
+    <Compile Include="Instances\ServerInstance.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ProjectVariables.json" />

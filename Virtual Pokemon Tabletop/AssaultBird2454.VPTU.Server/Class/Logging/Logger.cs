@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace AssaultBird2454.VPTU.Server.Class.Logging
 {
+    public enum Logger_Type { Client, Server, Other }
     /// <summary>
     /// Defines what type the log entry is
     /// </summary>
@@ -67,7 +68,7 @@ namespace AssaultBird2454.VPTU.Server.Class.Logging
         /// Configures the Logger
         /// </summary>
         /// <param name="Dir">The Directory to write the file to</param>
-        public void Setup()
+        public void Setup(Logger_Type Type)
         {
             //TODO: Add an option to dissable logging to file
 
@@ -139,7 +140,7 @@ namespace AssaultBird2454.VPTU.Server.Class.Logging
         /// Configures the logging class
         /// </summary>
         /// <param name="Dir">A optional path to define where the log fil will be saved</param>
-        void Setup();
+        void Setup(Logger_Type Type);
         /// <summary>
         /// Sends a log entry to the logger
         /// </summary>
