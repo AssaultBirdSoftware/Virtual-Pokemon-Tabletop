@@ -31,7 +31,7 @@
 
                             </xcad:LayoutAnchorable>
                             <xcad:LayoutAnchorable Title="Pokemon Character">
-
+                                <Controls:Pokedex_Pokemon />
                             </xcad:LayoutAnchorable>
                             <xcad:LayoutAnchorable Title="Select Character">
 
