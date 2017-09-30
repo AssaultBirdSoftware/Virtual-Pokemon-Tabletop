@@ -48,7 +48,7 @@
                         </xcad:LayoutAnchorablePane>
                         <xcad:LayoutAnchorablePane>
                             <xcad:LayoutAnchorable Title="Server Console">
-                                <ServerConsole:ServerConsole x:Name="Server_Console_Pane" />
+                                <ServerConsole:ServerConsole x:Name="Server_Console_Pane"/>
                             </xcad:LayoutAnchorable>
                             <xcad:LayoutAnchorable Title="Client Console">
                                 <ServerConsole:ServerConsole x:Name="Client_Console_Pane" />

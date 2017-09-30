@@ -78,45 +78,48 @@ namespace AssaultBird2454.VPTU.Client.Class.ServerConsole
 
             string Write = DateTime.Now.ToString() + " [" + Level.ToString() + "] -> " + Data;
 
-            //  Write the output.
-            var range = new TextRange(Console.Document.ContentEnd, Console.Document.ContentEnd);
-            range.Text = Write + "\n";
+            Console.Dispatcher.Invoke(new Action(() =>
+            {
+                //  Write the output.
+                var range = new TextRange(Console.Document.ContentEnd, Console.Document.ContentEnd);
+                range.Text = Write + "\n";
 
-            if (Level == LoggerLevel.Info)
-            {
-                range.ApplyPropertyValue(TextElement.ForegroundProperty, new SolidColorBrush(Colors.Green));
-                range.ApplyPropertyValue(TextElement.BackgroundProperty, new SolidColorBrush(Colors.Black));
-            }
-            else if (Level == LoggerLevel.Notice)
-            {
-                range.ApplyPropertyValue(TextElement.ForegroundProperty, new SolidColorBrush(Colors.Blue));
-                range.ApplyPropertyValue(TextElement.BackgroundProperty, new SolidColorBrush(Colors.Black));
-            }
-            else if (Level == LoggerLevel.Warning)
-            {
-                range.ApplyPropertyValue(TextElement.ForegroundProperty, new SolidColorBrush(Colors.Yellow));
-                range.ApplyPropertyValue(TextElement.BackgroundProperty, new SolidColorBrush(Colors.Black));
-            }
-            else if (Level == LoggerLevel.Error)
-            {
-                range.ApplyPropertyValue(TextElement.ForegroundProperty, new SolidColorBrush(Colors.Red));
-                range.ApplyPropertyValue(TextElement.BackgroundProperty, new SolidColorBrush(Colors.Black));
-            }
-            else if (Level == LoggerLevel.Fatil)
-            {
-                range.ApplyPropertyValue(TextElement.ForegroundProperty, new SolidColorBrush(Colors.White));
-                range.ApplyPropertyValue(TextElement.BackgroundProperty, new SolidColorBrush(Colors.DarkRed));
-            }
-            else if (Level == LoggerLevel.Debug)
-            {
-                range.ApplyPropertyValue(TextElement.ForegroundProperty, new SolidColorBrush(Colors.Gray));
-                range.ApplyPropertyValue(TextElement.BackgroundProperty, new SolidColorBrush(Colors.Black));
-            }
-            else if (Level == LoggerLevel.Audit)
-            {
-                range.ApplyPropertyValue(TextElement.ForegroundProperty, new SolidColorBrush(Colors.DarkMagenta));
-                range.ApplyPropertyValue(TextElement.BackgroundProperty, new SolidColorBrush(Colors.Black));
-            }
+                if (Level == LoggerLevel.Info)
+                {
+                    range.ApplyPropertyValue(TextElement.ForegroundProperty, new SolidColorBrush(Colors.Green));
+                    range.ApplyPropertyValue(TextElement.BackgroundProperty, new SolidColorBrush(Colors.Black));
+                }
+                else if (Level == LoggerLevel.Notice)
+                {
+                    range.ApplyPropertyValue(TextElement.ForegroundProperty, new SolidColorBrush(Colors.Blue));
+                    range.ApplyPropertyValue(TextElement.BackgroundProperty, new SolidColorBrush(Colors.Black));
+                }
+                else if (Level == LoggerLevel.Warning)
+                {
+                    range.ApplyPropertyValue(TextElement.ForegroundProperty, new SolidColorBrush(Colors.Yellow));
+                    range.ApplyPropertyValue(TextElement.BackgroundProperty, new SolidColorBrush(Colors.Black));
+                }
+                else if (Level == LoggerLevel.Error)
+                {
+                    range.ApplyPropertyValue(TextElement.ForegroundProperty, new SolidColorBrush(Colors.Red));
+                    range.ApplyPropertyValue(TextElement.BackgroundProperty, new SolidColorBrush(Colors.Black));
+                }
+                else if (Level == LoggerLevel.Fatil)
+                {
+                    range.ApplyPropertyValue(TextElement.ForegroundProperty, new SolidColorBrush(Colors.White));
+                    range.ApplyPropertyValue(TextElement.BackgroundProperty, new SolidColorBrush(Colors.DarkRed));
+                }
+                else if (Level == LoggerLevel.Debug)
+                {
+                    range.ApplyPropertyValue(TextElement.ForegroundProperty, new SolidColorBrush(Colors.Gray));
+                    range.ApplyPropertyValue(TextElement.BackgroundProperty, new SolidColorBrush(Colors.Black));
+                }
+                else if (Level == LoggerLevel.Audit)
+                {
+                    range.ApplyPropertyValue(TextElement.ForegroundProperty, new SolidColorBrush(Colors.DarkMagenta));
+                    range.ApplyPropertyValue(TextElement.BackgroundProperty, new SolidColorBrush(Colors.Black));
+                }
+            }));
 
             try
             {

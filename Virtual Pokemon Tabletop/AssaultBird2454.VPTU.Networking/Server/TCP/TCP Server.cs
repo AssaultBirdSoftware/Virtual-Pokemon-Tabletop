@@ -179,7 +179,11 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
             CommandHandeler = _CommandHandeler;// Sets the Command Callback
 
             if (!CommandHandeler.HasCommandName("Network Command"))
-                CommandHandeler.RegisterCommand<Data.InternalNetworkCommand>("Network Command", Server_Commands);
+            {
+                CommandHandeler.RegisterCommand<Data.InternalNetworkCommand>("Network Command");
+
+                CommandHandeler.GetCommand("Network Command").Command_Executed += Server_Commands;
+            }
         }
 
         #region Server Methods

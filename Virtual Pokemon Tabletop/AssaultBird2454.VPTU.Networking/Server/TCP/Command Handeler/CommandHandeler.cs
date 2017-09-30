@@ -17,7 +17,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.Command_Handeler
     }
     #endregion
     #region Delegates
-    public delegate void CommandEvent(string Command, string Callback = "");
+    public delegate void CommandEvent(string Command);
     #endregion
 
     public class Server_CommandHandeler
@@ -32,11 +32,11 @@ namespace AssaultBird2454.VPTU.Networking.Server.Command_Handeler
         /// </summary>
         public event CommandEvent CommandUnRegistered;
 
-        private Dictionary<string, object> Commands;
+        private Dictionary<string, Command> Commands;
 
         public Server_CommandHandeler()
         {
-            Commands = new Dictionary<string, object>();
+            Commands = new Dictionary<string, Command>();
         }
 
         /// <summary>
@@ -46,15 +46,15 @@ namespace AssaultBird2454.VPTU.Networking.Server.Command_Handeler
         /// <param name="CommandName">The Name of the command</param>
         /// <param name="Callback">A an action or method to execute when this command is executed</param>
         /// <exception cref="CommandNameTakenException"/>
-        public void RegisterCommand<T>(string CommandName, Action<object, TCP_ClientNode> Callback)
+        public void RegisterCommand<T>(string CommandName)
         {
             if (HasCommandName(CommandName))
             {
                 throw new CommandNameTakenException(CommandName);// Command with that name exists, Throw Exception
             }
 
-            Commands.Add(CommandName, new Command(CommandName, typeof(T), Callback));// Add the command to the command list
-            CommandRegistered?.Invoke(CommandName, Callback.ToString());// Fire Event
+            Commands.Add(CommandName, new Command(CommandName, typeof(T)));// Add the command to the command list
+            CommandRegistered?.Invoke(CommandName);// Fire Event
         }
 
         /// <summary>
@@ -75,6 +75,11 @@ namespace AssaultBird2454.VPTU.Networking.Server.Command_Handeler
                 CommandUnRegistered?.Invoke(Name);
             }
             catch { /* Does not exist, dont not matter */ }
+        }
+
+        public Command GetCommand(string Name)
+        {
+            return Commands.First(x => x.Key.ToLower() == Name.ToLower()).Value;
         }
 
         internal void InvokeCommand(string Data, TCP_ClientNode node)

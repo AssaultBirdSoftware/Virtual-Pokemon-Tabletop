@@ -46,7 +46,8 @@ namespace Testing_TCP_Server
             InitializeComponent();
             cmdhand = new Server_CommandHandeler();
 
-            cmdhand.RegisterCommand<MessageData>("Message", CMDHandel);
+            cmdhand.RegisterCommand<MessageData>("Message");
+            cmdhand.GetCommand("Message").Command_Executed += CMDHandel;
         }
 
         private void Start_Click(object sender, RoutedEventArgs e)

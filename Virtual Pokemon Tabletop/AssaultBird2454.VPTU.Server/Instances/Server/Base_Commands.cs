@@ -9,9 +9,6 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
     public class Base_Commands
     {
         ServerInstance Instance;
-        #region Command Classes
-        Commands.Pokedex Pokedex;// Pokedex
-        #endregion
 
         /// <summary>
         /// Creates a new instance of a Base_Commands class for handeling command calls over the network
@@ -19,8 +16,6 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
         public Base_Commands(ServerInstance _Instance)
         {
             Instance = _Instance;
-
-            Pokedex = new Commands.Pokedex(Instance);
         }
 
         /// <summary>
@@ -32,16 +27,23 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
         {
             #region Pokedex
             // Pokemon
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Get_Pokedex_Pokemon>("Get_Pokedex_Pokemon", Pokedex.Get_Pokedex_Pokemon);
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon>("Add_Pokedex_Pokemon", Pokedex.Add_Pokedex_Pokemon);
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon>("Edit_Pokedex_Pokemon", Pokedex.Edit_Pokedex_Pokemon);
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon>("Remove_Pokedex_Pokemon", Pokedex.Remove_Pokedex_Pokemon);
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Get_Pokedex_Pokemon>("Get_Pokedex_Pokemon");
+            CommandHandeler.GetCommand("Get_Pokedex_Pokemon").Command_Executed += new Networking.Server.Command_Handeler.Command_Callback(
+                (object Data, Networking.Server.TCP.TCP_ClientNode Client) => Client.Send(new CommandData.Pokedex.Get_Pokedex_Pokemon()
+                {
+                    Command = "Get_Pokedex_Pokemon",
+                    Pokemon_Dex = Instance.SaveManager.SaveData.PokedexData.Pokemon
+                }));
+
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon>("Add_Pokedex_Pokemon");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon>("Edit_Pokedex_Pokemon");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon>("Remove_Pokedex_Pokemon");
 
             // Moves
-            CommandHandeler.RegisterCommand<string>("Get_Pokedex_Moves", Pokedex.Get_Pokedex_Moves);
-            CommandHandeler.RegisterCommand<string>("Add_Pokedex_Moves", Pokedex.Add_Pokedex_Moves);
-            CommandHandeler.RegisterCommand<string>("Edit_Pokedex_Moves", Pokedex.Edit_Pokedex_Moves);
-            CommandHandeler.RegisterCommand<string>("Remove_Pokedex_Moves", Pokedex.Remove_Pokedex_Moves);
+            CommandHandeler.RegisterCommand<string>("Get_Pokedex_Moves");
+            CommandHandeler.RegisterCommand<string>("Add_Pokedex_Moves");
+            CommandHandeler.RegisterCommand<string>("Edit_Pokedex_Moves");
+            CommandHandeler.RegisterCommand<string>("Remove_Pokedex_Moves");
             #endregion
         }
         public void Unregister_Commands(Networking.Server.Command_Handeler.Server_CommandHandeler CommandHandeler)

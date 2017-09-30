@@ -134,11 +134,11 @@ namespace AssaultBird2454.VPTU.Server.Instances
             #endregion
         }
 
-        private void Server_CommandHandeler_CommandUnRegistered(string Command, string Callback = "")
+        private void Server_CommandHandeler_CommandUnRegistered(string Command)
         {
             ((Class.Logging.I_Logger)Server_Logger).Log("Command Unregistered -> Command: " + Command, Class.Logging.LoggerLevel.Debug);
         }
-        private void Server_CommandHandeler_CommandRegistered(string Command, string Callback = "")
+        private void Server_CommandHandeler_CommandRegistered(string Command)
         {
             ((Class.Logging.I_Logger)Server_Logger).Log("Command Registered -> Command: " + Command, Class.Logging.LoggerLevel.Debug);
         }

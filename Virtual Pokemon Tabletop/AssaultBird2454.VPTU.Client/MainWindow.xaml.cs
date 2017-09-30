@@ -68,6 +68,7 @@ namespace AssaultBird2454.VPTU.Client
             }
 
             InitializeComponent();
+            Client_Pokedex.Reload_Pressed += Pokedex_Reload_Event;
 
             //Dock.LayoutRootPanel.Children.Add();
 
@@ -81,6 +82,15 @@ namespace AssaultBird2454.VPTU.Client
                 }
             }
             #endregion
+        }
+
+        private void Pokedex_Reload_Event()
+        {
+            try
+            {
+                Client_Instance.Client.SendData(new Server.Instances.CommandData.Pokedex.Get_Pokedex_Pokemon());
+            }
+            catch { }
         }
         #endregion
         private void Menu_Menu_Click(object sender, RoutedEventArgs e)
@@ -130,6 +140,10 @@ namespace AssaultBird2454.VPTU.Client
 
         #region Client
         Server.Instances.ClientInstance Client_Instance { get; set; }
+        public void Setup_Command_Links()
+        {
+            Client_Instance.Client_CommandHandeler.GetCommand("Get_Pokedex_Pokemon").Command_Executed += Client_Pokedex.Update_PokedexData;
+        }
         #endregion
 
         #region Open / Close Campaign Session (LAN SESSION)
@@ -163,6 +177,7 @@ namespace AssaultBird2454.VPTU.Client
                 Session_LanServer.StartServerInstance();
 
                 Client_Instance = new Server.Instances.ClientInstance(Client_Console_Pane, IPAddress.Parse("127.0.0.1"));
+                Setup_Command_Links();// Configures callbacks for commands from the server
                 Client_Instance.StartClientInstance();
             }
             else

@@ -84,6 +84,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Class\Controls\Pokedex_Pokemon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Class\ServerConsole\ServerConsole.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -99,6 +103,10 @@
     <Compile Include="Class\Controls\Pokedex.xaml.cs">
       <DependentUpon>Pokedex.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Class\Controls\Pokedex_Pokemon.xaml.cs">
+      <DependentUpon>Pokedex_Pokemon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Class\Controls\Shared.cs" />
     <Compile Include="Class\ServerConsole\ServerConsole.xaml.cs">
       <DependentUpon>ServerConsole.xaml</DependentUpon>
     </Compile>

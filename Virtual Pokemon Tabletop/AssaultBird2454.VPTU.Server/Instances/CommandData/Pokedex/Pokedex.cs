@@ -8,6 +8,11 @@ namespace AssaultBird2454.VPTU.Server.Instances.CommandData.Pokedex
 {
     public class Get_Pokedex_Pokemon : Networking.Data.NetworkCommand
     {
+        public Get_Pokedex_Pokemon()
+        {
+            Command = "Get_Pokedex_Pokemon";
+        }
+
         public string Command { get; set; }
 
         public List<VPTU.Pokedex.Pokemon.PokemonData> Pokemon_Dex { get; set; }
@@ -19,6 +24,5 @@ namespace AssaultBird2454.VPTU.Server.Instances.CommandData.Pokedex
         public string Command { get; set; }
 
         public Opperation Opperation { get; set; }
-        //public 
     }
 }
