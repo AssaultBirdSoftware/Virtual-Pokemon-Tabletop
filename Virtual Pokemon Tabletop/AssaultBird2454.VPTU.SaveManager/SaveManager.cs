@@ -153,7 +153,11 @@ namespace AssaultBird2454.VPTU.SaveManager
                     //Creates a stream to Write data to the entry
                     using (StreamWriter DataWriter = new StreamWriter(entry.Open()))
                     {
-                        DataWriter.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(Object));// Serialises and Writes to file
+                        DataWriter.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(Object, new Newtonsoft.Json.JsonSerializerSettings()
+                        {
+                            Formatting = Newtonsoft.Json.Formatting.Indented,
+                            NullValueHandling = Newtonsoft.Json.NullValueHandling.Include
+                        }));// Serialises and Writes to file
                     }
                 }
             }
