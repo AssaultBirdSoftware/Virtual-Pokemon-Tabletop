@@ -841,6 +841,16 @@ namespace AssaultBird2454.VPTU.SaveEditor
             catch { }
         }
         #endregion
+
+        private void PokedexManager_Export_Pokemon_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void PokedexManager_Export_Moves_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
     /// <summary>

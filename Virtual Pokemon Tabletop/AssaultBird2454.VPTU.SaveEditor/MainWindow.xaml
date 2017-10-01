@@ -134,6 +134,14 @@
                             <RadioButton x:Name="radioButton_Copy1" Content="RadioButton" VerticalAlignment="Top" Margin="0,14.96,0,0"/>
                         </Grid>
                     </GroupBox>
+                    <GroupBox x:Name="PokedexManager_ManageDex_Copy" Grid.Column="1" Header="Import / Export" Margin="10,329,10,0" VerticalAlignment="Top" Height="119">
+                        <Grid Margin="0,0,-2,-12.96">
+                            <Button x:Name="PokedexManager_Export_Pokemon" Content="Pokemon" VerticalAlignment="Top" Click="PokedexManager_Export_Pokemon_Click"/>
+                            <Button x:Name="PokedexManager_Export_Moves" Content="Moves" VerticalAlignment="Top" Margin="0,24.96,0,0" Click="PokedexManager_Export_Moves_Click"/>
+                            <Button x:Name="PokedexManager_Export_Abilities" Content="Abilities" VerticalAlignment="Top" Margin="0,50,0,0"/>
+                            <Button x:Name="PokedexManager_Export_Items" Content="Items" VerticalAlignment="Top" Margin="0,75,0,0"/>
+                        </Grid>
+                    </GroupBox>
                 </Grid>
             </TabItem>
             <TabItem Header="Entity Manager">

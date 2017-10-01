@@ -31,7 +31,7 @@
 
                             </xcad:LayoutAnchorable>
                             <xcad:LayoutAnchorable Title="Pokemon Character">
-                                <Controls:Pokedex_Pokemon />
+                                
                             </xcad:LayoutAnchorable>
                             <xcad:LayoutAnchorable Title="Select Character">
 
@@ -44,6 +44,9 @@
                             </xcad:LayoutAnchorable>
                             <xcad:LayoutAnchorable Title="Pokedex">
                                 <Controls:Pokedex x:Name="Client_Pokedex"/>
+                            </xcad:LayoutAnchorable>
+                            <xcad:LayoutAnchorable Title="Pokedex Entry">
+                                <Controls:Pokedex_Pokemon x:Name="Pokedex_Viewer_Pokemon"/>
                             </xcad:LayoutAnchorable>
                         </xcad:LayoutAnchorablePane>
                         <xcad:LayoutAnchorablePane>

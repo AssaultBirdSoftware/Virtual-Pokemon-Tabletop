@@ -34,8 +34,8 @@
                     <ImageBrush ImageSource="/Client;component/pokeball_B98_icon.ico" Stretch="Uniform"/>
                 </Border.Background>
             </Border>
-            <Label Content="Name: " Grid.Column="2" Grid.Row="1" VerticalAlignment="Top" FontSize="10" Height="23"/>
-            <Label Content="Type: " Grid.Column="2" Margin="0,23,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="10" Height="23"/>
+            <Label x:Name="Basic_Name" Content="Name: " Grid.Column="2" Grid.Row="1" VerticalAlignment="Top" FontSize="10" Height="23"/>
+            <Label x:Name="Basic_Type" Content="Type: " Grid.Column="2" Margin="0,23,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="10" Height="23"/>
             <Label Content="Base Stats" Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" FontSize="10" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.ColumnSpan="2" Height="23" FontWeight="Bold"/>
             <Label x:Name="Stat_HP" Content="HP: 000" Grid.Column="1" Margin="0,23,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="10" Height="23"/>
             <Label x:Name="Stat_Attack" Content="Attack: 000" Grid.Column="1" Margin="0,46,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="10" Height="23"/>
@@ -51,8 +51,8 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Label Content="Size: " Grid.Column="2" Margin="0,46,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="10" Height="23"/>
-            <Label Content="Weight: " Grid.Column="2" Margin="0,69,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="10" Height="23"/>
+            <Label x:Name="Basic_Size" Content="Size: " Grid.Column="2" Margin="0,46,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="10" Height="23"/>
+            <Label x:Name="Basic_Weight" Content="Weight: " Grid.Column="2" Margin="0,69,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="10" Height="23"/>
             <Label Content="Evolutions / Alternate Forms" Grid.Column="4" Grid.Row="2" FontSize="10" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.ColumnSpan="4" Height="23" VerticalAlignment="Top" FontWeight="Bold"/>
             <ListView Grid.Column="4" Margin="0,23,0,0" Grid.Row="2" Grid.ColumnSpan="4">
                 <ListView.View>
@@ -105,12 +105,12 @@
             <Label Content="Teleport: " Grid.Column="6" Grid.Row="4" VerticalAlignment="Top" FontSize="10" Height="23" Margin="0,104,0,0" Grid.ColumnSpan="2"/>
             <Label Content="Nature Walk: " Grid.Column="4" Grid.Row="4" VerticalAlignment="Top" FontSize="10" Height="23" Margin="0,127,0,0"/>
             <Label Content="Breading / Diet Info" Grid.Column="4" Grid.Row="1" VerticalAlignment="Top" FontSize="10" Height="23" Grid.ColumnSpan="4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
-            <Label Content="Male Ratio: 100%" Grid.Column="4" Margin="0,23,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="10" Height="23" Grid.ColumnSpan="2"/>
-            <Label Content="Female Ratio: 100%" Grid.Column="6" Margin="0,23,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="10" Height="23" Grid.ColumnSpan="2"/>
-            <Label Content="Group: Monster / Dragon" Grid.Column="4" Margin="0,46,34,0" Grid.Row="1" VerticalAlignment="Top" FontSize="10" Height="23" Grid.ColumnSpan="3"/>
-            <Label Content="Rate: 500 Days" Grid.Column="6" Margin="26,46,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="10" Height="23" Grid.ColumnSpan="2"/>
-            <Label Content="Habitat: Cave, Mountain" Grid.Column="4" Margin="0,74,34,0" Grid.Row="1" VerticalAlignment="Top" FontSize="10" Height="23" Grid.ColumnSpan="3"/>
-            <Label Content="Diet: Herbivore" Grid.Column="6" Margin="26,74,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="10" Height="23" Grid.ColumnSpan="2"/>
+            <Label x:Name="Breading_Male" Content="Male Ratio: 100%" Grid.Column="4" Margin="0,23,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="10" Height="23" Grid.ColumnSpan="2"/>
+            <Label x:Name="Breading_Female" Content="Female Ratio: 100%" Grid.Column="6" Margin="0,23,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="10" Height="23" Grid.ColumnSpan="2"/>
+            <Label x:Name="Breading_Group" Content="Group: Monster / Dragon" Grid.Column="4" Margin="0,46,34,0" Grid.Row="1" VerticalAlignment="Top" FontSize="10" Height="23" Grid.ColumnSpan="3"/>
+            <Label x:Name="Breading_Rate" Content="Rate: 500 Days" Grid.Column="6" Margin="26,46,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="10" Height="23" Grid.ColumnSpan="2"/>
+            <Label x:Name="Basic_Habitat" Content="Habitat: Cave, Mountain" Grid.Column="4" Margin="0,74,34,0" Grid.Row="1" VerticalAlignment="Top" FontSize="10" Height="23" Grid.ColumnSpan="3"/>
+            <Label x:Name="Basic_Diet" Content="Diet: Herbivore" Grid.Column="6" Margin="26,74,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="10" Height="23" Grid.ColumnSpan="2"/>
 
         </Grid>
     </Grid>

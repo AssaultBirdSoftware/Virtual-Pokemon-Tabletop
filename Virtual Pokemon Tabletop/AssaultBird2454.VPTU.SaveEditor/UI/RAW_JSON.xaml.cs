@@ -64,5 +64,14 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI
             DialogResult = false;
             Close();
         }
+
+        private void Option_Overwrite_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void Option_Overwrite_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

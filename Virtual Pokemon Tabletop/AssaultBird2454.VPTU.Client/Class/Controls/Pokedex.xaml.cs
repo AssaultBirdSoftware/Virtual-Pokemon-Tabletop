@@ -22,6 +22,7 @@ namespace AssaultBird2454.VPTU.Client.Class.Controls
     public partial class Pokedex : UserControl
     {
         public event Button_Pressed Reload_Pressed;
+        public event Pokedex_Entry_Selection_Changed Pokedex_Entry_Selection_Changed_Event;
         List<VPTU.Pokedex.Pokemon.PokemonData> PokemonData { get; set; }
 
         public Pokedex()
@@ -96,6 +97,21 @@ namespace AssaultBird2454.VPTU.Client.Class.Controls
 
                 Reload_List();
             }
+        }
+
+        private void List_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Pokedex_Entry_Type type = Pokedex_Entry_Type.None;
+            if (List.SelectedItem != null)
+            {
+                if (List.SelectedItem is VPTU.Pokedex.Pokemon.PokemonData) { type = Pokedex_Entry_Type.Pokemon; }
+                else if (List.SelectedItem is VPTU.Pokedex.Moves.MoveData) { type = Pokedex_Entry_Type.Move; }
+                else if (List.SelectedItem is VPTU.Pokedex.Abilitys.AbilityData) { type = Pokedex_Entry_Type.Ability; }
+                else if (List.SelectedItem is VPTU.Pokedex.Items.ItemData) { type = Pokedex_Entry_Type.Item; }
+            }
+            else { type = Pokedex_Entry_Type.None; }
+
+            Pokedex_Entry_Selection_Changed_Event?.Invoke(type, List.SelectedItem);
         }
     }
 }

@@ -11,7 +11,7 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="120"/>
         </Grid.ColumnDefinitions>
-        <ListView x:Name="List" Margin="0,25,0,0">
+        <ListView x:Name="List" Margin="0,25,0,0" SelectionChanged="List_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" Width="50px" DisplayMemberBinding="{Binding Species_DexID}"/>

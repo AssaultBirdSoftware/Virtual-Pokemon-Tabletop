@@ -68,7 +68,9 @@ namespace AssaultBird2454.VPTU.Client
             }
 
             InitializeComponent();
+
             Client_Pokedex.Reload_Pressed += Pokedex_Reload_Event;
+            Client_Pokedex.Pokedex_Entry_Selection_Changed_Event += Client_Pokedex_Pokedex_Entry_Selection_Changed_Event;
 
             //Dock.LayoutRootPanel.Children.Add();
 
@@ -82,6 +84,14 @@ namespace AssaultBird2454.VPTU.Client
                 }
             }
             #endregion
+        }
+
+        private void Client_Pokedex_Pokedex_Entry_Selection_Changed_Event(Class.Controls.Pokedex_Entry_Type type, object Data)
+        {
+           if(type == Class.Controls.Pokedex_Entry_Type.Pokemon)
+            {
+                Pokedex_Viewer_Pokemon.Load((Pokedex.Pokemon.PokemonData)Data);
+            }
         }
 
         private void Pokedex_Reload_Event()
