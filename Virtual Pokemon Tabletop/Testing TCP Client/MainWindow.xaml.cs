@@ -30,7 +30,8 @@ namespace Testing_TCP_Client
             InitializeComponent();
             cmdhand = new Client_CommandHandeler();
 
-            cmdhand.RegisterCommand<MessageData>("Message", MessageRecv);
+            cmdhand.RegisterCommand<MessageData>("Message");
+            cmdhand.GetCommand("Message").Command_Executed += MessageRecv;
         }
 
         private void MessageRecv(object Data)

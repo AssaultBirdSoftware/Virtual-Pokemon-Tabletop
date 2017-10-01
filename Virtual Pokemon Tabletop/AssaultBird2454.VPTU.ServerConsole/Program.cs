@@ -8,11 +8,12 @@ namespace AssaultBird2454.VPTU.ServerConsole
 {
     public class Program
     {
-        public static Server.Server.ServerInstance Instance;
+        public static Server.Instances.ServerInstance Instance;
 
         static void Main(string[] args)
         {
-            Instance = new Server.Server.ServerInstance(@"D:\PTU\Saves\PokemonTabletop2.2 - Updated.ptu", new Server.Class.Logging.Logger(true));
+            Instance = new Server.Instances.ServerInstance(@"D:\PTU\Saves\PokemonTabletop2.2 - Updated.ptu", new Server.Class.Logging.Console_Logger(true));
+            Instance.StartServerInstance();
             Console.Read();
         }
     }

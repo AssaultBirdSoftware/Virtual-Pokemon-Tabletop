@@ -12,6 +12,7 @@
         <RichTextBox x:Name="Data_JSON" Margin="0,0,0,34.96">
             <FlowDocument/>
         </RichTextBox>
+        <CheckBox x:Name="Option_Overwrite" Content="Overwrite Import" HorizontalAlignment="Left" Margin="10,410,0,0" VerticalAlignment="Top" Unchecked="Option_Overwrite_Unchecked" Checked="Option_Overwrite_Checked" IsEnabled="False"/>
 
     </Grid>
 </Window>

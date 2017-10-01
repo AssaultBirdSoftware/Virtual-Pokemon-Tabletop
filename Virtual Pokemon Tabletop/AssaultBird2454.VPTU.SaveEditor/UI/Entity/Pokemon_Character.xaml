@@ -78,7 +78,7 @@
                     <Button x:Name="Moves_Remove" Content="Delete Move" HorizontalAlignment="Left" Margin="887,35,0,0" VerticalAlignment="Top" Width="75" Click="Moves_Remove_Click"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Abilities">
+            <TabItem Header="Abilities" IsEnabled="False">
                 <Grid/>
             </TabItem>
             <TabItem Header="Stats" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top">
@@ -154,7 +154,7 @@
                             <Label Content="N / A" HorizontalAlignment="Left" Margin="0,31,0,0" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center" Grid.Column="7" Foreground="Red"/>
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="Base Stats" HorizontalAlignment="Left" Height="172" VerticalAlignment="Top" Width="972" Margin="0,236,0,0">
+                    <GroupBox Header="Evasion Stats" HorizontalAlignment="Left" Height="172" VerticalAlignment="Top" Width="266" Margin="0,236,0,0">
                         <Grid Margin="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="95"/>
@@ -325,9 +325,9 @@
                             <Label x:Name="Status_Volatile_Inflatuation_Value" Content="No Selected Entity" Margin="120,44,59,0" VerticalAlignment="Top" Grid.Row="1" Height="26"/>
                             <Button x:Name="Status_Volatile_Inflatuation_Select" Content="Select" Margin="0,46.8,11.2,0" Grid.Row="1" HorizontalAlignment="Right" Width="44" Height="20" VerticalAlignment="Top" IsEnabled="False" Click="Status_Volatile_Inflatuation_Select_Click"/>
                             <Label Content="Sleep Duration" HorizontalAlignment="Left" Margin="0,75,0,0" VerticalAlignment="Top" Grid.Row="1" Height="26" Width="88"/>
-                            <xctk:IntegerUpDown x:Name="Status_Volatile_Sleep_Duration" Margin="93,75,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Value="0" TextAlignment="Center" Maximum="9999" Minimum="-1" HorizontalAlignment="Left" Width="89" IsEnabled="False"/>
+                            <xctk:IntegerUpDown x:Name="Status_Volatile_Sleep_Duration" Margin="93,75,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Value="0" TextAlignment="Center" Maximum="9999" Minimum="-1" HorizontalAlignment="Left" Width="89" IsEnabled="False" ValueChanged="Status_Volatile_Sleep_Duration_ValueChanged"/>
                             <Label Content="Temp Hit Points" HorizontalAlignment="Left" Margin="0,106,0,0" VerticalAlignment="Top" Grid.Row="1" Height="26" Width="95"/>
-                            <xctk:IntegerUpDown x:Name="Status_Volatile_TemporaryHitPoints_Value" HorizontalAlignment="Left" Margin="100,106,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="89" Value="0" TextAlignment="Center" Maximum="9999" Minimum="0" IsEnabled="False"/>
+                            <xctk:IntegerUpDown x:Name="Status_Volatile_TemporaryHitPoints_Value" HorizontalAlignment="Left" Margin="100,106,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="89" Value="0" TextAlignment="Center" Maximum="9999" Minimum="0" IsEnabled="False" ValueChanged="Status_Volatile_TemporaryHitPoints_Value_ValueChanged"/>
                         </Grid>
                     </GroupBox>
                     <GroupBox Header="Other Status" HorizontalAlignment="Left" Height="437" VerticalAlignment="Top" Width="321" Margin="651,0,0,0">
@@ -337,14 +337,14 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Button x:Name="Status_Other_ClearAll" Content="Clear All" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Grid.Row="1"/>
-                            <CheckBox Content="Fainted" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top"/>
-                            <CheckBox Content="Blindness" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top"/>
-                            <CheckBox Content="Total Blindness" HorizontalAlignment="Left" Margin="0,50,0,0" VerticalAlignment="Top"/>
-                            <CheckBox Content="Slowed" HorizontalAlignment="Left" Margin="0,70,0,0" VerticalAlignment="Top"/>
-                            <CheckBox Content="Stuck" HorizontalAlignment="Left" Margin="0,90,0,0" VerticalAlignment="Top"/>
-                            <CheckBox Content="Trapped" HorizontalAlignment="Left" Margin="0,110,0,0" VerticalAlignment="Top"/>
-                            <CheckBox Content="Tripped" HorizontalAlignment="Left" Margin="0,130,0,0" VerticalAlignment="Top"/>
-                            <CheckBox Content="Vulnerable" HorizontalAlignment="Left" Margin="0,150,0,0" VerticalAlignment="Top"/>
+                            <CheckBox x:Name="Status_Other_Fainted" Content="Fainted" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Checked="Status_Other_Fainted_Checked" Unchecked="Status_Other_Fainted_Unchecked"/>
+                            <CheckBox x:Name="Status_Other_Blindness" Content="Blindness" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" Checked="Status_Other_Blindness_Checked" Unchecked="Status_Other_Blindness_Unchecked"/>
+                            <CheckBox x:Name="Status_Other_TotalBlindness" Content="Total Blindness" HorizontalAlignment="Left" Margin="0,50,0,0" VerticalAlignment="Top" Checked="Status_Other_TotalBlindness_Checked" Unchecked="Status_Other_TotalBlindness_Unchecked"/>
+                            <CheckBox x:Name="Status_Other_Slowed" Content="Slowed" HorizontalAlignment="Left" Margin="0,70,0,0" VerticalAlignment="Top" Checked="Status_Other_Slowed_Checked" Unchecked="Status_Other_Slowed_Unchecked"/>
+                            <CheckBox x:Name="Status_Other_Stuck" Content="Stuck" HorizontalAlignment="Left" Margin="0,90,0,0" VerticalAlignment="Top" Checked="Status_Other_Stuck_Checked" Unchecked="Status_Other_Stuck_Unchecked"/>
+                            <CheckBox x:Name="Status_Other_Trapped" Content="Trapped" HorizontalAlignment="Left" Margin="0,110,0,0" VerticalAlignment="Top" Checked="Status_Other_Trapped_Checked" Unchecked="Status_Other_Trapped_Unchecked"/>
+                            <CheckBox x:Name="Status_Other_Tripped" Content="Tripped" HorizontalAlignment="Left" Margin="0,130,0,0" VerticalAlignment="Top" Checked="Status_Other_Tripped_Checked" Unchecked="Status_Other_Tripped_Unchecked"/>
+                            <CheckBox x:Name="Status_Other_Vulnerable" Content="Vulnerable" HorizontalAlignment="Left" Margin="0,150,0,0" VerticalAlignment="Top" Checked="Status_Other_Vulnerable_Checked" Unchecked="Status_Other_Vulnerable_Unchecked"/>
                             <Label Content="No Options Available for &quot;Other&quot; Status Effects" Margin="10,10,10,0" Grid.Row="1" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
                         </Grid>
                     </GroupBox>

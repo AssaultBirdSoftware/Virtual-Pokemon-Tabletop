@@ -23,11 +23,26 @@
             </MenuItem>
         </Menu>
         <TabControl x:Name="SaveEditor_TabPanel" Margin="0,17.96,0,21.96" IsEnabled="False">
-            <TabItem Header="Overview &amp; Settings" d:IsLocked="True">
+            <TabItem Header="Overview &amp; Settings">
                 <Grid Background="#FFE5E5E5">
-                    <TabControl HorizontalAlignment="Left" Height="611" VerticalAlignment="Top" Width="984">
+                    <TabControl>
                         <TabItem Header="Basic Settings">
-                            <Grid Background="#FFE5E5E5"/>
+                            <Grid x:Name="CD_OverViewSettings_Basic" Background="#FFE5E5E5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition x:Name="CD_OverViewSettings_Basic_1" Width="326"/>
+                                    <ColumnDefinition x:Name="CD_OverViewSettings_Basic_2" Width="326"/>
+                                    <ColumnDefinition x:Name="CD_OverViewSettings_Basic_3" Width="326"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Content="Campaign Name:" HorizontalAlignment="Left" Margin="0,26,0,0" VerticalAlignment="Top"/>
+                                <TextBox x:Name="OverViewSettings_Basic_CampaignName" Height="23" Margin="106,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxLines="1" TextChanged="OverViewSettings_Basic_CampaignName_TextChanged"/>
+                                <Label Content="GM Name:" HorizontalAlignment="Left" Margin="0,54,0,0" VerticalAlignment="Top"/>
+                                <TextBox x:Name="OverViewSettings_Basic_GMName" Height="23" Margin="106,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxLines="1" TextChanged="OverViewSettings_Basic_GMName_TextChanged"/>
+                                <Label Content="Description:" HorizontalAlignment="Left" Margin="0,82,0,0" VerticalAlignment="Top"/>
+                                <TextBox x:Name="OverViewSettings_Basic_Description" Height="208" Margin="106,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="OverViewSettings_Basic_Description_TextChanged"/>
+                                <Label Content="Basic Game Info" Margin="10,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <Label Content="" Margin="10,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="1"/>
+                                <Label Content="" Margin="10,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="2"/>
+                            </Grid>
                         </TabItem>
                         <TabItem Header="Features">
                             <Grid Background="#FFE5E5E5"/>
@@ -38,7 +53,7 @@
                     </TabControl>
                 </Grid>
             </TabItem>
-            <TabItem Header="Resource Manager" d:IsLocked="True">
+            <TabItem Header="Resource Manager">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -119,6 +134,14 @@
                             <RadioButton x:Name="radioButton_Copy1" Content="RadioButton" VerticalAlignment="Top" Margin="0,14.96,0,0"/>
                         </Grid>
                     </GroupBox>
+                    <GroupBox x:Name="PokedexManager_ManageDex_Copy" Grid.Column="1" Header="Import / Export" Margin="10,329,10,0" VerticalAlignment="Top" Height="119">
+                        <Grid Margin="0,0,-2,-12.96">
+                            <Button x:Name="PokedexManager_Export_Pokemon" Content="Pokemon" VerticalAlignment="Top" Click="PokedexManager_Export_Pokemon_Click"/>
+                            <Button x:Name="PokedexManager_Export_Moves" Content="Moves" VerticalAlignment="Top" Margin="0,24.96,0,0" Click="PokedexManager_Export_Moves_Click"/>
+                            <Button x:Name="PokedexManager_Export_Abilities" Content="Abilities" VerticalAlignment="Top" Margin="0,50,0,0"/>
+                            <Button x:Name="PokedexManager_Export_Items" Content="Items" VerticalAlignment="Top" Margin="0,75,0,0"/>
+                        </Grid>
+                    </GroupBox>
                 </Grid>
             </TabItem>
             <TabItem Header="Entity Manager">
@@ -162,13 +185,13 @@
                     </GroupBox>
                     <GroupBox x:Name="PokedexManager_SearchDex1" Grid.Column="1" Header="Search" Margin="10,161,10,0" Height="187" VerticalAlignment="Top">
                         <Grid Margin="0,0,-2,-12.96">
-                            <TextBox x:Name="EntityManager_SearchEntity_Search" Margin="0,0,10,0" TextWrapping="Wrap" VerticalAlignment="Top" UndoLimit="200" TextChanged="PokedexManager_SearchDex_Search_TextChanged"/>
-                            <CheckBox x:Name="EntityManager_SearchEntity_WildPokemon" Content="Wild Pokemon" Margin="0,22.96,0,0" VerticalAlignment="Top" IsChecked="True"/>
-                            <CheckBox x:Name="EntityManager_SearchEntity_PC" Content="Player's Trainers" Margin="0,88,0,0" VerticalAlignment="Top" IsChecked="True"/>
-                            <CheckBox x:Name="EntityManager_SearchEntity_NPC" Content="NPC's Trainers" Margin="0,104,0,0" VerticalAlignment="Top" IsChecked="True"/>
-                            <CheckBox x:Name="EntityManager_SearchEntity_PartyPokemon" Margin="0,53,0,0" VerticalAlignment="Top" Content="Party Pokemon"/>
-                            <CheckBox x:Name="EntityManager_SearchEntity_PlayerPokemon" Content="Player's Pokemon" Margin="0,68,0,0" VerticalAlignment="Top"/>
-                            <CheckBox x:Name="EntityManager_SearchEntity_NPCPokemon" Content="NPC's Pokemon" VerticalAlignment="Top" Margin="0,38,0,0"/>
+                            <TextBox x:Name="EntityManager_SearchEntity_Search" Margin="0,0,10,0" TextWrapping="Wrap" VerticalAlignment="Top" UndoLimit="200" TextChanged="EntityManager_SearchEntity_Search_TextChanged"/>
+                            <CheckBox x:Name="EntityManager_SearchEntity_WildPokemon" Content="Wild Pokemon" Margin="0,22.96,0,0" VerticalAlignment="Top" IsChecked="True" Checked="EntityManager_SearchEntity_WildPokemon_Checked" Unchecked="EntityManager_SearchEntity_WildPokemon_Unchecked"/>
+                            <CheckBox x:Name="EntityManager_SearchEntity_PC" Content="Player's Trainers" Margin="0,88,0,0" VerticalAlignment="Top" IsChecked="True" Checked="EntityManager_SearchEntity_PC_Checked" Unchecked="EntityManager_SearchEntity_PC_Unchecked"/>
+                            <CheckBox x:Name="EntityManager_SearchEntity_NPC" Content="NPC's Trainers" Margin="0,104,0,0" VerticalAlignment="Top" IsChecked="True" Checked="EntityManager_SearchEntity_NPC_Checked" Unchecked="EntityManager_SearchEntity_NPC_Unchecked"/>
+                            <CheckBox x:Name="EntityManager_SearchEntity_PartyPokemon" Margin="0,53,0,0" VerticalAlignment="Top" Content="Party Pokemon" Checked="EntityManager_SearchEntity_PartyPokemon_Checked" Unchecked="EntityManager_SearchEntity_PartyPokemon_Unchecked"/>
+                            <CheckBox x:Name="EntityManager_SearchEntity_PlayerPokemon" Content="Player's Pokemon" Margin="0,68,0,0" VerticalAlignment="Top" Checked="EntityManager_SearchEntity_PlayerPokemon_Checked" Unchecked="EntityManager_SearchEntity_PlayerPokemon_Unchecked"/>
+                            <CheckBox x:Name="EntityManager_SearchEntity_NPCPokemon" Content="NPC's Pokemon" VerticalAlignment="Top" Margin="0,38,0,0" Checked="EntityManager_SearchEntity_NPCPokemon_Checked" Unchecked="EntityManager_SearchEntity_NPCPokemon_Unchecked"/>
                         </Grid>
                     </GroupBox>
                     <GroupBox x:Name="PokedexManager_DisplaySettings1" Grid.Column="1" Header="Display Settings" Margin="10,0,10,10" Height="108.127" VerticalAlignment="Bottom" IsEnabled="False" d:IsLocked="True">
@@ -179,16 +202,16 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem Header="Map Manager" d:IsLocked="True">
+            <TabItem Header="Map Manager">
                 <Grid Background="#FFE5E5E5">
                     <Label x:Name="label" Content="This Tab is in Development..." Foreground="Red" FontSize="72"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Feature Manager" HorizontalAlignment="Left" Height="19.96" VerticalAlignment="Top" d:IsLocked="True">
+            <TabItem Header="Feature Manager" HorizontalAlignment="Left" Height="19.96" VerticalAlignment="Top">
                 <Label x:Name="label_Copy1" Content="This Tab is in Development..." Foreground="Red" FontSize="72"/>
             </TabItem>
         </TabControl>
-        <StatusBar VerticalAlignment="Bottom" d:IsLocked="True">
+        <StatusBar VerticalAlignment="Bottom">
             <StatusBarItem Content="StatusBarItem" VerticalAlignment="Bottom"/>
         </StatusBar>
 

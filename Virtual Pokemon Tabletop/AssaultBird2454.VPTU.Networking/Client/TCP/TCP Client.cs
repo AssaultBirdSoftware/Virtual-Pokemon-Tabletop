@@ -121,7 +121,9 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
 
             try
             {
-                CommandHandeler.RegisterCommand<Data.InternalNetworkCommand>("Network Command", Client_Commands);
+                CommandHandeler.RegisterCommand<Data.InternalNetworkCommand>("Network Command");
+
+                CommandHandeler.GetCommand("Network Command").Command_Executed += Client_Commands;
             }
             catch (Networking.Client.Command_Handeler.CommandNameTakenException e)
             {

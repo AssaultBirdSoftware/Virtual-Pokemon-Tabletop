@@ -21,7 +21,7 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         public string Name { get; set; }
         public string Notes { get; set; }
         public decimal Species_DexID { get; set; }
-        public List<AssaultBird2454.VPTU.BattleManager.Data.Type> PokemonType { get; set; }
+        public List<VPTU.BattleManager.Data.Type> PokemonType { get; set; }
         public int EXP { get; set; }
         [JsonIgnore]
         public int Next_EXP_Requirement
@@ -1021,8 +1021,11 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
             if (Status == null)
                 Status = new List<KeyValuePair<BattleManager.Data.Status_Afflictions, object>>();
 
-            RemoveStatus(Effect);
-            AddStatus(Effect, Effect_Data);
+            if (HasStatus(Effect))
+            {
+                RemoveStatus(Effect);
+                AddStatus(Effect, Effect_Data);
+            }
         }
         public bool HasStatus(BattleManager.Data.Status_Afflictions Effect)
         {

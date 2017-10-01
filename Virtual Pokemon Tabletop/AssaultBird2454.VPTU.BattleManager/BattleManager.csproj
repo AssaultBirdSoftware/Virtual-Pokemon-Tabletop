@@ -65,6 +65,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Battle Instance\Instance.cs" />
     <Compile Include="BattleEffect\Data\Action.cs" />
     <Compile Include="BattleEffect\Data\Actions\AddStatusEffect.cs" />
     <Compile Include="BattleEffect\Data\Actions\HasStatus.cs" />
@@ -95,7 +96,6 @@
     <Compile Include="BattleEffect\EffectFunction.cs" />
     <Compile Include="BattleManager.cs" />
     <Compile Include="Data\Data.cs" />
-    <Compile Include="Entity\Effects.cs" />
     <Compile Include="ProjectInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

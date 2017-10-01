@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace AssaultBird2454.VPTU.Networking.Client.Command_Handeler
 {
+    public delegate void Command_Callback(object Data);
+
     public class Command
     {
         /// <summary>
@@ -13,17 +15,15 @@ namespace AssaultBird2454.VPTU.Networking.Client.Command_Handeler
         /// </summary>
         /// <param name="_Name">Command Name</param>
         /// <param name="T">Command Data Type</param>
-        /// <param name="_Callback">Callback</param>
-        public Command(string _Name, Type T, Action<object> _Callback)
+        public Command(string _Name, Type T)
         {
             Name = _Name;// Command Name
             DataType = T;// Command Data type
-            Callback = _Callback;// Callback
         }
 
         public string Name { get; set; }// Command Name
         public Type DataType { get; set; }// Command Data Type
-        private Action<object> Callback { get; set; }// Callback
+        public event Command_Callback Command_Executed;
 
         /// <summary>
         /// Invokes the callback
@@ -31,7 +31,7 @@ namespace AssaultBird2454.VPTU.Networking.Client.Command_Handeler
         /// <param name="Data">The Data to send the callback</param>
         internal void Invoke(object Data)
         {
-            Callback.Invoke(Data);// Invokes the callback
+            Command_Executed?.Invoke(Data);// Invokes the callback
         }
     }
 }
