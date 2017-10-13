@@ -1037,7 +1037,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
 
         private void Moves_Add_Click(object sender, RoutedEventArgs e)
         {
-            UI.Pokedex.Select.Select_Move Move = new Pokedex.Select.Select_Move(Manager, Manager.SaveData.PokedexData.Pokemon.First(x => x.Species_DexID == PokemonData.Species_DexID));
+            UI.Pokedex.Select.Select_Move Move = new Pokedex.Select.Select_Move(Manager.SaveData.PokedexData, Manager.SaveData.PokedexData.Pokemon.First(x => x.Species_DexID == PokemonData.Species_DexID));
             bool? pass = Move.ShowDialog();
 
             if (pass == true)
@@ -1064,7 +1064,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
 
         private void Change_Species_Click(object sender, RoutedEventArgs e)
         {
-            UI.Pokedex.Select.Select_Pokemon pokemon = new Pokedex.Select.Select_Pokemon(Manager);
+            UI.Pokedex.Select.Select_Pokemon pokemon = new Pokedex.Select.Select_Pokemon(Manager.SaveData.PokedexData);
             bool? pass = pokemon.ShowDialog();
 
             if (pass == true)

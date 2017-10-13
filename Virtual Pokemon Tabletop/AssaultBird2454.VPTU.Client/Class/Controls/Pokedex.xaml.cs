@@ -23,14 +23,15 @@ namespace AssaultBird2454.VPTU.Client.Class.Controls
     {
         public event Button_Pressed Reload_Pressed;
         public event Pokedex_Entry_Selection_Changed Pokedex_Entry_Selection_Changed_Event;
-        List<VPTU.Pokedex.Pokemon.PokemonData> PokemonData { get; set; }
+        VPTU.Pokedex.Save_Data.Pokedex PokedexData = new VPTU.Pokedex.Save_Data.Pokedex();
 
         public Pokedex()
         {
             InitializeComponent();
-            PokemonData = new List<VPTU.Pokedex.Pokemon.PokemonData>();
+            PokedexData = new VPTU.Pokedex.Save_Data.Pokedex(true);
         }
 
+        #region List & Searching
         private void Tools_Reload_Click(object sender, RoutedEventArgs e)
         {
             List.Dispatcher.Invoke(new Action(() => List.Items.Clear()));
@@ -39,7 +40,7 @@ namespace AssaultBird2454.VPTU.Client.Class.Controls
 
         public void Update_Pokemon_List(List<VPTU.Pokedex.Pokemon.PokemonData> _PokemonData)
         {
-            PokemonData = _PokemonData;
+            PokedexData.Pokemon = _PokemonData;
 
             Reload_List();
         }
@@ -63,7 +64,7 @@ namespace AssaultBird2454.VPTU.Client.Class.Controls
                     #region Pokemon
                     if (Search_Pokemon.IsChecked == true)
                     {
-                        foreach (VPTU.Pokedex.Pokemon.PokemonData pokemon in PokemonData)
+                        foreach (VPTU.Pokedex.Pokemon.PokemonData pokemon in PokedexData.Pokemon)
                         {
                             if (pokemon.Species_Name.ToLower().Contains(Search_Name.Text.ToLower()))
                             {
@@ -78,7 +79,7 @@ namespace AssaultBird2454.VPTU.Client.Class.Controls
             Search_Thread.Start();
         }
 
-        internal void Update_PokedexData(object Data)
+        public void Update_PokedexData(object Data)
         {
             if (Data is Server.Instances.CommandData.Pokedex.Get_Pokedex_Pokemon)
             {
@@ -91,12 +92,22 @@ namespace AssaultBird2454.VPTU.Client.Class.Controls
 
                 try
                 {
-                    PokemonData = ((Server.Instances.CommandData.Pokedex.Get_Pokedex_Pokemon)Data).Pokemon_Dex;
+                    PokedexData.Pokemon = ((Server.Instances.CommandData.Pokedex.Get_Pokedex_Pokemon)Data).Pokemon_Dex;
                 }
                 catch { }
 
                 Reload_List();
             }
+        }
+
+        private void Search_Name_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Reload_List();
+        }
+
+        private void Search_Options_Changed(object sender, RoutedEventArgs e)
+        {
+            Reload_List();
         }
 
         private void List_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -112,6 +123,18 @@ namespace AssaultBird2454.VPTU.Client.Class.Controls
             else { type = Pokedex_Entry_Type.None; }
 
             Pokedex_Entry_Selection_Changed_Event?.Invoke(type, List.SelectedItem);
+        }
+        #endregion
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            SaveEditor.UI.Pokedex.Pokemon pokemon = new SaveEditor.UI.Pokedex.Pokemon(PokedexData);
+            bool? pass = pokemon.ShowDialog();
+
+            if(pass == true)
+            {
+                // Updated Pokedex Entry
+            }
         }
     }
 }

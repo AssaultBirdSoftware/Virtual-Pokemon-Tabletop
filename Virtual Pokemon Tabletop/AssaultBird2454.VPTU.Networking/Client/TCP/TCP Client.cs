@@ -143,7 +143,7 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
                 }
                 else if (Data.Response == Networking.Data.ResponseCode.Avaliable)
                 {
-                    SslStream sslStream = new SslStream(Client.GetStream(), true, new RemoteCertificateValidationCallback(ValidateCert));
+                    SslStream sslStream = new SslStream(Client.GetStream(), true, ValidateCert);
                     StateObject.SSL = sslStream;
                     //new SslStream(Client.GetStream(), true, new RemoteCertificateValidationCallback(ValidateCert), null, EncryptionPolicy.RequireEncryption);
                     SendData(new Data.InternalNetworkCommand(Networking.Data.Commands.SSL_Enable, Networking.Data.ResponseCode.Ready));

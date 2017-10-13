@@ -24,14 +24,14 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Select
         /// The Move Data that was selected
         /// </summary>
         public VPTU.Pokedex.Moves.MoveData Selected_Move;
-        private SaveManager.SaveManager SaveManager;
+        private VPTU.Pokedex.Save_Data.Pokedex Pokedex;
 
         private List<VPTU.Pokedex.Pokemon.Link_Moves> Obtainable_Moves;
         private bool SearchPokemon = true;
 
-        public Select_Move(SaveManager.SaveManager _SaveManager, VPTU.Pokedex.Pokemon.PokemonData _Pokemon = null)
+        public Select_Move(VPTU.Pokedex.Save_Data.Pokedex _Pokedex, VPTU.Pokedex.Pokemon.PokemonData _Pokemon = null)
         {
-            SaveManager = _SaveManager;
+            Pokedex = _Pokedex;
 
             if (_Pokemon != null)
             {
@@ -87,7 +87,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Select
         {
             this.Dispatcher.Invoke(new Action(() => Moves.Items.Clear()));
 
-            foreach (VPTU.Pokedex.Moves.MoveData data in SaveManager.SaveData.PokedexData.Moves)
+            foreach (VPTU.Pokedex.Moves.MoveData data in Pokedex.Moves)
             {
                 if (data.Name.ToLower().Contains(SearchName.ToLower()))
                 {

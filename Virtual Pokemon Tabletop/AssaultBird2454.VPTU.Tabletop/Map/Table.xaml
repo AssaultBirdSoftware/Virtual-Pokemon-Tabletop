@@ -8,11 +8,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <Canvas x:Name="Layer_Background"/>
-        <Canvas x:Name="Layer_Objects"/>
-        <Canvas x:Name="Layer_Tokens"/>
-        <Canvas x:Name="Layer_GM_Info"/>
-        <Canvas x:Name="Fog"/>
-        <Canvas x:Name="Dynamic_Lighting"/>
+        <Viewport3D x:Name="_Table">
+
+        </Viewport3D>
     </Grid>
 </UserControl>

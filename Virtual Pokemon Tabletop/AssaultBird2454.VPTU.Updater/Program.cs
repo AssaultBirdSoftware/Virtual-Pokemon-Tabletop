@@ -199,7 +199,7 @@ namespace AssaultBird2454.VPTU.Updater
         {
             try
             {
-                string url = "http://vptu.assaultbirdsoftware.me/Updater/LatestVersion.json";
+                string url = "http://www.virtual-ptu.com/api/Updater/Latest";
                 LatestVersion = Newtonsoft.Json.JsonConvert.DeserializeObject<Data>((new WebClient()).DownloadString(url));
 
                 #region Get Version (Latest)

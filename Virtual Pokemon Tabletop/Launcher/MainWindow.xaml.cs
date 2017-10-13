@@ -15,7 +15,7 @@ namespace Launcher
         /// <summary>
         /// Settings Class
         /// </summary>
-        Settings VPTU_Settings;
+        private Settings VPTU_Settings;
         /// <summary>
         /// Assembly Directory
         /// </summary>
@@ -119,7 +119,7 @@ namespace Launcher
 
             if (Directory.Exists(AssemblyDirectory + "\\Updater"))
             {
-                foreach(string file in Directory.GetFiles(AssemblyDirectory + "\\Updater"))
+                foreach (string file in Directory.GetFiles(AssemblyDirectory + "\\Updater"))
                 {
                     File.Delete(file);
                 }
@@ -128,24 +128,40 @@ namespace Launcher
 
             InitializeComponent();
 
-            if (File.Exists(ConfigFile_Directory))
+            try
             {
-                VPTU_Settings = Newtonsoft.Json.JsonConvert.DeserializeObject<Settings>(File.ReadAllText(ConfigFile_Directory));// Loads the settings file
+                if (File.Exists(ConfigFile_Directory))
+                {
+                    VPTU_Settings = Newtonsoft.Json.JsonConvert.DeserializeObject<Settings>(File.ReadAllText(ConfigFile_Directory));// Loads the settings file
+                }
+                else
+                {
+                    VPTU_Settings = new Settings();// Creates a settings class
+
+                    FileStream fs = new FileStream(ConfigFile_Directory, FileMode.OpenOrCreate);
+                    StreamWriter wr = new StreamWriter(fs);
+
+                    string str = Newtonsoft.Json.JsonConvert.SerializeObject(VPTU_Settings);
+                    wr.WriteLine(str);
+                    wr.Flush();
+                    wr.Dispose();
+                    fs.Dispose();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                VPTU_Settings = new Settings();// Creates a settings class
+
             }
 
-            Update.AutoUpdater.CheckForUpdates();// Check for updates
+            Update.AutoUpdater.CheckForUpdates(VPTU_Settings.Updater_Streams);// Check for updates
 
-            NoticeHandel = new Notice.MessageHandeler();// Creates a Notice Class
-            NoticeHandel.GetMessages(this);// Gets the notices and loads them
+            //NoticeHandel = new Notice.MessageHandeler();// Creates a Notice Class
+            //NoticeHandel.GetMessages(this);// Gets the notices and loads them
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         /// <summary>
