@@ -83,5 +83,9 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
         public List<SoundSystem.SaveData.AudioData> AudioResources;
         public List<Resource_Data.Resources> ImageResources;
         #endregion
+
+        #region Settings
+
+        #endregion
     }
 }

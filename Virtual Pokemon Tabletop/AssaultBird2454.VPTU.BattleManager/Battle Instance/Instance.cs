@@ -9,5 +9,15 @@ namespace AssaultBird2454.VPTU.BattleManager.Battle_Instance
     public class Instance
     {
         //public 
+
+        public void Begin()
+        {
+
+        }
+
+        public void End()
+        {
+
+        }
     }
 }

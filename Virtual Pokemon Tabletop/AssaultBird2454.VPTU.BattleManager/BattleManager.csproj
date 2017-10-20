@@ -37,6 +37,8 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -65,7 +67,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Battle Instance\Battle_Logger.xaml.cs">
+      <DependentUpon>Battle_Logger.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Battle Instance\Instance.cs" />
+    <Compile Include="Battle Instance\Logger\Move_Executed.xaml.cs">
+      <DependentUpon>Move_Executed.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BattleEffect\Data\Action.cs" />
     <Compile Include="BattleEffect\Data\Actions\AddStatusEffect.cs" />
     <Compile Include="BattleEffect\Data\Actions\HasStatus.cs" />
@@ -112,6 +120,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Battle Instance\Battle_Logger.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Battle Instance\Logger\Move_Executed.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BattleEffect\Data\Actions\UI\HasStatus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -132,6 +148,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UI\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

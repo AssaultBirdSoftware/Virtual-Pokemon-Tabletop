@@ -6,111 +6,79 @@
              xmlns:local="clr-namespace:AssaultBird2454.VPTU.Client.Class.Controls"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="AssaultBird2454.VPTU.Client.Class.Controls.Pokedex_Pokemon"
              mc:Ignorable="d" Width="450" Height="587" MaxWidth="450" MaxHeight="587" ScrollViewer.HorizontalScrollBarVisibility="Visible">
+    <UserControl.Background>
+        <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/Blank Card.jpg"/>
+    </UserControl.Background>
     <Grid ScrollViewer.HorizontalScrollBarVisibility="Visible">
         <Grid MinWidth="450" MinHeight="587" MaxWidth="450" MaxHeight="587" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="10"/>
-                <RowDefinition Height="105"/>
-                <RowDefinition Height="107"/>
-                <RowDefinition Height="178"/>
-                <RowDefinition Height="178"/>
-                <RowDefinition Height="7"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="105"/>
-                <ColumnDefinition Width="105"/>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="67"/>
-                <ColumnDefinition Width="38"/>
-                <ColumnDefinition Width="60"/>
-                <ColumnDefinition Width="45"/>
-                <ColumnDefinition Width="9"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" Height="105" VerticalAlignment="Top" Grid.Row="1">
+            <Border x:Name="Basic_Image" BorderThickness="1" Margin="300,14,15,438">
                 <Border.Background>
                     <ImageBrush ImageSource="/Client;component/pokeball_B98_icon.ico" Stretch="Uniform"/>
                 </Border.Background>
             </Border>
-            <Label x:Name="Basic_Name" Content="Name: " Grid.Column="2" Grid.Row="1" VerticalAlignment="Top" FontSize="10" Height="23"/>
-            <Label x:Name="Basic_Type" Content="Type: " Grid.Column="2" Margin="0,23,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="10" Height="23"/>
-            <Label Content="Base Stats" Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" FontSize="10" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.ColumnSpan="2" Height="23" FontWeight="Bold"/>
-            <Label x:Name="Stat_HP" Content="HP: 000" Grid.Column="1" Margin="0,23,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="10" Height="23"/>
-            <Label x:Name="Stat_Attack" Content="Attack: 000" Grid.Column="1" Margin="0,46,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="10" Height="23"/>
-            <Label x:Name="Stat_Defence" Content="Defence: 000" Grid.Column="1" Margin="0,69,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="10" Height="23"/>
-            <Label x:Name="Stat_SpAttack" Content="Sp. Attack: 000" Grid.Column="2" Margin="0,23,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="10" Height="23"/>
-            <Label x:Name="Stat_SpDefence" Content="Sp. Defence: 000" Grid.Column="2" Margin="0,46,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="10" Height="23"/>
-            <Label x:Name="Stat_Speed" Content="Speed: 000" Grid.Column="2" Margin="0,69,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="10" Height="23"/>
-            <Label Content="Abilities" Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" FontSize="10" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.ColumnSpan="2" Height="23" FontWeight="Bold"/>
-            <ListView Grid.Column="1" Margin="0,23,0,0" Grid.Row="3" Grid.ColumnSpan="2">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <Label x:Name="Basic_Size" Content="Size: " Grid.Column="2" Margin="0,46,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="10" Height="23"/>
-            <Label x:Name="Basic_Weight" Content="Weight: " Grid.Column="2" Margin="0,69,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="10" Height="23"/>
-            <Label Content="Evolutions / Alternate Forms" Grid.Column="4" Grid.Row="2" FontSize="10" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.ColumnSpan="4" Height="23" VerticalAlignment="Top" FontWeight="Bold"/>
-            <ListView Grid.Column="4" Margin="0,23,0,0" Grid.Row="2" Grid.ColumnSpan="4">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <Label Content="Moves" Grid.Column="1" Grid.Row="4" VerticalAlignment="Top" FontSize="10" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.ColumnSpan="2" Height="23" FontWeight="Bold"/>
-            <ListView Grid.Column="1" Margin="0,23,0,0" Grid.Row="4" Grid.ColumnSpan="2">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <Label Content="Skills &amp; Capabilities" Grid.Column="4" Grid.Row="3" VerticalAlignment="Top" FontSize="10" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.ColumnSpan="4" Height="23" FontWeight="Bold"/>
-            <Label Content="Acrobatics: " Grid.Column="4" Grid.Row="3" VerticalAlignment="Top" FontSize="10" Height="23" Margin="0,23,0,0"/>
-            <Label Content="Athletics: " Grid.Column="4" Grid.Row="3" VerticalAlignment="Top" FontSize="10" Height="23" Margin="0,46,0,0"/>
-            <Label Content="Combat: " Grid.Column="4" Grid.Row="3" VerticalAlignment="Top" FontSize="10" Height="23" Margin="0,69,0,0"/>
-            <Label Content="Intimidate: " Grid.Column="4" Grid.Row="3" VerticalAlignment="Top" FontSize="10" Height="23" Margin="0,92,0,0"/>
-            <Label Content="Stealth: " Grid.Column="4" Grid.Row="3" VerticalAlignment="Top" FontSize="10" Height="23" Margin="0,115,0,0"/>
-            <Label Content="Survival: " Grid.Column="4" Grid.Row="3" VerticalAlignment="Top" FontSize="10" Height="23" Margin="0,138,0,0"/>
-            <Label Content="Perception: " Grid.Column="4" Grid.Row="3" VerticalAlignment="Top" FontSize="10" Height="23" Margin="0,162,0,0" Grid.RowSpan="2"/>
-            <Label Content="Focus: " Grid.Column="4" Grid.Row="4" VerticalAlignment="Top" FontSize="10" Height="23" Margin="0,7,0,0"/>
-
-            <xctk:DecimalUpDown x:Name="Skill_Acrobatics_Mod" Grid.Column="7" VerticalAlignment="Top" Value="0" TextAlignment="Center" Grid.Row="3" Height="23" Margin="0,23,0,0"/>
-            <xctk:DecimalUpDown x:Name="Skill_Acrobatics_Mod_Copy" Grid.Column="7" Margin="0,46,0,0" VerticalAlignment="Top" Value="0" TextAlignment="Center" Grid.Row="3" Height="23"/>
-            <xctk:DecimalUpDown x:Name="Skill_Acrobatics_Mod_Copy1" Grid.Column="7" Margin="0,69,0,0" VerticalAlignment="Top" Value="0" TextAlignment="Center" Grid.Row="3" Height="23"/>
-            <xctk:DecimalUpDown x:Name="Skill_Acrobatics_Mod_Copy2" Grid.Column="7" Margin="0,92,0,0" VerticalAlignment="Top" Value="0" TextAlignment="Center" Grid.Row="3" Height="23"/>
-            <xctk:DecimalUpDown x:Name="Skill_Acrobatics_Mod_Copy3" Grid.Column="7" Margin="0,115,0,0" VerticalAlignment="Top" Value="0" TextAlignment="Center" Grid.Row="3" Height="23"/>
-            <xctk:DecimalUpDown x:Name="Skill_Acrobatics_Mod_Copy4" Grid.Column="7" Margin="0,138,0,0" VerticalAlignment="Top" Value="0" TextAlignment="Center" Grid.Row="3" Height="23"/>
-            <xctk:DecimalUpDown x:Name="Skill_Acrobatics_Mod_Copy5" Grid.Column="7" Margin="0,162,0,0" VerticalAlignment="Top" Value="0" TextAlignment="Center" Grid.Row="3" Height="23" Grid.RowSpan="2"/>
-            <xctk:DecimalUpDown x:Name="Skill_Acrobatics_Mod_Copy6" Grid.Column="7" Margin="0,7,0,0" VerticalAlignment="Top" Value="0" TextAlignment="Center" Grid.Row="4" Height="23"/>
-            <ComboBox x:Name="Skill_Acrobatics_Rank" Grid.Column="5" Margin="0,23,0,0" VerticalAlignment="Top" Height="23" Grid.Row="3" Grid.ColumnSpan="2"/>
-            <ComboBox x:Name="Skill_Acrobatics_Rank_Copy" Grid.Column="5" Margin="0,46,0,0" VerticalAlignment="Top" Height="23" Grid.Row="3" Grid.ColumnSpan="2"/>
-            <ComboBox x:Name="Skill_Acrobatics_Rank_Copy1" Grid.Column="5" Margin="0,69,0,0" VerticalAlignment="Top" Height="23" Grid.Row="3" Grid.ColumnSpan="2"/>
-            <ComboBox x:Name="Skill_Acrobatics_Rank_Copy2" Grid.Column="5" Margin="0,92,0,0" VerticalAlignment="Top" Height="23" Grid.Row="3" Grid.ColumnSpan="2"/>
-            <ComboBox x:Name="Skill_Acrobatics_Rank_Copy3" Grid.Column="5" Margin="0,115,0,0" VerticalAlignment="Top" Height="23" Grid.Row="3" Grid.ColumnSpan="2"/>
-            <ComboBox x:Name="Skill_Acrobatics_Rank_Copy4" Grid.Column="5" Margin="0,138,0,0" VerticalAlignment="Top" Height="23" Grid.Row="3" Grid.ColumnSpan="2"/>
-            <ComboBox x:Name="Skill_Acrobatics_Rank_Copy5" Grid.Column="5" Margin="0,162,0,0" VerticalAlignment="Top" Height="23" Grid.Row="3" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
-            <ComboBox x:Name="Skill_Acrobatics_Rank_Copy6" Grid.Column="5" Margin="0,7,0,0" VerticalAlignment="Top" Height="23" Grid.Row="4" Grid.ColumnSpan="2"/>
-            <Label Content="Overland: " Grid.Column="4" Grid.Row="4" VerticalAlignment="Top" FontSize="10" Height="23" Margin="0,35,0,0" Grid.ColumnSpan="2"/>
-            <Label Content="Burrow: " Grid.Column="4" Grid.Row="4" VerticalAlignment="Top" FontSize="10" Height="23" Margin="0,58,0,0" Grid.ColumnSpan="2"/>
-            <Label Content="Swim: " Grid.Column="4" Grid.Row="4" VerticalAlignment="Top" FontSize="10" Height="23" Margin="0,81,0,0" Grid.ColumnSpan="2"/>
-            <Label Content="Sky: " Grid.Column="4" Grid.Row="4" VerticalAlignment="Top" FontSize="10" Height="23" Margin="0,104,0,0" Grid.ColumnSpan="2"/>
-            <Label Content="Jump (L): " Grid.Column="6" Grid.Row="4" VerticalAlignment="Top" FontSize="10" Height="23" Margin="0,35,0,0" Grid.ColumnSpan="2"/>
-            <Label Content="Jump (H): " Grid.Column="6" Grid.Row="4" VerticalAlignment="Top" FontSize="10" Height="23" Margin="0,58,0,0" Grid.ColumnSpan="2"/>
-            <Label Content="Levitate: " Grid.Column="6" Grid.Row="4" VerticalAlignment="Top" FontSize="10" Height="23" Margin="0,81,0,0" Grid.ColumnSpan="2"/>
-            <Label Content="Teleport: " Grid.Column="6" Grid.Row="4" VerticalAlignment="Top" FontSize="10" Height="23" Margin="0,104,0,0" Grid.ColumnSpan="2"/>
-            <Label Content="Nature Walk: " Grid.Column="4" Grid.Row="4" VerticalAlignment="Top" FontSize="10" Height="23" Margin="0,127,0,0"/>
-            <Label Content="Breading / Diet Info" Grid.Column="4" Grid.Row="1" VerticalAlignment="Top" FontSize="10" Height="23" Grid.ColumnSpan="4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
-            <Label x:Name="Breading_Male" Content="Male Ratio: 100%" Grid.Column="4" Margin="0,23,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="10" Height="23" Grid.ColumnSpan="2"/>
-            <Label x:Name="Breading_Female" Content="Female Ratio: 100%" Grid.Column="6" Margin="0,23,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="10" Height="23" Grid.ColumnSpan="2"/>
-            <Label x:Name="Breading_Group" Content="Group: Monster / Dragon" Grid.Column="4" Margin="0,46,34,0" Grid.Row="1" VerticalAlignment="Top" FontSize="10" Height="23" Grid.ColumnSpan="3"/>
-            <Label x:Name="Breading_Rate" Content="Rate: 500 Days" Grid.Column="6" Margin="26,46,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="10" Height="23" Grid.ColumnSpan="2"/>
-            <Label x:Name="Basic_Habitat" Content="Habitat: Cave, Mountain" Grid.Column="4" Margin="0,74,34,0" Grid.Row="1" VerticalAlignment="Top" FontSize="10" Height="23" Grid.ColumnSpan="3"/>
-            <Label x:Name="Basic_Diet" Content="Diet: Herbivore" Grid.Column="6" Margin="26,74,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="10" Height="23" Grid.ColumnSpan="2"/>
+            <Label x:Name="Basic_Name" Content="Mega Charizard Y" VerticalAlignment="Top" FontSize="20" Height="39" HorizontalAlignment="Left" Width="185" Margin="15,17,0,0" VerticalContentAlignment="Center"/>
+            <Label x:Name="Evolution_2_Condition" Content="10+" Margin="256,132,0,0" VerticalAlignment="Top" FontSize="10" Height="18" HorizontalAlignment="Left" Width="34" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0"/>
+            <Label x:Name="Basic_Height" Content="Height" Margin="108,440,0,0" VerticalAlignment="Top" FontSize="10" Height="19" HorizontalAlignment="Left" Width="306" Padding="5,0" VerticalContentAlignment="Center"/>
+            <Label x:Name="Basic_Weight" Content="Weight" Margin="108,462,0,0" VerticalAlignment="Top" FontSize="10" Height="19" HorizontalAlignment="Left" Width="306" VerticalContentAlignment="Center" Padding="5,0"/>
+            <Label x:Name="Evolution_1_Condition" Content="10+" Margin="256,110,0,0" VerticalAlignment="Top" FontSize="10" Height="18" HorizontalAlignment="Left" Width="34" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0"/>
+            <Label x:Name="Stats_Base_HP" Content="10+" Margin="115,110,0,0" VerticalAlignment="Top" FontSize="10" Height="19" HorizontalAlignment="Left" Width="28" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0"/>
+            <Label x:Name="Stats_Base_Attack" Content="10+" Margin="115,131,0,0" VerticalAlignment="Top" FontSize="10" Height="19" HorizontalAlignment="Left" Width="28" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0"/>
+            <Label x:Name="Stats_Base_Defence" Content="10+" Margin="115,152,0,0" VerticalAlignment="Top" FontSize="10" Height="19" HorizontalAlignment="Left" Width="28" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0"/>
+            <Label x:Name="Stats_Base_SpAttack" Content="10+" Margin="115,174,0,0" VerticalAlignment="Top" FontSize="10" Height="19" HorizontalAlignment="Left" Width="28" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0"/>
+            <Label x:Name="Stats_Base_SpDefence" Content="10+" Margin="115,195,0,0" VerticalAlignment="Top" FontSize="10" Height="19" HorizontalAlignment="Left" Width="28" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0"/>
+            <Label x:Name="Stats_Base_Speed" Content="10+" Margin="115,217,0,0" VerticalAlignment="Top" FontSize="10" Height="19" HorizontalAlignment="Left" Width="28" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0"/>
+            <Label x:Name="Skill_Athl" Content="10+" Margin="106,276,0,0" VerticalAlignment="Top" FontSize="10" Height="19" HorizontalAlignment="Left" Width="43" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0"/>
+            <Label x:Name="Skill_Acro" Content="10+" Margin="106,297,0,0" VerticalAlignment="Top" FontSize="10" Height="19" HorizontalAlignment="Left" Width="43" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0"/>
+            <Label x:Name="Skill_Combat" Content="10+" Margin="106,318,0,0" VerticalAlignment="Top" FontSize="10" Height="19" HorizontalAlignment="Left" Width="43" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0"/>
+            <Label x:Name="Skill_Stealth" Content="10+" Margin="106,340,0,0" VerticalAlignment="Top" FontSize="10" Height="19" HorizontalAlignment="Left" Width="43" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0"/>
+            <Label x:Name="Skill_Percep" Content="10+" Margin="106,361,0,0" VerticalAlignment="Top" FontSize="10" Height="19" HorizontalAlignment="Left" Width="43" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0"/>
+            <Label x:Name="Skill_Focus" Content="10+" Margin="106,383,0,0" VerticalAlignment="Top" FontSize="10" Height="19" HorizontalAlignment="Left" Width="43" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0"/>
+            <Label x:Name="Basic_Diet" Content="Diet" Margin="108,483,0,0" VerticalAlignment="Top" FontSize="10" Height="19" HorizontalAlignment="Left" Width="306" Padding="5,0" VerticalContentAlignment="Center"/>
+            <Label x:Name="Basic_Habitat_1" Content="Habitat" Margin="108,505,0,0" VerticalAlignment="Top" FontSize="10" Height="19" HorizontalAlignment="Left" Width="306" VerticalContentAlignment="Center" Padding="5,0"/>
+            <Label x:Name="Basic_Habitat_2" Content="Habitat 2" Margin="108,526,0,0" VerticalAlignment="Top" FontSize="10" Height="19" HorizontalAlignment="Left" Width="306" VerticalContentAlignment="Center" Padding="5,0"/>
+            <Label x:Name="Breed_Gender_Ratio" Content="100% M / 100% F" Margin="290,321,0,0" VerticalAlignment="Top" FontSize="10" Height="19" HorizontalAlignment="Left" Width="129" VerticalContentAlignment="Center" Padding="5,0"/>
+            <Label x:Name="Breed_EggGroups_1" Content="Egg Group" Margin="290,342,0,0" VerticalAlignment="Top" FontSize="10" Height="19" HorizontalAlignment="Left" Width="129" VerticalContentAlignment="Center" Padding="5,0"/>
+            <Label x:Name="Breed_EggGroups_2" Content="Egg Group 2" Margin="290,363,0,0" VerticalAlignment="Top" FontSize="10" Height="19" HorizontalAlignment="Left" Width="129" VerticalContentAlignment="Center" Padding="5,0"/>
+            <Label x:Name="Breed_HatchRate" Content="10 Days" Margin="290,385,0,0" VerticalAlignment="Top" FontSize="10" Height="19" HorizontalAlignment="Left" Width="129" VerticalContentAlignment="Center" Padding="5,0"/>
+            <Ellipse x:Name="Basic_Type_1" HorizontalAlignment="Left" Height="33" Margin="205,20,0,0" VerticalAlignment="Top" Width="33" Fill="Blue"/>
+            <Label x:Name="Abilitys_Basic_1" Content="Intimidate" Margin="290,184,0,0" VerticalAlignment="Top" FontSize="10" Height="19" HorizontalAlignment="Left" Width="129" VerticalContentAlignment="Center" Padding="5,0"/>
+            <Label x:Name="Abilitys_Basic_2" Content="Intimidate" Margin="290,205,0,0" VerticalAlignment="Top" FontSize="10" Height="19" HorizontalAlignment="Left" Width="129" VerticalContentAlignment="Center" Padding="5,0"/>
+            <Label x:Name="Abilitys_Advanced_1" Content="Intimidate" Margin="290,227,0,0" VerticalAlignment="Top" FontSize="10" Height="19" HorizontalAlignment="Left" Width="129" VerticalContentAlignment="Center" Padding="5,0"/>
+            <Label x:Name="Abilitys_Advanced_2" Content="Intimidate" Margin="290,248,0,0" VerticalAlignment="Top" FontSize="10" Height="19" HorizontalAlignment="Left" Width="129" VerticalContentAlignment="Center" Padding="5,0"/>
+            <Label x:Name="Abilitys_High_1" Content="Intimidate" Margin="290,269,0,0" VerticalAlignment="Top" FontSize="10" Height="19" HorizontalAlignment="Left" Width="129" VerticalContentAlignment="Center" Padding="5,0"/>
+            <Label x:Name="Evolution_1_Name" Content="Fletchinder" Margin="161,110,0,0" VerticalAlignment="Top" Height="19" HorizontalAlignment="Left" Width="95" VerticalContentAlignment="Center" Padding="5,0,0,0" FontFamily="Calibri"/>
+            <Label x:Name="Evolution_2_Name" Content="Mega Charizard Y" Margin="161,131,0,0" VerticalAlignment="Top" Height="19" HorizontalAlignment="Left" Width="95" VerticalContentAlignment="Center" Padding="5,0,0,0" FontFamily="Calibri"/>
+            <Ellipse x:Name="Basic_Type_2" HorizontalAlignment="Left" Height="33" Margin="241,20,0,0" VerticalAlignment="Top" Width="33" Fill="Blue"/>
+            <Label Content="Base Stats" HorizontalAlignment="Left" Margin="33,82,0,0" VerticalAlignment="Top" Width="77" Height="19" VerticalContentAlignment="Center" Padding="5,0,0,0"/>
+            <Label x:Name="Label_Stats_HP" Content="HP" HorizontalAlignment="Left" Margin="33,110,0,0" VerticalAlignment="Top" Width="77" Height="19" Padding="5,0,0,0" VerticalContentAlignment="Center"/>
+            <Label x:Name="Label_Stats_Attack" Content="Attack" HorizontalAlignment="Left" Margin="33,131,0,0" VerticalAlignment="Top" Width="77" Height="19" Padding="5,0,0,0" VerticalContentAlignment="Center"/>
+            <Label x:Name="Label_Stats_Defence" Content="Defence" HorizontalAlignment="Left" Margin="33,152,0,0" VerticalAlignment="Top" Width="77" Height="19" Padding="5,0,0,0" VerticalContentAlignment="Center"/>
+            <Label x:Name="Label_Stats_SpAttack" Content="Sp Attack" HorizontalAlignment="Left" Margin="33,174,0,0" VerticalAlignment="Top" Width="77" Height="19" Padding="5,0,0,0" VerticalContentAlignment="Center"/>
+            <Label x:Name="Label_Stats_SpDefence" Content="Sp Defence" HorizontalAlignment="Left" Margin="33,195,0,0" VerticalAlignment="Top" Width="77" Height="19" Padding="5,0,0,0" VerticalContentAlignment="Center"/>
+            <Label x:Name="Label_Stats_Speed" Content="Speed" HorizontalAlignment="Left" Margin="33,217,0,0" VerticalAlignment="Top" Width="77" Height="19" Padding="5,0,0,0" VerticalContentAlignment="Center"/>
+            <Label Content="Skills" HorizontalAlignment="Left" Margin="33,248,0,0" VerticalAlignment="Top" Width="77" Height="19" VerticalContentAlignment="Center" Padding="5,0,0,0"/>
+            <Label Content="Athl" HorizontalAlignment="Left" Margin="33,276,0,0" VerticalAlignment="Top" Width="68" Height="19" Padding="5,0,0,0" VerticalContentAlignment="Center"/>
+            <Label Content="Acro" HorizontalAlignment="Left" Margin="33,297,0,0" VerticalAlignment="Top" Width="68" Height="19" Padding="5,0,0,0" VerticalContentAlignment="Center"/>
+            <Label Content="Combat" HorizontalAlignment="Left" Margin="33,318,0,0" VerticalAlignment="Top" Width="68" Height="19" Padding="5,0,0,0" VerticalContentAlignment="Center"/>
+            <Label Content="Stealth" HorizontalAlignment="Left" Margin="33,340,0,0" VerticalAlignment="Top" Width="68" Height="19" Padding="5,0,0,0" VerticalContentAlignment="Center"/>
+            <Label Content="Percep" HorizontalAlignment="Left" Margin="33,361,0,0" VerticalAlignment="Top" Width="68" Height="19" Padding="5,0,0,0" VerticalContentAlignment="Center"/>
+            <Label Content="Focus" HorizontalAlignment="Left" Margin="33,383,0,0" VerticalAlignment="Top" Width="68" Height="19" Padding="5,0,0,0" VerticalContentAlignment="Center"/>
+            <Label Content="Biology" HorizontalAlignment="Left" Margin="33,416,0,0" VerticalAlignment="Top" Width="68" Height="19" Padding="5,0,0,0" VerticalContentAlignment="Center"/>
+            <Label Content="Height" HorizontalAlignment="Left" Margin="33,440,0,0" VerticalAlignment="Top" Width="68" Height="19" Padding="5,0,0,0" VerticalContentAlignment="Center"/>
+            <Label Content="Weight" HorizontalAlignment="Left" Margin="33,462,0,0" VerticalAlignment="Top" Width="68" Height="19" Padding="5,0,0,0" VerticalContentAlignment="Center"/>
+            <Label Content="Diet" HorizontalAlignment="Left" Margin="33,483,0,0" VerticalAlignment="Top" Width="68" Height="19" Padding="5,0,0,0" VerticalContentAlignment="Center"/>
+            <Label Content="Habitat" HorizontalAlignment="Left" Margin="33,505,0,0" VerticalAlignment="Top" Width="68" Height="19" Padding="5,0,0,0" VerticalContentAlignment="Center"/>
+            <Label Content="Evolution" HorizontalAlignment="Left" Margin="160,82,0,0" VerticalAlignment="Top" Width="77" Height="19" VerticalContentAlignment="Center" Padding="5,0,0,0"/>
+            <Label Content="Abilities" HorizontalAlignment="Left" Margin="160,159,0,0" VerticalAlignment="Top" Width="77" Height="19" VerticalContentAlignment="Center" Padding="5,0,0,0"/>
+            <Label Content="Basic Ability 1" HorizontalAlignment="Left" Margin="161,184,0,0" VerticalAlignment="Top" Width="77" Height="19" Padding="5,0,0,0" VerticalContentAlignment="Center"/>
+            <Label Content="Basic Ability 2" HorizontalAlignment="Left" Margin="161,205,0,0" VerticalAlignment="Top" Width="77" Height="19" Padding="5,0,0,0" VerticalContentAlignment="Center"/>
+            <Label Content="Adv Ability 1" HorizontalAlignment="Left" Margin="161,227,0,0" VerticalAlignment="Top" Width="77" Height="19" Padding="5,0,0,0" VerticalContentAlignment="Center"/>
+            <Label Content="Adv Ability 2" HorizontalAlignment="Left" Margin="161,248,0,0" VerticalAlignment="Top" Width="77" Height="19" Padding="5,0,0,0" VerticalContentAlignment="Center"/>
+            <Label Content="High Ability" HorizontalAlignment="Left" Margin="161,269,0,0" VerticalAlignment="Top" Width="77" Height="19" Padding="5,0,0,0" VerticalContentAlignment="Center"/>
+            <Label Content="Breeding Information" HorizontalAlignment="Left" Margin="161,296,0,0" VerticalAlignment="Top" Width="123" Height="19" VerticalContentAlignment="Center" Padding="5,0,0,0"/>
+            <Label Content="Gender Ratio" HorizontalAlignment="Left" Margin="161,321,0,0" VerticalAlignment="Top" Width="77" Height="19" Padding="5,0,0,0" VerticalContentAlignment="Center"/>
+            <Label Content="Egg Groups" HorizontalAlignment="Left" Margin="161,342,0,0" VerticalAlignment="Top" Width="77" Height="19" Padding="5,0,0,0" VerticalContentAlignment="Center"/>
+            <Label Content="Hatch Rate" HorizontalAlignment="Left" Margin="161,385,0,0" VerticalAlignment="Top" Width="77" Height="19" Padding="5,0,0,0" VerticalContentAlignment="Center"/>
 
         </Grid>
     </Grid>

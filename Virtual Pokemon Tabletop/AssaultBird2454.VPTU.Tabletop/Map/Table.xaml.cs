@@ -65,7 +65,8 @@ namespace AssaultBird2454.VPTU.Tabletop.Map
             _Table.Camera = myPCamera;
             #endregion
 
-            DrawTerrain(5, 1, 1);
+            DrawTerrain(5, 5, 1);
+            DrawWall(3.4f, 3.6f, 2, 4, 10);
             //Table_Test();
         }
 
@@ -138,8 +139,12 @@ namespace AssaultBird2454.VPTU.Tabletop.Map
             GeometryModel3D mod = new GeometryModel3D();// Model
             MeshGeometry3D mesh = new MeshGeometry3D();// Mesh
             //Int32Collection triangles = new Int32Collection();// Mesh's Triangles
-            PointLight light = new PointLight() { Color = Color.FromArgb(255, 255, 255, 0), Position = new Point3D(1, 0, 0), Range = 500 };// Light
-            DiffuseMaterial Material = new DiffuseMaterial(new SolidColorBrush(Color.FromArgb(255, 255, 255, 255)));// Meterial
+            PointLight light = new PointLight() { Color = Color.FromArgb(255, 255, 255, 0), Position = new Point3D(1, 1, -1), Range = 5 };// Light
+
+            DiffuseMaterial Mat = new DiffuseMaterial(new SolidColorBrush(Color.FromArgb(255, 255, 255, 0)));
+            Image image = new Image();
+            image.Source = (new ImageSourceConverter()).ConvertFromString(@"C:\Users\Tasman\Desktop\PTU\Maps\Image\1st Route Map (TG).png") as ImageSource;
+            DiffuseMaterial Material = new DiffuseMaterial(new ImageBrush(image.Source));// Meterial
 
             for (var Y = 0; Y < Max_Y; Y++)
             {
@@ -149,40 +154,73 @@ namespace AssaultBird2454.VPTU.Tabletop.Map
                     mesh.Positions.Add(new Point3D(X, Y + 1, 0));
                     mesh.Positions.Add(new Point3D(X + 1, Y, 0));
 
-                    //mesh.Positions.Add(new Point3D(X, Y + 1, 0));
-                    //mesh.Positions.Add(new Point3D(X + 1, Y + 1, 0));
-                    //mesh.Positions.Add(new Point3D(X + 1, Y, 0));
-
-                    //int ind1 = X + Y * (Density);
-                    //int ind2 = ind1 + (Density);
-                    //first triangle
-                    //triangles.Add(ind1);
-                    //triangles.Add(ind2 + 1);
-                    //triangles.Add(ind2);
-
-                    //second triangle
-                    //triangles.Add(ind1);
-                    //triangles.Add(ind1 + 1);
-                    //triangles.Add(ind2 + 1);
+                    mesh.Positions.Add(new Point3D(X, Y + 1, 0));
+                    mesh.Positions.Add(new Point3D(X + 1, Y + 1, 0));
+                    mesh.Positions.Add(new Point3D(X + 1, Y, 0));
                 }
             }
 
             #region Test
-            mesh.Positions.Add(new Point3D(6, 0, 0));
-            mesh.Positions.Add(new Point3D(6, 1, 0));
-            mesh.Positions.Add(new Point3D(7, 0, 0));
+            //mesh.Positions.Add(new Point3D(6, 0, 0));
+            //mesh.Positions.Add(new Point3D(6, 1, 0));
+            //mesh.Positions.Add(new Point3D(7, 0, 0));
 
-            mesh.Positions.Add(new Point3D(6, 1, 0));
-            mesh.Positions.Add(new Point3D(7, 1, 0));
-            mesh.Positions.Add(new Point3D(7, 0, 0));
+            //mesh.Positions.Add(new Point3D(6, 1, 0));
+            //mesh.Positions.Add(new Point3D(7, 1, 0));
+            //mesh.Positions.Add(new Point3D(7, 0, 0));
             #endregion
-            
+
             mod.Geometry = mesh;
-            //((MeshGeometry3D)mod.Geometry).TriangleIndices = triangles;
-            mod.Material = Material;
+            mod.Material = Mat;
 
             group.Children.Add(mod);
             group.Children.Add(light);
+            visual.Content = group;
+            _Table.Children.Add(visual);
+        }
+
+        private void DrawWall(float Start_X, float End_X, float Start_Y, float End_Y, float Height = 5)
+        {
+            ModelVisual3D visual = new ModelVisual3D();// Visual
+            Model3DGroup group = new Model3DGroup();// Group
+
+            GeometryModel3D mod = new GeometryModel3D();// Model
+            MeshGeometry3D mesh = new MeshGeometry3D();// Mesh
+
+            DiffuseMaterial Mat = new DiffuseMaterial(new SolidColorBrush(Color.FromArgb(255, 0, 0, 0)));
+
+
+            for (var Z = 0; Z < Height; Z++)
+            {
+                for (var Y = Start_Y; Y <= End_Y; Y++)
+                {
+                    for (var X = Start_X; X < End_X; X++)
+                    {
+                        mesh.Positions.Add(new Point3D(X, Y, Z));
+                        mesh.Positions.Add(new Point3D(X, Y + 1, Z));
+                        mesh.Positions.Add(new Point3D(X + 1, Y, Z));
+
+                        mesh.Positions.Add(new Point3D(X, Y + 1, Z));
+                        mesh.Positions.Add(new Point3D(X + 1, Y + 1, Z));
+                        mesh.Positions.Add(new Point3D(X + 1, Y, Z));
+                    }
+                }
+            }
+
+            #region Test
+            //mesh.Positions.Add(new Point3D(6, 0, 0));
+            //mesh.Positions.Add(new Point3D(6, 1, 0));
+            //mesh.Positions.Add(new Point3D(7, 0, 0));
+
+            //mesh.Positions.Add(new Point3D(6, 1, 0));
+            //mesh.Positions.Add(new Point3D(7, 1, 0));
+            //mesh.Positions.Add(new Point3D(7, 0, 0));
+            #endregion
+
+            mod.Geometry = mesh;
+            mod.Material = Mat;
+
+            group.Children.Add(mod);
             visual.Content = group;
             _Table.Children.Add(visual);
         }
