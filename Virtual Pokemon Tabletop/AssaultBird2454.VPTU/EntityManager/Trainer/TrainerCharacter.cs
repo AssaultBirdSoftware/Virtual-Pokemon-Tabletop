@@ -4,8 +4,9 @@ using System.Text;
 
 namespace AssaultBird2454.VPTU.EntityManager.Trainer
 {
-    public class TrainerCharacter
+    public class TrainerCharacter : Entity
     {
+        public string ID { get; set; }
         public string Name { get; set; }
 
         public string Notes { get; set; }
@@ -46,14 +47,14 @@ namespace AssaultBird2454.VPTU.EntityManager.Trainer
         /// Key: Status Condition
         /// Value: Duration in turns (0 = Ended, -1 = No Limit)
         /// </summary>
-        public List<KeyValuePair<Data.Status_Afflictions, object>> Status { get; set; }
+        public List<KeyValuePair<BattleManager.Data.Status_Afflictions, object>> Status { get; set; }
 
-        public void AddStatus(Data.Status_Afflictions Effect, object Effect_Data = null)
+        public void AddStatus(BattleManager.Data.Status_Afflictions Effect, object Effect_Data = null)
         {
             if (Status == null)
-                Status = new List<KeyValuePair<Data.Status_Afflictions, object>>();
+                Status = new List<KeyValuePair<BattleManager.Data.Status_Afflictions, object>>();
 
-            KeyValuePair<Data.Status_Afflictions, object> Data = new KeyValuePair<Data.Status_Afflictions, object>(Effect, Effect_Data);
+            KeyValuePair<BattleManager.Data.Status_Afflictions, object> Data = new KeyValuePair<BattleManager.Data.Status_Afflictions, object>(Effect, Effect_Data);
             if (HasStatus(Effect))
             {
                 RemoveStatus(Effect);
@@ -64,17 +65,17 @@ namespace AssaultBird2454.VPTU.EntityManager.Trainer
                 Status.Add(Data);
             }
         }
-        public object GetStatusData(Data.Status_Afflictions Effect)
+        public object GetStatusData(BattleManager.Data.Status_Afflictions Effect)
         {
             if (Status == null)
-                Status = new List<KeyValuePair<Data.Status_Afflictions, object>>();
+                Status = new List<KeyValuePair<BattleManager.Data.Status_Afflictions, object>>();
 
             return Status.Find(x => x.Key == Effect).Value;
         }
-        public void SetStatusData(Data.Status_Afflictions Effect, object Effect_Data)
+        public void SetStatusData(BattleManager.Data.Status_Afflictions Effect, object Effect_Data)
         {
             if (Status == null)
-                Status = new List<KeyValuePair<Data.Status_Afflictions, object>>();
+                Status = new List<KeyValuePair<BattleManager.Data.Status_Afflictions, object>>();
 
             if (HasStatus(Effect))
             {
@@ -82,17 +83,17 @@ namespace AssaultBird2454.VPTU.EntityManager.Trainer
                 AddStatus(Effect, Effect_Data);
             }
         }
-        public bool HasStatus(Data.Status_Afflictions Effect)
+        public bool HasStatus(BattleManager.Data.Status_Afflictions Effect)
         {
             if (Status == null)
-                Status = new List<KeyValuePair<Data.Status_Afflictions, object>>();
+                Status = new List<KeyValuePair<BattleManager.Data.Status_Afflictions, object>>();
 
             if (Status.FindAll(x => x.Key == Effect).Count >= 1) { return true; } else { return false; }
         }
-        public void RemoveStatus(Data.Status_Afflictions Effect)
+        public void RemoveStatus(BattleManager.Data.Status_Afflictions Effect)
         {
             if (Status == null)
-                Status = new List<KeyValuePair<Data.Status_Afflictions, object>>();
+                Status = new List<KeyValuePair<BattleManager.Data.Status_Afflictions, object>>();
 
             Status.RemoveAll(x => x.Key == Effect);
         }

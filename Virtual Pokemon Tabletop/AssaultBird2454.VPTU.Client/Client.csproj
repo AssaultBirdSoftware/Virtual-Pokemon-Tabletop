@@ -157,20 +157,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AssaultBird2454.VPTU.SaveEditor\SaveEditor.csproj">
-      <Project>{24316f59-0d2b-467a-9a42-f4c5f2765748}</Project>
-      <Name>SaveEditor</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AssaultBird2454.VPTU.Server\Server.csproj">
-      <Project>{1dd97708-079f-47e0-96a7-6b50d1674437}</Project>
-      <Name>Server</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AssaultBird2454.VPTU\VPTU.csproj">
-      <Project>{f5cd6b0d-b4ff-448a-9276-3c563c4c02df}</Project>
-      <Name>VPTU</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="pokeball_B98_icon.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -205,6 +191,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Template Card.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AssaultBird2454.VPTU.SaveEditor\SaveEditor.csproj">
+      <Project>{24316f59-0d2b-467a-9a42-f4c5f2765748}</Project>
+      <Name>SaveEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AssaultBird2454.VPTU\VPTU.csproj">
+      <Project>{f5cd6b0d-b4ff-448a-9276-3c563c4c02df}</Project>
+      <Name>VPTU</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

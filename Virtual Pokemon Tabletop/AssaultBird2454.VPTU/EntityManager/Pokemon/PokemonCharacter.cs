@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace AssaultBird2454.VPTU.EntityManager.Pokemon
 {
-    public class PokemonCharacter
+    public class PokemonCharacter : Entity
     {
         public PokemonCharacter(string _ID)
         {

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Entity"
         xmlns:System="clr-namespace:System;assembly=mscorlib"
-        xmlns:StatusEffects_Data="clr-namespace:AssaultBird2454.VPTU.BattleManager.Data;assembly=AssaultBird2454.VPTU.BattleManager"
+        xmlns:StatusEffects_Data="clr-namespace:AssaultBird2454.VPTU.BattleManager.Data;assembly=AssaultBird2454.VPTU"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:MultiSelectComboBox="clr-namespace:MultiSelectComboBox;assembly=MultiSelectComboBox" x:Class="AssaultBird2454.VPTU.SaveEditor.UI.Entity.Pokemon_Character"
         mc:Ignorable="d"
         Title="Character Designer - Pokemon" Height="696.063" Width="996.626" ResizeMode="NoResize">

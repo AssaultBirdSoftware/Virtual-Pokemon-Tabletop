@@ -289,20 +289,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AssaultBird2454.VPTU.Server\Server.csproj">
-      <Project>{1dd97708-079f-47e0-96a7-6b50d1674437}</Project>
-      <Name>Server</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AssaultBird2454.VPTU\VPTU.csproj">
-      <Project>{f5cd6b0d-b4ff-448a-9276-3c563c4c02df}</Project>
-      <Name>VPTU</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\External\MultiSelectComboBox\MultiSelectComboBox.csproj">
-      <Project>{CE17A54E-0661-429F-AFDC-272E8668B14E}</Project>
-      <Name>MultiSelectComboBox</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\VPTU_Logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -315,7 +301,16 @@
   <ItemGroup>
     <Resource Include="pokeball_B98_icon.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\AssaultBird2454.VPTU\VPTU.csproj">
+      <Project>{f5cd6b0d-b4ff-448a-9276-3c563c4c02df}</Project>
+      <Name>VPTU</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\External\MultiSelectComboBox\MultiSelectComboBox.csproj">
+      <Project>{ce17a54e-0661-429f-afdc-272e8668b14e}</Project>
+      <Name>MultiSelectComboBox</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

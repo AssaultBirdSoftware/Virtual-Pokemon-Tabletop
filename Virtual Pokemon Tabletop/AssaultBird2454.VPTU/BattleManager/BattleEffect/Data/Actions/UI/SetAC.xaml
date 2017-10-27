@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AssaultBird2454.VPTU.BattleManager.BattleEffect.Data.Actions.UI"
-             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="AssaultBird2454.VPTU.BattleManager.BattleEffect.Data.Actions.UI.SetAC"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+                x:Class="AssaultBird2454.VPTU.BattleManager.BattleEffect.Data.Actions.UI.SetAC"
              mc:Ignorable="d" 
              Height="43.2" Width="176.727">
     <Grid>

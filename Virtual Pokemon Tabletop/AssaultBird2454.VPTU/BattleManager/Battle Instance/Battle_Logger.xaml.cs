@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AssaultBird2454.VPTU.BattleManager.Battle
+namespace AssaultBird2454.VPTU.BattleManager.Battle_Instance
 {
     /// <summary>
     /// Interaction logic for Battle_Logger.xaml
@@ -24,21 +24,5 @@ namespace AssaultBird2454.VPTU.BattleManager.Battle
         {
             InitializeComponent();
         }
-
-        public void Create_Entry()
-        {
-
-        }
-
-        public void Load()
-        {
-
-        }
-        public void Save()
-        {
-
-        }
     }
-}
-   }
 }

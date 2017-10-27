@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AssaultBird2454.VPTU.SoundSystem
+namespace AssaultBird2454.VPTU
 {
     public class ProjectInfo
     {
