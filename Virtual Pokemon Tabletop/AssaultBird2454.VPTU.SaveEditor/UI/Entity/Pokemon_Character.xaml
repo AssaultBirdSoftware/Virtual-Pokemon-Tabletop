@@ -8,7 +8,7 @@
         xmlns:StatusEffects_Data="clr-namespace:AssaultBird2454.VPTU.BattleManager.Data;assembly=AssaultBird2454.VPTU.BattleManager"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:MultiSelectComboBox="clr-namespace:MultiSelectComboBox;assembly=MultiSelectComboBox" x:Class="AssaultBird2454.VPTU.SaveEditor.UI.Entity.Pokemon_Character"
         mc:Ignorable="d"
-        Title="Character Designer - Pokemon" Height="696.063" Width="996.626">
+        Title="Character Designer - Pokemon" Height="696.063" Width="996.626" ResizeMode="NoResize">
     <Window.Resources>
         <ObjectDataProvider x:Key="StatusEffects" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
             <ObjectDataProvider.MethodParameters>
@@ -174,6 +174,22 @@
                             <Label x:Name="Stats_Value_SpEvasion" Content="0" Margin="0,62,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Grid.Column="2"/>
                             <Label x:Name="Stats_Value_SpeedEvasion" Content="0" Margin="0,93,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Grid.Column="2"/>
                             <Label Content="Value" VerticalAlignment="Top" Grid.Column="2" HorizontalContentAlignment="Center"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Personality Stats" HorizontalAlignment="Left" Height="172" VerticalAlignment="Top" Width="266" Margin="271,236,0,0">
+                        <Grid Margin="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="95"/>
+                                <ColumnDefinition Width="80"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="Loyalty" VerticalAlignment="Top" Margin="0,31,0,0" HorizontalContentAlignment="Center"/>
+                            <Label Content="" VerticalAlignment="Top" Margin="0,62,0,0" HorizontalContentAlignment="Center"/>
+                            <Label Content="" VerticalAlignment="Top" Margin="0,93,0,0" HorizontalContentAlignment="Center"/>
+                            <Label Content="Stat Name" VerticalAlignment="Top" HorizontalContentAlignment="Center"/>
+                            <Label Content="Mod" VerticalAlignment="Top" Grid.Column="1" HorizontalContentAlignment="Center"/>
+                            <xctk:IntegerUpDown x:Name="Stats_Mod_PhyEvasion1" Margin="0,31,0,0" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Mod_PhyEvasion_ValueChanged" Minimum="0" Maximum="6"/>
+                            <xctk:IntegerUpDown x:Name="Stats_Mod_SpEvasion1" Margin="0,62,0,0" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Mod_SpEvasion_ValueChanged" IsEnabled="False"/>
+                            <xctk:IntegerUpDown x:Name="Stats_Mod_SpeedEvasion1" Margin="0,93,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Mod_SpeedEvasion_ValueChanged" IsEnabled="False"/>
                         </Grid>
                     </GroupBox>
                 </Grid>

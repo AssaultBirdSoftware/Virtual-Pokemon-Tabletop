@@ -1037,7 +1037,17 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
 
         private void Moves_Add_Click(object sender, RoutedEventArgs e)
         {
-            UI.Pokedex.Select.Select_Move Move = new Pokedex.Select.Select_Move(Manager.SaveData.PokedexData, Manager.SaveData.PokedexData.Pokemon.First(x => x.Species_DexID == PokemonData.Species_DexID));
+            UI.Pokedex.Select.Select_Move Move;
+
+            try
+            {
+                Move = new Pokedex.Select.Select_Move(Manager.SaveData.PokedexData, Manager.SaveData.PokedexData.Pokemon.First(x => x.Species_DexID == PokemonData.Species_DexID));
+            }
+            catch
+            {
+                Move = new Pokedex.Select.Select_Move(Manager.SaveData.PokedexData);
+            }
+
             bool? pass = Move.ShowDialog();
 
             if (pass == true)
