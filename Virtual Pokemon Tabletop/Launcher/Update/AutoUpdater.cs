@@ -15,9 +15,9 @@ namespace Launcher.Update
     internal class AutoUpdater
     {
         public static ProjectInfo VersioningInfo { get; set; }
+        private static Data LatestVersion { get; set; }
 
-        public static Data LatestVersion { get; set; }
-        public static void CheckForUpdates()
+        public static void CheckForUpdates(List<ReleaseStream> rs)
         {
             #region Versioning Info
             using (Stream str = Assembly.GetExecutingAssembly().GetManifestResourceStream("Launcher.ProjectVariables.json"))
@@ -31,49 +31,81 @@ namespace Launcher.Update
 
             try
             {
-                string url = "http://vptu.assaultbirdsoftware.me/Updater/LatestVersion.json";
-                LatestVersion = Newtonsoft.Json.JsonConvert.DeserializeObject<Data>((new WebClient()).DownloadString(url));
-
-                #region Get Version (Latest)
-                int[] Version_Info = new int[4];
-                int i = 0;
-                foreach (string id in LatestVersion.Version_ID.Split('.'))
+                #region Alpha Release
+                if (rs.Contains(ReleaseStream.Alpha))
                 {
-                    Version_Info[i] = Convert.ToInt32(id);
-                    i++;
+                    Data data = Get_UpdateInfo("http://www.virtual-ptu.com/api/Updater/Alpha/Latest");
+                    if (Check_Update(data))
+                    {
+                        UpdateAvaliable(data);
+                        return;
+                    }
                 }
                 #endregion
-
-                FileVersionInfo FVI = FileVersionInfo.GetVersionInfo(MainWindow.AssemblyDirectory + @"\Launcher.exe");
-
-                bool update = false;
-
-                if (FVI.ProductMajorPart < Version_Info[0] ||
-                    (FVI.ProductMajorPart <= Version_Info[0] && FVI.ProductMinorPart < Version_Info[1]) ||
-                    (FVI.ProductMajorPart <= Version_Info[0] && FVI.ProductMinorPart <= Version_Info[1] && FVI.ProductBuildPart < Version_Info[2]) ||
-                    (FVI.ProductMajorPart <= Version_Info[0] && FVI.ProductMinorPart <= Version_Info[1] && FVI.ProductBuildPart <= Version_Info[2] && FVI.ProductPrivatePart < Version_Info[3]))
+                #region Beta Release
+                if (rs.Contains(ReleaseStream.Beta))
                 {
-                    //If _.x.x.x is greater than current
-                    //If x._.x.x is greater than current
-                    //If x.x._.x is greater than current
-                    //If x.x.x._ is greater than current
-
-                    //Update Avaliable
-                    update = true;
+                    Data data = Get_UpdateInfo("http://www.virtual-ptu.com/api/Updater/Beta/Latest");
+                    if (Check_Update(data))
+                    {
+                        UpdateAvaliable(data);
+                        return;
+                    }
                 }
-                else { update = false; }
-
-                if (update)
+                #endregion
+                #region Master Release
+                if (rs.Contains(ReleaseStream.Master))
                 {
-                    UpdateAvaliable();
+                    Data data = Get_UpdateInfo("http://www.virtual-ptu.com/api/Updater/Master/Latest");
+                    if (Check_Update(data))
+                    {
+                        UpdateAvaliable(data);
+                        return;
+                    }
                 }
+                #endregion
             }
-            catch { /* Broken JSON, Dont Care */ }
+            catch { }
         }
 
-        private static void UpdateAvaliable()
+        private static bool Check_Update(Data data)
         {
-            MessageBoxResult mbr = MessageBox.Show("An update for Virtual Pokemon Tabletop was found...\n\nCurrent Version: " + VersioningInfo.Version + "\nLatest Version: " + LatestVersion.Version_Name, "Virtual Pokemon Tabletop Update", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+            #region Get Version (Latest)
+            int[] Version_Info = new int[4];
+            int i = 0;
+            foreach (string id in LatestVersion.Version_ID.Split('.'))
+            {
+                Version_Info[i] = Convert.ToInt32(id);
+                i++;
+            }
+            #endregion
+
+            FileVersionInfo FVI = FileVersionInfo.GetVersionInfo(MainWindow.AssemblyDirectory + @"\Launcher.exe");
+
+            if (FVI.ProductMajorPart < Version_Info[0] ||
+                (FVI.ProductMajorPart <= Version_Info[0] && FVI.ProductMinorPart < Version_Info[1]) ||
+                (FVI.ProductMajorPart <= Version_Info[0] && FVI.ProductMinorPart <= Version_Info[1] && FVI.ProductBuildPart < Version_Info[2]) ||
+                (FVI.ProductMajorPart <= Version_Info[0] && FVI.ProductMinorPart <= Version_Info[1] && FVI.ProductBuildPart <= Version_Info[2] && FVI.ProductPrivatePart < Version_Info[3]))
+            {
+                //If _.x.x.x is greater than current
+                //If x._.x.x is greater than current
+                //If x.x._.x is greater than current
+                //If x.x.x._ is greater than current
+
+                //Update Avaliable
+                return true;
+            }
+            else { return false; }
+        }
+
+        private static Data Get_UpdateInfo(string url)
+        {
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<Data>((new WebClient()).DownloadString(url));
+        }
+
+        private static void UpdateAvaliable(Data data)
+        {
+            MessageBoxResult mbr = MessageBox.Show("An update for Virtual Pokemon Tabletop was found...\n\nCurrent Version: " + VersioningInfo.Version + "\nLatest Version: " + data.Version_Name, "Virtual Pokemon Tabletop Update", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
 
             if (mbr == MessageBoxResult.Yes)
             {

@@ -6,7 +6,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
         xmlns:local="clr-namespace:AssaultBird2454.VPTU.Client"
-        xmlns:Map="clr-namespace:AssaultBird2454.VPTU.Tabletop.Map;assembly=AssaultBird2454.VPTU.Tabletop" x:Name="Main" x:Class="AssaultBird2454.VPTU.Client.MainWindow"
+        xmlns:Map="clr-namespace:AssaultBird2454.VPTU.Tabletop.Map;assembly=AssaultBird2454.VPTU" x:Name="Main" x:Class="AssaultBird2454.VPTU.Client.MainWindow"
         mc:Ignorable="d"
         Title="Virtual Pokemon Tabletop - Client (Version: _____ _._._ Build _) (Commit: _______)" Height="440.278" Width="852.075" Closed="Main_Closed" Closing="Main_Closing" Loaded="Main_Loaded">
     <Grid>

@@ -94,9 +94,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AssaultBird2454.VPTU.Networking\Networking.csproj">
-      <Project>{87acc84c-0582-4b05-8bfe-a07286cd365c}</Project>
-      <Name>Networking</Name>
+    <ProjectReference Include="..\AssaultBird2454.VPTU\VPTU.csproj">
+      <Project>{f5cd6b0d-b4ff-448a-9276-3c563c4c02df}</Project>
+      <Name>VPTU</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

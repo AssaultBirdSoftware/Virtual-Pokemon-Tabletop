@@ -22,14 +22,14 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
     public partial class Pokemon : Window
     {
         public VPTU.Pokedex.Pokemon.PokemonData PokemonData;
-        private SaveManager.SaveManager Mgr;
+        private VPTU.Pokedex.Save_Data.Pokedex Mgr;
         bool Update = false;
 
-        public Pokemon(SaveManager.SaveManager _Mgr, VPTU.Pokedex.Pokemon.PokemonData _PokemonData = null)
+        public Pokemon(VPTU.Pokedex.Save_Data.Pokedex _Mgr, VPTU.Pokedex.Pokemon.PokemonData _PokemonData = null)
         {
             InitializeComponent();// Sets up the window
 
-            Mgr = _Mgr;// Creates Save Data Reference
+            Mgr = _Mgr;
 
             Setup();// Executes Setup Code
 
@@ -288,7 +288,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
                 {
                     EvoLinks link = new EvoLinks();
                     link.LinkData = EL;
-                    link.PokemonName = Mgr.SaveData.PokedexData.Pokemon.Find(x => x.Species_DexID == EL.Pokemon_Evo).Species_Name;
+                    link.PokemonName = Mgr.Pokemon.Find(x => x.Species_DexID == EL.Pokemon_Evo).Species_Name;
 
                     FormsAndEvos_List.Items.Add(link);
                 }
@@ -455,7 +455,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
                     MessageBox.Show("Name is not valid!", "Name Error", MessageBoxButton.OK, MessageBoxImage.Error);// Name is Not Valid
                     Pass = false;
                 }
-                else if (Mgr.SaveData.PokedexData.Pokemon.FindAll(x => x.Species_Name.ToLower() == Basic_Name.Text.ToLower()).Count >= 1 && !Update)
+                else if (Mgr.Pokemon.FindAll(x => x.Species_Name.ToLower() == Basic_Name.Text.ToLower()).Count >= 1 && !Update)
                 {
                     MessageBox.Show("Name taken by another Pokemon!", "Name Error", MessageBoxButton.OK, MessageBoxImage.Error);// Name is Taken
                     Pass = false;
@@ -469,7 +469,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
                 {
                     Decimal ID = Convert.ToDecimal(Basic_ID.Text);
 
-                    if (Mgr.SaveData.PokedexData.Pokemon.FindAll(x => x.Species_DexID == ID).Count >= 1)
+                    if (Mgr.Pokemon.FindAll(x => x.Species_DexID == ID).Count >= 1)
                     {
                         if (!Update || (ID != PokemonData.Species_DexID && Update))
                         {
@@ -633,7 +633,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
 
             if (add == true)
             {
-                string name = Mgr.SaveData.PokedexData.Pokemon.Find(x => x.Species_DexID == link.LinkData.Pokemon_Evo).Species_Name;
+                string name = Mgr.Pokemon.Find(x => x.Species_DexID == link.LinkData.Pokemon_Evo).Species_Name;
                 FormsAndEvos_List.Items.Add(new EvoLinks(link.LinkData, name));// Add EvoLink to list if not canceled
             }
         }
@@ -683,38 +683,38 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
 
         private void SelectIMG_Normal_Click(object sender, RoutedEventArgs e)
         {
-            UI.Resources.Search_Resources Select = new UI.Resources.Search_Resources(Mgr);
+            //UI.Resources.Search_Resources Select = new UI.Resources.Search_Resources(Mgr);
 
-            bool? dr = Select.ShowDialog();
+            //bool? dr = Select.ShowDialog();
 
-            if (dr == true)
-            {
-                //PokemonData.Sprite_Normal = Select;
-            }
+            //if (dr == true)
+            //{
+            //    //PokemonData.Sprite_Normal = Select;
+            //}
         }
 
         private void SelectIMG_Shiny_Click(object sender, RoutedEventArgs e)
         {
-            UI.Resources.Search_Resources Select = new UI.Resources.Search_Resources(Mgr);
+            //UI.Resources.Search_Resources Select = new UI.Resources.Search_Resources(Mgr);
 
-            bool? dr = Select.ShowDialog();
+            //bool? dr = Select.ShowDialog();
 
-            if (dr == true)
-            {
-                //PokemonData.Sprite_Shiny = Select;
-            }
+            //if (dr == true)
+            //{
+            //    //PokemonData.Sprite_Shiny = Select;
+            //}
         }
 
         private void SelectIMG_Egg_Click(object sender, RoutedEventArgs e)
         {
-            UI.Resources.Search_Resources Select = new UI.Resources.Search_Resources(Mgr);
+            //UI.Resources.Search_Resources Select = new UI.Resources.Search_Resources(Mgr);
 
-            bool? dr = Select.ShowDialog();
+            //bool? dr = Select.ShowDialog();
 
-            if (dr == true)
-            {
-                //PokemonData.Sprite_Egg = Select;
-            }
+            //if (dr == true)
+            //{
+            //    //PokemonData.Sprite_Egg = Select;
+            //}
         }
     }
 

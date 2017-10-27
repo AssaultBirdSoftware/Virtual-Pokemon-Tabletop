@@ -88,7 +88,7 @@ namespace AssaultBird2454.VPTU.Client
 
         private void Client_Pokedex_Pokedex_Entry_Selection_Changed_Event(Class.Controls.Pokedex_Entry_Type type, object Data)
         {
-           if(type == Class.Controls.Pokedex_Entry_Type.Pokemon)
+            if (type == Class.Controls.Pokedex_Entry_Type.Pokemon)
             {
                 Pokedex_Viewer_Pokemon.Load((Pokedex.Pokemon.PokemonData)Data);
             }
@@ -125,7 +125,11 @@ namespace AssaultBird2454.VPTU.Client
         }
         public void Dock_LoadLayout(string File)
         {
-            new Xceed.Wpf.AvalonDock.Layout.Serialization.XmlLayoutSerializer(Dock).Deserialize(File);
+            try { new Xceed.Wpf.AvalonDock.Layout.Serialization.XmlLayoutSerializer(Dock).Deserialize(File); }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void Main_Closing(object sender, System.ComponentModel.CancelEventArgs e)

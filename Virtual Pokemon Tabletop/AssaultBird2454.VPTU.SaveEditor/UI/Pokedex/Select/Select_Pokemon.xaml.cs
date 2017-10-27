@@ -24,11 +24,11 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Select
         /// The Move Data that was selected
         /// </summary>
         public VPTU.Pokedex.Pokemon.PokemonData Selected_Pokemon;
-        private SaveManager.SaveManager Manager;
+        private VPTU.Pokedex.Save_Data.Pokedex Pokedex;
 
-        public Select_Pokemon(SaveManager.SaveManager _Manager)
+        public Select_Pokemon(VPTU.Pokedex.Save_Data.Pokedex _Pokedex)
         {
-            Manager = _Manager;
+            Pokedex = _Pokedex;
 
             InitializeComponent();
 
@@ -58,7 +58,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Select
         {
             this.Dispatcher.Invoke(new Action(() => Pokemon.Items.Clear()));
 
-            foreach (VPTU.Pokedex.Pokemon.PokemonData data in Manager.SaveData.PokedexData.Pokemon)
+            foreach (VPTU.Pokedex.Pokemon.PokemonData data in Pokedex.Pokemon)
             {
                 if (data.Species_Name.ToLower().Contains(SearchName.ToLower()) || data.Species_DexID.ToString().Contains(SearchName))
                 {

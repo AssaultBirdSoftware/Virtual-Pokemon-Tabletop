@@ -84,23 +84,23 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="WindowsFormsIntegration" />
-    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Extended.Wpf.Toolkit.3.1\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.2.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
     </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Extended.Wpf.Toolkit.3.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.2.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
     </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Extended.Wpf.Toolkit.3.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.2.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
     </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Extended.Wpf.Toolkit.3.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.2.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
     </Reference>
-    <Reference Include="Xceed.Wpf.DataGrid, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Extended.Wpf.Toolkit.3.1\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=3.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.2.0\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
     </Reference>
-    <Reference Include="Xceed.Wpf.Toolkit, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Extended.Wpf.Toolkit.3.1\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.2.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.2.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -289,44 +289,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AssaultBird2454.PTU.SoundSystem\SoundSystem.csproj">
-      <Project>{85b341bf-b2bc-4fac-9f9d-3ae1e9ea5a83}</Project>
-      <Name>SoundSystem</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AssaultBird2454.VPTU.BattleManager\BattleManager.csproj">
-      <Project>{626acee3-9310-4b55-bb35-ab9c08225797}</Project>
-      <Name>BattleManager</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AssaultBird2454.VPTU.ContestManager\ContestManager.csproj">
-      <Project>{f82589cc-b4c1-4433-9bd7-635f508d2702}</Project>
-      <Name>ContestManager</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AssaultBird2454.VPTU.EntityManager\EntityManager.csproj">
-      <Project>{013d732a-3a9e-4e12-8683-32bf9bbcc8d9}</Project>
-      <Name>EntityManager</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AssaultBird2454.VPTU.Pokedex\Pokedex.csproj">
-      <Project>{7e7c28d4-d92f-4d4a-988c-8086fce625a0}</Project>
-      <Name>Pokedex</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AssaultBird2454.VPTU.RNG\RNG.csproj">
-      <Project>{e84417f1-e891-474e-a793-d94e33b3c2ed}</Project>
-      <Name>RNG</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AssaultBird2454.VPTU.SaveManager\SaveManager.csproj">
-      <Project>{0b460ae1-322a-43bd-8f5a-4d383506cb8e}</Project>
-      <Name>SaveManager</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AssaultBird2454.VPTU.Server\Server.csproj">
-      <Project>{1dd97708-079f-47e0-96a7-6b50d1674437}</Project>
-      <Name>Server</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\External\MultiSelectComboBox\MultiSelectComboBox.csproj">
-      <Project>{CE17A54E-0661-429F-AFDC-272E8668B14E}</Project>
-      <Name>MultiSelectComboBox</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\VPTU_Logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -339,7 +301,16 @@
   <ItemGroup>
     <Resource Include="pokeball_B98_icon.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\AssaultBird2454.VPTU\VPTU.csproj">
+      <Project>{f5cd6b0d-b4ff-448a-9276-3c563c4c02df}</Project>
+      <Name>VPTU</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\External\MultiSelectComboBox\MultiSelectComboBox.csproj">
+      <Project>{ce17a54e-0661-429f-afdc-272e8668b14e}</Project>
+      <Name>MultiSelectComboBox</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
