@@ -74,22 +74,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\Campaign Data.cs" />
-    <Compile Include="Resource Data\Resources.cs" />
-    <Compile Include="Data\SaveFile\SaveData.cs" />
     <Compile Include="ProjectInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SaveConverter.cs" />
-    <Compile Include="SaveManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ProjectVariables.json" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AssaultBird2454.PTU.SoundSystem\SoundSystem.csproj">
-      <Project>{85b341bf-b2bc-4fac-9f9d-3ae1e9ea5a83}</Project>
-      <Name>SoundSystem</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AssaultBird2454.VPTU.BattleManager\BattleManager.csproj">
       <Project>{626acee3-9310-4b55-bb35-ab9c08225797}</Project>
       <Name>BattleManager</Name>

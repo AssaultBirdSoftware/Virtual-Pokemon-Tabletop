@@ -65,30 +65,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ability\AbilityData.cs" />
-    <Compile Include="Ability\Data.cs" />
-    <Compile Include="Entity\Data.cs" />
-    <Compile Include="Entity\EntityGroup.cs" />
-    <Compile Include="Items\ItemData.cs" />
-    <Compile Include="Moves\MoveData.cs" />
-    <Compile Include="Moves\Move_RangeData.cs" />
-    <Compile Include="Pokemon\Link_Ability.cs" />
-    <Compile Include="Pokemon\Data.cs" />
-    <Compile Include="Pokemon\Link_Evolution.cs" />
-    <Compile Include="Pokemon\Link_Move.cs" />
-    <Compile Include="Pokemon\PokemonData.cs" />
     <Compile Include="ProjectInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Save Data\Pokedex.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ProjectVariables.json" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AssaultBird2454.VPTU.BattleManager\BattleManager.csproj">
-      <Project>{626acee3-9310-4b55-bb35-ab9c08225797}</Project>
-      <Name>BattleManager</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AssaultBird2454.VPTU.ContestManager\ContestManager.csproj">
       <Project>{f82589cc-b4c1-4433-9bd7-635f508d2702}</Project>
       <Name>ContestManager</Name>

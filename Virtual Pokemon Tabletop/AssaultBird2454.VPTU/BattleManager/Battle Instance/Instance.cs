@@ -8,7 +8,14 @@ namespace AssaultBird2454.VPTU.BattleManager.Battle_Instance
 {
     public class Instance
     {
-        //public 
+        public Instance()
+        {
+
+        }
+        public Instance(List<object> data)
+        {
+
+        }
 
         public void Begin()
         {

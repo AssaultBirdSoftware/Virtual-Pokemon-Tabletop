@@ -68,12 +68,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ProjectInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SaveData\AudioData.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="ProjectVariables.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

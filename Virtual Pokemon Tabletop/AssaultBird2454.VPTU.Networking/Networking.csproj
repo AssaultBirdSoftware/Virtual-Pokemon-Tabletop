@@ -66,27 +66,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client\TCP\Command Handeler\Command.cs" />
-    <Compile Include="Client\TCP\Command Handeler\CommandHandeler.cs" />
-    <Compile Include="Client\TCP\Data.cs" />
-    <Compile Include="Client\TCP\Delegates.cs" />
-    <Compile Include="Client\TCP\Exceptions.cs" />
-    <Compile Include="Client\TCP\TCP Client.cs" />
-    <Compile Include="Client\UDP\UDP Client.cs" />
-    <Compile Include="Data\Network Data.cs" />
-    <Compile Include="Data\States.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Server\TCP\Command Handeler\Command.cs" />
-    <Compile Include="Server\TCP\Command Handeler\CommandHandeler.cs" />
-    <Compile Include="Server\TCP\Data.cs" />
-    <Compile Include="Server\TCP\Delegates.cs" />
-    <Compile Include="Server\TCP\Exceptions.cs" />
-    <Compile Include="Server\TCP\TCP ClientNode.cs" />
-    <Compile Include="Server\TCP\TCP Server.cs" />
-    <Compile Include="Server\UDP\UDP ClientNode.cs" />
-    <Compile Include="Server\UDP\UDP Server.cs" />
-    <Compile Include="Shared\Helper.cs" />
-    <Compile Include="Shared\StateObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

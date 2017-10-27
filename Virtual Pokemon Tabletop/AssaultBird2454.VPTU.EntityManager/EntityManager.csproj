@@ -65,23 +65,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pokemon\PokemonCharacter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Trainer\TrainerCharacter.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AssaultBird2454.VPTU.BattleManager\BattleManager.csproj">
-      <Project>{626acee3-9310-4b55-bb35-ab9c08225797}</Project>
-      <Name>BattleManager</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AssaultBird2454.VPTU.Pokedex\Pokedex.csproj">
-      <Project>{7e7c28d4-d92f-4d4a-988c-8086fce625a0}</Project>
-      <Name>Pokedex</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AssaultBird2454.VPTU.RNG\RNG.csproj">
-      <Project>{e84417f1-e891-474e-a793-d94e33b3c2ed}</Project>
-      <Name>RNG</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

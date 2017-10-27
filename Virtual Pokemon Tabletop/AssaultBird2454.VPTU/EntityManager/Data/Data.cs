@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AssaultBird2454.VPTU.BattleManager.Data
+namespace AssaultBird2454.VPTU.EntityManager.Data
 {
     /// <summary>
     /// Defines the natures that a pokemon can have

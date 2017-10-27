@@ -67,43 +67,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Battle Instance\Battle_Logger.xaml.cs">
-      <DependentUpon>Battle_Logger.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Battle Instance\Instance.cs" />
-    <Compile Include="Battle Instance\Logger\Move_Executed.xaml.cs">
-      <DependentUpon>Move_Executed.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="BattleEffect\Data\Action.cs" />
-    <Compile Include="BattleEffect\Data\Actions\AddStatusEffect.cs" />
-    <Compile Include="BattleEffect\Data\Actions\HasStatus.cs" />
-    <Compile Include="BattleEffect\Data\Actions\RemoveStatusEffect.cs" />
-    <Compile Include="BattleEffect\Data\Actions\SetAC.cs" />
-    <Compile Include="BattleEffect\Data\Actions\SetDB.cs" />
-    <Compile Include="BattleEffect\Data\Actions\UI\HasStatus.xaml.cs">
-      <DependentUpon>HasStatus.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="BattleEffect\Data\Actions\UI\SetAC.xaml.cs">
-      <DependentUpon>SetAC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="BattleEffect\Data\Command Handeler\Command.cs" />
-    <Compile Include="BattleEffect\Data\Command Handeler\CommandHandeler.cs" />
-    <Compile Include="BattleEffect\Data\Data.cs" />
-    <Compile Include="BattleEffect\Data\Actions\UI\EffectAction_Designer.cs" />
-    <Compile Include="BattleEffect\Data\Actions\UI\SetDB.xaml.cs">
-      <DependentUpon>SetDB.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="BattleEffect\Data\Actions\UI\StatusEffect_Add.xaml.cs">
-      <DependentUpon>StatusEffect_Add.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="BattleEffect\Data\Actions\UI\StatusEffect_Remove.xaml.cs">
-      <DependentUpon>StatusEffect_Remove.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="BattleEffect\EffectData.cs" />
-    <Compile Include="BattleEffect\Data\Variable.cs" />
-    <Compile Include="BattleEffect\EffectFunction.cs" />
-    <Compile Include="BattleManager.cs" />
-    <Compile Include="Data\Data.cs" />
     <Compile Include="ProjectInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -119,39 +82,7 @@
       <Name>MultiSelectComboBox</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Page Include="Battle Instance\Battle_Logger.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Battle Instance\Logger\Move_Executed.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="BattleEffect\Data\Actions\UI\HasStatus.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="BattleEffect\Data\Actions\UI\SetAC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="BattleEffect\Data\Actions\UI\SetDB.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="BattleEffect\Data\Actions\UI\StatusEffect_Add.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="BattleEffect\Data\Actions\UI\StatusEffect_Remove.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UI\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

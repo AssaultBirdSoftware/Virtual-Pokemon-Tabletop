@@ -161,30 +161,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AssaultBird2454.PTU.SoundSystem\SoundSystem.csproj">
-      <Project>{85b341bf-b2bc-4fac-9f9d-3ae1e9ea5a83}</Project>
-      <Name>SoundSystem</Name>
-      <Private>True</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\AssaultBird2454.VPTU.BattleManager\BattleManager.csproj">
-      <Project>{626acee3-9310-4b55-bb35-ab9c08225797}</Project>
-      <Name>BattleManager</Name>
-      <Private>True</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\AssaultBird2454.VPTU.Pokedex\Pokedex.csproj">
-      <Project>{7e7c28d4-d92f-4d4a-988c-8086fce625a0}</Project>
-      <Name>Pokedex</Name>
-      <Private>True</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\AssaultBird2454.VPTU.SaveManager\SaveManager.csproj">
-      <Project>{0b460ae1-322a-43bd-8f5a-4d383506cb8e}</Project>
-      <Name>SaveManager</Name>
-      <Private>True</Private>
-    </ProjectReference>
     <ProjectReference Include="..\AssaultBird2454.VPTU.Server\Server.csproj">
       <Project>{1dd97708-079f-47e0-96a7-6b50d1674437}</Project>
       <Name>Server</Name>
       <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\AssaultBird2454.VPTU\VPTU.csproj">
+      <Project>{f5cd6b0d-b4ff-448a-9276-3c563c4c02df}</Project>
+      <Name>VPTU</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
