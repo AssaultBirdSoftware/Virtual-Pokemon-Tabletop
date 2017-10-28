@@ -24,7 +24,7 @@
         <ToolBar x:Name="Tools" VerticalAlignment="Top" Grid.ColumnSpan="2">
             <Button x:Name="Tools_Reload" Width="20" Height="20" Click="Tools_Reload_Click">
                 <Button.Background>
-                    <ImageBrush />
+                    <ImageBrush ImageSource="pack://siteoforigin:,,,/Resources/refresh_64.png" Stretch="Uniform" />
                 </Button.Background>
             </Button>
         </ToolBar>

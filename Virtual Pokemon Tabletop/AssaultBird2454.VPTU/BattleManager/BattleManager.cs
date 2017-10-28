@@ -14,7 +14,7 @@ namespace AssaultBird2454.VPTU.BattleManager
         public BattleManager()
         {
             #region Versioning Info
-            using (Stream str = Assembly.GetExecutingAssembly().GetManifestResourceStream("AssaultBird2454.VPTU.BattleManager.ProjectVariables.json"))
+            using (Stream str = Assembly.GetExecutingAssembly().GetManifestResourceStream("AssaultBird2454.VPTU.ProjectVariables.json"))
             {
                 using (StreamReader read = new StreamReader(str))
                 {

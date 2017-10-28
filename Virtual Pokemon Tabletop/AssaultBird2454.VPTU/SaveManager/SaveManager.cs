@@ -23,9 +23,7 @@ namespace AssaultBird2454.VPTU.SaveManager
     public class SaveManager
     {
         #region Variables
-        public ProjectInfo VersioningInfo { get; }
         public string SaveFileDir { get; }
-
         /// <summary>
         /// A Save Data Object for use inside the software, This is Saved to the file when Save_SaveData() is called
         /// </summary>
@@ -38,17 +36,6 @@ namespace AssaultBird2454.VPTU.SaveManager
         /// <param name="SelectedSaveFile">The Directory of the save file that will be used</param>
         public SaveManager(string SelectedSaveFile)
         {
-            //Load Versioning information
-            #region Versioning Info
-            using (Stream str = Assembly.GetExecutingAssembly().GetManifestResourceStream("AssaultBird2454.VPTU.SaveManager.ProjectVariables.json"))
-            {
-                using (StreamReader read = new StreamReader(str))
-                {
-                    VersioningInfo = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectInfo>(read.ReadToEnd());
-                }
-            }
-            #endregion
-
             SaveFileDir = SelectedSaveFile;// Sets the property containing the Save File Directory
         }
 

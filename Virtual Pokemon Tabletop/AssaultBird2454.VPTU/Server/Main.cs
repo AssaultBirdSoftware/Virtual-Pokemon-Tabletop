@@ -23,18 +23,5 @@ namespace AssaultBird2454.VPTU.Server
                 return System.IO.Path.GetDirectoryName(path);
             }
         }
-        public static ProjectInfo VersioningInfo
-        {
-            get
-            {
-                using (Stream str = Assembly.GetExecutingAssembly().GetManifestResourceStream("AssaultBird2454.VPTU.Server.ProjectVariables.json"))
-                {
-                    using (StreamReader read = new StreamReader(str))
-                    {
-                        return Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectInfo>(read.ReadToEnd());
-                    }
-                }
-            }
-        }
     }
 }
