@@ -22,6 +22,7 @@
                 <ComboBoxItem Name="Target_Push" Content="Push Target"/>
                 <ComboBoxItem Name="Damage_DB" Content="Damage Target (Set DB)"/>
                 <ComboBoxItem Name="Damage_Roll" Content="Damage Target (Dice DB)"/>
+                <ComboBoxItem Name="Static_Health_Change" Content="Static Health Change"/>
                 <Separator/>
                 <ComboBoxItem Name="Condition_Status" Content="Has Status"/>
                 <Separator/>
