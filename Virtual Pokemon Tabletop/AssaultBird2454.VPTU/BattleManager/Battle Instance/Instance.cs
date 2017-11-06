@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace AssaultBird2454.VPTU.BattleManager.Battle_Instance
 {
+    public delegate void Participant_Changed(EntityManager.Entity Entity);
+
     public class Instance
     {
+        public event Participant_Changed Participant_Added_Event;
+        //public event Participant_Changed Participant_Changed_Event;
+        public event Participant_Changed Participant_Removed_Event;
+
         private List<EntityManager.Entity> Partisipants { get; set; }
 
         public Instance()
@@ -28,6 +34,18 @@ namespace AssaultBird2454.VPTU.BattleManager.Battle_Instance
         public void AddPartisipant(EntityManager.Entity Entity)
         {
             Partisipants.Add(Entity);
+            Participant_Added_Event?.Invoke(Entity);
+        }
+
+        //public void ChangeParticipant(EntityManager.Entity Entity)
+        //{
+        //    Participant_Changed_Event?.Invoke(Entity);
+        //}
+
+        public void RemoveParticipant(EntityManager.Entity Entity)
+        {
+            Partisipants.Remove(Entity);
+            Participant_Removed_Event?.Invoke(Entity);
         }
 
         public void Reset_Entity_BattleStats(EntityManager.Entity Entity)
