@@ -45,7 +45,7 @@ namespace AssaultBird2454.VPTU.BattleManager.Battle_Instance
 
         public void AddPartisipant(EntityManager.Entity Entity)
         {
-            Partisipants.Add(Entity);
+            Participants.Add(Entity);
             Participant_Added_Event?.Invoke(Entity);
         }
 
@@ -56,7 +56,7 @@ namespace AssaultBird2454.VPTU.BattleManager.Battle_Instance
 
         public void RemoveParticipant(EntityManager.Entity Entity)
         {
-            Partisipants.Remove(Entity);
+            Participants.Remove(Entity);
             Participant_Removed_Event?.Invoke(Entity);
         }
 

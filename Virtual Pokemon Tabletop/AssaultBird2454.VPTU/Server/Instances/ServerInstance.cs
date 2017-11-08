@@ -69,7 +69,7 @@ namespace AssaultBird2454.VPTU.Server.Instances
             Server_CommandHandeler.CommandRegistered += Server_CommandHandeler_CommandRegistered;
             Server_CommandHandeler.CommandUnRegistered += Server_CommandHandeler_CommandUnRegistered;
 
-            Base_Server_Commands = new Instances.Server.Base_Commands(this);
+            Base_Server_Commands = new Server.Base_Commands(this);
 
             ((Class.Logging.I_Logger)Server_Logger).Log("Registering Base Server Commands", Class.Logging.LoggerLevel.Debug);
             Base_Server_Commands.Register_Commands(Server_CommandHandeler);
@@ -118,7 +118,7 @@ namespace AssaultBird2454.VPTU.Server.Instances
         }
         public void StopServerInstance()
         {
-            #region Start Server
+            #region Stop Server
             ((Class.Logging.I_Logger)Server_Logger).Log("Stopping Base Network", Class.Logging.LoggerLevel.Info);
             try
             {

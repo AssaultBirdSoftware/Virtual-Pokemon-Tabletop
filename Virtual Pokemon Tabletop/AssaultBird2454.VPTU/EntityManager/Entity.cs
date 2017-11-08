@@ -13,7 +13,7 @@ namespace AssaultBird2454.VPTU.EntityManager
         string Notes { get; set; }
 
         int Current_HP { get; set; }
-        int Stat_HP_Max { get; set; }
+        int Stat_HP_Max { get; }
 
         /// <summary>
         /// Lists all the status afflictions that this pokemon has

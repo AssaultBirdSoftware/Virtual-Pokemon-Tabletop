@@ -22,6 +22,7 @@ namespace AssaultBird2454.VPTU.EntityManager.Trainer
         public Pokedex.Entity.Skill_Data Skills { get; set; }
 
         public int Base_HP { get; set; }
+        public int Stat_HP_Max { get; set; }
         public int Current_HP { get; set; }
         public int Base_Attack { get; set; }
         public int Base_Defence { get; set; }
