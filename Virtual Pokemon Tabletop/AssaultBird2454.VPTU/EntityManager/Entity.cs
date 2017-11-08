@@ -12,6 +12,9 @@ namespace AssaultBird2454.VPTU.EntityManager
         string Name { get; set; }
         string Notes { get; set; }
 
+        int Current_HP { get; set; }
+        int Stat_HP_Max { get; set; }
+
         /// <summary>
         /// Lists all the status afflictions that this pokemon has
         /// Key: Status Condition

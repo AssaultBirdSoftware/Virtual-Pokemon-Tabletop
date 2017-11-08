@@ -10,25 +10,37 @@ namespace AssaultBird2454.VPTU.BattleManager.Battle_Instance
 
     public class Instance
     {
-        public event Participant_Changed Participant_Added_Event;
-        //public event Participant_Changed Participant_Changed_Event;
-        public event Participant_Changed Participant_Removed_Event;
-
-        private List<EntityManager.Entity> Partisipants { get; set; }
-
+        #region Constructors
         public Instance()
         {
             // Set List
-            Partisipants = new List<EntityManager.Entity>();
+            Participants = new List<EntityManager.Entity>();
         }
         public Instance(List<EntityManager.Entity> _Partisipants)
         {
             // Set List
-            Partisipants = _Partisipants;
+            Participants = _Partisipants;
 
             // Reset Entitys
 
             // Link Effect Triggers
+        }
+        #endregion
+
+        #region Events
+        public event Participant_Changed Participant_Added_Event;
+        //public event Participant_Changed Participant_Changed_Event;
+        public event Participant_Changed Participant_Removed_Event;
+        #endregion
+
+        private List<EntityManager.Entity> Participants { get; set; }
+
+        public IEnumerable<EntityManager.Entity> GetParticipants
+        {
+            get
+            {
+                foreach (var child in Participants) yield return child;
+            }
         }
 
         public void AddPartisipant(EntityManager.Entity Entity)
@@ -60,7 +72,7 @@ namespace AssaultBird2454.VPTU.BattleManager.Battle_Instance
             }
             else if (Entity is EntityManager.Trainer.TrainerCharacter)
             {
-                
+
             }
             else
             {
