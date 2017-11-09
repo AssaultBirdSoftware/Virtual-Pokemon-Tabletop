@@ -37,6 +37,9 @@
     <Reference Include="Microsoft.Wpf.Interop.DirectX, Version=0.9.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=AMD64">
       <HintPath>..\packages\Microsoft.Wpf.Interop.DirectX-x64.0.9.0-beta-22856\lib\net45\Microsoft.Wpf.Interop.DirectX.dll</HintPath>
     </Reference>
+    <Reference Include="NAudio, Version=1.8.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.1.8.3\lib\net35\NAudio.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -202,7 +205,9 @@
     <Compile Include="Server\Instances\ServerInstance.cs" />
     <Compile Include="Server\Instances\Server\Base_Commands.cs" />
     <Compile Include="Server\Main.cs" />
+    <Compile Include="SoundSystem\Player.cs" />
     <Compile Include="SoundSystem\SaveData\AudioData.cs" />
+    <Compile Include="SoundSystem\Util\LoopStream.cs" />
     <Compile Include="Tabletop\Map\Table.xaml.cs">
       <DependentUpon>Table.xaml</DependentUpon>
     </Compile>
@@ -211,6 +216,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <EmbeddedResource Include="ProjectVariables.json" />
   </ItemGroup>
