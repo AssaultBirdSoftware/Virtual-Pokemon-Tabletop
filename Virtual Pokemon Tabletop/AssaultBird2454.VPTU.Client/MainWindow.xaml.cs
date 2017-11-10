@@ -98,7 +98,7 @@ namespace AssaultBird2454.VPTU.Client
         {
             try
             {
-                Client_Instance.Client.SendData(new Server.Instances.CommandData.Pokedex.Get_Pokedex_Pokemon());
+                Client_Instance.Client.SendData(new Server.Instances.CommandData.Pokedex.Pokedex_Pokemon_Get());
             }
             catch { }
         }
@@ -156,7 +156,7 @@ namespace AssaultBird2454.VPTU.Client
         Server.Instances.ClientInstance Client_Instance { get; set; }
         public void Setup_Command_Links()
         {
-            Client_Instance.Client_CommandHandeler.GetCommand("Get_Pokedex_Pokemon").Command_Executed += Client_Pokedex.Update_PokedexData;
+            Client_Instance.Client_CommandHandeler.GetCommand("Pokedex_Pokemon_Get").Command_Executed += Client_Pokedex.Update_PokedexData;
         }
         #endregion
 

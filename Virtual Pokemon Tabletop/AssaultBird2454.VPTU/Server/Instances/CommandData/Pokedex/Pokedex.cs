@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace AssaultBird2454.VPTU.Server.Instances.CommandData.Pokedex
 {
-    public class Get_Pokedex_Pokemon : Networking.Data.NetworkCommand
+    public class Pokedex_Pokemon_Get : Networking.Data.NetworkCommand
     {
-        public Get_Pokedex_Pokemon()
+        public Pokedex_Pokemon_Get()
         {
-            Command = "Get_Pokedex_Pokemon";
+            Command = "Pokedex_Pokemon_Get";
         }
 
         public string Command { get; set; }

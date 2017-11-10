@@ -27,8 +27,8 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
         {
             #region Pokedex
             // Pokemon
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Get_Pokedex_Pokemon>("Get_Pokedex_Pokemon");
-            CommandHandeler.GetCommand("Get_Pokedex_Pokemon").Command_Executed += new Networking.Server.Command_Handeler.Command_Callback(
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Pokedex_Pokemon_Get");
+            CommandHandeler.GetCommand("Pokedex_Pokemon_Get").Command_Executed += new Networking.Server.Command_Handeler.Command_Callback(
                 (object Data, Networking.Server.TCP.TCP_ClientNode Client) =>
                 {
                     List<Pokedex.Pokemon.PokemonData> PokedexData = new List<Pokedex.Pokemon.PokemonData>();
@@ -39,22 +39,22 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
                         PokedexData.Add(pokemon);
                     }
 
-                    Client.Send(new CommandData.Pokedex.Get_Pokedex_Pokemon()
+                    Client.Send(new CommandData.Pokedex.Pokedex_Pokemon_Get()
                     {
-                        Command = "Get_Pokedex_Pokemon",
+                        Command = "Pokedex_Pokemon_Get",
                         Pokemon_Dex = PokedexData
                     });
                 });
 
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon>("Add_Pokedex_Pokemon");
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon>("Edit_Pokedex_Pokemon");
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon>("Remove_Pokedex_Pokemon");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon>("Pokedex_Pokemon_Add");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon>("Pokedex_Pokemon_Edit");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon>("Pokedex_Pokemon_Remove");
 
             // Moves
-            CommandHandeler.RegisterCommand<string>("Get_Pokedex_Moves");
-            CommandHandeler.RegisterCommand<string>("Add_Pokedex_Moves");
-            CommandHandeler.RegisterCommand<string>("Edit_Pokedex_Moves");
-            CommandHandeler.RegisterCommand<string>("Remove_Pokedex_Moves");
+            CommandHandeler.RegisterCommand<string>("Pokedex_Moves_Get");
+            CommandHandeler.RegisterCommand<string>("Pokedex_Moves_Add");
+            CommandHandeler.RegisterCommand<string>("Pokedex_Moves_Edit");
+            CommandHandeler.RegisterCommand<string>("Pokedex_Moves_Remove");
             #endregion
 
             #region Entity

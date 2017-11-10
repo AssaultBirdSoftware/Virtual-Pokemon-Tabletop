@@ -81,7 +81,7 @@ namespace AssaultBird2454.VPTU.Client.Class.Controls
 
         public void Update_PokedexData(object Data)
         {
-            if (Data is Server.Instances.CommandData.Pokedex.Get_Pokedex_Pokemon)
+            if (Data is Server.Instances.CommandData.Pokedex.Pokedex_Pokemon_Get)
             {
                 try
                 {
@@ -92,7 +92,7 @@ namespace AssaultBird2454.VPTU.Client.Class.Controls
 
                 try
                 {
-                    PokedexData.Pokemon = ((Server.Instances.CommandData.Pokedex.Get_Pokedex_Pokemon)Data).Pokemon_Dex;
+                    PokedexData.Pokemon = ((Server.Instances.CommandData.Pokedex.Pokedex_Pokemon_Get)Data).Pokemon_Dex;
                 }
                 catch { }
 
