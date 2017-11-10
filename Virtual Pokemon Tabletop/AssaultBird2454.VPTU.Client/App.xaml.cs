@@ -13,5 +13,6 @@ namespace AssaultBird2454.VPTU.Client
     /// </summary>
     public partial class App : Application
     {
+        
     }
 }

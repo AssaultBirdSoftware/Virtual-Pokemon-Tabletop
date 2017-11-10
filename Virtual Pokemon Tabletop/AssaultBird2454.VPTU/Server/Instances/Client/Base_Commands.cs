@@ -24,7 +24,20 @@ namespace AssaultBird2454.VPTU.Server.Instances.Client
         /// <param name="CommandHandeler">Command Handeler that the commands are being Registered to</param>
         public void Register_Commands(Networking.Client.Command_Handeler.Client_CommandHandeler CommandHandeler)
         {
+            #region Base
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Base_SaveData_Save");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Base_SaveData_Load");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Base_SaveData_Upload");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Base_SaveData_Download");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Base_Settings_Get");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Base_Settings_Set");
+            // CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("");
+            #endregion
+
             #region Pokedex
+            // All
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Pokedex_Get");
+
             // Pokemon
             CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Pokedex_Pokemon_Get");
             CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon>("Pokedex_Pokemon_Add");
@@ -77,7 +90,7 @@ namespace AssaultBird2454.VPTU.Server.Instances.Client
             CommandHandeler.RegisterCommand<string>("Resources_Audio_Add");// Adds an Audio Resource
             CommandHandeler.RegisterCommand<string>("Resources_Audio_Edit");// Edits and Audio Resource
             CommandHandeler.RegisterCommand<string>("Resources_Audio_Remove");// Removes an Audio Resource
-            // CommandHandeler.RegisterCommand<string>("Resources_");
+                                                                              // CommandHandeler.RegisterCommand<string>("Resources_");
             #endregion
         }
         public void Unregister_Commands(Networking.Client.Command_Handeler.Client_CommandHandeler CommandHandeler)

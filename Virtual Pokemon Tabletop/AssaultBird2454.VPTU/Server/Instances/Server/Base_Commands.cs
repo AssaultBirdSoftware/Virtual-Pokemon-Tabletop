@@ -25,7 +25,41 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
         /// 
         public void Register_Commands(Networking.Server.Command_Handeler.Server_CommandHandeler CommandHandeler)
         {
+            #region Base
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Base_SaveData_Save");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Base_SaveData_Load");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Base_SaveData_Upload");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Base_SaveData_Download");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Base_Settings_Get");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Base_Settings_Set");
+            // CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("");
+            #endregion
+
+            #region Permissions (Not Implemented)
+
+            #endregion
+
             #region Pokedex
+            // All
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Pokedex_Get");
+            CommandHandeler.GetCommand("Pokedex_Get").Command_Executed += new Networking.Server.Command_Handeler.Command_Callback(
+                (object Data, Networking.Server.TCP.TCP_ClientNode Client) =>
+                {
+                    List<Pokedex.Pokemon.PokemonData> PokedexData = new List<Pokedex.Pokemon.PokemonData>();
+
+                    foreach (Pokedex.Pokemon.PokemonData pokemon in Instance.SaveManager.SaveData.PokedexData.Pokemon)
+                    {
+                        // Permissions Checks Here
+                        PokedexData.Add(pokemon);
+                    }
+
+                    Client.Send(new CommandData.Pokedex.Pokedex_Pokemon_Get()
+                    {
+                        Command = "Pokedex_Get",
+                        Pokemon_Dex = PokedexData
+                    });
+                });
+
             // Pokemon
             CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Pokedex_Pokemon_Get");
             CommandHandeler.GetCommand("Pokedex_Pokemon_Get").Command_Executed += new Networking.Server.Command_Handeler.Command_Callback(
@@ -52,6 +86,24 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
 
             // Moves
             CommandHandeler.RegisterCommand<string>("Pokedex_Moves_Get");
+            CommandHandeler.GetCommand("Pokedex_Moves_Get").Command_Executed += new Networking.Server.Command_Handeler.Command_Callback(
+                (object Data, Networking.Server.TCP.TCP_ClientNode Client) =>
+                {
+                    List<Pokedex.Moves.MoveData> MoveData = new List<Pokedex.Moves.MoveData>();
+
+                    foreach (Pokedex.Moves.MoveData move in Instance.SaveManager.SaveData.PokedexData.Moves)
+                    {
+                        // Permissions Checks Here
+                        MoveData.Add(move);
+                    }
+
+                    Client.Send(new CommandData.Pokedex.Pokedex_Moves_Get()
+                    {
+                        Command = "Pokedex_Moves_Get",
+                        Move_Dex = MoveData
+                    });
+                });
+
             CommandHandeler.RegisterCommand<string>("Pokedex_Moves_Add");
             CommandHandeler.RegisterCommand<string>("Pokedex_Moves_Edit");
             CommandHandeler.RegisterCommand<string>("Pokedex_Moves_Remove");

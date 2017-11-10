@@ -72,6 +72,17 @@ namespace AssaultBird2454.VPTU.Client.Class.Controls
                             }
                         }
                     }
+
+                    if(Search_Moves.IsChecked == true)
+                    {
+                        foreach(VPTU.Pokedex.Moves.MoveData move in PokedexData.Moves)
+                        {
+                            if (move.Name.ToLower().Contains(Search_Name.Text.ToLower()))
+                            {
+                                List.Items.Add(move);
+                            }
+                        }
+                    }
                     #endregion
 
                 }));
