@@ -204,6 +204,8 @@
     <Compile Include="Server\Instances\CommandData\Pokedex\Data.cs" />
     <Compile Include="Server\Instances\CommandData\Pokedex\Moves.cs" />
     <Compile Include="Server\Instances\CommandData\Pokedex\Pokemon.cs" />
+    <Compile Include="Server\Instances\CommandData\SaveData\Data.cs" />
+    <Compile Include="Server\Instances\CommandData\SaveData\Save.cs" />
     <Compile Include="Server\Instances\ServerInstance.cs" />
     <Compile Include="Server\Instances\Server\Base_Commands.cs" />
     <Compile Include="Server\Main.cs" />

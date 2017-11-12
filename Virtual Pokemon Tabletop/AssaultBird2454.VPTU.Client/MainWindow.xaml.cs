@@ -12,6 +12,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -44,13 +45,15 @@ namespace AssaultBird2454.VPTU.Client
 
         public MainWindow()
         {
+            BaseApplication.MainWindow = this;
+
             try
             {
                 if (File.Exists(AssemblyDirectory + "\\Client.pid"))
                 {
                     if (Process.GetProcessById(Convert.ToInt32(File.ReadAllText(AssemblyDirectory + "\\Launcher.pid"))).ProcessName == Process.GetCurrentProcess().ProcessName)
                     {
-                        MessageBox.Show("Process Already Running!");
+                        System.Windows.Forms.MessageBox.Show("Process Already Running!");
                         this.Close();
                         return;
                     }
@@ -66,14 +69,8 @@ namespace AssaultBird2454.VPTU.Client
             {
 
             }
-
+            
             InitializeComponent();
-
-            Client_Pokedex.Reload_Pressed += Pokedex_Reload_Event;
-            Client_Pokedex.Pokedex_Entry_Selection_Changed_Event += Client_Pokedex_Pokedex_Entry_Selection_Changed_Event;
-
-            //Dock.LayoutRootPanel.Children.Add();
-
             #region Versioning Info
             using (Stream str = Assembly.GetExecutingAssembly().GetManifestResourceStream("AssaultBird2454.VPTU.Client.ProjectVariables.json"))
             {
@@ -84,6 +81,15 @@ namespace AssaultBird2454.VPTU.Client
                 }
             }
             #endregion
+
+            BaseApplication.Client_NotifyIcon = new NotifyIcon();
+            BaseApplication.Client_NotifyIcon.Icon = new System.Drawing.Icon(AssemblyDirectory + @"\Resources\pokeball_B98_icon.ico", 16, 16);
+            BaseApplication.Client_NotifyIcon.Visible = true;
+
+            Client_Pokedex.Reload_Pressed += Pokedex_Reload_Event;
+            Client_Pokedex.Pokedex_Entry_Selection_Changed_Event += Client_Pokedex_Pokedex_Entry_Selection_Changed_Event;
+
+            BaseApplication.Client_NotifyIcon.ShowBalloonTip(10000, "Starting", "VPTU Client Started", ToolTipIcon.None);
         }
 
         private void Client_Pokedex_Pokedex_Entry_Selection_Changed_Event(Class.Controls.Pokedex_Entry_Type type, object Data)
@@ -92,15 +98,6 @@ namespace AssaultBird2454.VPTU.Client
             {
                 Pokedex_Viewer_Pokemon.Load((Pokedex.Pokemon.PokemonData)Data);
             }
-        }
-
-        private void Pokedex_Reload_Event()
-        {
-            try
-            {
-                Client_Instance.Client.SendData(new Server.Instances.CommandData.Pokedex.Pokedex_Pokemon_Get());
-            }
-            catch { }
         }
         #endregion
         private void Menu_Menu_Click(object sender, RoutedEventArgs e)
@@ -128,7 +125,7 @@ namespace AssaultBird2454.VPTU.Client
             try { new Xceed.Wpf.AvalonDock.Layout.Serialization.XmlLayoutSerializer(Dock).Deserialize(File); }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
             }
         }
 
@@ -153,19 +150,13 @@ namespace AssaultBird2454.VPTU.Client
         #endregion
 
         #region Client
-        Server.Instances.ClientInstance Client_Instance { get; set; }
         public void Setup_Command_Links()
         {
-            Client_Instance.Client_CommandHandeler.GetCommand("Pokedex_Pokemon_Get").Command_Executed += Client_Pokedex.Update_PokedexData;
+            BaseApplication.Client_Instance.Client_CommandHandeler.GetCommand("Pokedex_Pokemon_Get").Command_Executed += Client_Pokedex.Update_PokedexData;
         }
         #endregion
 
         #region Open / Close Campaign Session (LAN SESSION)
-        /// <summary>
-        /// Defines an object that acts as a server over a LAN
-        /// </summary>
-        public Server.Instances.ServerInstance Session_LanServer { get; set; }
-
         private void Menu_Menu_OpenGame_Click(object sender, RoutedEventArgs e)
         {
             Menu_Menu_OpenGame.IsEnabled = false;
@@ -173,7 +164,7 @@ namespace AssaultBird2454.VPTU.Client
             Menu_Menu_Connect.IsEnabled = false;
             Menu_Menu_Disconnect.IsEnabled = false;
 
-            OpenFileDialog openFile = new OpenFileDialog();
+            Microsoft.Win32.OpenFileDialog openFile = new Microsoft.Win32.OpenFileDialog();
             openFile.CheckFileExists = true;
             openFile.CheckPathExists = true;
             openFile.Multiselect = false;
@@ -187,12 +178,12 @@ namespace AssaultBird2454.VPTU.Client
                 Client_Console_Pane.LogDebug = true;
                 Server_Console_Pane.LogDebug = true;
 
-                Session_LanServer = new Server.Instances.ServerInstance(openFile.FileName, Server_Console_Pane);
-                Session_LanServer.StartServerInstance();
+                BaseApplication.Session_LanServer = new Server.Instances.ServerInstance(openFile.FileName, Server_Console_Pane);
+                BaseApplication.Session_LanServer.StartServerInstance();
 
-                Client_Instance = new Server.Instances.ClientInstance(Client_Console_Pane, IPAddress.Parse("127.0.0.1"));
+                BaseApplication.Client_Instance = new Server.Instances.ClientInstance(Client_Console_Pane, IPAddress.Parse("127.0.0.1"));
                 Setup_Command_Links();// Configures callbacks for commands from the server
-                Client_Instance.StartClientInstance();
+                BaseApplication.Client_Instance.StartClientInstance();
             }
             else
             {

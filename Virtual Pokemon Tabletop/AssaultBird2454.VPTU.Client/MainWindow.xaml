@@ -1,4 +1,4 @@
-﻿<Window xmlns:Controls="clr-namespace:AssaultBird2454.VPTU.Client.Class.Controls"  xmlns:ServerConsole="clr-namespace:AssaultBird2454.VPTU.Client.Class.ServerConsole" 
+﻿<Window xmlns:Battlers="clr-namespace:AssaultBird2454.VPTU.Client.Class.Controls.Battlers"  xmlns:Controls="clr-namespace:AssaultBird2454.VPTU.Client.Class.Controls"  xmlns:ServerConsole="clr-namespace:AssaultBird2454.VPTU.Client.Class.ServerConsole" 
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -63,7 +63,7 @@
                                 <TextBox/>
                             </xcad:LayoutAnchorable>
                             <xcad:LayoutAnchorable Title="Turn Order">
-                                <TextBox/>
+                                <Battlers:TurnOrder x:Name="Battle_TurnOrder"/>
                             </xcad:LayoutAnchorable>
                             <xcad:LayoutAnchorable Title="Tools">
                                 <TextBox/>
