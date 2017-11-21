@@ -112,11 +112,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\willow-app-icon_1x.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="pokeball_B98_icon.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -129,6 +124,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Client.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pokedex.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -121,10 +121,10 @@
   <data name="Client" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Client.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="willow_app_icon_1x" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\willow-app-icon_1x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="pokeball_B98_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pokeball_B98_icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pokedex" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Pokedex.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

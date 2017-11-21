@@ -17,7 +17,7 @@
         <ToolBar x:Name="Tools" Margin="0,18,0,0" VerticalAlignment="Top">
             <Button x:Name="Tools_Reload" Content="" Margin="0,0,0,0.4" Width="25">
                 <Button.Background>
-                    <ImageBrush Stretch="Uniform" ImageSource="pack://siteoforigin:,,,/Resources/willow-app-icon_1x.png"/>
+                    <ImageBrush Stretch="Uniform" ImageSource="pack://siteoforigin:,,,/Resources/Pokedex.png"/>
                 </Button.Background>
             </Button>
         </ToolBar>
