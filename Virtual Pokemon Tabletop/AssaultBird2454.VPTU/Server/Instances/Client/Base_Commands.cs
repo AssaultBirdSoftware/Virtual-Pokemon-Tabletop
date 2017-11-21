@@ -26,6 +26,7 @@ namespace AssaultBird2454.VPTU.Server.Instances.Client
         {
             #region Base
             CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Base_SaveData_Save");
+            CommandHandeler.GetCommand("Base_SaveData_Save").Command_Executed += Base_Commands_Command_Executed;
             CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Base_SaveData_Load");
             CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Base_SaveData_Upload");
             CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Base_SaveData_Download");
@@ -93,6 +94,12 @@ namespace AssaultBird2454.VPTU.Server.Instances.Client
                                                                               // CommandHandeler.RegisterCommand<string>("Resources_");
             #endregion
         }
+
+        private void Base_Commands_Command_Executed(object Data)
+        {
+
+        }
+
         public void Unregister_Commands(Networking.Client.Command_Handeler.Client_CommandHandeler CommandHandeler)
         {
 
