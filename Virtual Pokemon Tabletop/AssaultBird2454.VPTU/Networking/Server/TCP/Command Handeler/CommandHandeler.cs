@@ -94,9 +94,9 @@ namespace AssaultBird2454.VPTU.Networking.Server.Command_Handeler
 
                 cmd.Invoke(Newtonsoft.Json.JsonConvert.DeserializeObject(Data, cmd.DataType), node);
             }
-            catch
+            catch (Exception ex)
             {
-
+                
             }
         }
     }

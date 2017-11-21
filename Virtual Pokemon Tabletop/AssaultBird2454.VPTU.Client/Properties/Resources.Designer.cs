@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AssaultBird2454.VPTU.SaveEditor.Properties {
+namespace AssaultBird2454.VPTU.Client.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AssaultBird2454.VPTU.SaveEditor.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AssaultBird2454.VPTU.Client.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,9 +63,9 @@ namespace AssaultBird2454.VPTU.SaveEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon SaveEditor {
+        internal static System.Drawing.Icon Client {
             get {
-                object obj = ResourceManager.GetObject("SaveEditor", resourceCulture);
+                object obj = ResourceManager.GetObject("Client", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -73,19 +73,9 @@ namespace AssaultBird2454.VPTU.SaveEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Unknown_Pokemon_Sprite {
+        internal static System.Drawing.Bitmap willow_app_icon_1x {
             get {
-                object obj = ResourceManager.GetObject("Unknown_Pokemon_Sprite", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap VPTU_Logo {
-            get {
-                object obj = ResourceManager.GetObject("VPTU_Logo", resourceCulture);
+                object obj = ResourceManager.GetObject("willow_app_icon_1x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

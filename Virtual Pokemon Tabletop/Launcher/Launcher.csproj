@@ -50,7 +50,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>pokeball_B98_icon.ico</ApplicationIcon>
+    <ApplicationIcon>Launcher.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -181,6 +181,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AssaultBird2454.VPTU.Client\Client.csproj">
+      <Project>{842fda3f-fd43-47df-b1e1-50a48a0ffc84}</Project>
+      <Name>Client</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AssaultBird2454.VPTU.SaveEditor\SaveEditor.csproj">
       <Project>{24316f59-0d2b-467a-9a42-f4c5f2765748}</Project>
       <Name>SaveEditor</Name>
@@ -193,6 +197,14 @@
       <Project>{f5cd6b0d-b4ff-448a-9276-3c563c4c02df}</Project>
       <Name>VPTU</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Launcher.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Launcher.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
