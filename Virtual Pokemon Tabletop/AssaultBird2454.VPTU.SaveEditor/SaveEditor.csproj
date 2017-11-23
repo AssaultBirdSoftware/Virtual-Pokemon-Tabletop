@@ -306,9 +306,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="pokeball_B98_icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\AssaultBird2454.VPTU\VPTU.csproj">
       <Project>{f5cd6b0d-b4ff-448a-9276-3c563c4c02df}</Project>
       <Name>VPTU</Name>
@@ -324,7 +321,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="SaveEditor.ico" />
+    <Resource Include="SaveEditor.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

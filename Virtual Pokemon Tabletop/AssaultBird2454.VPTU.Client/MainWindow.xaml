@@ -4,23 +4,59 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AssaultBird2454.VPTU.Client"
-        xmlns:mdi="clr-namespace:Hammer.MDIContainer.Control;assembly=Hammer.MDIContainer.Control" x:Name="WIndow" x:Class="AssaultBird2454.VPTU.Client.MainWindow"
+        xmlns:MDI="clr-namespace:WPF.MDI;assembly=WPF.MDI"
+        x:Name="Window"
+        x:Class="AssaultBird2454.VPTU.Client.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="596.4" Width="894.6">
     <Grid Margin="0,0,0.4,-0.2">
         <Menu x:Name="Menu" VerticalAlignment="Top">
-            <MenuItem x:Name="Menu_Menu" Header="Menu"/>
+            <MenuItem x:Name="Menu_Menu" Header="Menu">
+                <MenuItem x:Name="Menu_Menu_Connect" Header="Connect to Table" Margin="0,0,0.2,0" Click="Menu_Menu_Connect_Click"/>
+                <MenuItem x:Name="Menu_Menu_Disconnect" Header="Disconnect from Table" Margin="0,0,0.2,0"/>
+                <MenuItem x:Name="Menu_Menu_Open" Header="Open Campaign File" Margin="0,0,0.2,0"/>
+                <Separator Margin="0,0,0.2,0" Height="2"/>
+                <MenuItem x:Name="Menu_Menu_ManageID" Header="Manage Identity Profiles" Margin="0,0,0.2,0"/>
+                <Separator Margin="0,0,0.2,0" Height="2"/>
+                <MenuItem x:Name="Menu_Menu_Quit" Header="Quit" Margin="0,0,0.2,0"/>
+            </MenuItem>
             <MenuItem x:Name="Menu_View" Header="View">
-                <MenuItem Header="View Pokedex" HorizontalAlignment="Left"/>
+                <MenuItem x:Name="Menu_View_Pokedex" Header="View Pokedex" Margin="0,0,0.4,0" IsCheckable="True" Checked="Menu_View_Pokedex_Checked" Unchecked="Menu_View_Pokedex_Unchecked"/>
+                <MenuItem x:Name="Menu_View_Moves" Header="View Move List" Margin="0,0,0.4,0"/>
+                <Separator Height="2" Margin="0,0,-0.4,0"/>
+                <MenuItem x:Name="Menu_View_ServerConsole" Header="Server Console" Margin="0,0,-0.4,0" IsCheckable="True"/>
+                <MenuItem x:Name="Menu_View_ClientConsole" Header="Client Console" Margin="0,0,-0.4,0" IsCheckable="True"/>
             </MenuItem>
         </Menu>
         <ToolBar x:Name="Tools" Margin="0,18,0,0" VerticalAlignment="Top">
-            <Button x:Name="Tools_Reload" Content="" Margin="0,0,0,0.4" Width="25">
+            <Button x:Name="Tools_Pokedex" Content="" Margin="0,0,0,0.4" Width="25" Click="Tools_Pokedex_Click">
                 <Button.Background>
                     <ImageBrush Stretch="Uniform" ImageSource="pack://siteoforigin:,,,/Resources/Pokedex.png"/>
                 </Button.Background>
             </Button>
+            <Button x:Name="Tools_MoveList" Content="" Margin="0,0,0,0.4" Width="25" Click="Tools_Pokedex_Click">
+                <Button.Background>
+                    <ImageBrush Stretch="Uniform" ImageSource="pack://siteoforigin:,,,/Resources/Unknown_Pokemon_Sprite.png"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="Tools_ItemList" Content="" Margin="0,0,0,0.4" Width="25" Click="Tools_Pokedex_Click">
+                <Button.Background>
+                    <ImageBrush Stretch="Uniform" ImageSource="pack://siteoforigin:,,,/Resources/Unknown_Pokemon_Sprite.png"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="Tools_AbilityList" Content="" Margin="0,0,0,0.4" Width="25" Click="Tools_Pokedex_Click">
+                <Button.Background>
+                    <ImageBrush Stretch="Uniform" ImageSource="pack://siteoforigin:,,,/Resources/Unknown_Pokemon_Sprite.png"/>
+                </Button.Background>
+            </Button>
         </ToolBar>
-        <mdi:MdiContainer x:Name="MDI" Margin="0,45,0,0"/>
+        <MDI:MdiContainer x:Name="MDI" Margin="0,45,0,22"/>
+        <StatusBar x:Name="Status" Background="Red" Height="22" VerticalAlignment="Bottom">
+            <StatusBarItem x:Name="Status_SvAddress" Content="Server Address: None" Margin="0,0,0,-0.4" HorizontalAlignment="Left" BorderThickness="0,0,1,0" BorderBrush="Black"/>
+            <StatusBarItem x:Name="Status_SvPort" Content="Server Port: 00000" Margin="0,0,0,-0.4" HorizontalAlignment="Left" BorderBrush="Black" BorderThickness="0,0,1,0"/>
+            <StatusBarItem x:Name="Status_Ping" Content="Server Ping: 0" Margin="0,0,0,-0.4" HorizontalAlignment="Left" BorderBrush="Black" BorderThickness="0,0,1,0"/>
+            <StatusBarItem x:Name="Status_Username" Content="Player Name: None" Margin="0,0,0,-0.4" HorizontalAlignment="Left" BorderBrush="Black" BorderThickness="0,0,1,0"/>
+            <StatusBarItem x:Name="Status_CampaignName" Content="Campaign Name: 0" Margin="0,0,0,-0.4" HorizontalAlignment="Right" BorderBrush="Black" BorderThickness="1,0,0,0"/>
+        </StatusBar>
     </Grid>
 </Window>

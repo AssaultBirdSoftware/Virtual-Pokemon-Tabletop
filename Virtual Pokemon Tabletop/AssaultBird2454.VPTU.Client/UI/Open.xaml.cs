@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AssaultBird2454.VPTU.Client.Class.Controls.Battlers
+namespace AssaultBird2454.VPTU.Client.UI
 {
     /// <summary>
-    /// Interaction logic for TurnOrder.xaml
+    /// Interaction logic for Open.xaml
     /// </summary>
-    public partial class TurnOrder : UserControl
+    public partial class Open : UserControl
     {
-        public TurnOrder()
+        public Open()
         {
             InitializeComponent();
         }
