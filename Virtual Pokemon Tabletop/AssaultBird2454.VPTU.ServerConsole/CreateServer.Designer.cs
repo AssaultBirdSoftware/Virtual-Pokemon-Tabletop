@@ -83,10 +83,20 @@
             this.Server_Port.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Server_Port.Location = new System.Drawing.Point(109, 62);
+            this.Server_Port.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
             this.Server_Port.Name = "Server_Port";
             this.Server_Port.Size = new System.Drawing.Size(205, 22);
             this.Server_Port.TabIndex = 4;
             this.Server_Port.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Server_Port.Value = new decimal(new int[] {
+            25444,
+            0,
+            0,
+            0});
             // 
             // Server_ID
             // 
@@ -125,6 +135,7 @@
             this.Save_Select.TabIndex = 8;
             this.Save_Select.Text = "...";
             this.Save_Select.UseVisualStyleBackColor = true;
+            this.Save_Select.Click += new System.EventHandler(this.Save_Select_Click);
             // 
             // Create
             // 
@@ -147,6 +158,7 @@
             this.Cancel.TabIndex = 10;
             this.Cancel.Text = "Cancel";
             this.Cancel.UseVisualStyleBackColor = true;
+            this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
             // CreateServer
             // 

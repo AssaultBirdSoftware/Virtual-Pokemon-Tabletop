@@ -47,7 +47,20 @@ namespace AssaultBird2454.VPTU.ServerConsole
 
         public void Settings_Save()
         {
-
+            try
+            {
+                using (StreamWriter sw = new StreamWriter(new FileStream(AssemblyDirectory + @"\Servers.json", FileMode.OpenOrCreate)))
+                {
+                    string Servers_String = Newtonsoft.Json.JsonConvert.SerializeObject(Servers);
+                    sw.WriteLine(Servers_String);
+                    sw.Flush();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("There was a error saving servers to file!\nNo Servers have been saved, This means that you will need to create them again when you open up the server again...", "Error Saving Servers to File");
+                MessageBox.Show(ex.ToString(), "Stack Trace");
+            }
         }
         public void Settings_Load()
         {
@@ -97,7 +110,44 @@ namespace AssaultBird2454.VPTU.ServerConsole
 
         private void Group_Controls_Create_Click(object sender, EventArgs e)
         {
+            CreateServer cs = new CreateServer(this);
+            DialogResult dr = cs.ShowDialog();
 
+            if (dr == DialogResult.OK)
+            {
+                Servers.Add(cs.CreatedServer);
+
+                ListViewItem lvi = new ListViewItem(cs.CreatedServer.Server_ID);
+
+                ListViewSubItem svn = new ListViewSubItem();
+                svn.Text = cs.CreatedServer.Server_Name;
+                lvi.SubItems.Add(svn);
+
+                ListViewSubItem ss = new ListViewSubItem();
+                ss.Text = "Offline";
+                lvi.SubItems.Add(ss);
+
+                ListViewSubItem svc = new ListViewSubItem();
+                svc.Text = "0";
+                lvi.SubItems.Add(svc);
+
+                ListViewSubItem svs = new ListViewSubItem();
+                svs.Text = cs.CreatedServer.SaveFile;
+                lvi.SubItems.Add(svs);
+
+                lvi.BackColor = Color.Red;
+
+                lvi.Tag = new VPTU.Server.Instances.ServerInstance(cs.CreatedServer.SaveFile, new VPTU.Server.Class.Logging.Console_Logger(true));
+                List_Servers.Items.Add(lvi);
+            }
+            else if (dr == DialogResult.Cancel)
+            {
+                MessageBox.Show("Opperation Aborted!\n\nReasion: Canceled By User!", "Server Creation Canceled");
+            }
+            else if (dr == DialogResult.Abort)
+            {
+                MessageBox.Show("Opperation Aborted!\n\nReasion: Canceled By User After Error!", "Server Creation Aborted");
+            }
         }
 
         private void Group_Controls_Start_Click(object sender, EventArgs e)

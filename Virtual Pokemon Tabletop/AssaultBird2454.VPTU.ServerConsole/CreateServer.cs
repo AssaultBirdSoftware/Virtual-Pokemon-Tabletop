@@ -13,6 +13,8 @@ namespace AssaultBird2454.VPTU.ServerConsole
     public partial class CreateServer : Form
     {
         Server_UI Parent;
+        public Server CreatedServer = new Server();
+
         public CreateServer(Server_UI _Parent)
         {
             InitializeComponent();
@@ -32,13 +34,13 @@ namespace AssaultBird2454.VPTU.ServerConsole
                 if (dr == DialogResult.OK)
                 {
                     DialogResult = DialogResult.OK;
-                    Parent.Servers.Add(new Server()
+                    CreatedServer = new Server()
                     {
                         Server_ID = Server_ID.Text,
                         Server_Name = Server_Name.Text,
                         Server_Port = (int)Server_Port.Value,
                         SaveFile = SaveFile_Location.Text
-                    });
+                    };
                     this.Close();
                 }
                 else if (dr == DialogResult.Cancel)
@@ -47,6 +49,30 @@ namespace AssaultBird2454.VPTU.ServerConsole
                     this.Close();
                 }
             }
+        }
+
+        private void Cancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        [STAThread]
+        private void Save_Select_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.CheckFileExists = true;
+            openFile.CheckPathExists = true;
+            openFile.Multiselect = false;
+            openFile.Title = "Open Virtual PTU Save File";
+            openFile.DefaultExt = ".ptu";
+
+            DialogResult dr = openFile.ShowDialog();
+
+            if(dr == DialogResult.OK)
+            {
+                SaveFile_Location.Text = openFile.FileName;
+            }
+            else { }
         }
     }
 }
