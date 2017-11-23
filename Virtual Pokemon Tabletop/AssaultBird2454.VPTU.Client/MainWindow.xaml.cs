@@ -39,7 +39,7 @@ namespace AssaultBird2454.VPTU.Client
             {
                 _PokedexList_Form = new UI.Pokedex();// Create the control
 
-                Menu_View_Pokedex.IsChecked = true;// Check the menu box
+                Menu_View_Pokedex.Dispatcher.Invoke(new Action(() => Menu_View_Pokedex.IsChecked = true));// Check the menu box
                 _PokedexList_Window = new WPF.MDI.MdiChild()
                 {
                     Title = "Pokedex List",
@@ -53,7 +53,7 @@ namespace AssaultBird2454.VPTU.Client
             }
             else
             {
-                Menu_View_Pokedex.IsChecked = true;// Check the menu box
+                Menu_View_Pokedex.Dispatcher.Invoke(new Action(() => Menu_View_Pokedex.IsChecked = true));// Check the menu box
                 return _PokedexList_Form;// Return the control if it already exists
             }
         }
@@ -348,6 +348,13 @@ namespace AssaultBird2454.VPTU.Client
         }
         #endregion
         #endregion
+        #endregion
+
+        #region Command Handelers
+        internal void Pokedex_Pokemon_Get_Executed(object Data)
+        {
+            PokedexList_Form().Pokedex_Pokemon_Get_Executed(((VPTU.Server.Instances.CommandData.Pokedex.Pokedex_Pokemon_Get)Data).Pokemon_Dex);
+        }
         #endregion
     }
 }

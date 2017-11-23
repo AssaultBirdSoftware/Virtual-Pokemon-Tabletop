@@ -24,5 +24,21 @@ namespace AssaultBird2454.VPTU.Client.UI
         {
             InitializeComponent();
         }
+
+        private void ToolBar_Reload_Click(object sender, RoutedEventArgs e)
+        {
+            List.Items.Clear();
+
+            Program.ClientInstance.Client.SendData(new VPTU.Server.Instances.CommandData.Pokedex.Pokedex_Pokemon_Get());
+        }
+
+        public void Pokedex_Pokemon_Get_Executed(List<VPTU.Pokedex.Pokemon.PokemonData> Pokemon)
+        {
+
+            foreach(VPTU.Pokedex.Pokemon.PokemonData data in Pokemon)
+            {
+                List.Dispatcher.Invoke(new Action(() => List.Items.Add(data)));
+            }
+        }
     }
 }

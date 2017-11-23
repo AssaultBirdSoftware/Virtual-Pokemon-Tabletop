@@ -70,12 +70,20 @@ namespace AssaultBird2454.VPTU.Client
 
         internal static void Setup_Client()
         {
-            ClientInstance.Client.ConnectionStateEvent += Client_ConnectionStateEvent;
+            ClientInstance.Client.ConnectionStateEvent += Client_ConnectionStateEvent;// Connection State Command
+            Setup_Commands();// Configures the commands
+        }
+
+        private static void Setup_Commands()
+        {
+            #region Pokedex
+            ClientInstance.Client_CommandHandeler.GetCommand("Pokedex_Pokemon_Get").Command_Executed += MainWindow.Pokedex_Pokemon_Get_Executed;
+            #endregion
         }
 
         private static void Client_ConnectionStateEvent(Networking.Data.Client_ConnectionStatus ConnectionState)
         {
-            if(ConnectionState == Networking.Data.Client_ConnectionStatus.Connected)
+            if (ConnectionState == Networking.Data.Client_ConnectionStatus.Connected)
             {
                 MainWindow.Status_Set_Color((Color)Colors.Green);
                 MainWindow.Status_Set_Address(ClientInstance.Server_Address.ToString());
