@@ -16,11 +16,12 @@ namespace AssaultBird2454.VPTU.ServerConsole
 
         static void Main(string[] args)
         {
-            ServerInterface_Thread = new Thread(new ThreadStart(new Action(() =>
+            ServerInterface_Thread = new Thread(new ThreadStart(() =>
             {
                 ServerInterface = new Server_UI();
                 ServerInterface.ShowDialog();
-            })));
+            }));
+            ServerInterface_Thread.ApartmentState = ApartmentState.STA;
             ServerInterface_Thread.Start();
             ServerInterface_Thread.Join();
         }

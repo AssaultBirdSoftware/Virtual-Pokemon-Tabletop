@@ -15,6 +15,17 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
 
     public class TCP_ClientNode
     {
+        #region Events
+        /// <summary>
+        /// An event thst fires when data is sent or recieved
+        /// </summary>
+        public event TCP_Data TCP_Data_Event;
+
+        /// <summary>
+        /// An event that is fired when a data error occures
+        /// </summary>
+        public event TCP_Data_Error TCP_Data_Error_Event;
+        #endregion
         #region Networking
         public TCP_Server Server { get; set; }// A Refrence to the server it belongs to
 
@@ -60,7 +71,9 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
 
                 while (DataQue.Count >= 1)// While there is data avaliable
                 {
-                    Server.CommandHandeler.InvokeCommand(DataQue.Dequeue(), this);// Process the data
+                    string Data = DataQue.Dequeue();// Gets the Data
+                    TCP_Data_Event?.Invoke(Data, this, DataDirection.Recieve);
+                    Server.CommandHandeler.InvokeCommand(Data, this);// Process the data
                 }
             }
         }
@@ -176,12 +189,14 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
                 if (NetMode == NetworkMode.Standard)
                 {
                     string JSONData = Newtonsoft.Json.JsonConvert.SerializeObject(Data);
+                    TCP_Data_Event?.Invoke(JSONData, this, DataDirection.Send);
                     byte[] Tx = Encoding.UTF8.GetBytes(JSONData + "|<EOD>|");
                     Client.GetStream().BeginWrite(Tx, 0, Tx.Length, OnWrite, Client);// Sends the data to the client
                 }
                 else if (NetMode == NetworkMode.SSL)
                 {
                     string JSONData = Newtonsoft.Json.JsonConvert.SerializeObject(Data);
+                    TCP_Data_Event?.Invoke(JSONData, this, DataDirection.Send);
                     byte[] Tx = Encoding.UTF8.GetBytes(JSONData + "|<EOD>|");
                     StateObject.SSL.BeginWrite(Tx, 0, Tx.Length, OnSslWrite, StateObject.SSL);// Sends the data to the client
                 }
@@ -200,7 +215,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
             }
             catch (Exception e)
             {
-                //Fire_TCP_Data_Error_Event(e, DataDirection.Send);
+                TCP_Data_Error_Event?.Invoke(e, DataDirection.Send);
                 /* Transmition Error */
             }
         }
@@ -213,7 +228,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
             }
             catch (Exception e)
             {
-                //Fire_TCP_Data_Error_Event(e, DataDirection.Send);
+                TCP_Data_Error_Event?.Invoke(e, DataDirection.Send);
                 /* Transmition Error */
             }
         }

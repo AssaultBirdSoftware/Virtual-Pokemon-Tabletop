@@ -31,23 +31,23 @@ namespace AssaultBird2454.VPTU.ServerConsole
                 && Parent.Servers.FindAll(x => x.Server_Port == Server_Port.Value).Count >= 1)
             {
                 DialogResult dr = MessageBox.Show("A server already exists with that ID, Name or Port!\n\nServer Not Added! Keep Creating?", "Server Exists with these settings", MessageBoxButtons.OKCancel);
-                if (dr == DialogResult.OK)
-                {
-                    DialogResult = DialogResult.OK;
-                    CreatedServer = new Server()
-                    {
-                        Server_ID = Server_ID.Text,
-                        Server_Name = Server_Name.Text,
-                        Server_Port = (int)Server_Port.Value,
-                        SaveFile = SaveFile_Location.Text
-                    };
-                    this.Close();
-                }
-                else if (dr == DialogResult.Cancel)
+                if (dr == DialogResult.Cancel)
                 {
                     DialogResult = DialogResult.Abort;
                     this.Close();
                 }
+            }
+            else
+            {
+                DialogResult = DialogResult.OK;
+                CreatedServer = new Server()
+                {
+                    Server_ID = Server_ID.Text,
+                    Server_Name = Server_Name.Text,
+                    Server_Port = (int)Server_Port.Value,
+                    SaveFile = SaveFile_Location.Text
+                };
+                Close();
             }
         }
 
@@ -55,8 +55,7 @@ namespace AssaultBird2454.VPTU.ServerConsole
         {
             Close();
         }
-
-        [STAThread]
+        
         private void Save_Select_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFile = new OpenFileDialog();
