@@ -2,19 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace AssaultBird2454.VPTU.ServerConsole
 {
     public class Program
     {
-        public static Server.Instances.ServerInstance Instance;
+        public static VPTU.Server.Instances.ServerInstance Instance;
+        public static Server_UI ServerInterface;
+        public static Thread ServerInterface_Thread;
 
         static void Main(string[] args)
         {
-            Instance = new Server.Instances.ServerInstance(@"D:\Resources\Template and Blank Save Files\New\PokemonTabletop2.3.ptu", new Server.Class.Logging.Console_Logger(true));
-            Instance.StartServerInstance();
-            Console.Read();
+            ServerInterface_Thread = new Thread(new ThreadStart(new Action(() =>
+            {
+                ServerInterface = new Server_UI();
+                ServerInterface.ShowDialog();
+            })));
+            ServerInterface_Thread.Start();
+            ServerInterface_Thread.Join();
+        }
+
+        private static void ServerInterface_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }
