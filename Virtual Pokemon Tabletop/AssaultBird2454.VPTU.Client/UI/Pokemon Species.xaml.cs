@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -49,23 +51,32 @@ namespace AssaultBird2454.VPTU.Client.UI
             Biology_Diet.Content = "No Data Found";
             Biology_Habitat1.Content = "No Data Found";
 
-            if (Data.Evolutions.Count <= 2)
+            try
             {
-                int i = 1;
-                foreach (VPTU.Pokedex.Pokemon.Link_Evolutions evo in Data.Evolutions)
+                if (Data.Evolutions.Count <= 2)
                 {
-                    if (evo.Evo_Type == VPTU.Pokedex.Pokemon.Evolution_Type.Normal)
+                    int i = 1;
+                    foreach (VPTU.Pokedex.Pokemon.Link_Evolutions evo in Data.Evolutions)
                     {
-                        if (i == 1) { Evolution_Name1.Content = "-"; Evolution_Level1.Content = "-"; i = 2; }
-                        else { Evolution_Name2.Content = "-"; Evolution_Level2.Content = "-"; }
+                        if (evo.Evo_Type == VPTU.Pokedex.Pokemon.Evolution_Type.Normal)
+                        {
+                            if (i == 1) { Evolution_Name1.Content = "-"; Evolution_Level1.Content = "-"; i = 2; }
+                            else { Evolution_Name2.Content = "-"; Evolution_Level2.Content = "-"; }
+                        }
                     }
                 }
+                else
+                {
+                    Evolution_Name1.Content = "More than 2";
+                    Evolution_Name2.Content = "Possible Forms";
+                }
             }
-            else
-            {
-                Evolution_Name1.Content = "More than 2";
-                Evolution_Name2.Content = "Possible Forms";
-            }
+            catch { /* Failed to Load Evolution Data */ }
+        }
+        public void UpdateImage(Bitmap bmp)
+        {
+            var bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(bmp.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            Image.Background = new ImageBrush(bitmapSource);
         }
     }
 }
