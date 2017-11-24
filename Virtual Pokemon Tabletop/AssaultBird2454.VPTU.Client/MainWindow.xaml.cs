@@ -92,7 +92,7 @@ namespace AssaultBird2454.VPTU.Client
                 window.Closing += PokedexSpecies_Window_Closing;// Set up an event
                 MDI.Children.Add(window);// Add the window
 
-                _Species_List.Add(new KeyValuePair<decimal, WPF.MDI.MdiChild>(0, window));
+                _Species_List.Add(new KeyValuePair<decimal, WPF.MDI.MdiChild>(ID, window));
                 return window;
             }
         }
