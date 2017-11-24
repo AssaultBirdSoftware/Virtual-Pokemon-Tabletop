@@ -12,6 +12,11 @@
                 <ImageBrush Stretch="Uniform" ImageSource="pack://siteoforigin:,,,/Resources/Blank Pokemon Card.jpg"/>
             </Border.Background>
         </Border>
+        <Border x:Name="Image" BorderBrush="Black" BorderThickness="0" Margin="230,12,12,356">
+            <Border.Background>
+                <ImageBrush Stretch="Uniform" ImageSource="pack://siteoforigin:,,,/Resources/Unknown_Pokemon_Sprite.png"/>
+            </Border.Background>
+        </Border>
         <Label x:Name="BaseStats_HP" Content="55" HorizontalAlignment="Left" Margin="88,88,0,0" VerticalAlignment="Top" Height="15.5" Width="20.5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="8" Padding="0"/>
         <Label x:Name="BaseStats_Attack" Content="55" HorizontalAlignment="Left" Margin="88,105,0,0" VerticalAlignment="Top" Height="15.5" Width="20.5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="8" Padding="0"/>
         <Label x:Name="BaseStats_Defence" Content="55" HorizontalAlignment="Left" Margin="88,122,0,0" VerticalAlignment="Top" Height="15.5" Width="20.5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="8" Padding="0"/>
@@ -53,7 +58,6 @@
         <Label x:Name="Evolution_Level2" Content="-" HorizontalAlignment="Left" Margin="194,105,0,0" VerticalAlignment="Top" Height="15" Width="26" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="8" Padding="0"/>
         <Label x:Name="Evolution_Name2" Content="-" HorizontalAlignment="Left" Margin="122,105,0,0" VerticalAlignment="Top" Width="67" FontSize="8" Padding="5,0,0,0" Height="15" VerticalContentAlignment="Center"/>
         <Label Content="Evolution" Margin="122,66,0,0" FontSize="8" Padding="5,0,0,0" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="66" Height="15" VerticalAlignment="Top"/>
-        <Border x:Name="Image" BorderBrush="Black" BorderThickness="0" HorizontalAlignment="Left" Height="400" Margin="924,44,0,0" VerticalAlignment="Top" Width="400"/>
         <Label Content="Abilities" HorizontalAlignment="Left" Margin="122,128,0,0" VerticalAlignment="Top" Width="199" FontSize="8" Padding="5,0,0,0" Height="15" VerticalContentAlignment="Center"/>
         <Label x:Name="Name" Content="Mega Charizard Y" HorizontalAlignment="Left" Margin="12,14,0,0" VerticalAlignment="Top" Width="143" FontSize="9" Padding="15,5,5,5" Height="32" VerticalContentAlignment="Center"/>
         <Label Content="Breeding Information" HorizontalAlignment="Left" Margin="122,236,0,0" VerticalAlignment="Top" Width="199" FontSize="8" Padding="5,0,0,0" Height="16" VerticalContentAlignment="Center"/>
