@@ -25,22 +25,23 @@ namespace AssaultBird2454.VPTU.Server.Instances.Client
         public void Register_Commands(Networking.Client.Command_Handeler.Client_CommandHandeler CommandHandeler)
         {
             #region Base
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Base_SaveData_Save");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Base_SaveData_Save");
             CommandHandeler.GetCommand("Base_SaveData_Save").Command_Executed += Base_Commands_Command_Executed;
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Base_SaveData_Load");
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Base_SaveData_Upload");
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Base_SaveData_Download");
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Base_Settings_Get");
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Base_Settings_Set");
-            // CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Base_SaveData_Load");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Base_SaveData_Upload");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Base_SaveData_Download");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Base_Settings_Get");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Base_Settings_Set");
+            // CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("");
             #endregion
 
             #region Pokedex
             // All
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Pokedex_Get");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Pokedex_Get");
 
             // Pokemon
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Pokedex_Pokemon_Get");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Pokedex_Pokemon_GetList");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon>("Pokedex_Pokemon_Get");
             CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon>("Pokedex_Pokemon_Add");
             CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon>("Pokedex_Pokemon_Edit");
             CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon>("Pokedex_Pokemon_Remove");

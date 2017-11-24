@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -64,6 +65,41 @@ namespace AssaultBird2454.VPTU.Client
             Menu_View_Pokedex.IsChecked = false;
             _PokedexList_Form = null;
             _PokedexList_Window = null;
+        }
+
+        private List<KeyValuePair<decimal, WPF.MDI.MdiChild>> _Species_List = new List<KeyValuePair<decimal, WPF.MDI.MdiChild>>();
+        public WPF.MDI.MdiChild Species_List(decimal ID)
+        {
+            List<KeyValuePair<decimal, WPF.MDI.MdiChild>> val = _Species_List.FindAll(x => x.Key == ID);
+            if (val.Count >= 1)
+            {
+                return val[0].Value;
+            }
+            else
+            {
+                UI.Pokemon_Species species = new UI.Pokemon_Species();
+
+                WPF.MDI.MdiChild window = new WPF.MDI.MdiChild()
+                {
+                    Title = "Pokedex Entry - [Name]",
+                    Icon = new BitmapImage(new Uri(Program.AssemblyDirectory + @"\Resources\Pokedex.png", UriKind.Absolute)),
+                    Content = species,
+                    MaximizeBox = false,
+                    Width = 359,
+                    Height = 500,
+                    Resizable = false
+                };// Create the window
+                window.Closing += PokedexSpecies_Window_Closing;// Set up an event
+                MDI.Children.Add(window);// Add the window
+
+                _Species_List.Add(new KeyValuePair<decimal, WPF.MDI.MdiChild>(0, window));
+                return window;
+            }
+        }
+
+        private void PokedexSpecies_Window_Closing(object sender, RoutedEventArgs e)
+        {
+            _Species_List.Remove(_Species_List.Find(x => x.Value == (WPF.MDI.MdiChild)sender));
         }
         #endregion
         #region Connect
@@ -351,9 +387,14 @@ namespace AssaultBird2454.VPTU.Client
         #endregion
 
         #region Command Handelers
+        internal void Pokedex_Pokemon_GetList_Executed(object Data)
+        {
+            PokedexList_Form().Pokedex_Pokemon_Get_Executed(((VPTU.Server.Instances.CommandData.Pokedex.Pokedex_Pokemon_GetList)Data).Pokemon_Dex);
+        }
         internal void Pokedex_Pokemon_Get_Executed(object Data)
         {
-            PokedexList_Form().Pokedex_Pokemon_Get_Executed(((VPTU.Server.Instances.CommandData.Pokedex.Pokedex_Pokemon_Get)Data).Pokemon_Dex);
+            VPTU.Pokedex.Pokemon.PokemonData pdata = (VPTU.Pokedex.Pokemon.PokemonData)((VPTU.Server.Instances.CommandData.Pokedex.Pokedex_Pokemon)Data).PokemonData;
+            this.Dispatcher.Invoke(new Action(() => ((UI.Pokemon_Species)(Species_List(pdata.Species_DexID)).Content).Update(pdata)));
         }
         #endregion
     }

@@ -99,6 +99,9 @@
     <Compile Include="UI\Pokedex.xaml.cs">
       <DependentUpon>Pokedex.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Pokemon Species.xaml.cs">
+      <DependentUpon>Pokemon Species.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -124,6 +127,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Pokedex.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Pokemon Species.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -206,6 +213,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Unknown_Pokemon_Sprite.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Blank Pokemon Card.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

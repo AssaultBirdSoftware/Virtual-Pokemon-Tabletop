@@ -46,6 +46,7 @@ namespace AssaultBird2454.VPTU.Pokedex.Pokemon
         public List<KeyValuePair<Pokemon_Capabilities, object>> Species_SpecialCapability { get; set; }
 
         public List<BattleManager.Data.Type> Species_Types { get; set; }
+        [JsonIgnore]
         public string Species_TypeString
         {
             get

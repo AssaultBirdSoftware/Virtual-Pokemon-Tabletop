@@ -77,6 +77,7 @@ namespace AssaultBird2454.VPTU.Client
         private static void Setup_Commands()
         {
             #region Pokedex
+            ClientInstance.Client_CommandHandeler.GetCommand("Pokedex_Pokemon_GetList").Command_Executed += MainWindow.Pokedex_Pokemon_GetList_Executed;
             ClientInstance.Client_CommandHandeler.GetCommand("Pokedex_Pokemon_Get").Command_Executed += MainWindow.Pokedex_Pokemon_Get_Executed;
             #endregion
         }

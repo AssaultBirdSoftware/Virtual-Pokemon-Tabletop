@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AssaultBird2454.VPTU.Networking.Server.TCP;
+using AssaultBird2454.VPTU.Server.Instances.CommandData.Pokedex;
 
 namespace AssaultBird2454.VPTU.Server.Instances.Server
 {
@@ -27,14 +28,14 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
         public void Register_Commands(Networking.Server.Command_Handeler.Server_CommandHandeler CommandHandeler)
         {
             #region Base
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Base_SaveData_Save");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Base_SaveData_Save");
             CommandHandeler.GetCommand("Base_SaveData_Save").Command_Executed += Base_SaveData_Save_Executed;
 
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Base_SaveData_Load");
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Base_SaveData_Upload");
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Base_SaveData_Download");
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Base_Settings_Get");
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Base_Settings_Set");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Base_SaveData_Load");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Base_SaveData_Upload");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Base_SaveData_Download");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Base_Settings_Get");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Base_Settings_Set");
             // CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("");
             #endregion
 
@@ -44,11 +45,13 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
 
             #region Pokedex
             // All
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Pokedex_Get");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Pokedex_Get");
             CommandHandeler.GetCommand("Pokedex_Get").Command_Executed += Pokedex_Get_Executed;
 
             // Pokemon
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("Pokedex_Pokemon_Get");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Pokedex_Pokemon_GetList");
+            CommandHandeler.GetCommand("Pokedex_Pokemon_GetList").Command_Executed += Pokedex_Pokemon_GetList_Executed;
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon>("Pokedex_Pokemon_Get");
             CommandHandeler.GetCommand("Pokedex_Pokemon_Get").Command_Executed += Pokedex_Pokemon_Get_Executed;
 
             CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon>("Pokedex_Pokemon_Add");
@@ -128,7 +131,7 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
                 PokedexData.Add(pokemon);
             }
 
-            Client.Send(new CommandData.Pokedex.Pokedex_Pokemon_Get()
+            Client.Send(new CommandData.Pokedex.Pokedex_Pokemon_GetList()
             {
                 Command = "Pokedex_Get",
                 Pokemon_Dex = PokedexData
@@ -137,7 +140,7 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
         #endregion
 
         #region Pokemon
-        private void Pokedex_Pokemon_Get_Executed(object Data, TCP_ClientNode Client)
+        private void Pokedex_Pokemon_GetList_Executed(object Data, TCP_ClientNode Client)
         {
             List<Pokedex.Pokemon.PokemonData> PokedexData = new List<Pokedex.Pokemon.PokemonData>();
 
@@ -147,10 +150,21 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
                 PokedexData.Add(pokemon);
             }
 
-            Client.Send(new CommandData.Pokedex.Pokedex_Pokemon_Get()
+            Client.Send(new CommandData.Pokedex.Pokedex_Pokemon_GetList()
+            {
+                Command = "Pokedex_Pokemon_GetList",
+                Pokemon_Dex = PokedexData
+            });
+        }
+        private void Pokedex_Pokemon_Get_Executed(object Data, TCP_ClientNode Client)
+        {
+            Pokedex.Pokemon.PokemonData PokemonData = Instance.SaveManager.SaveData.PokedexData.Pokemon.Find(x => x.Species_DexID == ((Pokedex_Pokemon)Data).DexID);
+
+            Client.Send(new Pokedex_Pokemon()
             {
                 Command = "Pokedex_Pokemon_Get",
-                Pokemon_Dex = PokedexData
+                PokemonData = PokemonData,
+                DexID = PokemonData.Species_DexID
             });
         }
         #endregion

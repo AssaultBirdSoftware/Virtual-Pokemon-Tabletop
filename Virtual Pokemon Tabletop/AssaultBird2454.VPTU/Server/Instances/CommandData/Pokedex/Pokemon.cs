@@ -2,11 +2,11 @@
 
 namespace AssaultBird2454.VPTU.Server.Instances.CommandData.Pokedex
 {
-    public class Pokedex_Pokemon_Get : Networking.Data.NetworkCommand
+    public class Pokedex_Pokemon_GetList : Networking.Data.NetworkCommand
     {
-        public Pokedex_Pokemon_Get()
+        public Pokedex_Pokemon_GetList()
         {
-            Command = "Pokedex_Pokemon_Get";
+            Command = "Pokedex_Pokemon_GetList";
         }
 
         public string Command { get; set; }
@@ -18,6 +18,7 @@ namespace AssaultBird2454.VPTU.Server.Instances.CommandData.Pokedex
     {
         public string Command { get; set; }
 
-        public Opperation Opperation { get; set; }
+        public decimal DexID { get; set; }
+        public VPTU.Pokedex.Pokemon.PokemonData PokemonData { get; set; }
     }
 }

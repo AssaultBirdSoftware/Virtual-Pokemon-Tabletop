@@ -29,16 +29,25 @@ namespace AssaultBird2454.VPTU.Client.UI
         {
             List.Items.Clear();
 
-            Program.ClientInstance.Client.SendData(new VPTU.Server.Instances.CommandData.Pokedex.Pokedex_Pokemon_Get());
+            Program.ClientInstance.Client.SendData(new VPTU.Server.Instances.CommandData.Pokedex.Pokedex_Pokemon_GetList());
         }
 
         public void Pokedex_Pokemon_Get_Executed(List<VPTU.Pokedex.Pokemon.PokemonData> Pokemon)
         {
 
-            foreach(VPTU.Pokedex.Pokemon.PokemonData data in Pokemon)
+            foreach (VPTU.Pokedex.Pokemon.PokemonData data in Pokemon)
             {
                 List.Dispatcher.Invoke(new Action(() => List.Items.Add(data)));
             }
+        }
+
+        private void List_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Program.ClientInstance.Client.SendData(new VPTU.Server.Instances.CommandData.Pokedex.Pokedex_Pokemon()
+            {
+                Command = "Pokedex_Pokemon_Get",
+                DexID = ((VPTU.Pokedex.Pokemon.PokemonData)List.SelectedItems[0]).Species_DexID
+            });
         }
     }
 }
