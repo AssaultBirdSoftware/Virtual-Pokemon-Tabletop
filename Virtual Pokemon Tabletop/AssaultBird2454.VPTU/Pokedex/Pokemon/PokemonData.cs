@@ -53,14 +53,15 @@ namespace AssaultBird2454.VPTU.Pokedex.Pokemon
             {
                 int i = 0;
                 string s = "";
-                foreach(BattleManager.Data.Type type in Species_Types)
+                foreach (BattleManager.Data.Type type in Species_Types)
                 {
                     if (i != 0)
                         s = s + ", ";
                     s = s + type.ToString();
+                    i++;
                 }
 
-                return s.Remove(s.Length - 2, 2);
+                return s;
             }
         }
         public Entity.SizeClass Species_SizeClass { get; set; }

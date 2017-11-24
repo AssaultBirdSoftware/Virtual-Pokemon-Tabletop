@@ -44,9 +44,9 @@
         <Label x:Name="Biology_Weight" Content="Weight Class 5" HorizontalAlignment="Left" Margin="83,367,0,0" VerticalAlignment="Top" Height="15" Width="230" VerticalContentAlignment="Center" FontSize="8" Padding="5,0,0,0"/>
         <Label Content="Weight" HorizontalAlignment="Left" Margin="26,367,0,0" VerticalAlignment="Top" Width="56" FontSize="8" Padding="5,0,0,0" Height="15" VerticalContentAlignment="Center"/>
         <Label x:Name="Biology_Diet" Content="Herbivore, Phototroph" HorizontalAlignment="Left" Margin="83,384,0,0" VerticalAlignment="Top" Height="15" Width="230" VerticalContentAlignment="Center" FontSize="8" Padding="5,0,0,0"/>
-        <Label Content="Diet" HorizontalAlignment="Left" Margin="26,384,0,0" VerticalAlignment="Top" Width="56" FontSize="8" Padding="5,0,0,0" Height="15" VerticalContentAlignment="Center"/>
-        <Label x:Name="Biology_Habitat1" Content="Forest, Grassland, Rainforest" HorizontalAlignment="Right" Margin="0,0,1055,1456" Width="230" VerticalContentAlignment="Center" FontSize="8" Height="15" VerticalAlignment="Bottom" Padding="5,0,0,0"/>
+        <Label HorizontalAlignment="Left" Margin="26,384,0,0" VerticalAlignment="Top" Width="56" FontSize="8" Padding="5,0,0,0" Height="15" VerticalContentAlignment="Center" Content="Diet"/>
         <Label Content="Habitat" HorizontalAlignment="Left" Margin="26,401,0,0" VerticalAlignment="Top" Width="56" FontSize="8" Padding="5,0,0,0" Height="15" VerticalContentAlignment="Center"/>
+        <Label x:Name="Biology_Habitat1" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Height="14" Width="230" VerticalContentAlignment="Center" FontSize="8" Padding="5,0,0,0" Margin="83,402,0,0"/>
         <Label x:Name="Biology_Habitat2" Content="" HorizontalAlignment="Left" Margin="83,418,0,0" VerticalAlignment="Top" Height="14" Width="230" VerticalContentAlignment="Center" FontSize="8" Padding="5,0,0,0"/>
         <Label x:Name="Evolution_Level1" Content="-" HorizontalAlignment="Left" Margin="194,88,0,0" VerticalAlignment="Top" Height="15" Width="26" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="8" Padding="0"/>
         <Label x:Name="Evolution_Name1" Content="-" HorizontalAlignment="Left" Margin="122,88,0,0" VerticalAlignment="Top" Width="67" FontSize="8" Padding="5,0,0,0" Height="15" VerticalContentAlignment="Center"/>
@@ -57,7 +57,6 @@
         <Label Content="Abilities" HorizontalAlignment="Left" Margin="122,128,0,0" VerticalAlignment="Top" Width="199" FontSize="8" Padding="5,0,0,0" Height="15" VerticalContentAlignment="Center"/>
         <Label x:Name="Name" Content="Mega Charizard Y" HorizontalAlignment="Left" Margin="12,14,0,0" VerticalAlignment="Top" Width="143" FontSize="9" Padding="15,5,5,5" Height="32" VerticalContentAlignment="Center"/>
         <Label Content="Breeding Information" HorizontalAlignment="Left" Margin="122,236,0,0" VerticalAlignment="Top" Width="199" FontSize="8" Padding="5,0,0,0" Height="16" VerticalContentAlignment="Center"/>
-        <Label x:Name="BaseStats_HP_Copy" Content="55" HorizontalAlignment="Left" Margin="88,88,0,0" VerticalAlignment="Top" Height="15.5" Width="20.5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="8" Padding="0"/>
 
     </Grid>
 </UserControl>
