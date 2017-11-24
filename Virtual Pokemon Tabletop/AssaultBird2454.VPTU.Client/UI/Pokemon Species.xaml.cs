@@ -72,6 +72,14 @@ namespace AssaultBird2454.VPTU.Client.UI
                 }
             }
             catch { /* Failed to Load Evolution Data */ }
+
+            Program.ClientInstance.Client.SendData(new VPTU.Server.Instances.CommandData.Resources.ImageResource
+            {
+                Command = "Resources_Image_Get",
+                UseCommand = "Pokedex_Species",
+                UseID = Data.Species_DexID.ToString(),
+                Location = Data.Sprite_Normal
+            });// Retrieves the Image
         }
         public void UpdateImage(Bitmap bmp)
         {

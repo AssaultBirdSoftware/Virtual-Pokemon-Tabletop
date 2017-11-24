@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Resources"
         mc:Ignorable="d"
-        Title="Import Resource (Image)" Height="133.808" Width="501.989">
+        Title="Import Resource (Image)" Height="144.41" Width="501.989">
     <Grid>
         <Button x:Name="File_Import" Content="Select File" HorizontalAlignment="Left" Margin="409,35,0,0" VerticalAlignment="Top" Width="75" Click="File_Import_Click"/>
         <Label x:Name="label" Content="File / Directory" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>

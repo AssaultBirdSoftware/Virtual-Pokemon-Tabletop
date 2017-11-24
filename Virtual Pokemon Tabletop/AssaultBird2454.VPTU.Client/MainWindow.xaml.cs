@@ -396,6 +396,26 @@ namespace AssaultBird2454.VPTU.Client
             VPTU.Pokedex.Pokemon.PokemonData pdata = (VPTU.Pokedex.Pokemon.PokemonData)((VPTU.Server.Instances.CommandData.Pokedex.Pokedex_Pokemon)Data).PokemonData;
             this.Dispatcher.Invoke(new Action(() => ((UI.Pokemon_Species)(Species_List(pdata.Species_DexID)).Content).Update(pdata)));
         }
+
+        #region Resources
+        internal void Resources_Image_Get_Executed(object Data)
+        {
+            Server.Instances.CommandData.Resources.ImageResource IRD = (Server.Instances.CommandData.Resources.ImageResource)Data;
+
+            if (IRD.UseCommand == "Pokedex_Species")// Pokedex Card Viewer
+            {
+                try
+                {
+                    decimal id = Decimal.Parse(IRD.UseID);
+                    this.Dispatcher.Invoke(new Action(() => ((UI.Pokemon_Species)(Species_List(id)).Content).UpdateImage(IRD.Image)));
+                }
+                catch
+                {
+
+                }
+            }
+        }
+        #endregion
         #endregion
     }
 }

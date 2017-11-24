@@ -55,6 +55,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Resources
 
                 ImportFile(Selected_FileDir.Text, Import_Save.IsChecked);
                 Import_Progress.Dispatcher.Invoke(new Action(() => Import_Progress.Value = 1));
+                System.Windows.MessageBox.Show("Done! Importing");
 
                 if (Close_On_Complete.IsChecked == true)
                 {
@@ -82,6 +83,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Resources
 
                     this.Dispatcher.Invoke(new Action(() =>
                     {
+                        System.Windows.MessageBox.Show("Done! Importing");
                         if (Close_On_Complete.IsChecked == true)
                         {
                             DialogResult = true;

@@ -21,8 +21,8 @@
         </ListView>
         <Label Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="50,4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="207"/>
-        <Button Content="Select" Margin="0,0,83,10" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Click="Button_Click"/>
-        <Button Content="Cancel" Margin="0,0,3,10" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75"/>
+        <Button x:Name="Select" Content="Select" Margin="0,0,83,10" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Click="Select_Click"/>
+        <Button x:Name="Cancel" Content="Cancel" Margin="0,0,3,10" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Click="Cancel_Click"/>
         <Border x:Name="Preview" HorizontalAlignment="Left" Height="150" VerticalAlignment="Top" Width="150" Grid.Column="1"/>
         <Label x:Name="SelectedName" Content="Name" Margin="0,150,0,73" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="1"/>
 

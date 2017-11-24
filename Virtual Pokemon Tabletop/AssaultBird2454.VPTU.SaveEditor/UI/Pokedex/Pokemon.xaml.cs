@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Interop;
 
 namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
 {
@@ -295,6 +296,42 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
             }
             catch { }
             #endregion
+            #endregion
+
+            // All the resources like pokemon sprites
+            #region Resources
+            try
+            {
+                var NormalBMPS = Imaging.CreateBitmapSourceFromHBitmap(MainWindow.SaveManager.LoadImage(PokemonData.Sprite_Normal).GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                Image_Normal.Background = new ImageBrush(NormalBMPS)
+                {
+                    Stretch = Stretch.Uniform,
+                    TileMode = TileMode.None
+                };
+            }
+            catch { }// Normal Sprite
+
+            try
+            {
+                var ShinyBMPS = Imaging.CreateBitmapSourceFromHBitmap(MainWindow.SaveManager.LoadImage(PokemonData.Sprite_Shiny).GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                Image_Shiny.Background = new ImageBrush(ShinyBMPS)
+                {
+                    Stretch = Stretch.Uniform,
+                    TileMode = TileMode.None
+                };
+            }
+            catch { }// Shiny Sprite
+
+            try
+            {
+                var EggBMPS = Imaging.CreateBitmapSourceFromHBitmap(MainWindow.SaveManager.LoadImage(PokemonData.Sprite_Egg).GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                Image_Egg.Background = new ImageBrush(EggBMPS)
+                {
+                    Stretch = Stretch.Uniform,
+                    TileMode = TileMode.None
+                };
+            }
+            catch { }// Egg Sprite
             #endregion
         }
 
@@ -683,38 +720,62 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
 
         private void SelectIMG_Normal_Click(object sender, RoutedEventArgs e)
         {
-            //UI.Resources.Search_Resources Select = new UI.Resources.Search_Resources(Mgr);
+            UI.Resources.Search_Resources Select = new UI.Resources.Search_Resources();
 
-            //bool? dr = Select.ShowDialog();
+            bool? dr = Select.ShowDialog();
 
-            //if (dr == true)
-            //{
-            //    //PokemonData.Sprite_Normal = Select;
-            //}
+            if (dr == true)
+            {
+                PokemonData.Sprite_Normal = Select.Selected_Resource;
+
+                var bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(MainWindow.SaveManager.LoadImage(PokemonData.Sprite_Normal).GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+
+                Image_Normal.Background = new ImageBrush(bitmapSource)
+                {
+                    Stretch = Stretch.Uniform,
+                    TileMode = TileMode.None
+                };
+            }
         }
 
         private void SelectIMG_Shiny_Click(object sender, RoutedEventArgs e)
         {
-            //UI.Resources.Search_Resources Select = new UI.Resources.Search_Resources(Mgr);
+            UI.Resources.Search_Resources Select = new UI.Resources.Search_Resources();
 
-            //bool? dr = Select.ShowDialog();
+            bool? dr = Select.ShowDialog();
 
-            //if (dr == true)
-            //{
-            //    //PokemonData.Sprite_Shiny = Select;
-            //}
+            if (dr == true)
+            {
+                PokemonData.Sprite_Shiny = Select.Selected_Resource;
+
+                var bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(MainWindow.SaveManager.LoadImage(PokemonData.Sprite_Shiny).GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+
+                Image_Shiny.Background = new ImageBrush(bitmapSource)
+                {
+                    Stretch = Stretch.Uniform,
+                    TileMode = TileMode.None
+                };
+            }
         }
 
         private void SelectIMG_Egg_Click(object sender, RoutedEventArgs e)
         {
-            //UI.Resources.Search_Resources Select = new UI.Resources.Search_Resources(Mgr);
+            UI.Resources.Search_Resources Select = new UI.Resources.Search_Resources();
 
-            //bool? dr = Select.ShowDialog();
+            bool? dr = Select.ShowDialog();
 
-            //if (dr == true)
-            //{
-            //    //PokemonData.Sprite_Egg = Select;
-            //}
+            if (dr == true)
+            {
+                PokemonData.Sprite_Egg = Select.Selected_Resource;
+
+                var bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(MainWindow.SaveManager.LoadImage(PokemonData.Sprite_Egg).GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+
+                Image_Egg.Background = new ImageBrush(bitmapSource)
+                {
+                    Stretch = Stretch.Uniform,
+                    TileMode = TileMode.None
+                };
+            }
         }
     }
 

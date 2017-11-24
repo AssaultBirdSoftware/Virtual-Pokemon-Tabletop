@@ -83,10 +83,10 @@ namespace AssaultBird2454.VPTU.Server.Instances.Client
             #endregion
 
             #region Resources
-            CommandHandeler.RegisterCommand<string>("Resources_Image_Get");// Gets an Image Resource
-            CommandHandeler.RegisterCommand<string>("Resources_Image_Add");// Adds an Image Resource
-            CommandHandeler.RegisterCommand<string>("Resources_Image_Edit");// Edits and Image Resource
-            CommandHandeler.RegisterCommand<string>("Resources_Image_Remove");// Removes and Image Resource
+            CommandHandeler.RegisterCommand<CommandData.Resources.ImageResource>("Resources_Image_Get");// Gets an Image Resource
+            CommandHandeler.RegisterCommand<CommandData.Resources.ImageResource>("Resources_Image_Add");// Adds an Image Resource
+            CommandHandeler.RegisterCommand<CommandData.Resources.ImageResource>("Resources_Image_Edit");// Edits and Image Resource
+            CommandHandeler.RegisterCommand<CommandData.Resources.ImageResource>("Resources_Image_Remove");// Removes and Image Resource
             CommandHandeler.RegisterCommand<string>("Resources_Audio_Play");// Play Audio Signal
             CommandHandeler.RegisterCommand<string>("Resources_Audio_Get");// Gets an Audio Resource
             CommandHandeler.RegisterCommand<string>("Resources_Audio_Add");// Adds an Audio Resource

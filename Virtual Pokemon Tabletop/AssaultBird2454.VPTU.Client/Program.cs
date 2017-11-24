@@ -80,6 +80,9 @@ namespace AssaultBird2454.VPTU.Client
             ClientInstance.Client_CommandHandeler.GetCommand("Pokedex_Pokemon_GetList").Command_Executed += MainWindow.Pokedex_Pokemon_GetList_Executed;
             ClientInstance.Client_CommandHandeler.GetCommand("Pokedex_Pokemon_Get").Command_Executed += MainWindow.Pokedex_Pokemon_Get_Executed;
             #endregion
+            #region Resources
+            ClientInstance.Client_CommandHandeler.GetCommand("Resources_Image_Get").Command_Executed += MainWindow.Resources_Image_Get_Executed;
+            #endregion
         }
 
         private static void Client_ConnectionStateEvent(Networking.Data.Client_ConnectionStatus ConnectionState)

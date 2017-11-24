@@ -97,10 +97,12 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
             #endregion
 
             #region Resources
-            CommandHandeler.RegisterCommand<string>("Resources_Image_Get");// Gets an Image Resource
-            CommandHandeler.RegisterCommand<string>("Resources_Image_Add");// Adds an Image Resource
-            CommandHandeler.RegisterCommand<string>("Resources_Image_Edit");// Edits and Image Resource
-            CommandHandeler.RegisterCommand<string>("Resources_Image_Remove");// Removes and Image Resource
+            CommandHandeler.RegisterCommand<CommandData.Resources.ImageResource>("Resources_Image_Get");// Gets an Image Resource
+            CommandHandeler.GetCommand("Resources_Image_Get").Command_Executed += Resources_Image_Get_Executed;
+
+            CommandHandeler.RegisterCommand<CommandData.Resources.ImageResource>("Resources_Image_Add");// Adds an Image Resource
+            CommandHandeler.RegisterCommand<CommandData.Resources.ImageResource>("Resources_Image_Edit");// Edits and Image Resource
+            CommandHandeler.RegisterCommand<CommandData.Resources.ImageResource>("Resources_Image_Remove");// Removes and Image Resource
             CommandHandeler.RegisterCommand<string>("Resources_Audio_Play");// Play Audio Signal
             CommandHandeler.RegisterCommand<string>("Resources_Audio_Get");// Gets an Audio Resource
             CommandHandeler.RegisterCommand<string>("Resources_Audio_Add");// Adds an Audio Resource
@@ -187,6 +189,16 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
             });
         }
         #endregion
+        #endregion
+
+        #region Resources
+        private void Resources_Image_Get_Executed(object Data, TCP_ClientNode Client)
+        {
+            CommandData.Resources.ImageResource IRD = (CommandData.Resources.ImageResource)Data;
+            IRD.Image = Instance.SaveManager.LoadImage(IRD.Location);
+
+            Client.Send(IRD);
+        }
         #endregion
         #endregion
 
