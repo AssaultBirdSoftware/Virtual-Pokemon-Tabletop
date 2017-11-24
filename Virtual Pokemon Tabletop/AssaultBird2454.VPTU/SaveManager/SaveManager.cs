@@ -9,7 +9,6 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Media.Imaging;
 
 namespace AssaultBird2454.VPTU.SaveManager
 {
@@ -232,7 +231,7 @@ namespace AssaultBird2454.VPTU.SaveManager
         }
         #endregion
         #region Load File
-        public BitmapImage LoadImage(string FilePath)
+        public Bitmap LoadImage(string FilePath)
         {
             if (FilePath.ToLower().StartsWith("save:"))
             {
@@ -242,37 +241,19 @@ namespace AssaultBird2454.VPTU.SaveManager
                     //Creates an object to read the archive data from
                     using (ZipArchive archive = new ZipArchive(Reader, ZipArchiveMode.Update))
                     {
-                        Stream str = (archive.GetEntry(FilePath.Remove(0, 5))).Open();
+                        Stream str = (archive.GetEntry(FilePath.Remove(0, 5))).Open();// Opens a stream & Removes prefix ID
+                        Bitmap bmp = new Bitmap(str);// Loads Image
 
-                        BitmapImage bmp = new BitmapImage();
-                        bmp.BeginInit();
-
-                        MemoryStream ms = new MemoryStream();
-                        Image.FromStream(str).Save(ms, ImageFormat.Bmp);
-                        ms.Seek(0, SeekOrigin.Begin);
-
-                        bmp.StreamSource = ms;
-                        bmp.EndInit();
-
-                        return bmp;
+                        return bmp;// Return Image
                     }
                 }
             }
             else if (FilePath.ToLower().StartsWith("path:"))
             {
-                FileStream str = new FileStream(FilePath.Remove(0, 5), FileMode.Open);
+                FileStream str = new FileStream(FilePath.Remove(0, 5), FileMode.Open);// Opens a stream & Removes prefix ID
+                Bitmap bmp = new Bitmap(str);// Loads Image
 
-                BitmapImage bmp = new BitmapImage();
-                bmp.BeginInit();
-
-                MemoryStream ms = new MemoryStream();
-                Image.FromStream(str).Save(ms, ImageFormat.Bmp);
-                ms.Seek(0, SeekOrigin.Begin);
-
-                bmp.StreamSource = ms;
-                bmp.EndInit();
-
-                return bmp;
+                return bmp;// Return Image
             }
             return null;
         }
