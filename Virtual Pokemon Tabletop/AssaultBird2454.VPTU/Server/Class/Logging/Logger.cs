@@ -72,7 +72,7 @@ namespace AssaultBird2454.VPTU.Server.Class.Logging
         {
             //TODO: Add an option to dissable logging to file
 
-            LogFile_Dir = Main.AssemblyDirectory + @"\Logs\" + DateTime.Now.ToLongDateString();
+            LogFile_Dir = Main.AssemblyDirectory + @"\Logs\" + DateTime.Now.ToLongDateString() + " at " + DateTime.Now.ToLongTimeString().Replace(':', ' ');
 
             if (!Directory.Exists(Path.GetDirectoryName(LogFile_Dir)))
                 Directory.CreateDirectory(Path.GetDirectoryName(LogFile_Dir));
@@ -136,6 +136,11 @@ namespace AssaultBird2454.VPTU.Server.Class.Logging
 
     public interface I_Logger
     {
+        /// <summary>
+        /// Defines if the logger needs to display Debug Logs
+        /// </summary>
+        bool LogDebug { get; set; }
+
         /// <summary>
         /// Configures the logging class
         /// </summary>

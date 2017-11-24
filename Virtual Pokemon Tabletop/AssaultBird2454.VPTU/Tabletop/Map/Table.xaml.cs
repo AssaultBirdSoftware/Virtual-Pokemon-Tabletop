@@ -143,7 +143,7 @@ namespace AssaultBird2454.VPTU.Tabletop.Map
 
             DiffuseMaterial Mat = new DiffuseMaterial(new SolidColorBrush(Color.FromArgb(255, 255, 255, 0)));
             Image image = new Image();
-            image.Source = (new ImageSourceConverter()).ConvertFromString(@"C:\Users\Tasman\Desktop\PTU\Maps\Image\1st Route Map (TG).png") as ImageSource;
+            //image.Source = (new ImageSourceConverter()).ConvertFromString(@"C:\Users\Tasman\Desktop\PTU\Maps\Image\1st Route Map (TG).png") as ImageSource;
             DiffuseMaterial Material = new DiffuseMaterial(new ImageBrush(image.Source));// Meterial
 
             for (var Y = 0; Y < Max_Y; Y++)

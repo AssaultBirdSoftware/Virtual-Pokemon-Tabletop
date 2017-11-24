@@ -9,7 +9,6 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Media.Imaging;
 
 namespace AssaultBird2454.VPTU.SaveManager
 {
@@ -23,9 +22,7 @@ namespace AssaultBird2454.VPTU.SaveManager
     public class SaveManager
     {
         #region Variables
-        public ProjectInfo VersioningInfo { get; }
         public string SaveFileDir { get; }
-
         /// <summary>
         /// A Save Data Object for use inside the software, This is Saved to the file when Save_SaveData() is called
         /// </summary>
@@ -38,17 +35,6 @@ namespace AssaultBird2454.VPTU.SaveManager
         /// <param name="SelectedSaveFile">The Directory of the save file that will be used</param>
         public SaveManager(string SelectedSaveFile)
         {
-            //Load Versioning information
-            #region Versioning Info
-            using (Stream str = Assembly.GetExecutingAssembly().GetManifestResourceStream("AssaultBird2454.VPTU.SaveManager.ProjectVariables.json"))
-            {
-                using (StreamReader read = new StreamReader(str))
-                {
-                    VersioningInfo = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectInfo>(read.ReadToEnd());
-                }
-            }
-            #endregion
-
             SaveFileDir = SelectedSaveFile;// Sets the property containing the Save File Directory
         }
 
@@ -245,7 +231,7 @@ namespace AssaultBird2454.VPTU.SaveManager
         }
         #endregion
         #region Load File
-        public BitmapImage LoadImage(string FilePath)
+        public Bitmap LoadImage(string FilePath)
         {
             if (FilePath.ToLower().StartsWith("save:"))
             {
@@ -255,37 +241,19 @@ namespace AssaultBird2454.VPTU.SaveManager
                     //Creates an object to read the archive data from
                     using (ZipArchive archive = new ZipArchive(Reader, ZipArchiveMode.Update))
                     {
-                        Stream str = (archive.GetEntry(FilePath.Remove(0, 5))).Open();
+                        Stream str = (archive.GetEntry(FilePath.Remove(0, 5))).Open();// Opens a stream & Removes prefix ID
+                        Bitmap bmp = new Bitmap(str);// Loads Image
 
-                        BitmapImage bmp = new BitmapImage();
-                        bmp.BeginInit();
-
-                        MemoryStream ms = new MemoryStream();
-                        Image.FromStream(str).Save(ms, ImageFormat.Bmp);
-                        ms.Seek(0, SeekOrigin.Begin);
-
-                        bmp.StreamSource = ms;
-                        bmp.EndInit();
-
-                        return bmp;
+                        return bmp;// Return Image
                     }
                 }
             }
             else if (FilePath.ToLower().StartsWith("path:"))
             {
-                FileStream str = new FileStream(FilePath.Remove(0, 5), FileMode.Open);
+                FileStream str = new FileStream(FilePath.Remove(0, 5), FileMode.Open);// Opens a stream & Removes prefix ID
+                Bitmap bmp = new Bitmap(str);// Loads Image
 
-                BitmapImage bmp = new BitmapImage();
-                bmp.BeginInit();
-
-                MemoryStream ms = new MemoryStream();
-                Image.FromStream(str).Save(ms, ImageFormat.Bmp);
-                ms.Seek(0, SeekOrigin.Begin);
-
-                bmp.StreamSource = ms;
-                bmp.EndInit();
-
-                return bmp;
+                return bmp;// Return Image
             }
             return null;
         }

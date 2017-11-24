@@ -31,6 +31,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Box2DX, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Box2DX.2.0.2.0\lib\net40\Box2DX.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Wpf.Interop.DirectX, Version=0.9.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=AMD64">
+      <HintPath>..\packages\Microsoft.Wpf.Interop.DirectX-x64.0.9.0-beta-22856\lib\net45\Microsoft.Wpf.Interop.DirectX.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio, Version=1.8.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.1.8.3\lib\net35\NAudio.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -112,6 +121,7 @@
     <Compile Include="BattleManager\BattleEffect\Data\Actions\RemoveStatusEffect.cs" />
     <Compile Include="BattleManager\BattleEffect\Data\Actions\SetAC.cs" />
     <Compile Include="BattleManager\BattleEffect\Data\Actions\SetDB.cs" />
+    <Compile Include="BattleManager\BattleEffect\Data\Actions\Static_HealthChange.cs" />
     <Compile Include="BattleManager\BattleEffect\Data\Actions\UI\EffectAction_Designer.cs" />
     <Compile Include="BattleManager\BattleEffect\Data\Actions\UI\HasStatus.xaml.cs">
       <DependentUpon>HasStatus.xaml</DependentUpon>
@@ -121,6 +131,9 @@
     </Compile>
     <Compile Include="BattleManager\BattleEffect\Data\Actions\UI\SetDB.xaml.cs">
       <DependentUpon>SetDB.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BattleManager\BattleEffect\Data\Actions\UI\Static_HealthChange.xaml.cs">
+      <DependentUpon>Static_HealthChange.xaml</DependentUpon>
     </Compile>
     <Compile Include="BattleManager\BattleEffect\Data\Actions\UI\StatusEffect_Add.xaml.cs">
       <DependentUpon>StatusEffect_Add.xaml</DependentUpon>
@@ -188,11 +201,18 @@
     <Compile Include="Server\Class\Logging\Logger.cs" />
     <Compile Include="Server\Instances\ClientInstance.cs" />
     <Compile Include="Server\Instances\Client\Base_Commands.cs" />
-    <Compile Include="Server\Instances\CommandData\Pokedex\Pokedex.cs" />
+    <Compile Include="Server\Instances\CommandData\Pokedex\Data.cs" />
+    <Compile Include="Server\Instances\CommandData\Pokedex\Moves.cs" />
+    <Compile Include="Server\Instances\CommandData\Pokedex\Pokemon.cs" />
+    <Compile Include="Server\Instances\CommandData\Resources\Resources.cs" />
+    <Compile Include="Server\Instances\CommandData\SaveData\Data.cs" />
+    <Compile Include="Server\Instances\CommandData\SaveData\Save.cs" />
     <Compile Include="Server\Instances\ServerInstance.cs" />
     <Compile Include="Server\Instances\Server\Base_Commands.cs" />
     <Compile Include="Server\Main.cs" />
+    <Compile Include="SoundSystem\Player.cs" />
     <Compile Include="SoundSystem\SaveData\AudioData.cs" />
+    <Compile Include="SoundSystem\Util\LoopStream.cs" />
     <Compile Include="Tabletop\Map\Table.xaml.cs">
       <DependentUpon>Table.xaml</DependentUpon>
     </Compile>
@@ -201,6 +221,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <EmbeddedResource Include="ProjectVariables.json" />
   </ItemGroup>
@@ -225,6 +246,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="BattleManager\BattleEffect\Data\Actions\UI\Static_HealthChange.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BattleManager\BattleEffect\Data\Actions\UI\StatusEffect_Add.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -245,6 +270,7 @@
   <ItemGroup>
     <Folder Include="BattleManager\UI\" />
     <Folder Include="EntityManager\Data\" />
+    <Folder Include="Permissions Manager\" />
     <Folder Include="Server\Class\Session\" />
   </ItemGroup>
   <ItemGroup>

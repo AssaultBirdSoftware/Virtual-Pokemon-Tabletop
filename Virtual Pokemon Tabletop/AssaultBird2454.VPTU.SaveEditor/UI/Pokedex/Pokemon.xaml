@@ -40,7 +40,7 @@
                 <xctk:DecimalUpDown x:Name="Breeding_MaleChance" HorizontalAlignment="Left" Margin="128.587,43.8,0,0" Width="62.413" Watermark="Chance" TextAlignment="Center" VerticalAlignment="Top" ValueChanged="Breeding_MaleChance_ValueChanged" Value="50"/>
             </Grid>
         </GroupBox>
-        <GroupBox x:Name="G_Resources" Header="Sprite Selection" Margin="0,187,0,0" HorizontalAlignment="Left" Height="187" VerticalAlignment="Top" Background="Red">
+        <GroupBox x:Name="G_Resources" Header="Sprite Selection" Margin="0,187,0,0" HorizontalAlignment="Left" Height="187" VerticalAlignment="Top">
             <Grid Margin="0">
                 <Border x:Name="Image_Normal" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="0,5,0,0">
                     <Border.Background>

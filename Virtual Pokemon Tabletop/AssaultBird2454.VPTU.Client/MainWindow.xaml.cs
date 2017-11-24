@@ -1,12 +1,8 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Net;
-using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,206 +21,401 @@ namespace AssaultBird2454.VPTU.Client
     /// </summary>
     public partial class MainWindow : Window
     {
-        #region Base Data
-        public ProjectInfo VersioningInfo { get; }
-
+        #region Dependant Forms
+        #region Pokedex
         /// <summary>
-        /// Assembly Directory
+        /// The control that handels the Pokedex List Functions
         /// </summary>
-        public static string AssemblyDirectory
-        {
-            get
-            {
-                string codeBase = Assembly.GetExecutingAssembly().CodeBase;
-                UriBuilder uri = new UriBuilder(codeBase);
-                string path = Uri.UnescapeDataString(uri.Path);
-                return System.IO.Path.GetDirectoryName(path);
-            }
-        }
-
-        public MainWindow()
-        {
-            try
-            {
-                if (File.Exists(AssemblyDirectory + "\\Client.pid"))
-                {
-                    if (Process.GetProcessById(Convert.ToInt32(File.ReadAllText(AssemblyDirectory + "\\Launcher.pid"))).ProcessName == Process.GetCurrentProcess().ProcessName)
-                    {
-                        MessageBox.Show("Process Already Running!");
-                        this.Close();
-                        return;
-                    }
-                    else
-                    {
-                        File.Delete(AssemblyDirectory + "\\Client.pid");
-                    }
-                }
-
-                File.WriteAllText(AssemblyDirectory + "\\Client.pid", Process.GetCurrentProcess().Id.ToString());
-            }
-            catch
-            {
-
-            }
-
-            InitializeComponent();
-
-            Client_Pokedex.Reload_Pressed += Pokedex_Reload_Event;
-            Client_Pokedex.Pokedex_Entry_Selection_Changed_Event += Client_Pokedex_Pokedex_Entry_Selection_Changed_Event;
-
-            //Dock.LayoutRootPanel.Children.Add();
-
-            #region Versioning Info
-            using (Stream str = Assembly.GetExecutingAssembly().GetManifestResourceStream("AssaultBird2454.VPTU.Client.ProjectVariables.json"))
-            {
-                using (StreamReader read = new StreamReader(str))
-                {
-                    VersioningInfo = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectInfo>(read.ReadToEnd());
-                    this.Title = "Virtual Pokemon Tabletop - Client (Version: " + VersioningInfo.Version + ") (Commit: " + VersioningInfo.Compile_Commit.Remove(7) + ")";
-                }
-            }
-            #endregion
-        }
-
-        private void Client_Pokedex_Pokedex_Entry_Selection_Changed_Event(Class.Controls.Pokedex_Entry_Type type, object Data)
-        {
-            if (type == Class.Controls.Pokedex_Entry_Type.Pokemon)
-            {
-                Pokedex_Viewer_Pokemon.Load((Pokedex.Pokemon.PokemonData)Data);
-            }
-        }
-
-        private void Pokedex_Reload_Event()
-        {
-            try
-            {
-                Client_Instance.Client.SendData(new Server.Instances.CommandData.Pokedex.Get_Pokedex_Pokemon());
-            }
-            catch { }
-        }
-        #endregion
-        private void Menu_Menu_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Main_Closed(object sender, EventArgs e)
-        {
-            File.Delete(AssemblyDirectory + "\\Client.pid");
-        }
-
-        private void Menu_Window_SaveLayout_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        #region Layout
-        public void Dock_SaveCurrent(string File)
-        {
-            new Xceed.Wpf.AvalonDock.Layout.Serialization.XmlLayoutSerializer(Dock).Serialize(File);
-        }
-        public void Dock_LoadLayout(string File)
-        {
-            try { new Xceed.Wpf.AvalonDock.Layout.Serialization.XmlLayoutSerializer(Dock).Deserialize(File); }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
-
-        private void Main_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (!Directory.Exists(AssemblyDirectory + "/Layouts"))
-                Directory.CreateDirectory(AssemblyDirectory + "/Layouts");
-
-            Dock_SaveCurrent(AssemblyDirectory + "/Layouts/Default.xml");
-        }
-        private void Main_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (File.Exists(AssemblyDirectory + "/Layouts/Default.xml"))
-            {
-                Dock_LoadLayout(AssemblyDirectory + "/Layouts/Default.xml");
-            }
-        }
-        private void Menu_Window_LoadLayout_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-        #endregion
-
-        #region Client
-        Server.Instances.ClientInstance Client_Instance { get; set; }
-        public void Setup_Command_Links()
-        {
-            Client_Instance.Client_CommandHandeler.GetCommand("Get_Pokedex_Pokemon").Command_Executed += Client_Pokedex.Update_PokedexData;
-        }
-        #endregion
-
-        #region Open / Close Campaign Session (LAN SESSION)
+        private UI.Pokedex _PokedexList_Form;
         /// <summary>
-        /// Defines an object that acts as a server over a LAN
+        /// The MDI window that handels the Pokedex List Functions
         /// </summary>
-        public Server.Instances.ServerInstance Session_LanServer { get; set; }
-
-        private void Menu_Menu_OpenGame_Click(object sender, RoutedEventArgs e)
+        private WPF.MDI.MdiChild _PokedexList_Window;
+        /// <summary>
+        /// Gets the control that handels the Pokedex List Functions. And creates a window if it does not exist
+        /// </summary>
+        public UI.Pokedex PokedexList_Form()
         {
-            Menu_Menu_OpenGame.IsEnabled = false;
-            Menu_Menu_CloseGame.IsEnabled = true;
-            Menu_Menu_Connect.IsEnabled = false;
-            Menu_Menu_Disconnect.IsEnabled = false;
-
-            OpenFileDialog openFile = new OpenFileDialog();
-            openFile.CheckFileExists = true;
-            openFile.CheckPathExists = true;
-            openFile.Multiselect = false;
-            openFile.Title = "Open Virtual PTU Save File";
-            openFile.DefaultExt = ".ptu";
-
-            bool? Open = openFile.ShowDialog();
-
-            if (Open == true)
+            if (_PokedexList_Form == null)// If the list control does not exist
             {
-                Client_Console_Pane.LogDebug = true;
-                Server_Console_Pane.LogDebug = true;
+                _PokedexList_Form = new UI.Pokedex();// Create the control
 
-                Session_LanServer = new Server.Instances.ServerInstance(openFile.FileName, Server_Console_Pane);
-                Session_LanServer.StartServerInstance();
+                Menu_View_Pokedex.Dispatcher.Invoke(new Action(() => Menu_View_Pokedex.IsChecked = true));// Check the menu box
+                _PokedexList_Window = new WPF.MDI.MdiChild()
+                {
+                    Title = "Pokedex List",
+                    Icon = new BitmapImage(new Uri(Program.AssemblyDirectory + @"\Resources\Pokedex.png", UriKind.Absolute)),
+                    Content = _PokedexList_Form
+                };// Create the window
+                _PokedexList_Window.Closing += PokedexList_Window_Closing;// Set up an event
+                MDI.Children.Add(_PokedexList_Window);// Add the window
 
-                Client_Instance = new Server.Instances.ClientInstance(Client_Console_Pane, IPAddress.Parse("127.0.0.1"));
-                Setup_Command_Links();// Configures callbacks for commands from the server
-                Client_Instance.StartClientInstance();
+                return _PokedexList_Form;// Return the control
             }
             else
             {
-                Menu_Menu_OpenGame.IsEnabled = true;
-                Menu_Menu_CloseGame.IsEnabled = false;
-                Menu_Menu_Connect.IsEnabled = true;
-                Menu_Menu_Disconnect.IsEnabled = false;
+                Menu_View_Pokedex.Dispatcher.Invoke(new Action(() => Menu_View_Pokedex.IsChecked = true));// Check the menu box
+                return _PokedexList_Form;// Return the control if it already exists
             }
         }
-        private void Menu_Menu_CloseGame_Click(object sender, RoutedEventArgs e)
+
+        // On Pokedex_Form Window Closing
+        private void PokedexList_Window_Closing(object sender, RoutedEventArgs e)
         {
-            Menu_Menu_OpenGame.IsEnabled = true;
-            Menu_Menu_CloseGame.IsEnabled = false;
-            Menu_Menu_Connect.IsEnabled = true;
-            Menu_Menu_Disconnect.IsEnabled = false;
+            Menu_View_Pokedex.IsChecked = false;
+            _PokedexList_Form = null;
+            _PokedexList_Window = null;
+        }
+
+        private List<KeyValuePair<decimal, WPF.MDI.MdiChild>> _Species_List = new List<KeyValuePair<decimal, WPF.MDI.MdiChild>>();
+        public WPF.MDI.MdiChild Species_List(decimal ID)
+        {
+            List<KeyValuePair<decimal, WPF.MDI.MdiChild>> val = _Species_List.FindAll(x => x.Key == ID);
+            if (val.Count >= 1)
+            {
+                return val[0].Value;
+            }
+            else
+            {
+                UI.Pokemon_Species species = new UI.Pokemon_Species();
+
+                WPF.MDI.MdiChild window = new WPF.MDI.MdiChild()
+                {
+                    Title = "Pokedex Entry - [Name]",
+                    Icon = new BitmapImage(new Uri(Program.AssemblyDirectory + @"\Resources\Pokedex.png", UriKind.Absolute)),
+                    Content = species,
+                    MaximizeBox = false,
+                    Width = 359,
+                    Height = 500,
+                    Resizable = false
+                };// Create the window
+                window.Closing += PokedexSpecies_Window_Closing;// Set up an event
+                MDI.Children.Add(window);// Add the window
+
+                _Species_List.Add(new KeyValuePair<decimal, WPF.MDI.MdiChild>(ID, window));
+                return window;
+            }
+        }
+
+        private void PokedexSpecies_Window_Closing(object sender, RoutedEventArgs e)
+        {
+            _Species_List.Remove(_Species_List.Find(x => x.Value == (WPF.MDI.MdiChild)sender));
         }
         #endregion
-        #region Connect to / Disconnect from Session (INTERNET OR LAN SESSIONS)
+        #region Connect
+        /// <summary>
+        /// The control that handels the Connect List Functions
+        /// </summary>
+        private UI.Connect _Connect_Form;
+        /// <summary>
+        /// The MDI window that handels the Connect List Functions
+        /// </summary>
+        private WPF.MDI.MdiChild _Connect_Window;
+        /// <summary>
+        /// Gets the control that handels the Connect List Functions. And creates a window if it does not exist
+        /// </summary>
+        public UI.Connect Connect_Form()
+        {
+            if (_Connect_Form == null)// If the list control does not exist
+            {
+                _Connect_Form = new UI.Connect();// Create the control
+
+                Menu_Menu_Connect.IsChecked = true;// Check the menu box
+                _Connect_Window = new WPF.MDI.MdiChild()
+                {
+                    Title = "Connect to Server",
+                    //Icon = new BitmapImage(new Uri(Program.AssemblyDirectory + @"\Resources\Connect.png", UriKind.Absolute)),
+                    Content = _Connect_Form,
+                    Resizable = false,
+                    Width = 395,
+                    Height = 165
+                };// Create the window
+                _Connect_Window.Closing += Connect_Window_Closing;// Set up an event
+                MDI.Children.Add(_Connect_Window);// Add the window
+
+                return _Connect_Form;// Return the control
+            }
+            else
+            {
+                Menu_Menu_Connect.IsChecked = true;// Check the menu box
+                return _Connect_Form;// Return the control if it already exists
+            }
+        }
+
+        private void Connect_Window_Closing(object sender, RoutedEventArgs e)
+        {
+            Menu_Menu_Connect.IsChecked = false;
+            _Connect_Form = null;
+            _Connect_Window = null;
+        }
+        #endregion
+
+        #region Loggers
+        /// <summary>
+        /// The control that handels the ServerConsole List Functions
+        /// </summary>
+        private UI.Console _ServerConsole_Form;
+        /// <summary>
+        /// The MDI window that handels the ServerConsole List Functions
+        /// </summary>
+        private WPF.MDI.MdiChild _ServerConsole_Window;
+        /// <summary>
+        /// Gets the control that handels the ServerConsole List Functions. And creates a window if it does not exist
+        /// </summary>
+        public UI.Console ServerConsole_Form()
+        {
+            if (_ServerConsole_Form == null)// If the list control does not exist
+            {
+                _ServerConsole_Form = new UI.Console(true);// Create the control
+
+                Menu_View_ServerConsole.IsChecked = true;// Check the menu box
+                _ServerConsole_Window = new WPF.MDI.MdiChild()
+                {
+                    Title = "Server Console",
+                    //Icon = new BitmapImage(new Uri(Program.AssemblyDirectory + @"\Resources\ServerConsole.png", UriKind.Absolute)),
+                    Content = _ServerConsole_Form,
+                    CloseBox = false
+                };// Create the window
+                _ServerConsole_Window.Closing += ServerConsole_Window_Closing;// Set up an event
+                //_ServerConsole_Window. _ServerConsole_Window.Visibility = Visibility.Visible;
+                MDI.Children.Add(_ServerConsole_Window);// Add the window
+
+                return _ServerConsole_Form;// Return the control
+            }
+            else
+            {
+                _ServerConsole_Window.Visibility = Visibility.Visible;
+                Menu_View_ServerConsole.IsChecked = true;// Check the menu box
+                return _ServerConsole_Form;// Return the control if it already exists
+            }
+        }
+
+        /// <summary>
+        /// The control that handels the ClientConsole List Functions
+        /// </summary>
+        private UI.Console _ClientConsole_Form;
+        /// <summary>
+        /// The MDI window that handels the ClientConsole List Functions
+        /// </summary>
+        private WPF.MDI.MdiChild _ClientConsole_Window;
+        /// <summary>
+        /// Gets the control that handels the ClientConsole List Functions. And creates a window if it does not exist
+        /// </summary>
+        public UI.Console ClientConsole_Form()
+        {
+            if (_ClientConsole_Form == null)// If the list control does not exist
+            {
+                _ClientConsole_Form = new UI.Console(true);// Create the control
+
+                Menu_View_ClientConsole.IsChecked = true;// Check the menu box
+                _ClientConsole_Window = new WPF.MDI.MdiChild()
+                {
+                    Title = "Client Console",
+                    //Icon = new BitmapImage(new Uri(Program.AssemblyDirectory + @"\Resources\ClientConsole.png", UriKind.Absolute)),
+                    Content = _ClientConsole_Form,
+                    CloseBox = false
+                };// Create the window
+                _ClientConsole_Window.Closing += ClientConsole_Window_Closing;// Set up an event
+                //_ClientConsole_Window. _ClientConsole_Window.Visibility = Visibility.Visible;
+                MDI.Children.Add(_ClientConsole_Window);// Add the window
+
+                return _ClientConsole_Form;// Return the control
+            }
+            else
+            {
+                _ClientConsole_Window.Visibility = Visibility.Visible;
+                Menu_View_ClientConsole.IsChecked = true;// Check the menu box
+                return _ClientConsole_Form;// Return the control if it already exists
+            }
+        }
+
+        private void ServerConsole_Window_Closing(object sender, RoutedEventArgs e)
+        {
+            Menu_View_ServerConsole.IsChecked = false;
+            _ServerConsole_Form = null;
+            _ServerConsole_Window = null;
+        }
+        private void ClientConsole_Window_Closing(object sender, RoutedEventArgs e)
+        {
+            Menu_View_ClientConsole.IsChecked = false;
+            _ClientConsole_Form = null;
+            _ClientConsole_Window = null;
+        }
+        #endregion
+        #endregion
+
+        public MainWindow()
+        {
+            InitializeComponent();
+            Program.MainWindow = this;
+            Title = "Virtual Pokemon Tabletop - Client (Version: " + Program.VersioningInfo.Version + ") (Commit: " + Program.VersioningInfo.Compile_Commit.Remove(7) + ")";
+        }
+
+        #region Menu, Tool Bar & Status Bar
+        #region Menu
+        #region Menu
+        // Connect to Table
         private void Menu_Menu_Connect_Click(object sender, RoutedEventArgs e)
         {
-            Menu_Menu_OpenGame.IsEnabled = false;
-            Menu_Menu_CloseGame.IsEnabled = false;
-            Menu_Menu_Connect.IsEnabled = false;
-            Menu_Menu_Disconnect.IsEnabled = true;
+            Connect_Form();
         }
-        private void Menu_Menu_Disconnect_Click(object sender, RoutedEventArgs e)
+        #endregion
+        #region View
+        private void Menu_View_Pokedex_Checked(object sender, RoutedEventArgs e)
         {
-            Menu_Menu_OpenGame.IsEnabled = true;
-            Menu_Menu_CloseGame.IsEnabled = false;
-            Menu_Menu_Connect.IsEnabled = true;
-            Menu_Menu_Disconnect.IsEnabled = false;
+
         }
+
+        private void Menu_View_Pokedex_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion
+        #endregion
+
+        #region Tools
+        private void Tools_Pokedex_Click(object sender, RoutedEventArgs e)
+        {
+            PokedexList_Form();
+        }
+        #endregion
+
+        #region Status
+        #region Server
+
+        #endregion
+        #region Client
+        internal void Status_Set_Color(Color color)
+        {
+            Status.Dispatcher.Invoke(() =>
+            {
+                Status.Background = new SolidColorBrush(color);
+            });
+        }
+        /// <summary>
+        /// Sets the StatusBar Address Item
+        /// </summary>
+        /// <param name="Address"></param>
+        internal void Status_Set_Address(string Address)
+        {
+            Status.Dispatcher.Invoke(() =>
+            {
+                if (Address != "" || Address != null)
+                {
+                    Status_SvAddress.Content = "Server Address: " + Address;
+                }
+                else
+                {
+                    Status_SvAddress.Content = "Server Address: None";
+                }
+            });
+        }
+        /// <summary>
+        /// Sets the StatusBar Port Item
+        /// </summary>
+        /// <param name="Port"></param>
+        internal void Status_Set_Port(int Port)
+        {
+            Status.Dispatcher.Invoke(() =>
+            {
+                if (Port != 0)
+                {
+                    Status_SvPort.Content = "Server Port: " + Port;
+                }
+                else
+                {
+                    Status_SvPort.Content = "Server Port: 0";
+                }
+            });
+        }
+        /// <summary>
+        /// Sets the StatusBar Ping Item
+        /// </summary>
+        /// <param name="Ping"></param>
+        internal void Status_Set_Ping(int Ping)
+        {
+            Status.Dispatcher.Invoke(() =>
+            {
+                if (Ping != 0)
+                {
+                    Status_Ping.Content = "Ping: " + Ping;
+                }
+                else
+                {
+                    Status_Ping.Content = "Ping: 0";
+                }
+            });
+        }
+        /// <summary>
+        /// Sets the StatusBar PlayerName Item
+        /// </summary>
+        /// <param name="PlayerName"></param>
+        internal void Status_Set_PlayerName(string PlayerName)
+        {
+            Status.Dispatcher.Invoke(() =>
+            {
+                if (PlayerName != "" || PlayerName != null)
+                {
+                    Status_Username.Content = "PlayerName: " + PlayerName;
+                }
+                else
+                {
+                    Status_Username.Content = "PlayerName: None";
+                }
+            });
+        }
+        /// <summary>
+        /// Sets the StatusBar CampaignName Item
+        /// </summary>
+        /// <param name="CampaignName"></param>
+        internal void Status_Set_CampaignName(string CampaignName)
+        {
+            Status.Dispatcher.Invoke(() =>
+            {
+                if (CampaignName != "" || CampaignName != null)
+                {
+                    Status_CampaignName.Content = "Campaign Name: " + CampaignName;
+                }
+                else
+                {
+                    Status_CampaignName.Content = "Campaign Name: None";
+                }
+            });
+        }
+        #endregion
+        #endregion
+        #endregion
+
+        #region Command Handelers
+        internal void Pokedex_Pokemon_GetList_Executed(object Data)
+        {
+            PokedexList_Form().Pokedex_Pokemon_Get_Executed(((VPTU.Server.Instances.CommandData.Pokedex.Pokedex_Pokemon_GetList)Data).Pokemon_Dex);
+        }
+        internal void Pokedex_Pokemon_Get_Executed(object Data)
+        {
+            VPTU.Pokedex.Pokemon.PokemonData pdata = (VPTU.Pokedex.Pokemon.PokemonData)((VPTU.Server.Instances.CommandData.Pokedex.Pokedex_Pokemon)Data).PokemonData;
+            this.Dispatcher.Invoke(new Action(() => ((UI.Pokemon_Species)(Species_List(pdata.Species_DexID)).Content).Update(pdata)));
+        }
+
+        #region Resources
+        internal void Resources_Image_Get_Executed(object Data)
+        {
+            Server.Instances.CommandData.Resources.ImageResource IRD = (Server.Instances.CommandData.Resources.ImageResource)Data;
+
+            if (IRD.UseCommand == "Pokedex_Species")// Pokedex Card Viewer
+            {
+                try
+                {
+                    decimal id = Decimal.Parse(IRD.UseID);
+                    this.Dispatcher.Invoke(new Action(() => ((UI.Pokemon_Species)(Species_List(id)).Content).UpdateImage(IRD.Image)));
+                }
+                catch
+                {
+
+                }
+            }
+        }
+        #endregion
         #endregion
     }
 }

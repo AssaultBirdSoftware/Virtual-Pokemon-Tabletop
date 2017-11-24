@@ -10,16 +10,11 @@ namespace AssaultBird2454.VPTU.BattleManager.BattleEffect.Data.Actions
     {
         public HasStatus()
         {
-            CheckedStatus = new List<VPTU.BattleManager.Data.Status_Afflictions>();
-            HasAll = false;
+            Status = VPTU.BattleManager.Data.Status_Afflictions.Burned;
+            Effected_State = true;
         }
 
-        public List<VPTU.BattleManager.Data.Status_Afflictions> CheckedStatus { get; set; }
-        public bool HasAll { get; set; }
-
-        /// <summary>
-        /// The name of the function to invoke if the condition passes
-        /// </summary>
-        public string FunctionName { get; set; }
+        public VPTU.BattleManager.Data.Status_Afflictions Status { get; set; }
+        public bool Effected_State { get; set; }
     }
 }

@@ -63,9 +63,49 @@ namespace AssaultBird2454.VPTU.Client.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Blank_Card {
+        internal static System.Drawing.Bitmap Blank_Pokemon_Card {
             get {
-                object obj = ResourceManager.GetObject("Blank_Card", resourceCulture);
+                object obj = ResourceManager.GetObject("Blank_Pokemon_Card", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon Client {
+            get {
+                object obj = ResourceManager.GetObject("Client", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Create {
+            get {
+                object obj = ResourceManager.GetObject("Create", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon pokeball_B98_icon {
+            get {
+                object obj = ResourceManager.GetObject("pokeball_B98_icon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Pokedex {
+            get {
+                object obj = ResourceManager.GetObject("Pokedex", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +113,9 @@ namespace AssaultBird2454.VPTU.Client.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap refresh_16 {
+        internal static System.Drawing.Bitmap Reload {
             get {
-                object obj = ResourceManager.GetObject("refresh_16", resourceCulture);
+                object obj = ResourceManager.GetObject("Reload", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +123,9 @@ namespace AssaultBird2454.VPTU.Client.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap refresh_20 {
+        internal static System.Drawing.Bitmap Remove {
             get {
-                object obj = ResourceManager.GetObject("refresh_20", resourceCulture);
+                object obj = ResourceManager.GetObject("Remove", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +133,9 @@ namespace AssaultBird2454.VPTU.Client.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap refresh_24 {
+        internal static System.Drawing.Bitmap Unknown_Pokemon_Sprite {
             get {
-                object obj = ResourceManager.GetObject("refresh_24", resourceCulture);
+                object obj = ResourceManager.GetObject("Unknown_Pokemon_Sprite", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,29 +143,9 @@ namespace AssaultBird2454.VPTU.Client.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap refresh_32 {
+        internal static System.Drawing.Bitmap VPTU_Logo {
             get {
-                object obj = ResourceManager.GetObject("refresh_32", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap refresh_64 {
-            get {
-                object obj = ResourceManager.GetObject("refresh_64", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Template_Card {
-            get {
-                object obj = ResourceManager.GetObject("Template_Card", resourceCulture);
+                object obj = ResourceManager.GetObject("VPTU_Logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

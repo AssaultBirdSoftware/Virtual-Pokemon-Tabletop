@@ -128,6 +128,13 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
 
                 Actions_Display.Items.Add(Action);
             }
+            else if (((ComboBoxItem)Add_Action_Selector.SelectedItem).Name.ToString().ToLower().Equals("static_health_change"))
+            {
+                dynamic data = new BattleManager.BattleEffect.Data.Actions.HasStatus();
+                BattleManager.BattleEffect.Data.Action Action = new BattleManager.BattleEffect.Data.Action("Static Health Change", "VPTU.Action.StaticHealthChange", "Changes the health of the target", data);
+
+                Actions_Display.Items.Add(Action);
+            }
             else if (((ComboBoxItem)Add_Action_Selector.SelectedItem).Name.ToString().ToLower().Equals("invoke_executefunction"))
             {
 

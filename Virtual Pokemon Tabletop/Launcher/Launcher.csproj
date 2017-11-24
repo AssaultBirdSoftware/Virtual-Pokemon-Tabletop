@@ -50,7 +50,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>pokeball_B98_icon.ico</ApplicationIcon>
+    <ApplicationIcon>Launcher.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -166,9 +166,6 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="pokeball_B98_icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
@@ -182,7 +179,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AssaultBird2454.VPTU.Client\Client.csproj">
-      <Project>{fc5c4a1b-00ee-4082-8473-995425b8d01b}</Project>
+      <Project>{842fda3f-fd43-47df-b1e1-50a48a0ffc84}</Project>
       <Name>Client</Name>
     </ProjectReference>
     <ProjectReference Include="..\AssaultBird2454.VPTU.SaveEditor\SaveEditor.csproj">
@@ -197,6 +194,16 @@
       <Project>{f5cd6b0d-b4ff-448a-9276-3c563c4c02df}</Project>
       <Name>VPTU</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Launcher.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Launcher.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

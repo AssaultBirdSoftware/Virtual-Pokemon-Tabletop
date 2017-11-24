@@ -246,6 +246,8 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
                     {
                         node = new TCP_ClientNode(tclient, tclient.Client.RemoteEndPoint.ToString(), this);// Creates a new client node object
                         ClientNodes.Add(node);// Adds the client node to the list
+                        node.TCP_Data_Event += Node_TCP_Data_Event;
+                        node.TCP_Data_Error_Event += Node_TCP_Data_Error_Event;
                     }
 
                     Fire_TCP_ClientState_Changed(node, Data.Client_ConnectionStatus.Connected);// Sends the client connected event
@@ -264,6 +266,14 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
             {
                 /* Error occured when connecting a client */
             }
+        }
+        private void Node_TCP_Data_Error_Event(Exception ex, DataDirection Direction)
+        {
+            Fire_TCP_Data_Error_Event(ex, Direction);
+        }
+        private void Node_TCP_Data_Event(string Data, TCP_ClientNode Client, DataDirection Direction)
+        {
+            Fire_TCP_Data_Event(Data, Client, Direction);
         }
 
         /// <summary>
