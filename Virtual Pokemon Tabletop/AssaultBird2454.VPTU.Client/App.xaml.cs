@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
+﻿using SharpRaven;
+using SharpRaven.Data;
+using System;
+using System.IO;
+using System.Reflection;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace AssaultBird2454.VPTU.Client
@@ -14,13 +13,43 @@ namespace AssaultBird2454.VPTU.Client
     /// </summary>
     public partial class App : Application
     {
-        Thread thread;
+        private static string sentry_cid
+        {
+            get
+            {
+                using (Stream str = Assembly.GetExecutingAssembly().GetManifestResourceStream("AssaultBird2454.VPTU.Client.sentry_cid.txt"))
+                {
+                    using (StreamReader read = new StreamReader(str))
+                    {
+                        return read.ReadToEnd();
+                    }
+                }
+            }
+        }
+
+        private RavenClient ravenClient;
+        private bool Debug = true;
+
+        private Thread thread;
+
         public App()
         {
             thread = new Thread(new ThreadStart(() =>
             {
-                MainWindow window = new MainWindow();
-                window.ShowDialog();
+                try { ravenClient = new RavenClient(sentry_cid); } catch { Debug = false; }
+
+                try
+                {
+                    MainWindow window = new MainWindow();
+                    window.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    if (Debug)
+                    {
+                        ravenClient.Capture(new SentryEvent(ex));
+                    }
+                }
                 return;
             }));
             thread.SetApartmentState(ApartmentState.STA);

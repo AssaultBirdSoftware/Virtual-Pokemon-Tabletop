@@ -27,6 +27,15 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
         /// 
         public void Register_Commands(Networking.Server.Command_Handeler.Server_CommandHandeler CommandHandeler)
         {
+            #region Auth
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Auth_Login");
+
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Auth_Create");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Auth_Delete");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Auth_Edit");
+            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Auth_List");
+            #endregion
+
             #region Base
             CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Base_SaveData_Save");
             CommandHandeler.GetCommand("Base_SaveData_Save").Command_Executed += Base_SaveData_Save_Executed;

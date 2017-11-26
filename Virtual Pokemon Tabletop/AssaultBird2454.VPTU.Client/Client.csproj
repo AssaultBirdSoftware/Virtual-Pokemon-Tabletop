@@ -46,6 +46,9 @@
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="SharpRaven, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpRaven.2.2.0\lib\net45\SharpRaven.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -93,14 +96,23 @@
     <Compile Include="UI\Console.xaml.cs">
       <DependentUpon>Console.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Manage IDs.xaml.cs">
+      <DependentUpon>Manage IDs.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Open.xaml.cs">
       <DependentUpon>Open.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Pokedex.xaml.cs">
       <DependentUpon>Pokedex.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Pokemon Character Sheet.xaml.cs">
+      <DependentUpon>Pokemon Character Sheet.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Pokemon Species.xaml.cs">
       <DependentUpon>Pokemon Species.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\TurnOrder.xaml.cs">
+      <DependentUpon>TurnOrder.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -122,6 +134,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Manage IDs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Open.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -130,7 +146,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Pokemon Character Sheet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Pokemon Species.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\TurnOrder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -220,6 +244,9 @@
     <None Include="Resources\Blank Pokemon Card.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="sentry_cid.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
