@@ -108,6 +108,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authentication Manager\Data\Data.cs" />
     <Compile Include="BattleManager\Battle Instance\Battle_Logger.xaml.cs">
       <DependentUpon>Battle_Logger.xaml</DependentUpon>
     </Compile>
@@ -173,6 +174,8 @@
     <Compile Include="Networking\Server\UDP\UDP Server.cs" />
     <Compile Include="Networking\Shared\Helper.cs" />
     <Compile Include="Networking\Shared\StateObject.cs" />
+    <Compile Include="Permissions Manager\Data\Data.cs" />
+    <Compile Include="Permissions Manager\Manager.cs" />
     <Compile Include="Pokedex\Ability\AbilityData.cs" />
     <Compile Include="Pokedex\Ability\Data.cs" />
     <Compile Include="Pokedex\Entity\Data.cs" />
@@ -269,8 +272,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BattleManager\UI\" />
+    <Folder Include="Discord\" />
     <Folder Include="EntityManager\Data\" />
-    <Folder Include="Permissions Manager\" />
     <Folder Include="Server\Class\Session\" />
   </ItemGroup>
   <ItemGroup>

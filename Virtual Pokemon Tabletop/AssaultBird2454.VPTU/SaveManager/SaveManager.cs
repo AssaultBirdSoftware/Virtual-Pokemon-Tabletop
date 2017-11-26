@@ -12,7 +12,7 @@ using System.Windows;
 
 namespace AssaultBird2454.VPTU.SaveManager
 {
-    public enum SaveData_Dir { Pokedex_Pokemon, Pokedex_Moves, Pokedex_Abilitys, Pokedex_Items, Resource_Image, Entity_Pokemon, Entity_Trainers, Basic_CampaignSettings }
+    public enum SaveData_Dir { Pokedex_Pokemon, Pokedex_Moves, Pokedex_Abilitys, Pokedex_Items, Resource_Image, Entity_Pokemon, Entity_Trainers, Basic_CampaignSettings, Auth_Users, Auth_Groups }
 
     public class No_Data_Found_In_Save_Exception : Exception
     {
@@ -54,6 +54,9 @@ namespace AssaultBird2454.VPTU.SaveManager
                 }
                 catch (No_Data_Found_In_Save_Exception) { SaveData.Campaign_Data = new Data.Campaign_Data(true); }// Basic Campaign Settings
 
+                SaveData.Users = LoadData_FromSave<List<Authentication_Manager.Data.User>>(GetSaveFile_DataDir(SaveData_Dir.Auth_Users));
+                SaveData.Groups = LoadData_FromSave<List<Authentication_Manager.Data.Group>>(GetSaveFile_DataDir(SaveData_Dir.Auth_Groups));
+
                 SaveData.PokedexData.Pokemon = LoadData_FromSave<List<Pokedex.Pokemon.PokemonData>>(GetSaveFile_DataDir(SaveData_Dir.Pokedex_Pokemon));
                 SaveData.PokedexData.Moves = LoadData_FromSave<List<Pokedex.Moves.MoveData>>(GetSaveFile_DataDir(SaveData_Dir.Pokedex_Moves));
                 SaveData.PokedexData.Abilitys = LoadData_FromSave<List<Pokedex.Abilitys.AbilityData>>(GetSaveFile_DataDir(SaveData_Dir.Pokedex_Abilitys));
@@ -76,6 +79,9 @@ namespace AssaultBird2454.VPTU.SaveManager
         public void Save_SaveData()
         {
             SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Basic_CampaignSettings), SaveData.Campaign_Data);
+
+            SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Auth_Users), SaveData.Users);
+            SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Auth_Groups), SaveData.Groups);
 
             SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Pokedex_Pokemon), SaveData.PokedexData.Pokemon);
             SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Pokedex_Moves), SaveData.PokedexData.Moves);
@@ -173,6 +179,10 @@ namespace AssaultBird2454.VPTU.SaveManager
                     return "Entity/Trainers.json";
                 case SaveData_Dir.Basic_CampaignSettings:
                     return "CampaignInfo.json";
+                case SaveData_Dir.Auth_Users:
+                    return "Auth/Users.json";
+                case SaveData_Dir.Auth_Groups:
+                    return "Auth/Groups.json";
 
                 default:
                     return null;

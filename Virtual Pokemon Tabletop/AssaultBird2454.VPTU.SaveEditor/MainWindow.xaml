@@ -51,6 +51,46 @@
                         <TabItem Header="Save File Settings" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top">
                             <Grid Background="#FFE5E5E5"/>
                         </TabItem>
+                        <TabItem Header="Users and Groups" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top">
+                            <Grid Background="#FFE5E5E5">
+                                <Grid Background="#FFE5E5E5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="150"/>
+                                    </Grid.ColumnDefinitions>
+                                    <ListView Height="252" VerticalAlignment="Top" Margin="0,331,0,0">
+                                        <ListView.View>
+                                            <GridView>
+                                                <GridViewColumn/>
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
+                                    <ListView Height="253" VerticalAlignment="Top" Margin="0,39,0,0">
+                                        <ListView.View>
+                                            <GridView>
+                                                <GridViewColumn/>
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
+                                    <Label Content="Groups" Margin="0,292,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="22" FontWeight="Bold"/>
+                                    <Label Content="Users / Players" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="22" FontWeight="Bold"/>
+                                    <GroupBox Header="Users / Players" Grid.Column="1" Margin="0,39,0,0" Height="253" VerticalAlignment="Top">
+                                        <Grid Margin="0">
+                                            <Button Content="Create User" VerticalAlignment="Top" Margin="0,10,0,0"/>
+                                            <Button Content="Edit User" VerticalAlignment="Top" Margin="0,35,0,0"/>
+                                            <Button Content="Delete User" VerticalAlignment="Top" Margin="0,60,0,0"/>
+                                        </Grid>
+                                    </GroupBox>
+                                    <GroupBox Header="Groups" Grid.Column="1" Margin="0,331,0,0" Height="252" VerticalAlignment="Top">
+                                        <Grid Margin="0">
+                                            <Button Content="Create Group" VerticalAlignment="Top" Margin="0,10,0,0"/>
+                                            <Button Content="Edit Group" VerticalAlignment="Top" Margin="0,36,0,0"/>
+                                            <Button Content="Delete Group" VerticalAlignment="Top" Margin="0,60,0,0"/>
+                                        </Grid>
+                                    </GroupBox>
+                                </Grid>
+                            </Grid>
+                        </TabItem>
                     </TabControl>
                 </Grid>
             </TabItem>

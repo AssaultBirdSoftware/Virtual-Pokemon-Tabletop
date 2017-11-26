@@ -21,6 +21,9 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
             {
                 Campaign_Data = new Campaign_Data(true);
 
+                Users = new List<Authentication_Manager.Data.User>();
+                Groups = new List<Authentication_Manager.Data.Group>();
+
                 Trainers = new List<EntityManager.Trainer.TrainerCharacter>();
                 Pokemon = new List<EntityManager.Pokemon.PokemonCharacter>();
 
@@ -44,6 +47,15 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
             //MapFiles = new List<Resources.MapFileData>();
             //Maps = new List<Resources.MapData>();
 
+            if(Users == null)
+            {
+                Users = new List<Authentication_Manager.Data.User>();
+            }
+            if(Groups == null)
+            {
+                Groups = new List<Authentication_Manager.Data.Group>();
+            }
+
             if (AudioResources == null)
             {
                 AudioResources = new List<SoundSystem.SaveData.AudioData>();
@@ -64,6 +76,11 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
 
         #region Data
         public Data.Campaign_Data Campaign_Data;
+        #endregion
+
+        #region Auth and Perms
+        public List<Authentication_Manager.Data.User> Users;
+        public List<Authentication_Manager.Data.Group> Groups;
         #endregion
 
         public Pokedex.Save_Data.Pokedex PokedexData;

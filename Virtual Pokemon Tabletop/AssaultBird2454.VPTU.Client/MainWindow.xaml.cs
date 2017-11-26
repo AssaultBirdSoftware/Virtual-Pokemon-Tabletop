@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -246,6 +247,13 @@ namespace AssaultBird2454.VPTU.Client
 
         public MainWindow()
         {
+            if (DateTime.Now.Month == 4 && DateTime.Now.Day == 1)
+            {
+                Process.Start("https://goo.gl/Y35Z8p");
+                Thread.Sleep(5000);
+                MessageBox.Show("April Fools!\n\nApril 1st Joke from the Dev :P", "Troll");
+            }
+
             InitializeComponent();
             Program.MainWindow = this;
             Title = "Virtual Pokemon Tabletop - Client (Version: " + Program.VersioningInfo.Version + ") (Commit: " + Program.VersioningInfo.Compile_Commit.Remove(7) + ")";
