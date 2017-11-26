@@ -58,17 +58,20 @@
                                         <ColumnDefinition/>
                                         <ColumnDefinition Width="150"/>
                                     </Grid.ColumnDefinitions>
-                                    <ListView Height="252" VerticalAlignment="Top" Margin="0,331,0,0">
+                                    <ListView x:Name="OverViewSettings_UsersGroups_GroupList" Height="252" VerticalAlignment="Top" Margin="0,331,0,0">
                                         <ListView.View>
                                             <GridView>
                                                 <GridViewColumn/>
                                             </GridView>
                                         </ListView.View>
                                     </ListView>
-                                    <ListView Height="253" VerticalAlignment="Top" Margin="0,39,0,0">
+                                    <ListView x:Name="OverViewSettings_UsersGroups_UserList" Height="253" VerticalAlignment="Top" Margin="0,39,0,0">
                                         <ListView.View>
                                             <GridView>
-                                                <GridViewColumn/>
+                                                <GridViewColumn Header="UserID" Width="100px" DisplayMemberBinding="{Binding UserID}"/>
+                                                <GridViewColumn Header="User Name" Width="200px" DisplayMemberBinding="{Binding Name}"/>
+                                                <GridViewColumn Header="Character Name" Width="200px" DisplayMemberBinding="{Binding IC_Name}"/>
+                                                <GridViewColumn Header="Groups" Width="300px" DisplayMemberBinding="{Binding Group_String}"/>
                                             </GridView>
                                         </ListView.View>
                                     </ListView>
@@ -76,16 +79,16 @@
                                     <Label Content="Users / Players" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="22" FontWeight="Bold"/>
                                     <GroupBox Header="Users / Players" Grid.Column="1" Margin="0,39,0,0" Height="253" VerticalAlignment="Top">
                                         <Grid Margin="0">
-                                            <Button Content="Create User" VerticalAlignment="Top" Margin="0,10,0,0"/>
-                                            <Button Content="Edit User" VerticalAlignment="Top" Margin="0,35,0,0"/>
-                                            <Button Content="Delete User" VerticalAlignment="Top" Margin="0,60,0,0"/>
+                                            <Button x:Name="OverViewSettings_UsersGroups_CreateUser" Content="Create User" VerticalAlignment="Top" Margin="0,10,0,0"/>
+                                            <Button x:Name="OverViewSettings_UsersGroups_EditUser" Content="Edit User" VerticalAlignment="Top" Margin="0,35,0,0"/>
+                                            <Button x:Name="OverViewSettings_UsersGroups_DeleteUser" Content="Delete User" VerticalAlignment="Top" Margin="0,60,0,0"/>
                                         </Grid>
                                     </GroupBox>
                                     <GroupBox Header="Groups" Grid.Column="1" Margin="0,331,0,0" Height="252" VerticalAlignment="Top">
                                         <Grid Margin="0">
-                                            <Button Content="Create Group" VerticalAlignment="Top" Margin="0,10,0,0"/>
-                                            <Button Content="Edit Group" VerticalAlignment="Top" Margin="0,36,0,0"/>
-                                            <Button Content="Delete Group" VerticalAlignment="Top" Margin="0,60,0,0"/>
+                                            <Button x:Name="OverViewSettings_UsersGroups_CreateGroup" Content="Create Group" VerticalAlignment="Top" Margin="0,10,0,0"/>
+                                            <Button x:Name="OverViewSettings_UsersGroups_EditGroup" Content="Edit Group" VerticalAlignment="Top" Margin="0,36,0,0"/>
+                                            <Button x:Name="OverViewSettings_UsersGroups_DeleteGroup" Content="Delete Group" VerticalAlignment="Top" Margin="0,60,0,0"/>
                                         </Grid>
                                     </GroupBox>
                                 </Grid>
