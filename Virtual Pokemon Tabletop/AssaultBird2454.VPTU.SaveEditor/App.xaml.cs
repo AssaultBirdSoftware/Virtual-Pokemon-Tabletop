@@ -36,7 +36,12 @@ namespace AssaultBird2454.VPTU.SaveEditor
         {
             thread = new Thread(new ThreadStart(() =>
             {
-                try { ravenClient = new RavenClient(sentry_cid); } catch { Debug = false; }
+                try
+                {
+                    ravenClient = new RavenClient(sentry_cid);
+                    ravenClient.Release = VersionInfo.VersioningInfo.Version + " (" + VersionInfo.VersioningInfo.Compile_Commit + ")";
+                }
+                catch { Debug = false; }
 
                 try
                 {
