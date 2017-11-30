@@ -204,7 +204,7 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
         private void Resources_Image_Get_Executed(object Data, TCP_ClientNode Client)
         {
             CommandData.Resources.ImageResource IRD = (CommandData.Resources.ImageResource)Data;
-            IRD.Image = Instance.SaveManager.LoadImage(IRD.Location);
+            IRD.Image = Instance.SaveManager.LoadImage(IRD.Resource_ID);
 
             Client.Send(IRD);
         }

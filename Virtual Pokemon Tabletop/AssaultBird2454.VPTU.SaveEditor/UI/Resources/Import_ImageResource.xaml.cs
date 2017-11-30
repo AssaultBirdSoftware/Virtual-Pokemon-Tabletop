@@ -100,9 +100,20 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Resources
 
         private void ImportFile(string FileDir, bool? Import = false)
         {
+            string ID = "";
+
+            while (true)
+            {
+                ID = VPTU.RNG.Generators.RSG.GenerateString(16);
+
+                if (MainWindow.SaveManager.SaveData.ImageResources.FindAll(x => x.ID == ID).Count == 0)
+                    break;
+            }
+
             SaveManager.Resource_Data.Resources res = new SaveManager.Resource_Data.Resources();
             res.Name = System.IO.Path.GetFileName(FileDir);
             res.Type = SaveManager.Resource_Data.Resource_Type.Image;
+            res.ID = ID;
 
             if (MainWindow.SaveManager.FileExists("Resource/Images/" + res.Name))
             {

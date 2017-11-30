@@ -64,7 +64,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Resources
 
         private void ShowPreview(SaveManager.Resource_Data.Resources res)
         {
-            var bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(Mgr.LoadImage(res.Path).GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            var bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(Mgr.LoadImage(res.ID).GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
 
             Preview.Background = new ImageBrush(bitmapSource)
             {
@@ -80,7 +80,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Resources
 
         private void Select_Click(object sender, RoutedEventArgs e)
         {
-            Selected_Resource = ((SaveManager.Resource_Data.Resources)Resource_List.SelectedItems[0]).Path;
+            Selected_Resource = ((SaveManager.Resource_Data.Resources)Resource_List.SelectedItems[0]).ID;
             DialogResult = true;
             Close();
         }

@@ -14,7 +14,7 @@ namespace AssaultBird2454.VPTU.Server.Instances.CommandData.Resources
         public string Command { get; set; }
         public string UseCommand { get; set; }
         public string UseID { get; set; }
-        public string Location { get; set; }
+        public string Resource_ID { get; set; }
         public byte[] ImageData { get; set; }
 
         [JsonIgnore]
