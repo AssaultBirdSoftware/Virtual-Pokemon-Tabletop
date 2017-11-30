@@ -148,7 +148,8 @@
     <Compile Include="BattleManager\BattleEffect\Data\Variable.cs" />
     <Compile Include="BattleManager\BattleEffect\EffectData.cs" />
     <Compile Include="BattleManager\BattleEffect\EffectFunction.cs" />
-    <Compile Include="BattleManager\BattleManager.cs" />
+    <Compile Include="BattleManager\Type\Type Manager.cs" />
+    <Compile Include="BattleManager\Type\Type.cs" />
     <Compile Include="ContestManager\Data\Data.cs" />
     <Compile Include="BattleManager\Data\Data.cs" />
     <Compile Include="EntityManager\Entity.cs" />
@@ -204,7 +205,7 @@
     <Compile Include="Server\Class\Logging\Logger.cs" />
     <Compile Include="Server\Instances\ClientInstance.cs" />
     <Compile Include="Server\Instances\Client\Base_Commands.cs" />
-    <Compile Include="Server\Instances\CommandData\Pokedex\Data.cs" />
+    <Compile Include="Server\Instances\CommandData\Battle\Battle_Instance.cs" />
     <Compile Include="Server\Instances\CommandData\Pokedex\Moves.cs" />
     <Compile Include="Server\Instances\CommandData\Pokedex\Pokemon.cs" />
     <Compile Include="Server\Instances\CommandData\Resources\Resources.cs" />
@@ -275,6 +276,7 @@
     <Folder Include="Discord\" />
     <Folder Include="EntityManager\Data\" />
     <Folder Include="Server\Class\Session\" />
+    <Folder Include="Server\Instances\CommandData\Entity\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\External\MultiSelectComboBox\MultiSelectComboBox.csproj">

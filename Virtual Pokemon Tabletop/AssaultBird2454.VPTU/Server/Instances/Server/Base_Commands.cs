@@ -77,10 +77,13 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
             #endregion
 
             #region Entity
+            CommandHandeler.RegisterCommand<string>("Entity_Pokemon_GetList");
             CommandHandeler.RegisterCommand<string>("Entity_Pokemon_Get");
             CommandHandeler.RegisterCommand<string>("Entity_Pokemon_Create");
             CommandHandeler.RegisterCommand<string>("Entity_Pokemon_Edit");
             CommandHandeler.RegisterCommand<string>("Entity_Pokemon_Delete");
+
+            CommandHandeler.RegisterCommand<string>("Entity_Trainer_GetList");
             CommandHandeler.RegisterCommand<string>("Entity_Trainer_Get");
             CommandHandeler.RegisterCommand<string>("Entity_Trainer_Create");
             CommandHandeler.RegisterCommand<string>("Entity_Trainer_Edit");
@@ -91,17 +94,44 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
             #region Battles
             // Battles
             CommandHandeler.RegisterCommand<string>("Battle_Participants_Add");// Adds Participants to the Battle Instance
+            CommandHandeler.GetCommand("Battle_Participants_Add").Command_Executed += Battle_Participants_Add_Executed;
+
             CommandHandeler.RegisterCommand<string>("Battle_Participants_Edit");// Edits a participant in the Battle Instnace
+            CommandHandeler.GetCommand("Battle_Participants_Edit").Command_Executed += Battle_Participants_Edit_Executed;
+
             CommandHandeler.RegisterCommand<string>("Battle_Participants_Remove");// Removes a participant from the Battle Instance
+            CommandHandeler.GetCommand("Battle_Participants_Remove").Command_Executed += Battle_Participants_Remove_Executed;
+
             CommandHandeler.RegisterCommand<string>("Battle_Participants_Get");// Gets the participants in the Battle Instance
+            CommandHandeler.GetCommand("Battle_Participants_Get").Command_Executed += Battle_Participants_Get_Executed;
+
             CommandHandeler.RegisterCommand<string>("Battle_TurnOrder_Get");// Gets the Turn Order of this Battle Instance
+            CommandHandeler.GetCommand("Battle_TurnOrder_Get").Command_Executed += Battle_TurnOrder_Get_Executed;
+
             CommandHandeler.RegisterCommand<string>("Battle_TurnOrder_Current");// Gets the current turn in the Battle Instance
+            CommandHandeler.GetCommand("Battle_TurnOrder_Current").Command_Executed += Battle_TurnOrder_Current_Executed;
+
             CommandHandeler.RegisterCommand<string>("Battle_TurnOrder_Next");// Next Turn in the Battle Instance Turn Order
+            CommandHandeler.GetCommand("Battle_TurnOrder_Next").Command_Executed += Battle_TurnOrder_Next_Executed;
+
             CommandHandeler.RegisterCommand<string>("Battle_TurnOrder_Prev");// Prev Turn in the Battle Instance Turn Order
+            CommandHandeler.GetCommand("Battle_TurnOrder_Prev").Command_Executed += Battle_TurnOrder_Prev_Executed;
+
             CommandHandeler.RegisterCommand<string>("Battle_Action_Execute");// Executes a Battle Action
+            CommandHandeler.GetCommand("Battle_Action_Execute").Command_Executed += Battle_Action_Execute_Executed;
+
             CommandHandeler.RegisterCommand<string>("Battle_Action_Interupt");// Executes a Battle Interupt
-            CommandHandeler.RegisterCommand<string>("Battle_Instance_Start");// Starts the Battle Instance
-            CommandHandeler.RegisterCommand<string>("Battle_Instance_End");// Ends the Battle Instance
+            CommandHandeler.GetCommand("Battle_Action_Interupt").Command_Executed += Battle_Action_Interupt_Executed;
+
+            CommandHandeler.RegisterCommand<CommandData.Battle.Battle_Instance_List>("Battle_Instance_List");// Starts the Battle Instance
+            CommandHandeler.GetCommand("Battle_Instance_List").Command_Executed += Battle_Instance_List_Executed;
+
+            CommandHandeler.RegisterCommand<CommandData.Battle.Battle_Instance>("Battle_Instance_Start");// Starts the Battle Instance
+            CommandHandeler.GetCommand("Battle_Instance_Start").Command_Executed += Battle_Instance_Start_Executed;
+
+            CommandHandeler.RegisterCommand<CommandData.Battle.Battle_Instance>("Battle_Instance_End");// Ends the Battle Instance
+            CommandHandeler.GetCommand("Battle_Instance_End").Command_Executed += Battle_Instance_End_Executed;
+
             // CommandHandeler.RegisterCommand<string>("Battle_");
             #endregion
 
@@ -198,6 +228,73 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
             });
         }
         #endregion
+        #endregion
+
+        #region Battles
+        private void Battle_Participants_Add_Executed(object Data, TCP_ClientNode Client)
+        {
+
+        }
+
+        private void Battle_Participants_Edit_Executed(object Data, TCP_ClientNode Client)
+        {
+
+        }
+
+        private void Battle_Participants_Remove_Executed(object Data, TCP_ClientNode Client)
+        {
+
+        }
+
+        private void Battle_Participants_Get_Executed(object Data, TCP_ClientNode Client)
+        {
+
+        }
+
+        private void Battle_TurnOrder_Get_Executed(object Data, TCP_ClientNode Client)
+        {
+
+        }
+
+        private void Battle_TurnOrder_Current_Executed(object Data, TCP_ClientNode Client)
+        {
+
+        }
+
+        private void Battle_TurnOrder_Next_Executed(object Data, TCP_ClientNode Client)
+        {
+
+        }
+
+        private void Battle_TurnOrder_Prev_Executed(object Data, TCP_ClientNode Client)
+        {
+
+        }
+
+        private void Battle_Action_Execute_Executed(object Data, TCP_ClientNode Client)
+        {
+
+        }
+
+        private void Battle_Action_Interupt_Executed(object Data, TCP_ClientNode Client)
+        {
+
+        }
+
+        private void Battle_Instance_List_Executed(object Data, TCP_ClientNode Client)
+        {
+            Client.Send(new CommandData.Battle.Battle_Instance_List() { Instances = Instance.GetInstances });
+        }
+
+        private void Battle_Instance_Start_Executed(object Data, TCP_ClientNode Client)
+        {
+            //Client.Send(new CommandData.Battle.Battle_Instance() { Command = "", });
+        }
+
+        private void Battle_Instance_End_Executed(object Data, TCP_ClientNode Client)
+        {
+
+        }
         #endregion
 
         #region Resources
