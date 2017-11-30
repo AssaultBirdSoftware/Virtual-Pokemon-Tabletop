@@ -51,9 +51,6 @@ namespace AssaultBird2454.VPTU.Client
                 _PokedexList_Window.Closing += PokedexList_Window_Closing;// Set up an event
                 MDI.Children.Add(_PokedexList_Window);// Add the window
 
-                int i2 = 0;
-                int i = 10 / i2;
-
                 return _PokedexList_Form;// Return the control
             }
             else
