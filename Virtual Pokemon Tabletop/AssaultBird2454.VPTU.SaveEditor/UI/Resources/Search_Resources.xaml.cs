@@ -32,7 +32,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Resources
             }
         }
 
-        private Thread LoadPreviewThread;
+        private Thread SearchThread;
 
         public string Selected_Resource { get; private set; }
 
@@ -42,24 +42,35 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Resources
 
             LoadItems();
 
-            LoadPreviewThread = new Thread(new ThreadStart(() => LoadItems()));
-            LoadPreviewThread.SetApartmentState(ApartmentState.STA);
-            LoadPreviewThread.IsBackground = true;
-            LoadPreviewThread.Start();
-
         }
 
         private void LoadItems()
         {
-            this.Dispatcher.Invoke(new Action(() =>
+            try
             {
-                Resource_List.Items.Clear();
+                SearchThread.Abort();
+                SearchThread = null;
+            }
+            catch { /* Dont Care */ }
 
-                foreach (SaveManager.Resource_Data.Resources res in Mgr.SaveData.ImageResources)
+            SearchThread = new Thread(new ThreadStart(() =>
+            {
+                this.Dispatcher.Invoke(new Action(() =>
                 {
-                    Resource_List.Items.Add(res);
-                }
+                    Resource_List.Items.Clear();
+
+                    foreach (SaveManager.Resource_Data.Resources res in Mgr.SaveData.ImageResources)
+                    {
+                        if (res.Name.ToLower().Contains(Search.Text.ToLower()))
+                        {
+                            Resource_List.Items.Add(res);
+                        }
+                    }
+                }));
             }));
+            SearchThread.SetApartmentState(ApartmentState.STA);
+            SearchThread.IsBackground = true;
+            SearchThread.Start();
         }
 
         private void ShowPreview(SaveManager.Resource_Data.Resources res)
@@ -89,6 +100,11 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Resources
         {
             DialogResult = false;
             Close();
+        }
+
+        private void Search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            LoadItems();
         }
     }
 }

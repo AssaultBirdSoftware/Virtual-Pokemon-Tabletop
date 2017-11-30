@@ -34,7 +34,7 @@
                 </Button.Background>
             </Button>
             <Separator/>
-            <TextBox x:Name="ToolBar_Search" Width="100" Margin="1,0"/>
+            <TextBox x:Name="ToolBar_Search" Width="100" Margin="1,0" TextChanged="ToolBar_Search_TextChanged"/>
         </ToolBar>
 
     </Grid>
