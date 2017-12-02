@@ -47,6 +47,8 @@ namespace AssaultBird2454.VPTU.Client.UI.Entity
                         Content = cn.Value
                     }
                 };
+
+                Entity_PlayerIndicators.Children.Add(bord);
             }
         }
     }

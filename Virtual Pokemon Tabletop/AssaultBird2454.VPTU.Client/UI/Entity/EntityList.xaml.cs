@@ -55,7 +55,7 @@ namespace AssaultBird2454.VPTU.Client.UI.Entity
         {
             List<KeyValuePair<System.Windows.Media.Color, string>> PIs = new List<KeyValuePair<System.Windows.Media.Color, string>>();
             PIs.Add(new KeyValuePair<System.Windows.Media.Color, string>(new System.Windows.Media.Color() { A = 255, R = 255, G = 0, B = 0 }, "Gill Bates"));
-            PIs.Add(new KeyValuePair<System.Windows.Media.Color, string>(new System.Windows.Media.Color() { A = 255, R = 0, G = 255, B = 255 }, "Tessa Marlow"));
+            PIs.Add(new KeyValuePair<System.Windows.Media.Color, string>(new System.Windows.Media.Color() { A = 255, R = 0, G = 255, B = 20 }, "Tessa Marlow"));
 
             TreeViewItem Players = Create_Dir("Players");
 
