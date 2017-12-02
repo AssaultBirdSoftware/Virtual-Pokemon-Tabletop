@@ -155,6 +155,7 @@
     <Compile Include="EntityManager\Entity.cs" />
     <Compile Include="EntityManager\Pokemon\PokemonCharacter.cs" />
     <Compile Include="EntityManager\Trainer\TrainerCharacter.cs" />
+    <Compile Include="EntityManager\Viewer.cs" />
     <Compile Include="Networking\Client\TCP\Command Handeler\Command.cs" />
     <Compile Include="Networking\Client\TCP\Command Handeler\CommandHandeler.cs" />
     <Compile Include="Networking\Client\TCP\Data.cs" />

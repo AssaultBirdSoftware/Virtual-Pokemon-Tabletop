@@ -8,6 +8,5 @@
     <Grid>
         <TreeView x:Name="Tree">
         </TreeView>
-
     </Grid>
 </UserControl>
