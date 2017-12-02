@@ -91,12 +91,12 @@ namespace AssaultBird2454.VPTU.Client.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Icon pokeball_B98_icon {
+        internal static System.Drawing.Bitmap Pokeball {
             get {
-                object obj = ResourceManager.GetObject("pokeball_B98_icon", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
+                object obj = ResourceManager.GetObject("Pokeball", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

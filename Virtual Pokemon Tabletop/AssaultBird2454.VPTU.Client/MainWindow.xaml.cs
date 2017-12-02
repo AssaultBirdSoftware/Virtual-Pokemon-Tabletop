@@ -151,6 +151,51 @@ namespace AssaultBird2454.VPTU.Client
         }
         #endregion
 
+        #region Entity
+        /// <summary>
+        /// The control that handels the EntityList List Functions
+        /// </summary>
+        private UI.Entity.EntityList _EntityList_Form;
+        /// <summary>
+        /// The MDI window that handels the EntityList List Functions
+        /// </summary>
+        private WPF.MDI.MdiChild _EntityList_Window;
+        /// <summary>
+        /// Gets the control that handels the EntityList List Functions. And creates a window if it does not exist
+        /// </summary>
+        public UI.Entity.EntityList EntityList_Form()
+        {
+            if (_EntityList_Form == null)// If the list control does not exist
+            {
+                _EntityList_Form = new UI.Entity.EntityList();// Create the control
+
+                Menu_View_EntityList.IsChecked = true;// Check the menu box
+                _EntityList_Window = new WPF.MDI.MdiChild()
+                {
+                    Title = "Entitys",
+                    Icon = new BitmapImage(new Uri(Program.AssemblyDirectory + @"\Resources\Pokeball.png", UriKind.Absolute)),
+                    Content = _EntityList_Form
+                };// Create the window
+                _EntityList_Window.Closing += EntityList_Window_Closing;// Set up an event
+                MDI.Children.Add(_EntityList_Window);// Add the window
+
+                return _EntityList_Form;// Return the control
+            }
+            else
+            {
+                Menu_View_EntityList.IsChecked = true;// Check the menu box
+                return _EntityList_Form;// Return the control if it already exists
+            }
+        }
+
+        private void EntityList_Window_Closing(object sender, RoutedEventArgs e)
+        {
+            Menu_View_EntityList.IsChecked = false;
+            _EntityList_Form = null;
+            _EntityList_Window = null;
+        }
+        #endregion
+
         #region Loggers
         /// <summary>
         /// The control that handels the ServerConsole List Functions
@@ -285,6 +330,10 @@ namespace AssaultBird2454.VPTU.Client
         private void Tools_Pokedex_Click(object sender, RoutedEventArgs e)
         {
             PokedexList_Form();
+        }
+        private void Tools_Entitys_Click(object sender, RoutedEventArgs e)
+        {
+            EntityList_Form();
         }
         #endregion
 
@@ -424,6 +473,7 @@ namespace AssaultBird2454.VPTU.Client
             }
         }
         #endregion
+
         #endregion
     }
 }
