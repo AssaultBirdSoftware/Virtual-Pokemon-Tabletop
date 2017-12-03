@@ -126,6 +126,9 @@
     <Compile Include="UI\Battlers\Participant.xaml.cs">
       <DependentUpon>Participant.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Entity\EntityListItem.xaml.cs">
+      <DependentUpon>EntityListItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Entity\Pokemon\Select.xaml.cs">
       <DependentUpon>Select.xaml</DependentUpon>
     </Compile>
@@ -165,6 +168,9 @@
     <Compile Include="UI\Resources\Search_Resources.xaml.cs">
       <DependentUpon>Search_Resources.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\String Prompt.xaml.cs">
+      <DependentUpon>String Prompt.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Users\Users.xaml.cs">
       <DependentUpon>Users.xaml</DependentUpon>
     </Compile>
@@ -201,6 +207,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Battlers\Participant.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Entity\EntityListItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -253,6 +263,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Resources\Search_Resources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\String Prompt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
