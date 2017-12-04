@@ -12,7 +12,7 @@ using System.Windows;
 
 namespace AssaultBird2454.VPTU.SaveManager
 {
-    public enum SaveData_Dir { Pokedex_Pokemon, Pokedex_Moves, Pokedex_Abilitys, Pokedex_Items, Resource_Image, Entity_Pokemon, Entity_Trainers, Basic_CampaignSettings, Auth_Users, Auth_Groups, Entity_Folder, Entity_Entry }
+    public enum SaveData_Dir { Pokedex_Pokemon, Pokedex_Moves, Pokedex_Abilitys, Pokedex_Items, Resource_Image, Entity_Pokemon, Entity_Trainers, Basic_CampaignSettings, Auth_Users, Auth_Groups, Entity_Folder }
 
     public class No_Data_Found_In_Save_Exception : Exception { }
 
@@ -57,8 +57,7 @@ namespace AssaultBird2454.VPTU.SaveManager
 
                 try { SaveData.ImageResources = LoadData_FromSave<List<Resource_Data.Resources>>(GetSaveFile_DataDir(SaveData_Dir.Resource_Image)); } catch (No_Data_Found_In_Save_Exception) { SaveData.ImageResources = new List<Resource_Data.Resources>(); }
 
-                try { SaveData.EntityViewer.Folders = LoadData_FromSave<List<EntityManager.Folder>>(GetSaveFile_DataDir(SaveData_Dir.Entity_Folder)); } catch (No_Data_Found_In_Save_Exception){ SaveData.EntityViewer.Folders = new List<EntityManager.Folder>(); }
-                try { SaveData.EntityViewer.Entrys = LoadData_FromSave<List<EntityManager.Entry>>(GetSaveFile_DataDir(SaveData_Dir.Entity_Entry)); } catch (No_Data_Found_In_Save_Exception) { SaveData.EntityViewer.Entrys = new List<EntityManager.Entry>(); }
+                try { SaveData.Folders = LoadData_FromSave<List<EntityManager.Folder>>(GetSaveFile_DataDir(SaveData_Dir.Entity_Folder)); } catch (No_Data_Found_In_Save_Exception) { SaveData.Folders = new List<EntityManager.Folder>(); }
                 try { SaveData.Pokemon = LoadData_FromSave<List<EntityManager.Pokemon.PokemonCharacter>>(GetSaveFile_DataDir(SaveData_Dir.Entity_Pokemon)); } catch (No_Data_Found_In_Save_Exception) { SaveData.Pokemon = new List<EntityManager.Pokemon.PokemonCharacter>(); }
 
                 SaveData.InitNullObjects();
@@ -86,8 +85,7 @@ namespace AssaultBird2454.VPTU.SaveManager
 
             SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Resource_Image), SaveData.ImageResources);
 
-            SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Entity_Folder), SaveData.EntityViewer.Folders);
-            SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Entity_Entry), SaveData.EntityViewer.Entrys);
+            SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Entity_Folder), SaveData.Folders);
             SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Entity_Pokemon), SaveData.Pokemon);
         }
 
@@ -177,8 +175,6 @@ namespace AssaultBird2454.VPTU.SaveManager
                     return "Entity/Trainers.json";
                 case SaveData_Dir.Entity_Folder:
                     return "Entity/Folders.json";
-                case SaveData_Dir.Entity_Entry:
-                    return "Entity/Entrys.json";
                 case SaveData_Dir.Basic_CampaignSettings:
                     return "CampaignInfo.json";
                 case SaveData_Dir.Auth_Users:
@@ -245,30 +241,34 @@ namespace AssaultBird2454.VPTU.SaveManager
         #region Load File
         public Bitmap LoadImage(string ID)
         {
-            string FilePath = SaveData.ImageResources.Find(x => x.ID == ID).Path;
-
-            if (FilePath.ToLower().StartsWith("save:"))
+            try
             {
-                //Creates a stream to read the save file from
-                using (FileStream Reader = new FileStream(SaveFileDir, FileMode.OpenOrCreate))
-                {
-                    //Creates an object to read the archive data from
-                    using (ZipArchive archive = new ZipArchive(Reader, ZipArchiveMode.Update))
-                    {
-                        Stream str = (archive.GetEntry(FilePath.Remove(0, 5))).Open();// Opens a stream & Removes prefix ID
-                        Bitmap bmp = new Bitmap(str);// Loads Image
+                string FilePath = SaveData.ImageResources.Find(x => x.ID == ID).Path;
 
-                        return bmp;// Return Image
+                if (FilePath.ToLower().StartsWith("save:"))
+                {
+                    //Creates a stream to read the save file from
+                    using (FileStream Reader = new FileStream(SaveFileDir, FileMode.OpenOrCreate))
+                    {
+                        //Creates an object to read the archive data from
+                        using (ZipArchive archive = new ZipArchive(Reader, ZipArchiveMode.Update))
+                        {
+                            Stream str = (archive.GetEntry(FilePath.Remove(0, 5))).Open();// Opens a stream & Removes prefix ID
+                            Bitmap bmp = new Bitmap(str);// Loads Image
+
+                            return bmp;// Return Image
+                        }
                     }
                 }
-            }
-            else if (FilePath.ToLower().StartsWith("path:"))
-            {
-                FileStream str = new FileStream(FilePath.Remove(0, 5), FileMode.Open);// Opens a stream & Removes prefix ID
-                Bitmap bmp = new Bitmap(str);// Loads Image
+                else if (FilePath.ToLower().StartsWith("path:"))
+                {
+                    FileStream str = new FileStream(FilePath.Remove(0, 5), FileMode.Open);// Opens a stream & Removes prefix ID
+                    Bitmap bmp = new Bitmap(str);// Loads Image
 
-                return bmp;// Return Image
+                    return bmp;// Return Image
+                }
             }
+            catch { }
             return null;
         }
         #endregion

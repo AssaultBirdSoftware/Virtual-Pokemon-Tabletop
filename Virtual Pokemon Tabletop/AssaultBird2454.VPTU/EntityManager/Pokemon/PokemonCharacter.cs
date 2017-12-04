@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace AssaultBird2454.VPTU.EntityManager.Pokemon
 {
-    public class PokemonCharacter : Entity
+    public class PokemonCharacter : Entity, Entry
     {
         public PokemonCharacter(string _ID)
         {
@@ -17,6 +17,33 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
 
         }
 
+        [JsonIgnore]
+        public Entry_Data EntryData
+        {
+            get
+            {
+                return new Entry_Data()
+                {
+                    ID = ID,
+                    Name = Name,
+                    Parent_Folder = Parent_Folder,
+                    Token_ResourceID = Token_ResourceID,
+                    Entity_Type = Entity_Type.Pokemon
+                };
+            }
+        }
+
+        /// <summary>
+        /// The resource ID for this entry
+        /// </summary>
+        public string Token_ResourceID { get; set; }
+        /// <summary>
+        /// The folder that this entry is placed in (null = root)
+        /// </summary>
+        public string Parent_Folder { get; set; }
+
+        [JsonIgnore]
+        public Entity_Type Entity_Type { get { return Entity_Type.Pokemon; } }
         public string ID { get; set; }
         public string Name { get; set; }
         public string Notes { get; set; }
@@ -41,13 +68,13 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         }
         public string Held_Item { get; set; }
         public int Loyalty { get; set; }
-        public AssaultBird2454.VPTU.Pokedex.Entity.Gender Gender { get; set; }
-        public AssaultBird2454.VPTU.BattleManager.Data.Nature Nature { get; set; }
+        public Pokedex.Entity.Gender Gender { get; set; }
+        public BattleManager.Data.Nature Nature { get; set; }
         public List<string> Abilitys { get; set; }
-        public AssaultBird2454.VPTU.Pokedex.Entity.SizeClass SizeClass { get; set; }
-        public AssaultBird2454.VPTU.Pokedex.Entity.WeightClass WeightClass { get; set; }
-        public AssaultBird2454.VPTU.Pokedex.Entity.Capability_Data Capabilities { get; set; }
-        public AssaultBird2454.VPTU.Pokedex.Entity.Skill_Data Skills { get; set; }
+        public Pokedex.Entity.SizeClass SizeClass { get; set; }
+        public Pokedex.Entity.WeightClass WeightClass { get; set; }
+        public Pokedex.Entity.Capability_Data Capabilities { get; set; }
+        public Pokedex.Entity.Skill_Data Skills { get; set; }
 
         #region Stats
         #region HP

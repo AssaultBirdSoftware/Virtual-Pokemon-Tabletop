@@ -31,7 +31,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         {
             Entity_PlayerIndicators.Children.Clear();
 
-            Entity_Image.Source = Imaging.CreateBitmapSourceFromHBitmap(Image.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            try { Entity_Image.Source = Imaging.CreateBitmapSourceFromHBitmap(Image.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions()); } catch { }
             Entity_Name.Content = Name;
 
             if (Viewers != null)

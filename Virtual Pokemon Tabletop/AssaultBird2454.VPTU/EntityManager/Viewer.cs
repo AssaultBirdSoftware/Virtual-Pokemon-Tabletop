@@ -8,36 +8,7 @@ using System.Threading.Tasks;
 
 namespace AssaultBird2454.VPTU.EntityManager
 {
-    public class EntityViewer
-    {
-        /// <summary>
-        /// Creates a new EntryViewer Save Data Manager
-        /// </summary>
-        /// <param name="InitNewSave">Initialize new data</param>
-        public EntityViewer(bool InitNewSave = false)
-        {
-            if (InitNewSave)
-            {
-                Folders = new List<Folder>();// Initilises the Folders
-                Entrys = new List<Entry>();// Initilises the Entrys
-            }
-        }
-
-        public void InitNullObjects()
-        {
-            if (Folders == null)
-            {
-                Folders = new List<Folder>();// Initilises the Folders
-            }
-            if (Entrys == null)
-            {
-                Entrys = new List<Entry>();// Initilises the Entrys
-            }
-        }
-
-        public List<Folder> Folders { get; set; }
-        public List<Entry> Entrys { get; set; }
-    }
+    public enum Entity_Type { Trainer = 0, Pokemon = 1 }
 
     public class Folder
     {
@@ -55,12 +26,43 @@ namespace AssaultBird2454.VPTU.EntityManager
         /// </summary>
         public string Parent { get; set; }
     }
-    public class Entry
+    public interface Entry
+    {
+        [JsonIgnore]
+        Entry_Data EntryData { get; }
+
+        /// <summary>
+        /// Defines what type of entity this is
+        /// </summary>
+        Entity_Type Entity_Type { get; }
+        /// <summary>
+        /// The ID of the entity
+        /// </summary>
+        string ID { get; set; }
+        /// <summary>
+        /// The Name of the entity
+        /// </summary>
+        string Name { get; set; }
+        /// <summary>
+        /// The resource ID for this entry
+        /// </summary>
+        string Token_ResourceID { get; set; }
+
+        /// <summary>
+        /// The folder that this entry is placed in (null = root)
+        /// </summary>
+        string Parent_Folder { get; set; }
+    }
+    public class Entry_Data
     {
         /// <summary>
-        /// The ID of the entity that this entry represents
+        /// Defines what type of entity this is
         /// </summary>
-        public string EntityID { get; set; }
+        public Entity_Type Entity_Type { get; internal set; }
+        /// <summary>
+        /// The ID of the entity
+        /// </summary>
+        public string ID { get; set; }
         /// <summary>
         /// The Name of the entity
         /// </summary>

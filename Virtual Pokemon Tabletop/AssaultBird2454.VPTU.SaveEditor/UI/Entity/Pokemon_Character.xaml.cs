@@ -25,7 +25,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         private bool Ready = false;
 
         #region Base Functions
-        public Pokemon_Character(SaveManager.SaveManager _Mgr, EntityManager.Pokemon.PokemonCharacter _PokemonData)
+        public Pokemon_Character(SaveManager.SaveManager _Mgr, EntityManager.Pokemon.PokemonCharacter _PokemonData = null)
         {
             Manager = _Mgr;
             if (_PokemonData == null)

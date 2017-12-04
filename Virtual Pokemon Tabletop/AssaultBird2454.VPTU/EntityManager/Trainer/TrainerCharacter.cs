@@ -5,8 +5,36 @@ using System.Text;
 
 namespace AssaultBird2454.VPTU.EntityManager.Trainer
 {
-    public class TrainerCharacter : Entity
+    public class TrainerCharacter : Entity, Entry
     {
+        [JsonIgnore]
+        public Entry_Data EntryData
+        {
+            get
+            {
+                return new Entry_Data()
+                {
+                    ID = ID,
+                    Name = Name,
+                    Parent_Folder = Parent_Folder,
+                    Token_ResourceID = Token_ResourceID,
+                    Entity_Type = Entity_Type.Trainer
+                };
+            }
+        }
+
+        /// <summary>
+        /// The resource ID for this entry
+        /// </summary>
+        public string Token_ResourceID { get; set; }
+
+        /// <summary>
+        /// The folder that this entry is placed in (null = root)
+        /// </summary>
+        public string Parent_Folder { get; set; }
+
+        [JsonIgnore]
+        public Entity_Type Entity_Type { get { return Entity_Type.Pokemon; } }
         public string ID { get; set; }
         public string Name { get; set; }
 
