@@ -850,7 +850,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
             }
             else
             {
-                TreeViewItem Parent = EntityManager_Entrys.Find(x => ((EntityManager.Entry_Data)x.Tag).ID == Entry.Parent_Folder);
+                TreeViewItem Parent = EntityManager_Folders.Find(x => ((EntityManager.Folder)x.Tag).ID == Entry.Parent_Folder);
                 Parent.Items.Remove(TVI);
             }
 
