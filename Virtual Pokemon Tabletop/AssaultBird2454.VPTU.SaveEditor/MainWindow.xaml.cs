@@ -682,7 +682,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
         {
             ContextMenu ctxm = ((ContextMenu)((MenuItem)sender).Parent);
 
-            EntityManager_DeleteDir(((EntityManager.Entry_Data)ctxm.Tag).ID);
+            EntityManager_DeleteDir(((EntityManager.Folder)ctxm.Tag).ID);
         }
         private void Ctxm_Folder_CreatePokemonEntity_Click(object sender, RoutedEventArgs e)
         {
@@ -806,14 +806,14 @@ namespace AssaultBird2454.VPTU.SaveEditor
 
             EntityManager.Folder Folder = SaveManager.SaveData.Folders.Find(x => x.ID == ID);
 
-            TreeViewItem TVI = EntityManager_Entrys.Find(x => ((EntityManager.Entry_Data)x.Tag).ID == Folder.ID);
+            TreeViewItem TVI = EntityManager_Folders.Find(x => ((EntityManager.Folder)x.Tag).ID == Folder.ID);
             if (Folder.Parent == null)
             {
                 EntityManager_Tree.Items.Remove(TVI);
             }
             else
             {
-                TreeViewItem ParentTVI = EntityManager_Entrys.Find(x => ((EntityManager.Entry_Data)x.Tag).ID == Folder.Parent);
+                TreeViewItem ParentTVI = EntityManager_Folders.Find(x => ((EntityManager.Folder)x.Tag).ID == Folder.Parent);
                 ParentTVI.Items.Remove(TVI);
             }
 
