@@ -631,6 +631,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
 
         #region Entity Manager Code
         List<TreeViewItem> EntityManager_Folders = new List<TreeViewItem>();
+        List<TreeViewItem> EntityManager_Entrys = new List<TreeViewItem>();
         ContextMenu EntityManager_Root;
 
         public void Create_EntityManager_ContextMenu()
@@ -653,7 +654,9 @@ namespace AssaultBird2454.VPTU.SaveEditor
         #region Context Menu Events
         private void Ctxm_Entity_Delete_Click(object sender, RoutedEventArgs e)
         {
+            ContextMenu ctxm = ((ContextMenu)((MenuItem)sender).Parent);
 
+            EntityManager_DeleteEntry(ctxm.Tag.ToString());
         }
         private void Ctxm_Entity_Duplicate_Click(object sender, RoutedEventArgs e)
         {
@@ -665,7 +668,9 @@ namespace AssaultBird2454.VPTU.SaveEditor
         }
         private void Ctxm_Folder_Delete_Click(object sender, RoutedEventArgs e)
         {
+            ContextMenu ctxm = ((ContextMenu)((MenuItem)sender).Parent);
 
+            EntityManager_DeleteDir(ctxm.Tag.ToString());
         }
         private void Ctxm_Folder_CreatePokemonEntity_Click(object sender, RoutedEventArgs e)
         {
@@ -738,12 +743,12 @@ namespace AssaultBird2454.VPTU.SaveEditor
                     ContextMenu = EntityManager_Folder
                 };
 
+                SaveManager.SaveData.EntityViewer.Folders.Add(folder);
                 ParentTVI.Items.Add(TVI);
                 EntityManager_Folders.Add(TVI);
             }
             else
             {
-                SaveManager.SaveData.EntityViewer.Folders.Add(folder);
                 TreeViewItem TVI = new TreeViewItem()
                 {
                     Header = folder.Name,
@@ -751,13 +756,69 @@ namespace AssaultBird2454.VPTU.SaveEditor
                     ContextMenu = EntityManager_Folder
                 };
 
+                SaveManager.SaveData.EntityViewer.Folders.Add(folder);
                 EntityManager_Tree.Items.Add(TVI);
                 EntityManager_Folders.Add(TVI);
             }
         }
+        public void EntityManager_DeleteDir(string ID)
+        {
+            foreach (EntityManager.Folder ChildFolder in SaveManager.SaveData.EntityViewer.Folders.FindAll(x => x.Parent == ID))
+            {
+                EntityManager_DeleteDir(ChildFolder.ID);
+            }
+            foreach (EntityManager.Entry Entry in SaveManager.SaveData.EntityViewer.Entrys.FindAll(x => x.Parent_Folder == ID))
+            {
+                EntityManager_DeleteEntry(Entry.EntityID);
+            }
+
+            EntityManager.Folder Folder = SaveManager.SaveData.EntityViewer.Folders.Find(x => x.ID == ID);
+            TreeViewItem TVI = EntityManager_Folders.Find(x => ((string)x.Tag) == Folder.ID);
+            TreeViewItem ParentTVI = EntityManager_Folders.Find(x => ((string)x.Tag) == Folder.Parent);
+
+            ParentTVI.Items.Remove(TVI);
+            EntityManager_Folders.Remove(TVI);
+            SaveManager.SaveData.EntityViewer.Folders.Remove(Folder);
+        }
+        public void EntityManager_DeleteEntry(string ID)
+        {
+            EntityManager.Entry Entry = SaveManager.SaveData.EntityViewer.Entrys.Find(x => x.EntityID == ID);
+
+            try
+            {
+                EntityManager.Pokemon.PokemonCharacter pchar = SaveManager.SaveData.Pokemon.Find(x => x.ID == Entry.EntityID);
+                SaveManager.SaveData.Pokemon.Remove(pchar);
+            }
+            catch { /* Dont Care */ }
+            try
+            {
+                EntityManager.Trainer.TrainerCharacter tchar = SaveManager.SaveData.Trainers.Find(x => x.ID == Entry.EntityID);
+                SaveManager.SaveData.Trainers.Remove(tchar);
+            }
+            catch { /* Dont Care */ }
+
+            TreeViewItem TVI = EntityManager_Entrys.Find(x => ((string)x.Tag) == Entry.EntityID);
+            if (Entry.Parent_Folder == null)
+            {
+                EntityManager_Tree.Items.Remove(TVI);
+
+            }
+            else
+            {
+                TreeViewItem Parent = EntityManager_Folders.Find(x => ((string)x.Tag) == Entry.Parent_Folder);
+                Parent.Items.Remove(TVI);
+            }
+
+            EntityManager_Entrys.Remove(TVI);
+            SaveManager.SaveData.EntityViewer.Entrys.Remove(Entry);
+        }
 
         public void EntityManager_ReloadList()
         {
+            EntityManager_Folders.Clear();
+            EntityManager_Entrys.Clear();
+            EntityManager_Tree.Items.Clear();
+
             EntityManager_Display();
         }
 
@@ -783,31 +844,29 @@ namespace AssaultBird2454.VPTU.SaveEditor
                 MenuItem ctxm_Entity_Delete = new MenuItem();
                 ctxm_Entity_Delete.Header = "Delete";
                 ctxm_Entity_Delete.Click += Ctxm_Entity_Delete_Click;
-                
+
                 EntityManager_Entity.Items.Add(ctxm_Entity_Edit);
                 EntityManager_Entity.Items.Add(ctxm_Entity_Duplicate);
                 EntityManager_Entity.Items.Add(ctxm_Entity_S1);
                 EntityManager_Entity.Items.Add(ctxm_Entity_Delete);
                 #endregion
 
+                TreeViewItem TVI = new TreeViewItem()
+                {
+                    Header = ELI,
+                    Tag = entry.EntityID,
+                    ContextMenu = EntityManager_Entity
+                };
+
                 if (Parent == null)
                 {
-                    EntityManager_Tree.Items.Add(new TreeViewItem()
-                    {
-                        Header = ELI,
-                        Tag = entry.EntityID,
-                        ContextMenu = EntityManager_Entity
-                    });
+                    EntityManager_Tree.Items.Add(TVI);
                 }
                 else
                 {
-                    Parent.Items.Add(new TreeViewItem()
-                    {
-                        Header = ELI,
-                        Tag = entry.EntityID,
-                        ContextMenu = EntityManager_Entity
-                    });
+                    Parent.Items.Add(TVI);
                 }
+                EntityManager_Entrys.Add(TVI);
             }
 
             foreach (EntityManager.Folder folder in SaveManager.SaveData.EntityViewer.Folders.FindAll(x => x.Parent == ParentID))
