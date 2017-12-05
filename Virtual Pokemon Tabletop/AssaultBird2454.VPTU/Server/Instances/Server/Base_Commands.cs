@@ -77,7 +77,8 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
             #endregion
 
             #region Entity
-            CommandHandeler.RegisterCommand<string>("Entity_All_GetList");
+            CommandHandeler.RegisterCommand<CommandData.Entity.Entity_All_GetList>("Entity_All_GetList");
+            CommandHandeler.GetCommand("Entity_All_GetList").Command_Executed += Entity_All_GetList_Executed;
 
             CommandHandeler.RegisterCommand<string>("Entity_Pokemon_GetList");
             CommandHandeler.RegisterCommand<string>("Entity_Pokemon_Get");
@@ -230,6 +231,47 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
             });
         }
         #endregion
+        #endregion
+
+        #region Entity
+        private void Entity_All_GetList_Executed(object Data, TCP_ClientNode Client)
+        {
+            List<EntityManager.Entry_Data> Entitys = new List<EntityManager.Entry_Data>();
+            List<EntityManager.Folder> Folders = new List<EntityManager.Folder>();
+
+            foreach (EntityManager.Pokemon.PokemonCharacter pokemon in Instance.SaveManager.SaveData.Pokemon)
+            {
+                if (true)// Change to check if the user has view permissions on the entry
+                {
+                    Entitys.Add(pokemon.EntryData);
+                }
+            }
+            foreach (EntityManager.Trainer.TrainerCharacter trainer in Instance.SaveManager.SaveData.Trainers)
+            {
+                if (true)// Change to check if the user has view permissions on the entry
+                {
+                    Entitys.Add(trainer.EntryData);
+                }
+            }
+
+            // Get only the folders needed
+            foreach (EntityManager.Entry_Data entry in Entitys)
+            {
+                foreach (EntityManager.Folder folder in Instance.SaveManager.SaveData.Folders_GetTreeFrom(entry.Parent_Folder))
+                {
+                    if (!Folders.Contains(folder))
+                    {
+                        Folders.Add(folder);
+                    }
+                }
+            }
+
+            Client.Send(new CommandData.Entity.Entity_All_GetList()
+            {
+                Entrys = Entitys,
+                Folders = Folders
+            });
+        }
         #endregion
 
         #region Battles

@@ -49,6 +49,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -77,6 +78,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Crash Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Crash Form.Designer.cs">
+      <DependentUpon>Crash Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Logger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectInfo.cs" />
@@ -94,6 +101,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Crash Form.resx">
+      <DependentUpon>Crash Form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProjectVariables.json" />
     <None Include="Resources\Updater.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

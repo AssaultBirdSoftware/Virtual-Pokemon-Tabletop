@@ -11,7 +11,13 @@ namespace AssaultBird2454.VPTU.Server.Instances.CommandData.Resources
 {
     public class ImageResource : VPTU.Networking.Data.NetworkCommand
     {
-        public string Command { get; set; }
+        public string Command
+        {
+            get
+            {
+                return "Resources_Image_Get";
+            }
+        }
         public string UseCommand { get; set; }
         public string UseID { get; set; }
         public string Resource_ID { get; set; }

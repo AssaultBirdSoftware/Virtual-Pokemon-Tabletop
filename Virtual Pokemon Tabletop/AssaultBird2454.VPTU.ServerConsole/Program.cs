@@ -60,7 +60,17 @@ namespace AssaultBird2454.VPTU.ServerConsole
             {
                 if (Debug)
                 {
-                    ravenClient.Capture(new SentryEvent(ex));
+                    AssaultBird2454.VPTU.Sentry.Crash_Form cf = new AssaultBird2454.VPTU.Sentry.Crash_Form();
+                    System.Windows.Forms.DialogResult dr = cf.ShowDialog();
+
+                    if (dr == System.Windows.Forms.DialogResult.OK)
+                    {
+                        SentryEvent se = new SentryEvent(ex);
+
+                        se.Tags.Add(new KeyValuePair<string, string>("Discord Name", cf.ExtraData.DiscordName));
+
+                        ravenClient.Capture(se);
+                    }
                 }
             }
             return;

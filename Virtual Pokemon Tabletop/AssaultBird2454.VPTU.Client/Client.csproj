@@ -117,6 +117,9 @@
     <Compile Include="UI\Pokemon Species.xaml.cs">
       <DependentUpon>Pokemon Species.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\String Prompt.xaml.cs">
+      <DependentUpon>String Prompt.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\TurnOrder.xaml.cs">
       <DependentUpon>TurnOrder.xaml</DependentUpon>
     </Compile>
@@ -167,6 +170,10 @@
     <Page Include="UI\Pokemon Species.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\String Prompt.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\TurnOrder.xaml">
       <SubType>Designer</SubType>

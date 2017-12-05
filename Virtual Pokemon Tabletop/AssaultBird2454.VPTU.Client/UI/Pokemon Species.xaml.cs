@@ -75,7 +75,6 @@ namespace AssaultBird2454.VPTU.Client.UI
 
             Program.ClientInstance.Client.SendData(new VPTU.Server.Instances.CommandData.Resources.ImageResource
             {
-                Command = "Resources_Image_Get",
                 UseCommand = "Pokedex_Species",
                 UseID = Data.Species_DexID.ToString(),
                 Resource_ID = Data.Sprite_Normal

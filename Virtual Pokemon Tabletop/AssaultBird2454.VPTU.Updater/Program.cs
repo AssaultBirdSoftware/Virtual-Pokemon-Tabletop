@@ -225,7 +225,17 @@ namespace AssaultBird2454.VPTU.Updater
             {
                 if (Debug)
                 {
-                    ravenClient.Capture(new SentryEvent(ex));
+                    Crash_Form cf = new Crash_Form();
+                    System.Windows.Forms.DialogResult dr = cf.ShowDialog();
+
+                    if (dr == System.Windows.Forms.DialogResult.OK)
+                    {
+                        SentryEvent se = new SentryEvent(ex);
+
+                        se.Tags.Add(new System.Collections.Generic.KeyValuePair<string, string>("Discord Name", cf.ExtraData.DiscordName));
+
+                        ravenClient.Capture(se);
+                    }
                 }
             }
         }

@@ -655,6 +655,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
             MenuItem ctxm_Root_CreateTrainerEntity = new MenuItem();
             ctxm_Root_CreateTrainerEntity.Header = "Create Trainer Entity in Root";
             ctxm_Root_CreateTrainerEntity.Click += Ctxm_Root_CreateTrainerEntity_Click;
+            ctxm_Root_CreateTrainerEntity.IsEnabled = false;
 
             EntityManager_Root.Items.Add(ctxm_Root_CreateFolder);
             EntityManager_Root.Items.Add(ctxm_Root_CreatePokemonEntity);
@@ -751,6 +752,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
             MenuItem ctxm_Folder_CreateTrainerEntity = new MenuItem();
             ctxm_Folder_CreateTrainerEntity.Header = "Create Trainer Entity";
             ctxm_Folder_CreateTrainerEntity.Click += Ctxm_Folder_CreateTrainerEntity_Click;
+            ctxm_Folder_CreateTrainerEntity.IsEnabled = false;
             Separator ctxm_Folder_S1 = new Separator();
             MenuItem ctxm_Folder_Delete = new MenuItem();
             ctxm_Folder_Delete.Header = "Delete";
@@ -872,6 +874,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
             MenuItem ctxm_Folder_CreateTrainerEntity = new MenuItem();
             ctxm_Folder_CreateTrainerEntity.Header = "Create Trainer Entity";
             ctxm_Folder_CreateTrainerEntity.Click += Ctxm_Folder_CreateTrainerEntity_Click;
+            ctxm_Folder_CreateTrainerEntity.IsEnabled = false;
             Separator ctxm_Folder_S1 = new Separator();
             MenuItem ctxm_Folder_Delete = new MenuItem();
             ctxm_Folder_Delete.Header = "Delete";
@@ -940,6 +943,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
             MenuItem ctxm_Entity_Duplicate = new MenuItem();
             ctxm_Entity_Duplicate.Header = "Duplicate";
             ctxm_Entity_Duplicate.Click += Ctxm_Entity_Duplicate_Click;
+            ctxm_Entity_Duplicate.IsEnabled = false;
             Separator ctxm_Entity_S1 = new Separator();
             MenuItem ctxm_Entity_Delete = new MenuItem();
             ctxm_Entity_Delete.Header = "Delete";

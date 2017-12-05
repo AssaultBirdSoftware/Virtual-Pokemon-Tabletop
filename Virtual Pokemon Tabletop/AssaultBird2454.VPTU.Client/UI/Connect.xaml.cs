@@ -29,11 +29,18 @@ namespace AssaultBird2454.VPTU.Client.UI
 
         private void Button_Connect_Click(object sender, RoutedEventArgs e)
         {
-            Program.ClientInstance = new Server.Instances.ClientInstance(Program.MainWindow.ClientConsole_Form(), IPAddress.Parse(Server_Address.Text), (int)Server_Port.Value);
-            Program.Setup_Client();
-            Thread thread = new Thread(new ThreadStart(new Action(() =>Program.ClientInstance.StartClientInstance())));
-            thread.IsBackground = true;
-            thread.Start();
+            try
+            {
+                Program.ClientInstance = new Server.Instances.ClientInstance(Program.MainWindow.ClientConsole_Form(), IPAddress.Parse(Server_Address.Text), (int)Server_Port.Value);
+                Program.Setup_Client();
+                Thread thread = new Thread(new ThreadStart(new Action(() => Program.ClientInstance.StartClientInstance())));
+                thread.IsBackground = true;
+                thread.Start();
+            }
+            catch (FormatException)
+            {
+
+            }
         }
     }
 }

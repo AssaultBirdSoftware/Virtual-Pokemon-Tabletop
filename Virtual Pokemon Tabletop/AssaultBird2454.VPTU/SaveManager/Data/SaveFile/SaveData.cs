@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -46,11 +47,11 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
             //MapFiles = new List<Resources.MapFileData>();
             //Maps = new List<Resources.MapData>();
 
-            if(Users == null)
+            if (Users == null)
             {
                 Users = new List<Authentication_Manager.Data.User>();
             }
-            if(Groups == null)
+            if (Groups == null)
             {
                 Groups = new List<Authentication_Manager.Data.Group>();
             }
@@ -64,7 +65,7 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
                 ImageResources = new List<Resource_Data.Resources>();
             }
 
-            if(Folders == null)
+            if (Folders == null)
             {
                 Folders = new List<EntityManager.Folder>();
             }
@@ -92,6 +93,30 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
         public List<EntityManager.Folder> Folders;
         public List<EntityManager.Trainer.TrainerCharacter> Trainers;
         public List<EntityManager.Pokemon.PokemonCharacter> Pokemon;
+
+        /// <summary>
+        /// Helper Function, This function will return the tree of folders to get to the child folder specified
+        /// </summary>
+        /// <param name="Child">The ID of the folder that is trying to be retrieved</param>
+        /// <returns>List of folders to the desired child folder</returns>
+        public List<EntityManager.Folder> Folders_GetTreeFrom(string Child)
+        {
+            List<EntityManager.Folder> list;
+            EntityManager.Folder folder = Folders.Find(x => x.ID == Child);
+
+            if (folder.Parent == null)
+            {
+                list = new List<EntityManager.Folder>();
+            }
+            else
+            {
+                list = Folders_GetTreeFrom(folder.Parent);
+            }
+
+            list.Add(folder);
+
+            return list;
+        }
         #endregion
 
         #region Tabletop

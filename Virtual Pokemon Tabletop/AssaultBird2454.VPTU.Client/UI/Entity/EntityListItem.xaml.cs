@@ -51,5 +51,34 @@ namespace AssaultBird2454.VPTU.Client.UI.Entity
                 Entity_PlayerIndicators.Children.Add(bord);
             }
         }
+        public void Update(string Name, List<KeyValuePair<System.Windows.Media.Color, string>> Viewers)
+        {
+            Entity_PlayerIndicators.Children.Clear();
+
+            Entity_Name.Content = Name;
+
+            foreach (KeyValuePair<System.Windows.Media.Color, string> cn in Viewers)
+            {
+                Border bord = new Border()
+                {
+                    Width = 8,
+                    Height = 12,
+                    BorderThickness = new Thickness(0, 0, 0, 0),
+                    Background = new SolidColorBrush(cn.Key),
+                    ToolTip = new ToolTip()
+                    {
+                        Content = cn.Value
+                    }
+                };
+
+                Entity_PlayerIndicators.Children.Add(bord);
+            }
+        }
+        public void Update(Bitmap Image)
+        {
+            Entity_PlayerIndicators.Children.Clear();
+
+            Entity_Image.Source = Imaging.CreateBitmapSourceFromHBitmap(Image.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+        }
     }
 }
