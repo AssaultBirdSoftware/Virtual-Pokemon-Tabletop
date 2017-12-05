@@ -15,6 +15,7 @@ namespace AssaultBird2454.VPTU.BattleManager.Battle_Instance
         {
             // Set List
             Participants = new List<EntityManager.Entity>();
+            ID = VPTU.RNG.Generators.RSG.GenerateString(16);
         }
         public Instance(List<EntityManager.Entity> _Partisipants)
         {
@@ -24,6 +25,8 @@ namespace AssaultBird2454.VPTU.BattleManager.Battle_Instance
             // Reset Entitys
 
             // Link Effect Triggers
+
+            ID = VPTU.RNG.Generators.RSG.GenerateString(16);
         }
         #endregion
 
@@ -32,6 +35,8 @@ namespace AssaultBird2454.VPTU.BattleManager.Battle_Instance
         //public event Participant_Changed Participant_Changed_Event;
         public event Participant_Changed Participant_Removed_Event;
         #endregion
+
+        public string ID { get; private set; }
 
         private List<EntityManager.Entity> Participants { get; set; }
 
@@ -78,6 +83,16 @@ namespace AssaultBird2454.VPTU.BattleManager.Battle_Instance
             {
 
             }
+        }
+
+        public void TurnOrder_Next()
+        {
+
+        }
+
+        public void TurnOrder_Prev()
+        {
+
         }
 
         public void Begin()

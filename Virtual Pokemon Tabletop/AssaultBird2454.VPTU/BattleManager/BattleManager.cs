@@ -10,18 +10,9 @@ namespace AssaultBird2454.VPTU.BattleManager
 {
     public class BattleManager
     {
-        public ProjectInfo VersioningInfo { get; }
         public BattleManager()
         {
-            #region Versioning Info
-            using (Stream str = Assembly.GetExecutingAssembly().GetManifestResourceStream("AssaultBird2454.VPTU.ProjectVariables.json"))
-            {
-                using (StreamReader read = new StreamReader(str))
-                {
-                    VersioningInfo = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectInfo>(read.ReadToEnd());
-                }
-            }
-            #endregion
+            
         }
     }
 }

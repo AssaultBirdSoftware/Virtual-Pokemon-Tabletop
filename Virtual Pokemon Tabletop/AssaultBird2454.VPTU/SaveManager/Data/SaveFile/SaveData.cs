@@ -24,10 +24,9 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
                 Users = new List<Authentication_Manager.Data.User>();
                 Groups = new List<Authentication_Manager.Data.Group>();
 
+                Folders = new List<EntityManager.Folder>();
                 Trainers = new List<EntityManager.Trainer.TrainerCharacter>();
                 Pokemon = new List<EntityManager.Pokemon.PokemonCharacter>();
-
-                EntityGroups = new List<Pokedex.Entity.EntityGroup>();
 
                 //MapFiles = new List<Resources.MapFileData>();
                 //Maps = new List<Resources.MapData>();
@@ -65,6 +64,10 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
                 ImageResources = new List<Resource_Data.Resources>();
             }
 
+            if(Folders == null)
+            {
+                Folders = new List<EntityManager.Folder>();
+            }
             if (Pokemon == null)
             {
                 Pokemon = new List<EntityManager.Pokemon.PokemonCharacter>();
@@ -86,10 +89,9 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
         public Pokedex.Save_Data.Pokedex PokedexData;
 
         #region Entity Data
+        public List<EntityManager.Folder> Folders;
         public List<EntityManager.Trainer.TrainerCharacter> Trainers;
         public List<EntityManager.Pokemon.PokemonCharacter> Pokemon;
-
-        public List<Pokedex.Entity.EntityGroup> EntityGroups;
         #endregion
 
         #region Tabletop

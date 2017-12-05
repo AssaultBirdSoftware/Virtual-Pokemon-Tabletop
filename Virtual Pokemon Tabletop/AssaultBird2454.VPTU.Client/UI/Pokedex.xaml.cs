@@ -37,11 +37,19 @@ namespace AssaultBird2454.VPTU.Client.UI
         }
 
         Thread UpdateThread;
+        List<VPTU.Pokedex.Pokemon.PokemonData> Pokemon;
         /// <summary>
         /// Updates the list of pokemon
         /// </summary>
         /// <param name="Pokemon">The Pokedex List to use</param>
-        public void Pokedex_Pokemon_Get_Executed(List<VPTU.Pokedex.Pokemon.PokemonData> Pokemon)
+        public void Pokedex_Pokemon_Get_Executed(List<VPTU.Pokedex.Pokemon.PokemonData> _Pokemon)
+        {
+            Pokemon = _Pokemon;
+
+            Reload();
+        }
+
+        public void Reload()
         {
             try
             {
@@ -58,7 +66,10 @@ namespace AssaultBird2454.VPTU.Client.UI
 
                     foreach (VPTU.Pokedex.Pokemon.PokemonData data in Pokemon)// Runs through the Pokedex List
                     {
-                        List.Dispatcher.Invoke(new Action(() => List.Items.Add(data)));// And adds it to the ListView
+                        if (data.Species_Name.ToLower().Contains(ToolBar_Search.Text.ToLower()))
+                        {
+                            List.Dispatcher.Invoke(new Action(() => List.Items.Add(data)));// And adds it to the ListView
+                        }
                     }
                 }));
             }));
@@ -78,6 +89,11 @@ namespace AssaultBird2454.VPTU.Client.UI
                 Command = "Pokedex_Pokemon_Get",// Sets the command
                 DexID = ((VPTU.Pokedex.Pokemon.PokemonData)List.SelectedItems[0]).Species_DexID// Sets the Pokemon ID to get
             });
+        }
+
+        private void ToolBar_Search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Reload();
         }
     }
 }

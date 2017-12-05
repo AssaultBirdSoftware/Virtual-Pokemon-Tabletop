@@ -18,7 +18,7 @@ namespace AssaultBird2454.VPTU.BattleManager.BattleEffect.Data
         /// <summary>
         /// Variable Data Type
         /// </summary>
-        public Type Variable_Type { get; private set; }
+        public System.Type Variable_Type { get; private set; }
 
         /// <summary>
         /// Variable Data

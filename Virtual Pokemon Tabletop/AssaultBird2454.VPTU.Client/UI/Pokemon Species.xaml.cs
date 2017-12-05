@@ -78,7 +78,7 @@ namespace AssaultBird2454.VPTU.Client.UI
                 Command = "Resources_Image_Get",
                 UseCommand = "Pokedex_Species",
                 UseID = Data.Species_DexID.ToString(),
-                Location = Data.Sprite_Normal
+                Resource_ID = Data.Sprite_Normal
             });// Retrieves the Image
         }
         public void UpdateImage(Bitmap bmp)

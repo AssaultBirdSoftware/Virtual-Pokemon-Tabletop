@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Launcher
+namespace AssaultBird2454.VPTU.Updater
 {
     public class ProjectInfo
     {
@@ -20,7 +20,7 @@ namespace Launcher
         {
             get
             {
-                using (Stream str = Assembly.GetExecutingAssembly().GetManifestResourceStream("Launcher.ProjectVariables.json"))
+                using (Stream str = Assembly.GetExecutingAssembly().GetManifestResourceStream("AssaultBird2454.VPTU.Updater.ProjectVariables.json"))
                 {
                     using (StreamReader read = new StreamReader(str))
                     {

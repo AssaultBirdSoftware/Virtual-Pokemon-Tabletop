@@ -10,6 +10,7 @@ namespace AssaultBird2454.VPTU.Server.Instances
     public class ServerInstance
     {
         #region Variables and Objects
+        #region Base Server
         /// <summary>
         /// Server class for handeling server communications
         /// </summary>
@@ -48,6 +49,32 @@ namespace AssaultBird2454.VPTU.Server.Instances
         /// Save Manager class, contains Save Data
         /// </summary>
         public SaveManager.SaveManager SaveManager { get; private set; }
+        #endregion
+
+        #region Base VPTU
+        #region Battle
+        private List<BattleManager.Battle_Instance.Instance> BattleInstances { get; set; }
+        public IEnumerable<BattleManager.Battle_Instance.Instance> GetInstances
+        {
+            get
+            {
+                foreach (var Inst in BattleInstances) yield return Inst;
+            }
+        }
+
+        public BattleManager.Battle_Instance.Instance CreateBattle()
+        {
+            BattleManager.Battle_Instance.Instance inst = new BattleManager.Battle_Instance.Instance();// Create Instance
+            BattleInstances.Add(inst);// Adds to List
+            return inst;// Return the instance to get used
+        }
+        public void DeleteBattle(BattleManager.Battle_Instance.Instance instance)
+        {
+            instance.End();// End Battle
+            BattleInstances.Remove(instance);// Remove instance
+        }
+        #endregion
+        #endregion
         #endregion
 
         public ServerInstance(string SaveData, Class.Logging.I_Logger _Logger)
@@ -134,6 +161,7 @@ namespace AssaultBird2454.VPTU.Server.Instances
             #endregion
         }
 
+        #region Event Handelers
         private void Server_CommandHandeler_CommandUnRegistered(string Command)
         {
             ((Class.Logging.I_Logger)Server_Logger).Log("Command Unregistered -> Command: " + Command, Class.Logging.LoggerLevel.Debug);
@@ -204,6 +232,7 @@ namespace AssaultBird2454.VPTU.Server.Instances
                 ((Class.Logging.I_Logger)Server_Logger).Log("Base Network is Refusing New Connections", Class.Logging.LoggerLevel.Info);
             }
         }
+        #endregion
     }
 }
 // ((Class.Logging.I_Logger)Server_Logger).Log("", Class.Logging.LoggerLevel.Info);

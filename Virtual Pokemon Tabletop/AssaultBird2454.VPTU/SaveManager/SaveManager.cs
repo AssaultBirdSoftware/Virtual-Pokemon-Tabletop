@@ -12,12 +12,9 @@ using System.Windows;
 
 namespace AssaultBird2454.VPTU.SaveManager
 {
-    public enum SaveData_Dir { Pokedex_Pokemon, Pokedex_Moves, Pokedex_Abilitys, Pokedex_Items, Resource_Image, Entity_Pokemon, Entity_Trainers, Basic_CampaignSettings, Auth_Users, Auth_Groups }
+    public enum SaveData_Dir { Pokedex_Pokemon, Pokedex_Moves, Pokedex_Abilitys, Pokedex_Items, Resource_Image, Entity_Pokemon, Entity_Trainers, Basic_CampaignSettings, Auth_Users, Auth_Groups, Entity_Folder }
 
-    public class No_Data_Found_In_Save_Exception : Exception
-    {
-
-    }
+    public class No_Data_Found_In_Save_Exception : Exception { }
 
     public class SaveManager
     {
@@ -48,29 +45,27 @@ namespace AssaultBird2454.VPTU.SaveManager
             {
                 SaveData = new Data.SaveFile.PTUSaveData(true);
 
-                try
-                {
-                    SaveData.Campaign_Data = LoadData_FromSave<Data.Campaign_Data>(GetSaveFile_DataDir(SaveData_Dir.Basic_CampaignSettings));
-                }
-                catch (No_Data_Found_In_Save_Exception) { SaveData.Campaign_Data = new Data.Campaign_Data(true); }// Basic Campaign Settings
+                try { SaveData.Campaign_Data = LoadData_FromSave<Data.Campaign_Data>(GetSaveFile_DataDir(SaveData_Dir.Basic_CampaignSettings)); } catch (No_Data_Found_In_Save_Exception) { SaveData.Campaign_Data = new Data.Campaign_Data(true); }// Basic Campaign Settings
 
-                SaveData.Users = LoadData_FromSave<List<Authentication_Manager.Data.User>>(GetSaveFile_DataDir(SaveData_Dir.Auth_Users));
-                SaveData.Groups = LoadData_FromSave<List<Authentication_Manager.Data.Group>>(GetSaveFile_DataDir(SaveData_Dir.Auth_Groups));
+                try { SaveData.Users = LoadData_FromSave<List<Authentication_Manager.Data.User>>(GetSaveFile_DataDir(SaveData_Dir.Auth_Users)); } catch (No_Data_Found_In_Save_Exception) { SaveData.Users = new List<Authentication_Manager.Data.User>(); }
+                try { SaveData.Groups = LoadData_FromSave<List<Authentication_Manager.Data.Group>>(GetSaveFile_DataDir(SaveData_Dir.Auth_Groups)); } catch (No_Data_Found_In_Save_Exception) { SaveData.Groups = new List<Authentication_Manager.Data.Group>(); }
 
-                SaveData.PokedexData.Pokemon = LoadData_FromSave<List<Pokedex.Pokemon.PokemonData>>(GetSaveFile_DataDir(SaveData_Dir.Pokedex_Pokemon));
-                SaveData.PokedexData.Moves = LoadData_FromSave<List<Pokedex.Moves.MoveData>>(GetSaveFile_DataDir(SaveData_Dir.Pokedex_Moves));
-                SaveData.PokedexData.Abilitys = LoadData_FromSave<List<Pokedex.Abilitys.AbilityData>>(GetSaveFile_DataDir(SaveData_Dir.Pokedex_Abilitys));
-                SaveData.PokedexData.Items = LoadData_FromSave<List<Pokedex.Items.ItemData>>(GetSaveFile_DataDir(SaveData_Dir.Pokedex_Items));
+                try { SaveData.PokedexData.Pokemon = LoadData_FromSave<List<Pokedex.Pokemon.PokemonData>>(GetSaveFile_DataDir(SaveData_Dir.Pokedex_Pokemon)); } catch (No_Data_Found_In_Save_Exception) { SaveData.PokedexData.Pokemon = new List<Pokedex.Pokemon.PokemonData>(); }
+                try { SaveData.PokedexData.Moves = LoadData_FromSave<List<Pokedex.Moves.MoveData>>(GetSaveFile_DataDir(SaveData_Dir.Pokedex_Moves)); } catch (No_Data_Found_In_Save_Exception) { SaveData.PokedexData.Moves = new List<Pokedex.Moves.MoveData>(); }
+                try { SaveData.PokedexData.Abilitys = LoadData_FromSave<List<Pokedex.Abilitys.AbilityData>>(GetSaveFile_DataDir(SaveData_Dir.Pokedex_Abilitys)); } catch (No_Data_Found_In_Save_Exception) { SaveData.PokedexData.Abilitys = new List<Pokedex.Abilitys.AbilityData>(); }
+                try { SaveData.PokedexData.Items = LoadData_FromSave<List<Pokedex.Items.ItemData>>(GetSaveFile_DataDir(SaveData_Dir.Pokedex_Items)); } catch (No_Data_Found_In_Save_Exception) { SaveData.PokedexData.Items = new List<Pokedex.Items.ItemData>(); }
 
-                SaveData.ImageResources = LoadData_FromSave<List<Resource_Data.Resources>>(GetSaveFile_DataDir(SaveData_Dir.Resource_Image));
+                try { SaveData.ImageResources = LoadData_FromSave<List<Resource_Data.Resources>>(GetSaveFile_DataDir(SaveData_Dir.Resource_Image)); } catch (No_Data_Found_In_Save_Exception) { SaveData.ImageResources = new List<Resource_Data.Resources>(); }
 
-                SaveData.Pokemon = LoadData_FromSave<List<EntityManager.Pokemon.PokemonCharacter>>(GetSaveFile_DataDir(SaveData_Dir.Entity_Pokemon));
+                try { SaveData.Folders = LoadData_FromSave<List<EntityManager.Folder>>(GetSaveFile_DataDir(SaveData_Dir.Entity_Folder)); } catch (No_Data_Found_In_Save_Exception) { SaveData.Folders = new List<EntityManager.Folder>(); }
+                try { SaveData.Pokemon = LoadData_FromSave<List<EntityManager.Pokemon.PokemonCharacter>>(GetSaveFile_DataDir(SaveData_Dir.Entity_Pokemon)); } catch (No_Data_Found_In_Save_Exception) { SaveData.Pokemon = new List<EntityManager.Pokemon.PokemonCharacter>(); }
 
                 SaveData.InitNullObjects();
             }
             catch (Exception e)
             {
                 MessageBox.Show("There was an error while loading the save file...\nPlease confirm that the savefile has no errors...", "Save file loading error");
+                MessageBox.Show(e.ToString());
             }
         }
         /// <summary>
@@ -90,6 +85,7 @@ namespace AssaultBird2454.VPTU.SaveManager
 
             SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Resource_Image), SaveData.ImageResources);
 
+            SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Entity_Folder), SaveData.Folders);
             SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Entity_Pokemon), SaveData.Pokemon);
         }
 
@@ -177,6 +173,8 @@ namespace AssaultBird2454.VPTU.SaveManager
                     return "Entity/Pokemon.json";
                 case SaveData_Dir.Entity_Trainers:
                     return "Entity/Trainers.json";
+                case SaveData_Dir.Entity_Folder:
+                    return "Entity/Folders.json";
                 case SaveData_Dir.Basic_CampaignSettings:
                     return "CampaignInfo.json";
                 case SaveData_Dir.Auth_Users:
@@ -241,30 +239,36 @@ namespace AssaultBird2454.VPTU.SaveManager
         }
         #endregion
         #region Load File
-        public Bitmap LoadImage(string FilePath)
+        public Bitmap LoadImage(string ID)
         {
-            if (FilePath.ToLower().StartsWith("save:"))
+            try
             {
-                //Creates a stream to read the save file from
-                using (FileStream Reader = new FileStream(SaveFileDir, FileMode.OpenOrCreate))
-                {
-                    //Creates an object to read the archive data from
-                    using (ZipArchive archive = new ZipArchive(Reader, ZipArchiveMode.Update))
-                    {
-                        Stream str = (archive.GetEntry(FilePath.Remove(0, 5))).Open();// Opens a stream & Removes prefix ID
-                        Bitmap bmp = new Bitmap(str);// Loads Image
+                string FilePath = SaveData.ImageResources.Find(x => x.ID == ID).Path;
 
-                        return bmp;// Return Image
+                if (FilePath.ToLower().StartsWith("save:"))
+                {
+                    //Creates a stream to read the save file from
+                    using (FileStream Reader = new FileStream(SaveFileDir, FileMode.OpenOrCreate))
+                    {
+                        //Creates an object to read the archive data from
+                        using (ZipArchive archive = new ZipArchive(Reader, ZipArchiveMode.Update))
+                        {
+                            Stream str = (archive.GetEntry(FilePath.Remove(0, 5))).Open();// Opens a stream & Removes prefix ID
+                            Bitmap bmp = new Bitmap(str);// Loads Image
+
+                            return bmp;// Return Image
+                        }
                     }
                 }
-            }
-            else if (FilePath.ToLower().StartsWith("path:"))
-            {
-                FileStream str = new FileStream(FilePath.Remove(0, 5), FileMode.Open);// Opens a stream & Removes prefix ID
-                Bitmap bmp = new Bitmap(str);// Loads Image
+                else if (FilePath.ToLower().StartsWith("path:"))
+                {
+                    FileStream str = new FileStream(FilePath.Remove(0, 5), FileMode.Open);// Opens a stream & Removes prefix ID
+                    Bitmap bmp = new Bitmap(str);// Loads Image
 
-                return bmp;// Return Image
+                    return bmp;// Return Image
+                }
             }
+            catch { }
             return null;
         }
         #endregion

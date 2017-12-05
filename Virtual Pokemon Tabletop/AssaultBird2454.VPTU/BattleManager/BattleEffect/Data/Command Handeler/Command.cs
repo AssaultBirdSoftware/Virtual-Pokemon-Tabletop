@@ -10,7 +10,7 @@ namespace AssaultBird2454.VPTU.BattleManager.BattleEffect.Data.Command_Handeler
         /// <param name="_Name">Command Name</param>
         /// <param name="T">Command Data Type</param>
         /// <param name="_Callback">Callback</param>
-        public Command(string _Name, Type T, Action<object> _Callback)
+        public Command(string _Name, System.Type T, Action<object> _Callback)
         {
             Name = _Name;
             DataType = T;
@@ -18,7 +18,7 @@ namespace AssaultBird2454.VPTU.BattleManager.BattleEffect.Data.Command_Handeler
         }
 
         public string Name { get; set; }// Command Name
-        public Type DataType { get; set; }// Command Data Type
+        public System.Type DataType { get; set; }// Command Data Type
         private Action<object> Callback { get; set; }// Callback
 
         /// <summary>

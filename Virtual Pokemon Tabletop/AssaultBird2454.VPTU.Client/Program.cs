@@ -83,6 +83,9 @@ namespace AssaultBird2454.VPTU.Client
             #region Resources
             ClientInstance.Client_CommandHandeler.GetCommand("Resources_Image_Get").Command_Executed += MainWindow.Resources_Image_Get_Executed;
             #endregion
+            #region Entity
+            ClientInstance.Client_CommandHandeler.GetCommand("Resources_Image_Get").Command_Executed += MainWindow.Resources_Image_Get_Executed;
+            #endregion
         }
 
         private static void Client_ConnectionStateEvent(Networking.Data.Client_ConnectionStatus ConnectionState)

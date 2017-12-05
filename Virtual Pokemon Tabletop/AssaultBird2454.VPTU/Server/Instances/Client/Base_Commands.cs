@@ -54,17 +54,21 @@ namespace AssaultBird2454.VPTU.Server.Instances.Client
             #endregion
 
             #region Entity
+            CommandHandeler.RegisterCommand<string>("Entity_All_GetList");
+
+            CommandHandeler.RegisterCommand<string>("Entity_Pokemon_GetList");
             CommandHandeler.RegisterCommand<string>("Entity_Pokemon_Get");
             CommandHandeler.RegisterCommand<string>("Entity_Pokemon_Create");
             CommandHandeler.RegisterCommand<string>("Entity_Pokemon_Edit");
             CommandHandeler.RegisterCommand<string>("Entity_Pokemon_Delete");
+
+            CommandHandeler.RegisterCommand<string>("Entity_Trainer_GetList");
             CommandHandeler.RegisterCommand<string>("Entity_Trainer_Get");
             CommandHandeler.RegisterCommand<string>("Entity_Trainer_Create");
             CommandHandeler.RegisterCommand<string>("Entity_Trainer_Edit");
             CommandHandeler.RegisterCommand<string>("Entity_Trainer_Delete");
             // CommandHandeler.RegisterCommand<string>("Entity_");
             #endregion
-
             #region Battles
             // Battles
             CommandHandeler.RegisterCommand<string>("Battle_Participants_Add");// Adds Participants to the Battle Instance

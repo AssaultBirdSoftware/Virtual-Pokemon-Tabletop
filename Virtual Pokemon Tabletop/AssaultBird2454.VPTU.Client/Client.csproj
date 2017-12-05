@@ -96,6 +96,12 @@
     <Compile Include="UI\Console.xaml.cs">
       <DependentUpon>Console.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Entity\EntityList.xaml.cs">
+      <DependentUpon>EntityList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Entity\EntityListItem.xaml.cs">
+      <DependentUpon>EntityListItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Manage IDs.xaml.cs">
       <DependentUpon>Manage IDs.xaml</DependentUpon>
     </Compile>
@@ -131,6 +137,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Console.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Entity\EntityList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Entity\EntityListItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -247,6 +261,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="sentry_cid.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pokeball.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

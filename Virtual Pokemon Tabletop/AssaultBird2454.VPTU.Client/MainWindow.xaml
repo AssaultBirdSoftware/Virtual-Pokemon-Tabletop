@@ -23,9 +23,11 @@
             <MenuItem x:Name="Menu_View" Header="View">
                 <MenuItem x:Name="Menu_View_Pokedex" Header="View Pokedex" Margin="0,0,0.4,0" IsCheckable="True" Checked="Menu_View_Pokedex_Checked" Unchecked="Menu_View_Pokedex_Unchecked"/>
                 <MenuItem x:Name="Menu_View_Moves" Header="View Move List" Margin="0,0,0.4,0"/>
-                <Separator Height="2" Margin="0,0,-0.4,0"/>
+                <Separator Height="2"/>
                 <MenuItem x:Name="Menu_View_ServerConsole" Header="Server Console" Margin="0,0,-0.4,0" IsCheckable="True"/>
                 <MenuItem x:Name="Menu_View_ClientConsole" Header="Client Console" Margin="0,0,-0.4,0" IsCheckable="True"/>
+                <Separator Height="2"/>
+                <MenuItem x:Name="Menu_View_EntityList" Header="View Entitys" IsCheckable="True"/>
             </MenuItem>
         </Menu>
         <ToolBar x:Name="Tools" Margin="0,18,0,0" VerticalAlignment="Top">
@@ -34,17 +36,17 @@
                     <ImageBrush Stretch="Uniform" ImageSource="pack://siteoforigin:,,,/Resources/Pokedex.png"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="Tools_MoveList" Content="" Margin="0,0,0,0.4" Width="25" Click="Tools_Pokedex_Click">
+            <Button x:Name="Tools_MoveList" Content="" Margin="0,0,0,0.4" Width="25" Click="Tools_Entitys_Click">
+                <Button.Background>
+                    <ImageBrush Stretch="Uniform" ImageSource="pack://siteoforigin:,,,/Resources/Pokeball.png"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="Tools_ItemList" Content="" Margin="0,0,0,0.4" Width="25">
                 <Button.Background>
                     <ImageBrush Stretch="Uniform" ImageSource="pack://siteoforigin:,,,/Resources/Unknown_Pokemon_Sprite.png"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="Tools_ItemList" Content="" Margin="0,0,0,0.4" Width="25" Click="Tools_Pokedex_Click">
-                <Button.Background>
-                    <ImageBrush Stretch="Uniform" ImageSource="pack://siteoforigin:,,,/Resources/Unknown_Pokemon_Sprite.png"/>
-                </Button.Background>
-            </Button>
-            <Button x:Name="Tools_AbilityList" Content="" Margin="0,0,0,0.4" Width="25" Click="Tools_Pokedex_Click">
+            <Button x:Name="Tools_AbilityList" Content="" Margin="0,0,0,0.4" Width="25">
                 <Button.Background>
                     <ImageBrush Stretch="Uniform" ImageSource="pack://siteoforigin:,,,/Resources/Unknown_Pokemon_Sprite.png"/>
                 </Button.Background>

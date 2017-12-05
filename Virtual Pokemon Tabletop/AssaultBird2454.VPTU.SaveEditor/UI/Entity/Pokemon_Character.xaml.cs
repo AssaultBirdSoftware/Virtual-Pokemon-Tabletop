@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using AssaultBird2454.VPTU.EntityManager;
+using System.Windows.Interop;
 
 namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
 {
@@ -25,7 +26,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         private bool Ready = false;
 
         #region Base Functions
-        public Pokemon_Character(SaveManager.SaveManager _Mgr, EntityManager.Pokemon.PokemonCharacter _PokemonData)
+        public Pokemon_Character(SaveManager.SaveManager _Mgr, EntityManager.Pokemon.PokemonCharacter _PokemonData = null)
         {
             Manager = _Mgr;
             if (_PokemonData == null)
@@ -208,6 +209,20 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             Skill_Command_Mod.Value = PokemonData.Skills.Command_Mod;
             Skill_Focus_Mod.Value = PokemonData.Skills.Focus_Mod;
             Skill_Intuition_Mod.Value = PokemonData.Skills.Intuition_Mod;
+            #endregion
+
+            #region Token
+            try
+            {
+                var bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(MainWindow.SaveManager.LoadImage(PokemonData.Token_ResourceID).GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+
+                Token.Background = new ImageBrush(bitmapSource)
+                {
+                    Stretch = Stretch.Uniform,
+                    TileMode = TileMode.None
+                };
+            }
+            catch { }
             #endregion
 
             Reload_Stats();
@@ -1081,6 +1096,25 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             {
                 PokemonData.Species_DexID = pokemon.Selected_Pokemon.Species_DexID;
                 LoadFromSpecies();
+            }
+        }
+        private void Button_SelectToken_Click(object sender, RoutedEventArgs e)
+        {
+            Resources.Search_Resources Select = new Resources.Search_Resources();
+
+            bool? dr = Select.ShowDialog();
+
+            if (dr == true)
+            {
+                PokemonData.Token_ResourceID = Select.Selected_Resource;
+
+                var bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(MainWindow.SaveManager.LoadImage(PokemonData.Token_ResourceID).GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+
+                Token.Background = new ImageBrush(bitmapSource)
+                {
+                    Stretch = Stretch.Uniform,
+                    TileMode = TileMode.None
+                };
             }
         }
 
