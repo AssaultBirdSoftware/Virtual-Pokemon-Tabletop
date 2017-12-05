@@ -33,7 +33,14 @@ namespace AssaultBird2454.VPTU.Client.UI
         /// <param name="e"></param>
         private void ToolBar_Reload_Click(object sender, RoutedEventArgs e)
         {
-            Program.ClientInstance.Client.SendData(new VPTU.Server.Instances.CommandData.Pokedex.Pokedex_Pokemon_GetList());// Gets the list again
+            try
+            {
+                Program.ClientInstance.Client.SendData(new VPTU.Server.Instances.CommandData.Pokedex.Pokedex_Pokemon_GetList());// Gets the list again
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("You need to connect to a running server first before you can load this list!");
+            }
         }
 
         Thread UpdateThread;
