@@ -444,6 +444,7 @@ namespace AssaultBird2454.VPTU.Client
         #endregion
 
         #region Command Handelers
+        #region Pokedex
         internal void Pokedex_Pokemon_GetList_Executed(object Data)
         {
             PokedexList_Form().Pokedex_Pokemon_Get_Executed(((VPTU.Server.Instances.CommandData.Pokedex.Pokedex_Pokemon_GetList)Data).Pokemon_Dex);
@@ -453,9 +454,7 @@ namespace AssaultBird2454.VPTU.Client
             VPTU.Pokedex.Pokemon.PokemonData pdata = (VPTU.Pokedex.Pokemon.PokemonData)((VPTU.Server.Instances.CommandData.Pokedex.Pokedex_Pokemon)Data).PokemonData;
             this.Dispatcher.Invoke(new Action(() => ((UI.Pokemon_Species)(Species_List(pdata.Species_DexID)).Content).Update(pdata)));
         }
-
-        #region Resources
-        internal void Resources_Image_Get_Executed(object Data)
+        internal void Resources_Image_Get_Pokedex_Executed(object Data)
         {
             Server.Instances.CommandData.Resources.ImageResource IRD = (Server.Instances.CommandData.Resources.ImageResource)Data;
 
@@ -472,6 +471,35 @@ namespace AssaultBird2454.VPTU.Client
                 }
             }
         }
+        #endregion
+
+        #region Entity
+        internal void Entity_All_GetList_Executed(object Data)
+        {
+            Server.Instances.CommandData.Entity.Entity_All_GetList EAGL = (Server.Instances.CommandData.Entity.Entity_All_GetList)Data;
+
+            this.Dispatcher.Invoke(new Action(() => EntityList_Form().EntityManager_ReloadList(EAGL.Folders, EAGL.Entrys)));
+        }
+        internal void Resources_Image_Get_Entity_Executed(object Data)
+        {
+            Server.Instances.CommandData.Resources.ImageResource IRD = (Server.Instances.CommandData.Resources.ImageResource)Data;
+
+            if (IRD.UseCommand == "Entity_List")// Pokedex Card Viewer
+            {
+                try
+                {
+                    this.Dispatcher.Invoke(new Action(() => EntityList_Form().UpdateImage(IRD.UseID, IRD.Image)));
+                }
+                catch
+                {
+
+                }
+            }
+        }
+        #endregion
+
+        #region Resources
+
         #endregion
 
         #endregion

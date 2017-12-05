@@ -214,6 +214,7 @@
     <Compile Include="Server\Instances\ClientInstance.cs" />
     <Compile Include="Server\Instances\Client\Base_Commands.cs" />
     <Compile Include="Server\Instances\CommandData\Battle\Battle_Instance.cs" />
+    <Compile Include="Server\Instances\CommandData\Entity\Entity_All.cs" />
     <Compile Include="Server\Instances\CommandData\Pokedex\Moves.cs" />
     <Compile Include="Server\Instances\CommandData\Pokedex\Pokemon.cs" />
     <Compile Include="Server\Instances\CommandData\Resources\Resources.cs" />
@@ -287,7 +288,6 @@
     <Folder Include="Discord\" />
     <Folder Include="EntityManager\Data\" />
     <Folder Include="Server\Class\Session\" />
-    <Folder Include="Server\Instances\CommandData\Entity\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\External\MultiSelectComboBox\MultiSelectComboBox.csproj">

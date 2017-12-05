@@ -23,8 +23,7 @@ namespace AssaultBird2454.VPTU.Client.UI.Entity
     {
         ContextMenu ctxm_Root;
         List<EntityManager.Folder> folders;
-        List<EntityManager.Pokemon.PokemonCharacter> pokemonCharacters;
-        List<EntityManager.Trainer.TrainerCharacter> trainerCharacters;
+        List<EntityManager.Entry_Data> entrys;
 
         public EntityList()
         {
@@ -37,11 +36,17 @@ namespace AssaultBird2454.VPTU.Client.UI.Entity
         List<TreeViewItem> EntityManager_Entrys = new List<TreeViewItem>();
         ContextMenu EntityManager_Root;
 
-        public void EntityManager_ReloadList(List<EntityManager.Folder> _folders, List<EntityManager.Pokemon.PokemonCharacter> _pokemonCharacters, List<EntityManager.Trainer.TrainerCharacter> _trainerCharacters)
+        public void UpdateImage(string ID, Bitmap Image)
+        {
+            EntityListItem ELI = (EntityListItem)(EntityManager_Entrys.Find(x => ((EntityManager.Entry_Data)x.Tag).ID == ID).Header);
+
+            ELI.Update(Image);
+        }
+
+        public void EntityManager_ReloadList(List<EntityManager.Folder> _folders, List<EntityManager.Entry_Data> _entrys)
         {
             folders = _folders;
-            pokemonCharacters = _pokemonCharacters;
-            trainerCharacters = _trainerCharacters;
+            entrys = _entrys;
 
             EntityManager_Folders.Clear();
             EntityManager_Entrys.Clear();
@@ -85,8 +90,12 @@ namespace AssaultBird2454.VPTU.Client.UI.Entity
         private void Ctxm_Entity_Edit_Click(object sender, RoutedEventArgs e)
         {
             ContextMenu ctxm = ((ContextMenu)((MenuItem)sender).Parent);
+            EntityManager.Entry_Data data = entrys.Find(x => x.ID == ((EntityManager.Entry_Data)ctxm.Tag).ID);
 
-            EntityManager_EditPokemonEntity(pokemonCharacters.Find(x => x.ID == ((EntityManager.Entry_Data)ctxm.Tag).ID));
+            if (data.Entity_Type == EntityManager.Entity_Type.Pokemon)
+            {
+                //EntityManager_EditPokemonEntity();
+            }
         }
         private void Ctxm_Folder_Delete_Click(object sender, RoutedEventArgs e)
         {
@@ -208,13 +217,13 @@ namespace AssaultBird2454.VPTU.Client.UI.Entity
             {
                 EntityManager_DeleteDir(ChildFolder.ID);
             }
-            foreach (EntityManager.Entry Trainer in trainerCharacters.FindAll(x => x.Parent_Folder == ID))
+            foreach (EntityManager.Entry_Data entry in entrys.FindAll(x => x.Parent_Folder == ID && x.Entity_Type == EntityManager.Entity_Type.Trainer))
             {
-                EntityManager_DeleteEntry(Trainer.ID);
+                EntityManager_DeleteEntry(entry.ID);
             }
-            foreach (EntityManager.Entry Pokemon in pokemonCharacters.FindAll(x => x.Parent_Folder == ID))
+            foreach (EntityManager.Entry_Data entry in entrys.FindAll(x => x.Parent_Folder == ID && x.Entity_Type == EntityManager.Entity_Type.Pokemon))
             {
-                EntityManager_DeleteEntry(Pokemon.ID);
+                EntityManager_DeleteEntry(entry.ID);
             }
 
             EntityManager.Folder Folder = folders.Find(x => x.ID == ID);
@@ -237,12 +246,11 @@ namespace AssaultBird2454.VPTU.Client.UI.Entity
         {
             EntityManager.Entry_Data Entry = (EntityManager.Entry_Data)EntityManager_Entrys.Find(x => ((EntityManager.Entry_Data)x.Tag).ID == ID).Tag;
 
+            entrys.Remove(Entry);
             if (Entry.Entity_Type == EntityManager.Entity_Type.Pokemon)
             {
                 try
                 {
-                    EntityManager.Pokemon.PokemonCharacter pchar = pokemonCharacters.Find(x => x.ID == ID);
-                    pokemonCharacters.Remove(pchar);
                     // Send Command
                 }
                 catch { /* Dont Care */ }
@@ -251,8 +259,7 @@ namespace AssaultBird2454.VPTU.Client.UI.Entity
             {
                 try
                 {
-                    EntityManager.Trainer.TrainerCharacter tchar = trainerCharacters.Find(x => x.ID == ID);
-                    trainerCharacters.Remove(tchar);
+                    // Send Command
                 }
                 catch { /* Dont Care */ }
             }
@@ -382,15 +389,21 @@ namespace AssaultBird2454.VPTU.Client.UI.Entity
                 Parent.Items.Add(TVI);
             }
             EntityManager_Entrys.Add(TVI);
+
+            Program.ClientInstance.Client.SendData(new VPTU.Server.Instances.CommandData.Resources.ImageResource
+            {
+                UseCommand = "Entity_List",
+                UseID = entry.ID,
+                Resource_ID = entry.Token_ResourceID
+            });// Retrieves the Image
         }
 
         private void EntityManager_Display(string ParentID = null)
         {
             TreeViewItem Child;
 
-            foreach (EntityManager.Pokemon.PokemonCharacter pokemon in pokemonCharacters.FindAll(x => x.Parent_Folder == ParentID))
+            foreach (EntityManager.Entry_Data entry in entrys.FindAll(x => x.Parent_Folder == ParentID))
             {
-                EntityManager.Entry_Data entry = pokemon.EntryData;
                 EntityManager_DisplayEntry(entry);
             }
 
@@ -400,5 +413,17 @@ namespace AssaultBird2454.VPTU.Client.UI.Entity
             }
         }
         #endregion
+
+        private void ToolBar_Reload_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Program.ClientInstance.Client.SendData(new Server.Instances.CommandData.Entity.Entity_All_GetList());
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("You need to connect to a running server first before you can load this list!");
+            }
+        }
     }
 }
