@@ -703,7 +703,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
 
             if (Pass == true)
             {
-                EntityManager_CreateDir(SP.Input, ((EntityManager.Entry_Data)ctxm.Tag).ID);
+                EntityManager_CreateDir(SP.Input, ((EntityManager.Folder)ctxm.Tag).ID);
             }
         }
         private void Ctxm_Root_CreatePokemonEntity_Click(object sender, RoutedEventArgs e)
@@ -763,11 +763,11 @@ namespace AssaultBird2454.VPTU.SaveEditor
 
             if (Parent != null)
             {
-                TreeViewItem ParentTVI = EntityManager_Folders.Find(x => (string)x.Tag == Parent);
+                TreeViewItem ParentTVI = EntityManager_Folders.Find(x => ((EntityManager.Folder)x.Tag).ID == Parent);
                 TreeViewItem TVI = new TreeViewItem()
                 {
                     Header = folder.Name,
-                    Tag = folder.ID,
+                    Tag = folder,
                     ContextMenu = EntityManager_Folder
                 };
 
@@ -901,7 +901,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
             }
             EntityManager_Folders.Add(Child);
 
-            EntityManager_Display(folder.ID, Child);
+            EntityManager_Display(folder.ID);
         }
 
         public void EntityManager_CreatePokemonEntity(string Folder = null)
@@ -958,7 +958,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
             EntityManager_Entrys.Add(TVI);
         }
 
-        private void EntityManager_Display(string ParentID = null, TreeViewItem Parent = null)
+        private void EntityManager_Display(string ParentID = null)
         {
             TreeViewItem Child;
 
