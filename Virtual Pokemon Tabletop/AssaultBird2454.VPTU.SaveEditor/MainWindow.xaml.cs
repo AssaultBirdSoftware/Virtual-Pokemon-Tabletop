@@ -677,6 +677,8 @@ namespace AssaultBird2454.VPTU.SaveEditor
         private void Ctxm_Entity_Edit_Click(object sender, RoutedEventArgs e)
         {
             ContextMenu ctxm = ((ContextMenu)((MenuItem)sender).Parent);
+
+            EntityManager_EditPokemonEntity(SaveManager.SaveData.Pokemon.Find(x => x.ID == ((EntityManager.Entry_Data)ctxm.Tag).ID));
         }
         private void Ctxm_Folder_Delete_Click(object sender, RoutedEventArgs e)
         {
@@ -913,6 +915,16 @@ namespace AssaultBird2454.VPTU.SaveEditor
             SaveManager.SaveData.Pokemon.Add(pc.PokemonData);
 
             EntityManager_DisplayEntry(pc.PokemonData.EntryData);
+        }
+        public void EntityManager_EditPokemonEntity(EntityManager.Pokemon.PokemonCharacter Pokemon)
+        {
+            UI.Entity.Pokemon_Character pc = new UI.Entity.Pokemon_Character(SaveManager, Pokemon);
+            pc.ShowDialog();
+
+            TreeViewItem TVI = EntityManager_Entrys.Find(x => ((EntityManager.Entry_Data)x.Tag).ID == Pokemon.ID);
+            UI.Entity.EntityListItem ELI = (UI.Entity.EntityListItem)TVI.Header;
+
+            ELI.Update(SaveManager.LoadImage(Pokemon.Token_ResourceID), Pokemon.Name, new List<KeyValuePair<System.Windows.Media.Color, string>>());
         }
         private void EntityManager_DisplayEntry(EntityManager.Entry_Data entry)
         {

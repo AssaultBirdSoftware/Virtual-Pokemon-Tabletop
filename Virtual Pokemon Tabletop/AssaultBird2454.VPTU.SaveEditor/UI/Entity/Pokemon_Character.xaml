@@ -367,6 +367,8 @@
                 </Grid>
             </TabItem>
         </TabControl>
+        <Border x:Name="Token" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="124" Margin="854,10,0,0" VerticalAlignment="Top" Width="124"/>
+        <Button x:Name="Button_SelectToken" Content="Change Token" Margin="854,139,12.4,0" VerticalAlignment="Top" Click="Button_SelectToken_Click"/>
 
     </Grid>
 </Window>
