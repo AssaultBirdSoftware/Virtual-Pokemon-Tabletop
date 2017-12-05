@@ -64,6 +64,7 @@
     <Reference Include="System.IO.Compression.FileSystem">
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml">
       <Private>True</Private>
     </Reference>
@@ -200,6 +201,12 @@
     <Compile Include="SaveManager\Resource Data\Resources.cs" />
     <Compile Include="SaveManager\SaveConverter.cs" />
     <Compile Include="SaveManager\SaveManager.cs" />
+    <Compile Include="Sentry\Crash Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sentry\Crash Form.Designer.cs">
+      <DependentUpon>Crash Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Server\Class\ConsoleCommands\Command Handeler.cs" />
     <Compile Include="Server\Class\ConsoleCommands\Command Listener.cs" />
     <Compile Include="Server\Class\ConsoleCommands\Command.cs" />
@@ -226,6 +233,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Sentry\Crash Form.resx">
+      <DependentUpon>Crash Form.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />
     <EmbeddedResource Include="ProjectVariables.json" />
