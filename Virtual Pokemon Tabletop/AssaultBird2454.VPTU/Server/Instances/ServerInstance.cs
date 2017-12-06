@@ -77,7 +77,7 @@ namespace AssaultBird2454.VPTU.Server.Instances
         #endregion
         #endregion
 
-        public ServerInstance(string SaveData, Class.Logging.I_Logger _Logger)
+        public ServerInstance(Class.Logging.I_Logger _Logger, string SaveData, int Port = 25444)
         {
             #region Logs
             Server_Logger = _Logger;
@@ -103,7 +103,7 @@ namespace AssaultBird2454.VPTU.Server.Instances
             #endregion
             #region Networking
             ((Class.Logging.I_Logger)Server_Logger).Log("Initilizing Base Network", Class.Logging.LoggerLevel.Debug);
-            Server = new Networking.Server.TCP.TCP_Server(IPAddress.Any, Server_CommandHandeler, 25444);
+            Server = new Networking.Server.TCP.TCP_Server(IPAddress.Any, Server_CommandHandeler, Port);
             Server.TCP_AcceptClients_Changed += Server_TCP_AcceptClients_Changed;
             Server.TCP_ClientState_Changed += Server_TCP_ClientState_Changed;
             Server.TCP_Data_Error_Event += Server_TCP_Data_Error_Event;

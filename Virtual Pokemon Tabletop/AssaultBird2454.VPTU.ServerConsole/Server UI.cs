@@ -102,7 +102,7 @@ namespace AssaultBird2454.VPTU.ServerConsole
 
                 lvi.BackColor = Color.Red;
 
-                lvi.Tag = new VPTU.Server.Instances.ServerInstance(sv.SaveFile, new VPTU.Server.Class.Logging.Console_Logger(true));
+                lvi.Tag = new VPTU.Server.Instances.ServerInstance(new VPTU.Server.Class.Logging.Console_Logger(true), sv.SaveFile, sv.Server_Port);
                 List_Servers.Items.Add(lvi);
             }
             #endregion
@@ -137,7 +137,7 @@ namespace AssaultBird2454.VPTU.ServerConsole
 
                 lvi.BackColor = Color.Red;
 
-                lvi.Tag = new VPTU.Server.Instances.ServerInstance(cs.CreatedServer.SaveFile, new VPTU.Server.Class.Logging.Console_Logger(true));
+                lvi.Tag = new VPTU.Server.Instances.ServerInstance(new VPTU.Server.Class.Logging.Console_Logger(true), cs.CreatedServer.SaveFile, cs.CreatedServer.Server_Port);
                 List_Servers.Items.Add(lvi);
             }
             else if (dr == DialogResult.Cancel)

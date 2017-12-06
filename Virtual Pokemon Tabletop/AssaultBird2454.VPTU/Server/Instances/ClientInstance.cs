@@ -69,7 +69,7 @@ namespace AssaultBird2454.VPTU.Server.Instances
             #region Networking
             ((Class.Logging.I_Logger)Client_Logger).Log("Initilizing Base Network", Class.Logging.LoggerLevel.Debug);
             Server_Address = _Server_Address;
-            Client = new Networking.Client.TCP.TCP_Client(Server_Address, Client_CommandHandeler, 25444);
+            Client = new Networking.Client.TCP.TCP_Client(Server_Address, Client_CommandHandeler, Server_Port);
             Client.ConnectionStateEvent += Client_ConnectionStateEvent;
             Client.DataEvent += Client_DataEvent;
             #endregion
