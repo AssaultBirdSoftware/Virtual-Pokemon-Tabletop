@@ -11,7 +11,7 @@
         <Label Content="Server Port" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
         <Label Content="User Identity" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
 
-        <xctk:DecimalUpDown x:Name="Server_Port" Margin="105,44,85.4,0" Watermark="Pokedex ID" TextAlignment="Center" VerticalAlignment="Top" Value="0" Text="" Minimum="0" Maximum="65535"/>
+        <xctk:DecimalUpDown x:Name="Server_Port" Margin="105,44,85.4,0" Watermark="Pokedex ID" TextAlignment="Center" VerticalAlignment="Top" Value="25444" Text="" Minimum="0" Maximum="65535" DefaultValue="25444"/>
         <TextBox x:Name="Server_Address" Height="23" Margin="105,14,85.4,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <ComboBox x:Name="User_Identity" Margin="105,72,85.4,0" VerticalAlignment="Top" Height="25"/>
         <Button x:Name="Button_Connect" Content="Connect" HorizontalAlignment="Left" Margin="10,102,0,0" VerticalAlignment="Top" Width="75" IsDefault="True" Click="Button_Connect_Click"/>
