@@ -12,7 +12,7 @@ using System.Windows;
 
 namespace AssaultBird2454.VPTU.SaveManager
 {
-    public enum SaveData_Dir { Pokedex_Pokemon, Pokedex_Moves, Pokedex_Abilitys, Pokedex_Items, Resource_Image, Entity_Pokemon, Entity_Trainers, Basic_CampaignSettings, Auth_Users, Auth_Groups, Entity_Folder }
+    public enum SaveData_Dir { Pokedex_Pokemon, Pokedex_Moves, Pokedex_Abilitys, Pokedex_Items, Resource_Image, Entity_Pokemon, Entity_Trainers, Entity_Folder, Basic_CampaignSettings, Auth_Users, Auth_Groups, Auth_Identitys }
 
     public class No_Data_Found_In_Save_Exception : Exception { }
 
@@ -47,6 +47,7 @@ namespace AssaultBird2454.VPTU.SaveManager
 
                 try { SaveData.Campaign_Data = LoadData_FromSave<Data.Campaign_Data>(GetSaveFile_DataDir(SaveData_Dir.Basic_CampaignSettings)); } catch (No_Data_Found_In_Save_Exception) { SaveData.Campaign_Data = new Data.Campaign_Data(true); }// Basic Campaign Settings
 
+                try { SaveData.Identitys = LoadData_FromSave<List<Authentication_Manager.Data.Identity>>(GetSaveFile_DataDir(SaveData_Dir.Auth_Identitys)); } catch (No_Data_Found_In_Save_Exception) { SaveData.Identitys = new List<Authentication_Manager.Data.Identity>(); }
                 try { SaveData.Users = LoadData_FromSave<List<Authentication_Manager.Data.User>>(GetSaveFile_DataDir(SaveData_Dir.Auth_Users)); } catch (No_Data_Found_In_Save_Exception) { SaveData.Users = new List<Authentication_Manager.Data.User>(); }
                 try { SaveData.Groups = LoadData_FromSave<List<Authentication_Manager.Data.Group>>(GetSaveFile_DataDir(SaveData_Dir.Auth_Groups)); } catch (No_Data_Found_In_Save_Exception) { SaveData.Groups = new List<Authentication_Manager.Data.Group>(); }
 
@@ -75,6 +76,7 @@ namespace AssaultBird2454.VPTU.SaveManager
         {
             SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Basic_CampaignSettings), SaveData.Campaign_Data);
 
+            SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Auth_Identitys), SaveData.Identitys);
             SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Auth_Users), SaveData.Users);
             SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Auth_Groups), SaveData.Groups);
 
@@ -181,6 +183,8 @@ namespace AssaultBird2454.VPTU.SaveManager
                     return "Auth/Users.json";
                 case SaveData_Dir.Auth_Groups:
                     return "Auth/Groups.json";
+                case SaveData_Dir.Auth_Identitys:
+                    return "Auth/Identitys.json";
 
                 default:
                     return null;

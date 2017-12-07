@@ -181,6 +181,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
             PokedexManager_ReloadList();//Reload Pokedex List
             ResourceManager_ReloadList();//Reload Resource List
             EntityManager_ReloadList();// Reload Characters List
+            UserGroup_Users_Reload();// Reload Users List
         }
 
         #region Save Data Tools
@@ -921,18 +922,34 @@ namespace AssaultBird2454.VPTU.SaveEditor
         }
         public void EntityManager_EditPokemonEntity(EntityManager.Pokemon.PokemonCharacter Pokemon)
         {
+            List<KeyValuePair<System.Windows.Media.Color, string>> View = new List<KeyValuePair<System.Windows.Media.Color, string>>();
             UI.Entity.Pokemon_Character pc = new UI.Entity.Pokemon_Character(SaveManager, Pokemon);
             pc.ShowDialog();
+
+            foreach(string user in pc.PokemonData.View)
+            {
+                Authentication_Manager.Data.User UData = SaveManager.SaveData.Users.Find(x => x.UserID == user);
+
+                View.Add(new KeyValuePair<System.Windows.Media.Color, string>(UData.UserColor, UData.IC_Name));
+            }
 
             TreeViewItem TVI = EntityManager_Entrys.Find(x => ((EntityManager.Entry_Data)x.Tag).ID == Pokemon.ID);
             UI.Entity.EntityListItem ELI = (UI.Entity.EntityListItem)TVI.Header;
 
-            ELI.Update(SaveManager.LoadImage(Pokemon.Token_ResourceID), Pokemon.Name, new List<KeyValuePair<System.Windows.Media.Color, string>>());
+            ELI.Update(SaveManager.LoadImage(Pokemon.Token_ResourceID), Pokemon.Name, View);
         }
         private void EntityManager_DisplayEntry(EntityManager.Entry_Data entry)
         {
+            List<KeyValuePair<System.Windows.Media.Color, string>> View = new List<KeyValuePair<System.Windows.Media.Color, string>>();
             UI.Entity.EntityListItem ELI = new UI.Entity.EntityListItem();
-            ELI.Update(SaveManager.LoadImage(entry.Token_ResourceID), entry.Name, new List<KeyValuePair<System.Windows.Media.Color, string>>());
+
+            foreach (string user in entry.View)
+            {
+                Authentication_Manager.Data.User UData = SaveManager.SaveData.Users.Find(x => x.UserID == user);
+
+               View.Add(new KeyValuePair<System.Windows.Media.Color, string>(UData.UserColor, UData.IC_Name));
+            }
+            ELI.Update(SaveManager.LoadImage(entry.Token_ResourceID), entry.Name, View);
 
             #region Context Menu
             ContextMenu EntityManager_Entity = new ContextMenu();
@@ -992,6 +1009,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
         #endregion
 
         #region Overview and Settings Tab
+        #region Basic
         /// <summary>
         /// Loads Campaign Info
         /// </summary>
@@ -1028,6 +1046,45 @@ namespace AssaultBird2454.VPTU.SaveEditor
             }
             catch { }
         }
+        #endregion
+        #region Features
+
+        #endregion
+        #region Save File Settings
+
+        #endregion
+        #region Users & Groups
+        public void UserGroup_Users_Reload()
+        {
+            OverViewSettings_UsersGroups_UserList.Items.Clear();
+
+            foreach (Authentication_Manager.Data.User User in SaveManager.SaveData.Users)
+            {
+                OverViewSettings_UsersGroups_UserList.Items.Add(User);
+            }
+        }
+        public void UserGroup_Groups_Reload()
+        {
+            OverViewSettings_UsersGroups_GroupList.Items.Clear();
+        }
+
+        private void OverViewSettings_UsersGroups_CreateUser_Click(object sender, RoutedEventArgs e)
+        {
+            UI.Users.Users User = new UI.Users.Users();
+            bool? Pass = User.ShowDialog();
+
+            SaveManager.SaveData.Users.Add(User.User);
+            OverViewSettings_UsersGroups_UserList.Items.Add(User.User);
+        }
+
+        private void OverViewSettings_UsersGroups_EditUser_Click(object sender, RoutedEventArgs e)
+        {
+            UI.Users.Users User = new UI.Users.Users((Authentication_Manager.Data.User)OverViewSettings_UsersGroups_UserList.SelectedItems[0]);
+            bool? Pass = User.ShowDialog();
+
+            UserGroup_Users_Reload();
+        }
+        #endregion
         #endregion
 
         private void PokedexManager_Export_Pokemon_Click(object sender, RoutedEventArgs e)

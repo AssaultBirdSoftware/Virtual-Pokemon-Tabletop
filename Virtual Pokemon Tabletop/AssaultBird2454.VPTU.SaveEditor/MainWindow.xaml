@@ -79,8 +79,8 @@
                                     <Label Content="Users / Players" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="22" FontWeight="Bold"/>
                                     <GroupBox Header="Users / Players" Grid.Column="1" Margin="0,39,0,0" Height="253" VerticalAlignment="Top">
                                         <Grid Margin="0">
-                                            <Button x:Name="OverViewSettings_UsersGroups_CreateUser" Content="Create User" VerticalAlignment="Top" Margin="0,10,0,0"/>
-                                            <Button x:Name="OverViewSettings_UsersGroups_EditUser" Content="Edit User" VerticalAlignment="Top" Margin="0,35,0,0"/>
+                                            <Button x:Name="OverViewSettings_UsersGroups_CreateUser" Content="Create User" VerticalAlignment="Top" Margin="0,10,0,0" Click="OverViewSettings_UsersGroups_CreateUser_Click"/>
+                                            <Button x:Name="OverViewSettings_UsersGroups_EditUser" Content="Edit User" VerticalAlignment="Top" Margin="0,35,0,0" Click="OverViewSettings_UsersGroups_EditUser_Click"/>
                                             <Button x:Name="OverViewSettings_UsersGroups_DeleteUser" Content="Delete User" VerticalAlignment="Top" Margin="0,60,0,0"/>
                                         </Grid>
                                     </GroupBox>

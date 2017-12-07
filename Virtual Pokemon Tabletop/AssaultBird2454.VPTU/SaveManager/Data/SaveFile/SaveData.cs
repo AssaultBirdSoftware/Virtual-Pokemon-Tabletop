@@ -22,6 +22,7 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
             {
                 Campaign_Data = new Campaign_Data(true);
 
+                Identitys = new List<Authentication_Manager.Data.Identity>();
                 Users = new List<Authentication_Manager.Data.User>();
                 Groups = new List<Authentication_Manager.Data.Group>();
 
@@ -47,6 +48,10 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
             //MapFiles = new List<Resources.MapFileData>();
             //Maps = new List<Resources.MapData>();
 
+            if(Identitys == null)
+            {
+                Identitys = new List<Authentication_Manager.Data.Identity>();
+            }
             if (Users == null)
             {
                 Users = new List<Authentication_Manager.Data.User>();
@@ -83,6 +88,7 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
         #endregion
 
         #region Auth and Perms
+        public List<Authentication_Manager.Data.Identity> Identitys;
         public List<Authentication_Manager.Data.User> Users;
         public List<Authentication_Manager.Data.Group> Groups;
         #endregion

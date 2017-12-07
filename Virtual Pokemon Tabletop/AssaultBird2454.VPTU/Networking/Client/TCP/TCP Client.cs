@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Net.Security;
 using System.Net.Sockets;
 using System.Security.Cryptography.X509Certificates;
@@ -243,6 +244,24 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
         public void Enable_SSL()
         {
             SendData(new Data.InternalNetworkCommand(Data.Commands.SSL_Enable));
+        }
+
+        public long PingServer
+        {
+            get
+            {
+                long pingTime = 0;
+                Ping pingSender = new Ping();
+                
+                PingReply reply = pingSender.Send(IPAddress);
+
+                if (reply.Status == IPStatus.Success)
+                {
+                    pingTime = reply.RoundtripTime;
+                }
+
+                return pingTime;
+            }
         }
         #endregion
 

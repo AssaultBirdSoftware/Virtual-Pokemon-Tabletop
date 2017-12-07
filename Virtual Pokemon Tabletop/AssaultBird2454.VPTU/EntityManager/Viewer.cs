@@ -47,6 +47,14 @@ namespace AssaultBird2454.VPTU.EntityManager
         /// The resource ID for this entry
         /// </summary>
         string Token_ResourceID { get; set; }
+        /// <summary>
+        /// List of users with View Permission
+        /// </summary>
+        List<string> View { get; set; }
+        /// <summary>
+        /// List of users with Edit Permission
+        /// </summary>
+        List<string> Edit { get; set; }
 
         /// <summary>
         /// The folder that this entry is placed in (null = root)
@@ -71,6 +79,14 @@ namespace AssaultBird2454.VPTU.EntityManager
         /// The resource ID for this entry
         /// </summary>
         public string Token_ResourceID { get; set; }
+        /// <summary>
+        /// List of users with View Permission
+        /// </summary>
+        public List<string> View;
+        /// <summary>
+        /// List of users with Edit Permission
+        /// </summary>
+        public List<string> Edit;
 
         /// <summary>
         /// The folder that this entry is placed in (null = root)

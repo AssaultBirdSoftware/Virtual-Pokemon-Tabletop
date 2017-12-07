@@ -18,11 +18,21 @@ namespace AssaultBird2454.VPTU.EntityManager.Trainer
                     Name = Name,
                     Parent_Folder = Parent_Folder,
                     Token_ResourceID = Token_ResourceID,
-                    Entity_Type = Entity_Type.Trainer
+                    Entity_Type = Entity_Type.Trainer,
+                    View = View,
+                    Edit = Edit
                 };
             }
         }
 
+        /// <summary>
+        /// List of users with View Permission
+        /// </summary>
+        public List<string> View { get; set; }
+        /// <summary>
+        /// List of users with Edit Permission
+        /// </summary>
+        public List<string> Edit { get; set; }
         /// <summary>
         /// The resource ID for this entry
         /// </summary>

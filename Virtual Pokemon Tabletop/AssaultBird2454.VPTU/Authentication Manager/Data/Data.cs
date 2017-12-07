@@ -1,17 +1,28 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AssaultBird2454.VPTU.Authentication_Manager.Data
 {
     public class User
     {
+        public User(bool Init = false)
+        {
+            if (Init)
+            {
+                UserID = RNG.Generators.RSG.GenerateString(5);
+                Name = "";
+                IC_Name = "";
+
+                Groups = new List<string>();
+                Permissions = new List<Permissions_Manager.Data.Permission_Node>();
+                UserColor = new System.Windows.Media.Color() { R = 0, G = 178, B = 214, A = 255 };
+            }
+        }
+
         public string UserID { get; set; }
         public string Name { get; set; }
         public string IC_Name { get; set; }
+        public System.Windows.Media.Color UserColor { get; set; }
 
         [JsonIgnore]
         public string Group_String
@@ -32,7 +43,6 @@ namespace AssaultBird2454.VPTU.Authentication_Manager.Data
             }
         }
         public List<string> Groups { get; set; }
-        public List<Identity> Identitys { get; set; }
         public List<Permissions_Manager.Data.Permission_Node> Permissions { get; set; }
     }
 
@@ -46,9 +56,15 @@ namespace AssaultBird2454.VPTU.Authentication_Manager.Data
 
     public class Identity
     {
+        public string UserID { get; set; }
         /// <summary>
         /// A 32char long random string that is unique to a player
         /// </summary>
-        public string Identity_String { get; set; }
+        public string Key { get; set; }
+
+        public void ReGenerate_PlayerKey()
+        {
+            Key = RNG.Generators.RSG.GenerateString(32);
+        }
     }
 }
