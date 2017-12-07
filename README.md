@@ -7,14 +7,15 @@
 [![Discord](https://img.shields.io/discord/277549582961868800.svg?colorB=7289DA&label=Discord)](https://discord.gg/fYExGbz)
 
 
-# Virtual Pokemon Tabletop
+# Virtual Pokémon Tabletop
 Software designed specifically for running PTU on the internet.  
 
 This came to me as an idea after I was running my own game with some friends when i killed the game from being incompetent with the battle mechanics.  
 
 So, when I went to make this I decided to take the useful features from Roll20.net and add them to the base of this software so that people don’t need to pay for the premium to use those features.
 
-## Contribution
+## Contribution / Supporting the project
+### Code Contributions
 Want to help? Just make a fork and follow these rules
 
 1: Code needs to be Commented, Documented, Formatted and Tested.  
@@ -22,20 +23,25 @@ Want to help? Just make a fork and follow these rules
 3: Pull request into the "Alpha" branch, I will look and accept it there.  
 
 All help would be appreciated. and this project is done in C# Using WPF.
+### Supporting future Development
+I am making this software for you for free. I do not expect anything from you just your feedback. If you want to pledge more than just feedback to support future development then donations will be accepted... No Donations will be accepted prior to the official release of **Beta_0.0.1 - Build 1**
 
 ## Platform Status
 
 ### Supported Platform Status
-| Platform Type   | Server               | Save Editor   | Client               | API           |
-|-----------------|----------------------|---------------|----------------------|---------------|
-| PC (Windows)    | Starting Development | Alpha Stages  | Starting Development | Not Started   |
-| PC (Mac)        | Not Started          | Not Started   | Not Started          | Not Started   |
-| PC (Linux)      | Not Started          | Not Started   | Not Started          | Not Started   |
-| Mobile (IOS)    |                      |               | Not Started          | Not Started   |
-| Mobile (Android)|                      |               | Not Started          | Not Started   |
+| Platform Type   | Server       | Save Editor   | Client        | API           |
+|-----------------|--------------|---------------|---------------|---------------|
+| PC (Windows)    | Alpha Stages | Alpha Stages  | Alpha Stages  | In Design     |
+| PC (Mac)        | Not Started  | Not Started   | Not Started   | Not Started   |
+| PC (Linux)      | Not Started  | Not Started   | Not Started   | Not Started   |
+| Mobile (IOS)    |              |               | In Design\*   | In Design\*\* |
+| Mobile (Android)|              |               | In Design\*   | In Design\*\* |
+
+\* - This software costs money to make so it will cost a onetime $0.99 to purchase (IOS & Android Apps Only)  
+\*\* - This API will be private, and you will need to register with me to get the API for the IOS & Android Platforms (Security Reasons)
 
 This software is supported on x64 architecture (64 Bit) systems only! Sorry if you are using a system that is x86 (32 Bit)
-This software may support x86 in the future but for now, only x64 is officialy supported
+This software may support x86 in the future but for now, only x64 is officially supported
 
 ## Links
 Road Map: https://trello.com/b/G8V5Musv/  
