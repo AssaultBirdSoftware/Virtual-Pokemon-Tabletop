@@ -27,13 +27,17 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
         /// 
         public void Register_Commands(Networking.Server.Command_Handeler.Server_CommandHandeler CommandHandeler)
         {
-            #region Auth
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Auth_Login");
+            CommandHandeler.RegisterCommand<CommandData.Connection.Connect>("ConnectionState");
+            CommandHandeler.GetCommand("ConnectionState").Command_Executed += ConnectionState_Executed;
 
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Auth_Create");
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Auth_Delete");
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Auth_Edit");
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Auth_List");
+            #region Auth
+            CommandHandeler.RegisterCommand<CommandData.Auth.Login>("Auth_Login");
+            CommandHandeler.GetCommand("Auth_Login").Command_Executed += Auth_Login_Executed;
+
+            CommandHandeler.RegisterCommand<object>("Auth_Create");
+            CommandHandeler.RegisterCommand<object>("Auth_Delete");
+            CommandHandeler.RegisterCommand<object>("Auth_Edit");
+            CommandHandeler.RegisterCommand<object>("Auth_List");
             #endregion
 
             #region Base
@@ -155,6 +159,31 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
         }
 
         #region Callbacks
+        private void ConnectionState_Executed(object Data, TCP_ClientNode Client)
+        {
+
+        }
+
+        #region Auth
+        private void Auth_Login_Executed(object Data, TCP_ClientNode Client)
+        {
+            CommandData.Auth.Login AuthData = (CommandData.Auth.Login)Data;
+
+            Authentication_Manager.Data.Identity ID = Instance.SaveManager.SaveData.Identitys.Find(x => x.Key == AuthData.Client_Key);
+            if (ID != null)
+            {
+                Authentication_Manager.Data.User user = Instance.SaveManager.SaveData.Users.Find(x => x.UserID == ID.UserID);
+                Instance.Authenticate_Client(Client, user);
+
+                Client.Send(new CommandData.Auth.Login() { Client_Key = ID.Key, Auth_State = CommandData.Auth.AuthState.Passed });
+            }
+            else
+            {
+                Client.Send(new CommandData.Auth.Login() { Client_Key = ID.Key, Auth_State = CommandData.Auth.AuthState.Failed });
+            }
+        }
+        #endregion
+
         #region Base Commands
         private void Base_SaveData_Save_Executed(object Data, Networking.Server.TCP.TCP_ClientNode Client)
         {
@@ -241,14 +270,14 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
 
             foreach (EntityManager.Pokemon.PokemonCharacter pokemon in Instance.SaveManager.SaveData.Pokemon)
             {
-                if (true)// Change to check if the user has view permissions on the entry
+                if (pokemon.View.Contains(Instance.Authenticated_Clients.Find(x => x.Key.ID == Client.ID).Value.UserID))// Change to check if the user has view permissions on the entry
                 {
                     Entitys.Add(pokemon.EntryData);
                 }
             }
             foreach (EntityManager.Trainer.TrainerCharacter trainer in Instance.SaveManager.SaveData.Trainers)
             {
-                if (true)// Change to check if the user has view permissions on the entry
+                if (trainer.View.Contains(Instance.Authenticated_Clients.Find(x => x.Key.ID == Client.ID).Value.UserID))// Change to check if the user has view permissions on the entry
                 {
                     Entitys.Add(trainer.EntryData);
                 }

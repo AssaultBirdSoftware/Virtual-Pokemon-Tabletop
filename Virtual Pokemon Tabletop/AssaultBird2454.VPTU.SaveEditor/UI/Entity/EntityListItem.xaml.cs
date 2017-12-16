@@ -42,6 +42,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
                     {
                         Width = 8,
                         Height = 12,
+                        Margin = new Thickness(0, 0, 5, 0),
                         BorderThickness = new Thickness(0, 0, 0, 0),
                         Background = new SolidColorBrush(cn.Key),
                         ToolTip = new ToolTip()

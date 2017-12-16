@@ -108,46 +108,15 @@ namespace AssaultBird2454.VPTU.Client
         /// The control that handels the Connect List Functions
         /// </summary>
         private UI.Connect _Connect_Form;
-        /// <summary>
-        /// The MDI window that handels the Connect List Functions
-        /// </summary>
-        private WPF.MDI.MdiChild _Connect_Window;
-        /// <summary>
-        /// Gets the control that handels the Connect List Functions. And creates a window if it does not exist
-        /// </summary>
+
         public UI.Connect Connect_Form()
         {
-            if (_Connect_Form == null)// If the list control does not exist
+            if (_Connect_Form == null)
             {
-                _Connect_Form = new UI.Connect();// Create the control
-
-                Menu_Menu_Connect.IsChecked = true;// Check the menu box
-                _Connect_Window = new WPF.MDI.MdiChild()
-                {
-                    Title = "Connect to Server",
-                    //Icon = new BitmapImage(new Uri(Program.AssemblyDirectory + @"\Resources\Connect.png", UriKind.Absolute)),
-                    Content = _Connect_Form,
-                    Resizable = false,
-                    Width = 395,
-                    Height = 165
-                };// Create the window
-                _Connect_Window.Closing += Connect_Window_Closing;// Set up an event
-                MDI.Children.Add(_Connect_Window);// Add the window
-
-                return _Connect_Form;// Return the control
+                _Connect_Form = new UI.Connect();
+                return _Connect_Form;
             }
-            else
-            {
-                Menu_Menu_Connect.IsChecked = true;// Check the menu box
-                return _Connect_Form;// Return the control if it already exists
-            }
-        }
-
-        private void Connect_Window_Closing(object sender, RoutedEventArgs e)
-        {
-            Menu_Menu_Connect.IsChecked = false;
-            _Connect_Form = null;
-            _Connect_Window = null;
+            return _Connect_Form;
         }
         #endregion
 
@@ -301,6 +270,7 @@ namespace AssaultBird2454.VPTU.Client
 
             InitializeComponent();
             Program.MainWindow = this;
+            Program.Settings_Load();
             Title = "Virtual Pokemon Tabletop - Client (Version: " + Program.VersioningInfo.Version + ") (Commit: " + Program.VersioningInfo.Compile_Commit.Remove(7) + ")";
         }
 
@@ -310,7 +280,7 @@ namespace AssaultBird2454.VPTU.Client
         // Connect to Table
         private void Menu_Menu_Connect_Click(object sender, RoutedEventArgs e)
         {
-            Connect_Form();
+            Connect_Form().ShowDialog();
         }
         #endregion
         #region View
@@ -322,6 +292,125 @@ namespace AssaultBird2454.VPTU.Client
         private void Menu_View_Pokedex_Unchecked(object sender, RoutedEventArgs e)
         {
 
+        }
+        #endregion
+        #region Help
+        private void Menu_Help_Forums_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult mbr = MessageBox.Show("Would you like to open a web browser to view the forums?\n\nWeb URL: http://forums.pokemontabletop.com", "Open Forums?", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+            if (mbr == MessageBoxResult.Yes)
+            {
+                Process.Start("http://forums.pokemontabletop.com");
+            }
+        }
+
+        private void Menu_Help_PTUSystem_105_Pokedex_Click(object sender, RoutedEventArgs e)
+        {
+            string dir = Program.AssemblyDirectory + @"\Docs\PTU System 1.05\Pokedex 1.05.pdf";
+            MessageBoxResult mbr = MessageBox.Show("Would you like to open the PTU 1.05 Pokedex document?\n\nFile URI: " + dir, "Open Document?", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+            if (mbr == MessageBoxResult.Yes)
+            {
+                System.Diagnostics.Process.Start(dir);
+            }
+        }
+        private void Menu_Help_PTUSystem_105_I_Click(object sender, RoutedEventArgs e)
+        {
+            string dir = Program.AssemblyDirectory + @"\Docs\PTU System 1.05\Chapter 1 (Introduction).pdf";
+            MessageBoxResult mbr = MessageBox.Show("Would you like to open the PTU 1.05 core document (Chapter 1 Only)?\n\nFile URI: " + dir, "Open Document?", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+            if (mbr == MessageBoxResult.Yes)
+            {
+                System.Diagnostics.Process.Start(dir);
+            }
+        }
+        private void Menu_Help_PTUSystem_105_CC_Click(object sender, RoutedEventArgs e)
+        {
+            string dir = Program.AssemblyDirectory + @"\Docs\PTU System 1.05\Chapter 2 (Character Creation).pdf";
+            MessageBoxResult mbr = MessageBox.Show("Would you like to open the PTU 1.05 core document (Chapter 2 Only)?\n\nFile URI: " + dir, "Open Document?", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+            if (mbr == MessageBoxResult.Yes)
+            {
+                System.Diagnostics.Process.Start(dir);
+            }
+        }
+        private void Menu_Help_PTUSystem_105_SEaF_Click(object sender, RoutedEventArgs e)
+        {
+            string dir = Program.AssemblyDirectory + @"\Docs\PTU System 1.05\Chapter 3 (Skills, Edges And Features).pdf";
+            MessageBoxResult mbr = MessageBox.Show("Would you like to open the PTU 1.05 core document (Chapter 3 Only)?\n\nFile URI: " + dir, "Open Document?", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+            if (mbr == MessageBoxResult.Yes)
+            {
+                System.Diagnostics.Process.Start(dir);
+            }
+        }
+        private void Menu_Help_PTUSystem_105_TC_Click(object sender, RoutedEventArgs e)
+        {
+            string dir = Program.AssemblyDirectory + @"\Docs\PTU System 1.05\Chapter 4 (Trainer Classes).pdf";
+            MessageBoxResult mbr = MessageBox.Show("Would you like to open the PTU 1.05 core document (Chapter 4 Only)?\n\nFile URI: " + dir, "Open Document?", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+            if (mbr == MessageBoxResult.Yes)
+            {
+                System.Diagnostics.Process.Start(dir);
+            }
+        }
+        private void Menu_Help_PTUSystem_105_P_Click(object sender, RoutedEventArgs e)
+        {
+            string dir = Program.AssemblyDirectory + @"\Docs\PTU System 1.05\Chapter 5 (Pokemon).pdf";
+            MessageBoxResult mbr = MessageBox.Show("Would you like to open the PTU 1.05 core document (Chapter 5 Only)?\n\nFile URI: " + dir, "Open Document?", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+            if (mbr == MessageBoxResult.Yes)
+            {
+                System.Diagnostics.Process.Start(dir);
+            }
+        }
+        private void Menu_Help_PTUSystem_105_PtG_Click(object sender, RoutedEventArgs e)
+        {
+            string dir = Program.AssemblyDirectory + @"\Docs\PTU System 1.05\Chapter 6 (Playing the Game).pdf";
+            MessageBoxResult mbr = MessageBox.Show("Would you like to open the PTU 1.05 core document (Chapter 6 Only)?\n\nFile URI: " + dir, "Open Document?", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+            if (mbr == MessageBoxResult.Yes)
+            {
+                System.Diagnostics.Process.Start(dir);
+            }
+        }
+        private void Menu_Help_PTUSystem_105_C_Click(object sender, RoutedEventArgs e)
+        {
+            string dir = Program.AssemblyDirectory + @"\Docs\PTU System 1.05\Chapter 7 (Combat).pdf";
+            MessageBoxResult mbr = MessageBox.Show("Would you like to open the PTU 1.05 core document (Chapter 7 Only)?\n\nFile URI: " + dir, "Open Document?", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+            if (mbr == MessageBoxResult.Yes)
+            {
+                System.Diagnostics.Process.Start(dir);
+            }
+        }
+        private void Menu_Help_PTUSystem_105_PC_Click(object sender, RoutedEventArgs e)
+        {
+            string dir = Program.AssemblyDirectory + @"\Docs\PTU System 1.05\Chapter 8 (Pokemon Contests).pdf";
+            MessageBoxResult mbr = MessageBox.Show("Would you like to open the PTU 1.05 core document (Chapter 8 Only)?\n\nFile URI: " + dir, "Open Document?", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+            if (mbr == MessageBoxResult.Yes)
+            {
+                System.Diagnostics.Process.Start(dir);
+            }
+        }
+        private void Menu_Help_PTUSystem_105_GaI_Click(object sender, RoutedEventArgs e)
+        {
+            string dir = Program.AssemblyDirectory + @"\Docs\PTU System 1.05\Chapter 9 (Gear and Items).pdf";
+            MessageBoxResult mbr = MessageBox.Show("Would you like to open the PTU 1.05 core document (Chapter 9 Only)?\n\nFile URI: " + dir, "Open Document?", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+            if (mbr == MessageBoxResult.Yes)
+            {
+                System.Diagnostics.Process.Start(dir);
+            }
+        }
+        private void Menu_Help_PTUSystem_105_IaR_Click(object sender, RoutedEventArgs e)
+        {
+            string dir = Program.AssemblyDirectory + @"\Docs\PTU System 1.05\Chapter 10 (Indices and Reference).pdf";
+            MessageBoxResult mbr = MessageBox.Show("Would you like to open the PTU 1.05 core document (Chapter 10 Only)?\n\nFile URI: " + dir, "Open Document?", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+            if (mbr == MessageBoxResult.Yes)
+            {
+                System.Diagnostics.Process.Start(dir);
+            }
+        }
+        private void Menu_Help_PTUSystem_105_RtG_Click(object sender, RoutedEventArgs e)
+        {
+            string dir = Program.AssemblyDirectory + @"\Docs\PTU System 1.05\Chapter 11 (Running the Game).pdf";
+            MessageBoxResult mbr = MessageBox.Show("Would you like to open the PTU 1.05 core document (Chapter 11 Only)?\n\nFile URI: " + dir, "Open Document?", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+            if (mbr == MessageBoxResult.Yes)
+            {
+                System.Diagnostics.Process.Start(dir);
+            }
         }
         #endregion
         #endregion
@@ -444,6 +533,18 @@ namespace AssaultBird2454.VPTU.Client
         #endregion
 
         #region Command Handelers
+        #region Auth
+        internal void Auth_Login_Executed(object Data)
+        {
+            Server.Instances.CommandData.Auth.Login loginData = (Server.Instances.CommandData.Auth.Login)Data;
+
+            if (loginData.Auth_State == Server.Instances.CommandData.Auth.AuthState.Passed)
+            {
+                Status_Set_PlayerName("Authenticated");
+            }
+        }
+        #endregion
+
         #region Pokedex
         internal void Pokedex_Pokemon_GetList_Executed(object Data)
         {
@@ -503,5 +604,17 @@ namespace AssaultBird2454.VPTU.Client
         #endregion
 
         #endregion
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Program.Settings_Save();
+        }
+
+        private void Menu_Menu_ManageID_Click(object sender, RoutedEventArgs e)
+        {
+            UI.Manage_Identitys ID = new UI.Manage_Identitys();
+
+            ID.ShowDialog();
+        }
     }
 }

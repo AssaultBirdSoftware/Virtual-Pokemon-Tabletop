@@ -76,7 +76,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         private bool TCP_AcceptClients;// Server Accept Connsctions
         private IPAddress TCP_ServerAddress;// Servers Address
         private int TCP_ServerPort;// Servers Port
-        private int TCP_MaxConnections;// Servers Max Client Connections
+        private int TCP_MaxConnections = 1;// Servers Max Client Connections
         private X509Certificate TCP_SSLCert;// SSL Certificate
 
         public Command_Handeler.Server_CommandHandeler CommandHandeler;
@@ -236,7 +236,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
 
             try
             {
-                if (AcceptClients && ClientNodes.Count <= MaxConnections)
+                if (AcceptClients && ClientNodes.Count < MaxConnections)
                 {
                     tclient = Listener.EndAcceptTcpClient(ar);// Creates a client object to handel remote connection
 
@@ -255,11 +255,21 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
                 else
                 {
                     tclient = Listener.EndAcceptTcpClient(ar);// Creates a client object to handel remote connection
-                    tclient.Close();// Closes the connection (if full or not accepting, this will change latter)
 
                     tcpl.BeginAcceptTcpClient(Client_Connected, Listener);// Starts listening for another connection
 
-                    Fire_TCP_ClientState_Changed(null, Data.Client_ConnectionStatus.Rejected);// Sends the client rejected event
+                    node = new TCP_ClientNode(tclient, tclient.Client.RemoteEndPoint.ToString(), this);// Creates a new client node object
+
+                    if (!AcceptClients)
+                    {
+                        node.Send(new VPTU.Server.Instances.CommandData.Connection.Connect() { Connection_State = VPTU.Server.Instances.CommandData.Connection.ConnectionStatus.Rejected });// Sends the client rejected event
+                    }
+                    else if (ClientNodes.Count < MaxConnections)
+                    {
+                        node.Send(new VPTU.Server.Instances.CommandData.Connection.Connect() { Connection_State = VPTU.Server.Instances.CommandData.Connection.ConnectionStatus.ServerFull });// Sends the server full error
+                    }
+
+                    tclient.Close();// Closes the connection (if full or not accepting, this will change latter)
                 }
             }
             catch (Exception ex)

@@ -24,6 +24,16 @@ namespace AssaultBird2454.VPTU.Server.Instances.Client
         /// <param name="CommandHandeler">Command Handeler that the commands are being Registered to</param>
         public void Register_Commands(Networking.Client.Command_Handeler.Client_CommandHandeler CommandHandeler)
         {
+            CommandHandeler.RegisterCommand<CommandData.Connection.Connect>("ConnectionState");
+
+            #region Auth
+            CommandHandeler.RegisterCommand<CommandData.Auth.Login>("Auth_Login");
+            CommandHandeler.RegisterCommand<object>("Auth_Create");
+            CommandHandeler.RegisterCommand<object>("Auth_Delete");
+            CommandHandeler.RegisterCommand<object>("Auth_Edit");
+            CommandHandeler.RegisterCommand<object>("Auth_List");
+            #endregion
+
             #region Base
             CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Base_SaveData_Save");
             CommandHandeler.GetCommand("Base_SaveData_Save").Command_Executed += Base_Commands_Command_Executed;
@@ -100,6 +110,8 @@ namespace AssaultBird2454.VPTU.Server.Instances.Client
                                                                               // CommandHandeler.RegisterCommand<string>("Resources_");
             #endregion
         }
+
+
 
         private void Base_Commands_Command_Executed(object Data)
         {

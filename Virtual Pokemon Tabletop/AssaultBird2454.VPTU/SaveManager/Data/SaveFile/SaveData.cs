@@ -91,6 +91,23 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
         public List<Authentication_Manager.Data.Identity> Identitys;
         public List<Authentication_Manager.Data.User> Users;
         public List<Authentication_Manager.Data.Group> Groups;
+
+        public string Identity_GetKey(string UserID)
+        {
+            if(Identitys.FindAll(X => X.UserID == UserID).Count <= 0)
+            {
+                Identitys.Add(new Authentication_Manager.Data.Identity()
+                {
+                    UserID = UserID
+                });
+            }
+
+            Authentication_Manager.Data.Identity ID = Identitys.Find(x => x.UserID == UserID);
+            if (ID == null)
+                return "";
+
+            return ID.Key;
+        }
         #endregion
 
         public Pokedex.Save_Data.Pokedex PokedexData;

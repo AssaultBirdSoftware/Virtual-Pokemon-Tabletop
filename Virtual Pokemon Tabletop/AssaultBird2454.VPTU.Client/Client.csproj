@@ -28,13 +28,16 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\Building Dir\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Client.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ConsoleControl.WPF, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bb812711dbc508e1, processorArchitecture=MSIL">
@@ -102,8 +105,8 @@
     <Compile Include="UI\Entity\EntityListItem.xaml.cs">
       <DependentUpon>EntityListItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Manage IDs.xaml.cs">
-      <DependentUpon>Manage IDs.xaml</DependentUpon>
+    <Compile Include="UI\Manage_Identitys.xaml.cs">
+      <DependentUpon>Manage_Identitys.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Open.xaml.cs">
       <DependentUpon>Open.xaml</DependentUpon>
@@ -151,7 +154,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Manage IDs.xaml">
+    <Page Include="UI\Manage_Identitys.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -275,4 +278,12 @@
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>

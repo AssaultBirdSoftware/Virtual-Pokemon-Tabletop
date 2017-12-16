@@ -57,10 +57,26 @@ namespace AssaultBird2454.VPTU.Authentication_Manager.Data
     public class Identity
     {
         public string UserID { get; set; }
+
+        private string _Key;
         /// <summary>
         /// A 32char long random string that is unique to a player
         /// </summary>
-        public string Key { get; set; }
+        public string Key
+        {
+            get
+            {
+                if (_Key == null)
+                {
+                    ReGenerate_PlayerKey();
+                }
+                return _Key;
+            }
+            set
+            {
+                _Key = value;
+            }
+        }
 
         public void ReGenerate_PlayerKey()
         {

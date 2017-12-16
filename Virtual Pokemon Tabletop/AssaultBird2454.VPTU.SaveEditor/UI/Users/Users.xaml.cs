@@ -34,6 +34,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Users
                 User = _User;
             }
 
+            MainWindow.SaveManager.SaveData.Identity_GetKey(User.UserID);
             Load();
         }
 
@@ -66,7 +67,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Users
 
         private void View_PlayerKey_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(MainWindow.SaveManager.SaveData.Identitys.Find(x => x.UserID == User.UserID).Key, "Player Key");
+            MessageBox.Show(MainWindow.SaveManager.SaveData.Identity_GetKey(User.UserID), "Player Key");
         }
 
         private void Export_PlayerKey_Click(object sender, RoutedEventArgs e)
@@ -77,7 +78,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Users
         private void ReGenerate_PlayerKey_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.SaveManager.SaveData.Identitys.Find(x => x.UserID == User.UserID).ReGenerate_PlayerKey();
-            MessageBox.Show(MainWindow.SaveManager.SaveData.Identitys.Find(x => x.UserID == User.UserID).Key, "New Player Key");
+            MessageBox.Show(MainWindow.SaveManager.SaveData.Identity_GetKey(User.UserID), "New Player Key");
         }
 
         private void Player_ID_ContextMenuClosing(object sender, ContextMenuEventArgs e)

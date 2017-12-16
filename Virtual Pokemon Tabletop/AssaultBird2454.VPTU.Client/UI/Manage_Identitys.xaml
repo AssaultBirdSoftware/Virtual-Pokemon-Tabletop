@@ -1,0 +1,32 @@
+﻿<Window x:Name="Window" x:Class="AssaultBird2454.VPTU.Client.UI.Manage_Identitys"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AssaultBird2454.VPTU.Client.UI"
+             mc:Ignorable="d" Height="330" Width="720">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <ListView x:Name="ID_List">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="User ID" Width="80" DisplayMemberBinding="{Binding UserID}"/>
+                    <GridViewColumn Header="Campaign Name" Width="200" DisplayMemberBinding="{Binding Campaign_Name}"/>
+                    <GridViewColumn Header="Server Address" Width="200" DisplayMemberBinding="{Binding Server_Address}"/>
+                    <GridViewColumn Header="Character Name" Width="100" DisplayMemberBinding="{Binding ICN}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <GroupBox Grid.Column="1" Header="Manage" Height="100" VerticalAlignment="Top" Margin="5,0,0,0">
+            <Grid Margin="0">
+                <Button Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="83" Margin="0,5,0,0"/>
+                <Button Content="Edit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="83" Margin="0,30,0,0"/>
+                <Button Content="Remove" HorizontalAlignment="Left" VerticalAlignment="Top" Width="83" Margin="0,55,0,0"/>
+            </Grid>
+        </GroupBox>
+
+    </Grid>
+</Window>

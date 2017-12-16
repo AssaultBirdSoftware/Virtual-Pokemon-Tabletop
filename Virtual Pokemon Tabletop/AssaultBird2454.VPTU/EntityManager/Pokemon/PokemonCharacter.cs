@@ -11,6 +11,13 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         public PokemonCharacter(string _ID)
         {
             ID = _ID;
+
+            View = new List<string>();
+            Edit = new List<string>();
+            PokemonType = new List<BattleManager.Data.Type>();
+            Abilitys = new List<string>();
+            Moves = new List<string>();
+            Status = new List<KeyValuePair<BattleManager.Data.Status_Afflictions, object>>();
         }
         public PokemonCharacter()
         {

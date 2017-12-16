@@ -47,6 +47,7 @@ namespace AssaultBird2454.VPTU.ServerConsole
 
         public void Settings_Save()
         {
+            #region Servers
             try
             {
                 using (StreamWriter sw = new StreamWriter(new FileStream(AssemblyDirectory + @"\Servers.json", FileMode.OpenOrCreate)))
@@ -61,6 +62,7 @@ namespace AssaultBird2454.VPTU.ServerConsole
                 MessageBox.Show("There was a error saving servers to file!\nNo Servers have been saved, This means that you will need to create them again when you open up the server again...", "Error Saving Servers to File");
                 MessageBox.Show(ex.ToString(), "Stack Trace");
             }
+            #endregion
         }
         public void Settings_Load()
         {

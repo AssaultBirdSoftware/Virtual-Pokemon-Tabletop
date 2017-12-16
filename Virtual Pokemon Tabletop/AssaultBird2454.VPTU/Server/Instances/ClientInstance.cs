@@ -116,6 +116,13 @@ namespace AssaultBird2454.VPTU.Server.Instances
             }
             #endregion
         }
+        public void AuthenticateClient(SaveManager.Identity.Identity_Data ID)
+        {
+            Client.SendData(new CommandData.Auth.Login()
+            {
+                Client_Key = ID.Key
+            });
+        }
 
         private void Client_CommandHandeler_CommandUnRegistered(string Command)
         {
@@ -158,14 +165,6 @@ namespace AssaultBird2454.VPTU.Server.Instances
             else if (ConnectionState == Networking.Data.Client_ConnectionStatus.Encrypted)
             {
                 ((Class.Logging.I_Logger)Client_Logger).Log("Client Encrypted Network Transmittions (Base Network)", Class.Logging.LoggerLevel.Info);
-            }
-            else if (ConnectionState == Networking.Data.Client_ConnectionStatus.Rejected)
-            {
-                ((Class.Logging.I_Logger)Client_Logger).Log("Client Rejected (Base Network)", Class.Logging.LoggerLevel.Info);
-            }
-            else if (ConnectionState == Networking.Data.Client_ConnectionStatus.ServerFull)
-            {
-                ((Class.Logging.I_Logger)Client_Logger).Log("Server Full, Client Rejected (Base Network)", Class.Logging.LoggerLevel.Info);
             }
         }
     }
