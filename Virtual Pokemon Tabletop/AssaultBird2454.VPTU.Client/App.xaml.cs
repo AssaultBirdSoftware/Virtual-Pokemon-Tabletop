@@ -64,6 +64,10 @@ namespace AssaultBird2454.VPTU.Client
                             ravenClient.Capture(se);
                         }
                     }
+                    else
+                    {
+                        throw ex;
+                    }
                 }
                 return;
             }));

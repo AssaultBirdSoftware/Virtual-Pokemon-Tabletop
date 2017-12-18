@@ -114,9 +114,16 @@ namespace AssaultBird2454.VPTU.Client
             if (_Connect_Form == null)
             {
                 _Connect_Form = new UI.Connect();
+                _Connect_Form.Closing += _Connect_Form_Closing;
                 return _Connect_Form;
             }
             return _Connect_Form;
+        }
+
+        private void _Connect_Form_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Menu_Menu_Connect.IsChecked = false;
+            _Connect_Form = null;
         }
         #endregion
 
