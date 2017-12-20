@@ -85,7 +85,8 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
             CommandHandeler.GetCommand("Entity_All_GetList").Command_Executed += Entity_All_GetList_Executed;
 
             CommandHandeler.RegisterCommand<string>("Entity_Pokemon_GetList");
-            CommandHandeler.RegisterCommand<string>("Entity_Pokemon_Get");
+            CommandHandeler.RegisterCommand<CommandData.Entity.Entity_Pokemon_Get>("Entity_Pokemon_Get");
+            CommandHandeler.GetCommand("Entity_Pokemon_Get").Command_Executed += Entity_Pokemon_Get_Executed;
             CommandHandeler.RegisterCommand<string>("Entity_Pokemon_Create");
             CommandHandeler.RegisterCommand<string>("Entity_Pokemon_Edit");
             CommandHandeler.RegisterCommand<string>("Entity_Pokemon_Delete");
@@ -300,6 +301,16 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
                 Entrys = Entitys,
                 Folders = Folders
             });
+        }
+
+        private void Entity_Pokemon_Get_Executed(object Data, TCP_ClientNode Client)
+        {
+            CommandData.Entity.Entity_Pokemon_Get Pokemon = (CommandData.Entity.Entity_Pokemon_Get)Data;
+
+            Pokemon.Pokemon = Instance.SaveManager.SaveData.Pokemon.Find(x => x.ID == Pokemon.ID);
+            Pokemon.Image = Instance.SaveManager.LoadImage(Pokemon.Pokemon.Token_ResourceID);
+
+            Client.Send(Pokemon);
         }
         #endregion
 

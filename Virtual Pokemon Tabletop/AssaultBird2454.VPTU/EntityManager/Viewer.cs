@@ -66,7 +66,7 @@ namespace AssaultBird2454.VPTU.EntityManager
         /// <summary>
         /// Defines what type of entity this is
         /// </summary>
-        public Entity_Type Entity_Type { get; internal set; }
+        public Entity_Type Entity_Type { get; set; }
         /// <summary>
         /// The ID of the entity
         /// </summary>

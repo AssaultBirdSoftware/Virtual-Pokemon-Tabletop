@@ -67,7 +67,7 @@ namespace AssaultBird2454.VPTU.Server.Instances.Client
             CommandHandeler.RegisterCommand<CommandData.Entity.Entity_All_GetList>("Entity_All_GetList");
 
             CommandHandeler.RegisterCommand<string>("Entity_Pokemon_GetList");
-            CommandHandeler.RegisterCommand<string>("Entity_Pokemon_Get");
+            CommandHandeler.RegisterCommand<CommandData.Entity.Entity_Pokemon_Get>("Entity_Pokemon_Get");
             CommandHandeler.RegisterCommand<string>("Entity_Pokemon_Create");
             CommandHandeler.RegisterCommand<string>("Entity_Pokemon_Edit");
             CommandHandeler.RegisterCommand<string>("Entity_Pokemon_Delete");

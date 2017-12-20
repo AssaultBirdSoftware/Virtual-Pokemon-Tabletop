@@ -1,0 +1,149 @@
+﻿<UserControl x:Class="AssaultBird2454.VPTU.Client.UI.Entity.Entity"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AssaultBird2454.VPTU.Client.UI.Entity"
+             mc:Ignorable="d" Height="380" Width="710" MinWidth="710" MinHeight="380" MaxWidth="710" MaxHeight="380">
+    <Grid>
+        <TabControl x:Name="Tab_Basic" TabStripPlacement="Left">
+            <TabItem Header="Basic Info">
+                <Grid x:Name="Basic_Info_Grid" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto">
+                        <Grid Background="#FFE5E5E5" Height="380">
+                            <Border BorderBrush="Black" BorderThickness="0" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100">
+                                <Border.Background>
+                                    <ImageBrush Stretch="Uniform" ImageSource="pack://siteoforigin:,,,/Resources/PTU Icon.png"/>
+                                </Border.Background>
+                            </Border>
+                            <Label Content="Type of Character:" HorizontalAlignment="Left" Margin="105,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                            <Grid Height="102" Margin="105,41,7,0" VerticalAlignment="Top" Background="#FFCDCDCD">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="25"/>
+                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="25"/>
+                                    <RowDefinition Height="26"/>
+                                </Grid.RowDefinitions>
+                                <Label Content="Name:" HorizontalAlignment="Left" Width="90" Padding="5,0" VerticalContentAlignment="Center"/>
+                                <TextBox x:Name="Basic_Name" HorizontalAlignment="Left" Height="23" Margin="0,3,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Grid.RowSpan="2" VerticalContentAlignment="Center" Text="Eevee"/>
+                                <Label Content="Species:" HorizontalAlignment="Left" Margin="95,0,0,0" Width="90" Padding="5,0" VerticalContentAlignment="Center"/>
+                                <TextBox x:Name="Basic_Species" HorizontalAlignment="Left" Height="23" Margin="95,3,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" Grid.RowSpan="2" IsReadOnly="True" VerticalContentAlignment="Center" Text="Eevee"/>
+                                <TextBox x:Name="Basic_Level" HorizontalAlignment="Left" Height="23" Margin="0,2,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" IsReadOnly="True" IsReadOnlyCaretVisible="True" VerticalContentAlignment="Center" Text="100"/>
+                                <Label Content="Level:" HorizontalAlignment="Left" Width="67" Grid.Row="2" Padding="5,0" VerticalContentAlignment="Center"/>
+                                <Label Content="Type:" HorizontalAlignment="Left" Margin="190,0,0,0" Width="125" Padding="5,0" VerticalContentAlignment="Center"/>
+                                <TextBox x:Name="Basic_Type" HorizontalAlignment="Left" Height="23" Margin="190,3,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="125" IsReadOnly="True" VerticalContentAlignment="Center" Text="Normal"/>
+                                <Label Content="Held Item:" HorizontalAlignment="Left" Margin="320,0,0,0" Width="90" Padding="5,0" VerticalContentAlignment="Center"/>
+                                <TextBox x:Name="Basic_HeldItem" HorizontalAlignment="Left" Height="23" Margin="320,3,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" IsReadOnly="True" VerticalContentAlignment="Center" Text="No Item"/>
+                                <Label Content="Nature:" HorizontalAlignment="Left" Margin="415,0,-6,0" Width="90" Padding="5,0" VerticalContentAlignment="Center"/>
+                                <TextBox x:Name="Basic_Nature" HorizontalAlignment="Left" Height="23" Margin="415,3,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" IsReadOnly="True" VerticalContentAlignment="Center" Text="Bold"/>
+                                <TextBox x:Name="Basic_EXP" HorizontalAlignment="Left" Height="23" Margin="72,2,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="46.5" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="20555" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <Label Content="EXP:" HorizontalAlignment="Left" Width="113" Grid.Row="2" Margin="72,0,0,0" Padding="5,0" VerticalContentAlignment="Center"/>
+                                <TextBox x:Name="Basic_EXP_TNL" HorizontalAlignment="Left" Height="23" Margin="138,2,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="47" IsReadOnly="True" IsReadOnlyCaretVisible="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="20555"/>
+                                <Label Content="/" HorizontalAlignment="Left" Margin="123,3,0,0" Grid.Row="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0" Width="10"/>
+                                <TextBox x:Name="Basic_UsedAP" HorizontalAlignment="Left" Height="23" Margin="190,2,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="35" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <Label Content="AP:" HorizontalAlignment="Left" Width="90" Grid.Row="2" Margin="190,0,0,0" Padding="5,0" VerticalContentAlignment="Center"/>
+                                <TextBox x:Name="Basic_MaxAP" HorizontalAlignment="Left" Height="23" Margin="245,2,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="35" IsReadOnly="True" IsReadOnlyCaretVisible="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="9999"/>
+                                <Label Content="/" HorizontalAlignment="Left" Margin="230,3,0,0" Grid.Row="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0" Width="10"/>
+                                <Label Content="Gender:" HorizontalAlignment="Left" Width="70" Margin="285,0,0,0" Grid.Row="2" Padding="5,0" VerticalContentAlignment="Center"/>
+                                <TextBox x:Name="Basic_Name_Copy" HorizontalAlignment="Left" Height="23" Margin="285,3,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" VerticalContentAlignment="Center" Text="Genderless"/>
+                                <Label Content="Height / Size:" HorizontalAlignment="Left" Width="90" Margin="360,0,0,0" Grid.Row="2" Padding="5,0" VerticalContentAlignment="Center"/>
+                                <TextBox x:Name="Basic_Name_Copy1" HorizontalAlignment="Left" Height="23" Margin="360,3,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" VerticalContentAlignment="Center" Text="Class 2"/>
+                                <Label Content="Weight:" HorizontalAlignment="Left" Width="50" Margin="455,0,0,0" Grid.Row="2" Padding="5,0" VerticalContentAlignment="Center"/>
+                                <TextBox x:Name="Basic_Name_Copy2" HorizontalAlignment="Left" Height="23" Margin="455,3,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" VerticalContentAlignment="Center" Text="Class 2"/>
+                            </Grid>
+                            <Label x:Name="Basic_CharacterType" Content="Pokemon" HorizontalAlignment="Left" Margin="218,10,0,0" VerticalAlignment="Top"/>
+                            <Border x:Name="Basic_Token" BorderBrush="Black" BorderThickness="0" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="0,105,0,0">
+                                <Border.Background>
+                                    <ImageBrush Stretch="Uniform" ImageSource="pack://siteoforigin:,,,/Resources/Unknown_Pokemon_Sprite.png"/>
+                                </Border.Background>
+                            </Border>
+                            <Label Content="Stats" HorizontalAlignment="Left" Margin="105,148,0,0" VerticalAlignment="Top" Width="252.5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="Black" FontWeight="Bold" FontSize="14"/>
+                            <Label Content="Capabilities" HorizontalAlignment="Left" Margin="362,148,0,0" VerticalAlignment="Top" Width="253" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="Black" FontWeight="Bold" FontSize="14"/>
+                            <Grid HorizontalAlignment="Left" Margin="105,182,0,0" Width="510" Height="180" VerticalAlignment="Top">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="252.5"/>
+                                    <ColumnDefinition Width="5"/>
+                                    <ColumnDefinition Width="252.5"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox x:Name="Basic_UsedAP_Copy" HorizontalAlignment="Left" Height="25" Margin="67,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <Label Content="Stat" HorizontalAlignment="Left" Width="67" Padding="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="25" VerticalAlignment="Top"/>
+                                <Label Content="Base" HorizontalAlignment="Left" Width="35" Padding="0" VerticalContentAlignment="Center" Margin="67,0,0,0" HorizontalContentAlignment="Center" Height="25" VerticalAlignment="Top"/>
+                                <Label Content="Allocated" HorizontalAlignment="Left" Width="59" Padding="0" VerticalContentAlignment="Center" Margin="107,0,0,0" HorizontalContentAlignment="Center" Height="25" VerticalAlignment="Top"/>
+                                <Label Content="Stage" HorizontalAlignment="Left" Width="36" Padding="0" VerticalContentAlignment="Center" Margin="171,0,0,0" HorizontalContentAlignment="Center" Height="25" VerticalAlignment="Top"/>
+                                <Label Content="Current" Padding="0" VerticalContentAlignment="Center" Margin="212,0,0,0" HorizontalContentAlignment="Center" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="40"/>
+                                <Label Content="HP" HorizontalAlignment="Left" Width="67" Padding="0" VerticalContentAlignment="Center" Margin="0,30,0,0" HorizontalContentAlignment="Center" Height="25" VerticalAlignment="Top"/>
+                                <Label Content="Attack" HorizontalAlignment="Left" Width="67" Padding="0" VerticalContentAlignment="Center" Margin="0,55,0,0" HorizontalContentAlignment="Center" Height="25" VerticalAlignment="Top"/>
+                                <Label Content="Defence" HorizontalAlignment="Left" Width="67" Padding="0" VerticalContentAlignment="Center" Margin="0,80,0,0" HorizontalContentAlignment="Center" Height="25" VerticalAlignment="Top"/>
+                                <Label Content="Sp Attack" HorizontalAlignment="Left" Width="67" Padding="0" VerticalContentAlignment="Center" Margin="0,105,0,0" HorizontalContentAlignment="Center" Height="25" VerticalAlignment="Top"/>
+                                <Label Content="Sp Defence" HorizontalAlignment="Left" Width="67" Padding="0" VerticalContentAlignment="Center" Margin="0,130,0,0" HorizontalContentAlignment="Center" Height="25" VerticalAlignment="Top"/>
+                                <Label Content="Speed" HorizontalAlignment="Left" Width="67" Padding="0" VerticalContentAlignment="Center" Margin="0,155,0,0" HorizontalContentAlignment="Center" Height="25" VerticalAlignment="Top"/>
+                                <TextBox x:Name="Basic_UsedAP_Copy1" HorizontalAlignment="Left" Height="25" Margin="107,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="Basic_UsedAP_Copy2" HorizontalAlignment="Left" Height="25" Margin="171,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="-" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="Basic_UsedAP_Copy3" HorizontalAlignment="Left" Height="25" Margin="212,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="Basic_UsedAP_Copy4" HorizontalAlignment="Left" Height="25" Margin="67,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="Basic_UsedAP_Copy5" HorizontalAlignment="Left" Height="25" Margin="107,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="Basic_UsedAP_Copy6" HorizontalAlignment="Left" Height="25" Margin="171,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="6" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="Basic_UsedAP_Copy7" HorizontalAlignment="Left" Height="25" Margin="212,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="Basic_UsedAP_Copy8" HorizontalAlignment="Left" Height="25" Margin="67,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="Basic_UsedAP_Copy9" HorizontalAlignment="Left" Height="25" Margin="107,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="Basic_UsedAP_Copy10" HorizontalAlignment="Left" Height="25" Margin="171,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="6" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="Basic_UsedAP_Copy11" HorizontalAlignment="Left" Height="25" Margin="212,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="Basic_UsedAP_Copy12" HorizontalAlignment="Left" Height="25" Margin="67,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="Basic_UsedAP_Copy13" HorizontalAlignment="Left" Height="25" Margin="107,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="Basic_UsedAP_Copy14" HorizontalAlignment="Left" Height="25" Margin="171,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="6" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="Basic_UsedAP_Copy15" HorizontalAlignment="Left" Height="25" Margin="212,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="Basic_UsedAP_Copy16" HorizontalAlignment="Left" Height="25" Margin="67,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="Basic_UsedAP_Copy17" HorizontalAlignment="Left" Height="25" Margin="107,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="Basic_UsedAP_Copy18" HorizontalAlignment="Left" Height="25" Margin="171,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="6" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="Basic_UsedAP_Copy19" HorizontalAlignment="Left" Height="25" Margin="212,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="Basic_UsedAP_Copy20" HorizontalAlignment="Left" Height="25" Margin="67,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="Basic_UsedAP_Copy21" HorizontalAlignment="Left" Height="25" Margin="107,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="Basic_UsedAP_Copy22" HorizontalAlignment="Left" Height="25" Margin="171,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="6" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <TextBox x:Name="Basic_UsedAP_Copy23" HorizontalAlignment="Left" Height="25" Margin="212,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <ListView Grid.Column="2" Background="#FFE5E5E5" BorderBrush="#FFE5E5E5">
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn Header="Capability" Width="160"/>
+                                            <GridViewColumn Header="Value" Width="80"/>
+                                        </GridView>
+                                    </ListView.View>
+                                    <ListViewItem Content="Overland"/>
+                                    <ListViewItem Content="Swim"/>
+                                    <ListViewItem Content="Long Jump"/>
+                                    <ListViewItem Content="High Jump"/>
+                                    <ListViewItem Content="Power"/>
+                                </ListView>
+                            </Grid>
+                            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="10,342,0,-62" VerticalAlignment="Top" Width="100" Background="Red"/>
+                        </Grid>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Moves">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Skills">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Edges/&#xD;&#xA;Features/&#xD;&#xA;Abilities">
+                <Grid Background="#FFE5E5E5">
+                    <Grid>
+                        <ScrollViewer>
+                            
+                        </ScrollViewer>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Inventory">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Other">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Roll Page">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</UserControl>

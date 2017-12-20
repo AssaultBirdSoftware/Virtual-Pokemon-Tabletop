@@ -105,6 +105,9 @@
     <Compile Include="UI\Entity\EntityListItem.xaml.cs">
       <DependentUpon>EntityListItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Entity\Entity.xaml.cs">
+      <DependentUpon>Entity.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Manage_Identitys.xaml.cs">
       <DependentUpon>Manage_Identitys.xaml</DependentUpon>
     </Compile>
@@ -113,9 +116,6 @@
     </Compile>
     <Compile Include="UI\Pokedex.xaml.cs">
       <DependentUpon>Pokedex.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Pokemon Character Sheet.xaml.cs">
-      <DependentUpon>Pokemon Character Sheet.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Pokemon Species.xaml.cs">
       <DependentUpon>Pokemon Species.xaml</DependentUpon>
@@ -154,6 +154,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Entity\Entity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Manage_Identitys.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -163,10 +167,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Pokedex.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Pokemon Character Sheet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -274,6 +274,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Pokeball.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PTU Icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -127,7 +128,7 @@ namespace AssaultBird2454.VPTU.Client
         }
         #endregion
 
-        #region Entity
+        #region Entity List
         /// <summary>
         /// The control that handels the EntityList List Functions
         /// </summary>
@@ -169,6 +170,41 @@ namespace AssaultBird2454.VPTU.Client
             Menu_View_EntityList.IsChecked = false;
             _EntityList_Form = null;
             _EntityList_Window = null;
+        }
+
+        private List<KeyValuePair<string, WPF.MDI.MdiChild>> _CharacterSheet_List = new List<KeyValuePair<string, WPF.MDI.MdiChild>>();
+        public WPF.MDI.MdiChild CharacterSheet_List(string ID)
+        {
+            List<KeyValuePair<string, WPF.MDI.MdiChild>> val = _CharacterSheet_List.FindAll(x => x.Key == ID);
+            if (val.Count >= 1)
+            {
+                return val[0].Value;
+            }
+            else
+            {
+                UI.Entity.Entity CharacterSheet = new UI.Entity.Entity();
+
+                WPF.MDI.MdiChild window = new WPF.MDI.MdiChild()
+                {
+                    Title = "Character Sheet - [Name]",
+                    Icon = new BitmapImage(new Uri(Program.AssemblyDirectory + @"\Resources\Unknown_Pokemon_Sprite.png", UriKind.Absolute)),
+                    Content = CharacterSheet,
+                    MaximizeBox = false,
+                    Height = 420,
+                    Width = 717,
+                    Resizable = false
+                };// Create the window
+                window.Closing += PokedexCharacterSheet_Window_Closing;// Set up an event
+                MDI.Children.Add(window);// Add the window
+
+                _CharacterSheet_List.Add(new KeyValuePair<string, WPF.MDI.MdiChild>(ID, window));
+                return window;
+            }
+        }
+
+        private void PokedexCharacterSheet_Window_Closing(object sender, RoutedEventArgs e)
+        {
+            _CharacterSheet_List.Remove(_CharacterSheet_List.Find(x => x.Value == (WPF.MDI.MdiChild)sender));
         }
         #endregion
 
@@ -587,6 +623,22 @@ namespace AssaultBird2454.VPTU.Client
             Server.Instances.CommandData.Entity.Entity_All_GetList EAGL = (Server.Instances.CommandData.Entity.Entity_All_GetList)Data;
 
             this.Dispatcher.Invoke(new Action(() => EntityList_Form().EntityManager_ReloadList(EAGL.Folders, EAGL.Entrys)));
+        }
+        internal void Entity_Pokemon_Get_Executed(object Data)
+        {
+            Server.Instances.CommandData.Entity.Entity_Pokemon_Get Pokemon = (Server.Instances.CommandData.Entity.Entity_Pokemon_Get)Data;
+            
+            this.Dispatcher.Invoke(new Action(() =>
+            {
+                WPF.MDI.MdiChild Window = CharacterSheet_List(Pokemon.ID);
+                UI.Entity.Entity EntityForm = ((UI.Entity.Entity)(Window).Content);
+
+                var bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(Pokemon.Image.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+
+                Window.Icon = bitmapSource;
+                EntityForm.Update_Pokemon(Pokemon.Pokemon);
+                EntityForm.Update_Token(Pokemon.Image);
+            }));
         }
         internal void Resources_Image_Get_Entity_Executed(object Data)
         {
