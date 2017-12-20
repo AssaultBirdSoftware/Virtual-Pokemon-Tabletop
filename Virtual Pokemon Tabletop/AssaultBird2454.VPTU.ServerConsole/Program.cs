@@ -52,7 +52,7 @@ namespace AssaultBird2454.VPTU.ServerConsole
                     ServerInterface = new Server_UI();
                     ServerInterface.ShowDialog();
                 }));
-                ServerInterface_Thread.ApartmentState = ApartmentState.STA;
+                ServerInterface_Thread.SetApartmentState(ApartmentState.STA);
                 ServerInterface_Thread.Start();
                 ServerInterface_Thread.Join();
             }
