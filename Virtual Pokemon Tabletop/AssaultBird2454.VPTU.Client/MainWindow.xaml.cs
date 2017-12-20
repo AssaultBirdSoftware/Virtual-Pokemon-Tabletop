@@ -191,7 +191,7 @@ namespace AssaultBird2454.VPTU.Client
                     Content = CharacterSheet,
                     MaximizeBox = false,
                     Height = 420,
-                    Width = 717,
+                    Width = 722,
                     Resizable = false
                 };// Create the window
                 window.Closing += PokedexCharacterSheet_Window_Closing;// Set up an event

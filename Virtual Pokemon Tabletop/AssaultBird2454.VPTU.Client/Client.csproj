@@ -213,6 +213,10 @@
       <Project>{f5cd6b0d-b4ff-448a-9276-3c563c4c02df}</Project>
       <Name>VPTU</Name>
     </ProjectReference>
+    <ProjectReference Include="..\External\MultiSelectComboBox\MultiSelectComboBox.csproj">
+      <Project>{CE17A54E-0661-429F-AFDC-272E8668B14E}</Project>
+      <Name>MultiSelectComboBox</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hammer.MdiContainer\WPF.MDI.csproj">
       <Project>{BE1ED569-5E0B-4DF0-8964-33AD2AAE4C4A}</Project>
       <Name>WPF.MDI</Name>
