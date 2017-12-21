@@ -198,6 +198,81 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Docs\PTU System 1.05\Chapter 1 %28Introduction%29.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 10 %28Indices and Reference%29.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 11 %28Running the Game%29.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 2 %28Character Creation%29.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 2 %28Character Creation%29\Chapter 2 %28Character Creation%29 - Quick Start.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 3 %28Skills, Edges And Features%29.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 4 %28Trainer Classes%29.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 5 %28Pokemon%29.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 5 %28Pokemon%29\Chapter 5 %28Pokemon%29 - Breeding Pokemon.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 5 %28Pokemon%29\Chapter 5 %28Pokemon%29 - Capturing Pokemon.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 5 %28Pokemon%29\Chapter 5 %28Pokemon%29 - Disposition.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 5 %28Pokemon%29\Chapter 5 %28Pokemon%29 - Fishing.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 5 %28Pokemon%29\Chapter 5 %28Pokemon%29 - Leveling Up.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 5 %28Pokemon%29\Chapter 5 %28Pokemon%29 - Loyalty.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 5 %28Pokemon%29\Chapter 5 %28Pokemon%29 - Mega Evolution.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 5 %28Pokemon%29\Chapter 5 %28Pokemon%29 - Poke Edges.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 5 %28Pokemon%29\Chapter 5 %28Pokemon%29 - Pokemon as Mounts.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 5 %28Pokemon%29\Chapter 5 %28Pokemon%29 - Pokemon Fossils.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 5 %28Pokemon%29\Chapter 5 %28Pokemon%29 - Sample Pokemon Builds.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 6 %28Playing the Game%29.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 7 %28Combat%29.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 8 %28Pokemon Contests%29.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 9 %28Gear and Items%29.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Pokedex 1.05.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Pokemon Tabletop United 1.05 Core.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <EmbeddedResource Include="ProjectVariables.json" />
     <None Include="Properties\Settings.settings">
