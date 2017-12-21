@@ -89,12 +89,22 @@ namespace AssaultBird2454.VPTU.Client.UI.Entity
         }
         private void Ctxm_Entity_Edit_Click(object sender, RoutedEventArgs e)
         {
-            ContextMenu ctxm = ((ContextMenu)((MenuItem)sender).Parent);
-            EntityManager.Entry_Data data = entrys.Find(x => x.ID == ((EntityManager.Entry_Data)ctxm.Tag).ID);
-
-            if (data.Entity_Type == EntityManager.Entity_Type.Pokemon)
+            try
             {
-                //EntityManager_EditPokemonEntity();
+                ContextMenu ctxm = ((ContextMenu)((MenuItem)sender).Parent);
+                EntityManager.Entry_Data data = entrys.Find(x => x.ID == ((EntityManager.Entry_Data)ctxm.Tag).ID);
+                if (data.Entity_Type == EntityManager.Entity_Type.Pokemon)
+                {
+                    Program.ClientInstance.Client.SendData(new VPTU.Server.Instances.CommandData.Entity.Entity_Pokemon_Get()// Gets the Pokemon Selected
+                    {
+                        ID = data.ID// Sets the Pokemon ID to get
+                    });
+                    //Program.MainWindow.CharacterSheet_List("");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
         }
         private void Ctxm_Folder_Delete_Click(object sender, RoutedEventArgs e)
@@ -355,7 +365,7 @@ namespace AssaultBird2454.VPTU.Client.UI.Entity
             ContextMenu EntityManager_Entity = new ContextMenu();
             EntityManager_Entity.Tag = entry;
             MenuItem ctxm_Entity_Edit = new MenuItem();
-            ctxm_Entity_Edit.Header = "Edit";
+            ctxm_Entity_Edit.Header = "View / Edit";
             ctxm_Entity_Edit.Click += Ctxm_Entity_Edit_Click;
             MenuItem ctxm_Entity_Duplicate = new MenuItem();
             ctxm_Entity_Duplicate.Header = "Duplicate";

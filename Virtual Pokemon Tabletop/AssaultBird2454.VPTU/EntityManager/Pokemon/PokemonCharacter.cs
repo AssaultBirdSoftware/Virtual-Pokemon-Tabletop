@@ -11,6 +11,13 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         public PokemonCharacter(string _ID)
         {
             ID = _ID;
+
+            View = new List<string>();
+            Edit = new List<string>();
+            PokemonType = new List<BattleManager.Data.Type>();
+            Abilitys = new List<string>();
+            Moves = new List<string>();
+            Status = new List<KeyValuePair<BattleManager.Data.Status_Afflictions, object>>();
         }
         public PokemonCharacter()
         {
@@ -28,10 +35,21 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
                     Name = Name,
                     Parent_Folder = Parent_Folder,
                     Token_ResourceID = Token_ResourceID,
-                    Entity_Type = Entity_Type.Pokemon
+                    Entity_Type = Entity_Type.Pokemon,
+                    View = View,
+                    Edit = Edit
                 };
             }
         }
+
+        /// <summary>
+        /// List of users with View Permission
+        /// </summary>
+        public List<string> View { get; set; }
+        /// <summary>
+        /// List of users with Edit Permission
+        /// </summary>
+        public List<string> Edit { get; set; }
 
         /// <summary>
         /// The resource ID for this entry
@@ -49,6 +67,24 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         public string Notes { get; set; }
         public decimal Species_DexID { get; set; }
         public List<VPTU.BattleManager.Data.Type> PokemonType { get; set; }
+        [JsonIgnore]
+        public string TypeString
+        {
+            get
+            {
+                int i = 0;
+                string s = "";
+                foreach (BattleManager.Data.Type type in PokemonType)
+                {
+                    if (i != 0)
+                        s = s + ", ";
+                    s = s + type.ToString();
+                    i++;
+                }
+
+                return s;
+            }
+        }
         public int EXP { get; set; }
         [JsonIgnore]
         public int Next_EXP_Requirement

@@ -22,6 +22,28 @@
                 <MenuItem x:Name="Menu_About_Licence" Header="Licence" Click="Menu_About_Licence_Click"/>
                 <MenuItem x:Name="Menu_About_LegalNotices" Header="Legal Notices" Click="Menu_About_LegalNotices_Click"/>
             </MenuItem>
+            <MenuItem x:Name="Menu_Help" Header="Help">
+                <MenuItem x:Name="Menu_Help_PTUSystem" Header="PTU System Help">
+                    <MenuItem x:Name="Menu_Help_Forums" Header="Pokémon Tabletop Forums" Click="Menu_Help_Forums_Click"/>
+                    <Separator Height="2"/>
+                    <MenuItem x:Name="Menu_Help_PTUSystem_105" Header="PTU 1.05">
+                        <MenuItem x:Name="Menu_Help_PTUSystem_105_Pokedex" Header="Pokedex" Click="Menu_Help_PTUSystem_105_Pokedex_Click"/>
+                        <Separator Height="2"/>
+                        <MenuItem x:Name="Menu_Help_PTUSystem_105_I" Header="Introduction" Click="Menu_Help_PTUSystem_105_I_Click"/>
+                        <MenuItem x:Name="Menu_Help_PTUSystem_105_CC" Header="Character Creation" Click="Menu_Help_PTUSystem_105_CC_Click"/>
+                        <MenuItem x:Name="Menu_Help_PTUSystem_105_SEaF" Header="Skills, Edges And Features" Click="Menu_Help_PTUSystem_105_SEaF_Click"/>
+                        <MenuItem x:Name="Menu_Help_PTUSystem_105_TC" Header="Trainer Classes" Click="Menu_Help_PTUSystem_105_TC_Click"/>
+                        <MenuItem x:Name="Menu_Help_PTUSystem_105_P" Header="Pokemon" Click="Menu_Help_PTUSystem_105_P_Click"/>
+                        <MenuItem x:Name="Menu_Help_PTUSystem_105_PtG" Header="Playing the Game" Click="Menu_Help_PTUSystem_105_PtG_Click"/>
+                        <MenuItem x:Name="Menu_Help_PTUSystem_105_C" Header="Combat" Click="Menu_Help_PTUSystem_105_C_Click"/>
+                        <MenuItem x:Name="Menu_Help_PTUSystem_105_PC" Header="Pokemon Contests" Click="Menu_Help_PTUSystem_105_PC_Click"/>
+                        <MenuItem x:Name="Menu_Help_PTUSystem_105_GaI" Header="Gear and Items" Click="Menu_Help_PTUSystem_105_GaI_Click"/>
+                        <MenuItem x:Name="Menu_Help_PTUSystem_105_IaR" Header="Indices and Reference" Click="Menu_Help_PTUSystem_105_IaR_Click"/>
+                        <MenuItem x:Name="Menu_Help_PTUSystem_105_RtG" Header="Running the Game" Click="Menu_Help_PTUSystem_105_RtG_Click"/>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="Software Help"/>
+            </MenuItem>
         </Menu>
         <TabControl x:Name="SaveEditor_TabPanel" Margin="0,17.96,0,21.96" IsEnabled="False">
             <TabItem Header="Overview &amp; Settings">
@@ -79,8 +101,8 @@
                                     <Label Content="Users / Players" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="22" FontWeight="Bold"/>
                                     <GroupBox Header="Users / Players" Grid.Column="1" Margin="0,39,0,0" Height="253" VerticalAlignment="Top">
                                         <Grid Margin="0">
-                                            <Button x:Name="OverViewSettings_UsersGroups_CreateUser" Content="Create User" VerticalAlignment="Top" Margin="0,10,0,0"/>
-                                            <Button x:Name="OverViewSettings_UsersGroups_EditUser" Content="Edit User" VerticalAlignment="Top" Margin="0,35,0,0"/>
+                                            <Button x:Name="OverViewSettings_UsersGroups_CreateUser" Content="Create User" VerticalAlignment="Top" Margin="0,10,0,0" Click="OverViewSettings_UsersGroups_CreateUser_Click"/>
+                                            <Button x:Name="OverViewSettings_UsersGroups_EditUser" Content="Edit User" VerticalAlignment="Top" Margin="0,35,0,0" Click="OverViewSettings_UsersGroups_EditUser_Click"/>
                                             <Button x:Name="OverViewSettings_UsersGroups_DeleteUser" Content="Delete User" VerticalAlignment="Top" Margin="0,60,0,0"/>
                                         </Grid>
                                     </GroupBox>

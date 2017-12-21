@@ -10,85 +10,85 @@ using System.Collections.Generic;
 
 namespace WPF.MDI
 {
-	[ContentProperty("Content")]
-	public class MdiChild : Control
-	{
-		#region Constants
+    [ContentProperty("Content")]
+    public class MdiChild : Control
+    {
+        #region Constants
 
-		/// <summary>
-		/// Width of minimized window.
-		/// </summary>
-		internal const int MinimizedWidth = 160;
+        /// <summary>
+        /// Width of minimized window.
+        /// </summary>
+        internal const int MinimizedWidth = 280;// 160
 
-		/// <summary>
-		/// Height of minimized window.
-		/// </summary>
-		internal const int MinimizedHeight = 29;
+        /// <summary>
+        /// Height of minimized window.
+        /// </summary>
+        internal const int MinimizedHeight = 29;
 
-		#endregion
+        #endregion
 
-		#region Dependency Properties
+        #region Dependency Properties
 
-		/// <summary>
-		/// Identifies the WPF.MDI.MdiChild.ContentProperty dependency property.
-		/// </summary>
-		/// <returns>The identifier for the WPF.MDI.MdiChild.ContentProperty property.</returns>
-		public static readonly DependencyProperty ContentProperty =
-			DependencyProperty.Register("Content", typeof(UIElement), typeof(MdiChild));
+        /// <summary>
+        /// Identifies the WPF.MDI.MdiChild.ContentProperty dependency property.
+        /// </summary>
+        /// <returns>The identifier for the WPF.MDI.MdiChild.ContentProperty property.</returns>
+        public static readonly DependencyProperty ContentProperty =
+            DependencyProperty.Register("Content", typeof(UIElement), typeof(MdiChild));
 
-		/// <summary>
-		/// Identifies the WPF.MDI.MdiChild.TitleProperty dependency property.
-		/// </summary>
-		/// <returns>The identifier for the WPF.MDI.MdiChild.TitleProperty property.</returns>
-		public static readonly DependencyProperty TitleProperty =
-			DependencyProperty.Register("Title", typeof(string), typeof(MdiChild));
+        /// <summary>
+        /// Identifies the WPF.MDI.MdiChild.TitleProperty dependency property.
+        /// </summary>
+        /// <returns>The identifier for the WPF.MDI.MdiChild.TitleProperty property.</returns>
+        public static readonly DependencyProperty TitleProperty =
+            DependencyProperty.Register("Title", typeof(string), typeof(MdiChild));
 
-		/// <summary>
-		/// Identifies the WPF.MDI.MdiChild.IconProperty dependency property.
-		/// </summary>
-		/// <returns>The identifier for the WPF.MDI.MdiChild.IconProperty property.</returns>
-		public static readonly DependencyProperty IconProperty =
-			DependencyProperty.Register("Icon", typeof(ImageSource), typeof(MdiChild));
+        /// <summary>
+        /// Identifies the WPF.MDI.MdiChild.IconProperty dependency property.
+        /// </summary>
+        /// <returns>The identifier for the WPF.MDI.MdiChild.IconProperty property.</returns>
+        public static readonly DependencyProperty IconProperty =
+            DependencyProperty.Register("Icon", typeof(ImageSource), typeof(MdiChild));
 
-		/// <summary>
-		/// Identifies the WPF.MDI.MdiChild.ShowIconProperty dependency property.
-		/// </summary>
-		/// <returns>The identifier for the WPF.MDI.MdiChild.ShowIconProperty property.</returns>
-		public static readonly DependencyProperty ShowIconProperty =
-			DependencyProperty.Register("ShowIcon", typeof(bool), typeof(MdiChild),
-			new UIPropertyMetadata(true));
+        /// <summary>
+        /// Identifies the WPF.MDI.MdiChild.ShowIconProperty dependency property.
+        /// </summary>
+        /// <returns>The identifier for the WPF.MDI.MdiChild.ShowIconProperty property.</returns>
+        public static readonly DependencyProperty ShowIconProperty =
+            DependencyProperty.Register("ShowIcon", typeof(bool), typeof(MdiChild),
+            new UIPropertyMetadata(true));
 
-		/// <summary>
-		/// Identifies the WPF.MDI.MdiChild.ResizableProperty dependency property.
-		/// </summary>
-		/// <returns>The identifier for the WPF.MDI.MdiChild.ResizableProperty property.</returns>
-		public static readonly DependencyProperty ResizableProperty =
-			DependencyProperty.Register("Resizable", typeof(bool), typeof(MdiChild),
-			new UIPropertyMetadata(true));
+        /// <summary>
+        /// Identifies the WPF.MDI.MdiChild.ResizableProperty dependency property.
+        /// </summary>
+        /// <returns>The identifier for the WPF.MDI.MdiChild.ResizableProperty property.</returns>
+        public static readonly DependencyProperty ResizableProperty =
+            DependencyProperty.Register("Resizable", typeof(bool), typeof(MdiChild),
+            new UIPropertyMetadata(true));
 
-		/// <summary>
-		/// Identifies the WPF.MDI.MdiChild.FocusedProperty dependency property.
-		/// </summary>
-		/// <returns>The identifier for the WPF.MDI.MdiChild.FocusedProperty property.</returns>
-		public static readonly DependencyProperty FocusedProperty =
-			DependencyProperty.Register("Focused", typeof(bool), typeof(MdiChild),
-			new UIPropertyMetadata(false, new PropertyChangedCallback(FocusedValueChanged)));
+        /// <summary>
+        /// Identifies the WPF.MDI.MdiChild.FocusedProperty dependency property.
+        /// </summary>
+        /// <returns>The identifier for the WPF.MDI.MdiChild.FocusedProperty property.</returns>
+        public static readonly DependencyProperty FocusedProperty =
+            DependencyProperty.Register("Focused", typeof(bool), typeof(MdiChild),
+            new UIPropertyMetadata(false, new PropertyChangedCallback(FocusedValueChanged)));
 
-		/// <summary>
-		/// Identifies the WPF.MDI.MdiChild.MinimizeBoxProperty dependency property.
-		/// </summary>
-		/// <returns>The identifier for the WPF.MDI.MdiChild.MinimizeBoxProperty property.</returns>
-		public static readonly DependencyProperty MinimizeBoxProperty =
-			DependencyProperty.Register("MinimizeBox", typeof(bool), typeof(MdiChild),
-			new UIPropertyMetadata(true, new PropertyChangedCallback(MinimizeBoxValueChanged)));
+        /// <summary>
+        /// Identifies the WPF.MDI.MdiChild.MinimizeBoxProperty dependency property.
+        /// </summary>
+        /// <returns>The identifier for the WPF.MDI.MdiChild.MinimizeBoxProperty property.</returns>
+        public static readonly DependencyProperty MinimizeBoxProperty =
+            DependencyProperty.Register("MinimizeBox", typeof(bool), typeof(MdiChild),
+            new UIPropertyMetadata(true, new PropertyChangedCallback(MinimizeBoxValueChanged)));
 
-		/// <summary>
-		/// Identifies the WPF.MDI.MdiChild.MaximizeBoxProperty dependency property.
-		/// </summary>
-		/// <returns>The identifier for the WPF.MDI.MdiChild.MaximizeBoxProperty property.</returns>
-		public static readonly DependencyProperty MaximizeBoxProperty =
-			DependencyProperty.Register("MaximizeBox", typeof(bool), typeof(MdiChild),
-			new UIPropertyMetadata(true, new PropertyChangedCallback(MaximizeBoxValueChanged)));
+        /// <summary>
+        /// Identifies the WPF.MDI.MdiChild.MaximizeBoxProperty dependency property.
+        /// </summary>
+        /// <returns>The identifier for the WPF.MDI.MdiChild.MaximizeBoxProperty property.</returns>
+        public static readonly DependencyProperty MaximizeBoxProperty =
+            DependencyProperty.Register("MaximizeBox", typeof(bool), typeof(MdiChild),
+            new UIPropertyMetadata(true, new PropertyChangedCallback(MaximizeBoxValueChanged)));
 
         /// <summary>
         /// Identifies the WPF.MDI.MdiChild.CloseBoxProperty dependency property.
@@ -98,140 +98,140 @@ namespace WPF.MDI
             DependencyProperty.Register("CloseBox", typeof(bool), typeof(MdiChild),
             new UIPropertyMetadata(true, new PropertyChangedCallback(CloseBoxValueChanged)));
 
-		/// <summary>
-		/// Identifies the WPF.MDI.MdiChild.WindowStateProperty dependency property.
-		/// </summary>
-		/// <returns>The identifier for the WPF.MDI.MdiChild.WindowStateProperty property.</returns>
-		public static readonly DependencyProperty WindowStateProperty =
-			DependencyProperty.Register("WindowState", typeof(WindowState), typeof(MdiChild),
-			new UIPropertyMetadata(WindowState.Normal, new PropertyChangedCallback(WindowStateValueChanged)));
+        /// <summary>
+        /// Identifies the WPF.MDI.MdiChild.WindowStateProperty dependency property.
+        /// </summary>
+        /// <returns>The identifier for the WPF.MDI.MdiChild.WindowStateProperty property.</returns>
+        public static readonly DependencyProperty WindowStateProperty =
+            DependencyProperty.Register("WindowState", typeof(WindowState), typeof(MdiChild),
+            new UIPropertyMetadata(WindowState.Normal, new PropertyChangedCallback(WindowStateValueChanged)));
 
-		/// <summary>
-		/// Identifies the WPF.MDI.MdiChild.PositionProperty dependency property.
-		/// </summary>
-		/// <returns>The identifier for the WPF.MDI.MdiChild.PositionProperty property.</returns>
-		public static readonly DependencyProperty PositionProperty =
-			DependencyProperty.Register("Position", typeof(Point), typeof(MdiChild),
-			new UIPropertyMetadata(new Point(-1, -1), new PropertyChangedCallback(PositionValueChanged)));
+        /// <summary>
+        /// Identifies the WPF.MDI.MdiChild.PositionProperty dependency property.
+        /// </summary>
+        /// <returns>The identifier for the WPF.MDI.MdiChild.PositionProperty property.</returns>
+        public static readonly DependencyProperty PositionProperty =
+            DependencyProperty.Register("Position", typeof(Point), typeof(MdiChild),
+            new UIPropertyMetadata(new Point(-1, -1), new PropertyChangedCallback(PositionValueChanged)));
 
-		///// <summary>
-		///// Identifies the WPF.MDI.MdiChild.ButtonsProperty dependency property.
-		///// </summary>
-		///// <returns>The identifier for the WPF.MDI.MdiChild.ButtonsProperty property.</returns>
-		//public static readonly DependencyProperty ButtonsProperty =
-		//    DependencyProperty.Register("Buttons", typeof(Panel), typeof(MdiChild),
-		//    new UIPropertyMetadata(null));
+        ///// <summary>
+        ///// Identifies the WPF.MDI.MdiChild.ButtonsProperty dependency property.
+        ///// </summary>
+        ///// <returns>The identifier for the WPF.MDI.MdiChild.ButtonsProperty property.</returns>
+        //public static readonly DependencyProperty ButtonsProperty =
+        //    DependencyProperty.Register("Buttons", typeof(Panel), typeof(MdiChild),
+        //    new UIPropertyMetadata(null));
 
 
-		#endregion
+        #endregion
 
-		#region Dependency Events
+        #region Dependency Events
 
-		/// <summary>
-		/// Identifies the WPF.MDI.MdiChild.ClosingEvent routed event.
-		/// </summary>
-		/// <returns>The identifier for the WPF.MDI.MdiChild.ClosingEvent routed event.</returns>
-		public static readonly RoutedEvent ClosingEvent =
-			EventManager.RegisterRoutedEvent("Closing", RoutingStrategy.Bubble, typeof(ClosingEventArgs), typeof(MdiChild));
+        /// <summary>
+        /// Identifies the WPF.MDI.MdiChild.ClosingEvent routed event.
+        /// </summary>
+        /// <returns>The identifier for the WPF.MDI.MdiChild.ClosingEvent routed event.</returns>
+        public static readonly RoutedEvent ClosingEvent =
+            EventManager.RegisterRoutedEvent("Closing", RoutingStrategy.Bubble, typeof(ClosingEventArgs), typeof(MdiChild));
 
-		/// <summary>
-		/// Identifies the WPF.MDI.MdiChild.ClosedEvent routed event.
-		/// </summary>
-		/// <returns>The identifier for the WPF.MDI.MdiChild.ClosedEvent routed event.</returns>
-		public static readonly RoutedEvent ClosedEvent =
-			EventManager.RegisterRoutedEvent("Closed", RoutingStrategy.Bubble, typeof(RoutedEventArgs), typeof(MdiChild));
+        /// <summary>
+        /// Identifies the WPF.MDI.MdiChild.ClosedEvent routed event.
+        /// </summary>
+        /// <returns>The identifier for the WPF.MDI.MdiChild.ClosedEvent routed event.</returns>
+        public static readonly RoutedEvent ClosedEvent =
+            EventManager.RegisterRoutedEvent("Closed", RoutingStrategy.Bubble, typeof(RoutedEventArgs), typeof(MdiChild));
 
-		#endregion
+        #endregion
 
-		#region Property Accessors
+        #region Property Accessors
 
-		/// <summary>
-		/// Gets or sets the content.
-		/// This is a dependency property.
-		/// </summary>
-		/// <value>The content.</value>
-		public UIElement Content
-		{
-			get { return (UIElement)GetValue(ContentProperty); }
-			set { SetValue(ContentProperty, value); }
-		}
+        /// <summary>
+        /// Gets or sets the content.
+        /// This is a dependency property.
+        /// </summary>
+        /// <value>The content.</value>
+        public UIElement Content
+        {
+            get { return (UIElement)GetValue(ContentProperty); }
+            set { SetValue(ContentProperty, value); }
+        }
 
-		/// <summary>
-		/// Gets or sets the window title.
-		/// This is a dependency property.
-		/// </summary>
-		/// <value>The window title.</value>
-		public string Title
-		{
-			get { return (string)GetValue(TitleProperty); }
-			set { SetValue(TitleProperty, value); }
-		}
+        /// <summary>
+        /// Gets or sets the window title.
+        /// This is a dependency property.
+        /// </summary>
+        /// <value>The window title.</value>
+        public string Title
+        {
+            get { return (string)GetValue(TitleProperty); }
+            set { SetValue(TitleProperty, value); }
+        }
 
-		/// <summary>
-		/// Gets or sets the window icon.
-		/// This is a dependency property.
-		/// </summary>
-		/// <value>The window icon.</value>
-		public ImageSource Icon
-		{
-			get { return (ImageSource)GetValue(IconProperty); }
-			set { SetValue(IconProperty, value); }
-		}
+        /// <summary>
+        /// Gets or sets the window icon.
+        /// This is a dependency property.
+        /// </summary>
+        /// <value>The window icon.</value>
+        public ImageSource Icon
+        {
+            get { return (ImageSource)GetValue(IconProperty); }
+            set { SetValue(IconProperty, value); }
+        }
 
-		/// <summary>
-		/// Gets or sets a value indicating whether to [show the window icon].
-		/// This is a dependency property.
-		/// </summary>
-		/// <value><c>true</c> if [show the window icon]; otherwise, <c>false</c>.</value>
-		public bool ShowIcon
-		{
-			get { return (bool)GetValue(ShowIconProperty); }
-			set { SetValue(ShowIconProperty, value); }
-		}
+        /// <summary>
+        /// Gets or sets a value indicating whether to [show the window icon].
+        /// This is a dependency property.
+        /// </summary>
+        /// <value><c>true</c> if [show the window icon]; otherwise, <c>false</c>.</value>
+        public bool ShowIcon
+        {
+            get { return (bool)GetValue(ShowIconProperty); }
+            set { SetValue(ShowIconProperty, value); }
+        }
 
-		/// <summary>
-		/// Gets or sets a value indicating whether the [window is resizable].
-		/// This is a dependency property.
-		/// </summary>
-		/// <value><c>true</c> if [window is resizable]; otherwise, <c>false</c>.</value>
-		public bool Resizable
-		{
-			get { return (bool)GetValue(ResizableProperty); }
-			set { SetValue(ResizableProperty, value); }
-		}
+        /// <summary>
+        /// Gets or sets a value indicating whether the [window is resizable].
+        /// This is a dependency property.
+        /// </summary>
+        /// <value><c>true</c> if [window is resizable]; otherwise, <c>false</c>.</value>
+        public bool Resizable
+        {
+            get { return (bool)GetValue(ResizableProperty); }
+            set { SetValue(ResizableProperty, value); }
+        }
 
-		/// <summary>
-		/// Gets or sets a value indicating whether the [window is focused].
-		/// This is a dependency property.
-		/// </summary>
-		/// <value><c>true</c> if [window is focused]; otherwise, <c>false</c>.</value>
-		public bool Focused
-		{
-			get { return (bool)GetValue(FocusedProperty); }
-			set { SetValue(FocusedProperty, value); }
-		}
+        /// <summary>
+        /// Gets or sets a value indicating whether the [window is focused].
+        /// This is a dependency property.
+        /// </summary>
+        /// <value><c>true</c> if [window is focused]; otherwise, <c>false</c>.</value>
+        public bool Focused
+        {
+            get { return (bool)GetValue(FocusedProperty); }
+            set { SetValue(FocusedProperty, value); }
+        }
 
-		/// <summary>
-		/// Gets or sets a value indicating whether to [show the minimize box button].
-		/// This is a dependency property.
-		/// </summary>
-		/// <value><c>true</c> if [show the minimize box button]; otherwise, <c>false</c>.</value>
-		public bool MinimizeBox
-		{
-			get { return (bool)GetValue(MinimizeBoxProperty); }
-			set { SetValue(MinimizeBoxProperty, value); }
-		}
+        /// <summary>
+        /// Gets or sets a value indicating whether to [show the minimize box button].
+        /// This is a dependency property.
+        /// </summary>
+        /// <value><c>true</c> if [show the minimize box button]; otherwise, <c>false</c>.</value>
+        public bool MinimizeBox
+        {
+            get { return (bool)GetValue(MinimizeBoxProperty); }
+            set { SetValue(MinimizeBoxProperty, value); }
+        }
 
-		/// <summary>
-		/// Gets or sets a value indicating whether to [show the maximize box button].
-		/// This is a dependency property.
-		/// </summary>
-		/// <value><c>true</c> if [show the maximize box button]; otherwise, <c>false</c>.</value>
-		public bool MaximizeBox
-		{
-			get { return (bool)GetValue(MaximizeBoxProperty); }
-			set { SetValue(MaximizeBoxProperty, value); }
-		}
+        /// <summary>
+        /// Gets or sets a value indicating whether to [show the maximize box button].
+        /// This is a dependency property.
+        /// </summary>
+        /// <value><c>true</c> if [show the maximize box button]; otherwise, <c>false</c>.</value>
+        public bool MaximizeBox
+        {
+            get { return (bool)GetValue(MaximizeBoxProperty); }
+            set { SetValue(MaximizeBoxProperty, value); }
+        }
 
         /// <summary>
         /// Gets or sets a value indicating whether to [show the close box button].
@@ -244,618 +244,633 @@ namespace WPF.MDI
             set { SetValue(CloseBoxProperty, value); }
         }
 
-		/// <summary>
-		/// Gets or sets the state of the window.
-		/// This is a dependency property.
-		/// </summary>
-		/// <value>The state of the window.</value>
-		public WindowState WindowState
-		{
-			get { return (WindowState)GetValue(WindowStateProperty); }
-			set { SetValue(WindowStateProperty, value); }
-		}
+        /// <summary>
+        /// Gets or sets the state of the window.
+        /// This is a dependency property.
+        /// </summary>
+        /// <value>The state of the window.</value>
+        public WindowState WindowState
+        {
+            get { return (WindowState)GetValue(WindowStateProperty); }
+            set { SetValue(WindowStateProperty, value); }
+        }
 
-		/// <summary>
-		/// Gets or sets position of top left corner of window.
-		/// This is a dependency property.
-		/// </summary>
-		public Point Position
-		{
-			get { return (Point)GetValue(PositionProperty); }
-			set { SetValue(PositionProperty, value); }
-		}
+        /// <summary>
+        /// Gets or sets position of top left corner of window.
+        /// This is a dependency property.
+        /// </summary>
+        public Point Position
+        {
+            get { return (Point)GetValue(PositionProperty); }
+            set { SetValue(PositionProperty, value); }
+        }
 
-		/// <summary>
-		/// Gets buttons for window in maximized state.
-		/// </summary>
-		public Panel Buttons
-		{
-			//get { return (Panel)GetValue(ButtonsProperty); }
-			//private set { SetValue(ButtonsProperty, value); }
-			get;
-			private set;
-		}
+        /// <summary>
+        /// Gets buttons for window in maximized state.
+        /// </summary>
+        public Panel Buttons
+        {
+            //get { return (Panel)GetValue(ButtonsProperty); }
+            //private set { SetValue(ButtonsProperty, value); }
+            get;
+            private set;
+        }
 
-		/// <summary>
-		/// Force user not to use Margin property.
-		/// </summary>
-		private new Thickness Margin { set { } }
-		
-		#endregion
+        /// <summary>
+        /// Force user not to use Margin property.
+        /// </summary>
+        private new Thickness Margin { set { } }
 
-		#region Event Accessors
+        #endregion
 
-		public event RoutedEventHandler Closing
-		{
-			add { AddHandler(ClosingEvent, value); }
-			remove { RemoveHandler(ClosingEvent, value); }
-		}
+        #region Event Accessors
 
-		public event RoutedEventHandler Closed
-		{
-			add { AddHandler(ClosedEvent, value); }
-			remove { RemoveHandler(ClosedEvent, value); }
-		}
+        public event RoutedEventHandler Closing
+        {
+            add { AddHandler(ClosingEvent, value); }
+            remove { RemoveHandler(ClosingEvent, value); }
+        }
 
-		#endregion
+        public event RoutedEventHandler Closed
+        {
+            add { AddHandler(ClosedEvent, value); }
+            remove { RemoveHandler(ClosedEvent, value); }
+        }
 
-		#region Member Declarations
+        #endregion
 
-		#region Top Buttons
+        #region Member Declarations
 
-		private Button minimizeButton;
+        #region Top Buttons
 
-		private Button maximizeButton;
+        private Button minimizeButton;
 
-		private Button closeButton;
+        private Button maximizeButton;
 
-		private StackPanel buttonsPanel;
+        private Button closeButton;
 
-		#endregion
+        private StackPanel buttonsPanel;
 
-		/// <summary>
-		/// Gets or sets the container.
-		/// </summary>
-		/// <value>The container.</value>
-		public MdiContainer Container { get; private set; }
+        #endregion
 
-		/// <summary>
-		/// Dimensions of window in Normal state.
-		/// </summary>
-		private Rect originalDimension;
+        /// <summary>
+        /// Gets or sets the container.
+        /// </summary>
+        /// <value>The container.</value>
+        public MdiContainer Container { get; private set; }
 
-		/// <summary>
-		/// Position of window in Minimized state.
-		/// </summary>
-		private Point minimizedPosition = new Point(-1, -1);
+        /// <summary>
+        /// Dimensions of window in Normal state.
+        /// </summary>
+        private Rect originalDimension;
 
-		/// <summary>
-		/// Previous non-maximized state of maximized window.
-		/// </summary>
-		WindowState NonMaximizedState { get; set; }
+        /// <summary>
+        /// Position of window in Minimized state.
+        /// </summary>
+        private Point minimizedPosition = new Point(-1, -1);
 
-		#endregion
+        /// <summary>
+        /// Previous non-maximized state of maximized window.
+        /// </summary>
+        WindowState NonMaximizedState { get; set; }
 
-		#region Constructor
+        #endregion
 
-		/// <summary>
-		/// Initializes the <see cref="MdiChild"/> class.
-		/// </summary>
-		static MdiChild()
-		{
-			DefaultStyleKeyProperty.OverrideMetadata(typeof(MdiChild), new FrameworkPropertyMetadata(typeof(MdiChild)));
-		}
+        #region Constructor
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="MdiChild"/> class.
-		/// </summary>
-		public MdiChild()
-		{
-			Focusable = IsTabStop = false;
+        /// <summary>
+        /// Initializes the <see cref="MdiChild"/> class.
+        /// </summary>
+        static MdiChild()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(MdiChild), new FrameworkPropertyMetadata(typeof(MdiChild)));
+        }
 
-			Loaded += MdiChild_Loaded;
-			GotFocus += MdiChild_GotFocus;
-			KeyDown += MdiChild_KeyDown;
-		}
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MdiChild"/> class.
+        /// </summary>
+        public MdiChild()
+        {
+            Focusable = IsTabStop = false;
 
-		static void MdiChild_KeyDown(object sender, KeyEventArgs e)
-		{
-			MdiChild mdiChild = (MdiChild)sender;
-			switch (e.Key)
-			{
-				case Key.F4:
-					if (e.KeyboardDevice.Modifiers == ModifierKeys.Control)
-					{
-						mdiChild.Close();
-						e.Handled = true;
-					}
-					break;
-			}
-		}
+            Loaded += MdiChild_Loaded;
+            GotFocus += MdiChild_GotFocus;
+            KeyDown += MdiChild_KeyDown;
+        }
 
-		#endregion
+        static void MdiChild_KeyDown(object sender, KeyEventArgs e)
+        {
+            MdiChild mdiChild = (MdiChild)sender;
+            switch (e.Key)
+            {
+                case Key.F4:
+                    if (e.KeyboardDevice.Modifiers == ModifierKeys.Control)
+                    {
+                        mdiChild.Close();
+                        e.Handled = true;
+                    }
+                    break;
+            }
+        }
 
-		#region Control Events
+        #endregion
 
-		/// <summary>
-		/// Handles the Loaded event of the MdiChild control.
-		/// </summary>
-		/// <param name="sender">The source of the event.</param>
-		/// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
-		private void MdiChild_Loaded(object sender, RoutedEventArgs e)
-		{
-			FrameworkElement currentControl = this;
+        #region Control Events
 
-			while (currentControl != null && currentControl.GetType() != typeof(MdiContainer))
-				currentControl = (FrameworkElement)currentControl.Parent;
+        /// <summary>
+        /// Handles the Loaded event of the MdiChild control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+        private void MdiChild_Loaded(object sender, RoutedEventArgs e)
+        {
+            FrameworkElement currentControl = this;
 
-			if (currentControl != null)
-				Container = (MdiContainer)currentControl;
-			//else throw new Exception("Unable to find MdiContainer parent.");
-		}
+            while (currentControl != null && currentControl.GetType() != typeof(MdiContainer))
+                currentControl = (FrameworkElement)currentControl.Parent;
 
-		/// <summary>
-		/// Handles the GotFocus event of the MdiChild control.
-		/// </summary>
-		/// <param name="sender">The source of the event.</param>
-		/// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
-		private void MdiChild_GotFocus(object sender, RoutedEventArgs e)
-		{
-			Focus();
-		}
+            if (currentControl != null)
+                Container = (MdiContainer)currentControl;
+            //else throw new Exception("Unable to find MdiContainer parent.");
+        }
 
-		#endregion
+        /// <summary>
+        /// Handles the GotFocus event of the MdiChild control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+        private void MdiChild_GotFocus(object sender, RoutedEventArgs e)
+        {
+            Focus();
+        }
 
-		#region Control Overrides
+        #endregion
 
-		/// <summary>
-		/// When overridden in a derived class, is invoked whenever application code or internal processes call <see cref="M:System.Windows.FrameworkElement.ApplyTemplate"/>.
-		/// </summary>
-		public override void OnApplyTemplate()
-		{
-			base.OnApplyTemplate();
+        #region Control Overrides
 
-			minimizeButton = (Button)Template.FindName("MinimizeButton", this);
-			maximizeButton = (Button)Template.FindName("MaximizeButton", this);
-			closeButton = (Button)Template.FindName("CloseButton", this);
-			buttonsPanel = (StackPanel)Template.FindName("ButtonsPanel", this);
+        /// <summary>
+        /// When overridden in a derived class, is invoked whenever application code or internal processes call <see cref="M:System.Windows.FrameworkElement.ApplyTemplate"/>.
+        /// </summary>
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
 
-			if (minimizeButton != null)
-				minimizeButton.Click += minimizeButton_Click;
+            minimizeButton = (Button)Template.FindName("MinimizeButton", this);
+            maximizeButton = (Button)Template.FindName("MaximizeButton", this);
+            closeButton = (Button)Template.FindName("CloseButton", this);
+            buttonsPanel = (StackPanel)Template.FindName("ButtonsPanel", this);
 
-			if (maximizeButton != null)
-				maximizeButton.Click += maximizeButton_Click;
+            if (minimizeButton != null)
+                minimizeButton.Click += minimizeButton_Click;
 
-			if (closeButton != null)
-				closeButton.Click += closeButton_Click;
+            if (maximizeButton != null)
+                maximizeButton.Click += maximizeButton_Click;
 
-			Thumb dragThumb = (Thumb)Template.FindName("DragThumb", this);
+            if (closeButton != null)
+                closeButton.Click += closeButton_Click;
 
-			if (dragThumb != null)
-			{
-				dragThumb.DragStarted += Thumb_DragStarted;
-				dragThumb.DragDelta += dragThumb_DragDelta;
+            Thumb dragThumb = (Thumb)Template.FindName("DragThumb", this);
 
-				dragThumb.MouseDoubleClick += (sender, e) =>
-				{
-					if (WindowState == WindowState.Minimized)
-						minimizeButton_Click(null, null);
-					else if (WindowState == WindowState.Normal)
-						maximizeButton_Click(null, null);
-				};
-			}
+            if (dragThumb != null)
+            {
+                dragThumb.DragStarted += Thumb_DragStarted;
+                dragThumb.DragDelta += dragThumb_DragDelta;
 
-			Thumb resizeLeft = (Thumb)Template.FindName("ResizeLeft", this);
-			Thumb resizeTopLeft = (Thumb)Template.FindName("ResizeTopLeft", this);
-			Thumb resizeTop = (Thumb)Template.FindName("ResizeTop", this);
-			Thumb resizeTopRight = (Thumb)Template.FindName("ResizeTopRight", this);
-			Thumb resizeRight = (Thumb)Template.FindName("ResizeRight", this);
-			Thumb resizeBottomRight = (Thumb)Template.FindName("ResizeBottomRight", this);
-			Thumb resizeBottom = (Thumb)Template.FindName("ResizeBottom", this);
-			Thumb resizeBottomLeft = (Thumb)Template.FindName("ResizeBottomLeft", this);
+                dragThumb.MouseDoubleClick += (sender, e) =>
+                {
+                    if (MaximizeBox)
+                    {
+                        if (WindowState == WindowState.Minimized)
+                            minimizeButton_Click(null, null);
+                        else if (WindowState == WindowState.Normal)
+                            maximizeButton_Click(null, null);
+                    }
+                };
+            }
 
-			if (resizeLeft != null)
-			{
-				resizeLeft.DragStarted += Thumb_DragStarted;
-				resizeLeft.DragDelta += ResizeLeft_DragDelta;
-			}
+            Thumb resizeLeft = (Thumb)Template.FindName("ResizeLeft", this);
+            Thumb resizeTopLeft = (Thumb)Template.FindName("ResizeTopLeft", this);
+            Thumb resizeTop = (Thumb)Template.FindName("ResizeTop", this);
+            Thumb resizeTopRight = (Thumb)Template.FindName("ResizeTopRight", this);
+            Thumb resizeRight = (Thumb)Template.FindName("ResizeRight", this);
+            Thumb resizeBottomRight = (Thumb)Template.FindName("ResizeBottomRight", this);
+            Thumb resizeBottom = (Thumb)Template.FindName("ResizeBottom", this);
+            Thumb resizeBottomLeft = (Thumb)Template.FindName("ResizeBottomLeft", this);
 
-			if (resizeTop != null)
-			{
-				resizeTop.DragStarted += Thumb_DragStarted;
-				resizeTop.DragDelta += ResizeTop_DragDelta;
-			}
+            if (resizeLeft != null)
+            {
+                resizeLeft.DragStarted += Thumb_DragStarted;
+                resizeLeft.DragDelta += ResizeLeft_DragDelta;
+            }
 
-			if (resizeRight != null)
-			{
-				resizeRight.DragStarted += Thumb_DragStarted;
-				resizeRight.DragDelta += ResizeRight_DragDelta;
-			}
+            if (resizeTop != null)
+            {
+                resizeTop.DragStarted += Thumb_DragStarted;
+                resizeTop.DragDelta += ResizeTop_DragDelta;
+            }
 
-			if (resizeBottom != null)
-			{
-				resizeBottom.DragStarted += Thumb_DragStarted;
-				resizeBottom.DragDelta += ResizeBottom_DragDelta;
-			}
+            if (resizeRight != null)
+            {
+                resizeRight.DragStarted += Thumb_DragStarted;
+                resizeRight.DragDelta += ResizeRight_DragDelta;
+            }
 
-			if (resizeTopLeft != null)
-			{
-				resizeTopLeft.DragStarted += Thumb_DragStarted;
+            if (resizeBottom != null)
+            {
+                resizeBottom.DragStarted += Thumb_DragStarted;
+                resizeBottom.DragDelta += ResizeBottom_DragDelta;
+            }
 
-				resizeTopLeft.DragDelta += (sender, e) =>
-				{
-					ResizeTop_DragDelta(null, e);
-					ResizeLeft_DragDelta(null, e);
+            if (resizeTopLeft != null)
+            {
+                resizeTopLeft.DragStarted += Thumb_DragStarted;
 
-					Container.InvalidateSize();
-				};
-			}
+                resizeTopLeft.DragDelta += (sender, e) =>
+                {
+                    ResizeTop_DragDelta(null, e);
+                    ResizeLeft_DragDelta(null, e);
 
-			if (resizeTopRight != null)
-			{
-				resizeTopRight.DragStarted += Thumb_DragStarted;
+                    Container.InvalidateSize();
+                };
+            }
 
-				resizeTopRight.DragDelta += (sender, e) =>
-				{
-					ResizeTop_DragDelta(null, e);
-					ResizeRight_DragDelta(null, e);
+            if (resizeTopRight != null)
+            {
+                resizeTopRight.DragStarted += Thumb_DragStarted;
 
-					Container.InvalidateSize();
-				};
-			}
+                resizeTopRight.DragDelta += (sender, e) =>
+                {
+                    ResizeTop_DragDelta(null, e);
+                    ResizeRight_DragDelta(null, e);
 
-			if (resizeBottomRight != null)
-			{
-				resizeBottomRight.DragStarted += Thumb_DragStarted;
+                    Container.InvalidateSize();
+                };
+            }
 
-				resizeBottomRight.DragDelta += (sender, e) =>
-				{
-					ResizeBottom_DragDelta(null, e);
-					ResizeRight_DragDelta(null, e);
+            if (resizeBottomRight != null)
+            {
+                resizeBottomRight.DragStarted += Thumb_DragStarted;
 
-					Container.InvalidateSize();
-				};
-			}
+                resizeBottomRight.DragDelta += (sender, e) =>
+                {
+                    ResizeBottom_DragDelta(null, e);
+                    ResizeRight_DragDelta(null, e);
 
-			if (resizeBottomLeft != null)
-			{
-				resizeBottomLeft.DragStarted += Thumb_DragStarted;
+                    Container.InvalidateSize();
+                };
+            }
 
-				resizeBottomLeft.DragDelta += (sender, e) =>
-				{
-					ResizeBottom_DragDelta(null, e);
-					ResizeLeft_DragDelta(null, e);
+            if (resizeBottomLeft != null)
+            {
+                resizeBottomLeft.DragStarted += Thumb_DragStarted;
 
-					Container.InvalidateSize();
-				};
-			}
+                resizeBottomLeft.DragDelta += (sender, e) =>
+                {
+                    ResizeBottom_DragDelta(null, e);
+                    ResizeLeft_DragDelta(null, e);
 
-			MinimizeBoxValueChanged(this, new DependencyPropertyChangedEventArgs(MinimizeBoxProperty, true, MinimizeBox));
-			MaximizeBoxValueChanged(this, new DependencyPropertyChangedEventArgs(MaximizeBoxProperty, true, MaximizeBox));
+                    Container.InvalidateSize();
+                };
+            }
+
+            MinimizeBoxValueChanged(this, new DependencyPropertyChangedEventArgs(MinimizeBoxProperty, true, MinimizeBox));
+            MaximizeBoxValueChanged(this, new DependencyPropertyChangedEventArgs(MaximizeBoxProperty, true, MaximizeBox));
             CloseBoxValueChanged(this, new DependencyPropertyChangedEventArgs(CloseBoxProperty, true, CloseBox));
-		}
+        }
 
-		/// <summary>
-		/// Invoked when an unhandled <see cref="E:System.Windows.Input.Mouse.MouseDown"/> attached event reaches an element in its route that is derived from this class. Implement this method to add class handling for this event.
-		/// </summary>
-		/// <param name="e">The <see cref="T:System.Windows.Input.MouseButtonEventArgs"/> that contains the event data. This event data reports details about the mouse button that was pressed and the handled state.</param>
-		protected override void OnMouseDown(MouseButtonEventArgs e)
-		{
-			base.OnMouseDown(e);
+        /// <summary>
+        /// Invoked when an unhandled <see cref="E:System.Windows.Input.Mouse.MouseDown"/> attached event reaches an element in its route that is derived from this class. Implement this method to add class handling for this event.
+        /// </summary>
+        /// <param name="e">The <see cref="T:System.Windows.Input.MouseButtonEventArgs"/> that contains the event data. This event data reports details about the mouse button that was pressed and the handled state.</param>
+        protected override void OnMouseDown(MouseButtonEventArgs e)
+        {
+            base.OnMouseDown(e);
 
-			Focused = true;
-		}
+            Focused = true;
+        }
 
-		#endregion
+        #endregion
 
-		#region Top Button Events
+        #region Top Button Events
 
-		/// <summary>
-		/// Handles the Click event of the minimizeButton control.
-		/// </summary>
-		/// <param name="sender">The source of the event.</param>
-		/// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
-		private void minimizeButton_Click(object sender, RoutedEventArgs e)
-		{
-			if (WindowState == WindowState.Minimized)
-				WindowState = WindowState.Normal;
-			else
-				WindowState = WindowState.Minimized;
-		}
+        /// <summary>
+        /// Handles the Click event of the minimizeButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+        private void minimizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowState == WindowState.Minimized)
+                WindowState = WindowState.Normal;
+            else
+                WindowState = WindowState.Minimized;
+        }
 
-		/// <summary>
-		/// Handles the Click event of the maximizeButton control.
-		/// </summary>
-		/// <param name="sender">The source of the event.</param>
-		/// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
-		private void maximizeButton_Click(object sender, RoutedEventArgs e)
-		{
-			if (WindowState == WindowState.Maximized)
-				WindowState = WindowState.Normal;
-			else
-				WindowState = WindowState.Maximized;
-		}
+        /// <summary>
+        /// Handles the Click event of the maximizeButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+        private void maximizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (WindowState == WindowState.Maximized)
+                WindowState = WindowState.Normal;
+            else
+                WindowState = WindowState.Maximized;
+        }
 
-		/// <summary>
-		/// Handles the Click event of the closeButton control.
-		/// </summary>
-		/// <param name="sender">The source of the event.</param>
-		/// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
-		private void closeButton_Click(object sender, RoutedEventArgs e)
-		{
-			ClosingEventArgs eventArgs = new ClosingEventArgs(ClosingEvent);
-			RaiseEvent(eventArgs);
+        /// <summary>
+        /// Handles the Click event of the closeButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+        private void closeButton_Click(object sender, RoutedEventArgs e)
+        {
+            ClosingEventArgs eventArgs = new ClosingEventArgs(ClosingEvent);
+            RaiseEvent(eventArgs);
 
-			if (eventArgs.Cancel)
-				return;
+            if (eventArgs.Cancel)
+                return;
 
-			Close();
+            Close();
 
-			RaiseEvent(new RoutedEventArgs(ClosedEvent));
-		}
+            RaiseEvent(new RoutedEventArgs(ClosedEvent));
+        }
 
-		#endregion
+        #endregion
 
-		#region Thumb Events
+        #region Thumb Events
 
-		/// <summary>
-		/// Handles the DragStarted event of the Thumb control.
-		/// </summary>
-		/// <param name="sender">The source of the event.</param>
-		/// <param name="e">The <see cref="System.Windows.Controls.Primitives.DragStartedEventArgs"/> instance containing the event data.</param>
-		private void Thumb_DragStarted(object sender, DragStartedEventArgs e)
-		{
-			if (!Focused)
-				Focused = true;
-		}
+        /// <summary>
+        /// Handles the DragStarted event of the Thumb control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.Controls.Primitives.DragStartedEventArgs"/> instance containing the event data.</param>
+        private void Thumb_DragStarted(object sender, DragStartedEventArgs e)
+        {
+            if (!Focused)
+                Focused = true;
+        }
 
-		/// <summary>
-		/// Handles the DragDelta event of the ResizeLeft control.
-		/// </summary>
-		/// <param name="sender">The source of the event.</param>
-		/// <param name="e">The <see cref="System.Windows.Controls.Primitives.DragDeltaEventArgs"/> instance containing the event data.</param>
-		private void ResizeLeft_DragDelta(object sender, DragDeltaEventArgs e)
-		{
-			if (Width - e.HorizontalChange < MinWidth)
-				return;
+        /// <summary>
+        /// Handles the DragDelta event of the ResizeLeft control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.Controls.Primitives.DragDeltaEventArgs"/> instance containing the event data.</param>
+        private void ResizeLeft_DragDelta(object sender, DragDeltaEventArgs e)
+        {
+            if (Width - e.HorizontalChange < MinWidth)
+                return;
 
-			double newLeft = e.HorizontalChange;
+            double newLeft = e.HorizontalChange;
 
-			if (Position.X + newLeft < 0)
-				newLeft = 0 - Position.X;
+            if (Position.X + newLeft < 0)
+                newLeft = 0 - Position.X;
 
-			Width -= newLeft;
-			Position = new Point(Position.X + newLeft, Position.Y);
+            Width -= newLeft;
+            Position = new Point(Position.X + newLeft, Position.Y);
 
-			if (sender != null)
-				Container.InvalidateSize();
-		}
+            if (sender != null)
+                Container.InvalidateSize();
+        }
 
-		/// <summary>
-		/// Handles the DragDelta event of the ResizeTop control.
-		/// </summary>
-		/// <param name="sender">The source of the event.</param>
-		/// <param name="e">The <see cref="System.Windows.Controls.Primitives.DragDeltaEventArgs"/> instance containing the event data.</param>
-		private void ResizeTop_DragDelta(object sender, DragDeltaEventArgs e)
-		{
-			if (Height - e.VerticalChange < MinHeight)
-				return;
+        /// <summary>
+        /// Handles the DragDelta event of the ResizeTop control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.Controls.Primitives.DragDeltaEventArgs"/> instance containing the event data.</param>
+        private void ResizeTop_DragDelta(object sender, DragDeltaEventArgs e)
+        {
+            if (Height - e.VerticalChange < MinHeight)
+                return;
 
-			double newTop = e.VerticalChange;
+            double newTop = e.VerticalChange;
 
-			if (Position.Y + newTop < 0)
-				newTop = 0 - Position.Y;
+            if (Position.Y + newTop < 0)
+                newTop = 0 - Position.Y;
 
-			Height -= newTop;
-			Position = new Point(Position.X, Position.Y + newTop);
+            Height -= newTop;
+            Position = new Point(Position.X, Position.Y + newTop);
 
-			if (sender != null)
-				Container.InvalidateSize();
-		}
+            if (sender != null)
+                Container.InvalidateSize();
+        }
 
-		/// <summary>
-		/// Handles the DragDelta event of the ResizeRight control.
-		/// </summary>
-		/// <param name="sender">The source of the event.</param>
-		/// <param name="e">The <see cref="System.Windows.Controls.Primitives.DragDeltaEventArgs"/> instance containing the event data.</param>
-		private void ResizeRight_DragDelta(object sender, DragDeltaEventArgs e)
-		{
-			if (Width + e.HorizontalChange < MinWidth)
-				return;
+        /// <summary>
+        /// Handles the DragDelta event of the ResizeRight control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.Controls.Primitives.DragDeltaEventArgs"/> instance containing the event data.</param>
+        private void ResizeRight_DragDelta(object sender, DragDeltaEventArgs e)
+        {
+            if (Width + e.HorizontalChange < MinWidth)
+                return;
 
-			Width += e.HorizontalChange;
+            Width += e.HorizontalChange;
 
-			if (sender != null)
-				Container.InvalidateSize();
-		}
+            if (sender != null)
+                Container.InvalidateSize();
+        }
 
-		/// <summary>
-		/// Handles the DragDelta event of the ResizeBottom control.
-		/// </summary>
-		/// <param name="sender">The source of the event.</param>
-		/// <param name="e">The <see cref="System.Windows.Controls.Primitives.DragDeltaEventArgs"/> instance containing the event data.</param>
-		private void ResizeBottom_DragDelta(object sender, DragDeltaEventArgs e)
-		{
-			if (Height + e.VerticalChange < MinHeight)
-				return;
+        /// <summary>
+        /// Handles the DragDelta event of the ResizeBottom control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.Controls.Primitives.DragDeltaEventArgs"/> instance containing the event data.</param>
+        private void ResizeBottom_DragDelta(object sender, DragDeltaEventArgs e)
+        {
+            if (Height + e.VerticalChange < MinHeight)
+                return;
 
-			Height += e.VerticalChange;
+            Height += e.VerticalChange;
 
-			if (sender != null)
-				Container.InvalidateSize();
-		}
+            if (sender != null)
+                Container.InvalidateSize();
+        }
 
-		#endregion
+        #endregion
 
-		#region Control Drag Event
+        #region Control Drag Event
 
-		/// <summary>
-		/// Handles the DragDelta event of the dragThumb control.
-		/// </summary>
-		/// <param name="sender">The source of the event.</param>
-		/// <param name="e">The <see cref="System.Windows.Controls.Primitives.DragDeltaEventArgs"/> instance containing the event data.</param>
-		private void dragThumb_DragDelta(object sender, DragDeltaEventArgs e)
-		{
-			if (WindowState == WindowState.Maximized)
-				return;
+        /// <summary>
+        /// Handles the DragDelta event of the dragThumb control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.Controls.Primitives.DragDeltaEventArgs"/> instance containing the event data.</param>
+        private void dragThumb_DragDelta(object sender, DragDeltaEventArgs e)
+        {
+            if (WindowState == WindowState.Maximized)
+                return;
 
-			double newLeft = Position.X + e.HorizontalChange,
-				newTop = Position.Y + e.VerticalChange;
+            double newLeft = Position.X + e.HorizontalChange,
+                newTop = Position.Y + e.VerticalChange;
 
-			if (newLeft < 0)
-				newLeft = 0;
-			if (newTop < 0)
-				newTop = 0;
+            if (newLeft < 0)
+                newLeft = 0;
+            if (newTop < 0)
+                newTop = 0;
 
-			Position = new Point(newLeft, newTop);
+            Position = new Point(newLeft, newTop);
 
-			Container.InvalidateSize();
-		}
+            Container.InvalidateSize();
+        }
 
-		#endregion
+        #endregion
 
-		#region Dependency Property Events
+        #region Dependency Property Events
 
-		/// <summary>
-		/// Dependency property event once the position value has changed.
-		/// </summary>
-		/// <param name="sender">The sender.</param>
-		/// <param name="e">The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
-		private static void PositionValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
-		{
-			if ((Point)e.NewValue == (Point)e.OldValue)
-				return;
+        /// <summary>
+        /// Dependency property event once the position value has changed.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        private static void PositionValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            if ((Point)e.NewValue == (Point)e.OldValue)
+                return;
 
-			MdiChild mdiChild = (MdiChild)sender;
-			Point newPosition = (Point)e.NewValue;
+            MdiChild mdiChild = (MdiChild)sender;
+            Point newPosition = (Point)e.NewValue;
 
-			Canvas.SetTop(mdiChild, newPosition.Y < 0 ? 0 : newPosition.Y);
-			Canvas.SetLeft(mdiChild, newPosition.X < 0 ? 0 : newPosition.X);
-		}
+            Canvas.SetTop(mdiChild, newPosition.Y < 0 ? 0 : newPosition.Y);
+            Canvas.SetLeft(mdiChild, newPosition.X < 0 ? 0 : newPosition.X);
+        }
 
-		/// <summary>
-		/// Dependency property event once the focused value has changed.
-		/// </summary>
-		/// <param name="sender">The sender.</param>
-		/// <param name="e">The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
-		private static void FocusedValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
-		{
-			if ((bool)e.NewValue == (bool)e.OldValue)
-				return;
+        /// <summary>
+        /// Dependency property event once the focused value has changed.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        private static void FocusedValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            if ((bool)e.NewValue == (bool)e.OldValue)
+                return;
 
-			MdiChild mdiChild = (MdiChild)sender;
-			if ((bool)e.NewValue)
-			{
-				mdiChild.Dispatcher.BeginInvoke(new Func<IInputElement, IInputElement>(Keyboard.Focus), System.Windows.Threading.DispatcherPriority.ApplicationIdle, mdiChild.Content);
-				mdiChild.RaiseEvent(new RoutedEventArgs(GotFocusEvent, mdiChild));
-			}
-			else
-			{
-				if (mdiChild.WindowState == WindowState.Maximized)
-					mdiChild.Unmaximize();
-				mdiChild.RaiseEvent(new RoutedEventArgs(LostFocusEvent, mdiChild));
-			}
-		}
+            MdiChild mdiChild = (MdiChild)sender;
+            if ((bool)e.NewValue)
+            {
+                mdiChild.Dispatcher.BeginInvoke(new Func<IInputElement, IInputElement>(Keyboard.Focus), System.Windows.Threading.DispatcherPriority.ApplicationIdle, mdiChild.Content);
+                mdiChild.RaiseEvent(new RoutedEventArgs(GotFocusEvent, mdiChild));
+            }
+            else
+            {
+                if (mdiChild.WindowState == WindowState.Maximized)
+                    mdiChild.Unmaximize();
+                mdiChild.RaiseEvent(new RoutedEventArgs(LostFocusEvent, mdiChild));
+            }
+        }
 
-		/// <summary>
-		/// Dependency property event once the minimize box value has changed.
-		/// </summary>
-		/// <param name="sender">The sender.</param>
-		/// <param name="e">The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
-		private static void MinimizeBoxValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
-		{
-			MdiChild mdiChild = (MdiChild)sender;
-			bool visible = (bool)e.NewValue;
+        /// <summary>
+        /// Dependency property event once the minimize box value has changed.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        private static void MinimizeBoxValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            MdiChild mdiChild = (MdiChild)sender;
+            bool visible = (bool)e.NewValue;
 
-			if (visible)
-			{
-				bool maximizeVisible = true;
+            if (visible)
+            {
+                /*bool maximizeVisible = true;
 
-				if (mdiChild.maximizeButton != null)
-					maximizeVisible = mdiChild.maximizeButton.Visibility == Visibility.Visible;
+                if (mdiChild.maximizeButton != null)
+                    maximizeVisible = mdiChild.maximizeButton.Visibility == Visibility.Visible;*/
 
-				if (mdiChild.minimizeButton != null)
-					mdiChild.minimizeButton.IsEnabled = true;
+                if (mdiChild.minimizeButton != null)
+                {
+                    mdiChild.minimizeButton.IsEnabled = true;
+                    mdiChild.minimizeButton.Visibility = Visibility.Visible;
+                }
 
-				if (!maximizeVisible)
-				{
-					if (mdiChild.maximizeButton != null)
-						mdiChild.minimizeButton.Visibility = Visibility.Visible;
+                /*if (!maximizeVisible)
+                {
+                    if (mdiChild.maximizeButton != null)
+                        mdiChild.minimizeButton.Visibility = Visibility.Visible;
 
-					if (mdiChild.maximizeButton != null)
-						mdiChild.maximizeButton.Visibility = Visibility.Visible;
-				}
-			}
-			else
-			{
-				bool maximizeEnabled = true;
+                    if (mdiChild.maximizeButton != null)
+                        mdiChild.maximizeButton.Visibility = Visibility.Visible;
+                }*/
+            }
+            else
+            {
+                /*bool maximizeEnabled = true;
 
-				if (mdiChild.maximizeButton != null)
-					maximizeEnabled = mdiChild.maximizeButton.IsEnabled;
+                if (mdiChild.maximizeButton != null)
+                    maximizeEnabled = mdiChild.maximizeButton.IsEnabled;*/
 
-				if (mdiChild.minimizeButton != null)
-					mdiChild.minimizeButton.IsEnabled = false;
+                if (mdiChild.minimizeButton != null)
+                {
+                    mdiChild.minimizeButton.IsEnabled = false;
+                    mdiChild.minimizeButton.Visibility = Visibility.Collapsed;
+                }
 
-				if (!maximizeEnabled)
-				{
-					if (mdiChild.minimizeButton != null)
-						mdiChild.minimizeButton.Visibility = Visibility.Hidden;
+                /*if (!maximizeEnabled)
+                {
+                    if (mdiChild.minimizeButton != null)
+                        mdiChild.minimizeButton.Visibility = Visibility.Hidden;
 
-					if (mdiChild.maximizeButton != null)
-						mdiChild.maximizeButton.Visibility = Visibility.Hidden;
-				}
-			}
-		}
+                    if (mdiChild.maximizeButton != null)
+                        mdiChild.maximizeButton.Visibility = Visibility.Hidden;
+                }*/
+            }
+        }
 
-		/// <summary>
-		/// Dependency property event once the maximize box value has changed.
-		/// </summary>
-		/// <param name="sender">The sender.</param>
-		/// <param name="e">The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
-		private static void MaximizeBoxValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
-		{
-			MdiChild mdiChild = (MdiChild)sender;
-			bool visible = (bool)e.NewValue;
+        /// <summary>
+        /// Dependency property event once the maximize box value has changed.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        private static void MaximizeBoxValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            MdiChild mdiChild = (MdiChild)sender;
+            bool visible = (bool)e.NewValue;
 
-			if (visible)
-			{
-				bool minimizeVisible = true;
+            if (visible)
+            {
+                /*bool minimizeVisible = true;
 
-				if (mdiChild.minimizeButton != null)
-					minimizeVisible = mdiChild.minimizeButton.Visibility == Visibility.Visible;
+                if (mdiChild.minimizeButton != null)
+                    minimizeVisible = mdiChild.minimizeButton.Visibility == Visibility.Visible;*/
 
-				if (mdiChild.maximizeButton != null)
-					mdiChild.maximizeButton.IsEnabled = true;
+                if (mdiChild.maximizeButton != null)
+                {
+                    mdiChild.maximizeButton.IsEnabled = true;
+                    mdiChild.maximizeButton.Visibility = Visibility.Visible;
+                }
 
-				if (!minimizeVisible)
-				{
-					if (mdiChild.maximizeButton != null)
-						mdiChild.minimizeButton.Visibility = Visibility.Visible;
+                /*if (!minimizeVisible)
+                {
+                    if (mdiChild.maximizeButton != null)
+                        mdiChild.minimizeButton.Visibility = Visibility.Visible;
 
-					if (mdiChild.maximizeButton != null)
-						mdiChild.maximizeButton.Visibility = Visibility.Visible;
-				}
-			}
-			else
-			{
-				bool minimizeEnabled = true;
+                    if (mdiChild.maximizeButton != null)
+                        mdiChild.maximizeButton.Visibility = Visibility.Visible;
+                }*/
+            }
+            else
+            {
+                /*bool minimizeEnabled = true;
 
-				if (mdiChild.minimizeButton != null)
-					minimizeEnabled = mdiChild.minimizeButton.IsEnabled;
+                if (mdiChild.minimizeButton != null)
+                    minimizeEnabled = mdiChild.minimizeButton.IsEnabled;*/
 
-				if (mdiChild.maximizeButton != null)
-					mdiChild.maximizeButton.IsEnabled = false;
+                if (mdiChild.maximizeButton != null)
+                {
+                    mdiChild.maximizeButton.IsEnabled = false;
+                    mdiChild.maximizeButton.Visibility = Visibility.Collapsed;
+                }
 
-				if (!minimizeEnabled)
-				{
-					if (mdiChild.maximizeButton != null)
-						mdiChild.minimizeButton.Visibility = Visibility.Hidden;
+                /*if (!minimizeEnabled)
+                {
+                    if (mdiChild.maximizeButton != null)
+                        mdiChild.minimizeButton.Visibility = Visibility.Hidden;
 
-					if (mdiChild.maximizeButton != null)
-						mdiChild.maximizeButton.Visibility = Visibility.Hidden;
-				}
-			}
-		}
+                    if (mdiChild.maximizeButton != null)
+                        mdiChild.maximizeButton.Visibility = Visibility.Hidden;
+                }*/
+            }
+        }
 
         /// <summary>
         /// Dependency property event once the close box value has changed.
@@ -870,7 +885,7 @@ namespace WPF.MDI
             if (visible)
             {
                 if ((mdiChild.closeButton != null) && (mdiChild.closeButton.Visibility != Visibility.Visible))
-                        mdiChild.closeButton.Visibility = Visibility.Visible;
+                    mdiChild.closeButton.Visibility = Visibility.Visible;
             }
             else
             {
@@ -879,179 +894,179 @@ namespace WPF.MDI
             }
         }
 
-		/// <summary>
-		/// Dependency property event once the windows state value has changed.
-		/// </summary>
-		/// <param name="sender">The sender.</param>
-		/// <param name="e">The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
-		private static void WindowStateValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
-		{
-			MdiChild mdiChild = (MdiChild)sender;
-			MdiContainer mdiContainer = mdiChild.Container;
+        /// <summary>
+        /// Dependency property event once the windows state value has changed.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        private static void WindowStateValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            MdiChild mdiChild = (MdiChild)sender;
+            MdiContainer mdiContainer = mdiChild.Container;
 
-			WindowState previousWindowState = (WindowState)e.OldValue;
-			WindowState windowState = (WindowState)e.NewValue;
+            WindowState previousWindowState = (WindowState)e.OldValue;
+            WindowState windowState = (WindowState)e.NewValue;
 
-			if (mdiChild.Container == null ||
-				previousWindowState == windowState)
-				return;
+            if (mdiChild.Container == null ||
+                previousWindowState == windowState)
+                return;
 
-			if (previousWindowState == WindowState.Maximized)
-			{
-				if (mdiContainer.ActiveMdiChild.WindowState != WindowState.Maximized)
-				{
-					for (int i = 0; i < mdiContainer.Children.Count; i++)
-					{
-						if (mdiContainer.Children[i] != mdiChild &&
-								mdiContainer.Children[i].WindowState == WindowState.Maximized &&
-								mdiContainer.Children[i].MaximizeBox)
-							mdiContainer.Children[i].WindowState = WindowState.Normal;
-					}
+            if (previousWindowState == WindowState.Maximized)
+            {
+                if (mdiContainer.ActiveMdiChild.WindowState != WindowState.Maximized)
+                {
+                    for (int i = 0; i < mdiContainer.Children.Count; i++)
+                    {
+                        if (mdiContainer.Children[i] != mdiChild &&
+                                mdiContainer.Children[i].WindowState == WindowState.Maximized &&
+                                mdiContainer.Children[i].MaximizeBox)
+                            mdiContainer.Children[i].WindowState = WindowState.Normal;
+                    }
 
-					ScrollViewer sv = (ScrollViewer)((Grid)mdiContainer.Content).Children[1];
-					sv.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
-					sv.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
-				}
+                    ScrollViewer sv = (ScrollViewer)((Grid)mdiContainer.Content).Children[1];
+                    sv.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+                    sv.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+                }
 
-				mdiChild.Buttons.Children.Clear();
-				mdiChild.Buttons = null;
-				mdiChild.buttonsPanel.Children.Add(mdiChild.minimizeButton);
-				mdiChild.buttonsPanel.Children.Add(mdiChild.maximizeButton);
-				mdiChild.buttonsPanel.Children.Add(mdiChild.closeButton);
-			}
+                mdiChild.Buttons.Children.Clear();
+                mdiChild.Buttons = null;
+                mdiChild.buttonsPanel.Children.Add(mdiChild.minimizeButton);
+                mdiChild.buttonsPanel.Children.Add(mdiChild.maximizeButton);
+                mdiChild.buttonsPanel.Children.Add(mdiChild.closeButton);
+            }
 
-			if (previousWindowState == WindowState.Minimized)
-				mdiChild.minimizedPosition = mdiChild.Position;
+            if (previousWindowState == WindowState.Minimized)
+                mdiChild.minimizedPosition = mdiChild.Position;
 
-			switch (windowState)
-			{
-				case WindowState.Normal:
-					{
-						mdiChild.Position = new Point(mdiChild.originalDimension.X, mdiChild.originalDimension.Y);
-						mdiChild.Width = mdiChild.originalDimension.Width;
-						mdiChild.Height = mdiChild.originalDimension.Height;
-					}
-					break;
-				case WindowState.Minimized:
-					{
-						if (previousWindowState == WindowState.Normal)
-							mdiChild.originalDimension = new Rect(mdiChild.Position.X, mdiChild.Position.Y, mdiChild.ActualWidth, mdiChild.ActualHeight);
+            switch (windowState)
+            {
+                case WindowState.Normal:
+                    {
+                        mdiChild.Position = new Point(mdiChild.originalDimension.X, mdiChild.originalDimension.Y);
+                        mdiChild.Width = mdiChild.originalDimension.Width;
+                        mdiChild.Height = mdiChild.originalDimension.Height;
+                    }
+                    break;
+                case WindowState.Minimized:
+                    {
+                        if (previousWindowState == WindowState.Normal)
+                            mdiChild.originalDimension = new Rect(mdiChild.Position.X, mdiChild.Position.Y, mdiChild.ActualWidth, mdiChild.ActualHeight);
 
-						double newLeft, newTop;
-						if (mdiChild.minimizedPosition.X >= 0 || mdiChild.minimizedPosition.Y >= 0)
-						{
-							newLeft = mdiChild.minimizedPosition.X;
-							newTop = mdiChild.minimizedPosition.Y;
-						}
-						else
-						{
-							List<Rect> minimizedWindows = new List<Rect>();
-							for (int i = 0; i < mdiContainer.Children.Count; i++)
-							{
-								MdiChild child = mdiContainer.Children[i];
-								if (child != mdiChild &&
-									child.WindowState == WindowState.Minimized)
-									minimizedWindows.Add(new Rect(child.Position.X, mdiContainer.InnerHeight - child.Position.Y, child.Width, child.Height));
-							}
-							Rect newWindowPlace;
-							bool occupied = true;
-							int count = 0,
-								capacity = Convert.ToInt32(mdiContainer.ActualWidth) / MdiChild.MinimizedWidth;
-							do
-							{
-								int row = count / capacity + 1,
-									col = count % capacity;
-								newTop = MdiChild.MinimizedHeight * row;
-								newLeft = MdiChild.MinimizedWidth * col;
+                        double newLeft, newTop;
+                        if (mdiChild.minimizedPosition.X >= 0 || mdiChild.minimizedPosition.Y >= 0)
+                        {
+                            newLeft = mdiChild.minimizedPosition.X;
+                            newTop = mdiChild.minimizedPosition.Y;
+                        }
+                        else
+                        {
+                            List<Rect> minimizedWindows = new List<Rect>();
+                            for (int i = 0; i < mdiContainer.Children.Count; i++)
+                            {
+                                MdiChild child = mdiContainer.Children[i];
+                                if (child != mdiChild &&
+                                    child.WindowState == WindowState.Minimized)
+                                    minimizedWindows.Add(new Rect(child.Position.X, mdiContainer.InnerHeight - child.Position.Y, child.Width, child.Height));
+                            }
+                            Rect newWindowPlace;
+                            bool occupied = true;
+                            int count = 0,
+                                capacity = Convert.ToInt32(mdiContainer.ActualWidth) / MdiChild.MinimizedWidth;
+                            do
+                            {
+                                int row = count / capacity + 1,
+                                    col = count % capacity;
+                                newTop = MdiChild.MinimizedHeight * row;
+                                newLeft = MdiChild.MinimizedWidth * col;
 
-								newWindowPlace = new Rect(newLeft, newTop, MdiChild.MinimizedWidth, MdiChild.MinimizedHeight);
-								occupied = false;
-								foreach (Rect rect in minimizedWindows)
-								{
-									Rect intersection = rect;
-									intersection.Intersect(newWindowPlace);
-									if (intersection != Rect.Empty && intersection.Width > 0 && intersection.Height > 0)
-									{
-										occupied = true;
-										break;
-									}
-								}
-								count++;
+                                newWindowPlace = new Rect(newLeft, newTop, MdiChild.MinimizedWidth, MdiChild.MinimizedHeight);
+                                occupied = false;
+                                foreach (Rect rect in minimizedWindows)
+                                {
+                                    Rect intersection = rect;
+                                    intersection.Intersect(newWindowPlace);
+                                    if (intersection != Rect.Empty && intersection.Width > 0 && intersection.Height > 0)
+                                    {
+                                        occupied = true;
+                                        break;
+                                    }
+                                }
+                                count++;
 
-								// TODO: handle negative Canvas coordinates somehow.
-								if (newTop < 0)
-								{
-									// ugly workaround for now.
-									newTop = 0;
-									occupied = false;
-								}
+                                // TODO: handle negative Canvas coordinates somehow.
+                                if (newTop < 0)
+                                {
+                                    // ugly workaround for now.
+                                    newTop = 0;
+                                    occupied = false;
+                                }
 
-							} while (occupied);
+                            } while (occupied);
 
-							newTop = mdiContainer.InnerHeight - newTop;
-						}
+                            newTop = mdiContainer.InnerHeight - newTop;
+                        }
 
-						mdiChild.Position = new Point(newLeft, newTop);
+                        mdiChild.Position = new Point(newLeft, newTop);
 
-						mdiChild.Width = MdiChild.MinimizedWidth;
-						mdiChild.Height = MdiChild.MinimizedHeight;
-					}
-					break;
-				case WindowState.Maximized:
-					{
-						if (previousWindowState == WindowState.Normal)
-							mdiChild.originalDimension = new Rect(mdiChild.Position.X, mdiChild.Position.Y, mdiChild.ActualWidth, mdiChild.ActualHeight);
-						mdiChild.NonMaximizedState = previousWindowState;
+                        mdiChild.Width = MdiChild.MinimizedWidth;
+                        mdiChild.Height = MdiChild.MinimizedHeight;
+                    }
+                    break;
+                case WindowState.Maximized:
+                    {
+                        if (previousWindowState == WindowState.Normal)
+                            mdiChild.originalDimension = new Rect(mdiChild.Position.X, mdiChild.Position.Y, mdiChild.ActualWidth, mdiChild.ActualHeight);
+                        mdiChild.NonMaximizedState = previousWindowState;
 
-						mdiChild.buttonsPanel.Children.Clear();
-						StackPanel sp = new StackPanel { Orientation = Orientation.Horizontal };
-						sp.Children.Add(mdiChild.minimizeButton);
-						sp.Children.Add(mdiChild.maximizeButton);
-						sp.Children.Add(mdiChild.closeButton);
-						mdiChild.Buttons = sp;
+                        mdiChild.buttonsPanel.Children.Clear();
+                        StackPanel sp = new StackPanel { Orientation = Orientation.Horizontal };
+                        sp.Children.Add(mdiChild.minimizeButton);
+                        sp.Children.Add(mdiChild.maximizeButton);
+                        sp.Children.Add(mdiChild.closeButton);
+                        mdiChild.Buttons = sp;
 
-						mdiChild.Position = new Point(0, 0);
-						mdiChild.Width = mdiContainer.ActualWidth;
-						mdiChild.Height = mdiContainer.InnerHeight - 2; // ContentBorder.BorderThickness="1" in template
+                        mdiChild.Position = new Point(0, 0);
+                        mdiChild.Width = mdiContainer.ActualWidth;
+                        mdiChild.Height = mdiContainer.InnerHeight - 2; // ContentBorder.BorderThickness="1" in template
 
-						ScrollViewer sv = (ScrollViewer)((Grid)mdiContainer.Content).Children[1];
-						sv.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
-						sv.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
-					}
-					break;
-			}
-			if (mdiContainer.ActiveMdiChild == mdiChild)
-				mdiContainer.Buttons = mdiChild.Buttons;
-			mdiContainer.InvalidateSize();
-		}
-		
-		#endregion
+                        ScrollViewer sv = (ScrollViewer)((Grid)mdiContainer.Content).Children[1];
+                        sv.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
+                        sv.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
+                    }
+                    break;
+            }
+            if (mdiContainer.ActiveMdiChild == mdiChild)
+                mdiContainer.Buttons = mdiChild.Buttons;
+            mdiContainer.InvalidateSize();
+        }
 
-		/// <summary>
-		/// Set focus to the child window and brings into view.
-		/// </summary>
-		public new void Focus()
-		{
-			Container.ActiveMdiChild = this;
-		}
+        #endregion
 
-		/// <summary>
-		/// Sets WindowState to previous non-maximized value.
-		/// </summary>
-		internal void Unmaximize()
-		{
-			if (WindowState == WindowState.Maximized)
-				WindowState = NonMaximizedState;
-		}
+        /// <summary>
+        /// Set focus to the child window and brings into view.
+        /// </summary>
+        public new void Focus()
+        {
+            Container.ActiveMdiChild = this;
+        }
 
-		/// <summary>
-		/// Manually closes the child window.
-		/// </summary>
-		public void Close()
-		{
-			if (Buttons != null)
-				Buttons.Children.Clear();
-			Container.Children.Remove(this);
-		}
-	}
+        /// <summary>
+        /// Sets WindowState to previous non-maximized value.
+        /// </summary>
+        internal void Unmaximize()
+        {
+            if (WindowState == WindowState.Maximized)
+                WindowState = NonMaximizedState;
+        }
+
+        /// <summary>
+        /// Manually closes the child window.
+        /// </summary>
+        public void Close()
+        {
+            if (Buttons != null)
+                Buttons.Children.Clear();
+            Container.Children.Remove(this);
+        }
+    }
 }

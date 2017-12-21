@@ -121,6 +121,126 @@ namespace AssaultBird2454.VPTU.SaveEditor
 
         }
         #endregion
+
+        #region Help
+        private void Menu_Help_Forums_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult mbr = MessageBox.Show("Would you like to open a web browser to view the forums?\n\nWeb URL: http://forums.pokemontabletop.com", "Open Forums?", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+            if (mbr == MessageBoxResult.Yes)
+            {
+                Process.Start("http://forums.pokemontabletop.com");
+            }
+        }
+
+        private void Menu_Help_PTUSystem_105_Pokedex_Click(object sender, RoutedEventArgs e)
+        {
+            string dir = AssemblyDirectory + @"\Docs\PTU System 1.05\Pokedex 1.05.pdf";
+            MessageBoxResult mbr = MessageBox.Show("Would you like to open the PTU 1.05 Pokedex document?\n\nFile URI: " + dir, "Open Document?", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+            if (mbr == MessageBoxResult.Yes)
+            {
+                System.Diagnostics.Process.Start(dir);
+            }
+        }
+        private void Menu_Help_PTUSystem_105_I_Click(object sender, RoutedEventArgs e)
+        {
+            string dir = AssemblyDirectory + @"\Docs\PTU System 1.05\Chapter 1 (Introduction).pdf";
+            MessageBoxResult mbr = MessageBox.Show("Would you like to open the PTU 1.05 core document (Chapter 1 Only)?\n\nFile URI: " + dir, "Open Document?", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+            if (mbr == MessageBoxResult.Yes)
+            {
+                System.Diagnostics.Process.Start(dir);
+            }
+        }
+        private void Menu_Help_PTUSystem_105_CC_Click(object sender, RoutedEventArgs e)
+        {
+            string dir = AssemblyDirectory + @"\Docs\PTU System 1.05\Chapter 2 (Character Creation).pdf";
+            MessageBoxResult mbr = MessageBox.Show("Would you like to open the PTU 1.05 core document (Chapter 2 Only)?\n\nFile URI: " + dir, "Open Document?", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+            if (mbr == MessageBoxResult.Yes)
+            {
+                System.Diagnostics.Process.Start(dir);
+            }
+        }
+        private void Menu_Help_PTUSystem_105_SEaF_Click(object sender, RoutedEventArgs e)
+        {
+            string dir = AssemblyDirectory + @"\Docs\PTU System 1.05\Chapter 3 (Skills, Edges And Features).pdf";
+            MessageBoxResult mbr = MessageBox.Show("Would you like to open the PTU 1.05 core document (Chapter 3 Only)?\n\nFile URI: " + dir, "Open Document?", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+            if (mbr == MessageBoxResult.Yes)
+            {
+                System.Diagnostics.Process.Start(dir);
+            }
+        }
+        private void Menu_Help_PTUSystem_105_TC_Click(object sender, RoutedEventArgs e)
+        {
+            string dir = AssemblyDirectory + @"\Docs\PTU System 1.05\Chapter 4 (Trainer Classes).pdf";
+            MessageBoxResult mbr = MessageBox.Show("Would you like to open the PTU 1.05 core document (Chapter 4 Only)?\n\nFile URI: " + dir, "Open Document?", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+            if (mbr == MessageBoxResult.Yes)
+            {
+                System.Diagnostics.Process.Start(dir);
+            }
+        }
+        private void Menu_Help_PTUSystem_105_P_Click(object sender, RoutedEventArgs e)
+        {
+            string dir = AssemblyDirectory + @"\Docs\PTU System 1.05\Chapter 5 (Pokemon).pdf";
+            MessageBoxResult mbr = MessageBox.Show("Would you like to open the PTU 1.05 core document (Chapter 5 Only)?\n\nFile URI: " + dir, "Open Document?", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+            if (mbr == MessageBoxResult.Yes)
+            {
+                System.Diagnostics.Process.Start(dir);
+            }
+        }
+        private void Menu_Help_PTUSystem_105_PtG_Click(object sender, RoutedEventArgs e)
+        {
+            string dir = AssemblyDirectory + @"\Docs\PTU System 1.05\Chapter 6 (Playing the Game).pdf";
+            MessageBoxResult mbr = MessageBox.Show("Would you like to open the PTU 1.05 core document (Chapter 6 Only)?\n\nFile URI: " + dir, "Open Document?", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+            if (mbr == MessageBoxResult.Yes)
+            {
+                System.Diagnostics.Process.Start(dir);
+            }
+        }
+        private void Menu_Help_PTUSystem_105_C_Click(object sender, RoutedEventArgs e)
+        {
+            string dir = AssemblyDirectory + @"\Docs\PTU System 1.05\Chapter 7 (Combat).pdf";
+            MessageBoxResult mbr = MessageBox.Show("Would you like to open the PTU 1.05 core document (Chapter 7 Only)?\n\nFile URI: " + dir, "Open Document?", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+            if (mbr == MessageBoxResult.Yes)
+            {
+                System.Diagnostics.Process.Start(dir);
+            }
+        }
+        private void Menu_Help_PTUSystem_105_PC_Click(object sender, RoutedEventArgs e)
+        {
+            string dir = AssemblyDirectory + @"\Docs\PTU System 1.05\Chapter 8 (Pokemon Contests).pdf";
+            MessageBoxResult mbr = MessageBox.Show("Would you like to open the PTU 1.05 core document (Chapter 8 Only)?\n\nFile URI: " + dir, "Open Document?", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+            if (mbr == MessageBoxResult.Yes)
+            {
+                System.Diagnostics.Process.Start(dir);
+            }
+        }
+        private void Menu_Help_PTUSystem_105_GaI_Click(object sender, RoutedEventArgs e)
+        {
+            string dir = AssemblyDirectory + @"\Docs\PTU System 1.05\Chapter 9 (Gear and Items).pdf";
+            MessageBoxResult mbr = MessageBox.Show("Would you like to open the PTU 1.05 core document (Chapter 9 Only)?\n\nFile URI: " + dir, "Open Document?", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+            if (mbr == MessageBoxResult.Yes)
+            {
+                System.Diagnostics.Process.Start(dir);
+            }
+        }
+        private void Menu_Help_PTUSystem_105_IaR_Click(object sender, RoutedEventArgs e)
+        {
+            string dir = AssemblyDirectory + @"\Docs\PTU System 1.05\Chapter 10 (Indices and Reference).pdf";
+            MessageBoxResult mbr = MessageBox.Show("Would you like to open the PTU 1.05 core document (Chapter 10 Only)?\n\nFile URI: " + dir, "Open Document?", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+            if (mbr == MessageBoxResult.Yes)
+            {
+                System.Diagnostics.Process.Start(dir);
+            }
+        }
+        private void Menu_Help_PTUSystem_105_RtG_Click(object sender, RoutedEventArgs e)
+        {
+            string dir = AssemblyDirectory + @"\Docs\PTU System 1.05\Chapter 11 (Running the Game).pdf";
+            MessageBoxResult mbr = MessageBox.Show("Would you like to open the PTU 1.05 core document (Chapter 11 Only)?\n\nFile URI: " + dir, "Open Document?", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+            if (mbr == MessageBoxResult.Yes)
+            {
+                System.Diagnostics.Process.Start(dir);
+            }
+        }
+        #endregion
         #endregion
 
         #region Save Manager Related Code
@@ -174,13 +294,14 @@ namespace AssaultBird2454.VPTU.SaveEditor
         public void Load(string Path)
         {
             SaveManager = new VPTU.SaveManager.SaveManager(Path);
-            SaveManager.Load_SaveData();
+            try { SaveManager.Load_SaveData(); } catch { return; }
             this.SaveEditor_TabPanel.IsEnabled = true;
 
             OverViewSettings_Reload();// Reload Settings and other info
             PokedexManager_ReloadList();//Reload Pokedex List
             ResourceManager_ReloadList();//Reload Resource List
             EntityManager_ReloadList();// Reload Characters List
+            UserGroup_Users_Reload();// Reload Users List
         }
 
         #region Save Data Tools
@@ -784,7 +905,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
                 TreeViewItem TVI = new TreeViewItem()
                 {
                     Header = folder.Name,
-                    Tag = folder.ID,
+                    Tag = folder,
                     ContextMenu = EntityManager_Folder
                 };
 
@@ -921,18 +1042,34 @@ namespace AssaultBird2454.VPTU.SaveEditor
         }
         public void EntityManager_EditPokemonEntity(EntityManager.Pokemon.PokemonCharacter Pokemon)
         {
+            List<KeyValuePair<System.Windows.Media.Color, string>> View = new List<KeyValuePair<System.Windows.Media.Color, string>>();
             UI.Entity.Pokemon_Character pc = new UI.Entity.Pokemon_Character(SaveManager, Pokemon);
             pc.ShowDialog();
+
+            foreach (string user in pc.PokemonData.View)
+            {
+                Authentication_Manager.Data.User UData = SaveManager.SaveData.Users.Find(x => x.UserID == user);
+
+                View.Add(new KeyValuePair<System.Windows.Media.Color, string>(UData.UserColor, UData.IC_Name));
+            }
 
             TreeViewItem TVI = EntityManager_Entrys.Find(x => ((EntityManager.Entry_Data)x.Tag).ID == Pokemon.ID);
             UI.Entity.EntityListItem ELI = (UI.Entity.EntityListItem)TVI.Header;
 
-            ELI.Update(SaveManager.LoadImage(Pokemon.Token_ResourceID), Pokemon.Name, new List<KeyValuePair<System.Windows.Media.Color, string>>());
+            ELI.Update(SaveManager.LoadImage(Pokemon.Token_ResourceID), Pokemon.Name, View);
         }
         private void EntityManager_DisplayEntry(EntityManager.Entry_Data entry)
         {
+            List<KeyValuePair<System.Windows.Media.Color, string>> View = new List<KeyValuePair<System.Windows.Media.Color, string>>();
             UI.Entity.EntityListItem ELI = new UI.Entity.EntityListItem();
-            ELI.Update(SaveManager.LoadImage(entry.Token_ResourceID), entry.Name, new List<KeyValuePair<System.Windows.Media.Color, string>>());
+
+            foreach (string user in entry.View)
+            {
+                Authentication_Manager.Data.User UData = SaveManager.SaveData.Users.Find(x => x.UserID == user);
+
+                View.Add(new KeyValuePair<System.Windows.Media.Color, string>(UData.UserColor, UData.IC_Name));
+            }
+            ELI.Update(SaveManager.LoadImage(entry.Token_ResourceID), entry.Name, View);
 
             #region Context Menu
             ContextMenu EntityManager_Entity = new ContextMenu();
@@ -992,6 +1129,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
         #endregion
 
         #region Overview and Settings Tab
+        #region Basic
         /// <summary>
         /// Loads Campaign Info
         /// </summary>
@@ -1028,6 +1166,45 @@ namespace AssaultBird2454.VPTU.SaveEditor
             }
             catch { }
         }
+        #endregion
+        #region Features
+
+        #endregion
+        #region Save File Settings
+
+        #endregion
+        #region Users & Groups
+        public void UserGroup_Users_Reload()
+        {
+            OverViewSettings_UsersGroups_UserList.Items.Clear();
+
+            foreach (Authentication_Manager.Data.User User in SaveManager.SaveData.Users)
+            {
+                OverViewSettings_UsersGroups_UserList.Items.Add(User);
+            }
+        }
+        public void UserGroup_Groups_Reload()
+        {
+            OverViewSettings_UsersGroups_GroupList.Items.Clear();
+        }
+
+        private void OverViewSettings_UsersGroups_CreateUser_Click(object sender, RoutedEventArgs e)
+        {
+            UI.Users.Users User = new UI.Users.Users();
+            bool? Pass = User.ShowDialog();
+
+            SaveManager.SaveData.Users.Add(User.User);
+            OverViewSettings_UsersGroups_UserList.Items.Add(User.User);
+        }
+
+        private void OverViewSettings_UsersGroups_EditUser_Click(object sender, RoutedEventArgs e)
+        {
+            UI.Users.Users User = new UI.Users.Users((Authentication_Manager.Data.User)OverViewSettings_UsersGroups_UserList.SelectedItems[0]);
+            bool? Pass = User.ShowDialog();
+
+            UserGroup_Users_Reload();
+        }
+        #endregion
         #endregion
 
         private void PokedexManager_Export_Pokemon_Click(object sender, RoutedEventArgs e)

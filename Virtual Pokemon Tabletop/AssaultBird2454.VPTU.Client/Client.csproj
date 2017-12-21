@@ -28,13 +28,16 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\Building Dir\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Client.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ConsoleControl.WPF, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bb812711dbc508e1, processorArchitecture=MSIL">
@@ -102,17 +105,17 @@
     <Compile Include="UI\Entity\EntityListItem.xaml.cs">
       <DependentUpon>EntityListItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Manage IDs.xaml.cs">
-      <DependentUpon>Manage IDs.xaml</DependentUpon>
+    <Compile Include="UI\Entity\Entity.xaml.cs">
+      <DependentUpon>Entity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Manage_Identitys.xaml.cs">
+      <DependentUpon>Manage_Identitys.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Open.xaml.cs">
       <DependentUpon>Open.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Pokedex.xaml.cs">
       <DependentUpon>Pokedex.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Pokemon Character Sheet.xaml.cs">
-      <DependentUpon>Pokemon Character Sheet.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Pokemon Species.xaml.cs">
       <DependentUpon>Pokemon Species.xaml</DependentUpon>
@@ -151,7 +154,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Manage IDs.xaml">
+    <Page Include="UI\Entity\Entity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Manage_Identitys.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -160,10 +167,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Pokedex.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Pokemon Character Sheet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -195,6 +198,81 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Docs\PTU System 1.05\Chapter 1 %28Introduction%29.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 10 %28Indices and Reference%29.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 11 %28Running the Game%29.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 2 %28Character Creation%29.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 2 %28Character Creation%29\Chapter 2 %28Character Creation%29 - Quick Start.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 3 %28Skills, Edges And Features%29.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 4 %28Trainer Classes%29.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 5 %28Pokemon%29.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 5 %28Pokemon%29\Chapter 5 %28Pokemon%29 - Breeding Pokemon.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 5 %28Pokemon%29\Chapter 5 %28Pokemon%29 - Capturing Pokemon.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 5 %28Pokemon%29\Chapter 5 %28Pokemon%29 - Disposition.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 5 %28Pokemon%29\Chapter 5 %28Pokemon%29 - Fishing.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 5 %28Pokemon%29\Chapter 5 %28Pokemon%29 - Leveling Up.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 5 %28Pokemon%29\Chapter 5 %28Pokemon%29 - Loyalty.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 5 %28Pokemon%29\Chapter 5 %28Pokemon%29 - Mega Evolution.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 5 %28Pokemon%29\Chapter 5 %28Pokemon%29 - Poke Edges.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 5 %28Pokemon%29\Chapter 5 %28Pokemon%29 - Pokemon as Mounts.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 5 %28Pokemon%29\Chapter 5 %28Pokemon%29 - Pokemon Fossils.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 5 %28Pokemon%29\Chapter 5 %28Pokemon%29 - Sample Pokemon Builds.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 6 %28Playing the Game%29.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 7 %28Combat%29.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 8 %28Pokemon Contests%29.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Chapter 9 %28Gear and Items%29.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Pokedex 1.05.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\PTU System 1.05\Pokemon Tabletop United 1.05 Core.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <EmbeddedResource Include="ProjectVariables.json" />
     <None Include="Properties\Settings.settings">
@@ -209,6 +287,10 @@
     <ProjectReference Include="..\AssaultBird2454.VPTU\VPTU.csproj">
       <Project>{f5cd6b0d-b4ff-448a-9276-3c563c4c02df}</Project>
       <Name>VPTU</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\External\MultiSelectComboBox\MultiSelectComboBox.csproj">
+      <Project>{CE17A54E-0661-429F-AFDC-272E8668B14E}</Project>
+      <Name>MultiSelectComboBox</Name>
     </ProjectReference>
     <ProjectReference Include="..\Hammer.MdiContainer\WPF.MDI.csproj">
       <Project>{BE1ED569-5E0B-4DF0-8964-33AD2AAE4C4A}</Project>
@@ -274,5 +356,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PTU Icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>

@@ -8,7 +8,7 @@
         x:Name="Window"
         x:Class="AssaultBird2454.VPTU.Client.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="596.4" Width="894.6">
+        Title="MainWindow" Height="596.4" Width="894.6" Closing="Window_Closing">
     <Grid Margin="0,0,0.4,-0.2">
         <Menu x:Name="Menu" VerticalAlignment="Top">
             <MenuItem x:Name="Menu_Menu" Header="Menu">
@@ -16,7 +16,7 @@
                 <MenuItem x:Name="Menu_Menu_Disconnect" Header="Disconnect from Table" Margin="0,0,0.2,0"/>
                 <MenuItem x:Name="Menu_Menu_Open" Header="Open Campaign File" Margin="0,0,0.2,0"/>
                 <Separator Margin="0,0,0.2,0" Height="2"/>
-                <MenuItem x:Name="Menu_Menu_ManageID" Header="Manage Identity Profiles" Margin="0,0,0.2,0"/>
+                <MenuItem x:Name="Menu_Menu_ManageID" Header="Manage Identity Profiles" Margin="0,0,0.2,0" Click="Menu_Menu_ManageID_Click"/>
                 <Separator Margin="0,0,0.2,0" Height="2"/>
                 <MenuItem x:Name="Menu_Menu_Quit" Header="Quit" Margin="0,0,0.2,0"/>
             </MenuItem>
@@ -28,6 +28,28 @@
                 <MenuItem x:Name="Menu_View_ClientConsole" Header="Client Console" Margin="0,0,-0.4,0" IsCheckable="True"/>
                 <Separator Height="2"/>
                 <MenuItem x:Name="Menu_View_EntityList" Header="View Entitys" IsCheckable="True"/>
+            </MenuItem>
+            <MenuItem x:Name="Menu_Help" Header="Help">
+                <MenuItem x:Name="Menu_Help_PTUSystem" Header="PTU System Help">
+                    <MenuItem x:Name="Menu_Help_Forums" Header="Pokémon Tabletop Forums" Click="Menu_Help_Forums_Click"/>
+                    <Separator Height="2"/>
+                    <MenuItem x:Name="Menu_Help_PTUSystem_105" Header="PTU 1.05">
+                        <MenuItem x:Name="Menu_Help_PTUSystem_105_Pokedex" Header="Pokedex" Click="Menu_Help_PTUSystem_105_Pokedex_Click"/>
+                        <Separator Height="2"/>
+                        <MenuItem x:Name="Menu_Help_PTUSystem_105_I" Header="Introduction" Click="Menu_Help_PTUSystem_105_I_Click"/>
+                        <MenuItem x:Name="Menu_Help_PTUSystem_105_CC" Header="Character Creation" Click="Menu_Help_PTUSystem_105_CC_Click"/>
+                        <MenuItem x:Name="Menu_Help_PTUSystem_105_SEaF" Header="Skills, Edges And Features" Click="Menu_Help_PTUSystem_105_SEaF_Click"/>
+                        <MenuItem x:Name="Menu_Help_PTUSystem_105_TC" Header="Trainer Classes" Click="Menu_Help_PTUSystem_105_TC_Click"/>
+                        <MenuItem x:Name="Menu_Help_PTUSystem_105_P" Header="Pokemon" Click="Menu_Help_PTUSystem_105_P_Click"/>
+                        <MenuItem x:Name="Menu_Help_PTUSystem_105_PtG" Header="Playing the Game" Click="Menu_Help_PTUSystem_105_PtG_Click"/>
+                        <MenuItem x:Name="Menu_Help_PTUSystem_105_C" Header="Combat" Click="Menu_Help_PTUSystem_105_C_Click"/>
+                        <MenuItem x:Name="Menu_Help_PTUSystem_105_PC" Header="Pokemon Contests" Click="Menu_Help_PTUSystem_105_PC_Click"/>
+                        <MenuItem x:Name="Menu_Help_PTUSystem_105_GaI" Header="Gear and Items" Click="Menu_Help_PTUSystem_105_GaI_Click"/>
+                        <MenuItem x:Name="Menu_Help_PTUSystem_105_IaR" Header="Indices and Reference" Click="Menu_Help_PTUSystem_105_IaR_Click"/>
+                        <MenuItem x:Name="Menu_Help_PTUSystem_105_RtG" Header="Running the Game" Click="Menu_Help_PTUSystem_105_RtG_Click"/>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="Software Help"/>
             </MenuItem>
         </Menu>
         <ToolBar x:Name="Tools" Margin="0,18,0,0" VerticalAlignment="Top">

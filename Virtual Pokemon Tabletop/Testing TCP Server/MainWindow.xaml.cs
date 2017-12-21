@@ -109,13 +109,6 @@ namespace Testing_TCP_Server
                     try { this.ClientList.Remove(Client); } catch { }
                 }));
             }
-            else if (Client_State == AssaultBird2454.VPTU.Networking.Data.Client_ConnectionStatus.Rejected)
-            {
-                this.Dispatcher.Invoke(new Action(() =>
-                {
-                    try { this.ClientList.Remove(Client); } catch { }
-                }));
-            }
 
             //Clients.Dispatcher.Invoke(new Action(() => Clients.Items.Refresh()));
         }

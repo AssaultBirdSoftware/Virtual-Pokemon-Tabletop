@@ -25,7 +25,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\Building Dir\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -198,6 +198,7 @@
     <Compile Include="RNG\Generators\RSG.cs" />
     <Compile Include="SaveManager\Data\Campaign Data.cs" />
     <Compile Include="SaveManager\Data\SaveFile\SaveData.cs" />
+    <Compile Include="SaveManager\Identity\Data.cs" />
     <Compile Include="SaveManager\Resource Data\Resources.cs" />
     <Compile Include="SaveManager\SaveConverter.cs" />
     <Compile Include="SaveManager\SaveManager.cs" />
@@ -213,8 +214,11 @@
     <Compile Include="Server\Class\Logging\Logger.cs" />
     <Compile Include="Server\Instances\ClientInstance.cs" />
     <Compile Include="Server\Instances\Client\Base_Commands.cs" />
+    <Compile Include="Server\Instances\CommandData\Auth\Auth.cs" />
     <Compile Include="Server\Instances\CommandData\Battle\Battle_Instance.cs" />
+    <Compile Include="Server\Instances\CommandData\Connection\Connect.cs" />
     <Compile Include="Server\Instances\CommandData\Entity\Entity_All.cs" />
+    <Compile Include="Server\Instances\CommandData\Entity\Entity_Pokemon.cs" />
     <Compile Include="Server\Instances\CommandData\Pokedex\Moves.cs" />
     <Compile Include="Server\Instances\CommandData\Pokedex\Pokemon.cs" />
     <Compile Include="Server\Instances\CommandData\Resources\Resources.cs" />

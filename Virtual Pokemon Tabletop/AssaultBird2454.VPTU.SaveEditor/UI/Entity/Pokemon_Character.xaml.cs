@@ -225,6 +225,14 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
             catch { }
             #endregion
 
+            #region Permissions
+            foreach (Authentication_Manager.Data.User user in MainWindow.SaveManager.SaveData.Users)
+            {
+                Permissions_DB db = new Permissions_DB(PokemonData, user);
+                UserList.Items.Add(db);
+            }
+            #endregion
+
             Reload_Stats();
             Reload_Moves();
             LoadStatusEffects();
@@ -1515,5 +1523,63 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
         public int DB { get; private set; }
         public int AC { get; private set; }
         public string Frequency { get; private set; }
+    }
+
+    public class Permissions_DB
+    {
+        EntityManager.Pokemon.PokemonCharacter PokemonData;
+        public Permissions_DB(EntityManager.Pokemon.PokemonCharacter _PokemonData, Authentication_Manager.Data.User User)
+        {
+            PokemonData = _PokemonData;
+
+            ID = User.UserID;
+            Name = User.Name;
+            ICN = User.IC_Name;
+            Groups = User.Group_String;
+        }
+
+        public bool View
+        {
+            get
+            {
+                return PokemonData.View.Contains(ID);
+            }
+            set
+            {
+                if (value)
+                {
+                    PokemonData.View.RemoveAll(x => x == ID);
+                    PokemonData.View.Add(ID);
+                }
+                else
+                {
+                    PokemonData.View.RemoveAll(x => x == ID);
+                }
+            }
+        }
+        public bool Edit
+        {
+            get
+            {
+                return PokemonData.Edit.Contains(ID);
+            }
+            set
+            {
+                if (value)
+                {
+                    PokemonData.Edit.RemoveAll(x => x == ID);
+                    PokemonData.Edit.Add(ID);
+                }
+                else
+                {
+                    PokemonData.Edit.RemoveAll(x => x == ID);
+                }
+            }
+        }
+
+        public string ID { get; set; }
+        public string Name { get; set; }
+        public string ICN { get; set; }
+        public string Groups { get; set; }
     }
 }

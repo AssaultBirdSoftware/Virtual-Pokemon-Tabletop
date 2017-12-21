@@ -8,7 +8,7 @@
         xmlns:StatusEffects_Data="clr-namespace:AssaultBird2454.VPTU.BattleManager.Data;assembly=AssaultBird2454.VPTU"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:MultiSelectComboBox="clr-namespace:MultiSelectComboBox;assembly=MultiSelectComboBox" x:Class="AssaultBird2454.VPTU.SaveEditor.UI.Entity.Pokemon_Character"
         mc:Ignorable="d"
-        Title="Character Designer - Pokemon" Height="696.063" Width="996.626" ResizeMode="NoResize">
+        Title="Character Designer - Pokemon" Height="691.263" Width="996.626" ResizeMode="NoResize">
     <Window.Resources>
         <ObjectDataProvider x:Key="StatusEffects" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
             <ObjectDataProvider.MethodParameters>
@@ -19,7 +19,7 @@
 
     <Grid>
 
-        <GroupBox x:Name="G_BasicInfo" Header="Basic Information" HorizontalAlignment="Left" VerticalAlignment="Top" Width="849" Height="187">
+        <GroupBox x:Name="G_BasicInfo" Header="Basic Information" HorizontalAlignment="Left" VerticalAlignment="Top" Width="849" Height="189">
             <Grid Margin="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="250"/>
@@ -58,7 +58,7 @@
                 <Label Content="ID" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="85"/>
             </Grid>
         </GroupBox>
-        <TabControl HorizontalAlignment="Left" Height="465" Margin="0,187,0,0" VerticalAlignment="Top" Width="978">
+        <TabControl Margin="2,194,0.4,-0.2">
             <TabItem Header="Moves">
                 <Grid>
                     <ListView x:Name="Moves_List" HorizontalAlignment="Left" Height="437" VerticalAlignment="Top" Width="882">
@@ -364,6 +364,34 @@
                             <Label Content="No Options Available for &quot;Other&quot; Status Effects" Margin="10,10,10,0" Grid.Row="1" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
                         </Grid>
                     </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="User Permissions" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top">
+                <Grid Background="White">
+                    <ListView x:Name="UserList" Margin="0,0,-0.4,0.4">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="View" Width="50px">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox Margin="5, 0" IsChecked="{Binding View}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Edit" Width="50px">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox Margin="5, 0" IsChecked="{Binding Edit}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="UserID" Width="100px" DisplayMemberBinding="{Binding ID}"/>
+                                <GridViewColumn Header="User Name" Width="200px" DisplayMemberBinding="{Binding Name}"/>
+                                <GridViewColumn Header="Character Name" Width="200px" DisplayMemberBinding="{Binding ICN}"/>
+                                <GridViewColumn Header="Groups" Width="300px" DisplayMemberBinding="{Binding Groups}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
                 </Grid>
             </TabItem>
         </TabControl>

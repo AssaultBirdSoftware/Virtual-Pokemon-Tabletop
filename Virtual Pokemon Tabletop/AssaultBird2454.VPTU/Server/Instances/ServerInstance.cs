@@ -75,9 +75,19 @@ namespace AssaultBird2454.VPTU.Server.Instances
         }
         #endregion
         #endregion
+
+        #region Authentication
+        public List<KeyValuePair<Networking.Server.TCP.TCP_ClientNode, Authentication_Manager.Data.User>> Authenticated_Clients;
+
+        public void Authenticate_Client(Networking.Server.TCP.TCP_ClientNode cn, Authentication_Manager.Data.User user)
+        {
+            Authenticated_Clients.RemoveAll(x => x.Key == cn);
+            Authenticated_Clients.Add(new KeyValuePair<Networking.Server.TCP.TCP_ClientNode, Authentication_Manager.Data.User>(cn, user));
+        }
+        #endregion
         #endregion
 
-        public ServerInstance(string SaveData, Class.Logging.I_Logger _Logger)
+        public ServerInstance(Class.Logging.I_Logger _Logger, string SaveData, int Port = 25444)
         {
             #region Logs
             Server_Logger = _Logger;
@@ -103,7 +113,7 @@ namespace AssaultBird2454.VPTU.Server.Instances
             #endregion
             #region Networking
             ((Class.Logging.I_Logger)Server_Logger).Log("Initilizing Base Network", Class.Logging.LoggerLevel.Debug);
-            Server = new Networking.Server.TCP.TCP_Server(IPAddress.Any, Server_CommandHandeler, 25444);
+            Server = new Networking.Server.TCP.TCP_Server(IPAddress.Any, Server_CommandHandeler, Port);
             Server.TCP_AcceptClients_Changed += Server_TCP_AcceptClients_Changed;
             Server.TCP_ClientState_Changed += Server_TCP_ClientState_Changed;
             Server.TCP_Data_Error_Event += Server_TCP_Data_Error_Event;
@@ -122,6 +132,7 @@ namespace AssaultBird2454.VPTU.Server.Instances
 
             #endregion
 
+            Authenticated_Clients = new List<KeyValuePair<Networking.Server.TCP.TCP_ClientNode, Authentication_Manager.Data.User>>();
             ((Class.Logging.I_Logger)Server_Logger).Log("Server Ready!", Class.Logging.LoggerLevel.Info);
         }
 
@@ -131,6 +142,7 @@ namespace AssaultBird2454.VPTU.Server.Instances
             ((Class.Logging.I_Logger)Server_Logger).Log("Starting Base Network", Class.Logging.LoggerLevel.Info);
             try
             {
+                Authenticated_Clients = new List<KeyValuePair<Networking.Server.TCP.TCP_ClientNode, Authentication_Manager.Data.User>>();
                 Server.Start();
                 ((Class.Logging.I_Logger)Server_Logger).Log("Base Network Started", Class.Logging.LoggerLevel.Info);
             }
@@ -138,6 +150,7 @@ namespace AssaultBird2454.VPTU.Server.Instances
             {
                 ((Class.Logging.I_Logger)Server_Logger).Log("Base Network Failed to Start", Class.Logging.LoggerLevel.Fatil);
                 ((Class.Logging.I_Logger)Server_Logger).Log(e.ToString(), Class.Logging.LoggerLevel.Debug);
+                Authenticated_Clients = new List<KeyValuePair<Networking.Server.TCP.TCP_ClientNode, Authentication_Manager.Data.User>>();
                 StopServerInstance();
                 return;
             }
@@ -195,30 +208,41 @@ namespace AssaultBird2454.VPTU.Server.Instances
             if (Client_State == Networking.Data.Client_ConnectionStatus.Connected)
             {
                 ((Class.Logging.I_Logger)Server_Logger).Log("Client Connected (Base Network) Address: " + Client.ID, Class.Logging.LoggerLevel.Info);
+
+                if (Authenticated_Clients.FindAll(x => x.Key == Client).Count == 0)
+                {
+                    Authenticated_Clients.Add(new KeyValuePair<Networking.Server.TCP.TCP_ClientNode, Authentication_Manager.Data.User>(Client, null));
+                }
             }
             else if (Client_State == Networking.Data.Client_ConnectionStatus.Connecting)
             {
                 ((Class.Logging.I_Logger)Server_Logger).Log("Client Connecting (Base Network) Address: " + Client.ID, Class.Logging.LoggerLevel.Info);
+
+                if (Authenticated_Clients.FindAll(x => x.Key == Client).Count == 0)
+                {
+                    Authenticated_Clients.Add(new KeyValuePair<Networking.Server.TCP.TCP_ClientNode, Authentication_Manager.Data.User>(Client, null));
+                }
             }
             else if (Client_State == Networking.Data.Client_ConnectionStatus.Disconnected)
             {
                 ((Class.Logging.I_Logger)Server_Logger).Log("Client Disconnected (Base Network) Address: " + Client.ID, Class.Logging.LoggerLevel.Info);
+
+                Authenticated_Clients.RemoveAll(x => x.Key == Client);
             }
             else if (Client_State == Networking.Data.Client_ConnectionStatus.Dropped)
             {
                 ((Class.Logging.I_Logger)Server_Logger).Log("Client Dropped Connection (Base Network) Address: " + Client.ID, Class.Logging.LoggerLevel.Info);
+
+                Authenticated_Clients.RemoveAll(x => x.Key == Client);
             }
             else if (Client_State == Networking.Data.Client_ConnectionStatus.Encrypted)
             {
                 ((Class.Logging.I_Logger)Server_Logger).Log("Client Encrypted Network Transmittions (Base Network) Address: " + Client.ID, Class.Logging.LoggerLevel.Info);
-            }
-            else if (Client_State == Networking.Data.Client_ConnectionStatus.Rejected)
-            {
-                ((Class.Logging.I_Logger)Server_Logger).Log("Client Rejected (Base Network) Address: " + Client.ID, Class.Logging.LoggerLevel.Info);
-            }
-            else if (Client_State == Networking.Data.Client_ConnectionStatus.ServerFull)
-            {
-                ((Class.Logging.I_Logger)Server_Logger).Log("Server Full, Client Rejected (Base Network) Address: " + Client.ID, Class.Logging.LoggerLevel.Info);
+
+                if (Authenticated_Clients.FindAll(x => x.Key == Client).Count == 0)
+                {
+                    Authenticated_Clients.Add(new KeyValuePair<Networking.Server.TCP.TCP_ClientNode, Authentication_Manager.Data.User>(Client, null));
+                }
             }
         }
         private void Server_TCP_AcceptClients_Changed(bool Accepting_Connections)
