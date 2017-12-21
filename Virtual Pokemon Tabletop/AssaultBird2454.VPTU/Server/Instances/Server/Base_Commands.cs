@@ -268,30 +268,38 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
         {
             List<EntityManager.Entry_Data> Entitys = new List<EntityManager.Entry_Data>();
             List<EntityManager.Folder> Folders = new List<EntityManager.Folder>();
+            Authentication_Manager.Data.User User = Instance.Authenticated_Clients.Find(x => x.Key.ID == Client.ID).Value;
 
             foreach (EntityManager.Pokemon.PokemonCharacter pokemon in Instance.SaveManager.SaveData.Pokemon)
             {
-                if (pokemon.View.Contains(Instance.Authenticated_Clients.Find(x => x.Key.ID == Client.ID).Value.UserID))// Change to check if the user has view permissions on the entry
+                if (pokemon.View.Contains(User.UserID) || User.isGM)// Change to check if the user has view permissions on the entry
                 {
                     Entitys.Add(pokemon.EntryData);
                 }
             }
             foreach (EntityManager.Trainer.TrainerCharacter trainer in Instance.SaveManager.SaveData.Trainers)
             {
-                if (trainer.View.Contains(Instance.Authenticated_Clients.Find(x => x.Key.ID == Client.ID).Value.UserID))// Change to check if the user has view permissions on the entry
+                if (trainer.View.Contains(User.UserID) || User.isGM)// Change to check if the user has view permissions on the entry
                 {
                     Entitys.Add(trainer.EntryData);
                 }
             }
 
-            // Get only the folders needed
-            foreach (EntityManager.Entry_Data entry in Entitys)
+            if (User.isGM)
             {
-                foreach (EntityManager.Folder folder in Instance.SaveManager.SaveData.Folders_GetTreeFrom(entry.Parent_Folder))
+                Folders = Instance.SaveManager.SaveData.Folders;
+            }
+            else
+            {
+                // Get only the folders needed
+                foreach (EntityManager.Entry_Data entry in Entitys)
                 {
-                    if (!Folders.Contains(folder))
+                    foreach (EntityManager.Folder folder in Instance.SaveManager.SaveData.Folders_GetTreeFrom(entry.Parent_Folder))
                     {
-                        Folders.Add(folder);
+                        if (!Folders.Contains(folder))
+                        {
+                            Folders.Add(folder);
+                        }
                     }
                 }
             }
@@ -306,11 +314,14 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
         private void Entity_Pokemon_Get_Executed(object Data, TCP_ClientNode Client)
         {
             CommandData.Entity.Entity_Pokemon_Get Pokemon = (CommandData.Entity.Entity_Pokemon_Get)Data;
+            Authentication_Manager.Data.User User = Instance.Authenticated_Clients.Find(x => x.Key.ID == Client.ID).Value;
 
             Pokemon.Pokemon = Instance.SaveManager.SaveData.Pokemon.Find(x => x.ID == Pokemon.ID);
             Pokemon.Image = Instance.SaveManager.LoadImage(Pokemon.Pokemon.Token_ResourceID);
 
-            Client.Send(Pokemon);
+
+            if (Pokemon.Pokemon.View.Contains(User.UserID) || User.isGM)
+                Client.Send(Pokemon);
         }
         #endregion
 

@@ -22,6 +22,7 @@ namespace AssaultBird2454.VPTU.Authentication_Manager.Data
         public string UserID { get; set; }
         public string Name { get; set; }
         public string IC_Name { get; set; }
+        public bool isGM { get; set; }
         public System.Windows.Media.Color UserColor { get; set; }
 
         [JsonIgnore]

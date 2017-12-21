@@ -67,6 +67,24 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         public string Notes { get; set; }
         public decimal Species_DexID { get; set; }
         public List<VPTU.BattleManager.Data.Type> PokemonType { get; set; }
+        [JsonIgnore]
+        public string TypeString
+        {
+            get
+            {
+                int i = 0;
+                string s = "";
+                foreach (BattleManager.Data.Type type in PokemonType)
+                {
+                    if (i != 0)
+                        s = s + ", ";
+                    s = s + type.ToString();
+                    i++;
+                }
+
+                return s;
+            }
+        }
         public int EXP { get; set; }
         [JsonIgnore]
         public int Next_EXP_Requirement

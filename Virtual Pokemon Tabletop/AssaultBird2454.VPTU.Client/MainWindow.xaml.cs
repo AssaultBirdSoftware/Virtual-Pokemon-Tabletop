@@ -596,7 +596,14 @@ namespace AssaultBird2454.VPTU.Client
         internal void Pokedex_Pokemon_Get_Executed(object Data)
         {
             VPTU.Pokedex.Pokemon.PokemonData pdata = (VPTU.Pokedex.Pokemon.PokemonData)((VPTU.Server.Instances.CommandData.Pokedex.Pokedex_Pokemon)Data).PokemonData;
-            this.Dispatcher.Invoke(new Action(() => ((UI.Pokemon_Species)(Species_List(pdata.Species_DexID)).Content).Update(pdata)));
+
+            this.Dispatcher.Invoke(new Action(() =>
+            {
+                WPF.MDI.MdiChild Window = Species_List(pdata.Species_DexID);
+
+                Window.Title = "Pokedex Entry - " + pdata.Species_Name;
+                ((UI.Pokemon_Species)(Window).Content).Update(pdata);
+            }));
         }
         internal void Resources_Image_Get_Pokedex_Executed(object Data)
         {
@@ -627,7 +634,7 @@ namespace AssaultBird2454.VPTU.Client
         internal void Entity_Pokemon_Get_Executed(object Data)
         {
             Server.Instances.CommandData.Entity.Entity_Pokemon_Get Pokemon = (Server.Instances.CommandData.Entity.Entity_Pokemon_Get)Data;
-            
+
             this.Dispatcher.Invoke(new Action(() =>
             {
                 WPF.MDI.MdiChild Window = CharacterSheet_List(Pokemon.ID);
@@ -636,6 +643,7 @@ namespace AssaultBird2454.VPTU.Client
                 var bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(Pokemon.Image.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
 
                 Window.Icon = bitmapSource;
+                Window.Title = "Character Sheet - " + Pokemon.Pokemon.Name;
                 EntityForm.Update_Pokemon(Pokemon.Pokemon);
                 EntityForm.Update_Token(Pokemon.Image);
             }));
