@@ -18,7 +18,7 @@ namespace WPF.MDI
         /// <summary>
         /// Width of minimized window.
         /// </summary>
-        internal const int MinimizedWidth = 160;
+        internal const int MinimizedWidth = 280;// 160
 
         /// <summary>
         /// Height of minimized window.
@@ -772,41 +772,47 @@ namespace WPF.MDI
 
             if (visible)
             {
-                bool maximizeVisible = true;
+                /*bool maximizeVisible = true;
 
                 if (mdiChild.maximizeButton != null)
-                    maximizeVisible = mdiChild.maximizeButton.Visibility == Visibility.Visible;
+                    maximizeVisible = mdiChild.maximizeButton.Visibility == Visibility.Visible;*/
 
                 if (mdiChild.minimizeButton != null)
+                {
                     mdiChild.minimizeButton.IsEnabled = true;
+                    mdiChild.minimizeButton.Visibility = Visibility.Visible;
+                }
 
-                if (!maximizeVisible)
+                /*if (!maximizeVisible)
                 {
                     if (mdiChild.maximizeButton != null)
                         mdiChild.minimizeButton.Visibility = Visibility.Visible;
 
                     if (mdiChild.maximizeButton != null)
                         mdiChild.maximizeButton.Visibility = Visibility.Visible;
-                }
+                }*/
             }
             else
             {
-                bool maximizeEnabled = true;
+                /*bool maximizeEnabled = true;
 
                 if (mdiChild.maximizeButton != null)
-                    maximizeEnabled = mdiChild.maximizeButton.IsEnabled;
+                    maximizeEnabled = mdiChild.maximizeButton.IsEnabled;*/
 
                 if (mdiChild.minimizeButton != null)
+                {
                     mdiChild.minimizeButton.IsEnabled = false;
+                    mdiChild.minimizeButton.Visibility = Visibility.Collapsed;
+                }
 
-                if (!maximizeEnabled)
+                /*if (!maximizeEnabled)
                 {
                     if (mdiChild.minimizeButton != null)
                         mdiChild.minimizeButton.Visibility = Visibility.Hidden;
 
                     if (mdiChild.maximizeButton != null)
                         mdiChild.maximizeButton.Visibility = Visibility.Hidden;
-                }
+                }*/
             }
         }
 
@@ -822,41 +828,47 @@ namespace WPF.MDI
 
             if (visible)
             {
-                bool minimizeVisible = true;
+                /*bool minimizeVisible = true;
 
                 if (mdiChild.minimizeButton != null)
-                    minimizeVisible = mdiChild.minimizeButton.Visibility == Visibility.Visible;
+                    minimizeVisible = mdiChild.minimizeButton.Visibility == Visibility.Visible;*/
 
                 if (mdiChild.maximizeButton != null)
+                {
                     mdiChild.maximizeButton.IsEnabled = true;
+                    mdiChild.maximizeButton.Visibility = Visibility.Visible;
+                }
 
-                if (!minimizeVisible)
+                /*if (!minimizeVisible)
                 {
                     if (mdiChild.maximizeButton != null)
                         mdiChild.minimizeButton.Visibility = Visibility.Visible;
 
                     if (mdiChild.maximizeButton != null)
                         mdiChild.maximizeButton.Visibility = Visibility.Visible;
-                }
+                }*/
             }
             else
             {
-                bool minimizeEnabled = true;
+                /*bool minimizeEnabled = true;
 
                 if (mdiChild.minimizeButton != null)
-                    minimizeEnabled = mdiChild.minimizeButton.IsEnabled;
+                    minimizeEnabled = mdiChild.minimizeButton.IsEnabled;*/
 
                 if (mdiChild.maximizeButton != null)
+                {
                     mdiChild.maximizeButton.IsEnabled = false;
+                    mdiChild.maximizeButton.Visibility = Visibility.Collapsed;
+                }
 
-                if (!minimizeEnabled)
+                /*if (!minimizeEnabled)
                 {
                     if (mdiChild.maximizeButton != null)
                         mdiChild.minimizeButton.Visibility = Visibility.Hidden;
 
                     if (mdiChild.maximizeButton != null)
                         mdiChild.maximizeButton.Visibility = Visibility.Hidden;
-                }
+                }*/
             }
         }
 
