@@ -40,17 +40,17 @@ namespace AssaultBird2454.VPTU.SaveEditor
                 {
                     ravenClient = new RavenClient(sentry_cid);
                     ravenClient.Release = VersionInfo.VersioningInfo.Version + " (" + VersionInfo.VersioningInfo.Compile_Commit + ")";
+                    Debug = false;
                 }
-                catch { Debug = false; }
+                catch { Debug = true; }
 
                 try
                 {
-                    MainWindow window = new MainWindow();
-                    window.ShowDialog();
+                    new MainWindow().ShowDialog();
                 }
                 catch (Exception ex)
                 {
-                    if (Debug)
+                    if (!Debug)
                     {
                         VPTU.Sentry.Crash_Form cf = new Sentry.Crash_Form();
                         System.Windows.Forms.DialogResult dr = cf.ShowDialog();
@@ -63,6 +63,10 @@ namespace AssaultBird2454.VPTU.SaveEditor
 
                             ravenClient.Capture(se);
                         }
+                    }
+                    else
+                    {
+                        throw ex;
                     }
                 }
                 return;
