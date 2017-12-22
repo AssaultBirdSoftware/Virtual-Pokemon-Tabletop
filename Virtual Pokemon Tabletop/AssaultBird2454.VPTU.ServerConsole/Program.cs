@@ -42,8 +42,9 @@ namespace AssaultBird2454.VPTU.ServerConsole
             {
                 ravenClient = new RavenClient(sentry_cid);
                 ravenClient.Release = VersionInfo.VersioningInfo.Version + " (" + VersionInfo.VersioningInfo.Compile_Commit + ")";
+                Debug = false;
             }
-            catch { Debug = false; }
+            catch { Debug = true; }
 
             try
             {
@@ -58,7 +59,7 @@ namespace AssaultBird2454.VPTU.ServerConsole
             }
             catch (Exception ex)
             {
-                if (Debug)
+                if (!Debug)
                 {
                     AssaultBird2454.VPTU.Sentry.Crash_Form cf = new AssaultBird2454.VPTU.Sentry.Crash_Form();
                     System.Windows.Forms.DialogResult dr = cf.ShowDialog();
@@ -71,6 +72,10 @@ namespace AssaultBird2454.VPTU.ServerConsole
 
                         ravenClient.Capture(se);
                     }
+                }
+                else
+                {
+                    throw ex;
                 }
             }
             return;

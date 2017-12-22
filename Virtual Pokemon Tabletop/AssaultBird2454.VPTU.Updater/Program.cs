@@ -61,8 +61,9 @@ namespace AssaultBird2454.VPTU.Updater
             {
                 ravenClient = new RavenClient(sentry_cid);
                 ravenClient.Release = VersionInfo.VersioningInfo.Version + " (" + VersionInfo.VersioningInfo.Compile_Commit + ")";
+                Debug = false;
             }
-            catch { Debug = false; }
+            catch { Debug = true; }
 
             try
             {
@@ -223,7 +224,7 @@ namespace AssaultBird2454.VPTU.Updater
             }
             catch (Exception ex)
             {
-                if (Debug)
+                if (!Debug)
                 {
                     Crash_Form cf = new Crash_Form();
                     System.Windows.Forms.DialogResult dr = cf.ShowDialog();
@@ -236,6 +237,10 @@ namespace AssaultBird2454.VPTU.Updater
 
                         ravenClient.Capture(se);
                     }
+                }
+                else
+                {
+                    throw ex;
                 }
             }
         }
