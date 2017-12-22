@@ -23,7 +23,7 @@ namespace AssaultBird2454.VPTU.Updater
             }
             else if (Level == Console_LogLevel.Notice)
             {
-                Console.ForegroundColor = ConsoleColor.Blue;// Change the color
+                Console.ForegroundColor = ConsoleColor.Cyan;// Change the color
                 Console.BackgroundColor = ConsoleColor.Black;// Change the color
                 Console.WriteLine(DateTime.Now.ToShortDateString() + " [Notice] -> " + Message);// Write the message
             }
