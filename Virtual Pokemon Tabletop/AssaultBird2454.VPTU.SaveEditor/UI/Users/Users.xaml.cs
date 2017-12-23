@@ -94,5 +94,10 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Users
         {
             User.IC_Name = Player_ICN.Text;
         }
+
+        private void isGM_Checked(object sender, RoutedEventArgs e)
+        {
+            User.isGM = (bool)isGM.IsChecked;
+        }
     }
 }
