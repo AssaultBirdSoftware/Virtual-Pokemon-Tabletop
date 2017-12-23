@@ -84,6 +84,10 @@ namespace AssaultBird2454.VPTU.Server.Instances
             Authenticated_Clients.RemoveAll(x => x.Key == cn);
             Authenticated_Clients.Add(new KeyValuePair<Networking.Server.TCP.TCP_ClientNode, Authentication_Manager.Data.User>(cn, user));
         }
+        public void DeAuthenticate_Client(Networking.Server.TCP.TCP_ClientNode cn, Authentication_Manager.Data.User user)
+        {
+            Authenticated_Clients.RemoveAll(x => x.Key == cn);
+        }
         #endregion
         #endregion
 

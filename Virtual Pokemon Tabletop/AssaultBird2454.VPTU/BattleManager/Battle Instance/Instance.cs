@@ -22,7 +22,7 @@ namespace AssaultBird2454.VPTU.BattleManager.Battle_Instance
             // Set List
             Participants = _Partisipants;
 
-            // Reset Entitys
+            // Reset Entities
 
             // Link Effect Triggers
 

@@ -27,7 +27,7 @@
                 <MenuItem x:Name="Menu_View_ServerConsole" Header="Server Console" Margin="0,0,-0.4,0" IsCheckable="True"/>
                 <MenuItem x:Name="Menu_View_ClientConsole" Header="Client Console" Margin="0,0,-0.4,0" IsCheckable="True"/>
                 <Separator Height="2"/>
-                <MenuItem x:Name="Menu_View_EntityList" Header="View Entitys" IsCheckable="True"/>
+                <MenuItem x:Name="Menu_View_EntityList" Header="View Entities" IsCheckable="True"/>
             </MenuItem>
             <MenuItem x:Name="Menu_Help" Header="Help">
                 <MenuItem x:Name="Menu_Help_PTUSystem" Header="PTU System Help">
@@ -58,7 +58,7 @@
                     <ImageBrush Stretch="Uniform" ImageSource="pack://siteoforigin:,,,/Resources/Pokedex.png"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="Tools_MoveList" Content="" Margin="0,0,0,0.4" Width="25" Click="Tools_Entitys_Click">
+            <Button x:Name="Tools_MoveList" Content="" Margin="0,0,0,0.4" Width="25" Click="Tools_Entities_Click">
                 <Button.Background>
                     <ImageBrush Stretch="Uniform" ImageSource="pack://siteoforigin:,,,/Resources/Pokeball.png"/>
                 </Button.Background>

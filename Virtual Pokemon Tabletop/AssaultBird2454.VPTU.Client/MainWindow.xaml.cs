@@ -149,7 +149,7 @@ namespace AssaultBird2454.VPTU.Client
                 Menu_View_EntityList.IsChecked = true;// Check the menu box
                 _EntityList_Window = new WPF.MDI.MdiChild()
                 {
-                    Title = "Entitys",
+                    Title = "Entities",
                     Icon = new BitmapImage(new Uri(Program.AssemblyDirectory + @"\Resources\Pokeball.png", UriKind.Absolute)),
                     Content = _EntityList_Form
                 };// Create the window
@@ -463,7 +463,7 @@ namespace AssaultBird2454.VPTU.Client
         {
             PokedexList_Form();
         }
-        private void Tools_Entitys_Click(object sender, RoutedEventArgs e)
+        private void Tools_Entities_Click(object sender, RoutedEventArgs e)
         {
             EntityList_Form();
         }
@@ -679,7 +679,7 @@ namespace AssaultBird2454.VPTU.Client
 
         private void Menu_Menu_ManageID_Click(object sender, RoutedEventArgs e)
         {
-            UI.Manage_Identitys ID = new UI.Manage_Identitys();
+            UI.Manage_Identities ID = new UI.Manage_Identities();
 
             ID.ShowDialog();
         }

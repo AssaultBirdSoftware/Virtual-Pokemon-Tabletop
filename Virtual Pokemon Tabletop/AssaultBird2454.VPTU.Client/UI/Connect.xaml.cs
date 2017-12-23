@@ -39,7 +39,7 @@ namespace AssaultBird2454.VPTU.Client.UI
             });
             User_Identity.SelectedIndex = 0;
 
-            foreach (SaveManager.Identity.Identity_Data id in Program.Identitys)
+            foreach (UserIdentity id in Program.Identities)
             {
                 User_Identity.Items.Add(new ComboBoxItem()
                 {

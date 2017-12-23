@@ -27,7 +27,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Label Content="Search Entitys" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
+        <Label Content="Search Entities" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
         <TextBox x:Name="Search_Name" HorizontalAlignment="Left" Height="26" Margin="98,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151" VerticalContentAlignment="Center" TextChanged="Search_Name_TextChanged"/>
         <CheckBox x:Name="Search_Trainer_Pokemon" Content="Search Trainers Pokemon" HorizontalAlignment="Left" Margin="254,10,0,0" VerticalAlignment="Top" IsEnabled="False" Unchecked="Search_Trainer_Pokemon_Unchecked" Checked="Search_Trainer_Pokemon_Checked"/>
         <CheckBox x:Name="Search_WildPokemon" Content="Search Wild Pokemon" HorizontalAlignment="Left" Margin="411,10,0,0" VerticalAlignment="Top" IsEnabled="False" IsChecked="True" Unchecked="Search_WildPokemon_Unchecked" Checked="Search_WildPokemon_Checked"/>

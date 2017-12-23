@@ -33,11 +33,14 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
             #region Auth
             CommandHandeler.RegisterCommand<CommandData.Auth.Login>("Auth_Login");
             CommandHandeler.GetCommand("Auth_Login").Command_Executed += Auth_Login_Executed;
+            CommandHandeler.RegisterCommand<CommandData.Auth.Logout>("Auth_Logout");
+            CommandHandeler.GetCommand("Auth_Logout").Command_Executed += Auth_Logout_Executed;
 
             CommandHandeler.RegisterCommand<object>("Auth_Create");
             CommandHandeler.RegisterCommand<object>("Auth_Delete");
             CommandHandeler.RegisterCommand<object>("Auth_Edit");
             CommandHandeler.RegisterCommand<object>("Auth_List");
+            CommandHandeler.RegisterCommand<object>("Auth_Get");
             #endregion
 
             #region Base
@@ -170,7 +173,7 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
         {
             CommandData.Auth.Login AuthData = (CommandData.Auth.Login)Data;
 
-            Authentication_Manager.Data.Identity ID = Instance.SaveManager.SaveData.Identitys.Find(x => x.Key == AuthData.Client_Key);
+            Authentication_Manager.Data.Identity ID = Instance.SaveManager.SaveData.Identities.Find(x => x.Key == AuthData.Client_Key);
             if (ID != null)
             {
                 Authentication_Manager.Data.User user = Instance.SaveManager.SaveData.Users.Find(x => x.UserID == ID.UserID);
@@ -182,6 +185,10 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
             {
                 Client.Send(new CommandData.Auth.Login() { Client_Key = ID.Key, Auth_State = CommandData.Auth.AuthState.Failed });
             }
+        }
+        private void Auth_Logout_Executed(object Data, TCP_ClientNode Client)
+        {
+            throw new NotImplementedException();
         }
         #endregion
 
@@ -266,7 +273,7 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
         #region Entity
         private void Entity_All_GetList_Executed(object Data, TCP_ClientNode Client)
         {
-            List<EntityManager.Entry_Data> Entitys = new List<EntityManager.Entry_Data>();
+            List<EntityManager.Entry_Data> Entities = new List<EntityManager.Entry_Data>();
             List<EntityManager.Folder> Folders = new List<EntityManager.Folder>();
             Authentication_Manager.Data.User User = Instance.Authenticated_Clients.Find(x => x.Key.ID == Client.ID).Value;
 
@@ -274,14 +281,14 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
             {
                 if (pokemon.View.Contains(User.UserID) || User.isGM)// Change to check if the user has view permissions on the entry
                 {
-                    Entitys.Add(pokemon.EntryData);
+                    Entities.Add(pokemon.EntryData);
                 }
             }
             foreach (EntityManager.Trainer.TrainerCharacter trainer in Instance.SaveManager.SaveData.Trainers)
             {
                 if (trainer.View.Contains(User.UserID) || User.isGM)// Change to check if the user has view permissions on the entry
                 {
-                    Entitys.Add(trainer.EntryData);
+                    Entities.Add(trainer.EntryData);
                 }
             }
 
@@ -292,7 +299,7 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
             else
             {
                 // Get only the folders needed
-                foreach (EntityManager.Entry_Data entry in Entitys)
+                foreach (EntityManager.Entry_Data entry in Entities)
                 {
                     foreach (EntityManager.Folder folder in Instance.SaveManager.SaveData.Folders_GetTreeFrom(entry.Parent_Folder))
                     {
@@ -306,7 +313,7 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
 
             Client.Send(new CommandData.Entity.Entity_All_GetList()
             {
-                Entrys = Entitys,
+                Entrys = Entities,
                 Folders = Folders
             });
         }

@@ -77,7 +77,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Users
 
         private void ReGenerate_PlayerKey_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.SaveManager.SaveData.Identitys.Find(x => x.UserID == User.UserID).ReGenerate_PlayerKey();
+            MainWindow.SaveManager.SaveData.Identities.Find(x => x.UserID == User.UserID).ReGenerate_PlayerKey();
             MessageBox.Show(MainWindow.SaveManager.SaveData.Identity_GetKey(User.UserID), "New Player Key");
         }
 

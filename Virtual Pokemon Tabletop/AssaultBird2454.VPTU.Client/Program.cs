@@ -45,7 +45,7 @@ namespace AssaultBird2454.VPTU.Client
         public static Server.Instances.ServerInstance ServerInstance { get; set; }
         public static SaveManager.Data.SaveFile.PTUSaveData DataCache { get; set; }
         private static Timer Ping_Timer { get; set; }
-        public static List<SaveManager.Identity.Identity_Data> Identitys { get; set; }
+        public static List<UserIdentity> Identities { get; set; }
 
         public static NotifyIcon NotifyIcon { get; internal set; }
         public static object ClientLogger
@@ -72,40 +72,41 @@ namespace AssaultBird2454.VPTU.Client
 
         public static void Settings_Save()
         {
-            #region Identitys
+            #region Identities
             try
             {
-                using (StreamWriter sw = new StreamWriter(new FileStream(AssemblyDirectory + @"\Client_Identitys.json", FileMode.OpenOrCreate)))
+                File.Delete(AssemblyDirectory + @"\Client_Identities.json");
+                using (StreamWriter sw = new StreamWriter(new FileStream(AssemblyDirectory + @"\Client_Identities.json", FileMode.OpenOrCreate)))
                 {
-                    string Client_Identitys = Newtonsoft.Json.JsonConvert.SerializeObject(Identitys);
-                    sw.WriteLine(Client_Identitys);
+                    string Client_Identities = Newtonsoft.Json.JsonConvert.SerializeObject(Identities);
+                    sw.WriteLine(Client_Identities);
                     sw.Flush();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("There was a error saving identitys to file!\nNo Identitys have been saved, This means that you will need to create / add them again before you connect to the servers again...", "Error Saving Identitys to File");
+                MessageBox.Show("There was a error saving identities to file!\nNo Identities have been saved, This means that you will need to create / add them again before you connect to the servers again...", "Error Saving Identities to File");
                 MessageBox.Show(ex.ToString(), "Stack Trace");
             }
             #endregion
         }
         public static void Settings_Load()
         {
-            #region Identitys
+            #region Identities
             try
             {
-                using (StreamReader sr = new StreamReader(new FileStream(AssemblyDirectory + @"\Client_Identitys.json", FileMode.OpenOrCreate)))
+                using (StreamReader sr = new StreamReader(new FileStream(AssemblyDirectory + @"\Client_Identities.json", FileMode.OpenOrCreate)))
                 {
-                    string Client_Identitys = sr.ReadToEnd();
-                    Identitys = Newtonsoft.Json.JsonConvert.DeserializeObject<List<SaveManager.Identity.Identity_Data>>(Client_Identitys);
+                    string Client_Identities = sr.ReadToEnd();
+                    Identities = Newtonsoft.Json.JsonConvert.DeserializeObject<List<UserIdentity>>(Client_Identities);
                 }
             }
             catch
             {
-                Identitys = new List<SaveManager.Identity.Identity_Data>();
+                Identities = new List<UserIdentity>();
             }
 
-            if (Identitys == null) { Identitys = new List<SaveManager.Identity.Identity_Data>(); }
+            if (Identities == null) { Identities = new List<UserIdentity>(); }
             #endregion
         }
 
@@ -214,5 +215,14 @@ namespace AssaultBird2454.VPTU.Client
                 MessageBox.Show("The server rejected your connection request...\n\nReason: Server Full");
             }
         }
+    }
+
+    public class UserIdentity
+    {
+        public string AuthKey { get; set; }
+        public string Campaign_Name { get; set; }
+        public string ICN { get; set; }
+        public string Server_Address { get; set; }
+        public int Server_Port { get; set; }
     }
 }
