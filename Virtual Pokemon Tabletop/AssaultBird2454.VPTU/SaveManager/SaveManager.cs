@@ -12,7 +12,7 @@ using System.Windows;
 
 namespace AssaultBird2454.VPTU.SaveManager
 {
-    public enum SaveData_Dir { Pokedex_Pokemon, Pokedex_Moves, Pokedex_Abilitys, Pokedex_Items, Resource_Image, Entities_Pokemon, Entities_Trainers, Entities_Folder, Basic_CampaignSettings, Auth_Users, Auth_Groups, Auth_Identities }
+    public enum SaveData_Dir { Pokedex_Pokemon, Pokedex_Moves, Pokedex_Abilitys, Pokedex_Items, Resource_Image, Entities_Pokemon, Entities_Trainers, Entities_Folder, Server_Settings, Basic_CampaignInfo, Basic_CampaignSettings, Auth_Users, Auth_Groups, Auth_Identities, Auth_Permissions }
 
     public class No_Data_Found_In_Save_Exception : Exception { }
 
@@ -45,9 +45,12 @@ namespace AssaultBird2454.VPTU.SaveManager
             {
                 SaveData = new Data.SaveFile.PTUSaveData(true);
 
-                try { SaveData.Campaign_Data = LoadData_FromSave<Data.Campaign_Data>(GetSaveFile_DataDir(SaveData_Dir.Basic_CampaignSettings)); } catch (No_Data_Found_In_Save_Exception) { SaveData.Campaign_Data = new Data.Campaign_Data(true); }// Basic Campaign Settings
+                try { SaveData.Campaign_Data = LoadData_FromSave<Data.Campaign_Data>(GetSaveFile_DataDir(SaveData_Dir.Basic_CampaignInfo)); } catch (No_Data_Found_In_Save_Exception) { SaveData.Campaign_Data = new Data.Campaign_Data(true); }// Basic Campaign Info
+                try { SaveData.Campaign_Settings = LoadData_FromSave<Data.Campaign_Settings>(GetSaveFile_DataDir(SaveData_Dir.Basic_CampaignSettings)); } catch (No_Data_Found_In_Save_Exception) { SaveData.Campaign_Settings = new Data.Campaign_Settings(true); }// Basic Campaign Settings
+                try { SaveData.Server_Settings = LoadData_FromSave<Data.Server_Settings>(GetSaveFile_DataDir(SaveData_Dir.Server_Settings)); } catch (No_Data_Found_In_Save_Exception) { SaveData.Server_Settings = new Data.Server_Settings(true); }// Basic Server Settings
 
                 try { SaveData.Identities = LoadData_FromSave<List<Authentication_Manager.Data.Identity>>(GetSaveFile_DataDir(SaveData_Dir.Auth_Identities)); } catch (No_Data_Found_In_Save_Exception) { SaveData.Identities = new List<Authentication_Manager.Data.Identity>(); }
+                try { SaveData.Permissions = LoadData_FromSave<List<Authentication_Manager.Data.PermissionData>>(GetSaveFile_DataDir(SaveData_Dir.Auth_Permissions)); } catch (No_Data_Found_In_Save_Exception) { SaveData.Permissions = new List<Authentication_Manager.Data.PermissionData>(); }
                 try { SaveData.Users = LoadData_FromSave<List<Authentication_Manager.Data.User>>(GetSaveFile_DataDir(SaveData_Dir.Auth_Users)); } catch (No_Data_Found_In_Save_Exception) { SaveData.Users = new List<Authentication_Manager.Data.User>(); }
                 try { SaveData.Groups = LoadData_FromSave<List<Authentication_Manager.Data.Group>>(GetSaveFile_DataDir(SaveData_Dir.Auth_Groups)); } catch (No_Data_Found_In_Save_Exception) { SaveData.Groups = new List<Authentication_Manager.Data.Group>(); }
 
@@ -74,9 +77,12 @@ namespace AssaultBird2454.VPTU.SaveManager
         /// </summary>
         public void Save_SaveData()
         {
-            SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Basic_CampaignSettings), SaveData.Campaign_Data);
+            SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Basic_CampaignInfo), SaveData.Campaign_Data);
+            SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Basic_CampaignSettings), SaveData.Campaign_Settings);
+            SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Server_Settings), SaveData.Server_Settings);
 
             SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Auth_Identities), SaveData.Identities);
+            SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Auth_Permissions), SaveData.Permissions);
             SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Auth_Users), SaveData.Users);
             SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Auth_Groups), SaveData.Groups);
 
@@ -177,14 +183,20 @@ namespace AssaultBird2454.VPTU.SaveManager
                     return "Entities/Trainers.json";
                 case SaveData_Dir.Entities_Folder:
                     return "Entities/Folders.json";
-                case SaveData_Dir.Basic_CampaignSettings:
+                case SaveData_Dir.Basic_CampaignInfo:
                     return "CampaignInfo.json";
+                case SaveData_Dir.Basic_CampaignSettings:
+                    return "Settings.json";
+                case SaveData_Dir.Server_Settings:
+                    return "Server_Settings.json";
                 case SaveData_Dir.Auth_Users:
                     return "Auth/Users.json";
                 case SaveData_Dir.Auth_Groups:
                     return "Auth/Groups.json";
                 case SaveData_Dir.Auth_Identities:
                     return "Auth/Identities.json";
+                case SaveData_Dir.Auth_Permissions:
+                    return "Auth/Permissions.json";
 
                 default:
                     return null;

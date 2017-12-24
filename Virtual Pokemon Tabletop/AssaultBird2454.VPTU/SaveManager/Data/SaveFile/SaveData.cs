@@ -21,8 +21,11 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
             if (InitNewSave)
             {
                 Campaign_Data = new Campaign_Data(true);
+                Campaign_Settings = new Campaign_Settings(true);
+                Server_Settings = new Server_Settings(true);
 
                 Identities = new List<Authentication_Manager.Data.Identity>();
+                Permissions = new List<Authentication_Manager.Data.PermissionData>();
                 Users = new List<Authentication_Manager.Data.User>();
                 Groups = new List<Authentication_Manager.Data.Group>();
 
@@ -48,53 +51,54 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
             //MapFiles = new List<Resources.MapFileData>();
             //Maps = new List<Resources.MapData>();
 
-            if(Identities == null)
-            {
+            if (Identities == null)
                 Identities = new List<Authentication_Manager.Data.Identity>();
-            }
+            if (Permissions == null)
+                Permissions = new List<Authentication_Manager.Data.PermissionData>();
             if (Users == null)
-            {
                 Users = new List<Authentication_Manager.Data.User>();
-            }
             if (Groups == null)
-            {
                 Groups = new List<Authentication_Manager.Data.Group>();
-            }
 
             if (AudioResources == null)
-            {
                 AudioResources = new List<SoundSystem.SaveData.AudioData>();
-            }
             if (ImageResources == null)
-            {
                 ImageResources = new List<Resource_Data.Resources>();
-            }
 
             if (Folders == null)
-            {
                 Folders = new List<EntitiesManager.Folder>();
-            }
             if (Pokemon == null)
-            {
                 Pokemon = new List<EntitiesManager.Pokemon.PokemonCharacter>();
-            }
 
+            if (PokedexData == null)
+                PokedexData = new Pokedex.Save_Data.Pokedex(true);
             PokedexData.InitNullObjects();
+            if (Campaign_Data == null)
+                Campaign_Data = new Campaign_Data(true);
             Campaign_Data.InitNullObjects();
+            if (Campaign_Settings == null)
+                Campaign_Settings = new Campaign_Settings(true);
+            Campaign_Settings.InitNullObjects();
+            if (Server_Settings == null)
+                Server_Settings = new Server_Settings(true);
+            Server_Settings.InitNullObjects();
         }
 
         #region Data
         public Data.Campaign_Data Campaign_Data;
+        public Data.Campaign_Settings Campaign_Settings;
+        public Data.Server_Settings Server_Settings;
         #endregion
 
         #region Auth and Perms
         public List<Authentication_Manager.Data.Identity> Identities;
+        public List<Authentication_Manager.Data.PermissionData> Permissions;
         public List<Authentication_Manager.Data.User> Users;
         public List<Authentication_Manager.Data.Group> Groups;
 
         public string Identity_GetKey(string UserID)
         {
-            if(Identities.FindAll(X => X.UserID == UserID).Count <= 0)
+            if (Identities.FindAll(X => X.UserID == UserID).Count <= 0)
             {
                 Identities.Add(new Authentication_Manager.Data.Identity()
                 {

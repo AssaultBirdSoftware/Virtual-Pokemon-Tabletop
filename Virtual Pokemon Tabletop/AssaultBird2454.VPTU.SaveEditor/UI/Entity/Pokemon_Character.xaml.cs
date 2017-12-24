@@ -1535,7 +1535,6 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             ID = User.UserID;
             Name = User.Name;
             ICN = User.IC_Name;
-            Groups = User.Group_String;
         }
 
         public bool View
@@ -1580,6 +1579,5 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
         public string ID { get; set; }
         public string Name { get; set; }
         public string ICN { get; set; }
-        public string Groups { get; set; }
     }
 }

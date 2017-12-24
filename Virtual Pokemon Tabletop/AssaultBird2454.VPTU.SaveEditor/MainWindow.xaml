@@ -93,7 +93,6 @@
                                                 <GridViewColumn Header="UserID" Width="100px" DisplayMemberBinding="{Binding UserID}"/>
                                                 <GridViewColumn Header="User Name" Width="200px" DisplayMemberBinding="{Binding Name}"/>
                                                 <GridViewColumn Header="Character Name" Width="200px" DisplayMemberBinding="{Binding IC_Name}"/>
-                                                <GridViewColumn Header="Groups" Width="300px" DisplayMemberBinding="{Binding Group_String}"/>
                                             </GridView>
                                         </ListView.View>
                                     </ListView>

@@ -40,4 +40,40 @@ namespace AssaultBird2454.VPTU.SaveManager.Data
         public string Campaign_Desc { get; set; }
         public string Campaign_GM_Name { get; set; }
     }
+
+    public class Campaign_Settings
+    {
+        public Campaign_Settings(bool InitNewSave = false)
+        {
+            if (InitNewSave)
+            {
+                // New Save
+            }
+        }
+
+        public void InitNullObjects()
+        {
+            // Check for Null and Set to new object
+        }
+
+        // Settings and variables
+    }
+
+    public class Server_Settings
+    {
+        public Server_Settings(bool InitNewSave = false)
+        {
+            if (InitNewSave)
+            {
+                // New Save
+            }
+        }
+
+        public void InitNullObjects()
+        {
+            // Check for Null and Set to new object
+        }
+
+        // Settings and variables
+    }
 }
