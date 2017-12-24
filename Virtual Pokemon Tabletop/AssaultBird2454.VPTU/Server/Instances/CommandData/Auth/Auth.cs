@@ -11,6 +11,7 @@ namespace AssaultBird2454.VPTU.Server.Instances.CommandData.Auth
     {
         public string Command { get { return "Auth_Login"; } }
         public string Client_Key { get; set; }
+        public Authentication_Manager.Data.User UserData { get; set; }
         public AuthState Auth_State { get; set; }
     }
     public class Logout : Networking.Data.NetworkCommand

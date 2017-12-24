@@ -26,9 +26,9 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
                 Users = new List<Authentication_Manager.Data.User>();
                 Groups = new List<Authentication_Manager.Data.Group>();
 
-                Folders = new List<EntityManager.Folder>();
-                Trainers = new List<EntityManager.Trainer.TrainerCharacter>();
-                Pokemon = new List<EntityManager.Pokemon.PokemonCharacter>();
+                Folders = new List<EntitiesManager.Folder>();
+                Trainers = new List<EntitiesManager.Trainer.TrainerCharacter>();
+                Pokemon = new List<EntitiesManager.Pokemon.PokemonCharacter>();
 
                 //MapFiles = new List<Resources.MapFileData>();
                 //Maps = new List<Resources.MapData>();
@@ -72,11 +72,11 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
 
             if (Folders == null)
             {
-                Folders = new List<EntityManager.Folder>();
+                Folders = new List<EntitiesManager.Folder>();
             }
             if (Pokemon == null)
             {
-                Pokemon = new List<EntityManager.Pokemon.PokemonCharacter>();
+                Pokemon = new List<EntitiesManager.Pokemon.PokemonCharacter>();
             }
 
             PokedexData.InitNullObjects();
@@ -112,24 +112,24 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
 
         public Pokedex.Save_Data.Pokedex PokedexData;
 
-        #region Entity Data
-        public List<EntityManager.Folder> Folders;
-        public List<EntityManager.Trainer.TrainerCharacter> Trainers;
-        public List<EntityManager.Pokemon.PokemonCharacter> Pokemon;
+        #region Entities Data
+        public List<EntitiesManager.Folder> Folders;
+        public List<EntitiesManager.Trainer.TrainerCharacter> Trainers;
+        public List<EntitiesManager.Pokemon.PokemonCharacter> Pokemon;
 
         /// <summary>
         /// Helper Function, This function will return the tree of folders to get to the child folder specified
         /// </summary>
         /// <param name="Child">The ID of the folder that is trying to be retrieved</param>
         /// <returns>List of folders to the desired child folder</returns>
-        public List<EntityManager.Folder> Folders_GetTreeFrom(string Child)
+        public List<EntitiesManager.Folder> Folders_GetTreeFrom(string Child)
         {
-            List<EntityManager.Folder> list;
-            EntityManager.Folder folder = Folders.Find(x => x.ID == Child);
+            List<EntitiesManager.Folder> list;
+            EntitiesManager.Folder folder = Folders.Find(x => x.ID == Child);
 
             if (folder.Parent == null)
             {
-                list = new List<EntityManager.Folder>();
+                list = new List<EntitiesManager.Folder>();
             }
             else
             {

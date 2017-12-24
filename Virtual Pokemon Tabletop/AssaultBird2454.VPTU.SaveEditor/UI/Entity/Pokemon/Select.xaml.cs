@@ -13,14 +13,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity.Pokemon
+namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities.Pokemon
 {
     /// <summary>
     /// Interaction logic for Select.xaml
     /// </summary>
     public partial class Select : Window
     {
-        public EntityManager.Pokemon.PokemonCharacter SelectedPokemon;
+        public EntitiesManager.Pokemon.PokemonCharacter SelectedPokemon;
         private SaveManager.SaveManager Manager;
 
         public Select(SaveManager.SaveManager _Manager)
@@ -48,7 +48,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity.Pokemon
 
             if (Search_WildPokemon.IsChecked == true)
             {
-                foreach (EntityManager.Pokemon.PokemonCharacter pokemon in Manager.SaveData.Pokemon)
+                foreach (EntitiesManager.Pokemon.PokemonCharacter pokemon in Manager.SaveData.Pokemon)
                 {
                     if (pokemon.Name.ToLower().Contains(Search_Name.Text.ToLower()))
                     {
@@ -59,9 +59,9 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity.Pokemon
 
             if (Search_Trainer_Pokemon.IsChecked == true)
             {
-                foreach (EntityManager.Trainer.TrainerCharacter trainer in Manager.SaveData.Trainers)
+                foreach (EntitiesManager.Trainer.TrainerCharacter trainer in Manager.SaveData.Trainers)
                 {
-                    foreach (EntityManager.Pokemon.PokemonCharacter pokemon in trainer.PartyPokemon)
+                    foreach (EntitiesManager.Pokemon.PokemonCharacter pokemon in trainer.PartyPokemon)
                     {
                         if (pokemon.Name.ToLower().Contains(Search_Name.Text.ToLower()))
                         {
@@ -109,14 +109,14 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity.Pokemon
 
     public class Pokemon_DataBind
     {
-        public Pokemon_DataBind(EntityManager.Pokemon.PokemonCharacter _Pokemon, string _Species, string _Owner = "")
+        public Pokemon_DataBind(EntitiesManager.Pokemon.PokemonCharacter _Pokemon, string _Species, string _Owner = "")
         {
             Pokemon = _Pokemon;
             Species = _Species;
             Owner = _Owner;
         }
 
-        public EntityManager.Pokemon.PokemonCharacter Pokemon { get; set; }
+        public EntitiesManager.Pokemon.PokemonCharacter Pokemon { get; set; }
         public string Species { get; set; }
         public string Owner { get; set; }
     }

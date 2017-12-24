@@ -15,24 +15,24 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AssaultBird2454.VPTU.Client.UI.Entity
+namespace AssaultBird2454.VPTU.Client.UI.Entities
 {
     /// <summary>
-    /// Interaction logic for EntityListItem.xaml
+    /// Interaction logic for EntitiesListItem.xaml
     /// </summary>
-    public partial class EntityListItem : UserControl
+    public partial class EntitiesListItem : UserControl
     {
-        public EntityListItem()
+        public EntitiesListItem()
         {
             InitializeComponent();
         }
 
         public void Update(Bitmap Image, string Name, List<KeyValuePair<System.Windows.Media.Color, string>> Viewers)
         {
-            Entity_PlayerIndicators.Children.Clear();
+            Entities_PlayerIndicators.Children.Clear();
 
-            Entity_Image.Source = Imaging.CreateBitmapSourceFromHBitmap(Image.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
-            Entity_Name.Content = Name;
+            Entities_Image.Source = Imaging.CreateBitmapSourceFromHBitmap(Image.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            Entities_Name.Content = Name;
             
             foreach(KeyValuePair<System.Windows.Media.Color, string> cn in Viewers)
             {
@@ -49,14 +49,14 @@ namespace AssaultBird2454.VPTU.Client.UI.Entity
                     }
                 };
 
-                Entity_PlayerIndicators.Children.Add(bord);
+                Entities_PlayerIndicators.Children.Add(bord);
             }
         }
         public void Update(string Name, List<KeyValuePair<System.Windows.Media.Color, string>> Viewers)
         {
-            Entity_PlayerIndicators.Children.Clear();
+            Entities_PlayerIndicators.Children.Clear();
 
-            Entity_Name.Content = Name;
+            Entities_Name.Content = Name;
 
             foreach (KeyValuePair<System.Windows.Media.Color, string> cn in Viewers)
             {
@@ -72,14 +72,14 @@ namespace AssaultBird2454.VPTU.Client.UI.Entity
                     }
                 };
 
-                Entity_PlayerIndicators.Children.Add(bord);
+                Entities_PlayerIndicators.Children.Add(bord);
             }
         }
         public void Update(Bitmap Image)
         {
-            Entity_PlayerIndicators.Children.Clear();
+            Entities_PlayerIndicators.Children.Clear();
 
-            Entity_Image.Source = Imaging.CreateBitmapSourceFromHBitmap(Image.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            Entities_Image.Source = Imaging.CreateBitmapSourceFromHBitmap(Image.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
         }
     }
 }

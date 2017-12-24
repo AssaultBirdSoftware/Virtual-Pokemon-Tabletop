@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AssaultBird2454.VPTU.BattleManager.Battle_Instance
 {
-    public delegate void Participant_Changed(EntityManager.Entity Entity);
+    public delegate void Participant_Changed(EntitiesManager.Entities Entities);
 
     public class Instance
     {
@@ -14,10 +14,10 @@ namespace AssaultBird2454.VPTU.BattleManager.Battle_Instance
         public Instance()
         {
             // Set List
-            Participants = new List<EntityManager.Entity>();
+            Participants = new List<EntitiesManager.Entities>();
             ID = VPTU.RNG.Generators.RSG.GenerateString(16);
         }
-        public Instance(List<EntityManager.Entity> _Partisipants)
+        public Instance(List<EntitiesManager.Entities> _Partisipants)
         {
             // Set List
             Participants = _Partisipants;
@@ -38,9 +38,9 @@ namespace AssaultBird2454.VPTU.BattleManager.Battle_Instance
 
         public string ID { get; private set; }
 
-        private List<EntityManager.Entity> Participants { get; set; }
+        private List<EntitiesManager.Entities> Participants { get; set; }
 
-        public IEnumerable<EntityManager.Entity> GetParticipants
+        public IEnumerable<EntitiesManager.Entities> GetParticipants
         {
             get
             {
@@ -48,34 +48,34 @@ namespace AssaultBird2454.VPTU.BattleManager.Battle_Instance
             }
         }
 
-        public void AddPartisipant(EntityManager.Entity Entity)
+        public void AddPartisipant(EntitiesManager.Entities Entities)
         {
-            Participants.Add(Entity);
-            Participant_Added_Event?.Invoke(Entity);
+            Participants.Add(Entities);
+            Participant_Added_Event?.Invoke(Entities);
         }
 
-        //public void ChangeParticipant(EntityManager.Entity Entity)
+        //public void ChangeParticipant(EntitiesManager.Entities Entities)
         //{
-        //    Participant_Changed_Event?.Invoke(Entity);
+        //    Participant_Changed_Event?.Invoke(Entities);
         //}
 
-        public void RemoveParticipant(EntityManager.Entity Entity)
+        public void RemoveParticipant(EntitiesManager.Entities Entities)
         {
-            Participants.Remove(Entity);
-            Participant_Removed_Event?.Invoke(Entity);
+            Participants.Remove(Entities);
+            Participant_Removed_Event?.Invoke(Entities);
         }
 
-        public void Reset_Entity_BattleStats(EntityManager.Entity Entity)
+        public void Reset_Entities_BattleStats(EntitiesManager.Entities Entities)
         {
-            if (Entity is EntityManager.Pokemon.PokemonCharacter)
+            if (Entities is EntitiesManager.Pokemon.PokemonCharacter)
             {
-                ((EntityManager.Pokemon.PokemonCharacter)Entity).Attack_CombatStage = 0;
-                ((EntityManager.Pokemon.PokemonCharacter)Entity).Defence_CombatStage = 0;
-                ((EntityManager.Pokemon.PokemonCharacter)Entity).SpAttack_CombatStage = 0;
-                ((EntityManager.Pokemon.PokemonCharacter)Entity).SpDefence_CombatStage = 0;
-                ((EntityManager.Pokemon.PokemonCharacter)Entity).Speed_CombatStage = 0;
+                ((EntitiesManager.Pokemon.PokemonCharacter)Entities).Attack_CombatStage = 0;
+                ((EntitiesManager.Pokemon.PokemonCharacter)Entities).Defence_CombatStage = 0;
+                ((EntitiesManager.Pokemon.PokemonCharacter)Entities).SpAttack_CombatStage = 0;
+                ((EntitiesManager.Pokemon.PokemonCharacter)Entities).SpDefence_CombatStage = 0;
+                ((EntitiesManager.Pokemon.PokemonCharacter)Entities).Speed_CombatStage = 0;
             }
-            else if (Entity is EntityManager.Trainer.TrainerCharacter)
+            else if (Entities is EntitiesManager.Trainer.TrainerCharacter)
             {
 
             }

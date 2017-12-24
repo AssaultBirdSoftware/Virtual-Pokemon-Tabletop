@@ -12,7 +12,7 @@ using System.Windows;
 
 namespace AssaultBird2454.VPTU.SaveManager
 {
-    public enum SaveData_Dir { Pokedex_Pokemon, Pokedex_Moves, Pokedex_Abilitys, Pokedex_Items, Resource_Image, Entity_Pokemon, Entity_Trainers, Entity_Folder, Basic_CampaignSettings, Auth_Users, Auth_Groups, Auth_Identities }
+    public enum SaveData_Dir { Pokedex_Pokemon, Pokedex_Moves, Pokedex_Abilitys, Pokedex_Items, Resource_Image, Entities_Pokemon, Entities_Trainers, Entities_Folder, Basic_CampaignSettings, Auth_Users, Auth_Groups, Auth_Identities }
 
     public class No_Data_Found_In_Save_Exception : Exception { }
 
@@ -58,8 +58,8 @@ namespace AssaultBird2454.VPTU.SaveManager
 
                 try { SaveData.ImageResources = LoadData_FromSave<List<Resource_Data.Resources>>(GetSaveFile_DataDir(SaveData_Dir.Resource_Image)); } catch (No_Data_Found_In_Save_Exception) { SaveData.ImageResources = new List<Resource_Data.Resources>(); }
 
-                try { SaveData.Folders = LoadData_FromSave<List<EntityManager.Folder>>(GetSaveFile_DataDir(SaveData_Dir.Entity_Folder)); } catch (No_Data_Found_In_Save_Exception) { SaveData.Folders = new List<EntityManager.Folder>(); }
-                try { SaveData.Pokemon = LoadData_FromSave<List<EntityManager.Pokemon.PokemonCharacter>>(GetSaveFile_DataDir(SaveData_Dir.Entity_Pokemon)); } catch (No_Data_Found_In_Save_Exception) { SaveData.Pokemon = new List<EntityManager.Pokemon.PokemonCharacter>(); }
+                try { SaveData.Folders = LoadData_FromSave<List<EntitiesManager.Folder>>(GetSaveFile_DataDir(SaveData_Dir.Entities_Folder)); } catch (No_Data_Found_In_Save_Exception) { SaveData.Folders = new List<EntitiesManager.Folder>(); }
+                try { SaveData.Pokemon = LoadData_FromSave<List<EntitiesManager.Pokemon.PokemonCharacter>>(GetSaveFile_DataDir(SaveData_Dir.Entities_Pokemon)); } catch (No_Data_Found_In_Save_Exception) { SaveData.Pokemon = new List<EntitiesManager.Pokemon.PokemonCharacter>(); }
 
                 SaveData.InitNullObjects();
             }
@@ -87,8 +87,8 @@ namespace AssaultBird2454.VPTU.SaveManager
 
             SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Resource_Image), SaveData.ImageResources);
 
-            SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Entity_Folder), SaveData.Folders);
-            SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Entity_Pokemon), SaveData.Pokemon);
+            SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Entities_Folder), SaveData.Folders);
+            SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Entities_Pokemon), SaveData.Pokemon);
         }
 
         #region Load and Save
@@ -171,12 +171,12 @@ namespace AssaultBird2454.VPTU.SaveManager
                     return "Pokedex/Items.json";
                 case SaveData_Dir.Resource_Image:
                     return "Resource/Data.json";
-                case SaveData_Dir.Entity_Pokemon:
-                    return "Entity/Pokemon.json";
-                case SaveData_Dir.Entity_Trainers:
-                    return "Entity/Trainers.json";
-                case SaveData_Dir.Entity_Folder:
-                    return "Entity/Folders.json";
+                case SaveData_Dir.Entities_Pokemon:
+                    return "Entities/Pokemon.json";
+                case SaveData_Dir.Entities_Trainers:
+                    return "Entities/Trainers.json";
+                case SaveData_Dir.Entities_Folder:
+                    return "Entities/Folders.json";
                 case SaveData_Dir.Basic_CampaignSettings:
                     return "CampaignInfo.json";
                 case SaveData_Dir.Auth_Users:

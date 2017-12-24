@@ -3,10 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Entity"
+        xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Entities"
         xmlns:System="clr-namespace:System;assembly=mscorlib"
         xmlns:StatusEffects_Data="clr-namespace:AssaultBird2454.VPTU.BattleManager.Data;assembly=AssaultBird2454.VPTU"
-        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:MultiSelectComboBox="clr-namespace:MultiSelectComboBox;assembly=MultiSelectComboBox" x:Class="AssaultBird2454.VPTU.SaveEditor.UI.Entity.Pokemon_Character"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:MultiSelectComboBox="clr-namespace:MultiSelectComboBox;assembly=MultiSelectComboBox" x:Class="AssaultBird2454.VPTU.SaveEditor.UI.Entities.Pokemon_Character"
         mc:Ignorable="d"
         Title="Character Designer - Pokemon" Height="691.263" Width="996.626" ResizeMode="NoResize">
     <Window.Resources>
@@ -338,7 +338,7 @@
                             <Label Content="Disabled Moves" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Grid.Row="1" Height="26" Width="94"/>
                             <MultiSelectComboBox:MultiSelectComboBox x:Name="Status_Volatile_Disable_Value" Margin="99,10,10,0" Grid.Row="1" VerticalAlignment="Top" Height="29" IsEnabled="False" SelectionChangedEvent="Status_Volatile_Disable_Value_SelectionChangedEvent"/>
                             <Label Content="Inflatuation Subject:" Margin="0,44,0,0" VerticalAlignment="Top" Grid.Row="1" HorizontalAlignment="Left" Width="115" Height="26"/>
-                            <Label x:Name="Status_Volatile_Inflatuation_Value" Content="No Selected Entity" Margin="120,44,59,0" VerticalAlignment="Top" Grid.Row="1" Height="26"/>
+                            <Label x:Name="Status_Volatile_Inflatuation_Value" Content="No Selected Entities" Margin="120,44,59,0" VerticalAlignment="Top" Grid.Row="1" Height="26"/>
                             <Button x:Name="Status_Volatile_Inflatuation_Select" Content="Select" Margin="0,46.8,11.2,0" Grid.Row="1" HorizontalAlignment="Right" Width="44" Height="20" VerticalAlignment="Top" IsEnabled="False" Click="Status_Volatile_Inflatuation_Select_Click"/>
                             <Label Content="Sleep Duration" HorizontalAlignment="Left" Margin="0,75,0,0" VerticalAlignment="Top" Grid.Row="1" Height="26" Width="88"/>
                             <xctk:IntegerUpDown x:Name="Status_Volatile_Sleep_Duration" Margin="93,75,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Value="0" TextAlignment="Center" Maximum="9999" Minimum="-1" HorizontalAlignment="Left" Width="89" IsEnabled="False" ValueChanged="Status_Volatile_Sleep_Duration_ValueChanged"/>

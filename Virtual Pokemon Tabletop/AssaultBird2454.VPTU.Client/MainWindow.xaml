@@ -27,7 +27,7 @@
                 <MenuItem x:Name="Menu_View_ServerConsole" Header="Server Console" Margin="0,0,-0.4,0" IsCheckable="True"/>
                 <MenuItem x:Name="Menu_View_ClientConsole" Header="Client Console" Margin="0,0,-0.4,0" IsCheckable="True"/>
                 <Separator Height="2"/>
-                <MenuItem x:Name="Menu_View_EntityList" Header="View Entities" IsCheckable="True"/>
+                <MenuItem x:Name="Menu_View_EntitiesList" Header="View Entities" IsCheckable="True"/>
             </MenuItem>
             <MenuItem x:Name="Menu_Help" Header="Help">
                 <MenuItem x:Name="Menu_Help_PTUSystem" Header="PTU System Help">
@@ -79,7 +79,7 @@
             <StatusBarItem x:Name="Status_SvAddress" Content="Server Address: None" Margin="0,0,0,-0.4" HorizontalAlignment="Left" BorderThickness="0,0,1,0" BorderBrush="Black"/>
             <StatusBarItem x:Name="Status_SvPort" Content="Server Port: 00000" Margin="0,0,0,-0.4" HorizontalAlignment="Left" BorderBrush="Black" BorderThickness="0,0,1,0"/>
             <StatusBarItem x:Name="Status_Ping" Content="Server Ping: 0" Margin="0,0,0,-0.4" HorizontalAlignment="Left" BorderBrush="Black" BorderThickness="0,0,1,0"/>
-            <StatusBarItem x:Name="Status_Username" Content="Player Name: None" Margin="0,0,0,-0.4" HorizontalAlignment="Left" BorderBrush="Black" BorderThickness="0,0,1,0"/>
+            <StatusBarItem x:Name="Status_Username" Content="Player Name: Not Authenticated" Margin="0,0,0,-0.4" HorizontalAlignment="Left" BorderBrush="Black" BorderThickness="0,0,1,0"/>
             <StatusBarItem x:Name="Status_CampaignName" Content="Campaign Name: 0" Margin="0,0,0,-0.4" HorizontalAlignment="Right" BorderBrush="Black" BorderThickness="1,0,0,0"/>
         </StatusBar>
     </Grid>

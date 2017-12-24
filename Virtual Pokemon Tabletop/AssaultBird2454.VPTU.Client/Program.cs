@@ -134,10 +134,10 @@ namespace AssaultBird2454.VPTU.Client
             #region Resources
             ClientInstance.Client_CommandHandeler.GetCommand("Resources_Image_Get").Command_Executed += MainWindow.Resources_Image_Get_Pokedex_Executed;
             #endregion
-            #region Entity
-            ClientInstance.Client_CommandHandeler.GetCommand("Entity_All_GetList").Command_Executed += MainWindow.Entity_All_GetList_Executed;
-            ClientInstance.Client_CommandHandeler.GetCommand("Entity_Pokemon_Get").Command_Executed += MainWindow.Entity_Pokemon_Get_Executed;
-            ClientInstance.Client_CommandHandeler.GetCommand("Resources_Image_Get").Command_Executed += MainWindow.Resources_Image_Get_Entity_Executed;
+            #region Entities
+            ClientInstance.Client_CommandHandeler.GetCommand("Entities_All_GetList").Command_Executed += MainWindow.Entities_All_GetList_Executed;
+            ClientInstance.Client_CommandHandeler.GetCommand("Entities_Pokemon_Get").Command_Executed += MainWindow.Entities_Pokemon_Get_Executed;
+            ClientInstance.Client_CommandHandeler.GetCommand("Resources_Image_Get").Command_Executed += MainWindow.Resources_Image_Get_Entities_Executed;
             #endregion
         }
 

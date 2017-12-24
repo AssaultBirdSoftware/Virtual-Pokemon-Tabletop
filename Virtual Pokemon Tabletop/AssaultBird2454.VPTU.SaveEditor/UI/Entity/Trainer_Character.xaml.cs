@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
+namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
 {
     /// <summary>
     /// Interaction logic for Trainer_Character.xaml

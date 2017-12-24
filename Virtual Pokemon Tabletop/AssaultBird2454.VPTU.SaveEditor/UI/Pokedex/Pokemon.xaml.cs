@@ -1,5 +1,5 @@
 ﻿using AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Link;
-using AssaultBird2454.VPTU.Pokedex.Entity;
+using AssaultBird2454.VPTU.Pokedex.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

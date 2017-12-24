@@ -210,12 +210,12 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem Header="Entity Manager">
+            <TabItem Header="Entities Manager">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <!--<ListView x:Name="EntityManager_List" SelectionChanged="PokedexManager_List_SelectionChanged" MouseDoubleClick="EntityManager_List_MouseDoubleClick">
+                    <!--<ListView x:Name="EntitiesManager_List" SelectionChanged="PokedexManager_List_SelectionChanged" MouseDoubleClick="EntitiesManager_List_MouseDoubleClick">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Name" Width="150px" DisplayMemberBinding="{Binding Name}"/>
@@ -236,7 +236,7 @@
                             </GridView>
                         </ListView.View>
                     </ListView>-->
-                    <TreeView x:Name="EntityManager_Tree"/>
+                    <TreeView x:Name="EntitiesManager_Tree"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Map Manager">

@@ -15,24 +15,24 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
+namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
 {
     /// <summary>
-    /// Interaction logic for EntityListItem.xaml
+    /// Interaction logic for EntitiesListItem.xaml
     /// </summary>
-    public partial class EntityListItem : UserControl
+    public partial class EntitiesListItem : UserControl
     {
-        public EntityListItem()
+        public EntitiesListItem()
         {
             InitializeComponent();
         }
 
         public void Update(Bitmap Image, string Name, List<KeyValuePair<System.Windows.Media.Color, string>> Viewers)
         {
-            Entity_PlayerIndicators.Children.Clear();
+            Entities_PlayerIndicators.Children.Clear();
 
-            try { Entity_Image.Source = Imaging.CreateBitmapSourceFromHBitmap(Image.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions()); } catch { }
-            Entity_Name.Content = Name;
+            try { Entities_Image.Source = Imaging.CreateBitmapSourceFromHBitmap(Image.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions()); } catch { }
+            Entities_Name.Content = Name;
 
             if (Viewers != null)
             {
@@ -51,7 +51,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity
                         }
                     };
 
-                    Entity_PlayerIndicators.Children.Add(bord);
+                    Entities_PlayerIndicators.Children.Add(bord);
                 }
             }
         }

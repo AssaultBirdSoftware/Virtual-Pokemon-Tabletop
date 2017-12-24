@@ -83,23 +83,23 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
             CommandHandeler.RegisterCommand<string>("Pokedex_Moves_Remove");
             #endregion
 
-            #region Entity
-            CommandHandeler.RegisterCommand<CommandData.Entity.Entity_All_GetList>("Entity_All_GetList");
-            CommandHandeler.GetCommand("Entity_All_GetList").Command_Executed += Entity_All_GetList_Executed;
+            #region Entities
+            CommandHandeler.RegisterCommand<CommandData.Entities.Entities_All_GetList>("Entities_All_GetList");
+            CommandHandeler.GetCommand("Entities_All_GetList").Command_Executed += Entities_All_GetList_Executed;
 
-            CommandHandeler.RegisterCommand<string>("Entity_Pokemon_GetList");
-            CommandHandeler.RegisterCommand<CommandData.Entity.Entity_Pokemon_Get>("Entity_Pokemon_Get");
-            CommandHandeler.GetCommand("Entity_Pokemon_Get").Command_Executed += Entity_Pokemon_Get_Executed;
-            CommandHandeler.RegisterCommand<string>("Entity_Pokemon_Create");
-            CommandHandeler.RegisterCommand<string>("Entity_Pokemon_Edit");
-            CommandHandeler.RegisterCommand<string>("Entity_Pokemon_Delete");
+            CommandHandeler.RegisterCommand<string>("Entities_Pokemon_GetList");
+            CommandHandeler.RegisterCommand<CommandData.Entities.Entities_Pokemon_Get>("Entities_Pokemon_Get");
+            CommandHandeler.GetCommand("Entities_Pokemon_Get").Command_Executed += Entities_Pokemon_Get_Executed;
+            CommandHandeler.RegisterCommand<string>("Entities_Pokemon_Create");
+            CommandHandeler.RegisterCommand<string>("Entities_Pokemon_Edit");
+            CommandHandeler.RegisterCommand<string>("Entities_Pokemon_Delete");
 
-            CommandHandeler.RegisterCommand<string>("Entity_Trainer_GetList");
-            CommandHandeler.RegisterCommand<string>("Entity_Trainer_Get");
-            CommandHandeler.RegisterCommand<string>("Entity_Trainer_Create");
-            CommandHandeler.RegisterCommand<string>("Entity_Trainer_Edit");
-            CommandHandeler.RegisterCommand<string>("Entity_Trainer_Delete");
-            // CommandHandeler.RegisterCommand<string>("Entity_");
+            CommandHandeler.RegisterCommand<string>("Entities_Trainer_GetList");
+            CommandHandeler.RegisterCommand<string>("Entities_Trainer_Get");
+            CommandHandeler.RegisterCommand<string>("Entities_Trainer_Create");
+            CommandHandeler.RegisterCommand<string>("Entities_Trainer_Edit");
+            CommandHandeler.RegisterCommand<string>("Entities_Trainer_Delete");
+            // CommandHandeler.RegisterCommand<string>("Entities_");
             #endregion
 
             #region Battles
@@ -171,24 +171,11 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
         #region Auth
         private void Auth_Login_Executed(object Data, TCP_ClientNode Client)
         {
-            CommandData.Auth.Login AuthData = (CommandData.Auth.Login)Data;
-
-            Authentication_Manager.Data.Identity ID = Instance.SaveManager.SaveData.Identities.Find(x => x.Key == AuthData.Client_Key);
-            if (ID != null)
-            {
-                Authentication_Manager.Data.User user = Instance.SaveManager.SaveData.Users.Find(x => x.UserID == ID.UserID);
-                Instance.Authenticate_Client(Client, user);
-
-                Client.Send(new CommandData.Auth.Login() { Client_Key = ID.Key, Auth_State = CommandData.Auth.AuthState.Passed });
-            }
-            else
-            {
-                Client.Send(new CommandData.Auth.Login() { Client_Key = ID.Key, Auth_State = CommandData.Auth.AuthState.Failed });
-            }
+            Instance.Authenticate_Client(Client, (CommandData.Auth.Login)Data);
         }
         private void Auth_Logout_Executed(object Data, TCP_ClientNode Client)
         {
-            throw new NotImplementedException();
+            Instance.DeAuthenticate_Client(Client);
         }
         #endregion
 
@@ -270,21 +257,21 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
         #endregion
         #endregion
 
-        #region Entity
-        private void Entity_All_GetList_Executed(object Data, TCP_ClientNode Client)
+        #region Entities
+        private void Entities_All_GetList_Executed(object Data, TCP_ClientNode Client)
         {
-            List<EntityManager.Entry_Data> Entities = new List<EntityManager.Entry_Data>();
-            List<EntityManager.Folder> Folders = new List<EntityManager.Folder>();
+            List<EntitiesManager.Entry_Data> Entities = new List<EntitiesManager.Entry_Data>();
+            List<EntitiesManager.Folder> Folders = new List<EntitiesManager.Folder>();
             Authentication_Manager.Data.User User = Instance.Authenticated_Clients.Find(x => x.Key.ID == Client.ID).Value;
 
-            foreach (EntityManager.Pokemon.PokemonCharacter pokemon in Instance.SaveManager.SaveData.Pokemon)
+            foreach (EntitiesManager.Pokemon.PokemonCharacter pokemon in Instance.SaveManager.SaveData.Pokemon)
             {
                 if (pokemon.View.Contains(User.UserID) || User.isGM)// Change to check if the user has view permissions on the entry
                 {
                     Entities.Add(pokemon.EntryData);
                 }
             }
-            foreach (EntityManager.Trainer.TrainerCharacter trainer in Instance.SaveManager.SaveData.Trainers)
+            foreach (EntitiesManager.Trainer.TrainerCharacter trainer in Instance.SaveManager.SaveData.Trainers)
             {
                 if (trainer.View.Contains(User.UserID) || User.isGM)// Change to check if the user has view permissions on the entry
                 {
@@ -299,9 +286,9 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
             else
             {
                 // Get only the folders needed
-                foreach (EntityManager.Entry_Data entry in Entities)
+                foreach (EntitiesManager.Entry_Data entry in Entities)
                 {
-                    foreach (EntityManager.Folder folder in Instance.SaveManager.SaveData.Folders_GetTreeFrom(entry.Parent_Folder))
+                    foreach (EntitiesManager.Folder folder in Instance.SaveManager.SaveData.Folders_GetTreeFrom(entry.Parent_Folder))
                     {
                         if (!Folders.Contains(folder))
                         {
@@ -311,16 +298,16 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
                 }
             }
 
-            Client.Send(new CommandData.Entity.Entity_All_GetList()
+            Client.Send(new CommandData.Entities.Entities_All_GetList()
             {
                 Entrys = Entities,
                 Folders = Folders
             });
         }
 
-        private void Entity_Pokemon_Get_Executed(object Data, TCP_ClientNode Client)
+        private void Entities_Pokemon_Get_Executed(object Data, TCP_ClientNode Client)
         {
-            CommandData.Entity.Entity_Pokemon_Get Pokemon = (CommandData.Entity.Entity_Pokemon_Get)Data;
+            CommandData.Entities.Entities_Pokemon_Get Pokemon = (CommandData.Entities.Entities_Pokemon_Get)Data;
             Authentication_Manager.Data.User User = Instance.Authenticated_Clients.Find(x => x.Key.ID == Client.ID).Value;
 
             Pokemon.Pokemon = Instance.SaveManager.SaveData.Pokemon.Find(x => x.ID == Pokemon.ID);

@@ -14,88 +14,88 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AssaultBird2454.VPTU.Client.UI.Entity
+namespace AssaultBird2454.VPTU.Client.UI.Entities
 {
     /// <summary>
-    /// Interaction logic for EntityList.xaml
+    /// Interaction logic for EntitiesList.xaml
     /// </summary>
-    public partial class EntityList : UserControl
+    public partial class EntitiesList : UserControl
     {
         ContextMenu ctxm_Root;
-        List<EntityManager.Folder> folders;
-        List<EntityManager.Entry_Data> entrys;
+        List<EntitiesManager.Folder> folders;
+        List<EntitiesManager.Entry_Data> entrys;
 
-        public EntityList()
+        public EntitiesList()
         {
             InitializeComponent();
             Create_ContextMenu();
         }
 
-        #region Entity Manager Code
-        List<TreeViewItem> EntityManager_Folders = new List<TreeViewItem>();
-        List<TreeViewItem> EntityManager_Entrys = new List<TreeViewItem>();
-        ContextMenu EntityManager_Root;
+        #region Entities Manager Code
+        List<TreeViewItem> EntitiesManager_Folders = new List<TreeViewItem>();
+        List<TreeViewItem> EntitiesManager_Entrys = new List<TreeViewItem>();
+        ContextMenu EntitiesManager_Root;
 
         public void UpdateImage(string ID, Bitmap Image)
         {
-            EntityListItem ELI = (EntityListItem)(EntityManager_Entrys.Find(x => ((EntityManager.Entry_Data)x.Tag).ID == ID).Header);
+            EntitiesListItem ELI = (EntitiesListItem)(EntitiesManager_Entrys.Find(x => ((EntitiesManager.Entry_Data)x.Tag).ID == ID).Header);
 
             ELI.Update(Image);
         }
 
-        public void EntityManager_ReloadList(List<EntityManager.Folder> _folders, List<EntityManager.Entry_Data> _entrys)
+        public void EntitiesManager_ReloadList(List<EntitiesManager.Folder> _folders, List<EntitiesManager.Entry_Data> _entrys)
         {
             folders = _folders;
             entrys = _entrys;
 
-            EntityManager_Folders.Clear();
-            EntityManager_Entrys.Clear();
+            EntitiesManager_Folders.Clear();
+            EntitiesManager_Entrys.Clear();
             Tree.Items.Clear();
 
-            EntityManager_Display();
+            EntitiesManager_Display();
         }
         public void Create_ContextMenu()
         {
             #region Root
-            EntityManager_Root = new ContextMenu();
+            EntitiesManager_Root = new ContextMenu();
             MenuItem ctxm_Root_CreateFolder = new MenuItem();
             ctxm_Root_CreateFolder.Header = "Create Folder in Root";
             ctxm_Root_CreateFolder.Click += Ctxm_Root_CreateFolder_Click;
-            MenuItem ctxm_Root_CreatePokemonEntity = new MenuItem();
-            ctxm_Root_CreatePokemonEntity.Header = "Create Pokemon Entity in Root";
-            ctxm_Root_CreatePokemonEntity.Click += Ctxm_Root_CreatePokemonEntity_Click;
-            MenuItem ctxm_Root_CreateTrainerEntity = new MenuItem();
-            ctxm_Root_CreateTrainerEntity.Header = "Create Trainer Entity in Root";
-            ctxm_Root_CreateTrainerEntity.Click += Ctxm_Root_CreateTrainerEntity_Click;
-            ctxm_Root_CreateTrainerEntity.IsEnabled = false;
+            MenuItem ctxm_Root_CreatePokemonEntities = new MenuItem();
+            ctxm_Root_CreatePokemonEntities.Header = "Create Pokemon Entities in Root";
+            ctxm_Root_CreatePokemonEntities.Click += Ctxm_Root_CreatePokemonEntities_Click;
+            MenuItem ctxm_Root_CreateTrainerEntities = new MenuItem();
+            ctxm_Root_CreateTrainerEntities.Header = "Create Trainer Entities in Root";
+            ctxm_Root_CreateTrainerEntities.Click += Ctxm_Root_CreateTrainerEntities_Click;
+            ctxm_Root_CreateTrainerEntities.IsEnabled = false;
 
-            EntityManager_Root.Items.Add(ctxm_Root_CreateFolder);
-            EntityManager_Root.Items.Add(ctxm_Root_CreatePokemonEntity);
-            EntityManager_Root.Items.Add(ctxm_Root_CreateTrainerEntity);
-            Tree.ContextMenu = EntityManager_Root;
+            EntitiesManager_Root.Items.Add(ctxm_Root_CreateFolder);
+            EntitiesManager_Root.Items.Add(ctxm_Root_CreatePokemonEntities);
+            EntitiesManager_Root.Items.Add(ctxm_Root_CreateTrainerEntities);
+            Tree.ContextMenu = EntitiesManager_Root;
             #endregion
         }
 
         #region Context Menu Events
-        private void Ctxm_Entity_Delete_Click(object sender, RoutedEventArgs e)
+        private void Ctxm_Entities_Delete_Click(object sender, RoutedEventArgs e)
         {
             ContextMenu ctxm = ((ContextMenu)((MenuItem)sender).Parent);
 
-            EntityManager_DeleteEntry(((EntityManager.Entry_Data)ctxm.Tag).ID);
+            EntitiesManager_DeleteEntry(((EntitiesManager.Entry_Data)ctxm.Tag).ID);
         }
-        private void Ctxm_Entity_Duplicate_Click(object sender, RoutedEventArgs e)
+        private void Ctxm_Entities_Duplicate_Click(object sender, RoutedEventArgs e)
         {
             ContextMenu ctxm = ((ContextMenu)((MenuItem)sender).Parent);
         }
-        private void Ctxm_Entity_Edit_Click(object sender, RoutedEventArgs e)
+        private void Ctxm_Entities_Edit_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 ContextMenu ctxm = ((ContextMenu)((MenuItem)sender).Parent);
-                EntityManager.Entry_Data data = entrys.Find(x => x.ID == ((EntityManager.Entry_Data)ctxm.Tag).ID);
-                if (data.Entity_Type == EntityManager.Entity_Type.Pokemon)
+                EntitiesManager.Entry_Data data = entrys.Find(x => x.ID == ((EntitiesManager.Entry_Data)ctxm.Tag).ID);
+                if (data.Entities_Type == EntitiesManager.Entities_Type.Pokemon)
                 {
-                    Program.ClientInstance.Client.SendData(new VPTU.Server.Instances.CommandData.Entity.Entity_Pokemon_Get()// Gets the Pokemon Selected
+                    Program.ClientInstance.Client.SendData(new VPTU.Server.Instances.CommandData.Entities.Entities_Pokemon_Get()// Gets the Pokemon Selected
                     {
                         ID = data.ID// Sets the Pokemon ID to get
                     });
@@ -111,15 +111,15 @@ namespace AssaultBird2454.VPTU.Client.UI.Entity
         {
             ContextMenu ctxm = ((ContextMenu)((MenuItem)sender).Parent);
 
-            EntityManager_DeleteDir(((EntityManager.Folder)ctxm.Tag).ID);
+            EntitiesManager_DeleteDir(((EntitiesManager.Folder)ctxm.Tag).ID);
         }
-        private void Ctxm_Folder_CreatePokemonEntity_Click(object sender, RoutedEventArgs e)
+        private void Ctxm_Folder_CreatePokemonEntities_Click(object sender, RoutedEventArgs e)
         {
             ContextMenu ctxm = ((ContextMenu)((MenuItem)sender).Parent);
 
-            EntityManager_CreatePokemonEntity(((EntityManager.Folder)ctxm.Tag).ID);
+            EntitiesManager_CreatePokemonEntities(((EntitiesManager.Folder)ctxm.Tag).ID);
         }
-        private void Ctxm_Folder_CreateTrainerEntity_Click(object sender, RoutedEventArgs e)
+        private void Ctxm_Folder_CreateTrainerEntities_Click(object sender, RoutedEventArgs e)
         {
             ContextMenu ctxm = ((ContextMenu)((MenuItem)sender).Parent);
         }
@@ -132,16 +132,16 @@ namespace AssaultBird2454.VPTU.Client.UI.Entity
 
             if (Pass == true)
             {
-                EntityManager_CreateDir(SP.Input, ((EntityManager.Folder)ctxm.Tag).ID);
+                EntitiesManager_CreateDir(SP.Input, ((EntitiesManager.Folder)ctxm.Tag).ID);
             }
         }
-        private void Ctxm_Root_CreatePokemonEntity_Click(object sender, RoutedEventArgs e)
+        private void Ctxm_Root_CreatePokemonEntities_Click(object sender, RoutedEventArgs e)
         {
             ContextMenu ctxm = ((ContextMenu)((MenuItem)sender).Parent);
 
-            EntityManager_CreatePokemonEntity();
+            EntitiesManager_CreatePokemonEntities();
         }
-        private void Ctxm_Root_CreateTrainerEntity_Click(object sender, RoutedEventArgs e)
+        private void Ctxm_Root_CreateTrainerEntities_Click(object sender, RoutedEventArgs e)
         {
             ContextMenu ctxm = ((ContextMenu)((MenuItem)sender).Parent);
         }
@@ -152,14 +152,14 @@ namespace AssaultBird2454.VPTU.Client.UI.Entity
 
             if (Pass == true)
             {
-                EntityManager_CreateDir(SP.Input);
+                EntitiesManager_CreateDir(SP.Input);
             }
         }
         #endregion
 
-        public void EntityManager_CreateDir(string Name, string Parent = null)
+        public void EntitiesManager_CreateDir(string Name, string Parent = null)
         {
-            EntityManager.Folder folder = new EntityManager.Folder()
+            EntitiesManager.Folder folder = new EntitiesManager.Folder()
             {
                 ID = RNG.Generators.RSG.GenerateString(16),
                 Name = Name,
@@ -169,43 +169,43 @@ namespace AssaultBird2454.VPTU.Client.UI.Entity
             // Send Command
 
             #region Context Menu
-            ContextMenu EntityManager_Folder = new ContextMenu();
-            EntityManager_Folder.Tag = folder;
+            ContextMenu EntitiesManager_Folder = new ContextMenu();
+            EntitiesManager_Folder.Tag = folder;
             MenuItem ctxm_Folder_CreateFolder = new MenuItem();
             ctxm_Folder_CreateFolder.Header = "Create Folder";
             ctxm_Folder_CreateFolder.Click += Ctxm_Folder_CreateFolder_Click;
-            MenuItem ctxm_Folder_CreatePokemonEntity = new MenuItem();
-            ctxm_Folder_CreatePokemonEntity.Header = "Create Pokemon Entity";
-            ctxm_Folder_CreatePokemonEntity.Click += Ctxm_Folder_CreatePokemonEntity_Click;
-            MenuItem ctxm_Folder_CreateTrainerEntity = new MenuItem();
-            ctxm_Folder_CreateTrainerEntity.Header = "Create Trainer Entity";
-            ctxm_Folder_CreateTrainerEntity.Click += Ctxm_Folder_CreateTrainerEntity_Click;
-            ctxm_Folder_CreateTrainerEntity.IsEnabled = false;
+            MenuItem ctxm_Folder_CreatePokemonEntities = new MenuItem();
+            ctxm_Folder_CreatePokemonEntities.Header = "Create Pokemon Entities";
+            ctxm_Folder_CreatePokemonEntities.Click += Ctxm_Folder_CreatePokemonEntities_Click;
+            MenuItem ctxm_Folder_CreateTrainerEntities = new MenuItem();
+            ctxm_Folder_CreateTrainerEntities.Header = "Create Trainer Entities";
+            ctxm_Folder_CreateTrainerEntities.Click += Ctxm_Folder_CreateTrainerEntities_Click;
+            ctxm_Folder_CreateTrainerEntities.IsEnabled = false;
             Separator ctxm_Folder_S1 = new Separator();
             MenuItem ctxm_Folder_Delete = new MenuItem();
             ctxm_Folder_Delete.Header = "Delete";
             ctxm_Folder_Delete.Click += Ctxm_Folder_Delete_Click;
 
-            EntityManager_Folder.Items.Add(ctxm_Folder_CreateFolder);
-            EntityManager_Folder.Items.Add(ctxm_Folder_CreatePokemonEntity);
-            EntityManager_Folder.Items.Add(ctxm_Folder_CreateTrainerEntity);
-            EntityManager_Folder.Items.Add(ctxm_Folder_S1);
-            EntityManager_Folder.Items.Add(ctxm_Folder_Delete);
+            EntitiesManager_Folder.Items.Add(ctxm_Folder_CreateFolder);
+            EntitiesManager_Folder.Items.Add(ctxm_Folder_CreatePokemonEntities);
+            EntitiesManager_Folder.Items.Add(ctxm_Folder_CreateTrainerEntities);
+            EntitiesManager_Folder.Items.Add(ctxm_Folder_S1);
+            EntitiesManager_Folder.Items.Add(ctxm_Folder_Delete);
             #endregion
 
             if (Parent != null)
             {
-                TreeViewItem ParentTVI = EntityManager_Folders.Find(x => ((EntityManager.Folder)x.Tag).ID == Parent);
+                TreeViewItem ParentTVI = EntitiesManager_Folders.Find(x => ((EntitiesManager.Folder)x.Tag).ID == Parent);
                 TreeViewItem TVI = new TreeViewItem()
                 {
                     Header = folder.Name,
                     Tag = folder,
-                    ContextMenu = EntityManager_Folder
+                    ContextMenu = EntitiesManager_Folder
                 };
 
                 folders.Add(folder);
                 ParentTVI.Items.Add(TVI);
-                EntityManager_Folders.Add(TVI);
+                EntitiesManager_Folders.Add(TVI);
             }
             else
             {
@@ -213,51 +213,51 @@ namespace AssaultBird2454.VPTU.Client.UI.Entity
                 {
                     Header = folder.Name,
                     Tag = folder.ID,
-                    ContextMenu = EntityManager_Folder
+                    ContextMenu = EntitiesManager_Folder
                 };
 
                 folders.Add(folder);
                 Tree.Items.Add(TVI);
-                EntityManager_Folders.Add(TVI);
+                EntitiesManager_Folders.Add(TVI);
             }
         }
-        public void EntityManager_DeleteDir(string ID)
+        public void EntitiesManager_DeleteDir(string ID)
         {
-            foreach (EntityManager.Folder ChildFolder in folders.FindAll(x => x.Parent == ID))
+            foreach (EntitiesManager.Folder ChildFolder in folders.FindAll(x => x.Parent == ID))
             {
-                EntityManager_DeleteDir(ChildFolder.ID);
+                EntitiesManager_DeleteDir(ChildFolder.ID);
             }
-            foreach (EntityManager.Entry_Data entry in entrys.FindAll(x => x.Parent_Folder == ID && x.Entity_Type == EntityManager.Entity_Type.Trainer))
+            foreach (EntitiesManager.Entry_Data entry in entrys.FindAll(x => x.Parent_Folder == ID && x.Entities_Type == EntitiesManager.Entities_Type.Trainer))
             {
-                EntityManager_DeleteEntry(entry.ID);
+                EntitiesManager_DeleteEntry(entry.ID);
             }
-            foreach (EntityManager.Entry_Data entry in entrys.FindAll(x => x.Parent_Folder == ID && x.Entity_Type == EntityManager.Entity_Type.Pokemon))
+            foreach (EntitiesManager.Entry_Data entry in entrys.FindAll(x => x.Parent_Folder == ID && x.Entities_Type == EntitiesManager.Entities_Type.Pokemon))
             {
-                EntityManager_DeleteEntry(entry.ID);
+                EntitiesManager_DeleteEntry(entry.ID);
             }
 
-            EntityManager.Folder Folder = folders.Find(x => x.ID == ID);
+            EntitiesManager.Folder Folder = folders.Find(x => x.ID == ID);
 
-            TreeViewItem TVI = EntityManager_Folders.Find(x => ((EntityManager.Folder)x.Tag).ID == Folder.ID);
+            TreeViewItem TVI = EntitiesManager_Folders.Find(x => ((EntitiesManager.Folder)x.Tag).ID == Folder.ID);
             if (Folder.Parent == null)
             {
                 Tree.Items.Remove(TVI);
             }
             else
             {
-                TreeViewItem ParentTVI = EntityManager_Folders.Find(x => ((EntityManager.Folder)x.Tag).ID == Folder.Parent);
+                TreeViewItem ParentTVI = EntitiesManager_Folders.Find(x => ((EntitiesManager.Folder)x.Tag).ID == Folder.Parent);
                 ParentTVI.Items.Remove(TVI);
             }
 
-            EntityManager_Folders.Remove(TVI);
+            EntitiesManager_Folders.Remove(TVI);
             folders.Remove(Folder);
         }
-        public void EntityManager_DeleteEntry(string ID)
+        public void EntitiesManager_DeleteEntry(string ID)
         {
-            EntityManager.Entry_Data Entry = (EntityManager.Entry_Data)EntityManager_Entrys.Find(x => ((EntityManager.Entry_Data)x.Tag).ID == ID).Tag;
+            EntitiesManager.Entry_Data Entry = (EntitiesManager.Entry_Data)EntitiesManager_Entrys.Find(x => ((EntitiesManager.Entry_Data)x.Tag).ID == ID).Tag;
 
             entrys.Remove(Entry);
-            if (Entry.Entity_Type == EntityManager.Entity_Type.Pokemon)
+            if (Entry.Entities_Type == EntitiesManager.Entities_Type.Pokemon)
             {
                 try
                 {
@@ -265,7 +265,7 @@ namespace AssaultBird2454.VPTU.Client.UI.Entity
                 }
                 catch { /* Dont Care */ }
             }
-            else if (Entry.Entity_Type == EntityManager.Entity_Type.Trainer)
+            else if (Entry.Entities_Type == EntitiesManager.Entities_Type.Trainer)
             {
                 try
                 {
@@ -274,53 +274,53 @@ namespace AssaultBird2454.VPTU.Client.UI.Entity
                 catch { /* Dont Care */ }
             }
 
-            TreeViewItem TVI = EntityManager_Entrys.Find(x => ((EntityManager.Entry_Data)x.Tag).ID == ID);
+            TreeViewItem TVI = EntitiesManager_Entrys.Find(x => ((EntitiesManager.Entry_Data)x.Tag).ID == ID);
             if (Entry.Parent_Folder == null)
             {
                 Tree.Items.Remove(TVI);
             }
             else
             {
-                TreeViewItem Parent = EntityManager_Folders.Find(x => ((EntityManager.Folder)x.Tag).ID == Entry.Parent_Folder);
+                TreeViewItem Parent = EntitiesManager_Folders.Find(x => ((EntitiesManager.Folder)x.Tag).ID == Entry.Parent_Folder);
                 Parent.Items.Remove(TVI);
             }
 
-            EntityManager_Entrys.Remove(TVI);
+            EntitiesManager_Entrys.Remove(TVI);
         }
-        private void EntityManager_DisplayFolder(EntityManager.Folder folder)
+        private void EntitiesManager_DisplayFolder(EntitiesManager.Folder folder)
         {
             #region Context Menu
-            ContextMenu EntityManager_Folder = new ContextMenu();
-            EntityManager_Folder.Tag = folder;
+            ContextMenu EntitiesManager_Folder = new ContextMenu();
+            EntitiesManager_Folder.Tag = folder;
             MenuItem ctxm_Folder_CreateFolder = new MenuItem();
             ctxm_Folder_CreateFolder.Header = "Create Folder";
             ctxm_Folder_CreateFolder.Click += Ctxm_Folder_CreateFolder_Click;
-            MenuItem ctxm_Folder_CreatePokemonEntity = new MenuItem();
-            ctxm_Folder_CreatePokemonEntity.Header = "Create Pokemon Entity";
-            ctxm_Folder_CreatePokemonEntity.Click += Ctxm_Folder_CreatePokemonEntity_Click;
-            MenuItem ctxm_Folder_CreateTrainerEntity = new MenuItem();
-            ctxm_Folder_CreateTrainerEntity.Header = "Create Trainer Entity";
-            ctxm_Folder_CreateTrainerEntity.Click += Ctxm_Folder_CreateTrainerEntity_Click;
-            ctxm_Folder_CreateTrainerEntity.IsEnabled = false;
+            MenuItem ctxm_Folder_CreatePokemonEntities = new MenuItem();
+            ctxm_Folder_CreatePokemonEntities.Header = "Create Pokemon Entities";
+            ctxm_Folder_CreatePokemonEntities.Click += Ctxm_Folder_CreatePokemonEntities_Click;
+            MenuItem ctxm_Folder_CreateTrainerEntities = new MenuItem();
+            ctxm_Folder_CreateTrainerEntities.Header = "Create Trainer Entities";
+            ctxm_Folder_CreateTrainerEntities.Click += Ctxm_Folder_CreateTrainerEntities_Click;
+            ctxm_Folder_CreateTrainerEntities.IsEnabled = false;
             Separator ctxm_Folder_S1 = new Separator();
             MenuItem ctxm_Folder_Delete = new MenuItem();
             ctxm_Folder_Delete.Header = "Delete";
             ctxm_Folder_Delete.Click += Ctxm_Folder_Delete_Click;
 
-            EntityManager_Folder.Items.Add(ctxm_Folder_CreateFolder);
-            EntityManager_Folder.Items.Add(ctxm_Folder_CreatePokemonEntity);
-            EntityManager_Folder.Items.Add(ctxm_Folder_CreateTrainerEntity);
-            EntityManager_Folder.Items.Add(ctxm_Folder_S1);
-            EntityManager_Folder.Items.Add(ctxm_Folder_Delete);
+            EntitiesManager_Folder.Items.Add(ctxm_Folder_CreateFolder);
+            EntitiesManager_Folder.Items.Add(ctxm_Folder_CreatePokemonEntities);
+            EntitiesManager_Folder.Items.Add(ctxm_Folder_CreateTrainerEntities);
+            EntitiesManager_Folder.Items.Add(ctxm_Folder_S1);
+            EntitiesManager_Folder.Items.Add(ctxm_Folder_Delete);
             #endregion
 
-            TreeViewItem Parent = EntityManager_Folders.Find(x => ((EntityManager.Folder)x.Tag).ID == folder.Parent);
+            TreeViewItem Parent = EntitiesManager_Folders.Find(x => ((EntitiesManager.Folder)x.Tag).ID == folder.Parent);
 
             TreeViewItem Child = new TreeViewItem()
             {
                 Header = folder.Name,
                 Tag = folder,
-                ContextMenu = EntityManager_Folder
+                ContextMenu = EntitiesManager_Folder
             };
 
             if (Parent == null)
@@ -331,62 +331,62 @@ namespace AssaultBird2454.VPTU.Client.UI.Entity
             {
                 Parent.Items.Add(Child);
             }
-            EntityManager_Folders.Add(Child);
+            EntitiesManager_Folders.Add(Child);
 
-            EntityManager_Display(folder.ID);
+            EntitiesManager_Display(folder.ID);
         }
 
-        public void EntityManager_CreatePokemonEntity(string Folder = null)
+        public void EntitiesManager_CreatePokemonEntities(string Folder = null)
         {
-            //UI.Entity.Pokemon_Character pc = new UI.Entity.Pokemon_Character(SaveManager);
+            //UI.Entities.Pokemon_Character pc = new UI.Entities.Pokemon_Character(SaveManager);
             //pc.PokemonData.Parent_Folder = Folder;
             //pc.ShowDialog();
 
             //SaveManager.SaveData.Pokemon.Add(pc.PokemonData);
 
-            //EntityManager_DisplayEntry(pc.PokemonData.EntryData);
+            //EntitiesManager_DisplayEntry(pc.PokemonData.EntryData);
         }
-        public void EntityManager_EditPokemonEntity(EntityManager.Pokemon.PokemonCharacter Pokemon)
+        public void EntitiesManager_EditPokemonEntities(EntitiesManager.Pokemon.PokemonCharacter Pokemon)
         {
-            //UI.Entity.Pokemon_Character pc = new UI.Entity.Pokemon_Character(SaveManager, Pokemon);
+            //UI.Entities.Pokemon_Character pc = new UI.Entities.Pokemon_Character(SaveManager, Pokemon);
             //pc.ShowDialog();
 
-            //TreeViewItem TVI = EntityManager_Entrys.Find(x => ((EntityManager.Entry_Data)x.Tag).ID == Pokemon.ID);
-            //UI.Entity.EntityListItem ELI = (UI.Entity.EntityListItem)TVI.Header;
+            //TreeViewItem TVI = EntitiesManager_Entrys.Find(x => ((EntitiesManager.Entry_Data)x.Tag).ID == Pokemon.ID);
+            //UI.Entities.EntitiesListItem ELI = (UI.Entities.EntitiesListItem)TVI.Header;
 
             //ELI.Update(SaveManager.LoadImage(Pokemon.Token_ResourceID), Pokemon.Name, new List<KeyValuePair<System.Windows.Media.Color, string>>());
         }
-        private void EntityManager_DisplayEntry(EntityManager.Entry_Data entry)
+        private void EntitiesManager_DisplayEntry(EntitiesManager.Entry_Data entry)
         {
-            UI.Entity.EntityListItem ELI = new UI.Entity.EntityListItem();
+            UI.Entities.EntitiesListItem ELI = new UI.Entities.EntitiesListItem();
             ELI.Update(entry.Name, new List<KeyValuePair<System.Windows.Media.Color, string>>());
 
             #region Context Menu
-            ContextMenu EntityManager_Entity = new ContextMenu();
-            EntityManager_Entity.Tag = entry;
-            MenuItem ctxm_Entity_Edit = new MenuItem();
-            ctxm_Entity_Edit.Header = "View / Edit";
-            ctxm_Entity_Edit.Click += Ctxm_Entity_Edit_Click;
-            MenuItem ctxm_Entity_Duplicate = new MenuItem();
-            ctxm_Entity_Duplicate.Header = "Duplicate";
-            ctxm_Entity_Duplicate.Click += Ctxm_Entity_Duplicate_Click;
-            ctxm_Entity_Duplicate.IsEnabled = false;
-            Separator ctxm_Entity_S1 = new Separator();
-            MenuItem ctxm_Entity_Delete = new MenuItem();
-            ctxm_Entity_Delete.Header = "Delete";
-            ctxm_Entity_Delete.Click += Ctxm_Entity_Delete_Click;
+            ContextMenu EntitiesManager_Entities = new ContextMenu();
+            EntitiesManager_Entities.Tag = entry;
+            MenuItem ctxm_Entities_Edit = new MenuItem();
+            ctxm_Entities_Edit.Header = "View / Edit";
+            ctxm_Entities_Edit.Click += Ctxm_Entities_Edit_Click;
+            MenuItem ctxm_Entities_Duplicate = new MenuItem();
+            ctxm_Entities_Duplicate.Header = "Duplicate";
+            ctxm_Entities_Duplicate.Click += Ctxm_Entities_Duplicate_Click;
+            ctxm_Entities_Duplicate.IsEnabled = false;
+            Separator ctxm_Entities_S1 = new Separator();
+            MenuItem ctxm_Entities_Delete = new MenuItem();
+            ctxm_Entities_Delete.Header = "Delete";
+            ctxm_Entities_Delete.Click += Ctxm_Entities_Delete_Click;
 
-            EntityManager_Entity.Items.Add(ctxm_Entity_Edit);
-            EntityManager_Entity.Items.Add(ctxm_Entity_Duplicate);
-            EntityManager_Entity.Items.Add(ctxm_Entity_S1);
-            EntityManager_Entity.Items.Add(ctxm_Entity_Delete);
+            EntitiesManager_Entities.Items.Add(ctxm_Entities_Edit);
+            EntitiesManager_Entities.Items.Add(ctxm_Entities_Duplicate);
+            EntitiesManager_Entities.Items.Add(ctxm_Entities_S1);
+            EntitiesManager_Entities.Items.Add(ctxm_Entities_Delete);
             #endregion
 
             TreeViewItem TVI = new TreeViewItem()
             {
                 Header = ELI,
                 Tag = entry,
-                ContextMenu = EntityManager_Entity
+                ContextMenu = EntitiesManager_Entities
             };
 
             if (entry.Parent_Folder == null)
@@ -395,31 +395,31 @@ namespace AssaultBird2454.VPTU.Client.UI.Entity
             }
             else
             {
-                TreeViewItem Parent = EntityManager_Folders.Find(x => ((EntityManager.Folder)x.Tag).ID == entry.Parent_Folder);
+                TreeViewItem Parent = EntitiesManager_Folders.Find(x => ((EntitiesManager.Folder)x.Tag).ID == entry.Parent_Folder);
                 Parent.Items.Add(TVI);
             }
-            EntityManager_Entrys.Add(TVI);
+            EntitiesManager_Entrys.Add(TVI);
 
             Program.ClientInstance.Client.SendData(new VPTU.Server.Instances.CommandData.Resources.ImageResource
             {
-                UseCommand = "Entity_List",
+                UseCommand = "Entities_List",
                 UseID = entry.ID,
                 Resource_ID = entry.Token_ResourceID
             });// Retrieves the Image
         }
 
-        private void EntityManager_Display(string ParentID = null)
+        private void EntitiesManager_Display(string ParentID = null)
         {
             TreeViewItem Child;
 
-            foreach (EntityManager.Entry_Data entry in entrys.FindAll(x => x.Parent_Folder == ParentID))
+            foreach (EntitiesManager.Entry_Data entry in entrys.FindAll(x => x.Parent_Folder == ParentID))
             {
-                EntityManager_DisplayEntry(entry);
+                EntitiesManager_DisplayEntry(entry);
             }
 
-            foreach (EntityManager.Folder folder in folders.FindAll(x => x.Parent == ParentID))
+            foreach (EntitiesManager.Folder folder in folders.FindAll(x => x.Parent == ParentID))
             {
-                EntityManager_DisplayFolder(folder);
+                EntitiesManager_DisplayFolder(folder);
             }
         }
         #endregion
@@ -428,7 +428,7 @@ namespace AssaultBird2454.VPTU.Client.UI.Entity
         {
             try
             {
-                Program.ClientInstance.Client.SendData(new Server.Instances.CommandData.Entity.Entity_All_GetList());
+                Program.ClientInstance.Client.SendData(new Server.Instances.CommandData.Entities.Entities_All_GetList());
             }
             catch (NullReferenceException)
             {

@@ -79,14 +79,38 @@ namespace AssaultBird2454.VPTU.Server.Instances
         #region Authentication
         public List<KeyValuePair<Networking.Server.TCP.TCP_ClientNode, Authentication_Manager.Data.User>> Authenticated_Clients;
 
-        public void Authenticate_Client(Networking.Server.TCP.TCP_ClientNode cn, Authentication_Manager.Data.User user)
+        public bool Authenticate_Client(Networking.Server.TCP.TCP_ClientNode cn, CommandData.Auth.Login Login)
         {
             Authenticated_Clients.RemoveAll(x => x.Key == cn);
-            Authenticated_Clients.Add(new KeyValuePair<Networking.Server.TCP.TCP_ClientNode, Authentication_Manager.Data.User>(cn, user));
+            Authentication_Manager.Data.Identity ID = SaveManager.SaveData.Identities.Find(x => x.Key == Login.Client_Key);
+
+            if (ID != null)
+            {
+                Authentication_Manager.Data.User user = SaveManager.SaveData.Users.Find(x => x.UserID == ID.UserID);
+                Authenticated_Clients.Add(new KeyValuePair<Networking.Server.TCP.TCP_ClientNode, Authentication_Manager.Data.User>(cn, user));
+
+                ((Class.Logging.I_Logger)Server_Logger).Log("Client @ " + cn.ID + " Passed authenticated as User " + user.Name + " (" + user.IC_Name + ")", Class.Logging.LoggerLevel.Audit);
+                cn.Send(new CommandData.Auth.Login() { Client_Key = ID.Key, Auth_State = CommandData.Auth.AuthState.Passed, UserData = user });
+                return true;
+            }
+            else
+            {
+                ((Class.Logging.I_Logger)Server_Logger).Log("Client @ " + cn.ID + " Failed authentication", Class.Logging.LoggerLevel.Audit);
+                cn.Send(new CommandData.Auth.Login() { Client_Key = "", Auth_State = CommandData.Auth.AuthState.Failed });
+                return false;
+            }
         }
-        public void DeAuthenticate_Client(Networking.Server.TCP.TCP_ClientNode cn, Authentication_Manager.Data.User user)
+        public void DeAuthenticate_Client(Networking.Server.TCP.TCP_ClientNode cn)
         {
             Authenticated_Clients.RemoveAll(x => x.Key == cn);
+            ((Class.Logging.I_Logger)Server_Logger).Log("Client @ " + cn.ID + " DeAuthenticated", Class.Logging.LoggerLevel.Audit);
+            cn.Send(new CommandData.Auth.Logout() { Auth_State = CommandData.Auth.AuthState.DeAuthenticated });
+        }
+        public bool CheckAuthentication_Client(Networking.Server.TCP.TCP_ClientNode cn)
+        {
+            if (Authenticated_Clients.FindAll(x => x.Key == cn).Count >= 1)
+                return true;
+            return false;
         }
         #endregion
         #endregion

@@ -13,8 +13,6 @@ namespace AssaultBird2454.VPTU.Authentication_Manager.Data
                 Name = "";
                 IC_Name = "";
 
-                Groups = new List<string>();
-                Permissions = new List<Permissions_Manager.Data.Permission_Node>();
                 UserColor = new System.Windows.Media.Color() { R = 0, G = 178, B = 214, A = 255 };
             }
         }
@@ -24,7 +22,20 @@ namespace AssaultBird2454.VPTU.Authentication_Manager.Data
         public string IC_Name { get; set; }
         public bool isGM { get; set; }
         public System.Windows.Media.Color UserColor { get; set; }
+    }
 
+    public class PermissionData
+    {
+        public PermissionData(bool Init = false)
+        {
+            if (Init)
+            {
+                Groups = new List<string>();
+                Permissions = new List<Permissions_Manager.Data.Permission_Node>();
+            }
+        }
+
+        public string UserID { get; set; }
         [JsonIgnore]
         public string Group_String
         {

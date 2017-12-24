@@ -128,48 +128,48 @@ namespace AssaultBird2454.VPTU.Client
         }
         #endregion
 
-        #region Entity List
+        #region Entities List
         /// <summary>
-        /// The control that handels the EntityList List Functions
+        /// The control that handels the EntitiesList List Functions
         /// </summary>
-        private UI.Entity.EntityList _EntityList_Form;
+        private UI.Entities.EntitiesList _EntitiesList_Form;
         /// <summary>
-        /// The MDI window that handels the EntityList List Functions
+        /// The MDI window that handels the EntitiesList List Functions
         /// </summary>
-        private WPF.MDI.MdiChild _EntityList_Window;
+        private WPF.MDI.MdiChild _EntitiesList_Window;
         /// <summary>
-        /// Gets the control that handels the EntityList List Functions. And creates a window if it does not exist
+        /// Gets the control that handels the EntitiesList List Functions. And creates a window if it does not exist
         /// </summary>
-        public UI.Entity.EntityList EntityList_Form()
+        public UI.Entities.EntitiesList EntitiesList_Form()
         {
-            if (_EntityList_Form == null)// If the list control does not exist
+            if (_EntitiesList_Form == null)// If the list control does not exist
             {
-                _EntityList_Form = new UI.Entity.EntityList();// Create the control
+                _EntitiesList_Form = new UI.Entities.EntitiesList();// Create the control
 
-                Menu_View_EntityList.IsChecked = true;// Check the menu box
-                _EntityList_Window = new WPF.MDI.MdiChild()
+                Menu_View_EntitiesList.IsChecked = true;// Check the menu box
+                _EntitiesList_Window = new WPF.MDI.MdiChild()
                 {
                     Title = "Entities",
                     Icon = new BitmapImage(new Uri(Program.AssemblyDirectory + @"\Resources\Pokeball.png", UriKind.Absolute)),
-                    Content = _EntityList_Form
+                    Content = _EntitiesList_Form
                 };// Create the window
-                _EntityList_Window.Closing += EntityList_Window_Closing;// Set up an event
-                MDI.Children.Add(_EntityList_Window);// Add the window
+                _EntitiesList_Window.Closing += EntitiesList_Window_Closing;// Set up an event
+                MDI.Children.Add(_EntitiesList_Window);// Add the window
 
-                return _EntityList_Form;// Return the control
+                return _EntitiesList_Form;// Return the control
             }
             else
             {
-                Menu_View_EntityList.IsChecked = true;// Check the menu box
-                return _EntityList_Form;// Return the control if it already exists
+                Menu_View_EntitiesList.IsChecked = true;// Check the menu box
+                return _EntitiesList_Form;// Return the control if it already exists
             }
         }
 
-        private void EntityList_Window_Closing(object sender, RoutedEventArgs e)
+        private void EntitiesList_Window_Closing(object sender, RoutedEventArgs e)
         {
-            Menu_View_EntityList.IsChecked = false;
-            _EntityList_Form = null;
-            _EntityList_Window = null;
+            Menu_View_EntitiesList.IsChecked = false;
+            _EntitiesList_Form = null;
+            _EntitiesList_Window = null;
         }
 
         private List<KeyValuePair<string, WPF.MDI.MdiChild>> _CharacterSheet_List = new List<KeyValuePair<string, WPF.MDI.MdiChild>>();
@@ -182,7 +182,7 @@ namespace AssaultBird2454.VPTU.Client
             }
             else
             {
-                UI.Entity.Entity CharacterSheet = new UI.Entity.Entity();
+                UI.Entities.Entities CharacterSheet = new UI.Entities.Entities();
 
                 WPF.MDI.MdiChild window = new WPF.MDI.MdiChild()
                 {
@@ -465,7 +465,7 @@ namespace AssaultBird2454.VPTU.Client
         }
         private void Tools_Entities_Click(object sender, RoutedEventArgs e)
         {
-            EntityList_Form();
+            EntitiesList_Form();
         }
         #endregion
 
@@ -583,7 +583,20 @@ namespace AssaultBird2454.VPTU.Client
 
             if (loginData.Auth_State == Server.Instances.CommandData.Auth.AuthState.Passed)
             {
-                Status_Set_PlayerName("Authenticated");
+                Status_Set_PlayerName(loginData.UserData.IC_Name);
+            }
+            else if (loginData.Auth_State != Server.Instances.CommandData.Auth.AuthState.Passed)
+            {
+                Status_Set_PlayerName("Not Authenticated");
+            }
+        }
+        internal void Auth_Logout_Executed(object Data)
+        {
+            Server.Instances.CommandData.Auth.Login loginData = (Server.Instances.CommandData.Auth.Login)Data;
+
+            if (loginData.Auth_State == Server.Instances.CommandData.Auth.AuthState.DeAuthenticated)
+            {
+                Status_Set_PlayerName("Not Authenticated");
             }
         }
         #endregion
@@ -624,39 +637,39 @@ namespace AssaultBird2454.VPTU.Client
         }
         #endregion
 
-        #region Entity
-        internal void Entity_All_GetList_Executed(object Data)
+        #region Entities
+        internal void Entities_All_GetList_Executed(object Data)
         {
-            Server.Instances.CommandData.Entity.Entity_All_GetList EAGL = (Server.Instances.CommandData.Entity.Entity_All_GetList)Data;
+            Server.Instances.CommandData.Entities.Entities_All_GetList EAGL = (Server.Instances.CommandData.Entities.Entities_All_GetList)Data;
 
-            this.Dispatcher.Invoke(new Action(() => EntityList_Form().EntityManager_ReloadList(EAGL.Folders, EAGL.Entrys)));
+            this.Dispatcher.Invoke(new Action(() => EntitiesList_Form().EntitiesManager_ReloadList(EAGL.Folders, EAGL.Entrys)));
         }
-        internal void Entity_Pokemon_Get_Executed(object Data)
+        internal void Entities_Pokemon_Get_Executed(object Data)
         {
-            Server.Instances.CommandData.Entity.Entity_Pokemon_Get Pokemon = (Server.Instances.CommandData.Entity.Entity_Pokemon_Get)Data;
+            Server.Instances.CommandData.Entities.Entities_Pokemon_Get Pokemon = (Server.Instances.CommandData.Entities.Entities_Pokemon_Get)Data;
 
             this.Dispatcher.Invoke(new Action(() =>
             {
                 WPF.MDI.MdiChild Window = CharacterSheet_List(Pokemon.ID);
-                UI.Entity.Entity EntityForm = ((UI.Entity.Entity)(Window).Content);
+                UI.Entities.Entities EntitiesForm = ((UI.Entities.Entities)(Window).Content);
 
                 var bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(Pokemon.Image.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
 
                 Window.Icon = bitmapSource;
                 Window.Title = "Character Sheet - " + Pokemon.Pokemon.Name;
-                EntityForm.Update_Pokemon(Pokemon.Pokemon);
-                EntityForm.Update_Token(Pokemon.Image);
+                EntitiesForm.Update_Pokemon(Pokemon.Pokemon);
+                EntitiesForm.Update_Token(Pokemon.Image);
             }));
         }
-        internal void Resources_Image_Get_Entity_Executed(object Data)
+        internal void Resources_Image_Get_Entities_Executed(object Data)
         {
             Server.Instances.CommandData.Resources.ImageResource IRD = (Server.Instances.CommandData.Resources.ImageResource)Data;
 
-            if (IRD.UseCommand == "Entity_List")// Pokedex Card Viewer
+            if (IRD.UseCommand == "Entities_List")// Pokedex Card Viewer
             {
                 try
                 {
-                    this.Dispatcher.Invoke(new Action(() => EntityList_Form().UpdateImage(IRD.UseID, IRD.Image)));
+                    this.Dispatcher.Invoke(new Action(() => EntitiesList_Form().UpdateImage(IRD.UseID, IRD.Image)));
                 }
                 catch
                 {

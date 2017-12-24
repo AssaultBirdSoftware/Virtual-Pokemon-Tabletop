@@ -65,7 +65,7 @@ namespace AssaultBird2454.VPTU.Client.UI
                     {
                         if (User_Identity.SelectedIndex >= 1)
                         {
-                            Program.ClientInstance.Client.SendData(new Server.Instances.CommandData.Auth.Login() { Client_Key = ((SaveManager.Identity.Identity_Data)((ComboBoxItem)User_Identity.SelectedItem).Tag).Key });
+                            Program.ClientInstance.Client.SendData(new Server.Instances.CommandData.Auth.Login() { Client_Key = ((UserIdentity)((ComboBoxItem)User_Identity.SelectedItem).Tag).AuthKey });
                         }
                     });
                 })));
@@ -90,7 +90,7 @@ namespace AssaultBird2454.VPTU.Client.UI
             }
             else
             {
-                SaveManager.Identity.Identity_Data Data = ((SaveManager.Identity.Identity_Data)((ComboBoxItem)User_Identity.SelectedItem).Tag);
+                UserIdentity Data = ((UserIdentity)((ComboBoxItem)User_Identity.SelectedItem).Tag);
 
                 Server_Address.IsEnabled = false;
                 Server_Address.Text = Data.Server_Address;
