@@ -40,22 +40,34 @@ namespace AssaultBird2454.VPTU.Client.UI
         private void Add_Button_Click(object sender, RoutedEventArgs e)
         {
             Identity.Add add = new Identity.Add();
-            //Program.Identities.Add();
+
+            bool? Pass = add.ShowDialog();
+            if(Pass == true)
+            {
+                Program.Identities.Add(add.UID);
+                ID_List.Items.Add(add.UID);
+            }
         }
 
         private void Import_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            MessageBox.Show("Feature Comming Soon", "Not Implemented");
         }
 
         private void Edit_Button_Click(object sender, RoutedEventArgs e)
         {
+            Identity.Add edit = new Identity.Add((UserIdentity)ID_List.SelectedItems[0]);
+            edit.ShowDialog();
 
+            Load();
         }
 
         private void Remove_Button_Click(object sender, RoutedEventArgs e)
         {
+            UserIdentity id = (UserIdentity)ID_List.SelectedItems[0];
 
+            Program.Identities.Remove(id);
+            ID_List.Items.Remove(id);
         }
     }
 }

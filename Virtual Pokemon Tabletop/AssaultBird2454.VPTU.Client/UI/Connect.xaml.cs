@@ -98,5 +98,14 @@ namespace AssaultBird2454.VPTU.Client.UI
                 Server_Port.Value = Data.Server_Port;
             }
         }
+
+        private void User_ManageIdentities_Click(object sender, RoutedEventArgs e)
+        {
+            UI.Manage_Identities ID = new UI.Manage_Identities();
+
+            ID.ShowDialog();
+
+            Load_IDs();
+        }
     }
 }

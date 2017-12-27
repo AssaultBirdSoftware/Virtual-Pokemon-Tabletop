@@ -108,8 +108,8 @@
     <Compile Include="UI\Entity\Entity.xaml.cs">
       <DependentUpon>Entity.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Identity\Add.xaml.cs">
-      <DependentUpon>Add.xaml</DependentUpon>
+    <Compile Include="UI\Identity\Identity.xaml.cs">
+      <DependentUpon>Identity.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Manage_Identitys.xaml.cs">
       <DependentUpon>Manage_Identitys.xaml</DependentUpon>
@@ -161,7 +161,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Identity\Add.xaml">
+    <Page Include="UI\Identity\Identity.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

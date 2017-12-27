@@ -18,7 +18,7 @@
         </ComboBox>
         <Button x:Name="Button_Connect" Content="Connect" HorizontalAlignment="Left" Margin="10,102,0,0" VerticalAlignment="Top" Width="75" IsDefault="True" Click="Button_Connect_Click"/>
         <Button x:Name="Button_Cancel" Content="Cancel" HorizontalAlignment="Left" Margin="90,102,0,0" VerticalAlignment="Top" Width="75" IsCancel="True"/>
-        <Button x:Name="User_ManageIdentities" Content="Manage" Margin="0,75,5.4,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75"/>
+        <Button x:Name="User_ManageIdentities" Content="Manage" Margin="0,75,5.4,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="User_ManageIdentities_Click"/>
 
     </Grid>
 </Window>
