@@ -39,7 +39,7 @@ namespace AssaultBird2454.VPTU.Client.UI
             });
             User_Identity.SelectedIndex = 0;
 
-            foreach (UserIdentity id in Program.Identities)
+            foreach (Authentication_Manager.Data.ClientIdentity id in Program.Identities)
             {
                 User_Identity.Items.Add(new ComboBoxItem()
                 {
@@ -65,7 +65,7 @@ namespace AssaultBird2454.VPTU.Client.UI
                     {
                         if (User_Identity.SelectedIndex >= 1)
                         {
-                            Program.ClientInstance.Client.SendData(new Server.Instances.CommandData.Auth.Login() { Client_Key = ((UserIdentity)((ComboBoxItem)User_Identity.SelectedItem).Tag).AuthKey });
+                            Program.ClientInstance.Client.SendData(new Server.Instances.CommandData.Auth.Login() { Client_Key = ((Authentication_Manager.Data.ClientIdentity)((ComboBoxItem)User_Identity.SelectedItem).Tag).AuthKey });
                         }
                     });
                 })));
@@ -90,7 +90,7 @@ namespace AssaultBird2454.VPTU.Client.UI
             }
             else
             {
-                UserIdentity Data = ((UserIdentity)((ComboBoxItem)User_Identity.SelectedItem).Tag);
+                Authentication_Manager.Data.ClientIdentity Data = ((Authentication_Manager.Data.ClientIdentity)((ComboBoxItem)User_Identity.SelectedItem).Tag);
 
                 Server_Address.IsEnabled = false;
                 Server_Address.Text = Data.Server_Address;

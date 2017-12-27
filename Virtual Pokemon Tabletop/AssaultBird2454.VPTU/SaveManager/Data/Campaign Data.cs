@@ -15,6 +15,8 @@ namespace AssaultBird2454.VPTU.SaveManager.Data
                 Campaign_Name = "Campaign Name";
                 Campaign_GM_Name = "Campaign Game Masters Name";
                 Campaign_Desc = "Campaigns Description / Plot Hook / What ever you want";
+                Server_Address = "";
+                Server_Port = 25444;
             }
         }
 
@@ -34,11 +36,19 @@ namespace AssaultBird2454.VPTU.SaveManager.Data
             {
                 Campaign_Desc = "";
             }
+
+            if (string.IsNullOrWhiteSpace(Server_Address))
+            {
+                Server_Address = "";
+            }
         }
 
         public string Campaign_Name { get; set; }
         public string Campaign_Desc { get; set; }
         public string Campaign_GM_Name { get; set; }
+
+        public string Server_Address { get; set; }
+        public int Server_Port { get; set; }
     }
 
     public class Campaign_Settings

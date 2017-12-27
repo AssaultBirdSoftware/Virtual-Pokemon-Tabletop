@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -60,7 +61,8 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Users
 
         private void PlayerColor_Picker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
         {
-            if (PlayerColor_Picker.SelectedColor != null) {
+            if (PlayerColor_Picker.SelectedColor != null)
+            {
                 User.UserColor = (Color)PlayerColor_Picker.SelectedColor;
             }
         }
@@ -72,7 +74,35 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Users
 
         private void Export_PlayerKey_Click(object sender, RoutedEventArgs e)
         {
+            Microsoft.Win32.SaveFileDialog SFD = new Microsoft.Win32.SaveFileDialog();
+            SFD.Title = "Save Virtual PTU Identity File";
+            SFD.DefaultExt = ".ptuif";
+            SFD.Filter = "Pokemon Tabletop User Identity File (*.ptuif)|*.ptuif";
+            SFD.CheckPathExists = true;
+            SFD.CheckFileExists = false;
+            SFD.OverwritePrompt = true;
+            SFD.FileOk += SFD_FileOk;
 
+            SFD.ShowDialog();
+        }
+
+        private void SFD_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Authentication_Manager.Data.ClientIdentity ID = new Authentication_Manager.Data.ClientIdentity();
+
+            ID.AuthKey = MainWindow.SaveManager.SaveData.Identity_GetKey(User.UserID);
+            ID.Campaign_Name = MainWindow.SaveManager.SaveData.Campaign_Data.Campaign_Name;
+            ID.ICN = User.IC_Name;
+            ID.Server_Address = MainWindow.SaveManager.SaveData.Campaign_Data.Server_Address;
+            ID.Server_Port = MainWindow.SaveManager.SaveData.Campaign_Data.Server_Port;
+
+            try { File.Delete(((Microsoft.Win32.SaveFileDialog)sender).FileName); } catch { }
+            
+            using (StreamWriter SW = new StreamWriter(new FileStream(((Microsoft.Win32.SaveFileDialog)sender).FileName, FileMode.OpenOrCreate)))
+            {
+                SW.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(ID));
+                SW.Flush();
+            }
         }
 
         private void ReGenerate_PlayerKey_Click(object sender, RoutedEventArgs e)

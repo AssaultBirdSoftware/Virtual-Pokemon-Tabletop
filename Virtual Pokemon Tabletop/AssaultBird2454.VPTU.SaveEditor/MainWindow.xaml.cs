@@ -1138,6 +1138,9 @@ namespace AssaultBird2454.VPTU.SaveEditor
             OverViewSettings_Basic_CampaignName.Text = SaveManager.SaveData.Campaign_Data.Campaign_Name;
             OverViewSettings_Basic_GMName.Text = SaveManager.SaveData.Campaign_Data.Campaign_GM_Name;
             OverViewSettings_Basic_Description.Text = SaveManager.SaveData.Campaign_Data.Campaign_Desc;
+
+            OverViewSettings_Server_Address.Text = SaveManager.SaveData.Campaign_Data.Server_Address;
+            OverViewSettings_Server_Port.Value = SaveManager.SaveData.Campaign_Data.Server_Port;
         }
 
         private void OverViewSettings_Basic_CampaignName_TextChanged(object sender, TextChangedEventArgs e)
@@ -1215,6 +1218,16 @@ namespace AssaultBird2454.VPTU.SaveEditor
         private void PokedexManager_Export_Moves_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void OverViewSettings_Server_Address_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            SaveManager.SaveData.Campaign_Data.Server_Address = OverViewSettings_Server_Address.Text;
+        }
+
+        private void OverViewSettings_Server_Port_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            SaveManager.SaveData.Campaign_Data.Server_Port = (int)OverViewSettings_Server_Port.Value;
         }
     }
 

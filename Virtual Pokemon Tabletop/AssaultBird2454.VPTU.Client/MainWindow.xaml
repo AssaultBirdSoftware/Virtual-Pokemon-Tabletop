@@ -76,8 +76,8 @@
         </ToolBar>
         <MDI:MdiContainer x:Name="MDI" Margin="0,45,0,22"/>
         <StatusBar x:Name="Status" Background="Red" Height="22" VerticalAlignment="Bottom">
-            <StatusBarItem x:Name="Status_SvAddress" Content="Server Address: None" Margin="0,0,0,-0.4" HorizontalAlignment="Left" BorderThickness="0,0,1,0" BorderBrush="Black"/>
-            <StatusBarItem x:Name="Status_SvPort" Content="Server Port: 00000" Margin="0,0,0,-0.4" HorizontalAlignment="Left" BorderBrush="Black" BorderThickness="0,0,1,0"/>
+            <StatusBarItem x:Name="Status_SvAddress" Content="Server Address: Not Connected" Margin="0,0,0,-0.4" HorizontalAlignment="Left" BorderThickness="0,0,1,0" BorderBrush="Black"/>
+            <StatusBarItem x:Name="Status_SvPort" Content="Server Port: 0" Margin="0,0,0,-0.4" HorizontalAlignment="Left" BorderBrush="Black" BorderThickness="0,0,1,0"/>
             <StatusBarItem x:Name="Status_Ping" Content="Server Ping: 0" Margin="0,0,0,-0.4" HorizontalAlignment="Left" BorderBrush="Black" BorderThickness="0,0,1,0"/>
             <StatusBarItem x:Name="Status_Username" Content="Player Name: Not Authenticated" Margin="0,0,0,-0.4" HorizontalAlignment="Left" BorderBrush="Black" BorderThickness="0,0,1,0"/>
             <StatusBarItem x:Name="Status_CampaignName" Content="Campaign Name: 0" Margin="0,0,0,-0.4" HorizontalAlignment="Right" BorderBrush="Black" BorderThickness="1,0,0,0"/>

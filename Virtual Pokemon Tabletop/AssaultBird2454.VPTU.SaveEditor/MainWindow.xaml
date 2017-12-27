@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor"
-        xmlns:Battlers="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Battlers" x:Class="AssaultBird2454.VPTU.SaveEditor.MainWindow"
+        xmlns:Battlers="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Battlers"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="AssaultBird2454.VPTU.SaveEditor.MainWindow"
         mc:Ignorable="d"
         Title="Virtual Pokemon Tabletop - SaveEditor (Version: _____ _._._ Build _) (Commit: _______)" Height="710" Width="997.5" Closed="Window_Closed">
     <Grid>
@@ -63,17 +64,24 @@
                                 <Label Content="Description:" HorizontalAlignment="Left" Margin="0,82,0,0" VerticalAlignment="Top"/>
                                 <TextBox x:Name="OverViewSettings_Basic_Description" Height="208" Margin="106,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="OverViewSettings_Basic_Description_TextChanged"/>
                                 <Label Content="Basic Game Info" Margin="10,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                                <Label Content="" Margin="10,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="1"/>
+                                <Label Content="Server Settings" Margin="10,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="1"/>
                                 <Label Content="" Margin="10,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="2"/>
+                                <Label Content="Server Address" HorizontalAlignment="Left" Margin="0,26,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                                <TextBox x:Name="OverViewSettings_Server_Address" Height="23" Margin="106,30,0.4,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxLines="1" TextChanged="OverViewSettings_Server_Address_TextChanged" Grid.Column="1"/>
+                                <Label Content="Server Port" HorizontalAlignment="Left" Margin="0,54,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                                <xctk:IntegerUpDown x:Name="OverViewSettings_Server_Port" Height="23" Margin="105,58,1.4,0" VerticalAlignment="Top" Grid.Column="1" ValueChanged="OverViewSettings_Server_Port_ValueChanged"/>
                             </Grid>
+                        </TabItem>
+                        <TabItem Header="Advanced Server Settings">
+                            <Grid Background="#FFE5E5E5"/>
                         </TabItem>
                         <TabItem Header="Features">
                             <Grid Background="#FFE5E5E5"/>
                         </TabItem>
-                        <TabItem Header="Save File Settings" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top">
+                        <TabItem Header="Save File Settings">
                             <Grid Background="#FFE5E5E5"/>
                         </TabItem>
-                        <TabItem Header="Users and Groups" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top">
+                        <TabItem Header="Users and Groups">
                             <Grid Background="#FFE5E5E5">
                                 <Grid Background="#FFE5E5E5">
                                     <Grid.ColumnDefinitions>
@@ -243,7 +251,7 @@
                     <Label x:Name="label" Content="This Tab is in Development..." Foreground="Red" FontSize="72"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Feature Manager" HorizontalAlignment="Left" Height="19.96" VerticalAlignment="Top">
+            <TabItem Header="Feature Manager">
                 <Grid Background="#FFE5E5E5">
                     <Label x:Name="label1" Content="This Tab is in Development..." Foreground="Red" FontSize="72"/>
                 </Grid>

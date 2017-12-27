@@ -53,12 +53,19 @@ namespace AssaultBird2454.VPTU.Pokedex.Pokemon
             {
                 int i = 0;
                 string s = "";
-                foreach (BattleManager.Data.Type type in Species_Types)
+                try
                 {
-                    if (i != 0)
-                        s = s + ", ";
-                    s = s + type.ToString();
-                    i++;
+                    foreach (BattleManager.Data.Type type in Species_Types)
+                    {
+                        if (i != 0)
+                            s = s + ", ";
+                        s = s + type.ToString();
+                        i++;
+                    }
+                }
+                catch
+                {
+                    return "Error (Null Object)";
                 }
 
                 return s;

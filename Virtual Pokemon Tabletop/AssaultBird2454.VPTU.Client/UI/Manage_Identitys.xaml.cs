@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ComponentModel;
+using System.IO;
 
 namespace AssaultBird2454.VPTU.Client.UI
 {
@@ -31,7 +34,7 @@ namespace AssaultBird2454.VPTU.Client.UI
         {
             ID_List.Items.Clear();
 
-            foreach (UserIdentity id in Program.Identities)
+            foreach (Authentication_Manager.Data.ClientIdentity id in Program.Identities)
             {
                 ID_List.Items.Add(id);
             }
@@ -51,12 +54,33 @@ namespace AssaultBird2454.VPTU.Client.UI
 
         private void Import_Button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Feature Comming Soon", "Not Implemented");
+            OpenFileDialog OFD = new OpenFileDialog();
+            OFD.Title = "Save Virtual PTU Identity File";
+            OFD.DefaultExt = ".ptuif";
+            OFD.Filter = "Pokemon Tabletop User Identity File (*.ptuif)|*.ptuif";
+            OFD.CheckPathExists = true;
+            OFD.CheckFileExists = true;
+            OFD.FileOk += OFD_FileOk;
+
+            OFD.ShowDialog();
+        }
+
+        private void OFD_FileOk(object sender, CancelEventArgs e)
+        {
+            Authentication_Manager.Data.ClientIdentity ID;
+
+            using (StreamReader SR = new StreamReader(new FileStream(((OpenFileDialog)sender).FileName, FileMode.OpenOrCreate)))
+            {
+                ID = Newtonsoft.Json.JsonConvert.DeserializeObject<Authentication_Manager.Data.ClientIdentity>(SR.ReadToEnd());
+            }
+
+            Program.Identities.Add(ID);
+            ID_List.Items.Add(ID);
         }
 
         private void Edit_Button_Click(object sender, RoutedEventArgs e)
         {
-            Identity.Add edit = new Identity.Add((UserIdentity)ID_List.SelectedItems[0]);
+            Identity.Add edit = new Identity.Add((Authentication_Manager.Data.ClientIdentity)ID_List.SelectedItems[0]);
             edit.ShowDialog();
 
             Load();
@@ -64,7 +88,7 @@ namespace AssaultBird2454.VPTU.Client.UI
 
         private void Remove_Button_Click(object sender, RoutedEventArgs e)
         {
-            UserIdentity id = (UserIdentity)ID_List.SelectedItems[0];
+            Authentication_Manager.Data.ClientIdentity id = (Authentication_Manager.Data.ClientIdentity)ID_List.SelectedItems[0];
 
             Program.Identities.Remove(id);
             ID_List.Items.Remove(id);

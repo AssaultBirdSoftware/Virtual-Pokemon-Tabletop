@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Forms;
 using System.Windows.Media;
 
@@ -44,8 +45,8 @@ namespace AssaultBird2454.VPTU.Client
         public static Server.Instances.ClientInstance ClientInstance { get; set; }
         public static Server.Instances.ServerInstance ServerInstance { get; set; }
         public static SaveManager.Data.SaveFile.PTUSaveData DataCache { get; set; }
-        private static Timer Ping_Timer { get; set; }
-        public static List<UserIdentity> Identities { get; set; }
+        private static System.Timers.Timer Ping_Timer { get; set; }
+        public static List<Authentication_Manager.Data.ClientIdentity> Identities { get; set; }
 
         public static NotifyIcon NotifyIcon { get; internal set; }
         public static object ClientLogger
@@ -98,23 +99,23 @@ namespace AssaultBird2454.VPTU.Client
                 using (StreamReader sr = new StreamReader(new FileStream(AssemblyDirectory + @"\Client_Identities.json", FileMode.OpenOrCreate)))
                 {
                     string Client_Identities = sr.ReadToEnd();
-                    Identities = Newtonsoft.Json.JsonConvert.DeserializeObject<List<UserIdentity>>(Client_Identities);
+                    Identities = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Authentication_Manager.Data.ClientIdentity>>(Client_Identities);
                 }
             }
             catch
             {
-                Identities = new List<UserIdentity>();
+                Identities = new List<Authentication_Manager.Data.ClientIdentity>();
             }
 
-            if (Identities == null) { Identities = new List<UserIdentity>(); }
+            if (Identities == null) { Identities = new List<Authentication_Manager.Data.ClientIdentity>(); }
             #endregion
         }
 
         internal static void Setup_Client()
         {
-            Ping_Timer = new Timer();// Creates a timer
+            Ping_Timer = new System.Timers.Timer();// Creates a timer
             Ping_Timer.Interval = 3000;// Sets for 3 Second intervals
-            Ping_Timer.Tick += Ping_Timer_Tick;// Sets event
+            Ping_Timer.Elapsed += Ping_Timer_Elapsed;// Sets event
 
             ClientInstance.Client.ConnectionStateEvent += Client_ConnectionStateEvent;// Connection State Command
             Setup_Commands();// Configures the commands
@@ -164,7 +165,7 @@ namespace AssaultBird2454.VPTU.Client
             else if (ConnectionState == Networking.Data.Client_ConnectionStatus.Disconnected)
             {
                 MainWindow.Status_Set_Color((Color)Colors.Red);
-                MainWindow.Status_Set_Address("");
+                MainWindow.Status_Set_Address("Not Connected");
                 MainWindow.Status_Set_Port(0);
                 //MainWindow.Status_Set_PlayerName("");
                 //MainWindow.Status_Set_CampaignName("");
@@ -172,7 +173,7 @@ namespace AssaultBird2454.VPTU.Client
             else if (ConnectionState == Networking.Data.Client_ConnectionStatus.Dropped)
             {
                 MainWindow.Status_Set_Color((Color)Colors.Red);
-                MainWindow.Status_Set_Address("");
+                MainWindow.Status_Set_Address("Not Connected");
                 MainWindow.Status_Set_Port(0);
                 //MainWindow.Status_Set_PlayerName("");
                 //MainWindow.Status_Set_CampaignName("");
@@ -189,7 +190,7 @@ namespace AssaultBird2454.VPTU.Client
             }
         }
 
-        private static void Ping_Timer_Tick(object sender, EventArgs e)
+        private static void Ping_Timer_Elapsed(object sender, EventArgs e)
         {
             try
             {
@@ -215,14 +216,5 @@ namespace AssaultBird2454.VPTU.Client
                 MessageBox.Show("The server rejected your connection request...\n\nReason: Server Full");
             }
         }
-    }
-
-    public class UserIdentity
-    {
-        public string AuthKey { get; set; }
-        public string Campaign_Name { get; set; }
-        public string ICN { get; set; }
-        public string Server_Address { get; set; }
-        public int Server_Port { get; set; }
     }
 }

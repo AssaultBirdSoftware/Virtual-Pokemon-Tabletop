@@ -20,15 +20,15 @@ namespace AssaultBird2454.VPTU.Client.UI.Identity
     /// </summary>
     public partial class Add : Window
     {
-        public UserIdentity UID;
+        public Authentication_Manager.Data.ClientIdentity UID;
 
-        public Add(UserIdentity _UID = null)
+        public Add(Authentication_Manager.Data.ClientIdentity _UID = null)
         {
             InitializeComponent();
 
             if(_UID == null)
             {
-                UID = new UserIdentity();
+                UID = new Authentication_Manager.Data.ClientIdentity();
             }
             else
             {

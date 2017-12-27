@@ -95,4 +95,13 @@ namespace AssaultBird2454.VPTU.Authentication_Manager.Data
             Key = RNG.Generators.RSG.GenerateString(32);
         }
     }
+
+    public class ClientIdentity
+    {
+        public string AuthKey { get; set; }
+        public string Campaign_Name { get; set; }
+        public string ICN { get; set; }
+        public string Server_Address { get; set; }
+        public int Server_Port { get; set; }
+    }
 }
