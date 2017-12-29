@@ -5,11 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AssaultBird2454.VPTU.Tabletop.Map"
              xmlns:Token="clr-namespace:AssaultBird2454.VPTU.Tabletop.Token" x:Class="AssaultBird2454.VPTU.Tabletop.Map.Table"
+             xmlns:sharpGL="clr-namespace:SharpGL.WPF;assembly=SharpGL.WPF"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <Viewport3D x:Name="_Table">
-
-        </Viewport3D>
+        <sharpGL:OpenGLControl x:Name="_Table" DrawFPS="True" OpenGLDraw="Table_OpenGLDraw">
+            
+        </sharpGL:OpenGLControl>
     </Grid>
 </UserControl>
