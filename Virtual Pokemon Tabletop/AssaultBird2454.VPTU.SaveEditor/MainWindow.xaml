@@ -69,7 +69,7 @@
                                 <Label Content="Server Address" HorizontalAlignment="Left" Margin="0,26,0,0" VerticalAlignment="Top" Grid.Column="1"/>
                                 <TextBox x:Name="OverViewSettings_Server_Address" Height="23" Margin="106,30,0.4,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxLines="1" TextChanged="OverViewSettings_Server_Address_TextChanged" Grid.Column="1"/>
                                 <Label Content="Server Port" HorizontalAlignment="Left" Margin="0,54,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                                <xctk:IntegerUpDown x:Name="OverViewSettings_Server_Port" Height="23" Margin="105,58,1.4,0" VerticalAlignment="Top" Grid.Column="1" ValueChanged="OverViewSettings_Server_Port_ValueChanged"/>
+                                <xctk:IntegerUpDown x:Name="OverViewSettings_Server_Port" Height="23" Margin="105,58,1.4,0" VerticalAlignment="Top" Grid.Column="1" ValueChanged="OverViewSettings_Server_Port_ValueChanged" HorizontalContentAlignment="Center" Value="25444" VerticalContentAlignment="Center"/>
                             </Grid>
                         </TabItem>
                         <TabItem Header="Advanced Server Settings">
@@ -255,6 +255,9 @@
                 <Grid Background="#FFE5E5E5">
                     <Label x:Name="label1" Content="This Tab is in Development..." Foreground="Red" FontSize="72"/>
                 </Grid>
+            </TabItem>
+            <TabItem Header="Story Manager">
+                <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>
         <StatusBar VerticalAlignment="Bottom">

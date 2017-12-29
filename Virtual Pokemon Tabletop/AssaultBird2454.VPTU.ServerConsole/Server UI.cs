@@ -17,6 +17,7 @@ namespace AssaultBird2454.VPTU.ServerConsole
 {
     public partial class Server_UI : Form
     {
+        #region Base
         /// <summary>
         /// Assembly Directory
         /// </summary>
@@ -31,9 +32,6 @@ namespace AssaultBird2454.VPTU.ServerConsole
             }
         }
 
-        public List<Server> Servers { get; private set; }
-
-        #region Base
         public Server_UI()
         {
             InitializeComponent();
@@ -43,8 +41,8 @@ namespace AssaultBird2454.VPTU.ServerConsole
         {
             Settings_Save();
         }
-        #endregion
 
+        public List<Server> Servers { get; private set; }
         public void Settings_Save()
         {
             #region Servers
@@ -104,62 +102,163 @@ namespace AssaultBird2454.VPTU.ServerConsole
 
                 lvi.BackColor = Color.Red;
 
-                lvi.Tag = new VPTU.Server.Instances.ServerInstance(new VPTU.Server.Class.Logging.Console_Logger(true, sv.Server_Name), sv.SaveFile, sv.Server_Port);
+                sv.Server_Instance = new VPTU.Server.Instances.ServerInstance(new VPTU.Server.Class.Logging.Console_Logger(true, sv.Server_Name), sv.SaveFile, sv.Server_Port);
+                lvi.Tag = sv.Server_Instance;
                 List_Servers.Items.Add(lvi);
             }
             #endregion
         }
+        #endregion
 
         private void Group_Controls_Create_Click(object sender, EventArgs e)
         {
-            CreateServer cs = new CreateServer(this);
-            DialogResult dr = cs.ShowDialog();
-
-            if (dr == DialogResult.OK)
+            try
             {
-                Servers.Add(cs.CreatedServer);
+                CreateServer cs = new CreateServer(this);
+                DialogResult dr = cs.ShowDialog();
 
-                ListViewItem lvi = new ListViewItem(cs.CreatedServer.Server_ID);
+                if (dr == DialogResult.OK)
+                {
+                    Servers.Add(cs.CreatedServer);
 
-                ListViewSubItem svn = new ListViewSubItem();
-                svn.Text = cs.CreatedServer.Server_Name;
-                lvi.SubItems.Add(svn);
+                    ListViewItem lvi = new ListViewItem(cs.CreatedServer.Server_ID);
 
-                ListViewSubItem ss = new ListViewSubItem();
-                ss.Text = "Offline";
-                lvi.SubItems.Add(ss);
+                    ListViewSubItem svn = new ListViewSubItem();
+                    svn.Text = cs.CreatedServer.Server_Name;
+                    lvi.SubItems.Add(svn);
 
-                ListViewSubItem svc = new ListViewSubItem();
-                svc.Text = "0";
-                lvi.SubItems.Add(svc);
+                    ListViewSubItem ss = new ListViewSubItem();
+                    ss.Text = "Offline";
+                    lvi.SubItems.Add(ss);
 
-                ListViewSubItem svs = new ListViewSubItem();
-                svs.Text = cs.CreatedServer.SaveFile;
-                lvi.SubItems.Add(svs);
+                    ListViewSubItem svc = new ListViewSubItem();
+                    svc.Text = "0";
+                    lvi.SubItems.Add(svc);
 
-                lvi.BackColor = Color.Red;
+                    ListViewSubItem svs = new ListViewSubItem();
+                    svs.Text = cs.CreatedServer.SaveFile;
+                    lvi.SubItems.Add(svs);
 
-                lvi.Tag = new VPTU.Server.Instances.ServerInstance(new VPTU.Server.Class.Logging.Console_Logger(true, cs.Name), cs.CreatedServer.SaveFile, cs.CreatedServer.Server_Port);
-                List_Servers.Items.Add(lvi);
+                    lvi.BackColor = Color.Red;
+
+                    cs.CreatedServer.Server_Instance = new VPTU.Server.Instances.ServerInstance(new VPTU.Server.Class.Logging.Console_Logger(true, cs.Name), cs.CreatedServer.SaveFile, cs.CreatedServer.Server_Port);
+                    lvi.Tag = cs.CreatedServer.Server_Instance;
+                    List_Servers.Items.Add(lvi);
+                }
+                else if (dr == DialogResult.Cancel)
+                {
+                    MessageBox.Show("Opperation Aborted!\n\nReasion: Canceled By User!", "Server Creation Canceled");
+                }
+                else if (dr == DialogResult.Abort)
+                {
+                    MessageBox.Show("Opperation Aborted!\n\nReasion: Canceled By User After Error!", "Server Creation Aborted");
+                }
             }
-            else if (dr == DialogResult.Cancel)
-            {
-                MessageBox.Show("Opperation Aborted!\n\nReasion: Canceled By User!", "Server Creation Canceled");
-            }
-            else if (dr == DialogResult.Abort)
-            {
-                MessageBox.Show("Opperation Aborted!\n\nReasion: Canceled By User After Error!", "Server Creation Aborted");
-            }
+            catch { }
+        }
+
+        private void Group_Controls_Delete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Group_Controls_Edit_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void Group_Controls_Start_Click(object sender, EventArgs e)
         {
-            ((VPTU.Server.Instances.ServerInstance)(List_Servers.SelectedItems[0].Tag)).StartServerInstance();
+            try
+            {
+                ((VPTU.Server.Instances.ServerInstance)(List_Servers.SelectedItems[0].Tag)).StartServerInstance();
+            }
+            catch { }
         }
 
         private void Group_Controls_Stop_Click(object sender, EventArgs e)
         {
-            ((VPTU.Server.Instances.ServerInstance)(List_Servers.SelectedItems[0].Tag)).StopServerInstance();
+            try
+            {
+                ((VPTU.Server.Instances.ServerInstance)(List_Servers.SelectedItems[0].Tag)).StopServerInstance();
+            }
+            catch { }
+        }
+
+        private void Group_Controls_FullReset_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Server sv = Servers.Find(x => x.Server_Instance == ((VPTU.Server.Instances.ServerInstance)(List_Servers.SelectedItems[0].Tag)));
+
+                sv.Server_Instance.StopServerInstance();
+
+                sv.Server_Instance = new VPTU.Server.Instances.ServerInstance(new VPTU.Server.Class.Logging.Console_Logger(true), sv.SaveFile, sv.Server_Port);
+                List_Servers.SelectedItems[0].Tag = sv.Server_Instance;
+
+                sv.Server_Instance.StartServerInstance();
+            }
+            catch { }
+        }
+
+        private void Group_Controls_SaveReset_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ((VPTU.Server.Instances.ServerInstance)(List_Servers.SelectedItems[0].Tag)).SaveManager.Load_SaveData();
+            }
+            catch { }
+        }
+
+        private void Group_Controls_NetworkReset_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Group_Controls_Lock_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Group_Controls_Lock.Checked)
+                {
+                    ((VPTU.Server.Instances.ServerInstance)(List_Servers.SelectedItems[0].Tag)).Server.AcceptClients = false;
+                }
+                else
+                {
+                    ((VPTU.Server.Instances.ServerInstance)(List_Servers.SelectedItems[0].Tag)).Server.AcceptClients = true;
+                }
+            }
+            catch { }
+        }
+
+        private void Group_Controls_Save_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ((VPTU.Server.Instances.ServerInstance)(List_Servers.SelectedItems[0].Tag)).SaveManager.Save_SaveData();
+            }
+            catch { }
+        }
+
+        private void List_Servers_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (((VPTU.Server.Instances.ServerInstance)(List_Servers.SelectedItems[0].Tag)).Server.AcceptClients)
+                {
+                    Group_Controls_Lock.Checked = false;
+                }
+                else
+                {
+                    Group_Controls_Lock.Checked = true;
+                }
+            }
+            catch { Group_Controls_Lock.Checked = false; }
+        }
+
+        private void List_Servers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
