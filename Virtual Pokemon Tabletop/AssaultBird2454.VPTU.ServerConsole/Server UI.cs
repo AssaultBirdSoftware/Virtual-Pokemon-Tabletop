@@ -218,7 +218,14 @@ namespace AssaultBird2454.VPTU.ServerConsole
         {
             try
             {
-                ((VPTU.Server.Instances.ServerInstance)(List_Servers.SelectedItems[0].Tag)).Server.AcceptClients = Group_Controls_Lock.Checked;
+                if (Group_Controls_Lock.Checked)
+                {
+                    ((VPTU.Server.Instances.ServerInstance)(List_Servers.SelectedItems[0].Tag)).Server.AcceptClients = false;
+                }
+                else
+                {
+                    ((VPTU.Server.Instances.ServerInstance)(List_Servers.SelectedItems[0].Tag)).Server.AcceptClients = true;
+                }
             }
             catch { }
         }
@@ -236,7 +243,14 @@ namespace AssaultBird2454.VPTU.ServerConsole
         {
             try
             {
-                Group_Controls_Lock.Checked = ((VPTU.Server.Instances.ServerInstance)(List_Servers.SelectedItems[0].Tag)).Server.AcceptClients;
+                if (((VPTU.Server.Instances.ServerInstance)(List_Servers.SelectedItems[0].Tag)).Server.AcceptClients)
+                {
+                    Group_Controls_Lock.Checked = false;
+                }
+                else
+                {
+                    Group_Controls_Lock.Checked = true;
+                }
             }
             catch { Group_Controls_Lock.Checked = false; }
         }

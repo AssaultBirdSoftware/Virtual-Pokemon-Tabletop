@@ -37,6 +37,7 @@
             this.Save_File = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Group_Controls_Create = new System.Windows.Forms.Button();
             this.Group_Controls = new System.Windows.Forms.GroupBox();
+            this.Group_Controls_Edit = new System.Windows.Forms.Button();
             this.Group_Controls_Lock = new System.Windows.Forms.CheckBox();
             this.Group_Controls_SaveReset = new System.Windows.Forms.Button();
             this.Group_Controls_NetworkReset = new System.Windows.Forms.Button();
@@ -45,7 +46,6 @@
             this.Group_Controls_Stop = new System.Windows.Forms.Button();
             this.Group_Controls_Start = new System.Windows.Forms.Button();
             this.Group_Controls_Delete = new System.Windows.Forms.Button();
-            this.Group_Controls_Edit = new System.Windows.Forms.Button();
             this.Group_Controls.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -125,6 +125,18 @@
             this.Group_Controls.TabStop = false;
             this.Group_Controls.Text = "Controls";
             // 
+            // Group_Controls_Edit
+            // 
+            this.Group_Controls_Edit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.Group_Controls_Edit.Enabled = false;
+            this.Group_Controls_Edit.Location = new System.Drawing.Point(6, 52);
+            this.Group_Controls_Edit.Name = "Group_Controls_Edit";
+            this.Group_Controls_Edit.Size = new System.Drawing.Size(156, 25);
+            this.Group_Controls_Edit.TabIndex = 10;
+            this.Group_Controls_Edit.Text = "Edit";
+            this.Group_Controls_Edit.UseVisualStyleBackColor = false;
+            this.Group_Controls_Edit.Click += new System.EventHandler(this.Group_Controls_Edit_Click);
+            // 
             // Group_Controls_Lock
             // 
             this.Group_Controls_Lock.AutoSize = true;
@@ -134,7 +146,7 @@
             this.Group_Controls_Lock.TabIndex = 9;
             this.Group_Controls_Lock.Text = "Server Locked";
             this.Group_Controls_Lock.UseVisualStyleBackColor = true;
-            this.Group_Controls_Lock.CheckedChanged += new System.EventHandler(this.Group_Controls_Lock_CheckedChanged);
+            this.Group_Controls_Lock.Click += new System.EventHandler(this.Group_Controls_Lock_CheckedChanged);
             // 
             // Group_Controls_SaveReset
             // 
@@ -213,18 +225,6 @@
             this.Group_Controls_Delete.Text = "Delete";
             this.Group_Controls_Delete.UseVisualStyleBackColor = false;
             this.Group_Controls_Delete.Click += new System.EventHandler(this.Group_Controls_Delete_Click);
-            // 
-            // Group_Controls_Edit
-            // 
-            this.Group_Controls_Edit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.Group_Controls_Edit.Enabled = false;
-            this.Group_Controls_Edit.Location = new System.Drawing.Point(6, 52);
-            this.Group_Controls_Edit.Name = "Group_Controls_Edit";
-            this.Group_Controls_Edit.Size = new System.Drawing.Size(156, 25);
-            this.Group_Controls_Edit.TabIndex = 10;
-            this.Group_Controls_Edit.Text = "Edit";
-            this.Group_Controls_Edit.UseVisualStyleBackColor = false;
-            this.Group_Controls_Edit.Click += new System.EventHandler(this.Group_Controls_Edit_Click);
             // 
             // Server_UI
             // 

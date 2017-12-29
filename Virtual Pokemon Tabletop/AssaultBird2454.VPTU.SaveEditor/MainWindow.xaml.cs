@@ -1227,7 +1227,11 @@ namespace AssaultBird2454.VPTU.SaveEditor
 
         private void OverViewSettings_Server_Port_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            SaveManager.SaveData.Campaign_Data.Server_Port = (int)OverViewSettings_Server_Port.Value;
+            try
+            {
+                SaveManager.SaveData.Campaign_Data.Server_Port = (int)OverViewSettings_Server_Port.Value;
+            }
+            catch { }
         }
     }
 

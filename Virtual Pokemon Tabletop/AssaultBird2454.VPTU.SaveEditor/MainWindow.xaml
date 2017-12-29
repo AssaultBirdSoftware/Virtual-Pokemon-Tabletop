@@ -256,6 +256,9 @@
                     <Label x:Name="label1" Content="This Tab is in Development..." Foreground="Red" FontSize="72"/>
                 </Grid>
             </TabItem>
+            <TabItem Header="Story Manager">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
         </TabControl>
         <StatusBar VerticalAlignment="Bottom">
             <StatusBarItem Content="StatusBarItem" VerticalAlignment="Bottom"/>

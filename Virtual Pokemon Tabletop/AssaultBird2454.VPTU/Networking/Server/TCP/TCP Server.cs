@@ -76,7 +76,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         private bool TCP_AcceptClients;// Server Accept Connsctions
         private IPAddress TCP_ServerAddress;// Servers Address
         private int TCP_ServerPort;// Servers Port
-        private int TCP_MaxConnections = 1;// Servers Max Client Connections
+        private int TCP_MaxConnections = 50;// Servers Max Client Connections
         private X509Certificate TCP_SSLCert;// SSL Certificate
 
         public Command_Handeler.Server_CommandHandeler CommandHandeler;
