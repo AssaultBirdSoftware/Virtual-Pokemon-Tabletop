@@ -315,6 +315,14 @@ namespace AssaultBird2454.VPTU.Client
             Program.MainWindow = this;
             Program.Settings_Load();
             Title = "Virtual Pokemon Tabletop - Client (Version: " + Program.VersioningInfo.Version + ") (Commit: " + Program.VersioningInfo.Compile_Commit.Remove(7) + ")";
+
+            Tabletop.Map.Table Table = new Tabletop.Map.Table();// Create the control
+
+            MDI.Children.Add(new WPF.MDI.MdiChild()
+            {
+                Title = "Tabletop Test",
+                Content = Table
+            });// Add the window
         }
 
         #region Menu, Tool Bar & Status Bar
