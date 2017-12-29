@@ -47,6 +47,21 @@ namespace AssaultBird2454.VPTU.Client.UI
                 // Change Event
             }
         }
+        private string _ServerName = "Internal Server";
+        /// <summary>
+        /// Gets and Sets the servers name
+        /// </summary>
+        public string ServerName
+        {
+            get
+            {
+                return _ServerName;
+            }
+            set
+            {
+                _ServerName = value;
+            }
+        }
 
         public void Log(string Data, LoggerLevel Level)
         {
@@ -92,7 +107,7 @@ namespace AssaultBird2454.VPTU.Client.UI
                 //Bcolor = Colors.Black;
             }
 
-            string Write = DateTime.Now.ToString() + " [" + Level.ToString() + "] -> " + Data + "\n";
+            string Write = DateTime.Now.ToString() + " [" + Level.ToString() + "] <" + ServerName + "> -> " + Data + "\n";
             Console_Display.WriteOutput(Write, Fcolor);
         }
 
