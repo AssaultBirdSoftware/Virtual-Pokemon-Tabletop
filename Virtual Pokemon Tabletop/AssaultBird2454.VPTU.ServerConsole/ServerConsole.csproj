@@ -90,6 +90,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administration.Designer.cs">
+      <DependentUpon>Administration.cs</DependentUpon>
+    </Compile>
     <Compile Include="CreateServer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +140,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Administration.resx">
+      <DependentUpon>Administration.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreateServer.resx">
       <DependentUpon>CreateServer.cs</DependentUpon>
     </EmbeddedResource>

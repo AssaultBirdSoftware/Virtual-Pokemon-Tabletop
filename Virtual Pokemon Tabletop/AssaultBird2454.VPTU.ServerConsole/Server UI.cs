@@ -100,13 +100,66 @@ namespace AssaultBird2454.VPTU.ServerConsole
                 svs.Text = sv.SaveFile;
                 lvi.SubItems.Add(svs);
 
-                lvi.BackColor = Color.Red;
+                lvi.BackColor = Color.IndianRed;
 
                 sv.Server_Instance = new VPTU.Server.Instances.ServerInstance(new VPTU.Server.Class.Logging.Console_Logger(true, sv.Server_Name), sv.SaveFile, sv.Server_Port);
+                sv.LVI = lvi;
+
+                SetupEvents(sv);
+
                 lvi.Tag = sv.Server_Instance;
                 List_Servers.Items.Add(lvi);
             }
             #endregion
+        }
+
+        private void SetupEvents(Server sv)
+        {
+            sv.Server_Instance.Server.TCP_AcceptClients_Changed += new Networking.Server.TCP.TCP_AcceptClients_Handeler((Accepting) =>
+            {
+                ListViewItem LVI = sv.LVI;
+            });
+            sv.Server_Instance.Server.TCP_ClientState_Changed += new Networking.Server.TCP.TCP_ClientState_Handeler((Networking.Server.TCP.TCP_ClientNode Node, Networking.Data.Client_ConnectionStatus State) =>
+            {
+                ListViewItem LVI = sv.LVI;
+                List_Servers.Invoke(new Action(() => LVI.SubItems[3].Text = sv.Server_Instance.Server.CurrentConnections + " / " + sv.Server_Instance.Server.MaxConnections));
+            });
+            //sv.Server_Instance.Server.TCP_Data_Error_Event += Server_TCP_Data_Error_Event;
+            //sv.Server_Instance.Server.TCP_Data_Event += Server_TCP_Data_Event;
+            sv.Server_Instance.Server.TCP_ServerState_Changed += new Networking.Server.TCP.TCP_ServerState_Handeler((Networking.Data.Server_Status State) =>
+            {
+                ListViewItem LVI = sv.LVI;
+                Color Bcolor;
+                Color Fcolor;
+
+                if (State == Networking.Data.Server_Status.Online)
+                {
+                    Bcolor = Color.LightGreen;
+                    Fcolor = Color.Black;
+                    LVI.SubItems[3].Text = sv.Server_Instance.Server.CurrentConnections + " / " + sv.Server_Instance.Server.MaxConnections;
+                }
+                else if (State == Networking.Data.Server_Status.Starting)
+                {
+                    Bcolor = Color.Gold;
+                    Fcolor = Color.Black;
+                    LVI.SubItems[3].Text = sv.Server_Instance.Server.CurrentConnections + " / " + sv.Server_Instance.Server.MaxConnections;
+                }
+                else if (State == Networking.Data.Server_Status.Offline)
+                {
+                    Bcolor = Color.IndianRed;
+                    Fcolor = Color.Black;
+                    LVI.SubItems[3].Text = "0 / 0";
+                }
+                else
+                {
+                    Bcolor = Color.Black;
+                    Fcolor = Color.White;
+                }
+
+                LVI.BackColor = Bcolor;
+                LVI.ForeColor = Fcolor;
+                LVI.SubItems[2].Text = State.ToString();
+            });
         }
         #endregion
 
@@ -139,9 +192,13 @@ namespace AssaultBird2454.VPTU.ServerConsole
                     svs.Text = cs.CreatedServer.SaveFile;
                     lvi.SubItems.Add(svs);
 
-                    lvi.BackColor = Color.Red;
+                    lvi.BackColor = Color.IndianRed;
 
                     cs.CreatedServer.Server_Instance = new VPTU.Server.Instances.ServerInstance(new VPTU.Server.Class.Logging.Console_Logger(true, cs.Name), cs.CreatedServer.SaveFile, cs.CreatedServer.Server_Port);
+                    cs.CreatedServer.LVI = lvi;
+
+                    SetupEvents(cs.CreatedServer);
+
                     lvi.Tag = cs.CreatedServer.Server_Instance;
                     List_Servers.Items.Add(lvi);
                 }
@@ -260,5 +317,6 @@ namespace AssaultBird2454.VPTU.ServerConsole
         {
 
         }
+
     }
 }

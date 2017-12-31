@@ -10,7 +10,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <sharpGL:OpenGLControl x:Name="_Table" DrawFPS="True" OpenGLDraw="Table_OpenGLDraw">
-            
+               
         </sharpGL:OpenGLControl>
     </Grid>
 </UserControl>

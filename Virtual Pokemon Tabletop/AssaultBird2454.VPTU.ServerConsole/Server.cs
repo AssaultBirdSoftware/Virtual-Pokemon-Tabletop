@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AssaultBird2454.VPTU.ServerConsole
 {
@@ -17,5 +18,7 @@ namespace AssaultBird2454.VPTU.ServerConsole
 
         [JsonIgnore]
         public ServerInstance Server_Instance;
+        [JsonIgnore]
+        public ListViewItem LVI;
     }
 }
