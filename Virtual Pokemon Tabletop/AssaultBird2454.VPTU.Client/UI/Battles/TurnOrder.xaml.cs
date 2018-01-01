@@ -24,5 +24,26 @@ namespace AssaultBird2454.VPTU.Client.UI
         {
             InitializeComponent();
         }
+
+        public void Clear()
+        {
+
+        }
+        public void Add(BitmapImage IMG, string Name, int Inititive)
+        {
+            TurnOrder_DB todb = new TurnOrder_DB();
+            todb.ImageBrush = new ImageBrush(IMG) { Stretch = Stretch.Uniform };
+            todb.Inititive = Inititive;
+            todb.Name = Name;
+
+            Turn_List.Items.Add(todb);
+        }
+    }
+
+    public class TurnOrder_DB
+    {
+        public ImageBrush ImageBrush { get; set; }
+        public string Name { get; set; }
+        public int Inititive { get; set; }
     }
 }

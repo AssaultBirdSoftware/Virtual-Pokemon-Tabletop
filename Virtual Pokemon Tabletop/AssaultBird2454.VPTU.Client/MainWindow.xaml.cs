@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -315,13 +316,18 @@ namespace AssaultBird2454.VPTU.Client
             Program.MainWindow = this;
             Program.Settings_Load();
             Title = "Virtual Pokemon Tabletop - Client (Version: " + Program.VersioningInfo.Version + ") (Commit: " + Program.VersioningInfo.Compile_Commit.Remove(7) + ")";
-
-            Tabletop.Map.Table Table = new Tabletop.Map.Table();// Create the control
+            
+            UI.TurnOrder TO = new UI.TurnOrder();
+            TO.Add(new BitmapImage(new Uri(@"D:\Resources\PTU\Pokemon Tiles\Pokemon\Tokens\133.png")), "Eevee", 4);
+            TO.Add(new BitmapImage(new Uri(@"D:\Resources\PTU\Pokemon Tiles\Pokemon\Tokens\134.png")), "Vapreon", 8);
+            TO.Add(new BitmapImage(new Uri(@"D:\Resources\PTU\Pokemon Tiles\Pokemon\Tokens\135.png")), "Jolteon", 6);
+            TO.Add(new BitmapImage(new Uri(@"D:\Resources\PTU\Pokemon Tiles\Pokemon\Tokens\136.png")), "Flareon", 10);
+            TO.Add(new BitmapImage(new Uri(@"D:\Resources\PTU\Pokemon Tiles\Pokemon\Tokens\447.png")), "Riolu", 8);
 
             MDI.Children.Add(new WPF.MDI.MdiChild()
             {
-                Title = "Tabletop Test",
-                Content = Table
+                Title = "Turn Order",
+                Content = TO
             });// Add the window
         }
 
