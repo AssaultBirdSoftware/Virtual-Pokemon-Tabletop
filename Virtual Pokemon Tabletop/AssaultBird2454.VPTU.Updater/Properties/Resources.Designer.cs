@@ -69,5 +69,86 @@ namespace AssaultBird2454.VPTU.Updater.Properties {
                 return ((System.Drawing.Icon)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://vptu-b790b.firebaseio.com/Software/Update_Info/Discontinued/[ID].json.
+        /// </summary>
+        internal static string Updater_Discontinued_GetInfo {
+            get {
+                return ResourceManager.GetString("Updater_Discontinued_GetInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://vptu-b790b.firebaseio.com/Software/Update_Info/Latest_Version.json.
+        /// </summary>
+        internal static string Updater_LatestID {
+            get {
+                return ResourceManager.GetString("Updater_LatestID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://vptu-b790b.firebaseio.com/Software/Update_Info/Latest_Version_Alpha.json.
+        /// </summary>
+        internal static string Updater_LatestID_Alpha {
+            get {
+                return ResourceManager.GetString("Updater_LatestID_Alpha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://vptu-b790b.firebaseio.com/Software/Update_Info/Latest_Version_Beta.json.
+        /// </summary>
+        internal static string Updater_LatestID_Beta {
+            get {
+                return ResourceManager.GetString("Updater_LatestID_Beta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://vptu-b790b.firebaseio.com/Software/Update_Info/Latest_Version_Master.json.
+        /// </summary>
+        internal static string Updater_LatestID_Master {
+            get {
+                return ResourceManager.GetString("Updater_LatestID_Master", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://vptu-b790b.firebaseio.com/Software/Update_Info/Discontinued.json?shallow=true.
+        /// </summary>
+        internal static string Updater_List_Discontinued {
+            get {
+                return ResourceManager.GetString("Updater_List_Discontinued", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://vptu-b790b.firebaseio.com/Software/Update_Info/Versions.json?shallow=true.
+        /// </summary>
+        internal static string Updater_List_Versions {
+            get {
+                return ResourceManager.GetString("Updater_List_Versions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://vptu-b790b.firebaseio.com/Software/Update_Info/Oldest_Version_Allowed.json.
+        /// </summary>
+        internal static string Updater_OldestVersion_Allowed {
+            get {
+                return ResourceManager.GetString("Updater_OldestVersion_Allowed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://vptu-b790b.firebaseio.com/Software/Update_Info/Versions/[ID].json.
+        /// </summary>
+        internal static string Updater_Version_GetInfo {
+            get {
+                return ResourceManager.GetString("Updater_Version_GetInfo", resourceCulture);
+            }
+        }
     }
 }

@@ -174,7 +174,7 @@ namespace AssaultBird2454.VPTU.Updater
                 {
                     Logger.Write("Downloading Application Files " + e.ProgressPercentage, Console_LogLevel.Info);
                 };
-                client.DownloadFileTaskAsync(LatestVersion.Download_URL, AssemblyDirectory + "\\Virtual Pokemon Tabletop.zip");
+                client.DownloadFileTaskAsync(LatestVersion.Download_Bin, AssemblyDirectory + "\\Virtual Pokemon Tabletop.zip");
 
                 while (!Download_Complete) { /* Wait for download */}
 
@@ -250,13 +250,13 @@ namespace AssaultBird2454.VPTU.Updater
         {
             try
             {
-                string url = "http://www.virtual-ptu.com/api/Updater/Latest";
+                string url = Properties.Resources.Updater_Version_GetInfo.Replace("[ID]", (new WebClient().DownloadString(Properties.Resources.Updater_LatestID).Replace('"', ' ').Trim()));
                 LatestVersion = Newtonsoft.Json.JsonConvert.DeserializeObject<Data>((new WebClient()).DownloadString(url));
 
                 #region Get Version (Latest)
                 int[] Version_Info = new int[4];
                 int i = 0;
-                foreach (string id in LatestVersion.Version_ID.Split('.'))
+                foreach (string id in LatestVersion.Version_String.Split('.'))
                 {
                     Version_Info[i] = Convert.ToInt32(id);
                     i++;
@@ -288,11 +288,13 @@ namespace AssaultBird2454.VPTU.Updater
         public enum ReleaseStream { Alpha, Beta, Master }
         internal class Data
         {
-            public string Version_ID { get; set; }
-            public ReleaseStream Version_Type { get; set; }
-            public string Commit_ID { get; set; }
+            public string Version_String { get; set; }
             public string Version_Name { get; set; }
-            public string Download_URL { get; set; }
+            public string Commit_ID { get; set; }
+            public bool Commit_Verified { get; set; }
+            public ReleaseStream Version_Type { get; set; }
+            public string Download_Bin { get; set; }
+            public string Release_Page { get; set; }
         }
     }
 }

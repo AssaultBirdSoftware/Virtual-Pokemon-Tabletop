@@ -121,4 +121,31 @@
   <data name="Updater" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Updater.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Updater_Discontinued_GetInfo" xml:space="preserve">
+    <value>https://vptu-b790b.firebaseio.com/Software/Update_Info/Discontinued/[ID].json</value>
+  </data>
+  <data name="Updater_LatestID" xml:space="preserve">
+    <value>https://vptu-b790b.firebaseio.com/Software/Update_Info/Latest_Version.json</value>
+  </data>
+  <data name="Updater_LatestID_Alpha" xml:space="preserve">
+    <value>https://vptu-b790b.firebaseio.com/Software/Update_Info/Latest_Version_Alpha.json</value>
+  </data>
+  <data name="Updater_LatestID_Beta" xml:space="preserve">
+    <value>https://vptu-b790b.firebaseio.com/Software/Update_Info/Latest_Version_Beta.json</value>
+  </data>
+  <data name="Updater_LatestID_Master" xml:space="preserve">
+    <value>https://vptu-b790b.firebaseio.com/Software/Update_Info/Latest_Version_Master.json</value>
+  </data>
+  <data name="Updater_List_Discontinued" xml:space="preserve">
+    <value>https://vptu-b790b.firebaseio.com/Software/Update_Info/Discontinued.json?shallow=true</value>
+  </data>
+  <data name="Updater_List_Versions" xml:space="preserve">
+    <value>https://vptu-b790b.firebaseio.com/Software/Update_Info/Versions.json?shallow=true</value>
+  </data>
+  <data name="Updater_OldestVersion_Allowed" xml:space="preserve">
+    <value>https://vptu-b790b.firebaseio.com/Software/Update_Info/Oldest_Version_Allowed.json</value>
+  </data>
+  <data name="Updater_Version_GetInfo" xml:space="preserve">
+    <value>https://vptu-b790b.firebaseio.com/Software/Update_Info/Versions/[ID].json</value>
+  </data>
 </root>
