@@ -1,5 +1,4 @@
-﻿
-using SharpRaven;
+﻿using SharpRaven;
 using SharpRaven.Data;
 using System;
 using System.Collections.Generic;
@@ -67,6 +66,7 @@ namespace AssaultBird2454.VPTU.Updater
 
             try
             {
+                #region Setup
                 Logger.Write("Virtual Pokemon Tabletop Updater", Console_LogLevel.Info);
 
                 #region Licence
@@ -162,65 +162,19 @@ namespace AssaultBird2454.VPTU.Updater
                 File.Delete(ParentDir + "\\SaveEditor.pid");
                 File.Delete(ParentDir + "\\Client.pid");
                 File.Delete(ParentDir + "\\Launcher.pid");
+                #endregion
 
                 Logger.Write("Downloading Application Files", Console_LogLevel.Info);
-                bool Download_Complete = false;
-                WebClient client = new WebClient();
-                client.DownloadFileCompleted += (s, e) =>
+                DownloadFile(LatestVersion.Download_Bin, AssemblyDirectory + "..\\..\\Updater\\Virtual Pokemon Tabletop.zip");
+
+                Logger.Write("Downloading Update Script", Console_LogLevel.Info);
+                DownloadFile(LatestVersion.Download_Bin, AssemblyDirectory + "..\\..\\Updater\\Update.bat");
+
+                foreach (KeyValuePair<string, string> file in LatestVersion.Update_Script_Files)
                 {
-                    Download_Complete = true;
-                };
-                client.DownloadProgressChanged += (s, e) =>
-                {
-                    Logger.Write("Downloading Application Files " + e.ProgressPercentage, Console_LogLevel.Info);
-                };
-                client.DownloadFileTaskAsync(LatestVersion.Download_Bin, AssemblyDirectory + "\\Virtual Pokemon Tabletop.zip");
-
-                while (!Download_Complete) { /* Wait for download */}
-
-                //Logger.Write("Deleting Old Application Files", Console_LogLevel.Info);
-
-                using (FileStream FileStream = new FileStream(AssemblyDirectory + "\\Virtual Pokemon Tabletop.zip", FileMode.Open))
-                using (System.IO.Compression.ZipArchive Archive = new System.IO.Compression.ZipArchive(FileStream, ZipArchiveMode.Read))
-                {
-                    Logger.Write("Deleting Application Files", Console_LogLevel.Info);
-                    foreach (ZipArchiveEntry entry in Archive.Entries)
-                    {
-                        if (File.Exists(ParentDir + "\\" + entry.FullName))
-                        {
-                            Logger.Write("Deleting File: " + entry.FullName, Console_LogLevel.Info);
-                            File.Delete(ParentDir + "\\" + entry.FullName);
-                        }
-                    }
-
-                    Logger.Write("Extracting Application Files", Console_LogLevel.Info);
-                    Archive.ExtractToDirectory(ParentDir);
+                    Logger.Write("Downloading Update File " + file.Key, Console_LogLevel.Info);
+                    DownloadFile(file.Value, AssemblyDirectory + "..\\..\\Updater\\" + file.Key.Replace('-', '.'));
                 }
-
-                Logger.Write("Update / Installation Complete!", Console_LogLevel.Info);
-                Logger.Write("Would you like to open the launcher? [Y/N]", Console_LogLevel.Info);
-
-                #region Open Launcher
-                while (true)
-                {
-                    ConsoleKey key = Console.ReadKey().Key;
-
-                    if (key == ConsoleKey.Y)
-                    {
-                        Console.WriteLine();
-                        Logger.Write("Opening Launcher & Quiting", Console_LogLevel.Info);
-                        Process.Start(new ProcessStartInfo(ParentDir + "\\Launcher.exe", ""));
-                        return;
-                    }
-                    else if (key == ConsoleKey.N)
-                    {
-                        Console.WriteLine();
-                        Logger.Write("Closing", Console_LogLevel.Info);
-                        Thread.Sleep(10000);
-                        return;
-                    }
-                }
-                #endregion
             }
             catch (Exception ex)
             {
@@ -245,13 +199,44 @@ namespace AssaultBird2454.VPTU.Updater
             }
         }
 
+        private static void DownloadFile(string Src, string Dst)
+        {
+            bool Download_Complete = false;
+            int Download_Row = Logger.Cursor_Top;
+            WebClient client = new WebClient();
+            client.DownloadFileCompleted += (s, e) =>
+            {
+                Logger.Cursor_Top = Download_Row + 1;
+                Logger.Cursor_Left = 0;
+                Download_Complete = true;
+            };
+            client.DownloadProgressChanged += (s, e) =>
+            {
+                char[] bar = new char[20] { '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', };
+                int progress = e.ProgressPercentage / 5;
+
+                while (progress >= 1)
+                {
+                    bar[progress] = '=';
+                }
+
+                Logger.Write("[" + bar.ToString() + "] " + e.ProgressPercentage + "% (" + e.BytesReceived + "/" + e.TotalBytesToReceive + ")", Console_LogLevel.Info);
+                Logger.Cursor_Top = Download_Row;
+                Logger.Cursor_Left = 0;
+            };
+            client.DownloadFileTaskAsync(Src, Dst);
+
+            while (!Download_Complete) { /* Wait for download */}
+        }
+
         public static Data LatestVersion { get; set; }
         public static bool CheckForUpdates()
         {
             try
             {
                 string url = Properties.Resources.Updater_Version_GetInfo.Replace("[ID]", (new WebClient().DownloadString(Properties.Resources.Updater_LatestID).Replace('"', ' ').Trim()));
-                LatestVersion = Newtonsoft.Json.JsonConvert.DeserializeObject<Data>((new WebClient()).DownloadString(url));
+                string VersionDataString = (new WebClient()).DownloadString(url);
+                LatestVersion = Newtonsoft.Json.JsonConvert.DeserializeObject<Data>(VersionDataString);
 
                 #region Get Version (Latest)
                 int[] Version_Info = new int[4];
@@ -294,6 +279,8 @@ namespace AssaultBird2454.VPTU.Updater
             public bool Commit_Verified { get; set; }
             public ReleaseStream Version_Type { get; set; }
             public string Download_Bin { get; set; }
+            public string Update_Script { get; set; }
+            public List<KeyValuePair<string, string>> Update_Script_Files { get; set; }
             public string Release_Page { get; set; }
         }
     }

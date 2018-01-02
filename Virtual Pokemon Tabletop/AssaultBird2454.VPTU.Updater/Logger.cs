@@ -51,9 +51,28 @@ namespace AssaultBird2454.VPTU.Updater
                 Console.BackgroundColor = ConsoleColor.Black;// Change the color
                 Console.WriteLine(DateTime.Now.ToShortDateString() + " [Debug] -> " + Message);// Write the message
             }
-
-            Console.ForegroundColor = ConsoleColor.DarkGray;// Change the color back
-            Console.BackgroundColor = ConsoleColor.Black;// Change the color back
+        }
+        public static int Cursor_Top
+        {
+            get
+            {
+                return Console.CursorTop;
+            }
+            set
+            {
+                Console.CursorTop = value;
+            }
+        }
+        public static int Cursor_Left
+        {
+            get
+            {
+                return Console.CursorLeft;
+            }
+            set
+            {
+                Console.CursorLeft = value;
+            }
         }
     }
 }
