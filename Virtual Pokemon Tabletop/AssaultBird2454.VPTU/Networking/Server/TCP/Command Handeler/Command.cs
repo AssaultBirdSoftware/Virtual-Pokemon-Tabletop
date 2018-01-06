@@ -1,12 +1,16 @@
 ﻿using AssaultBird2454.VPTU.Networking.Server.TCP;
 using System;
+using System.Collections.Generic;
 
 namespace AssaultBird2454.VPTU.Networking.Server.Command_Handeler
 {
+    #region Delegates
     public delegate void Command_Callback(object Data, TCP_ClientNode Client);
+    #endregion
 
     public class Command
     {
+
         /// <summary>
         /// Creates a new command object
         /// </summary>
@@ -17,6 +21,8 @@ namespace AssaultBird2454.VPTU.Networking.Server.Command_Handeler
             Name = _Name;
             DataType = T;
         }
+        public bool Rate_Enable = false;
+        public int Rate_Limit = 180;
 
         public string Name { get; set; }// Command Name
         public Type DataType { get; set; }// Command Data Type
