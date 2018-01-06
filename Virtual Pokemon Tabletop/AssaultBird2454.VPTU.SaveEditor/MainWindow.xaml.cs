@@ -1063,6 +1063,11 @@ namespace AssaultBird2454.VPTU.SaveEditor
             List<KeyValuePair<System.Windows.Media.Color, string>> View = new List<KeyValuePair<System.Windows.Media.Color, string>>();
             UI.Entities.EntitiesListItem ELI = new UI.Entities.EntitiesListItem();
 
+            if (entry.View == null)
+                entry.View = new List<string>();
+            if (entry.Edit == null)
+                entry.Edit = new List<string>();
+
             foreach (string user in entry.View)
             {
                 Authentication_Manager.Data.User UData = SaveManager.SaveData.Users.Find(x => x.UserID == user);
