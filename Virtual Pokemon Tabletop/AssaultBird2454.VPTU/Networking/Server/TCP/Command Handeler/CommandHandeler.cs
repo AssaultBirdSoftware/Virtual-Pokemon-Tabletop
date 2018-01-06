@@ -25,6 +25,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.Command_Handeler
     #endregion
     #region Delegates
     public delegate void CommandEvent(string Command);
+    public delegate void RateLimited(string Name, TCP_ClientNode Client);
     #endregion
 
     public class Server_CommandHandeler
@@ -38,6 +39,10 @@ namespace AssaultBird2454.VPTU.Networking.Server.Command_Handeler
         /// An event that is fired when a command is unregistered
         /// </summary>
         public event CommandEvent CommandUnRegistered;
+
+        public event RateLimiting RateLimitChanged_Event;
+
+        public event RateLimited RateLimitHit_Event;
 
         private Dictionary<string, Command> Commands;
         private List<RateTracker> RateTracking;
@@ -62,7 +67,13 @@ namespace AssaultBird2454.VPTU.Networking.Server.Command_Handeler
                 throw new CommandNameTakenException(CommandName);// Command with that name exists, Throw Exception
             }
 
-            Commands.Add(CommandName, new Command(CommandName, typeof(T)));// Add the command to the command list
+            Command cmd = new Command(CommandName, typeof(T));
+            cmd.RateLimitChanged_Event += new RateLimiting((Command, Enabled, Limit) =>
+            {
+                RateLimitChanged_Event?.Invoke(Command, Enabled, Limit);
+            });
+            Commands.Add(CommandName, cmd);// Add the command to the command list
+
             CommandRegistered?.Invoke(CommandName);// Fire Event
         }
 
@@ -102,14 +113,20 @@ namespace AssaultBird2454.VPTU.Networking.Server.Command_Handeler
                 Command cmd = Commands.First(x => x.Key == CommandData.Command).Value;// Gets the command by searching
                 RateTracker RateTracker = RateTracking.Find(x => x.ClientID == node.ID);
 
-                if (RateTracker.CommandExecutions(CommandData.Command) <= cmd.Rate_Limit && cmd.Rate_Enable == true || cmd.Rate_Enable == false)
+                if (RateTracker == null)
+                {
+                    RateTracker = new RateTracker() { ClientID = node.ID };
+                    RateTracking.Add(RateTracker);
+                }
+
+                if (RateTracker.CommandExecutions(CommandData.Command) <= cmd.Rate_Limit && cmd.Rate_Enabled == true || cmd.Rate_Enabled == false)
                 {
                     RateTracker.CommandExecuted(CommandData.Command);
                     cmd.Invoke(Newtonsoft.Json.JsonConvert.DeserializeObject(Data, cmd.DataType), node);
                 }
                 else
                 {
-                    // Rate Limit Reached
+                    RateLimitHit_Event?.Invoke(CommandData.Command, node);
                 }
             }
             catch (Exception ex)
@@ -138,7 +155,12 @@ namespace AssaultBird2454.VPTU.Networking.Server.Command_Handeler
             {
                 Commands.Clear();
                 Commands.Add(new KeyValuePair<string, int>(Command, 0));
+                BlockID = (int)Math.Floor(span.TotalMinutes / 5);
             }
+
+            if (Commands.Find(x => x.Key == Command) == null)
+                Commands.Add(new KeyValuePair<string, int>(Command, 0));
+
             return Commands.Find(x => x.Key == Command).Value;
         }
         public void CommandExecuted(string Command)
@@ -148,6 +170,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.Command_Handeler
             {
                 Commands.Clear();
                 Commands.Add(new KeyValuePair<string, int>(Command, 1));
+                BlockID = (int)Math.Floor(span.TotalMinutes / 5);
             }
             else
             {

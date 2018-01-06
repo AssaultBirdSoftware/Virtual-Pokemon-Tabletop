@@ -133,6 +133,8 @@ namespace AssaultBird2454.VPTU.Server.Instances
             Server_CommandHandeler = new Networking.Server.Command_Handeler.Server_CommandHandeler();
             Server_CommandHandeler.CommandRegistered += Server_CommandHandeler_CommandRegistered;
             Server_CommandHandeler.CommandUnRegistered += Server_CommandHandeler_CommandUnRegistered;
+            Server_CommandHandeler.RateLimitChanged_Event += Server_CommandHandeler_RateLimitChanged_Event;
+            Server_CommandHandeler.RateLimitHit_Event += Server_CommandHandeler_RateLimitHit_Event;
 
             Base_Server_Commands = new Server.Base_Commands(this);
 
@@ -205,11 +207,26 @@ namespace AssaultBird2454.VPTU.Server.Instances
         #region Event Handelers
         private void Server_CommandHandeler_CommandUnRegistered(string Command)
         {
-            ((Class.Logging.I_Logger)Server_Logger).Log("Command Unregistered -> Command: " + Command, Class.Logging.LoggerLevel.Debug);
+            ((Class.Logging.I_Logger)Server_Logger).Log("Command Unregistered -> Command: \"" + Command + "\"", Class.Logging.LoggerLevel.Debug);
         }
         private void Server_CommandHandeler_CommandRegistered(string Command)
         {
-            ((Class.Logging.I_Logger)Server_Logger).Log("Command Registered -> Command: " + Command, Class.Logging.LoggerLevel.Debug);
+            ((Class.Logging.I_Logger)Server_Logger).Log("Command Registered -> Command: \"" + Command + "\"", Class.Logging.LoggerLevel.Debug);
+        }
+        private void Server_CommandHandeler_RateLimitChanged_Event(string Command, bool Enabled, int Limit)
+        {
+            if (Enabled)
+            {
+                ((Class.Logging.I_Logger)Server_Logger).Log("Command Rate Limit -> Command: \"" + Command + "\" Setting: \"" + Limit + " Invokes per 5 minute block per client\"", Class.Logging.LoggerLevel.Debug);
+            }
+            else
+            {
+                ((Class.Logging.I_Logger)Server_Logger).Log("Command Rate Limit -> Command: \"" + Command + "\" Setting: \"No Limit\"", Class.Logging.LoggerLevel.Debug);
+            }
+        }
+        private void Server_CommandHandeler_RateLimitHit_Event(string Name, Networking.Server.TCP.TCP_ClientNode Client)
+        {
+            ((Class.Logging.I_Logger)Server_Logger).Log("Client \"" + Client.ID + "\" hit the rate limit for command \" " + Name + " \"", Class.Logging.LoggerLevel.Warning);
         }
 
         private void Server_TCP_ServerState_Changed(Networking.Data.Server_Status Server_State)
