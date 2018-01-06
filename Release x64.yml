@@ -1,0 +1,114 @@
+version: '{branch} 0.0.0 - Build {build} x64'
+pull_requests:
+  do_not_increment_build_number: true
+branches:
+  only:
+  - Alpha
+  - Beta
+  - master
+skip_tags: true
+configuration: Release
+platform: x64
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: 0.0.0.{build}
+  assembly_file_version: 0.0.0.{build}
+  assembly_informational_version: 0.0.0.{build}
+environment:
+  Version: '%APPVEYOR_BUILD_VERSION%'
+  Commit: '%APPVEYOR_REPO_COMMIT%'
+  Tag_Name: '%APPVEYOR_REPO_BRANCH%_0.0.0.%APPVEYOR_BUILD_NUMBER%'
+  Name: '%APPVEYOR_REPO_BRANCH% 0.0.0 - Build %APPVEYOR_BUILD_NUMBER%'
+  VersionCS: 0.0.0.%APPVEYOR_BUILD_NUMBER%
+  Sentry_Client: https://41e63fc213654edcabebda0014dd8543:72c1614fe88c4c82be433cfeb044b798@sentry.io/250667
+  Sentry_SaveEditor: https://7dbad7d3c67f455696b8caa14a820859:790c7431e7144532bd63f7a27cbf7c0c@sentry.io/250669
+  Sentry_Server: https://7ede477208384da6a4204ef60cd4c276:04f91da497a344ed83d8559b9d32989f@sentry.io/250668
+  Sentry_Launcher: https://fce8ed9b1ab74775af507989b62866c9:a309c1def0dc4a17b0bd65dd53a552b5@sentry.io/250670
+  Sentry_Updater: https://f5a2f74433e148b19a80b8fe22085d46:fbf6a437e1e3427b92ba7dceda3917ef@sentry.io/250676
+before_build:
+- cmd: >-
+    echo Writing Client Versioning Info
+
+    echo {"Version": "%Version%","Compile_Commit": "%Commit%"}  > "C:/projects/virtual-pokemon-tabletop-2/Virtual Pokemon Tabletop/AssaultBird2454.VPTU.Client/ProjectVariables.json"
+
+
+    echo Writing SaveEditor Versioning Info
+
+    echo {"Version": "%Version%","Compile_Commit": "%Commit%"}  > "C:/projects/virtual-pokemon-tabletop-2/Virtual Pokemon Tabletop/AssaultBird2454.VPTU.SaveEditor/ProjectVariables.json"
+
+
+    echo Writing Server Versioning Info
+
+    echo {"Version": "%Version%","Compile_Commit": "%Commit%"}  > "C:/projects/virtual-pokemon-tabletop-2/Virtual Pokemon Tabletop/Launcher/ProjectVariables.json"
+
+
+    echo Writing VPTU Versioning Info
+
+    echo {"Version": "%Version%","Compile_Commit": "%Commit%"}  > "C:/projects/virtual-pokemon-tabletop-2/Virtual Pokemon Tabletop/AssaultBird2454.VPTU/ProjectVariables.json"
+
+
+    echo Writing Updater Versioning Info
+
+    echo {"Version": "%Version%","Compile_Commit": "%Commit%"}  > "C:/projects/virtual-pokemon-tabletop-2/Virtual Pokemon Tabletop/AssaultBird2454.VPTU.Updater/ProjectVariables.json"
+
+
+
+    echo Writing Telematry Information
+
+    echo %Sentry_Client% > "C:/projects/virtual-pokemon-tabletop-2/Virtual Pokemon Tabletop/AssaultBird2454.VPTU.Client/sentry_cid.txt"
+
+    echo %Sentry_SaveEditor% > "C:/projects/virtual-pokemon-tabletop-2/Virtual Pokemon Tabletop/AssaultBird2454.VPTU.SaveEditor/sentry_cid.txt"
+
+    echo %Sentry_Server% > "C:/projects/virtual-pokemon-tabletop-2/Virtual Pokemon Tabletop/AssaultBird2454.VPTU.ServerConsole/sentry_cid.txt"
+
+    echo %Sentry_Launcher% > "C:/projects/virtual-pokemon-tabletop-2/Virtual Pokemon Tabletop/Launcher/sentry_cid.txt"
+
+    echo %Sentry_Updater% > "C:/projects/virtual-pokemon-tabletop-2/Virtual Pokemon Tabletop/AssaultBird2454.VPTU.Updater/sentry_cid.txt"
+
+
+
+
+    echo Copying Licence and Legal Notice Docs
+
+    cd /d "C:/projects/virtual-pokemon-tabletop-2/Virtual Pokemon Tabletop"
+
+
+    mkdir "Building Dir"
+
+
+    copy "C:\projects\virtual-pokemon-tabletop-2\LICENSE" "C:/projects/virtual-pokemon-tabletop-2/Virtual Pokemon Tabletop/Building Dir/LICENSE"
+
+
+    copy "C:\projects\virtual-pokemon-tabletop-2\LEGAL NOTICE" "C:/projects/virtual-pokemon-tabletop-2/Virtual Pokemon Tabletop/Building Dir/LEGAL NOTICE"
+
+
+    echo Restoring Packages
+
+    nuget restore
+build:
+  project: Virtual Pokemon Tabletop/Virtual Pokemon Tabletop.sln
+  verbosity: minimal
+artifacts:
+- path: '\Virtual Pokemon Tabletop\Building Dir\x64\Standalone\'
+  name: Virtual PTU - x64 Standalone
+- path: '\Virtual Pokemon Tabletop\Building Dir\x64\Installer\'
+  name: Virtual PTU - x64 Installer
+deploy:
+- provider: GitHub
+  tag: $(TAG_NAME)
+  release: $(appveyor_build_version)
+  description: '# $(appveyor_build_version)'
+  auth_token:
+    secure: QcYjr9oWGw5d8kzFL1osDdh1ehDsX0UMtIuOk5I2Nw+VWMlvEP8Fobg30enbShrg
+  artifact: Virtual PTU - x64 Standalone
+  draft: true
+  prerelease: true
+  force_update: true
+notifications:
+- provider: Webhook
+  url: https://hooks.zapier.com/hooks/catch/1887204/sz2zzz/
+  method: POST
+  on_build_success: true
+  on_build_failure: true
+  on_build_status_changed: true
