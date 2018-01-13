@@ -150,13 +150,6 @@ namespace AssaultBird2454.VPTU.Server.Instances
             Server.TCP_Data_Event += Server_TCP_Data_Event;
             Server.TCP_ServerState_Changed += Server_TCP_ServerState_Changed;
             #endregion
-            #region Save Data
-            ((Class.Logging.I_Logger)Server_Logger).Log("Initilizing Save Manager", Class.Logging.LoggerLevel.Debug);
-            SaveManager = new VPTU.SaveManager.SaveManager(SaveData);
-
-            ((Class.Logging.I_Logger)Server_Logger).Log("Loading Campaign", Class.Logging.LoggerLevel.Debug);
-            SaveManager.Load_SaveData();
-            #endregion
 
             #region Plugins
 
