@@ -10,16 +10,21 @@
         <ListView x:Name="Pokemon_List" Margin="0,41,-0.6,34.4">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Name" Width="150px" DisplayMemberBinding="{Binding Pokemon.Name}"/>
-                    <GridViewColumn Header="Species" Width="200px" DisplayMemberBinding="{Binding Species}"/>
-                    <GridViewColumn Header="Owner" Width="200px" DisplayMemberBinding="{Binding Owner}"/>
+                    <GridViewColumn Header="Name" Width="150px" DisplayMemberBinding="{Binding Pokemon.Name}" />
+                    <GridViewColumn Header="Species" Width="200px" DisplayMemberBinding="{Binding Species}" />
+                    <GridViewColumn Header="Owner" Width="200px" DisplayMemberBinding="{Binding Owner}" />
                     <GridViewColumn Header="Stats" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <WrapPanel>
-                                    <ProgressBar Minimum="0" Maximum="{Binding Pokemon.Stat_HP_Max}" Value="{Binding Pokemon.Current_HP}" Width="90" Height="5" Foreground="Green"/>
-                                    <ProgressBar Minimum="{Binding Pokemon.Prev_EXP_Requirement}" Maximum="{Binding Pokemon.Next_EXP_Requirement}" Value="{Binding Pokemon.EXP}" Width="90" Height="5" Foreground="Blue"/>
-                                    <ProgressBar Minimum="0" Maximum="10" Value="{Binding Pokemon.Injuries}" Width="90" Height="5" Foreground="Red"/>
+                                    <ProgressBar Minimum="0" Maximum="{Binding Pokemon.Stat_HP_Max}"
+                                                 Value="{Binding Pokemon.Current_HP}" Width="90" Height="5"
+                                                 Foreground="Green" />
+                                    <ProgressBar Minimum="{Binding Pokemon.Prev_EXP_Requirement}"
+                                                 Maximum="{Binding Pokemon.Next_EXP_Requirement}"
+                                                 Value="{Binding Pokemon.EXP}" Width="90" Height="5" Foreground="Blue" />
+                                    <ProgressBar Minimum="0" Maximum="10" Value="{Binding Pokemon.Injuries}" Width="90"
+                                                 Height="5" Foreground="Red" />
                                 </WrapPanel>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -27,12 +32,20 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Label Content="Search Entities" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
-        <TextBox x:Name="Search_Name" HorizontalAlignment="Left" Height="26" Margin="98,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151" VerticalContentAlignment="Center" TextChanged="Search_Name_TextChanged"/>
-        <CheckBox x:Name="Search_Trainer_Pokemon" Content="Search Trainers Pokemon" HorizontalAlignment="Left" Margin="254,10,0,0" VerticalAlignment="Top" IsEnabled="False" Unchecked="Search_Trainer_Pokemon_Unchecked" Checked="Search_Trainer_Pokemon_Checked"/>
-        <CheckBox x:Name="Search_WildPokemon" Content="Search Wild Pokemon" HorizontalAlignment="Left" Margin="411,10,0,0" VerticalAlignment="Top" IsEnabled="False" IsChecked="True" Unchecked="Search_WildPokemon_Unchecked" Checked="Search_WildPokemon_Checked"/>
-        <Button x:Name="Select_Button" Content="Select" HorizontalAlignment="Left" Margin="10,0,0,10" Width="75" Height="19" VerticalAlignment="Bottom" Click="Select_Button_Click"/>
-        <Button x:Name="Cancel_Button" Content="Cancel" HorizontalAlignment="Left" Margin="90,0,0,10" Width="75" Height="19" VerticalAlignment="Bottom" Click="Cancel_Button_Click"/>
+        <Label Content="Search Entities" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" />
+        <TextBox x:Name="Search_Name" HorizontalAlignment="Left" Height="26" Margin="98,10,0,0" TextWrapping="Wrap"
+                 VerticalAlignment="Top" Width="151" VerticalContentAlignment="Center"
+                 TextChanged="Search_Name_TextChanged" />
+        <CheckBox x:Name="Search_Trainer_Pokemon" Content="Search Trainers Pokemon" HorizontalAlignment="Left"
+                  Margin="254,10,0,0" VerticalAlignment="Top" IsEnabled="False"
+                  Unchecked="Search_Trainer_Pokemon_Unchecked" Checked="Search_Trainer_Pokemon_Checked" />
+        <CheckBox x:Name="Search_WildPokemon" Content="Search Wild Pokemon" HorizontalAlignment="Left"
+                  Margin="411,10,0,0" VerticalAlignment="Top" IsEnabled="False" IsChecked="True"
+                  Unchecked="Search_WildPokemon_Unchecked" Checked="Search_WildPokemon_Checked" />
+        <Button x:Name="Select_Button" Content="Select" HorizontalAlignment="Left" Margin="10,0,0,10" Width="75"
+                Height="19" VerticalAlignment="Bottom" Click="Select_Button_Click" />
+        <Button x:Name="Cancel_Button" Content="Cancel" HorizontalAlignment="Left" Margin="90,0,0,10" Width="75"
+                Height="19" VerticalAlignment="Bottom" Click="Cancel_Button_Click" />
 
     </Grid>
 </Window>

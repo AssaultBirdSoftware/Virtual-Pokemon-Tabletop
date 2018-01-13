@@ -1,30 +1,34 @@
 ﻿<Window x:Name="Window" x:Class="AssaultBird2454.VPTU.Client.UI.Manage_Identities"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:AssaultBird2454.VPTU.Client.UI"
-             mc:Ignorable="d" Height="330" Width="720">
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:AssaultBird2454.VPTU.Client.UI"
+        mc:Ignorable="d" Height="330" Width="720">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="100" />
         </Grid.ColumnDefinitions>
         <ListView x:Name="ID_List">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Character Name" Width="200" DisplayMemberBinding="{Binding ICN}"/>
-                    <GridViewColumn Header="Campaign Name" Width="200" DisplayMemberBinding="{Binding Campaign_Name}"/>
-                    <GridViewColumn Header="Server Address" Width="200" DisplayMemberBinding="{Binding Server_Address}"/>
+                    <GridViewColumn Header="Character Name" Width="200" DisplayMemberBinding="{Binding ICN}" />
+                    <GridViewColumn Header="Campaign Name" Width="200" DisplayMemberBinding="{Binding Campaign_Name}" />
+                    <GridViewColumn Header="Server Address" Width="200" DisplayMemberBinding="{Binding Server_Address}" />
                 </GridView>
             </ListView.View>
         </ListView>
         <GroupBox Grid.Column="1" Header="Manage" Height="141" VerticalAlignment="Top" Margin="5,0,0,0">
             <Grid Margin="0">
-                <Button x:Name="Add_Button" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="83" Margin="0,5,0,0" Click="Add_Button_Click"/>
-                <Button x:Name="Edit_Button" Content="Edit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="83" Margin="0,55,0,0" Click="Edit_Button_Click"/>
-                <Button x:Name="Remove_Button" Content="Remove" HorizontalAlignment="Left" VerticalAlignment="Top" Width="83" Margin="0,80,0,0" Click="Remove_Button_Click"/>
-                <Button x:Name="Import_Button" Content="Import" HorizontalAlignment="Left" VerticalAlignment="Top" Width="83" Margin="0,30,0,0" Click="Import_Button_Click"/>
+                <Button x:Name="Add_Button" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="83"
+                        Margin="0,5,0,0" Click="Add_Button_Click" />
+                <Button x:Name="Edit_Button" Content="Edit" HorizontalAlignment="Left" VerticalAlignment="Top"
+                        Width="83" Margin="0,55,0,0" Click="Edit_Button_Click" />
+                <Button x:Name="Remove_Button" Content="Remove" HorizontalAlignment="Left" VerticalAlignment="Top"
+                        Width="83" Margin="0,80,0,0" Click="Remove_Button_Click" />
+                <Button x:Name="Import_Button" Content="Import" HorizontalAlignment="Left" VerticalAlignment="Top"
+                        Width="83" Margin="0,30,0,0" Click="Import_Button_Click" />
             </Grid>
         </GroupBox>
 

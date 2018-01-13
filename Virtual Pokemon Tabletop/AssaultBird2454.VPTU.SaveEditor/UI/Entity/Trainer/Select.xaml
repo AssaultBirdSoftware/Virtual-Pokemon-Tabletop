@@ -6,7 +6,5 @@
         xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Entities.Trainer"
         mc:Ignorable="d"
         Title="Select" Height="300" Width="300">
-    <Grid>
-        
-    </Grid>
+    <Grid />
 </Window>
