@@ -485,6 +485,18 @@ namespace AssaultBird2454.VPTU.SaveEditor
         {
             PokedexManager_ReloadList();
         }
+
+        //When exporting pokemon
+        private void PokedexManager_Export_Pokemon_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        //When exporting Moves
+        private void PokedexManager_Export_Moves_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
         #endregion
 
         #region List Events
@@ -1174,6 +1186,20 @@ namespace AssaultBird2454.VPTU.SaveEditor
             }
             catch { }
         }
+
+        private void OverViewSettings_Server_Address_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            SaveManager.SaveData.Campaign_Data.Server_Address = OverViewSettings_Server_Address.Text;
+        }
+
+        private void OverViewSettings_Server_Port_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            try
+            {
+                SaveManager.SaveData.Campaign_Data.Server_Port = (int)OverViewSettings_Server_Port.Value;
+            }
+            catch { }
+        }
         #endregion
         #region Features
 
@@ -1214,30 +1240,6 @@ namespace AssaultBird2454.VPTU.SaveEditor
         }
         #endregion
         #endregion
-
-        private void PokedexManager_Export_Pokemon_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void PokedexManager_Export_Moves_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void OverViewSettings_Server_Address_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            SaveManager.SaveData.Campaign_Data.Server_Address = OverViewSettings_Server_Address.Text;
-        }
-
-        private void OverViewSettings_Server_Port_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        {
-            try
-            {
-                SaveManager.SaveData.Campaign_Data.Server_Port = (int)OverViewSettings_Server_Port.Value;
-            }
-            catch { }
-        }
     }
 
     /// <summary>

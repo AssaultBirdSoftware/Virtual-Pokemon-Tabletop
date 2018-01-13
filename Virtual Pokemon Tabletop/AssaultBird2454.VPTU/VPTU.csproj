@@ -170,6 +170,9 @@
     <Compile Include="BattleManager\BattleEffect\Data\Command Handeler\Command.cs" />
     <Compile Include="BattleManager\BattleEffect\Data\Command Handeler\CommandHandeler.cs" />
     <Compile Include="BattleManager\BattleEffect\Data\Data.cs" />
+    <Compile Include="BattleManager\BattleEffect\Data\Trigger.xaml.cs">
+      <DependentUpon>Trigger.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BattleManager\BattleEffect\Data\Variable.cs" />
     <Compile Include="BattleManager\BattleEffect\EffectData.cs" />
     <Compile Include="BattleManager\BattleEffect\EffectFunction.cs" />
@@ -301,6 +304,10 @@
     <Page Include="BattleManager\BattleEffect\Data\Actions\UI\StatusEffect_Remove.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BattleManager\BattleEffect\Data\Trigger.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Tabletop\Map\Table.xaml">
       <Generator>MSBuild:Compile</Generator>
