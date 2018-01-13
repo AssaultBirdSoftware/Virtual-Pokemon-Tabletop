@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Launcher.Update;
 
 namespace Launcher
 {
@@ -10,7 +7,7 @@ namespace Launcher
     {
         public Settings()
         {
-            Updater_Streams = new List<Update.ReleaseStream>();
+            Updater_Streams = new List<ReleaseStream>();
         }
 
         public bool Telemetry_Enabled { get; set; }
@@ -20,6 +17,6 @@ namespace Launcher
         public bool Telemetry_Fatal { get; set; }
 
         public bool Updater_Enabled { get; set; }
-        public List<Update.ReleaseStream> Updater_Streams { get; set; }
+        public List<ReleaseStream> Updater_Streams { get; set; }
     }
 }

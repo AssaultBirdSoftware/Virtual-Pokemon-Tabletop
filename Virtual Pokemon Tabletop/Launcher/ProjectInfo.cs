@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Launcher
 {
@@ -20,9 +15,10 @@ namespace Launcher
         {
             get
             {
-                using (Stream str = Assembly.GetExecutingAssembly().GetManifestResourceStream("Launcher.ProjectVariables.json"))
+                using (var str = Assembly.GetExecutingAssembly()
+                    .GetManifestResourceStream("Launcher.ProjectVariables.json"))
                 {
-                    using (StreamReader read = new StreamReader(str))
+                    using (var read = new StreamReader(str))
                     {
                         return Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectInfo>(read.ReadToEnd());
                     }

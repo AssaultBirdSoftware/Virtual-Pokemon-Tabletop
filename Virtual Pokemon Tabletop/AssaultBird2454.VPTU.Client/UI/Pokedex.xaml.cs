@@ -1,33 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using AssaultBird2454.VPTU.Pokedex.Pokemon;
+using AssaultBird2454.VPTU.Server.Instances.CommandData.Pokedex;
 
 namespace AssaultBird2454.VPTU.Client.UI
 {
     /// <summary>
-    /// Interaction logic for Pokedex.xaml
+    ///     Interaction logic for Pokedex.xaml
     /// </summary>
     public partial class Pokedex : UserControl
     {
+        private List<PokemonData> Pokemon;
+
+        private Thread UpdateThread;
+
         public Pokedex()
         {
             InitializeComponent();
         }
 
         /// <summary>
-        /// When the user wants to update the list
+        ///     When the user wants to update the list
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -35,7 +32,7 @@ namespace AssaultBird2454.VPTU.Client.UI
         {
             try
             {
-                Program.ClientInstance.Client.SendData(new VPTU.Server.Instances.CommandData.Pokedex.Pokedex_Pokemon_GetList());// Gets the list again
+                Program.ClientInstance.Client.SendData(new Pokedex_Pokemon_GetList()); // Gets the list again
             }
             catch (NullReferenceException)
             {
@@ -43,13 +40,11 @@ namespace AssaultBird2454.VPTU.Client.UI
             }
         }
 
-        Thread UpdateThread;
-        List<VPTU.Pokedex.Pokemon.PokemonData> Pokemon;
         /// <summary>
-        /// Updates the list of pokemon
+        ///     Updates the list of pokemon
         /// </summary>
         /// <param name="Pokemon">The Pokedex List to use</param>
-        public void Pokedex_Pokemon_Get_Executed(List<VPTU.Pokedex.Pokemon.PokemonData> _Pokemon)
+        public void Pokedex_Pokemon_Get_Executed(List<PokemonData> _Pokemon)
         {
             Pokemon = _Pokemon;
 
@@ -63,38 +58,39 @@ namespace AssaultBird2454.VPTU.Client.UI
                 UpdateThread.Abort();
                 UpdateThread = null;
             }
-            catch { /* Dont Care */ }
-
-            UpdateThread = new Thread(new ThreadStart(() =>// Runs the update in a thread that can be aborted if a new list is retrieved
+            catch
             {
-                List.Dispatcher.Invoke(new Action(() =>// Runs the update on the correct thread
-                {
-                    List.Items.Clear();// Clears the ListView
+                /* Dont Care */
+            }
 
-                    foreach (VPTU.Pokedex.Pokemon.PokemonData data in Pokemon)// Runs through the Pokedex List
+            UpdateThread = new Thread(
+                () => // Runs the update in a thread that can be aborted if a new list is retrieved
+                {
+                    List.Dispatcher.Invoke(() => // Runs the update on the correct thread
                     {
-                        if (data.Species_Name.ToLower().Contains(ToolBar_Search.Text.ToLower()))
-                        {
-                            List.Dispatcher.Invoke(new Action(() => List.Items.Add(data)));// And adds it to the ListView
-                        }
-                    }
-                }));
-            }));
+                        List.Items.Clear(); // Clears the ListView
+
+                        foreach (var data in Pokemon) // Runs through the Pokedex List
+                            if (data.Species_Name.ToLower().Contains(ToolBar_Search.Text.ToLower()))
+                                List.Dispatcher.Invoke(
+                                    new Action(() => List.Items.Add(data))); // And adds it to the ListView
+                    });
+                });
             UpdateThread.IsBackground = true;
             UpdateThread.Start();
         }
 
         /// <summary>
-        /// Gets the pokemon selected and opens a Pokedex Card for it
+        ///     Gets the pokemon selected and opens a Pokedex Card for it
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void List_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Program.ClientInstance.Client.SendData(new VPTU.Server.Instances.CommandData.Pokedex.Pokedex_Pokemon()// Gets the Pokemon Selected
+            Program.ClientInstance.Client.SendData(new Pokedex_Pokemon // Gets the Pokemon Selected
             {
-                Command = "Pokedex_Pokemon_Get",// Sets the command
-                DexID = ((VPTU.Pokedex.Pokemon.PokemonData)List.SelectedItems[0]).Species_DexID// Sets the Pokemon ID to get
+                Command = "Pokedex_Pokemon_Get", // Sets the command
+                DexID = ((PokemonData) List.SelectedItems[0]).Species_DexID // Sets the Pokemon ID to get
             });
         }
 
