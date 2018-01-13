@@ -1,21 +1,27 @@
 ﻿<UserControl x:Class="AssaultBird2454.VPTU.BattleManager.BattleEffect.Data.Actions.UI.StatusEffect_Add"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:AssaultBird2454.VPTU.BattleManager.BattleEffect.Data.Actions.UI"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" d:DesignWidth="300" Height="140.673">
     <Grid>
-        <Label Content="Select Effect" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="Status_Effects" HorizontalAlignment="Left" Margin="102,10,0,0" VerticalAlignment="Top" Width="188" Height="26"/>
-        <CheckBox x:Name="Effect_Persistant" Content="Persistant" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="Effect_Forced" Content="Forced" HorizontalAlignment="Left" Margin="10,123,0,0" VerticalAlignment="Top"/>
-        <Label Content="Expiry Method" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="Expiry_Method" HorizontalAlignment="Left" Margin="102,41,0,0" VerticalAlignment="Top" Width="188" Height="26" IsEnabled="False"/>
-        <Label Content="Duration (Turns)" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
+        <Label Content="Select Effect" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" />
+        <ComboBox x:Name="Status_Effects" HorizontalAlignment="Left" Margin="102,10,0,0" VerticalAlignment="Top"
+                  Width="188" Height="26" />
+        <CheckBox x:Name="Effect_Persistant" Content="Persistant" HorizontalAlignment="Left" Margin="10,103,0,0"
+                  VerticalAlignment="Top" />
+        <CheckBox x:Name="Effect_Forced" Content="Forced" HorizontalAlignment="Left" Margin="10,123,0,0"
+                  VerticalAlignment="Top" />
+        <Label Content="Expiry Method" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" />
+        <ComboBox x:Name="Expiry_Method" HorizontalAlignment="Left" Margin="102,41,0,0" VerticalAlignment="Top"
+                  Width="188" Height="26" IsEnabled="False" />
+        <Label Content="Duration (Turns)" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" />
 
-        <xctk:IntegerUpDown x:Name="Expiry_Turns" HorizontalAlignment="Left" Margin="110.937,72,0,0" VerticalAlignment="Top" Height="25.96" Width="179.063" DefaultValue="0" Minimum="0" Maximum="500" Value="0" TextAlignment="Center" Watermark="Turns"/>
+        <xctk:IntegerUpDown x:Name="Expiry_Turns" HorizontalAlignment="Left" Margin="110.937,72,0,0"
+                            VerticalAlignment="Top" Height="25.96" Width="179.063" DefaultValue="0" Minimum="0"
+                            Maximum="500" Value="0" TextAlignment="Center" Watermark="Turns" />
 
     </Grid>
 </UserControl>

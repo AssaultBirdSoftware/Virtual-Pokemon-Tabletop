@@ -1,22 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using AssaultBird2454.VPTU.BattleManager.Data;
 
 namespace AssaultBird2454.VPTU.BattleManager.BattleEffect.Data.Actions.UI
 {
     /// <summary>
-    /// Interaction logic for StatusEffect_Add.xaml
+    ///     Interaction logic for StatusEffect_Add.xaml
     /// </summary>
     public partial class StatusEffect_Remove : UserControl, EffectAction_Designer
     {
@@ -24,21 +13,21 @@ namespace AssaultBird2454.VPTU.BattleManager.BattleEffect.Data.Actions.UI
         {
             InitializeComponent();
 
-            Status_Effects.ItemsSource = Enum.GetValues(typeof(VPTU.BattleManager.Data.Status_Afflictions));
+            Status_Effects.ItemsSource = Enum.GetValues(typeof(Status_Afflictions));
         }
 
         public void Load(dynamic Data)
         {
-            RemoveStatusEffect EffectData = (RemoveStatusEffect)Data;
+            var EffectData = (RemoveStatusEffect) Data;
 
             Status_Effects.SelectedItem = EffectData.StatusEffect;
         }
 
         public void Save(dynamic Data)
         {
-            RemoveStatusEffect EffectData = (RemoveStatusEffect)Data;
+            var EffectData = (RemoveStatusEffect) Data;
 
-            EffectData.StatusEffect = (VPTU.BattleManager.Data.Status_Afflictions)Status_Effects.SelectedItem;
+            EffectData.StatusEffect = (Status_Afflictions) Status_Effects.SelectedItem;
         }
     }
 }

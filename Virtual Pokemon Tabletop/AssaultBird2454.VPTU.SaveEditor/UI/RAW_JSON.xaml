@@ -7,10 +7,12 @@
         mc:Ignorable="d"
         Title="Import &amp; Export" Height="468.482" Width="500">
     <Grid>
-        <Button x:Name="Cancel_Button" Content="Cancel" HorizontalAlignment="Left" Margin="390,0,0,10" Width="92" Height="19.96" VerticalAlignment="Bottom" Click="Cancel_Button_Click" IsCancel="True"/>
-        <Button x:Name="Submit_Button" Content="Import / Restore" HorizontalAlignment="Left" Margin="293,0,0,10" Width="92" Height="19.96" VerticalAlignment="Bottom" Click="Submit_Button_Click" IsDefault="True"/>
+        <Button x:Name="Cancel_Button" Content="Cancel" HorizontalAlignment="Left" Margin="390,0,0,10" Width="92"
+                Height="19.96" VerticalAlignment="Bottom" Click="Cancel_Button_Click" IsCancel="True" />
+        <Button x:Name="Submit_Button" Content="Import / Restore" HorizontalAlignment="Left" Margin="293,0,0,10"
+                Width="92" Height="19.96" VerticalAlignment="Bottom" Click="Submit_Button_Click" IsDefault="True" />
         <RichTextBox x:Name="Data_JSON" Margin="0,0,0,34.96">
-            <FlowDocument/>
+            <FlowDocument />
         </RichTextBox>
 
     </Grid>

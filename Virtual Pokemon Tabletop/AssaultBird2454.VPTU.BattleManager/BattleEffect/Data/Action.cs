@@ -1,11 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AssaultBird2454.VPTU.BattleManager.BattleEffect.Data
+﻿namespace AssaultBird2454.VPTU.BattleManager.BattleEffect.Data
 {
     public class Action
     {
@@ -16,22 +9,22 @@ namespace AssaultBird2454.VPTU.BattleManager.BattleEffect.Data
             Action_Comment = Comment;
 
             if (Data != null)
-            {
                 Action_Data = Data;
-            }
         }
 
         /* Action Info */
         /// <summary>
-        /// The name of the action
+        ///     The name of the action
         /// </summary>
         public string Action_Name { get; set; }
+
         /// <summary>
-        /// The Command for executing the action
+        ///     The Command for executing the action
         /// </summary>
         public string Action_Command { get; }
+
         /// <summary>
-        /// A comment to describe the action
+        ///     A comment to describe the action
         /// </summary>
         public string Action_Comment { get; set; }
 

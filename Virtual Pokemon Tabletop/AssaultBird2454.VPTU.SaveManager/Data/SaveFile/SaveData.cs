@@ -1,17 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using AssaultBird2454.VPTU.BattleManager.Entity;
+using AssaultBird2454.VPTU.BattleManager.Entity.Pokemon;
+using AssaultBird2454.VPTU.BattleManager.Entity.Trainer;
+using AssaultBird2454.VPTU.SaveManager.Resource_Data;
+using AssaultBird2454.VPTU.SoundSystem.SaveData;
 
 namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
 {
     /// <summary>
-    /// A Save Data Class designed for backup purposes. It supports checking if a part of the save has been modified outside the Client/Server
+    ///     A Save Data Class designed for backup purposes. It supports checking if a part of the save has been modified
+    ///     outside the Client/Server
     /// </summary>
     public class PTUSaveData_ECC
     {
-        public PTUSaveData_ECC() { }
+        public PTUSaveData_ECC()
+        {
+        }
+
         public PTUSaveData_ECC(string _Hash, PTUSaveData _Data)
         {
             Hash = _Hash;
@@ -23,35 +28,41 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
     }
 
     /// <summary>
-    /// A Save Data Class designed to handle the save data
+    ///     A Save Data Class designed to handle the save data
     /// </summary>
     public class PTUSaveData
     {
+        #region Data
+
+        public Pokedex.Save_Data.Pokedex PokedexData;
+
+        #endregion
+
         /// <summary>
-        /// Creates a new PTUSaveData class
+        ///     Creates a new PTUSaveData class
         /// </summary>
         /// <param name="InitNewSave">Initilises all objects</param>
         public PTUSaveData(bool InitNewSave = false)
         {
             if (InitNewSave)
             {
-                Trainers = new List<BattleManager.Entity.Trainer.EntityTrainerData>();
-                Pokemon = new List<BattleManager.Entity.Pokemon.EntityPokemonData>();
+                Trainers = new List<EntityTrainerData>();
+                Pokemon = new List<EntityPokemonData>();
 
-                EntityGroups = new List<BattleManager.Entity.EntityGroup>();
+                EntityGroups = new List<EntityGroup>();
 
                 //MapFiles = new List<Resources.MapFileData>();
                 //Maps = new List<Resources.MapData>();
 
-                AudioResources = new List<SoundSystem.SaveData.AudioData>();
-                ImageResources = new List<Resource_Data.Resources>();
+                AudioResources = new List<AudioData>();
+                ImageResources = new List<Resources>();
 
                 PokedexData = new Pokedex.Save_Data.Pokedex(true);
             }
         }
 
         /// <summary>
-        /// Creates a new instance of all objects that are null
+        ///     Creates a new instance of all objects that are null
         /// </summary>
         public void InitNullObjects()
         {
@@ -59,35 +70,34 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
             //Maps = new List<Resources.MapData>();
 
             if (AudioResources == null)
-            {
-                AudioResources = new List<SoundSystem.SaveData.AudioData>();
-            }
+                AudioResources = new List<AudioData>();
             if (ImageResources == null)
-            {
-                ImageResources = new List<Resource_Data.Resources>();
-            }
+                ImageResources = new List<Resources>();
 
             PokedexData.InitNullObjects();
         }
 
-        #region Data
-        public Pokedex.Save_Data.Pokedex PokedexData;
-        #endregion
-
         #region Entity Data
-        public List<BattleManager.Entity.Trainer.EntityTrainerData> Trainers;
-        public List<BattleManager.Entity.Pokemon.EntityPokemonData> Pokemon;
 
-        public List<BattleManager.Entity.EntityGroup> EntityGroups;
+        public List<EntityTrainerData> Trainers;
+        public List<EntityPokemonData> Pokemon;
+
+        public List<EntityGroup> EntityGroups;
+
         #endregion
 
         #region Tabletop
+
         //public List<Resources.MapFileData> MapFiles;
         //public List<Resources.MapData> Maps;
+
         #endregion
+
         #region Resources
-        public List<SoundSystem.SaveData.AudioData> AudioResources;
-        public List<Resource_Data.Resources> ImageResources;
+
+        public List<AudioData> AudioResources;
+        public List<Resources> ImageResources;
+
         #endregion
     }
 }

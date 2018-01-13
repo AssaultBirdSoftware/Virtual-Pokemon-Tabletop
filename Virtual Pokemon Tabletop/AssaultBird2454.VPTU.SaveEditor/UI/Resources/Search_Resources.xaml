@@ -8,23 +8,28 @@
         Title="Search_Resources" Height="300" Width="418.487">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="150"/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="150" />
         </Grid.ColumnDefinitions>
         <ListView x:Name="Resource_List" Margin="0,32,3.05,35" SelectionChanged="Resource_List_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Name" Width="150px" DisplayMemberBinding="{Binding Name}"/>
-                    <GridViewColumn Header="Resource Type" Width="100px" DisplayMemberBinding="{Binding Type}"/>
+                    <GridViewColumn Header="Name" Width="150px" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Resource Type" Width="100px" DisplayMemberBinding="{Binding Type}" />
                 </GridView>
             </ListView.View>
         </ListView>
-        <Label Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="50,4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="207"/>
-        <Button Content="Select" Margin="0,0,83,10" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Click="Button_Click"/>
-        <Button Content="Cancel" Margin="0,0,3,10" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75"/>
-        <Border x:Name="Preview" HorizontalAlignment="Left" Height="150" VerticalAlignment="Top" Width="150" Grid.Column="1"/>
-        <Label x:Name="SelectedName" Content="Name" Margin="0,150,0,73" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="1"/>
+        <Label Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="50,4,0,0" TextWrapping="Wrap" VerticalAlignment="Top"
+                 Width="207" />
+        <Button Content="Select" Margin="0,0,83,10" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                Width="75" Click="Button_Click" />
+        <Button Content="Cancel" Margin="0,0,3,10" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                Width="75" />
+        <Border x:Name="Preview" HorizontalAlignment="Left" Height="150" VerticalAlignment="Top" Width="150"
+                Grid.Column="1" />
+        <Label x:Name="SelectedName" Content="Name" Margin="0,150,0,73" VerticalContentAlignment="Center"
+               HorizontalContentAlignment="Center" Grid.Column="1" />
 
     </Grid>
 </Window>

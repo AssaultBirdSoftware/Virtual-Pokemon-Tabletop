@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:Testing_TCP_Client"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+
     </Application.Resources>
 </Application>

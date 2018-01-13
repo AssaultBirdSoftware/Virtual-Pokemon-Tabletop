@@ -5,60 +5,80 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor"
         mc:Ignorable="d"
-        Title="Virtual Pokemon Tabletop - SaveEditor (Version: _____ _._._ Build _) (Commit: _______)" Height="710" Width="997.5" Closed="Window_Closed">
+        Title="Virtual Pokemon Tabletop - SaveEditor (Version: _____ _._._ Build _) (Commit: _______)" Height="710"
+        Width="997.5" Closed="Window_Closed">
     <Grid>
         <Menu x:Name="Menu" VerticalAlignment="Top">
             <MenuItem x:Name="Menu_Menu" Header="Menu">
-                <MenuItem x:Name="Menu_Menu_Open" Header="Open File" Width="146.86" Click="Menu_Menu_Open_Click"/>
-                <MenuItem x:Name="Menu_Menu_Save" Header="Save File" Click="Menu_Menu_Save_Click"/>
-                <MenuItem x:Name="Menu_Menu_SaveAs" Header="Save File As" IsEnabled="False" Click="Menu_Menu_SaveAs_Click"/>
+                <MenuItem x:Name="Menu_Menu_Open" Header="Open File" Width="146.86" Click="Menu_Menu_Open_Click" />
+                <MenuItem x:Name="Menu_Menu_Save" Header="Save File" Click="Menu_Menu_Save_Click" />
+                <MenuItem x:Name="Menu_Menu_SaveAs" Header="Save File As" IsEnabled="False"
+                          Click="Menu_Menu_SaveAs_Click" />
             </MenuItem>
             <MenuItem x:Name="Menu_SaveTools" Header="Save Tools">
-                <MenuItem x:Name="Menu_SaveTools_UnPack" Header="Un-Pack Save Data" HorizontalContentAlignment="Stretch" Click="Menu_SaveTools_UnPack_Click"/>
-                <MenuItem x:Name="Menu_SaveTools_Pack" Header="Pack Save Data" HorizontalContentAlignment="Stretch" Click="Menu_SaveTools_Pack_Click"/>
+                <MenuItem x:Name="Menu_SaveTools_UnPack" Header="Un-Pack Save Data"
+                          HorizontalContentAlignment="Stretch" Click="Menu_SaveTools_UnPack_Click" />
+                <MenuItem x:Name="Menu_SaveTools_Pack" Header="Pack Save Data" HorizontalContentAlignment="Stretch"
+                          Click="Menu_SaveTools_Pack_Click" />
             </MenuItem>
             <MenuItem x:Name="Menu_About" Header="About">
-                <MenuItem x:Name="Menu_About_Licence" Header="Licence" Click="Menu_About_Licence_Click"/>
-                <MenuItem x:Name="Menu_About_LegalNotices" Header="Legal Notices" Click="Menu_About_LegalNotices_Click"/>
+                <MenuItem x:Name="Menu_About_Licence" Header="Licence" Click="Menu_About_Licence_Click" />
+                <MenuItem x:Name="Menu_About_LegalNotices" Header="Legal Notices" Click="Menu_About_LegalNotices_Click" />
             </MenuItem>
         </Menu>
         <TabControl x:Name="SaveEditor_TabPanel" Margin="0,17.96,0,21.96" IsEnabled="False">
             <TabItem Header="Overview" d:IsLocked="True">
                 <Grid Background="#FFE5E5E5">
-                    <Label x:Name="label_Copy2" Content="This Tab is in Development..." Foreground="Red" FontSize="72"/>
+                    <Label x:Name="label_Copy2" Content="This Tab is in Development..." Foreground="Red" FontSize="72" />
                 </Grid>
             </TabItem>
             <TabItem Header="Resource Manager">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="150" />
                     </Grid.ColumnDefinitions>
                     <ListView x:Name="ResourceManager_List">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Name" Width="150px" DisplayMemberBinding="{Binding Name}"/>
-                                <GridViewColumn Header="Resource Type" Width="100px" DisplayMemberBinding="{Binding Type}"/>
+                                <GridViewColumn Header="Name" Width="150px" DisplayMemberBinding="{Binding Name}" />
+                                <GridViewColumn Header="Resource Type" Width="100px"
+                                                DisplayMemberBinding="{Binding Type}" />
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <GroupBox x:Name="ResourceManager_AddRes" Grid.Column="1" Header="Add Pokedex Entry's" Margin="10,10,10,0" VerticalAlignment="Top" Height="75">
+                    <GroupBox x:Name="ResourceManager_AddRes" Grid.Column="1" Header="Add Pokedex Entry's"
+                              Margin="10,10,10,0" VerticalAlignment="Top" Height="75">
                         <Grid Margin="0,0,-2,-12.96">
-                            <Button x:Name="ResourceManager_AddRes_Audio" Content="Add Audio" VerticalAlignment="Top" Click="ResourceManager_AddRes_Audio_Click"/>
-                            <Button x:Name="ResourceManager_AddRes_Images" Content="Add Image" VerticalAlignment="Top" Margin="0,24.96,0,0" Click="ResourceManager_AddRes_Images_Click"/>
+                            <Button x:Name="ResourceManager_AddRes_Audio" Content="Add Audio" VerticalAlignment="Top"
+                                    Click="ResourceManager_AddRes_Audio_Click" />
+                            <Button x:Name="ResourceManager_AddRes_Images" Content="Add Image" VerticalAlignment="Top"
+                                    Margin="0,24.96,0,0" Click="ResourceManager_AddRes_Images_Click" />
                         </Grid>
                     </GroupBox>
-                    <GroupBox x:Name="ResourceManager_ManageRes" Grid.Column="1" Header="Edit / Delete" Margin="10,90,10,0" VerticalAlignment="Top" Height="71">
+                    <GroupBox x:Name="ResourceManager_ManageRes" Grid.Column="1" Header="Edit / Delete"
+                              Margin="10,90,10,0" VerticalAlignment="Top" Height="71">
                         <Grid Margin="0,0,-2,-12.96">
-                            <Button x:Name="ResourceManager_ManageRes_Edit" Content="Edit" VerticalAlignment="Top" Click="ResourceManager_ManageRes_Edit_Click" IsEnabled="False"/>
-                            <Button x:Name="ResourceManager_ManageRes_Delete" Content="Delete" VerticalAlignment="Top" Margin="0,24.96,0,0" Click="ResourceManager_ManageRes_Delete_Click"/>
+                            <Button x:Name="ResourceManager_ManageRes_Edit" Content="Edit" VerticalAlignment="Top"
+                                    Click="ResourceManager_ManageRes_Edit_Click" IsEnabled="False" />
+                            <Button x:Name="ResourceManager_ManageRes_Delete" Content="Delete" VerticalAlignment="Top"
+                                    Margin="0,24.96,0,0" Click="ResourceManager_ManageRes_Delete_Click" />
                         </Grid>
                     </GroupBox>
-                    <GroupBox x:Name="PokedexManager_SearchDex_Copy" Grid.Column="1" Header="Search" Margin="10,166,10,0" Height="79" VerticalAlignment="Top">
+                    <GroupBox x:Name="PokedexManager_SearchDex_Copy" Grid.Column="1" Header="Search"
+                              Margin="10,166,10,0" Height="79" VerticalAlignment="Top">
                         <Grid Margin="0,0,-2,-12.96">
-                            <TextBox x:Name="ResourceManager_SearchRes_Search" Margin="0,0,10,0" TextWrapping="Wrap" VerticalAlignment="Top" UndoLimit="200" TextChanged="ResourceManager_SearchRes_Search_TextChanged"/>
-                            <CheckBox x:Name="ResourceManager_SearchRes_Audio" Content="Search Audio" Margin="0,22.96,0,0" VerticalAlignment="Top" IsChecked="True" Checked="ResourceManager_SearchRes_Audio_Checked" Unchecked="ResourceManager_SearchRes_Audio_Unchecked"/>
-                            <CheckBox x:Name="ResourceManager_SearchRes_Images" Content="Search Images" Margin="0,38.058,0,0" VerticalAlignment="Top" IsChecked="True" Checked="ResourceManager_SearchRes_Images_Checked" Unchecked="ResourceManager_SearchRes_Images_Unchecked"/>
+                            <TextBox x:Name="ResourceManager_SearchRes_Search" Margin="0,0,10,0" TextWrapping="Wrap"
+                                     VerticalAlignment="Top" UndoLimit="200"
+                                     TextChanged="ResourceManager_SearchRes_Search_TextChanged" />
+                            <CheckBox x:Name="ResourceManager_SearchRes_Audio" Content="Search Audio"
+                                      Margin="0,22.96,0,0" VerticalAlignment="Top" IsChecked="True"
+                                      Checked="ResourceManager_SearchRes_Audio_Checked"
+                                      Unchecked="ResourceManager_SearchRes_Audio_Unchecked" />
+                            <CheckBox x:Name="ResourceManager_SearchRes_Images" Content="Search Images"
+                                      Margin="0,38.058,0,0" VerticalAlignment="Top" IsChecked="True"
+                                      Checked="ResourceManager_SearchRes_Images_Checked"
+                                      Unchecked="ResourceManager_SearchRes_Images_Unchecked" />
                         </Grid>
                     </GroupBox>
                 </Grid>
@@ -66,68 +86,98 @@
             <TabItem Header="Pokedex Manager">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="150" />
                     </Grid.ColumnDefinitions>
-                    <ListView x:Name="PokedexManager_List" SelectionChanged="PokedexManager_List_SelectionChanged" MouseDoubleClick="PokedexManager_List_MouseDoubleClick">
+                    <ListView x:Name="PokedexManager_List" SelectionChanged="PokedexManager_List_SelectionChanged"
+                              MouseDoubleClick="PokedexManager_List_MouseDoubleClick">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="ID" Width="50px" DisplayMemberBinding="{Binding ID}"/>
-                                <GridViewColumn Header="Name" Width="150px" DisplayMemberBinding="{Binding Name}"/>
-                                <GridViewColumn Header="Type 1" Width="80px" DisplayMemberBinding="{Binding Type1}"/>
-                                <GridViewColumn Header="Type 2" Width="80px" DisplayMemberBinding="{Binding Type2}"/>
-                                <GridViewColumn Header="Class" Width="80px" DisplayMemberBinding="{Binding Class}"/>
-                                <GridViewColumn Header="Entry Type" Width="100" DisplayMemberBinding="{Binding EntryType}"/>
+                                <GridViewColumn Header="ID" Width="50px" DisplayMemberBinding="{Binding ID}" />
+                                <GridViewColumn Header="Name" Width="150px" DisplayMemberBinding="{Binding Name}" />
+                                <GridViewColumn Header="Type 1" Width="80px" DisplayMemberBinding="{Binding Type1}" />
+                                <GridViewColumn Header="Type 2" Width="80px" DisplayMemberBinding="{Binding Type2}" />
+                                <GridViewColumn Header="Class" Width="80px" DisplayMemberBinding="{Binding Class}" />
+                                <GridViewColumn Header="Entry Type" Width="100"
+                                                DisplayMemberBinding="{Binding EntryType}" />
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <GroupBox x:Name="PokedexManager_AddDex" Grid.Column="1" Header="Add Pokedex Entry's" Margin="10,10,10,0" VerticalAlignment="Top" Height="119.46">
+                    <GroupBox x:Name="PokedexManager_AddDex" Grid.Column="1" Header="Add Pokedex Entry's"
+                              Margin="10,10,10,0" VerticalAlignment="Top" Height="119.46">
                         <Grid Margin="0,0,-2,-12.96">
-                            <Button x:Name="PokedexManager_AddDex_Pokemon" Content="Add Pokemon" VerticalAlignment="Top" Click="PokedexManager_AddDex_Pokemon_Click"/>
-                            <Button x:Name="PokedexManager_AddDex_Move" Content="Add Move" VerticalAlignment="Top" Margin="0,24.96,0,0" Click="PokedexManager_AddDex_Move_Click"/>
-                            <Button x:Name="PokedexManager_AddDex_Ability" Content="Add Ability" VerticalAlignment="Top" Margin="0,49.92,0,0" Click="PokedexManager_AddDex_Ability_Click"/>
-                            <Button x:Name="PokedexManager_AddDex_Items" Content="Add Items" Margin="0,74.88,0,0" VerticalAlignment="Top" Click="PokedexManager_AddDex_Items_Click"/>
+                            <Button x:Name="PokedexManager_AddDex_Pokemon" Content="Add Pokemon"
+                                    VerticalAlignment="Top" Click="PokedexManager_AddDex_Pokemon_Click" />
+                            <Button x:Name="PokedexManager_AddDex_Move" Content="Add Move" VerticalAlignment="Top"
+                                    Margin="0,24.96,0,0" Click="PokedexManager_AddDex_Move_Click" />
+                            <Button x:Name="PokedexManager_AddDex_Ability" Content="Add Ability"
+                                    VerticalAlignment="Top" Margin="0,49.92,0,0"
+                                    Click="PokedexManager_AddDex_Ability_Click" />
+                            <Button x:Name="PokedexManager_AddDex_Items" Content="Add Items" Margin="0,74.88,0,0"
+                                    VerticalAlignment="Top" Click="PokedexManager_AddDex_Items_Click" />
                         </Grid>
                     </GroupBox>
-                    <GroupBox x:Name="PokedexManager_ManageDex" Grid.Column="1" Header="Edit / Delete" Margin="10,134.46,10,0" VerticalAlignment="Top" Height="71.46">
+                    <GroupBox x:Name="PokedexManager_ManageDex" Grid.Column="1" Header="Edit / Delete"
+                              Margin="10,134.46,10,0" VerticalAlignment="Top" Height="71.46">
                         <Grid Margin="0,0,-2,-12.96">
-                            <Button x:Name="PokedexManager_ManageDex_Edit" Content="Edit" VerticalAlignment="Top" Click="PokedexManager_ManageDex_Edit_Click"/>
-                            <Button x:Name="PokedexManager_ManageDex_Delete" Content="Delete" VerticalAlignment="Top" Margin="0,24.96,0,0" Click="PokedexManager_ManageDex_Delete_Click"/>
+                            <Button x:Name="PokedexManager_ManageDex_Edit" Content="Edit" VerticalAlignment="Top"
+                                    Click="PokedexManager_ManageDex_Edit_Click" />
+                            <Button x:Name="PokedexManager_ManageDex_Delete" Content="Delete" VerticalAlignment="Top"
+                                    Margin="0,24.96,0,0" Click="PokedexManager_ManageDex_Delete_Click" />
                         </Grid>
                     </GroupBox>
-                    <GroupBox x:Name="PokedexManager_SearchDex" Grid.Column="1" Header="Search" Margin="10,210.92,10,0" Height="113.127" VerticalAlignment="Top">
+                    <GroupBox x:Name="PokedexManager_SearchDex" Grid.Column="1" Header="Search" Margin="10,210.92,10,0"
+                              Height="113.127" VerticalAlignment="Top">
                         <Grid Margin="0,0,-2,-12.96">
-                            <TextBox x:Name="PokedexManager_SearchDex_Search" Margin="0,0,10,0" TextWrapping="Wrap" VerticalAlignment="Top" UndoLimit="200" TextChanged="PokedexManager_SearchDex_Search_TextChanged"/>
-                            <CheckBox x:Name="PokedexManager_SearchDex_Pokemon" Content="Search Pokemon" Margin="0,22.96,0,0" VerticalAlignment="Top" IsChecked="True" Checked="PokedexManager_SearchDex_Pokemon_Checked" Unchecked="PokedexManager_SearchDex_Pokemon_Unchecked"/>
-                            <CheckBox x:Name="PokedexManager_SearchDex_Moves" Content="Search Moves" Margin="0,38.058,0,0" VerticalAlignment="Top" IsChecked="True" Checked="PokedexManager_SearchDex_Moves_Checked" Unchecked="PokedexManager_SearchDex_Moves_Unchecked"/>
-                            <CheckBox x:Name="PokedexManager_SearchDex_Abilitys" Content="Search Ability's" Margin="0,53.156,0,0" VerticalAlignment="Top" IsEnabled="False" Checked="PokedexManager_SearchDex_Abilitys_Checked" Unchecked="PokedexManager_SearchDex_Abilitys_Unchecked"/>
-                            <CheckBox x:Name="PokedexManager_SearchDex_Items" Content="Search Items" Margin="0,68.255,0,0" VerticalAlignment="Top" IsEnabled="False" Checked="PokedexManager_SearchDex_Items_Checked" Unchecked="PokedexManager_SearchDex_Items_Unchecked"/>
+                            <TextBox x:Name="PokedexManager_SearchDex_Search" Margin="0,0,10,0" TextWrapping="Wrap"
+                                     VerticalAlignment="Top" UndoLimit="200"
+                                     TextChanged="PokedexManager_SearchDex_Search_TextChanged" />
+                            <CheckBox x:Name="PokedexManager_SearchDex_Pokemon" Content="Search Pokemon"
+                                      Margin="0,22.96,0,0" VerticalAlignment="Top" IsChecked="True"
+                                      Checked="PokedexManager_SearchDex_Pokemon_Checked"
+                                      Unchecked="PokedexManager_SearchDex_Pokemon_Unchecked" />
+                            <CheckBox x:Name="PokedexManager_SearchDex_Moves" Content="Search Moves"
+                                      Margin="0,38.058,0,0" VerticalAlignment="Top" IsChecked="True"
+                                      Checked="PokedexManager_SearchDex_Moves_Checked"
+                                      Unchecked="PokedexManager_SearchDex_Moves_Unchecked" />
+                            <CheckBox x:Name="PokedexManager_SearchDex_Abilitys" Content="Search Ability's"
+                                      Margin="0,53.156,0,0" VerticalAlignment="Top" IsEnabled="False"
+                                      Checked="PokedexManager_SearchDex_Abilitys_Checked"
+                                      Unchecked="PokedexManager_SearchDex_Abilitys_Unchecked" />
+                            <CheckBox x:Name="PokedexManager_SearchDex_Items" Content="Search Items"
+                                      Margin="0,68.255,0,0" VerticalAlignment="Top" IsEnabled="False"
+                                      Checked="PokedexManager_SearchDex_Items_Checked"
+                                      Unchecked="PokedexManager_SearchDex_Items_Unchecked" />
                         </Grid>
                     </GroupBox>
-                    <GroupBox x:Name="PokedexManager_DisplaySettings" Grid.Column="1" Header="Display Settings" Margin="10,0,10,10" Height="108.127" VerticalAlignment="Bottom" IsEnabled="False" d:IsLocked="True">
+                    <GroupBox x:Name="PokedexManager_DisplaySettings" Grid.Column="1" Header="Display Settings"
+                              Margin="10,0,10,10" Height="108.127" VerticalAlignment="Bottom" IsEnabled="False"
+                              d:IsLocked="True">
                         <Grid Margin="0,0,-2,-12.96">
-                            <RadioButton x:Name="radioButton_Copy" Content="" VerticalAlignment="Top"/>
-                            <RadioButton x:Name="radioButton_Copy1" Content="RadioButton" VerticalAlignment="Top" Margin="0,14.96,0,0"/>
+                            <RadioButton x:Name="radioButton_Copy" Content="" VerticalAlignment="Top" />
+                            <RadioButton x:Name="radioButton_Copy1" Content="RadioButton" VerticalAlignment="Top"
+                                         Margin="0,14.96,0,0" />
                         </Grid>
                     </GroupBox>
                 </Grid>
             </TabItem>
             <TabItem Header="Entity Manager" d:IsLocked="True">
                 <Grid Background="#FFE5E5E5">
-                    <Label x:Name="label_Copy" Content="This Tab is in Development..." Foreground="Red" FontSize="72"/>
+                    <Label x:Name="label_Copy" Content="This Tab is in Development..." Foreground="Red" FontSize="72" />
                 </Grid>
             </TabItem>
             <TabItem Header="Map Manager" d:IsLocked="True">
                 <Grid Background="#FFE5E5E5">
-                    <Label x:Name="label" Content="This Tab is in Development..." Foreground="Red" FontSize="72"/>
+                    <Label x:Name="label" Content="This Tab is in Development..." Foreground="Red" FontSize="72" />
                 </Grid>
             </TabItem>
-            <TabItem Header="Feature Manager" HorizontalAlignment="Left" Height="19.96" VerticalAlignment="Top" d:IsLocked="True">
-                <Label x:Name="label_Copy1" Content="This Tab is in Development..." Foreground="Red" FontSize="72"/>
+            <TabItem Header="Feature Manager" HorizontalAlignment="Left" Height="19.96" VerticalAlignment="Top"
+                     d:IsLocked="True">
+                <Label x:Name="label_Copy1" Content="This Tab is in Development..." Foreground="Red" FontSize="72" />
             </TabItem>
         </TabControl>
         <StatusBar VerticalAlignment="Bottom" d:IsLocked="True">
-            <StatusBarItem Content="StatusBarItem" VerticalAlignment="Bottom"/>
+            <StatusBarItem Content="StatusBarItem" VerticalAlignment="Bottom" />
         </StatusBar>
 
     </Grid>

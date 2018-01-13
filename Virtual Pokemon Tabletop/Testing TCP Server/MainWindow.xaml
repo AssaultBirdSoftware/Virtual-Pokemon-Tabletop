@@ -8,21 +8,28 @@
         Title="Server" Height="350" Width="525">
     <Grid>
         <RichTextBox x:Name="Console" HorizontalAlignment="Left" Height="214" VerticalAlignment="Top" Width="370">
-            <FlowDocument/>
+            <FlowDocument />
         </RichTextBox>
-        <ListView x:Name="Clients" HorizontalAlignment="Left" Height="214" Margin="375,0,0,0" VerticalAlignment="Top" Width="142">
+        <ListView x:Name="Clients" HorizontalAlignment="Left" Height="214" Margin="375,0,0,0" VerticalAlignment="Top"
+                  Width="142">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Clients" Width="130px" DisplayMemberBinding="{Binding ID}"/>
+                    <GridViewColumn Header="Clients" Width="130px" DisplayMemberBinding="{Binding ID}" />
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="Stop" Content="Stop Server" HorizontalAlignment="Left" Margin="10,289,0,0" VerticalAlignment="Top" Width="75" Background="#FFDDDDDD" Click="Stop_Click"/>
-        <Button x:Name="Start" Content="Start Server" HorizontalAlignment="Left" Margin="10,264,0,0" VerticalAlignment="Top" Width="75" Click="Start_Click"/>
-        <ToggleButton x:Name="AcceptConnection" Content="Accept Clients" HorizontalAlignment="Left" Margin="117.236,289,0,0" VerticalAlignment="Top" IsChecked="True" Click="AcceptConn_Click"/>
-        <TextBox x:Name="Data" HorizontalAlignment="Left" Height="23" Margin="10,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417"/>
-        <Button x:Name="Send" Content="Send" HorizontalAlignment="Left" Margin="432,219,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="Send_Click"/>
-        <Button x:Name="Send10" Content="Send 10" HorizontalAlignment="Left" Margin="432,247,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="Send10_Click"/>
+        <Button x:Name="Stop" Content="Stop Server" HorizontalAlignment="Left" Margin="10,289,0,0"
+                VerticalAlignment="Top" Width="75" Background="#FFDDDDDD" Click="Stop_Click" />
+        <Button x:Name="Start" Content="Start Server" HorizontalAlignment="Left" Margin="10,264,0,0"
+                VerticalAlignment="Top" Width="75" Click="Start_Click" />
+        <ToggleButton x:Name="AcceptConnection" Content="Accept Clients" HorizontalAlignment="Left"
+                      Margin="117.236,289,0,0" VerticalAlignment="Top" IsChecked="True" Click="AcceptConn_Click" />
+        <TextBox x:Name="Data" HorizontalAlignment="Left" Height="23" Margin="10,219,0,0" TextWrapping="Wrap"
+                 VerticalAlignment="Top" Width="417" />
+        <Button x:Name="Send" Content="Send" HorizontalAlignment="Left" Margin="432,219,0,0" VerticalAlignment="Top"
+                Width="75" Height="23" Click="Send_Click" />
+        <Button x:Name="Send10" Content="Send 10" HorizontalAlignment="Left" Margin="432,247,0,0"
+                VerticalAlignment="Top" Width="75" Height="23" Click="Send10_Click" />
 
     </Grid>
 </Window>
