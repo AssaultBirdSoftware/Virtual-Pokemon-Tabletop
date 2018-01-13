@@ -1,39 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using AssaultBird2454.VPTU.Authentication_Manager.Data;
+using Microsoft.Win32;
 
 namespace AssaultBird2454.VPTU.SaveEditor.UI.Users
 {
     /// <summary>
-    /// Interaction logic for Users.xaml
+    ///     Interaction logic for Users.xaml
     /// </summary>
     public partial class Users : Window
     {
-        public Authentication_Manager.Data.User User;
+        public User User;
 
-        public Users(Authentication_Manager.Data.User _User = null)
+        public Users(User _User = null)
         {
             InitializeComponent();
 
             if (_User == null)
-            {
-                User = new Authentication_Manager.Data.User(true);
-            }
+                User = new User(true);
             else
-            {
                 User = _User;
-            }
 
             MainWindow.SaveManager.SaveData.Identity_GetKey(User.UserID);
             Load();
@@ -49,12 +38,13 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Users
 
             // Groups
         }
+
         public void Save()
         {
             User.Name = Player_Name.Text;
             User.IC_Name = Player_ICN.Text;
 
-            User.UserColor = (Color)PlayerColor_Picker.SelectedColor;
+            User.UserColor = (Color) PlayerColor_Picker.SelectedColor;
 
             // Groups
         }
@@ -62,9 +52,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Users
         private void PlayerColor_Picker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
         {
             if (PlayerColor_Picker.SelectedColor != null)
-            {
-                User.UserColor = (Color)PlayerColor_Picker.SelectedColor;
-            }
+                User.UserColor = (Color) PlayerColor_Picker.SelectedColor;
         }
 
         private void View_PlayerKey_Click(object sender, RoutedEventArgs e)
@@ -74,7 +62,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Users
 
         private void Export_PlayerKey_Click(object sender, RoutedEventArgs e)
         {
-            Microsoft.Win32.SaveFileDialog SFD = new Microsoft.Win32.SaveFileDialog();
+            var SFD = new SaveFileDialog();
             SFD.Title = "Save Virtual PTU Identity File";
             SFD.DefaultExt = ".ptuif";
             SFD.Filter = "Pokemon Tabletop User Identity File (*.ptuif)|*.ptuif";
@@ -86,9 +74,9 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Users
             SFD.ShowDialog();
         }
 
-        private void SFD_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        private void SFD_FileOk(object sender, CancelEventArgs e)
         {
-            Authentication_Manager.Data.ClientIdentity ID = new Authentication_Manager.Data.ClientIdentity();
+            var ID = new ClientIdentity();
 
             ID.AuthKey = MainWindow.SaveManager.SaveData.Identity_GetKey(User.UserID);
             ID.Campaign_Name = MainWindow.SaveManager.SaveData.Campaign_Data.Campaign_Name;
@@ -96,9 +84,15 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Users
             ID.Server_Address = MainWindow.SaveManager.SaveData.Campaign_Data.Server_Address;
             ID.Server_Port = MainWindow.SaveManager.SaveData.Campaign_Data.Server_Port;
 
-            try { File.Delete(((Microsoft.Win32.SaveFileDialog)sender).FileName); } catch { }
-            
-            using (StreamWriter SW = new StreamWriter(new FileStream(((Microsoft.Win32.SaveFileDialog)sender).FileName, FileMode.OpenOrCreate)))
+            try
+            {
+                File.Delete(((SaveFileDialog) sender).FileName);
+            }
+            catch
+            {
+            }
+
+            using (var SW = new StreamWriter(new FileStream(((SaveFileDialog) sender).FileName, FileMode.OpenOrCreate)))
             {
                 SW.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(ID));
                 SW.Flush();
@@ -113,13 +107,13 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Users
 
         private void Player_ID_ContextMenuClosing(object sender, ContextMenuEventArgs e)
         {
-
         }
 
         private void Player_Name_TextChanged(object sender, TextChangedEventArgs e)
         {
             User.Name = Player_Name.Text;
         }
+
         private void Player_ICN_TextChanged(object sender, TextChangedEventArgs e)
         {
             User.IC_Name = Player_ICN.Text;
@@ -127,7 +121,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Users
 
         private void isGM_Checked(object sender, RoutedEventArgs e)
         {
-            User.isGM = (bool)isGM.IsChecked;
+            User.isGM = (bool) isGM.IsChecked;
         }
     }
 }

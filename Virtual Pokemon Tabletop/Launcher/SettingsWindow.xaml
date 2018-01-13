@@ -8,16 +8,25 @@
         Title="Virtual Pokemon Tabletop Settings" Height="261.691" Width="447.842">
     <Grid>
         <TabControl>
-            <TabItem x:Name="Tab_Auto_Update" Header="Updates" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="55">
+            <TabItem x:Name="Tab_Auto_Update" Header="Updates" HorizontalAlignment="Left" Height="20"
+                     VerticalAlignment="Top" Width="55">
                 <Grid Background="#FFE5E5E5">
-                    <GroupBox Header="Update Settings" HorizontalAlignment="Left" Height="116" VerticalAlignment="Top" Width="189"/>
+                    <GroupBox Header="Update Settings" HorizontalAlignment="Left" Height="116" VerticalAlignment="Top"
+                              Width="189" />
                 </Grid>
             </TabItem>
             <TabItem x:Name="Tab_Telemetry" Header="Telemetry Settings">
                 <Grid Background="#FFE5E5E5" IsEnabled="False">
-                    <CheckBox Content="Send Usage Info to Devs?" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" IsEnabled="False" Margin="10,10,0,0" d:LayoutOverrides="HorizontalAlignment"/>
-                    <CheckBox Content="Send Crash Reports to Devs?" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" Margin="10,25.098,0,0" IsChecked="True" IsEnabled="False" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment"/>
-                    <CheckBox Content="Send Debug Info to Devs?" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="10,40.196,0,0" IsChecked="True" IsEnabled="False" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment"/>
+                    <CheckBox Content="Send Usage Info to Devs?" HorizontalAlignment="Left" VerticalAlignment="Top"
+                              VerticalContentAlignment="Center" IsEnabled="False" Margin="10,10,0,0"
+                              d:LayoutOverrides="HorizontalAlignment" />
+                    <CheckBox Content="Send Crash Reports to Devs?" HorizontalAlignment="Left" VerticalAlignment="Top"
+                              VerticalContentAlignment="Center" Margin="10,25.098,0,0" IsChecked="True"
+                              IsEnabled="False" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment" />
+                    <CheckBox Content="Send Debug Info to Devs?" HorizontalAlignment="Left"
+                              VerticalContentAlignment="Center" Margin="10,40.196,0,0" IsChecked="True"
+                              IsEnabled="False" VerticalAlignment="Top"
+                              d:LayoutOverrides="HorizontalAlignment, VerticalAlignment" />
                 </Grid>
             </TabItem>
         </TabControl>

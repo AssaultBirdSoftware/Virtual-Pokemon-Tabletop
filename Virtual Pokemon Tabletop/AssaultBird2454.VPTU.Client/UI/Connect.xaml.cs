@@ -1,24 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using AssaultBird2454.VPTU.Authentication_Manager.Data;
+using AssaultBird2454.VPTU.Server.Instances;
+using AssaultBird2454.VPTU.Server.Instances.CommandData.Auth;
+using AssaultBird2454.VPTU.Server.Instances.CommandData.Connection;
 
 namespace AssaultBird2454.VPTU.Client.UI
 {
     /// <summary>
-    /// Interaction logic for Connect.xaml
+    ///     Interaction logic for Connect.xaml
     /// </summary>
     public partial class Connect : Window
     {
@@ -32,21 +25,19 @@ namespace AssaultBird2454.VPTU.Client.UI
         public void Load_IDs()
         {
             User_Identity.Items.Clear();
-            User_Identity.Items.Add(new ComboBoxItem()
+            User_Identity.Items.Add(new ComboBoxItem
             {
                 Content = "Guest (No Identity)",
                 Tag = null
             });
             User_Identity.SelectedIndex = 0;
 
-            foreach (Authentication_Manager.Data.ClientIdentity id in Program.Identities)
-            {
-                User_Identity.Items.Add(new ComboBoxItem()
+            foreach (var id in Program.Identities)
+                User_Identity.Items.Add(new ComboBoxItem
                 {
                     Content = id.ICN,
                     Tag = id
                 });
-            }
         }
 
         private void Button_Connect_Click(object sender, RoutedEventArgs e)
@@ -54,27 +45,33 @@ namespace AssaultBird2454.VPTU.Client.UI
             Button_Connect.IsEnabled = false;
             try
             {
-                Program.ClientInstance = new Server.Instances.ClientInstance(Program.MainWindow.ClientConsole_Form(), IPAddress.Parse(Server_Address.Text), (int)Server_Port.Value);
+                Program.ClientInstance = new ClientInstance(Program.MainWindow.ClientConsole_Form(),
+                    IPAddress.Parse(Server_Address.Text), (int) Server_Port.Value);
                 Program.Setup_Client();
-                Thread thread = new Thread(new ThreadStart(new Action(() =>
+                var thread = new Thread(() =>
                 {
                     Program.ClientInstance.StartClientInstance();
-                    Program.ClientInstance.Client.SendData(new Server.Instances.CommandData.Connection.Connect() { Connection_State = Server.Instances.CommandData.Connection.ConnectionStatus.OK, Version = Program.VersioningInfo.Version, Commit = Program.VersioningInfo.Compile_Commit });
+                    Program.ClientInstance.Client.SendData(new Server.Instances.CommandData.Connection.Connect
+                    {
+                        Connection_State = ConnectionStatus.OK,
+                        Version = Program.VersioningInfo.Version,
+                        Commit = Program.VersioningInfo.Compile_Commit
+                    });
 
                     User_Identity.Dispatcher.Invoke(() =>
                     {
                         if (User_Identity.SelectedIndex >= 1)
-                        {
-                            Program.ClientInstance.Client.SendData(new Server.Instances.CommandData.Auth.Login() { Client_Key = ((Authentication_Manager.Data.ClientIdentity)((ComboBoxItem)User_Identity.SelectedItem).Tag).AuthKey });
-                        }
+                            Program.ClientInstance.Client.SendData(new Login
+                            {
+                                Client_Key = ((ClientIdentity) ((ComboBoxItem) User_Identity.SelectedItem).Tag).AuthKey
+                            });
                     });
-                })));
+                });
                 thread.IsBackground = true;
                 thread.Start();
             }
             catch (FormatException)
             {
-
             }
             Close();
         }
@@ -90,7 +87,7 @@ namespace AssaultBird2454.VPTU.Client.UI
             }
             else
             {
-                Authentication_Manager.Data.ClientIdentity Data = ((Authentication_Manager.Data.ClientIdentity)((ComboBoxItem)User_Identity.SelectedItem).Tag);
+                var Data = (ClientIdentity) ((ComboBoxItem) User_Identity.SelectedItem).Tag;
 
                 Server_Address.IsEnabled = false;
                 Server_Address.Text = Data.Server_Address;
@@ -101,7 +98,7 @@ namespace AssaultBird2454.VPTU.Client.UI
 
         private void User_ManageIdentities_Click(object sender, RoutedEventArgs e)
         {
-            UI.Manage_Identities ID = new UI.Manage_Identities();
+            var ID = new Manage_Identities();
 
             ID.ShowDialog();
 

@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Launcher.Update
+﻿namespace Launcher.Update
 {
-    public enum ReleaseStream { Alpha, Beta, Master }
+    public enum ReleaseStream
+    {
+        Alpha,
+        Beta,
+        Master
+    }
+
     internal class Data
     {
         public string Version_ID { get; set; }

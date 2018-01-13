@@ -1,23 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using AssaultBird2454.VPTU.Server.Class.Logging;
 
 namespace AssaultBird2454.VPTU.Client.UI
 {
     /// <summary>
-    /// Interaction logic for Console.xaml
+    ///     Interaction logic for Console.xaml
     /// </summary>
     public partial class Console : UserControl, I_Logger
     {
@@ -25,47 +14,26 @@ namespace AssaultBird2454.VPTU.Client.UI
         {
             InitializeComponent();
         }
+
         public Console(bool Debug)
         {
             InitializeComponent();
             LogDebug = Debug;
         }
 
-        private bool _LogDebug = false;
         /// <summary>
-        /// Gets if the logger is logging Debug Entries
+        ///     Gets if the logger is logging Debug Entries
         /// </summary>
-        public bool LogDebug
-        {
-            get
-            {
-                return _LogDebug;
-            }
-            set
-            {
-                _LogDebug = value;
-                // Change Event
-            }
-        }
-        private string _ServerName = "Internal Server";
+        public bool LogDebug { get; set; }
+
         /// <summary>
-        /// Gets and Sets the servers name
+        ///     Gets and Sets the servers name
         /// </summary>
-        public string ServerName
-        {
-            get
-            {
-                return _ServerName;
-            }
-            set
-            {
-                _ServerName = value;
-            }
-        }
+        public string ServerName { get; set; } = "Internal Server";
 
         public void Log(string Data, LoggerLevel Level)
         {
-            Color Fcolor = Colors.White;
+            var Fcolor = Colors.White;
             //Color Bcolor = Colors.Black;
 
             if (Level == LoggerLevel.Info)
@@ -96,7 +64,7 @@ namespace AssaultBird2454.VPTU.Client.UI
             else if (Level == LoggerLevel.Debug)
             {
                 if (!LogDebug)
-                    return;// Dont log debug if dissabled
+                    return; // Dont log debug if dissabled
 
                 Fcolor = Colors.Gray;
                 //Bcolor = Colors.Black;
@@ -107,13 +75,12 @@ namespace AssaultBird2454.VPTU.Client.UI
                 //Bcolor = Colors.Black;
             }
 
-            string Write = DateTime.Now.ToString() + " [" + Level.ToString() + "] <" + ServerName + "> -> " + Data + "\n";
+            var Write = DateTime.Now + " [" + Level + "] <" + ServerName + "> -> " + Data + "\n";
             Console_Display.WriteOutput(Write, Fcolor);
         }
 
         public void Setup(Logger_Type Type)
         {
-
         }
     }
 }
