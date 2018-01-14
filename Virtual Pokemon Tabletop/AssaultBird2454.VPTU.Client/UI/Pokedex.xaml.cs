@@ -87,11 +87,15 @@ namespace AssaultBird2454.VPTU.Client.UI
         /// <param name="e"></param>
         private void List_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Program.ClientInstance.Client.SendData(new Pokedex_Pokemon // Gets the Pokemon Selected
+            try
             {
-                Command = "Pokedex_Pokemon_Get", // Sets the command
-                DexID = ((PokemonData) List.SelectedItems[0]).Species_DexID // Sets the Pokemon ID to get
-            });
+                Program.ClientInstance.Client.SendData(new Pokedex_Pokemon // Gets the Pokemon Selected
+                {
+                    Command = "Pokedex_Pokemon_Get", // Sets the command
+                    DexID = ((PokemonData)List.SelectedItems[0]).Species_DexID // Sets the Pokemon ID to get
+                });
+            }
+            catch { /* Dont Care */ }
         }
 
         private void ToolBar_Search_TextChanged(object sender, TextChangedEventArgs e)
