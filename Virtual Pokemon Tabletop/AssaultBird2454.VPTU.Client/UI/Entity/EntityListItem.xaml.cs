@@ -59,6 +59,7 @@ namespace AssaultBird2454.VPTU.Client.UI.Entities
                 {
                     Width = 8,
                     Height = 12,
+                    Margin = new Thickness(0, 0, 5, 0),
                     BorderThickness = new Thickness(0, 0, 0, 0),
                     Background = new SolidColorBrush(cn.Key),
                     ToolTip = new ToolTip
@@ -73,8 +74,6 @@ namespace AssaultBird2454.VPTU.Client.UI.Entities
 
         public void Update(Bitmap Image)
         {
-            Entities_PlayerIndicators.Children.Clear();
-
             Entities_Image.Source = Imaging.CreateBitmapSourceFromHBitmap(Image.GetHbitmap(), IntPtr.Zero,
                 Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
         }

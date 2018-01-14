@@ -361,7 +361,8 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
             Client.Send(new CommandData.Entities.Entities_All_GetList()
             {
                 Entrys = Entities,
-                Folders = Folders
+                Folders = Folders,
+                UserList = Instance.SaveManager.SaveData.Users
             });
         }
 

@@ -10,7 +10,7 @@
         <StackPanel Orientation="Horizontal">
             <Image x:Name="Entities_Image" Source="pack://siteoforigin:,,,/Resources/Unknown_Pokemon_Sprite.png"
                    MaxWidth="30" MaxHeight="30" />
-            <Label x:Name="Entities_Name" Content="Inkay" Margin="0,0,20,0" />
+            <Label x:Name="Entities_Name" Content="" Margin="0,0,20,0" />
             <WrapPanel VerticalAlignment="Center" x:Name="Entities_PlayerIndicators">
                 <Border Background="Blue" Width="8" Height="12" BorderBrush="#00000000" Margin="0,0,5,0" />
                 <Border Background="Green" Width="8" Height="12" BorderBrush="#00000000" Margin="0,0,5,0" />

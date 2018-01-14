@@ -165,7 +165,7 @@ namespace AssaultBird2454.VPTU.Client
 
             #endregion
         }
-
+        
         private static void Client_ConnectionStateEvent(Client_ConnectionStatus ConnectionState)
         {
             if (ConnectionState == Client_ConnectionStatus.Connected)
@@ -229,7 +229,7 @@ namespace AssaultBird2454.VPTU.Client
 
         private static void ConnectionState_Executed(object Data)
         {
-            var Connect = (Connect) Data;
+            var Connect = (Connect)Data;
 
             if (Connect.Connection_State == ConnectionStatus.Rejected)
                 MessageBox.Show("The server rejected your connection request...\n\nReason: Server Locked");

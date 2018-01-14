@@ -673,7 +673,7 @@ namespace AssaultBird2454.VPTU.Client
         {
             var EAGL = (Entities_All_GetList) Data;
 
-            Dispatcher.Invoke(() => EntitiesList_Form().EntitiesManager_ReloadList(EAGL.Folders, EAGL.Entrys));
+            Dispatcher.Invoke(() => EntitiesList_Form().EntitiesManager_ReloadList(EAGL.Folders, EAGL.Entrys, EAGL.UserList));
         }
 
         internal void Entities_Pokemon_Get_Executed(object Data)

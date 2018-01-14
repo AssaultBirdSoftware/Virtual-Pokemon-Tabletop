@@ -20,6 +20,7 @@ namespace AssaultBird2454.VPTU.Client.UI.Entities
         private ContextMenu ctxm_Root;
         private List<Entry_Data> entrys;
         private List<Folder> folders;
+        private List<Authentication_Manager.Data.User> users;
 
         public EntitiesList()
         {
@@ -43,6 +44,7 @@ namespace AssaultBird2454.VPTU.Client.UI.Entities
 
         private readonly List<TreeViewItem> EntitiesManager_Folders = new List<TreeViewItem>();
         private readonly List<TreeViewItem> EntitiesManager_Entrys = new List<TreeViewItem>();
+
         private ContextMenu EntitiesManager_Root;
 
         public void UpdateImage(string ID, Bitmap Image)
@@ -52,10 +54,11 @@ namespace AssaultBird2454.VPTU.Client.UI.Entities
             ELI.Update(Image);
         }
 
-        public void EntitiesManager_ReloadList(List<Folder> _folders, List<Entry_Data> _entrys)
+        public void EntitiesManager_ReloadList(List<Folder> _folders, List<Entry_Data> _entrys, List<Authentication_Manager.Data.User> _users)
         {
             folders = _folders;
             entrys = _entrys;
+            users = _users;
 
             EntitiesManager_Folders.Clear();
             EntitiesManager_Entrys.Clear();
@@ -378,7 +381,15 @@ namespace AssaultBird2454.VPTU.Client.UI.Entities
         private void EntitiesManager_DisplayEntry(Entry_Data entry)
         {
             var ELI = new EntitiesListItem();
-            ELI.Update(entry.Name, new List<KeyValuePair<Color, string>>());
+            var PermissionIndicators = new List<KeyValuePair<Color, string>>();
+
+            foreach (string ID in entry.View)
+            {
+                var user = users.Find(x => x.UserID == ID);
+                PermissionIndicators.Add(new KeyValuePair<Color, string>(user.UserColor, user.IC_Name));
+            }
+
+            ELI.Update(entry.Name, PermissionIndicators);
 
             #region Context Menu
 

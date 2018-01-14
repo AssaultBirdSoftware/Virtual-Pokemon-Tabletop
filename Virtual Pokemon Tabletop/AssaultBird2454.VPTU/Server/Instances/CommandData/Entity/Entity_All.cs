@@ -18,5 +18,6 @@ namespace AssaultBird2454.VPTU.Server.Instances.CommandData.Entities
 
         public List<EntitiesManager.Folder> Folders { get; set; }
         public List<EntitiesManager.Entry_Data> Entrys { get; set; }
+        public List<Authentication_Manager.Data.User> UserList { get; set; }
     }
 }
