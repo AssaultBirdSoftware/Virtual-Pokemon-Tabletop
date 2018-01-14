@@ -5,6 +5,8 @@ using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using AssaultBird2454.VPTU.Sentry;
+using SharpRaven;
+using SharpRaven.Data;
 using Application = System.Windows.Application;
 
 namespace AssaultBird2454.VPTU.Client
