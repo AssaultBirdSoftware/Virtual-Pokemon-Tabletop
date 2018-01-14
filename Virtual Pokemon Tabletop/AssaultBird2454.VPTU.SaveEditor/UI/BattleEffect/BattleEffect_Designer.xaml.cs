@@ -265,6 +265,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect
 
         public void EffectTriggers_RegisterTrigger()
         {
+
         }
 
         public void EffectTriggers_UnRegisterTrigger()

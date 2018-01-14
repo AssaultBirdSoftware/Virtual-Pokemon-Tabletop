@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AssaultBird2454.VPTU.Updater.Properties {
-    using System;
-    
-    
+namespace AssaultBird2454.VPTU.Updater.Properties
+{
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -19,135 +19,52 @@ namespace AssaultBird2454.VPTU.Updater.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
-        
+    internal class Resources
+    {
+
         private static global::System.Resources.ResourceManager resourceMan;
-        
+
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal Resources()
+        {
         }
-        
+
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
-            get {
-                if (object.ReferenceEquals(resourceMan, null)) {
+        internal static global::System.Resources.ResourceManager ResourceManager
+        {
+            get
+            {
+                if ((resourceMan == null))
+                {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AssaultBird2454.VPTU.Updater.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-        
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
-            get {
+        internal static global::System.Globalization.CultureInfo Culture
+        {
+            get
+            {
                 return resourceCulture;
             }
-            set {
+            set
+            {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-        /// </summary>
-        internal static System.Drawing.Icon Updater {
-            get {
-                object obj = ResourceManager.GetObject("Updater", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to https://vptu-b790b.firebaseio.com/Software/Update_Info/Discontinued/[ID].json.
-        /// </summary>
-        internal static string Updater_Discontinued_GetInfo {
-            get {
-                return ResourceManager.GetString("Updater_Discontinued_GetInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to https://vptu-b790b.firebaseio.com/Software/Update_Info/Latest_Version.json.
-        /// </summary>
-        internal static string Updater_LatestID {
-            get {
-                return ResourceManager.GetString("Updater_LatestID", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to https://vptu-b790b.firebaseio.com/Software/Update_Info/Latest_Version_Alpha.json.
-        /// </summary>
-        internal static string Updater_LatestID_Alpha {
-            get {
-                return ResourceManager.GetString("Updater_LatestID_Alpha", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to https://vptu-b790b.firebaseio.com/Software/Update_Info/Latest_Version_Beta.json.
-        /// </summary>
-        internal static string Updater_LatestID_Beta {
-            get {
-                return ResourceManager.GetString("Updater_LatestID_Beta", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to https://vptu-b790b.firebaseio.com/Software/Update_Info/Latest_Version_Master.json.
-        /// </summary>
-        internal static string Updater_LatestID_Master {
-            get {
-                return ResourceManager.GetString("Updater_LatestID_Master", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to https://vptu-b790b.firebaseio.com/Software/Update_Info/Discontinued.json?shallow=true.
-        /// </summary>
-        internal static string Updater_List_Discontinued {
-            get {
-                return ResourceManager.GetString("Updater_List_Discontinued", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to https://vptu-b790b.firebaseio.com/Software/Update_Info/Versions.json?shallow=true.
-        /// </summary>
-        internal static string Updater_List_Versions {
-            get {
-                return ResourceManager.GetString("Updater_List_Versions", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to https://vptu-b790b.firebaseio.com/Software/Update_Info/Oldest_Version_Allowed.json.
-        /// </summary>
-        internal static string Updater_OldestVersion_Allowed {
-            get {
-                return ResourceManager.GetString("Updater_OldestVersion_Allowed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to https://vptu-b790b.firebaseio.com/Software/Update_Info/Versions/[ID].json.
-        /// </summary>
-        internal static string Updater_Version_GetInfo {
-            get {
-                return ResourceManager.GetString("Updater_Version_GetInfo", resourceCulture);
             }
         }
     }
