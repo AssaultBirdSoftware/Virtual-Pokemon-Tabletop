@@ -20,7 +20,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\Building Dir\x86\Standalone\</OutputPath>
+    <OutputPath>..\Building Dir\x86_Debug\Standalone\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -347,9 +347,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Client.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    <Resource Include="Client.ico" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Pokedex.png">

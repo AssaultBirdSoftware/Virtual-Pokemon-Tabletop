@@ -1077,7 +1077,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Debug\\AssaultBird2454.VPTU.Setup_x64.msi"
+        "OutputFilename" = "8:..\\Building Dir\\x64_Debug\\Installer\\VPTU Setup x64.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -1118,6 +1118,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
             }
         }
     }
@@ -2024,7 +2032,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:AssaultBird2454.VPTU.Setup_x64"
         "ProductCode" = "8:{4023753F-16CF-45BA-A46D-0816FA3EA8CC}"
-        "PackageCode" = "8:{B48B1E54-B990-4D54-B375-569CA46CF984}"
+        "PackageCode" = "8:{A6884161-BD4D-4FD6-AF44-63384CB510D0}"
         "UpgradeCode" = "8:{BE46D4F0-6EC6-4A28-9713-E8B6B70EF32F}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
