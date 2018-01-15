@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using AssaultBird2454.VPTU.Sentry;
+using CommandLine;
 using SharpRaven;
 using SharpRaven.Data;
 using Application = System.Windows.Application;
@@ -40,7 +41,33 @@ namespace AssaultBird2454.VPTU.SaveEditor
 
                 try
                 {
-                    new MainWindow().ShowDialog();
+                    MainWindow window = new MainWindow();
+
+                    Parser.Default.ParseArguments<Options>(Environment.GetCommandLineArgs()).WithParsed<Options>(new Action<Options>((options) =>
+                    {
+                        #region OpenFile
+                        if (options.OpenFile != null && options.OpenFile != "")
+                        {
+                            if (File.Exists(options.OpenFile))
+                            {
+                                try
+                                {
+                                    window.Load(options.OpenFile);
+                                }
+                                catch (Exception e)
+                                {
+
+                                }
+                            }
+                            else
+                            {
+                                /* File does not exist */
+                            }
+                        }
+                        #endregion
+                    }));
+
+                    window.ShowDialog();
                 }
                 catch (Exception ex)
                 {
@@ -85,5 +112,11 @@ namespace AssaultBird2454.VPTU.SaveEditor
                 }
             }
         }
+    }
+
+    class Options
+    {
+        [Option('o', "open", Required = false, HelpText = "Opens a file at startup", Default = "")]
+        public string OpenFile { get; set; }
     }
 }
