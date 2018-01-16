@@ -19,7 +19,7 @@ environment:
   Version: '%APPVEYOR_BUILD_VERSION%'
   Commit: '%APPVEYOR_REPO_COMMIT%'
   Tag_Name: '%APPVEYOR_REPO_BRANCH%_0.0.0.%APPVEYOR_BUILD_NUMBER%'
-  Name: '%APPVEYOR_REPO_BRANCH% 0.0.0 - Build %APPVEYOR_BUILD_NUMBER%'
+  Name: '%APPVEYOR_REPO_BRANCH% 0.0.0 - Build %APPVEYOR_BUILD_NUMBER% x86'
   VersionCS: 0.0.0.%APPVEYOR_BUILD_NUMBER%
   Sentry_Client: https://41e63fc213654edcabebda0014dd8543:72c1614fe88c4c82be433cfeb044b798@sentry.io/250667
   Sentry_SaveEditor: https://7dbad7d3c67f455696b8caa14a820859:790c7431e7144532bd63f7a27cbf7c0c@sentry.io/250669
@@ -90,14 +90,18 @@ build:
   project: Virtual Pokemon Tabletop/Virtual Pokemon Tabletop.sln
   verbosity: minimal
 artifacts:
-- path: '\Virtual Pokemon Tabletop\Building Dir\x64\Standalone\'
-  name: Virtual PTU - x64 Standalone
-- path: '\Virtual Pokemon Tabletop\Building Dir\x64\Installer\'
-  name: Virtual PTU - x64 Installer
+- path: '\Virtual Pokemon Tabletop\Building Dir\x86\Standalone\'
+  name: Virtual PTU - x86 Standalone
+- path: '\Virtual Pokemon Tabletop\Building Dir\x86\Installer\'
+  name: Virtual PTU - x86 Installer
+- path: '\Virtual Pokemon Tabletop\Building Dir\x86_Debug\Standalone\'
+  name: Virtual PTU - x86 Debug Standalone
+- path: '\Virtual Pokemon Tabletop\Building Dir\x86_Debug\Installer\'
+  name: Virtual PTU - x86 Debug Installer
 deploy:
 - provider: GitHub
   tag: $(TAG_NAME)
-  release: $(appveyor_build_version)
+  release: $(TAG_NAME)
   description: '# $(appveyor_build_version)'
   auth_token:
     secure: QcYjr9oWGw5d8kzFL1osDdh1ehDsX0UMtIuOk5I2Nw+VWMlvEP8Fobg30enbShrg
