@@ -477,7 +477,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             if (Ready)
                 try
                 {
-                    PokemonData.HP_BaseMod = (int) Stats_Mod_HP.Value;
+                    PokemonData.HP_BaseMod = (int)Stats_Mod_HP.Value;
 
                     Stats_Base_HP.Content = PokemonData.HP_Base;
                     Stats_Total_HP.Content = PokemonData.Stat_HP_Max;
@@ -493,7 +493,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             if (Ready)
                 try
                 {
-                    PokemonData.HP_AddStat = (int) Stats_Add_HP.Value;
+                    PokemonData.HP_AddStat = (int)Stats_Add_HP.Value;
 
                     Stats_Total_HP.Content = PokemonData.Stat_HP_Max;
                     Basic_MaxHP.Content = "/ " + PokemonData.Stat_HP_Max;
@@ -512,7 +512,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             if (Ready)
                 try
                 {
-                    PokemonData.Attack_BaseMod = (int) Stats_Mod_Attack.Value;
+                    PokemonData.Attack_BaseMod = (int)Stats_Mod_Attack.Value;
 
                     Stats_Base_Attack.Content = PokemonData.Attack_Base;
                     Stats_Total_Attack.Content = PokemonData.Attack_Total;
@@ -528,7 +528,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             if (Ready)
                 try
                 {
-                    PokemonData.Attack_AddStat = (int) Stats_Add_Attack.Value;
+                    PokemonData.Attack_AddStat = (int)Stats_Add_Attack.Value;
 
                     Stats_Total_Attack.Content = PokemonData.Attack_Total;
                     Stats_Adj_Attack.Content = PokemonData.Attack_Adjusted;
@@ -543,7 +543,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             if (Ready)
                 try
                 {
-                    PokemonData.Attack_CombatStage = (int) Stats_CS_Attack.Value;
+                    PokemonData.Attack_CombatStage = (int)Stats_CS_Attack.Value;
 
                     Stats_Adj_Attack.Content = PokemonData.Attack_Adjusted;
                 }
@@ -561,7 +561,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             if (Ready)
                 try
                 {
-                    PokemonData.Defence_BaseMod = (int) Stats_Mod_Defence.Value;
+                    PokemonData.Defence_BaseMod = (int)Stats_Mod_Defence.Value;
 
                     Stats_Base_Defence.Content = PokemonData.Defence_Base;
                     Stats_Total_Defence.Content = PokemonData.Defence_Total;
@@ -579,7 +579,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             if (Ready)
                 try
                 {
-                    PokemonData.Defence_AddStat = (int) Stats_Add_Defence.Value;
+                    PokemonData.Defence_AddStat = (int)Stats_Add_Defence.Value;
 
                     Stats_Total_Defence.Content = PokemonData.Defence_Total;
                     Stats_Adj_Defence.Content = PokemonData.Defence_Adjusted;
@@ -596,7 +596,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             if (Ready)
                 try
                 {
-                    PokemonData.Defence_CombatStage = (int) Stats_CS_Defence.Value;
+                    PokemonData.Defence_CombatStage = (int)Stats_CS_Defence.Value;
 
                     Stats_Adj_Defence.Content = PokemonData.Defence_Adjusted;
 
@@ -616,7 +616,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             if (Ready)
                 try
                 {
-                    PokemonData.SpAttack_BaseMod = (int) Stats_Mod_SpAttack.Value;
+                    PokemonData.SpAttack_BaseMod = (int)Stats_Mod_SpAttack.Value;
 
                     Stats_Base_SpAttack.Content = PokemonData.SpAttack_Base;
                     Stats_Total_SpAttack.Content = PokemonData.SpAttack_Total;
@@ -632,7 +632,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             if (Ready)
                 try
                 {
-                    PokemonData.SpAttack_AddStat = (int) Stats_Add_SpAttack.Value;
+                    PokemonData.SpAttack_AddStat = (int)Stats_Add_SpAttack.Value;
 
                     Stats_Total_SpAttack.Content = PokemonData.SpAttack_Total;
                     Stats_Adj_SpAttack.Content = PokemonData.SpAttack_Adjusted;
@@ -647,7 +647,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             if (Ready)
                 try
                 {
-                    PokemonData.SpAttack_CombatStage = (int) Stats_CS_SpAttack.Value;
+                    PokemonData.SpAttack_CombatStage = (int)Stats_CS_SpAttack.Value;
 
                     Stats_Adj_SpAttack.Content = PokemonData.SpAttack_Adjusted;
                 }
@@ -665,7 +665,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             if (Ready)
                 try
                 {
-                    PokemonData.SpDefence_BaseMod = (int) Stats_Mod_SpDefence.Value;
+                    PokemonData.SpDefence_BaseMod = (int)Stats_Mod_SpDefence.Value;
 
                     Stats_Base_SpDefence.Content = PokemonData.SpDefence_Base;
                     Stats_Total_SpDefence.Content = PokemonData.SpDefence_Total;
@@ -683,7 +683,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             if (Ready)
                 try
                 {
-                    PokemonData.SpDefence_AddStat = (int) Stats_Add_SpDefence.Value;
+                    PokemonData.SpDefence_AddStat = (int)Stats_Add_SpDefence.Value;
 
                     Stats_Total_SpDefence.Content = PokemonData.SpDefence_Total;
                     Stats_Adj_SpDefence.Content = PokemonData.SpDefence_Adjusted;
@@ -700,7 +700,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             if (Ready)
                 try
                 {
-                    PokemonData.SpDefence_CombatStage = (int) Stats_CS_SpDefence.Value;
+                    PokemonData.SpDefence_CombatStage = (int)Stats_CS_SpDefence.Value;
 
                     Stats_Adj_SpDefence.Content = PokemonData.SpDefence_Adjusted;
 
@@ -720,7 +720,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             if (Ready)
                 try
                 {
-                    PokemonData.Speed_BaseMod = (int) Stats_Mod_Speed.Value;
+                    PokemonData.Speed_BaseMod = (int)Stats_Mod_Speed.Value;
 
                     Stats_Base_Speed.Content = PokemonData.Speed_Base;
                     Stats_Total_Speed.Content = PokemonData.Speed_Total;
@@ -738,7 +738,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             if (Ready)
                 try
                 {
-                    PokemonData.Speed_AddStat = (int) Stats_Add_Speed.Value;
+                    PokemonData.Speed_AddStat = (int)Stats_Add_Speed.Value;
 
                     Stats_Total_Speed.Content = PokemonData.Speed_Total;
                     Stats_Adj_Speed.Content = PokemonData.Speed_Adjusted;
@@ -755,7 +755,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             if (Ready)
                 try
                 {
-                    PokemonData.Speed_CombatStage = (int) Stats_CS_Speed.Value;
+                    PokemonData.Speed_CombatStage = (int)Stats_CS_Speed.Value;
 
                     Stats_Adj_Speed.Content = PokemonData.Speed_Adjusted;
 
@@ -774,7 +774,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             if (Ready)
                 try
                 {
-                    PokemonData.Evasion_Physical_Mod = (int) Stats_Mod_PhyEvasion.Value;
+                    PokemonData.Evasion_Physical_Mod = (int)Stats_Mod_PhyEvasion.Value;
 
                     Stats_Value_PhyEvasion.Content = PokemonData.Evasion_Physical;
                 }
@@ -790,7 +790,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             if (Ready)
                 try
                 {
-                    PokemonData.Evasion_Special_Mod = (int) Stats_Mod_SpEvasion.Value;
+                    PokemonData.Evasion_Special_Mod = (int)Stats_Mod_SpEvasion.Value;
 
                     Stats_Value_SpEvasion.Content = PokemonData.Evasion_Special;
                 }
@@ -806,7 +806,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             if (Ready)
                 try
                 {
-                    PokemonData.Evasion_Speed_Mod = (int) Stats_Mod_SpeedEvasion.Value;
+                    PokemonData.Evasion_Speed_Mod = (int)Stats_Mod_SpeedEvasion.Value;
 
                     Stats_Value_SpeedEvasion.Content = PokemonData.Evasion_Speed;
                 }
@@ -835,20 +835,20 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
         private void Basic_Size_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (Ready)
-                PokemonData.SizeClass = (SizeClass) Basic_Size.SelectedItem;
+                PokemonData.SizeClass = (SizeClass)Basic_Size.SelectedItem;
         }
 
         private void Basic_Weight_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (Ready)
-                PokemonData.WeightClass = (WeightClass) Basic_Weight.SelectedItem;
+                PokemonData.WeightClass = (WeightClass)Basic_Weight.SelectedItem;
         }
 
         private void Basic_Nature_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (Ready)
             {
-                PokemonData.Nature = (Nature) Basic_Nature.SelectedItem;
+                PokemonData.Nature = (Nature)Basic_Nature.SelectedItem;
                 Reload_Stats();
             }
         }
@@ -880,7 +880,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
 
                 PokemonData.PokemonType.Clear();
                 foreach (var seltype in Basic_Types.SelectedItems)
-                    PokemonData.PokemonType.Add((Type) seltype.Value);
+                    PokemonData.PokemonType.Add((Type)seltype.Value);
             }
         }
 
@@ -890,7 +890,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (Ready)
                 {
-                    PokemonData.EXP = (int) Basic_EXP.Value;
+                    PokemonData.EXP = (int)Basic_EXP.Value;
 
                     Reload_Stats();
                 }
@@ -906,13 +906,13 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
         private void Basic_CurrentHP_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             if (Ready)
-                PokemonData.Current_HP = (int) Basic_CurrentHP.Value;
+                PokemonData.Current_HP = (int)Basic_CurrentHP.Value;
         }
 
         private void Basic_Injuries_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             if (Ready)
-                PokemonData.Injuries = (int) Basic_Injuries.Value;
+                PokemonData.Injuries = (int)Basic_Injuries.Value;
         }
 
         #endregion
@@ -927,7 +927,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.Acrobatics_Rank = (SkillRank) Skill_Acrobatics_Rank.SelectedItem;
+                PokemonData.Skills.Acrobatics_Rank = (SkillRank)Skill_Acrobatics_Rank.SelectedItem;
             }
         }
 
@@ -937,7 +937,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.Athletics_Rank = (SkillRank) Skill_Athletics_Rank.SelectedItem;
+                PokemonData.Skills.Athletics_Rank = (SkillRank)Skill_Athletics_Rank.SelectedItem;
             }
         }
 
@@ -947,7 +947,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.Combat_Rank = (SkillRank) Skill_Combat_Rank.SelectedItem;
+                PokemonData.Skills.Combat_Rank = (SkillRank)Skill_Combat_Rank.SelectedItem;
             }
         }
 
@@ -957,7 +957,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.Intimidate_Rank = (SkillRank) Skill_Intimidate_Rank.SelectedItem;
+                PokemonData.Skills.Intimidate_Rank = (SkillRank)Skill_Intimidate_Rank.SelectedItem;
             }
         }
 
@@ -967,7 +967,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.Stealth_Rank = (SkillRank) Skill_Stealth_Rank.SelectedItem;
+                PokemonData.Skills.Stealth_Rank = (SkillRank)Skill_Stealth_Rank.SelectedItem;
             }
         }
 
@@ -977,7 +977,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.Survival_Rank = (SkillRank) Skill_Survival_Rank.SelectedItem;
+                PokemonData.Skills.Survival_Rank = (SkillRank)Skill_Survival_Rank.SelectedItem;
             }
         }
 
@@ -987,7 +987,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.Acrobatics_Mod = (int) Skill_Acrobatics_Mod.Value;
+                PokemonData.Skills.Acrobatics_Mod = (int)Skill_Acrobatics_Mod.Value;
             }
         }
 
@@ -997,7 +997,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.Athletics_Mod = (int) Skill_Athletics_Mod.Value;
+                PokemonData.Skills.Athletics_Mod = (int)Skill_Athletics_Mod.Value;
             }
         }
 
@@ -1007,7 +1007,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.Combat_Mod = (int) Skill_Combat_Mod.Value;
+                PokemonData.Skills.Combat_Mod = (int)Skill_Combat_Mod.Value;
             }
         }
 
@@ -1017,7 +1017,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.Intimidate_Mod = (int) Skill_Intimidate_Mod.Value;
+                PokemonData.Skills.Intimidate_Mod = (int)Skill_Intimidate_Mod.Value;
             }
         }
 
@@ -1027,7 +1027,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.Stealth_Mod = (int) Skill_Stealth_Mod.Value;
+                PokemonData.Skills.Stealth_Mod = (int)Skill_Stealth_Mod.Value;
             }
         }
 
@@ -1037,7 +1037,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.Survival_Mod = (int) Skill_Survival_Mod.Value;
+                PokemonData.Skills.Survival_Mod = (int)Skill_Survival_Mod.Value;
             }
         }
 
@@ -1051,7 +1051,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.General_Rank = (SkillRank) Skill_GeneralEDU_Rank.SelectedItem;
+                PokemonData.Skills.General_Rank = (SkillRank)Skill_GeneralEDU_Rank.SelectedItem;
             }
         }
 
@@ -1061,7 +1061,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.Medicine_Rank = (SkillRank) Skill_MedicineEDU_Rank.SelectedItem;
+                PokemonData.Skills.Medicine_Rank = (SkillRank)Skill_MedicineEDU_Rank.SelectedItem;
             }
         }
 
@@ -1071,7 +1071,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.Occult_Rank = (SkillRank) Skill_OccultEDU_Rank.SelectedItem;
+                PokemonData.Skills.Occult_Rank = (SkillRank)Skill_OccultEDU_Rank.SelectedItem;
             }
         }
 
@@ -1081,7 +1081,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.Pokemon_Rank = (SkillRank) Skill_PokemonEDU_Rank.SelectedItem;
+                PokemonData.Skills.Pokemon_Rank = (SkillRank)Skill_PokemonEDU_Rank.SelectedItem;
             }
         }
 
@@ -1091,7 +1091,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.Technology_Rank = (SkillRank) Skill_TechnologyEDU_Rank.SelectedItem;
+                PokemonData.Skills.Technology_Rank = (SkillRank)Skill_TechnologyEDU_Rank.SelectedItem;
             }
         }
 
@@ -1101,7 +1101,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.Guile_Rank = (SkillRank) Skill_Gulie_Rank.SelectedItem;
+                PokemonData.Skills.Guile_Rank = (SkillRank)Skill_Gulie_Rank.SelectedItem;
             }
         }
 
@@ -1111,7 +1111,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.Perception_Rank = (SkillRank) Skill_Perception_Rank.SelectedItem;
+                PokemonData.Skills.Perception_Rank = (SkillRank)Skill_Perception_Rank.SelectedItem;
             }
         }
 
@@ -1121,7 +1121,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.General_Mod = (int) Skill_GeneralEDU_Mod.Value;
+                PokemonData.Skills.General_Mod = (int)Skill_GeneralEDU_Mod.Value;
             }
         }
 
@@ -1131,7 +1131,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.Medicine_Mod = (int) Skill_MedicineEDU_Mod.Value;
+                PokemonData.Skills.Medicine_Mod = (int)Skill_MedicineEDU_Mod.Value;
             }
         }
 
@@ -1141,7 +1141,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.Occult_Mod = (int) Skill_OccultEDU_Mod.Value;
+                PokemonData.Skills.Occult_Mod = (int)Skill_OccultEDU_Mod.Value;
             }
         }
 
@@ -1151,7 +1151,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.Pokemon_Mod = (int) Skill_PokemonEDU_Mod.Value;
+                PokemonData.Skills.Pokemon_Mod = (int)Skill_PokemonEDU_Mod.Value;
             }
         }
 
@@ -1161,7 +1161,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.Technology_Mod = (int) Skill_TechnologyEDU_Mod.Value;
+                PokemonData.Skills.Technology_Mod = (int)Skill_TechnologyEDU_Mod.Value;
             }
         }
 
@@ -1171,7 +1171,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.Guile_Mod = (int) Skill_Gulie_Mod.Value;
+                PokemonData.Skills.Guile_Mod = (int)Skill_Gulie_Mod.Value;
             }
         }
 
@@ -1181,7 +1181,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.Perception_Mod = (int) Skill_Perception_Mod.Value;
+                PokemonData.Skills.Perception_Mod = (int)Skill_Perception_Mod.Value;
             }
         }
 
@@ -1195,7 +1195,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.Charm_Rank = (SkillRank) Skill_Charm_Rank.SelectedItem;
+                PokemonData.Skills.Charm_Rank = (SkillRank)Skill_Charm_Rank.SelectedItem;
             }
         }
 
@@ -1205,7 +1205,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.Command_Rank = (SkillRank) Skill_Command_Rank.SelectedItem;
+                PokemonData.Skills.Command_Rank = (SkillRank)Skill_Command_Rank.SelectedItem;
             }
         }
 
@@ -1215,7 +1215,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.Focus_Rank = (SkillRank) Skill_Focus_Rank.SelectedItem;
+                PokemonData.Skills.Focus_Rank = (SkillRank)Skill_Focus_Rank.SelectedItem;
             }
         }
 
@@ -1225,7 +1225,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.Intuition_Rank = (SkillRank) Skill_Intuition_Rank.SelectedItem;
+                PokemonData.Skills.Intuition_Rank = (SkillRank)Skill_Intuition_Rank.SelectedItem;
             }
         }
 
@@ -1235,7 +1235,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.Charm_Mod = (int) Skill_Charm_Mod.Value;
+                PokemonData.Skills.Charm_Mod = (int)Skill_Charm_Mod.Value;
             }
         }
 
@@ -1245,7 +1245,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.Command_Mod = (int) Skill_Command_Mod.Value;
+                PokemonData.Skills.Command_Mod = (int)Skill_Command_Mod.Value;
             }
         }
 
@@ -1255,7 +1255,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.Focus_Mod = (int) Skill_Focus_Mod.Value;
+                PokemonData.Skills.Focus_Mod = (int)Skill_Focus_Mod.Value;
             }
         }
 
@@ -1265,7 +1265,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 if (PokemonData.Skills == null)
                     PokemonData.Skills = new Skill_Data();
-                PokemonData.Skills.Intuition_Mod = (int) Skill_Intuition_Mod.Value;
+                PokemonData.Skills.Intuition_Mod = (int)Skill_Intuition_Mod.Value;
             }
         }
 
@@ -1324,10 +1324,10 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
         {
             try
             {
-                PokemonData.Moves.Remove(((Moves_DB) Moves_List.SelectedItem).Name);
+                PokemonData.Moves.Remove(((Moves_DB)Moves_List.SelectedItem).Name);
                 Reload_Moves();
-                Status_Volatile_Disable_Value.SelectedItems.Remove(((Moves_DB) Moves_List.SelectedItem).Name);
-                Status_Volatile_Disable_Value.ItemsSource.Remove(((Moves_DB) Moves_List.SelectedItem).Name);
+                Status_Volatile_Disable_Value.SelectedItems.Remove(((Moves_DB)Moves_List.SelectedItem).Name);
+                Status_Volatile_Disable_Value.ItemsSource.Remove(((Moves_DB)Moves_List.SelectedItem).Name);
             }
             catch
             {
@@ -1373,7 +1373,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             try
             {
                 Status_Volitile_Inflatuation_PokemonID =
-                    (string) PokemonData.GetStatusData(Status_Afflictions.Inflatuation);
+                    (string)PokemonData.GetStatusData(Status_Afflictions.Inflatuation);
                 Status_Volatile_Inflatuation_Value.Content = Manager.SaveData.Pokemon
                     .Find(x => x.ID == Status_Volitile_Inflatuation_PokemonID).Name;
             }
@@ -1383,7 +1383,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
 
             try
             {
-                Status_Volatile_Sleep_Duration.Value = (int) PokemonData.GetStatusData(Status_Afflictions.Sleep);
+                Status_Volatile_Sleep_Duration.Value = (int)PokemonData.GetStatusData(Status_Afflictions.Sleep);
             }
             catch
             {
@@ -1392,7 +1392,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             try
             {
                 Status_Volatile_TemporaryHitPoints_Value.Value =
-                    (int) PokemonData.GetStatusData(Status_Afflictions.TemporaryHitPoints);
+                    (int)PokemonData.GetStatusData(Status_Afflictions.TemporaryHitPoints);
             }
             catch
             {
@@ -1401,7 +1401,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             try
             {
                 var dis_moves = new Dictionary<string, object>();
-                foreach (var move in (List<string>) PokemonData.GetStatusData(Status_Afflictions.Dissabled))
+                foreach (var move in (List<string>)PokemonData.GetStatusData(Status_Afflictions.Dissabled))
                     if (PokemonData.Moves.Contains(move))
                         dis_moves.Add(move, move);
                 Status_Volatile_Disable_Value.SelectedItems = dis_moves;
@@ -1732,7 +1732,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 var dis_moves = new List<string>();
                 foreach (var obj in Status_Volatile_Disable_Value.SelectedItems)
-                    dis_moves.Add((string) obj.Value);
+                    dis_moves.Add((string)obj.Value);
                 PokemonData.SetStatusData(Status_Afflictions.Dissabled, dis_moves);
             }
         }
@@ -1741,7 +1741,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             RoutedPropertyChangedEventArgs<object> e)
         {
             if (Ready)
-                PokemonData.SetStatusData(Status_Afflictions.Sleep, (int) Status_Volatile_Sleep_Duration.Value);
+                PokemonData.SetStatusData(Status_Afflictions.Sleep, (int)Status_Volatile_Sleep_Duration.Value);
         }
 
         private void Status_Volatile_TemporaryHitPoints_Value_ValueChanged(object sender,
@@ -1749,7 +1749,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
         {
             if (Ready)
                 PokemonData.SetStatusData(Status_Afflictions.TemporaryHitPoints,
-                    (int) Status_Volatile_TemporaryHitPoints_Value.Value);
+                    (int)Status_Volatile_TemporaryHitPoints_Value.Value);
         }
 
         #endregion
@@ -1777,7 +1777,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             Range = RangeSB;
             Type = Move.Move_Type.ToString();
             Class = Move.Move_Class.ToString();
-            DB = (int) Move.Move_DamageBase;
+            DB = (int)Move.Move_DamageBase;
             AC = Move.Move_Accuracy;
 
             Frequency = Move.Move_Frequency.ToString();
@@ -1810,7 +1810,10 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
 
         public bool View
         {
-            get => PokemonData.View.Contains(ID);
+            get
+            {
+                return PokemonData.View.Contains(ID);
+            }
             set
             {
                 if (value)
@@ -1827,7 +1830,10 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
 
         public bool Edit
         {
-            get => PokemonData.Edit.Contains(ID);
+            get
+            {
+                return PokemonData.Edit.Contains(ID);
+            }
             set
             {
                 if (value)

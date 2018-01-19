@@ -56,7 +56,10 @@ namespace AssaultBird2454.VPTU.Client
 
         public static object ClientLogger
         {
-            get => ClientInstance.Client_Logger;
+            get
+            {
+                return ClientInstance.Client_Logger;
+            }
             set
             {
                 if (ClientInstance != null)
@@ -165,7 +168,7 @@ namespace AssaultBird2454.VPTU.Client
 
             #endregion
         }
-        
+
         private static void Client_ConnectionStateEvent(Client_ConnectionStatus ConnectionState)
         {
             if (ConnectionState == Client_ConnectionStatus.Connected)
