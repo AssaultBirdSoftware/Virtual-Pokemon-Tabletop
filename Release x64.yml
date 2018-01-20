@@ -24,7 +24,6 @@ environment:
   Sentry_Client: https://41e63fc213654edcabebda0014dd8543:72c1614fe88c4c82be433cfeb044b798@sentry.io/250667
   Sentry_SaveEditor: https://7dbad7d3c67f455696b8caa14a820859:790c7431e7144532bd63f7a27cbf7c0c@sentry.io/250669
   Sentry_Server: https://7ede477208384da6a4204ef60cd4c276:04f91da497a344ed83d8559b9d32989f@sentry.io/250668
-  Sentry_Launcher: https://fce8ed9b1ab74775af507989b62866c9:a309c1def0dc4a17b0bd65dd53a552b5@sentry.io/250670
   Sentry_Updater: https://f5a2f74433e148b19a80b8fe22085d46:fbf6a437e1e3427b92ba7dceda3917ef@sentry.io/250676
 before_build:
 - cmd: >-
@@ -92,12 +91,8 @@ build:
 artifacts:
 - path: '\Virtual Pokemon Tabletop\Building Dir\x64\Standalone\'
   name: Virtual PTU - x64 Standalone
-- path: '\Virtual Pokemon Tabletop\Building Dir\x64\Installer\'
-  name: Virtual PTU - x64 Installer
-- path: '\Virtual Pokemon Tabletop\Building Dir\x64\Standalone\'
-  name: Virtual PTU - x64 Standalone
-- path: '\Virtual Pokemon Tabletop\Building Dir\x64\Installer\'
-  name: Virtual PTU - x64 Installer
+- path: '\Virtual Pokemon Tabletop\Building Dir\x64_Debug\Standalone\'
+  name: Virtual PTU - x64 Debug Standalone
 deploy:
 - provider: GitHub
   tag: $(TAG_NAME)

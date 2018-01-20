@@ -1,8 +1,8 @@
-﻿<Application x:Class="Launcher.App"
+﻿<Application x:Class="AssaultBird2454.VPTU.Installer.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Launcher">
+             xmlns:local="clr-namespace:AssaultBird2454.VPTU.Installer">
     <Application.Resources>
-
+         
     </Application.Resources>
 </Application>
