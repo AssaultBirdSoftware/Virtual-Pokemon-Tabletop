@@ -33,15 +33,6 @@ namespace AssaultBird2454.VPTU.Updater
                 Installed = false;
             }
 
-            if (args.Contains("+Install"))
-            {
-                Installing = true;
-            }
-            else if (args.Contains("+Uninstall"))
-            {
-                Uninstalling = true;
-            }
-
             if (args.Contains("-Hidden"))
             {
                 Hidden = true;
