@@ -37,9 +37,9 @@ before_build:
     echo {"Version": "%Version%","Compile_Commit": "%Commit%"}  > "C:/projects/virtual-pokemon-tabletop-2/Virtual Pokemon Tabletop/AssaultBird2454.VPTU.SaveEditor/ProjectVariables.json"
 
 
-    echo Writing Server Versioning Info
+    REM echo Writing Launcher Versioning Info
 
-    echo {"Version": "%Version%","Compile_Commit": "%Commit%"}  > "C:/projects/virtual-pokemon-tabletop-2/Virtual Pokemon Tabletop/Launcher/ProjectVariables.json"
+    REM echo {"Version": "%Version%","Compile_Commit": "%Commit%"}  > "C:/projects/virtual-pokemon-tabletop-2/Virtual Pokemon Tabletop/Launcher/ProjectVariables.json"
 
 
     echo Writing VPTU Versioning Info
@@ -47,9 +47,9 @@ before_build:
     echo {"Version": "%Version%","Compile_Commit": "%Commit%"}  > "C:/projects/virtual-pokemon-tabletop-2/Virtual Pokemon Tabletop/AssaultBird2454.VPTU/ProjectVariables.json"
 
 
-    echo Writing Updater Versioning Info
+    REM echo Writing Updater Versioning Info
 
-    echo {"Version": "%Version%","Compile_Commit": "%Commit%"}  > "C:/projects/virtual-pokemon-tabletop-2/Virtual Pokemon Tabletop/AssaultBird2454.VPTU.Updater/ProjectVariables.json"
+    REM echo {"Version": "%Version%","Compile_Commit": "%Commit%"}  > "C:/projects/virtual-pokemon-tabletop-2/Virtual Pokemon Tabletop/AssaultBird2454.VPTU.Updater/ProjectVariables.json"
 
 
 
@@ -61,9 +61,9 @@ before_build:
 
     echo %Sentry_Server% > "C:/projects/virtual-pokemon-tabletop-2/Virtual Pokemon Tabletop/AssaultBird2454.VPTU.ServerConsole/sentry_cid.txt"
 
-    echo %Sentry_Launcher% > "C:/projects/virtual-pokemon-tabletop-2/Virtual Pokemon Tabletop/Launcher/sentry_cid.txt"
+    REM echo %Sentry_Launcher% > "C:/projects/virtual-pokemon-tabletop-2/Virtual Pokemon Tabletop/Launcher/sentry_cid.txt"
 
-    echo %Sentry_Updater% > "C:/projects/virtual-pokemon-tabletop-2/Virtual Pokemon Tabletop/AssaultBird2454.VPTU.Updater/sentry_cid.txt"
+    REM echo %Sentry_Updater% > "C:/projects/virtual-pokemon-tabletop-2/Virtual Pokemon Tabletop/AssaultBird2454.VPTU.Updater/sentry_cid.txt"
 
 
 
