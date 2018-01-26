@@ -86,7 +86,7 @@ before_build:
 
     nuget restore
 build:
-  project: Virtual Pokemon Tabletop/Virtual Pokemon Tabletop.sln
+  project: virtual-pokemon-tabletop-hlf6w/Virtual Pokemon Tabletop.sln
   verbosity: minimal
 artifacts:
 - path: '\Virtual Pokemon Tabletop\Building Dir\x86\Standalone\'
