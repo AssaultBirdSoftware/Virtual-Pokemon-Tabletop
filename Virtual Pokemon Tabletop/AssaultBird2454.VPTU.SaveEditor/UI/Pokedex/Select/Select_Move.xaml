@@ -7,23 +7,29 @@
         mc:Ignorable="d"
         Title="Select Move" Height="277.311" Width="436.283">
     <Grid>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="95,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="textBox_TextChanged"/>
-        <Label x:Name="label" Content="Search Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="95,12,0,0" TextWrapping="Wrap"
+                 VerticalAlignment="Top" Width="120" TextChanged="textBox_TextChanged" />
+        <Label x:Name="label" Content="Search Name" HorizontalAlignment="Left" Margin="10,10,0,0"
+               VerticalAlignment="Top" />
         <ListView x:Name="Moves" Margin="0,41,0,35" SelectionChanged="Moves_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Name" Width="110" DisplayMemberBinding="{Binding Name}"/>
-                    <GridViewColumn Header="Frequency" Width="60" DisplayMemberBinding="{Binding Move_Frequency}"/>
-                    <GridViewColumn Header="Move Type" Width="70" DisplayMemberBinding="{Binding Move_Type}"/>
-                    <GridViewColumn Header="Move Class" Width="70" DisplayMemberBinding="{Binding Move_Class}"/>
-                    <GridViewColumn Header="DB" Width="40" DisplayMemberBinding="{Binding Move_DamageBase}"/>
-                    <GridViewColumn Header="AC" Width="40" DisplayMemberBinding="{Binding Move_Accuracy}"/>
+                    <GridViewColumn Header="Name" Width="110" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Frequency" Width="60" DisplayMemberBinding="{Binding Move_Frequency}" />
+                    <GridViewColumn Header="Move Type" Width="70" DisplayMemberBinding="{Binding Move_Type}" />
+                    <GridViewColumn Header="Move Class" Width="70" DisplayMemberBinding="{Binding Move_Class}" />
+                    <GridViewColumn Header="DB" Width="40" DisplayMemberBinding="{Binding Move_DamageBase}" />
+                    <GridViewColumn Header="AC" Width="40" DisplayMemberBinding="{Binding Move_Accuracy}" />
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="button" Content="Select" HorizontalAlignment="Left" Margin="10,0,0,10" Width="75" Height="20" VerticalAlignment="Bottom" IsDefault="True" Click="button_Click"/>
-        <Button x:Name="button_Copy" Content="Cancel" HorizontalAlignment="Left" Margin="90,0,0,10" Width="75" Height="20" VerticalAlignment="Bottom" IsCancel="True" Click="button_Copy_Click"/>
-        <CheckBox x:Name="Hide_Unobtainable" Content="Hide Unobtainable Moves" HorizontalAlignment="Left" Margin="262,16,0,0" VerticalAlignment="Top" IsChecked="True" Checked="Hide_Unobtainable_Checked" Unchecked="Hide_Unobtainable_Unchecked"/>
+        <Button x:Name="button" Content="Select" HorizontalAlignment="Left" Margin="10,0,0,10" Width="75" Height="20"
+                VerticalAlignment="Bottom" IsDefault="True" Click="button_Click" />
+        <Button x:Name="button_Copy" Content="Cancel" HorizontalAlignment="Left" Margin="90,0,0,10" Width="75"
+                Height="20" VerticalAlignment="Bottom" IsCancel="True" Click="button_Copy_Click" />
+        <CheckBox x:Name="Hide_Unobtainable" Content="Hide Unobtainable Moves" HorizontalAlignment="Left"
+                  Margin="262,16,0,0" VerticalAlignment="Top" IsChecked="True" Checked="Hide_Unobtainable_Checked"
+                  Unchecked="Hide_Unobtainable_Unchecked" />
 
     </Grid>
 </Window>

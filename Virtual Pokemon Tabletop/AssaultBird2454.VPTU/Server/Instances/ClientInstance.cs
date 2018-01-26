@@ -45,7 +45,17 @@ namespace AssaultBird2454.VPTU.Server.Instances
         }
 
         public IPAddress Server_Address { get; set; }
-        public int Server_Port { get; set; }
+        public int Server_Port
+        {
+            get
+            {
+                return Client.Port;
+            }
+            set
+            {
+                Client.Port = value;
+            }
+        }
         #endregion
 
         public ClientInstance(Class.Logging.I_Logger _Logger, IPAddress _Server_Address, int Server_Port = 25444)

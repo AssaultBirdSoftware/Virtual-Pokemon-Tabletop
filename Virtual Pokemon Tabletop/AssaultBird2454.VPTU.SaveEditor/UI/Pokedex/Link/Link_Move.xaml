@@ -1,23 +1,34 @@
 ﻿<Window
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Link"
-        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Link.Move_Link"
-        mc:Ignorable="d"
-        Title="Move Link" Height="184.381" Width="300" ResizeMode="NoResize">
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Link"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+    x:Class="AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Link.Move_Link"
+    mc:Ignorable="d"
+    Title="Move Link" Height="184.381" Width="300" ResizeMode="NoResize">
     <Grid>
-        <Label x:Name="label" Content="Move Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Move_Name" Height="26" Margin="90,10,90,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True"/>
-        <xctk:DecimalUpDown x:Name="Level_Learned" Margin="97.483,87.779,0,0" VerticalAlignment="Top" Maximum="100" Minimum="0" HorizontalAlignment="Left" Width="83" Value="0" TextAlignment="Center" Text=""/>
-        <Label x:Name="label_Copy1" Content="Level Learned" HorizontalAlignment="Left" Margin="10,83.82,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="Cancel_Button" Content="Cancel" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Click="Cancel_Button_Click"/>
-        <CheckBox x:Name="LevelUp_Move" Content="Level Up Move" HorizontalAlignment="Left" Margin="10,40.96,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="Egg_Move" Content="Egg Move" HorizontalAlignment="Left" Margin="10,61.058,0,0" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment"/>
-        <CheckBox x:Name="Tutor_Move" Content="Tutor Move" Margin="113.531,40.96,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-        <CheckBox x:Name="TMHM_Move" Content="TM / HM Move" Margin="88.295,61.058,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" d:LayoutOverrides="VerticalAlignment"/>
-        <Button x:Name="Link_Button" Content="Link Move" Margin="129,0,90,10" VerticalAlignment="Bottom" IsDefault="True" Click="Link_Button_Click"/>
-        <Button x:Name="Move_Name_Select" Content="Select Move" Margin="209,13,10,0" VerticalAlignment="Top" IsDefault="True" Click="Move_Name_Select_Click"/>
+        <Label x:Name="label" Content="Move Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" />
+        <TextBox x:Name="Move_Name" Height="26" Margin="90,10,90,0" TextWrapping="Wrap" VerticalAlignment="Top"
+                 IsReadOnly="True" />
+        <xctk:DecimalUpDown x:Name="Level_Learned" Margin="97.483,87.779,0,0" VerticalAlignment="Top" Maximum="100"
+                            Minimum="0" HorizontalAlignment="Left" Width="83" Value="0" TextAlignment="Center" Text="" />
+        <Label x:Name="label_Copy1" Content="Level Learned" HorizontalAlignment="Left" Margin="10,83.82,0,0"
+               VerticalAlignment="Top" />
+        <Button x:Name="Cancel_Button" Content="Cancel" HorizontalAlignment="Right" Margin="0,0,10,10"
+                VerticalAlignment="Bottom" Width="75" Click="Cancel_Button_Click" />
+        <CheckBox x:Name="LevelUp_Move" Content="Level Up Move" HorizontalAlignment="Left" Margin="10,40.96,0,0"
+                  VerticalAlignment="Top" />
+        <CheckBox x:Name="Egg_Move" Content="Egg Move" HorizontalAlignment="Left" Margin="10,61.058,0,0"
+                  VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment" />
+        <CheckBox x:Name="Tutor_Move" Content="Tutor Move" Margin="113.531,40.96,0,0" VerticalAlignment="Top"
+                  HorizontalAlignment="Left" />
+        <CheckBox x:Name="TMHM_Move" Content="TM / HM Move" Margin="88.295,61.058,0,0" VerticalAlignment="Top"
+                  HorizontalAlignment="Left" d:LayoutOverrides="VerticalAlignment" />
+        <Button x:Name="Link_Button" Content="Link Move" Margin="129,0,90,10" VerticalAlignment="Bottom"
+                IsDefault="True" Click="Link_Button_Click" />
+        <Button x:Name="Move_Name_Select" Content="Select Move" Margin="209,13,10,0" VerticalAlignment="Top"
+                IsDefault="True" Click="Move_Name_Select_Click" />
     </Grid>
 </Window>

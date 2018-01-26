@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Licence" Height="383.062" Width="522.768" ResizeMode="NoResize">
     <Grid>
-        <TextBox x:Name="License_Text" Margin="10" TextWrapping="Wrap"/>
+        <TextBox x:Name="License_Text" Margin="10" TextWrapping="Wrap" />
 
     </Grid>
 </Window>

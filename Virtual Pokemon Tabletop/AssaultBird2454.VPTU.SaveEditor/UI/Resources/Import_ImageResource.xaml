@@ -7,15 +7,26 @@
         mc:Ignorable="d"
         Title="Import Resource (Image)" Height="144.41" Width="501.989">
     <Grid>
-        <Button x:Name="File_Import" Content="Select File" HorizontalAlignment="Left" Margin="409,35,0,0" VerticalAlignment="Top" Width="75" Click="File_Import_Click"/>
-        <Label x:Name="label" Content="File / Directory" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Selected_FileDir" HorizontalAlignment="Left" Height="23" Margin="103,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="301"/>
-        <Button x:Name="BulkImport_Button" Content="Select Folder" HorizontalAlignment="Left" Margin="409,10,0,0" VerticalAlignment="Top" Width="75" Click="BulkImport_Button_Click"/>
-        <Button x:Name="Cancel_Button" Content="Cancel" Margin="0,0,10,10" IsCancel="True" HorizontalAlignment="Right" Width="75" Height="20" VerticalAlignment="Bottom" Click="Cancel_Button_Click"/>
-        <Button x:Name="Submit_Button" Content="Submit" HorizontalAlignment="Right" Margin="0,0,90,10" VerticalAlignment="Bottom" Width="75" Click="Submit_Button_Click"/>
-        <ProgressBar x:Name="Import_Progress" Margin="10,0,170,10" Height="20" VerticalAlignment="Bottom" SmallChange="1"/>
-        <CheckBox x:Name="Close_On_Complete" Content="Close when complete" Margin="103,57,0,0" IsChecked="True" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="133" Height="15" VerticalAlignment="Top"/>
-        <CheckBox x:Name="Import_Save" Content="Import Into Save FIle" Margin="103,42,0,0" IsChecked="True" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="133" Height="15" VerticalAlignment="Top" IsEnabled="False"/>
+        <Button x:Name="File_Import" Content="Select File" HorizontalAlignment="Left" Margin="409,35,0,0"
+                VerticalAlignment="Top" Width="75" Click="File_Import_Click" />
+        <Label x:Name="label" Content="File / Directory" HorizontalAlignment="Left" Margin="10,10,0,0"
+               VerticalAlignment="Top" />
+        <TextBox x:Name="Selected_FileDir" HorizontalAlignment="Left" Height="23" Margin="103,14,0,0"
+                 TextWrapping="Wrap" VerticalAlignment="Top" Width="301" />
+        <Button x:Name="BulkImport_Button" Content="Select Folder" HorizontalAlignment="Left" Margin="409,10,0,0"
+                VerticalAlignment="Top" Width="75" Click="BulkImport_Button_Click" />
+        <Button x:Name="Cancel_Button" Content="Cancel" Margin="0,0,10,10" IsCancel="True" HorizontalAlignment="Right"
+                Width="75" Height="20" VerticalAlignment="Bottom" Click="Cancel_Button_Click" />
+        <Button x:Name="Submit_Button" Content="Submit" HorizontalAlignment="Right" Margin="0,0,90,10"
+                VerticalAlignment="Bottom" Width="75" Click="Submit_Button_Click" />
+        <ProgressBar x:Name="Import_Progress" Margin="10,0,170,10" Height="20" VerticalAlignment="Bottom"
+                     SmallChange="1" />
+        <CheckBox x:Name="Close_On_Complete" Content="Close when complete" Margin="103,57,0,0" IsChecked="True"
+                  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="133" Height="15"
+                  VerticalAlignment="Top" />
+        <CheckBox x:Name="Import_Save" Content="Import Into Save FIle" Margin="103,42,0,0" IsChecked="True"
+                  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="133" Height="15"
+                  VerticalAlignment="Top" IsEnabled="False" />
 
     </Grid>
 </Window>

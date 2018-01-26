@@ -7,20 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AssaultBird2454.VPTU.Server.Instances.CommandData.Entity
+namespace AssaultBird2454.VPTU.Server.Instances.CommandData.Entities
 {
-    public class Entity_Pokemon_Get : Networking.Data.NetworkCommand
+    public class Entities_Pokemon_Get : Networking.Data.NetworkCommand
     {
         public string Command
         {
             get
             {
-                return "Entity_Pokemon_Get";
+                return "Entities_Pokemon_Get";
             }
         }
 
         public string ID { get; set; }
-        public EntityManager.Pokemon.PokemonCharacter Pokemon { get; set; }
+        public EntitiesManager.Pokemon.PokemonCharacter Pokemon { get; set; }
         public byte[] ImageData { get; set; }
         [JsonIgnore]
         public Bitmap Image

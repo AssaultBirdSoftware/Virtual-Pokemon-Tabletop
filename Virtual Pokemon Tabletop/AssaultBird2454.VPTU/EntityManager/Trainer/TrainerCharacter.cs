@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AssaultBird2454.VPTU.EntityManager.Trainer
+namespace AssaultBird2454.VPTU.EntitiesManager.Trainer
 {
-    public class TrainerCharacter : Entity, Entry
+    public class TrainerCharacter : Entities, Entry
     {
         [JsonIgnore]
         public Entry_Data EntryData
@@ -18,7 +18,7 @@ namespace AssaultBird2454.VPTU.EntityManager.Trainer
                     Name = Name,
                     Parent_Folder = Parent_Folder,
                     Token_ResourceID = Token_ResourceID,
-                    Entity_Type = Entity_Type.Trainer,
+                    Entities_Type = Entities_Type.Trainer,
                     View = View,
                     Edit = Edit
                 };
@@ -44,21 +44,21 @@ namespace AssaultBird2454.VPTU.EntityManager.Trainer
         public string Parent_Folder { get; set; }
 
         [JsonIgnore]
-        public Entity_Type Entity_Type { get { return Entity_Type.Pokemon; } }
+        public Entities_Type Entities_Type { get { return Entities_Type.Pokemon; } }
         public string ID { get; set; }
         public string Name { get; set; }
 
         public string Notes { get; set; }
         public string Background { get; set; }
-        public Pokedex.Entity.Gender Gender { get; set; }
+        public Pokedex.Entities.Gender Gender { get; set; }
         public int Age { get; set; }
         public int Trainer_EXP { get; set; }
         public int Milestone { get; set; }
         public List<string> Features { get; set; }// Max 4 Classes & Unlimited for normal Features
-        public Pokedex.Entity.SizeClass SizeClass { get; set; }
-        public Pokedex.Entity.WeightClass WeightClass { get; set; }
-        public Pokedex.Entity.Capability_Data Capabilities { get; set; }
-        public Pokedex.Entity.Skill_Data Skills { get; set; }
+        public Pokedex.Entities.SizeClass SizeClass { get; set; }
+        public Pokedex.Entities.WeightClass WeightClass { get; set; }
+        public Pokedex.Entities.Capability_Data Capabilities { get; set; }
+        public Pokedex.Entities.Skill_Data Skills { get; set; }
         public int Current_HP { get; set; }
 
         #region Stats

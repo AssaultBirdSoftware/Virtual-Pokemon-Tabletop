@@ -28,6 +28,7 @@ namespace AssaultBird2454.VPTU.Server.Instances.Client
 
             #region Auth
             CommandHandeler.RegisterCommand<CommandData.Auth.Login>("Auth_Login");
+            CommandHandeler.RegisterCommand<CommandData.Auth.Logout>("Auth_Logout");
             CommandHandeler.RegisterCommand<object>("Auth_Create");
             CommandHandeler.RegisterCommand<object>("Auth_Delete");
             CommandHandeler.RegisterCommand<object>("Auth_Edit");
@@ -63,21 +64,21 @@ namespace AssaultBird2454.VPTU.Server.Instances.Client
             CommandHandeler.RegisterCommand<string>("Pokedex_Moves_Remove");
             #endregion
 
-            #region Entity
-            CommandHandeler.RegisterCommand<CommandData.Entity.Entity_All_GetList>("Entity_All_GetList");
+            #region Entities
+            CommandHandeler.RegisterCommand<CommandData.Entities.Entities_All_GetList>("Entities_All_GetList");
 
-            CommandHandeler.RegisterCommand<string>("Entity_Pokemon_GetList");
-            CommandHandeler.RegisterCommand<CommandData.Entity.Entity_Pokemon_Get>("Entity_Pokemon_Get");
-            CommandHandeler.RegisterCommand<string>("Entity_Pokemon_Create");
-            CommandHandeler.RegisterCommand<string>("Entity_Pokemon_Edit");
-            CommandHandeler.RegisterCommand<string>("Entity_Pokemon_Delete");
+            CommandHandeler.RegisterCommand<string>("Entities_Pokemon_GetList");
+            CommandHandeler.RegisterCommand<CommandData.Entities.Entities_Pokemon_Get>("Entities_Pokemon_Get");
+            CommandHandeler.RegisterCommand<string>("Entities_Pokemon_Create");
+            CommandHandeler.RegisterCommand<string>("Entities_Pokemon_Edit");
+            CommandHandeler.RegisterCommand<string>("Entities_Pokemon_Delete");
 
-            CommandHandeler.RegisterCommand<string>("Entity_Trainer_GetList");
-            CommandHandeler.RegisterCommand<string>("Entity_Trainer_Get");
-            CommandHandeler.RegisterCommand<string>("Entity_Trainer_Create");
-            CommandHandeler.RegisterCommand<string>("Entity_Trainer_Edit");
-            CommandHandeler.RegisterCommand<string>("Entity_Trainer_Delete");
-            // CommandHandeler.RegisterCommand<string>("Entity_");
+            CommandHandeler.RegisterCommand<string>("Entities_Trainer_GetList");
+            CommandHandeler.RegisterCommand<string>("Entities_Trainer_Get");
+            CommandHandeler.RegisterCommand<string>("Entities_Trainer_Create");
+            CommandHandeler.RegisterCommand<string>("Entities_Trainer_Edit");
+            CommandHandeler.RegisterCommand<string>("Entities_Trainer_Delete");
+            // CommandHandeler.RegisterCommand<string>("Entities_");
             #endregion
 
             #region Battles

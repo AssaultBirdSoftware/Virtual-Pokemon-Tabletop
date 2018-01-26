@@ -79,10 +79,38 @@ namespace AssaultBird2454.VPTU.Server.Instances
         #region Authentication
         public List<KeyValuePair<Networking.Server.TCP.TCP_ClientNode, Authentication_Manager.Data.User>> Authenticated_Clients;
 
-        public void Authenticate_Client(Networking.Server.TCP.TCP_ClientNode cn, Authentication_Manager.Data.User user)
+        public bool Authenticate_Client(Networking.Server.TCP.TCP_ClientNode cn, CommandData.Auth.Login Login)
         {
             Authenticated_Clients.RemoveAll(x => x.Key == cn);
-            Authenticated_Clients.Add(new KeyValuePair<Networking.Server.TCP.TCP_ClientNode, Authentication_Manager.Data.User>(cn, user));
+            Authentication_Manager.Data.Identity ID = SaveManager.SaveData.Identities.Find(x => x.Key == Login.Client_Key);
+
+            if (ID != null)
+            {
+                Authentication_Manager.Data.User user = SaveManager.SaveData.Users.Find(x => x.UserID == ID.UserID);
+                Authenticated_Clients.Add(new KeyValuePair<Networking.Server.TCP.TCP_ClientNode, Authentication_Manager.Data.User>(cn, user));
+
+                ((Class.Logging.I_Logger)Server_Logger).Log("Client @ " + cn.ID + " Passed authenticated as User " + user.Name + " (" + user.IC_Name + ")", Class.Logging.LoggerLevel.Audit);
+                cn.Send(new CommandData.Auth.Login() { Client_Key = ID.Key, Auth_State = CommandData.Auth.AuthState.Passed, UserData = user });
+                return true;
+            }
+            else
+            {
+                ((Class.Logging.I_Logger)Server_Logger).Log("Client @ " + cn.ID + " Failed authentication", Class.Logging.LoggerLevel.Audit);
+                cn.Send(new CommandData.Auth.Login() { Client_Key = "", Auth_State = CommandData.Auth.AuthState.Failed });
+                return false;
+            }
+        }
+        public void DeAuthenticate_Client(Networking.Server.TCP.TCP_ClientNode cn)
+        {
+            Authenticated_Clients.RemoveAll(x => x.Key == cn);
+            ((Class.Logging.I_Logger)Server_Logger).Log("Client @ " + cn.ID + " DeAuthenticated", Class.Logging.LoggerLevel.Audit);
+            cn.Send(new CommandData.Auth.Logout() { Auth_State = CommandData.Auth.AuthState.DeAuthenticated });
+        }
+        public bool CheckAuthentication_Client(Networking.Server.TCP.TCP_ClientNode cn)
+        {
+            if (Authenticated_Clients.FindAll(x => x.Key == cn).Count >= 1)
+                return true;
+            return false;
         }
         #endregion
         #endregion
@@ -105,6 +133,8 @@ namespace AssaultBird2454.VPTU.Server.Instances
             Server_CommandHandeler = new Networking.Server.Command_Handeler.Server_CommandHandeler();
             Server_CommandHandeler.CommandRegistered += Server_CommandHandeler_CommandRegistered;
             Server_CommandHandeler.CommandUnRegistered += Server_CommandHandeler_CommandUnRegistered;
+            Server_CommandHandeler.RateLimitChanged_Event += Server_CommandHandeler_RateLimitChanged_Event;
+            Server_CommandHandeler.RateLimitHit_Event += Server_CommandHandeler_RateLimitHit_Event;
 
             Base_Server_Commands = new Server.Base_Commands(this);
 
@@ -119,13 +149,6 @@ namespace AssaultBird2454.VPTU.Server.Instances
             Server.TCP_Data_Error_Event += Server_TCP_Data_Error_Event;
             Server.TCP_Data_Event += Server_TCP_Data_Event;
             Server.TCP_ServerState_Changed += Server_TCP_ServerState_Changed;
-            #endregion
-            #region Save Data
-            ((Class.Logging.I_Logger)Server_Logger).Log("Initilizing Save Manager", Class.Logging.LoggerLevel.Debug);
-            SaveManager = new VPTU.SaveManager.SaveManager(SaveData);
-
-            ((Class.Logging.I_Logger)Server_Logger).Log("Loading Campaign", Class.Logging.LoggerLevel.Debug);
-            SaveManager.Load_SaveData();
             #endregion
 
             #region Plugins
@@ -177,11 +200,26 @@ namespace AssaultBird2454.VPTU.Server.Instances
         #region Event Handelers
         private void Server_CommandHandeler_CommandUnRegistered(string Command)
         {
-            ((Class.Logging.I_Logger)Server_Logger).Log("Command Unregistered -> Command: " + Command, Class.Logging.LoggerLevel.Debug);
+            ((Class.Logging.I_Logger)Server_Logger).Log("Command Unregistered -> Command: \"" + Command + "\"", Class.Logging.LoggerLevel.Debug);
         }
         private void Server_CommandHandeler_CommandRegistered(string Command)
         {
-            ((Class.Logging.I_Logger)Server_Logger).Log("Command Registered -> Command: " + Command, Class.Logging.LoggerLevel.Debug);
+            ((Class.Logging.I_Logger)Server_Logger).Log("Command Registered -> Command: \"" + Command + "\"", Class.Logging.LoggerLevel.Debug);
+        }
+        private void Server_CommandHandeler_RateLimitChanged_Event(string Command, bool Enabled, int Limit)
+        {
+            if (Enabled)
+            {
+                ((Class.Logging.I_Logger)Server_Logger).Log("Command Rate Limit -> Command: \"" + Command + "\" Setting: \"" + Limit + " Invokes per 5 minute block per client\"", Class.Logging.LoggerLevel.Debug);
+            }
+            else
+            {
+                ((Class.Logging.I_Logger)Server_Logger).Log("Command Rate Limit -> Command: \"" + Command + "\" Setting: \"No Limit\"", Class.Logging.LoggerLevel.Debug);
+            }
+        }
+        private void Server_CommandHandeler_RateLimitHit_Event(string Name, Networking.Server.TCP.TCP_ClientNode Client)
+        {
+            ((Class.Logging.I_Logger)Server_Logger).Log("Client \"" + Client.ID + "\" hit the rate limit for command \" " + Name + " \"", Class.Logging.LoggerLevel.Warning);
         }
 
         private void Server_TCP_ServerState_Changed(Networking.Data.Server_Status Server_State)

@@ -1,27 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using AssaultBird2454.VPTU.EntitiesManager.Pokemon;
 
-namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity.Pokemon
+namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities.Pokemon
 {
     /// <summary>
-    /// Interaction logic for Select.xaml
+    ///     Interaction logic for Select.xaml
     /// </summary>
     public partial class Select : Window
     {
-        public EntityManager.Pokemon.PokemonCharacter SelectedPokemon;
-        private SaveManager.SaveManager Manager;
+        private readonly SaveManager.SaveManager Manager;
+
+        public Thread search_thread;
+        public PokemonCharacter SelectedPokemon;
 
         public Select(SaveManager.SaveManager _Manager)
         {
@@ -30,14 +22,16 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity.Pokemon
             InitializeComponent();
         }
 
-        public Thread search_thread;
         public void Load()
         {
-            try { search_thread.Abort(); } catch { }
-            search_thread = new Thread(new ThreadStart(() =>
+            try
             {
-                Dispatcher.Invoke(new Action(() => Reload()));
-            }));
+                search_thread.Abort();
+            }
+            catch
+            {
+            }
+            search_thread = new Thread(() => { Dispatcher.Invoke(() => Reload()); });
 
             search_thread.Start();
         }
@@ -47,29 +41,19 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity.Pokemon
             Pokemon_List.Items.Clear();
 
             if (Search_WildPokemon.IsChecked == true)
-            {
-                foreach (EntityManager.Pokemon.PokemonCharacter pokemon in Manager.SaveData.Pokemon)
-                {
+                foreach (var pokemon in Manager.SaveData.Pokemon)
                     if (pokemon.Name.ToLower().Contains(Search_Name.Text.ToLower()))
-                    {
-                        Pokemon_List.Items.Add(new Pokemon_DataBind(pokemon, pokemon.Species_DexID + " (" + Manager.SaveData.PokedexData.Pokemon.Find(x => x.Species_DexID == pokemon.Species_DexID).Species_Name + ")"));
-                    }
-                }
-            }
+                        Pokemon_List.Items.Add(new Pokemon_DataBind(pokemon,
+                            pokemon.Species_DexID + " (" + Manager.SaveData.PokedexData.Pokemon
+                                .Find(x => x.Species_DexID == pokemon.Species_DexID).Species_Name + ")"));
 
             if (Search_Trainer_Pokemon.IsChecked == true)
-            {
-                foreach (EntityManager.Trainer.TrainerCharacter trainer in Manager.SaveData.Trainers)
-                {
-                    foreach (EntityManager.Pokemon.PokemonCharacter pokemon in trainer.PartyPokemon)
-                    {
-                        if (pokemon.Name.ToLower().Contains(Search_Name.Text.ToLower()))
-                        {
-                            Pokemon_List.Items.Add(new Pokemon_DataBind(pokemon, pokemon.Species_DexID + " (" + Manager.SaveData.PokedexData.Pokemon.Find(x => x.Species_DexID == pokemon.Species_DexID).Species_Name + ")", trainer.Name));
-                        }
-                    }
-                }
-            }
+                foreach (var trainer in Manager.SaveData.Trainers)
+                foreach (var pokemon in trainer.PartyPokemon)
+                    if (pokemon.Name.ToLower().Contains(Search_Name.Text.ToLower()))
+                        Pokemon_List.Items.Add(new Pokemon_DataBind(pokemon,
+                            pokemon.Species_DexID + " (" + Manager.SaveData.PokedexData.Pokemon
+                                .Find(x => x.Species_DexID == pokemon.Species_DexID).Species_Name + ")", trainer.Name));
         }
 
 
@@ -77,18 +61,22 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity.Pokemon
         {
             Load();
         }
+
         private void Search_Trainer_Pokemon_Unchecked(object sender, RoutedEventArgs e)
         {
             Load();
         }
+
         private void Search_WildPokemon_Unchecked(object sender, RoutedEventArgs e)
         {
             Load();
         }
+
         private void Search_WildPokemon_Checked(object sender, RoutedEventArgs e)
         {
             Load();
         }
+
         private void Search_Trainer_Pokemon_Checked(object sender, RoutedEventArgs e)
         {
             Load();
@@ -99,24 +87,25 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entity.Pokemon
             DialogResult = false;
             Close();
         }
+
         private void Select_Button_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
-            SelectedPokemon = ((Pokemon_DataBind)Pokemon_List.SelectedItem).Pokemon;
+            SelectedPokemon = ((Pokemon_DataBind) Pokemon_List.SelectedItem).Pokemon;
             Close();
         }
     }
 
     public class Pokemon_DataBind
     {
-        public Pokemon_DataBind(EntityManager.Pokemon.PokemonCharacter _Pokemon, string _Species, string _Owner = "")
+        public Pokemon_DataBind(PokemonCharacter _Pokemon, string _Species, string _Owner = "")
         {
             Pokemon = _Pokemon;
             Species = _Species;
             Owner = _Owner;
         }
 
-        public EntityManager.Pokemon.PokemonCharacter Pokemon { get; set; }
+        public PokemonCharacter Pokemon { get; set; }
         public string Species { get; set; }
         public string Owner { get; set; }
     }

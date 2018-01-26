@@ -1,18 +1,25 @@
 ﻿<Window
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Link"
-        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Link.Link_Evolution"
-        mc:Ignorable="d"
-        Title="Move Link" Height="184.381" Width="332.022" ResizeMode="NoResize">
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Link"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+    x:Class="AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Link.Link_Evolution"
+    mc:Ignorable="d"
+    Title="Move Link" Height="184.381" Width="332.022" ResizeMode="NoResize">
     <Grid>
-        <Label x:Name="label" Content="Pokemon Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Pokemon_Name" Height="26" Margin="110,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" HorizontalAlignment="Left" Width="114"/>
-        <Button x:Name="Cancel_Button" Content="Cancel" HorizontalAlignment="Left" Margin="235,0,0,10" VerticalAlignment="Bottom" Width="81" Click="Cancel_Button_Click"/>
-        <Button x:Name="Link_Button" Content="Link Evolution" Margin="149,0,0,10" VerticalAlignment="Bottom" IsDefault="True" Click="Link_Button_Click" HorizontalAlignment="Left" Width="81"/>
-        <Button x:Name="Move_Name_Select" Content="Select Pokemon" Margin="229,13,-11,0" VerticalAlignment="Top" IsDefault="True" Click="Move_Name_Select_Click" HorizontalAlignment="Left" Width="93"/>
-        <Label x:Name="label1" Content="Linking Evolutions is still in development!" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,41,0,35"/>
+        <Label x:Name="label" Content="Pokemon Name" HorizontalAlignment="Left" Margin="10,10,0,0"
+               VerticalAlignment="Top" />
+        <TextBox x:Name="Pokemon_Name" Height="26" Margin="110,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"
+                 IsReadOnly="True" HorizontalAlignment="Left" Width="114" />
+        <Button x:Name="Cancel_Button" Content="Cancel" HorizontalAlignment="Left" Margin="235,0,0,10"
+                VerticalAlignment="Bottom" Width="81" Click="Cancel_Button_Click" />
+        <Button x:Name="Link_Button" Content="Link Evolution" Margin="149,0,0,10" VerticalAlignment="Bottom"
+                IsDefault="True" Click="Link_Button_Click" HorizontalAlignment="Left" Width="81" />
+        <Button x:Name="Move_Name_Select" Content="Select Pokemon" Margin="229,13,-11,0" VerticalAlignment="Top"
+                IsDefault="True" Click="Move_Name_Select_Click" HorizontalAlignment="Left" Width="93" />
+        <Label x:Name="label1" Content="Linking Evolutions is still in development!"
+               HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,41,0,35" />
     </Grid>
 </Window>
