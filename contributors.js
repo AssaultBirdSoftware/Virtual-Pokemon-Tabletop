@@ -1,6 +1,7 @@
 /**
  * When you contribute to Virtual-Pokemon-Tabletop, please add your info to this. You don't need to include `firstName`,
- * or any of the links if you don't want to, but include everything else.
+ * or any of the links if you don't want to, but include everything else. Note: If you don't pull request into Dev,
+ * you won't be put in the credits list (because it uses Dev for data).
  */
 initContributors([
     {
