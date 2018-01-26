@@ -20,5 +20,20 @@ initContributors([
             ptForum: "6000923",
             youtube: "channel/UCXqpxzR-2HYqaHpgtqOAFFg"
         }
+    },
+    {
+        username: "zoweb",
+        firstName: "Zach",
+
+        shortDescription: "Casual PTU developer, mostly works on the website.",
+
+        tags: [
+            "developer",
+            "debug-qa",
+            "support"
+        ],
+        links: {
+            github: "zoweb"
+        }
     }
 ]);
