@@ -12,7 +12,7 @@ initContributors([
         tags: [
             "project-manager",
             "head-developer",
-            "debug-qua",
+            "debug-qa",
             "support"
         ],
         links: {
