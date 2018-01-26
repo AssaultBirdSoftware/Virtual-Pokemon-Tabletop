@@ -19,9 +19,9 @@ So, when I went to make this I decided to take the useful features from Roll20.n
 Want to help? Just make a fork and follow these rules.
 
 1. Code needs to be Commented, Documented, Formatted and Tested.
-2. The code we are working on is in the "Alpha" Branch, Edit and make changes in here to keep upto date
+2. The code we are working on is in the "Dev" Branch, Edit and make changes in here to keep upto date
 3. Add yourself to `contributors.js` if you haven't already
-4. Pull request into the "Alpha" branch, I will look and accept it there.
+4. Pull request into the "Dev" branch, I will look and accept it there.
 
 All help would be appreciated. and this project is done in C# Using WPF.
 ### Supporting future Development
