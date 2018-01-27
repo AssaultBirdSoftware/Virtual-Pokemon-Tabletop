@@ -1,208 +1,543 @@
-﻿<UserControl x:Class="AssaultBird2454.VPTU.Client.UI.Entity.Entity"
+﻿<UserControl x:Class="AssaultBird2454.VPTU.Client.UI.Entities.Entities"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:AssaultBird2454.VPTU.Client.UI.Entity"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:AssaultBird2454.VPTU.Client.UI.Entities"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" Height="380" Width="710" MinWidth="710" MinHeight="380" MaxWidth="710" MaxHeight="380">
     <Grid>
         <TabControl x:Name="Tab_Basic" TabStripPlacement="Left">
             <TabItem Header="Basic Info">
                 <Grid x:Name="Basic_Info_Grid" HorizontalAlignment="Left" VerticalAlignment="Top">
-                    <ScrollViewer Width="639" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto" local:CustomDesignAttributes.VerticalScrollTo="0">
+                    <ScrollViewer Width="639" VerticalScrollBarVisibility="Visible"
+                                  HorizontalScrollBarVisibility="Auto"
+                                  local:CustomDesignAttributes.VerticalScrollTo="0">
                         <Grid Background="#FFE5E5E5" Height="920">
-                            <Border BorderBrush="Black" BorderThickness="0" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100">
+                            <Border BorderBrush="Black" BorderThickness="0" HorizontalAlignment="Left" Height="100"
+                                    VerticalAlignment="Top" Width="100">
                                 <Border.Background>
-                                    <ImageBrush Stretch="Uniform" ImageSource="pack://siteoforigin:,,,/Resources/PTU Icon.png"/>
+                                    <ImageBrush Stretch="Uniform"
+                                                ImageSource="pack://siteoforigin:,,,/Resources/PTU Icon.png" />
                                 </Border.Background>
                             </Border>
-                            <Label Content="Type of Character:" HorizontalAlignment="Left" Margin="105,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                            <Grid Height="102" Margin="106,41,7,0" VerticalAlignment="Top" Background="#FFCDCDCD" HorizontalAlignment="Center" Width="509">
+                            <Label Content="Type of Character:" HorizontalAlignment="Left" Margin="105,10,0,0"
+                                   VerticalAlignment="Top" FontWeight="Bold" />
+                            <Grid Height="102" Margin="106,41,7,0" VerticalAlignment="Top" Background="#FFCDCDCD"
+                                  HorizontalAlignment="Center" Width="509">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="25"/>
-                                    <RowDefinition Height="26"/>
-                                    <RowDefinition Height="25"/>
-                                    <RowDefinition Height="26"/>
+                                    <RowDefinition Height="25" />
+                                    <RowDefinition Height="26" />
+                                    <RowDefinition Height="25" />
+                                    <RowDefinition Height="26" />
                                 </Grid.RowDefinitions>
-                                <ProgressBar x:Name="EXP_Bar" HorizontalAlignment="Left" Margin="2,0,0,0" Width="185" Grid.Row="2" Foreground="#4C005CFF" Background="{x:Null}" BorderBrush="{x:Null}" Value="20555" Height="25" VerticalAlignment="Top" Maximum="20555"/>
-                                <Label Content="Name:" HorizontalAlignment="Left" Width="90" Padding="5,0" VerticalContentAlignment="Center" Margin="2,0,0,0"/>
-                                <TextBox x:Name="Basic_Name" HorizontalAlignment="Left" Height="23" Margin="2,3,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" VerticalContentAlignment="Center" Text="Eevee"/>
-                                <Label Content="Species:" HorizontalAlignment="Left" Margin="97,0,0,0" Width="90" Padding="5,0" VerticalContentAlignment="Center"/>
-                                <TextBox x:Name="Basic_Species" HorizontalAlignment="Left" Height="23" Margin="97,3,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" IsReadOnly="True" VerticalContentAlignment="Center" Text="Not Available" IsReadOnlyCaretVisible="True"/>
-                                <TextBox x:Name="Basic_Level" HorizontalAlignment="Left" Height="23" Margin="2,2,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="55" IsReadOnly="True" VerticalContentAlignment="Center" Text="100" IsReadOnlyCaretVisible="True"/>
-                                <Label Content="Level:" HorizontalAlignment="Left" Width="55" Grid.Row="2" Padding="5,0" VerticalContentAlignment="Center" Margin="2,0,0,0"/>
-                                <Label Content="Type:" HorizontalAlignment="Left" Margin="192,0,0,0" Width="125" Padding="5,0" VerticalContentAlignment="Center"/>
-                                <TextBox x:Name="Basic_Type" HorizontalAlignment="Left" Height="23" Margin="192,3,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="125" IsReadOnly="True" VerticalContentAlignment="Center" Text="Normal" IsReadOnlyCaretVisible="True"/>
-                                <Label Content="Held Item:" HorizontalAlignment="Left" Margin="322,0,0,0" Width="90" Padding="5,0" VerticalContentAlignment="Center"/>
-                                <TextBox x:Name="Basic_HeldItem" HorizontalAlignment="Left" Height="23" Margin="322,3,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" IsReadOnly="True" VerticalContentAlignment="Center" Text="No Item" IsReadOnlyCaretVisible="True"/>
-                                <Label Content="Nature:" HorizontalAlignment="Left" Margin="417,0,0,0" Width="90" Padding="5,0" VerticalContentAlignment="Center"/>
-                                <TextBox x:Name="Basic_Nature" HorizontalAlignment="Left" Height="23" Margin="417,3,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" IsReadOnly="True" VerticalContentAlignment="Center" Text="Bold" IsReadOnlyCaretVisible="True"/>
-                                <xctk:IntegerUpDown x:Name="Basic_EXP" HorizontalAlignment="Left" Height="23" Margin="62,2,0,0" Grid.Row="3" VerticalAlignment="Top" Width="59" Value="20555" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" ValueChanged="Basic_EXP_ValueChanged" Minimum="0" Maximum="20555" UpdateValueOnEnterKey="True" DefaultValue="0"/>
-                                <Label Content="EXP:" HorizontalAlignment="Left" Width="125" Grid.Row="2" Margin="62,0,0,0" Padding="5,0" VerticalContentAlignment="Center"/>
-                                <TextBox x:Name="Basic_EXP_TNL" HorizontalAlignment="Left" Height="23" Margin="140,2,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="47" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="20555" IsReadOnlyCaretVisible="True"/>
-                                <Label Content="/" HorizontalAlignment="Left" Margin="125,3,0,0" Grid.Row="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0" Width="10"/>
-                                <xctk:IntegerUpDown x:Name="Basic_UsedAP" HorizontalAlignment="Left" Height="23" Margin="192,2,0,0" Grid.Row="3" VerticalAlignment="Top" Width="44" Value="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsEnabled="False" Minimum="0"/>
-                                <Label Content="AP:" HorizontalAlignment="Left" Width="90" Grid.Row="2" Margin="192,0,0,0" Padding="5,0" VerticalContentAlignment="Center"/>
-                                <TextBox x:Name="Basic_MaxAP" HorizontalAlignment="Left" Height="23" Margin="256,2,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="26" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="999" IsReadOnlyCaretVisible="True"/>
-                                <Label Content="/" HorizontalAlignment="Left" Margin="241,3,0,0" Grid.Row="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0" Width="10"/>
-                                <Label Content="Gender:" HorizontalAlignment="Left" Width="70" Margin="287,0,0,0" Grid.Row="2" Padding="5,0" VerticalContentAlignment="Center"/>
-                                <TextBox x:Name="Basic_Gender" HorizontalAlignment="Left" Height="23" Margin="287,3,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" VerticalContentAlignment="Center" Text="Genderless" IsReadOnly="True" IsReadOnlyCaretVisible="True"/>
-                                <Label Content="Height / Size:" HorizontalAlignment="Left" Width="90" Margin="362,0,0,0" Grid.Row="2" Padding="5,0" VerticalContentAlignment="Center"/>
-                                <TextBox x:Name="Basic_Height" HorizontalAlignment="Left" Height="23" Margin="362,3,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" VerticalContentAlignment="Center" Text="Class 2" IsReadOnly="True" IsReadOnlyCaretVisible="True"/>
-                                <Label Content="Weight:" HorizontalAlignment="Left" Width="50" Margin="457,0,0,0" Grid.Row="2" Padding="5,0" VerticalContentAlignment="Center"/>
-                                <TextBox x:Name="Basic_Weight" HorizontalAlignment="Left" Height="23" Margin="457,3,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" VerticalContentAlignment="Center" Text="Class 2" IsReadOnly="True" IsReadOnlyCaretVisible="True"/>
+                                <ProgressBar x:Name="EXP_Bar" HorizontalAlignment="Left" Margin="2,0,0,0" Width="185"
+                                             Grid.Row="2" Foreground="#4C005CFF" Background="{x:Null}"
+                                             BorderBrush="{x:Null}" Value="20555" Height="25" VerticalAlignment="Top"
+                                             Maximum="20555" />
+                                <Label Content="Name:" HorizontalAlignment="Left" Width="90" Padding="5,0"
+                                       VerticalContentAlignment="Center" Margin="2,0,0,0" />
+                                <TextBox x:Name="Basic_Name" HorizontalAlignment="Left" Height="23" Margin="2,3,0,0"
+                                         Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"
+                                         VerticalContentAlignment="Center" Text="Eevee" />
+                                <Label Content="Species:" HorizontalAlignment="Left" Margin="97,0,0,0" Width="90"
+                                       Padding="5,0" VerticalContentAlignment="Center" />
+                                <TextBox x:Name="Basic_Species" HorizontalAlignment="Left" Height="23"
+                                         Margin="97,3,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top"
+                                         Width="90" IsReadOnly="True" VerticalContentAlignment="Center"
+                                         Text="Not Available" IsReadOnlyCaretVisible="True" />
+                                <TextBox x:Name="Basic_Level" HorizontalAlignment="Left" Height="23" Margin="2,2,0,0"
+                                         Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="55"
+                                         IsReadOnly="True" VerticalContentAlignment="Center" Text="100"
+                                         IsReadOnlyCaretVisible="True" />
+                                <Label Content="Level:" HorizontalAlignment="Left" Width="55" Grid.Row="2"
+                                       Padding="5,0" VerticalContentAlignment="Center" Margin="2,0,0,0" />
+                                <Label Content="Type:" HorizontalAlignment="Left" Margin="192,0,0,0" Width="125"
+                                       Padding="5,0" VerticalContentAlignment="Center" />
+                                <TextBox x:Name="Basic_Type" HorizontalAlignment="Left" Height="23" Margin="192,3,0,0"
+                                         Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="125"
+                                         IsReadOnly="True" VerticalContentAlignment="Center" Text="Normal"
+                                         IsReadOnlyCaretVisible="True" />
+                                <Label Content="Held Item:" HorizontalAlignment="Left" Margin="322,0,0,0" Width="90"
+                                       Padding="5,0" VerticalContentAlignment="Center" />
+                                <TextBox x:Name="Basic_HeldItem" HorizontalAlignment="Left" Height="23"
+                                         Margin="322,3,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top"
+                                         Width="90" IsReadOnly="True" VerticalContentAlignment="Center" Text="No Item"
+                                         IsReadOnlyCaretVisible="True" />
+                                <Label Content="Nature:" HorizontalAlignment="Left" Margin="417,0,0,0" Width="90"
+                                       Padding="5,0" VerticalContentAlignment="Center" />
+                                <TextBox x:Name="Basic_Nature" HorizontalAlignment="Left" Height="23"
+                                         Margin="417,3,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top"
+                                         Width="90" IsReadOnly="True" VerticalContentAlignment="Center" Text="Bold"
+                                         IsReadOnlyCaretVisible="True" />
+                                <xctk:IntegerUpDown x:Name="Basic_EXP" HorizontalAlignment="Left" Height="23"
+                                                    Margin="62,2,0,0" Grid.Row="3" VerticalAlignment="Top" Width="59"
+                                                    Value="20555" VerticalContentAlignment="Center"
+                                                    HorizontalContentAlignment="Center"
+                                                    ValueChanged="Basic_EXP_ValueChanged" Minimum="0" Maximum="20555"
+                                                    UpdateValueOnEnterKey="True" DefaultValue="0" />
+                                <Label Content="EXP:" HorizontalAlignment="Left" Width="125" Grid.Row="2"
+                                       Margin="62,0,0,0" Padding="5,0" VerticalContentAlignment="Center" />
+                                <TextBox x:Name="Basic_EXP_TNL" HorizontalAlignment="Left" Height="23"
+                                         Margin="140,2,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top"
+                                         Width="47" IsReadOnly="True" VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center" Text="20555" IsReadOnlyCaretVisible="True" />
+                                <Label Content="/" HorizontalAlignment="Left" Margin="125,3,0,0" Grid.Row="3"
+                                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                                       Padding="0" Width="10" />
+                                <xctk:IntegerUpDown x:Name="Basic_UsedAP" HorizontalAlignment="Left" Height="23"
+                                                    Margin="192,2,0,0" Grid.Row="3" VerticalAlignment="Top" Width="44"
+                                                    Value="0" VerticalContentAlignment="Center"
+                                                    HorizontalContentAlignment="Center" IsEnabled="False" Minimum="0" />
+                                <Label Content="AP:" HorizontalAlignment="Left" Width="90" Grid.Row="2"
+                                       Margin="192,0,0,0" Padding="5,0" VerticalContentAlignment="Center" />
+                                <TextBox x:Name="Basic_MaxAP" HorizontalAlignment="Left" Height="23" Margin="256,2,0,0"
+                                         Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="26"
+                                         IsReadOnly="True" VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center" Text="999" IsReadOnlyCaretVisible="True" />
+                                <Label Content="/" HorizontalAlignment="Left" Margin="241,3,0,0" Grid.Row="3"
+                                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                                       Padding="0" Width="10" />
+                                <Label Content="Gender:" HorizontalAlignment="Left" Width="70" Margin="287,0,0,0"
+                                       Grid.Row="2" Padding="5,0" VerticalContentAlignment="Center" />
+                                <TextBox x:Name="Basic_Gender" HorizontalAlignment="Left" Height="23"
+                                         Margin="287,3,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top"
+                                         Width="70" VerticalContentAlignment="Center" Text="Genderless"
+                                         IsReadOnly="True" IsReadOnlyCaretVisible="True" />
+                                <Label Content="Height / Size:" HorizontalAlignment="Left" Width="90"
+                                       Margin="362,0,0,0" Grid.Row="2" Padding="5,0" VerticalContentAlignment="Center" />
+                                <TextBox x:Name="Basic_Height" HorizontalAlignment="Left" Height="23"
+                                         Margin="362,3,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top"
+                                         Width="90" VerticalContentAlignment="Center" Text="Class 2" IsReadOnly="True"
+                                         IsReadOnlyCaretVisible="True" />
+                                <Label Content="Weight:" HorizontalAlignment="Left" Width="50" Margin="457,0,0,0"
+                                       Grid.Row="2" Padding="5,0" VerticalContentAlignment="Center" />
+                                <TextBox x:Name="Basic_Weight" HorizontalAlignment="Left" Height="23"
+                                         Margin="457,3,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top"
+                                         Width="50" VerticalContentAlignment="Center" Text="Class 2" IsReadOnly="True"
+                                         IsReadOnlyCaretVisible="True" />
                             </Grid>
-                            <Label x:Name="Basic_CharacterType" Content="Pokemon" HorizontalAlignment="Left" Margin="218,10,0,0" VerticalAlignment="Top"/>
-                            <Border x:Name="Basic_Token" BorderBrush="Black" BorderThickness="0" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="0,105,0,0">
+                            <Label x:Name="Basic_CharacterType" Content="Pokemon" HorizontalAlignment="Left"
+                                   Margin="218,10,0,0" VerticalAlignment="Top" />
+                            <Border x:Name="Basic_Token" BorderBrush="Black" BorderThickness="0"
+                                    HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100"
+                                    Margin="0,105,0,0">
                                 <Border.Background>
-                                    <ImageBrush Stretch="Uniform" ImageSource="pack://siteoforigin:,,,/Resources/Unknown_Pokemon_Sprite.png"/>
+                                    <ImageBrush Stretch="Uniform"
+                                                ImageSource="pack://siteoforigin:,,,/Resources/Unknown_Pokemon_Sprite.png" />
                                 </Border.Background>
                             </Border>
-                            <Label Content="Stats" HorizontalAlignment="Left" Margin="105,148,0,0" VerticalAlignment="Top" Width="252.5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="Black" FontWeight="Bold" FontSize="14"/>
-                            <Label Content="Capabilities" HorizontalAlignment="Left" Margin="362,148,0,0" VerticalAlignment="Top" Width="253" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="Black" FontWeight="Bold" FontSize="14"/>
-                            <Grid HorizontalAlignment="Left" Margin="105,182,0,0" Width="510" Height="180" VerticalAlignment="Top">
+                            <Label Content="Stats" HorizontalAlignment="Left" Margin="105,148,0,0"
+                                   VerticalAlignment="Top" Width="252.5" VerticalContentAlignment="Center"
+                                   HorizontalContentAlignment="Center" Foreground="White" Background="Black"
+                                   FontWeight="Bold" FontSize="14" />
+                            <Label Content="Capabilities" HorizontalAlignment="Left" Margin="362,148,0,0"
+                                   VerticalAlignment="Top" Width="253" VerticalContentAlignment="Center"
+                                   HorizontalContentAlignment="Center" Foreground="White" Background="Black"
+                                   FontWeight="Bold" FontSize="14" />
+                            <Grid HorizontalAlignment="Left" Margin="105,182,0,0" Width="510" Height="180"
+                                  VerticalAlignment="Top">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="252.5"/>
-                                    <ColumnDefinition Width="5"/>
-                                    <ColumnDefinition Width="252.5"/>
+                                    <ColumnDefinition Width="252.5" />
+                                    <ColumnDefinition Width="5" />
+                                    <ColumnDefinition Width="252.5" />
                                 </Grid.ColumnDefinitions>
-                                <TextBox x:Name="Stats_HP_Base" HorizontalAlignment="Left" Height="25" Margin="67,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                                <Label Content="Stat" HorizontalAlignment="Left" Width="67" Padding="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="25" VerticalAlignment="Top"/>
-                                <Label Content="Base" HorizontalAlignment="Left" Width="35" Padding="0" VerticalContentAlignment="Center" Margin="67,0,0,0" HorizontalContentAlignment="Center" Height="25" VerticalAlignment="Top"/>
-                                <Label Content="Allocated" HorizontalAlignment="Left" Width="59" Padding="0" VerticalContentAlignment="Center" Margin="107,0,0,0" HorizontalContentAlignment="Center" Height="25" VerticalAlignment="Top"/>
-                                <Label Content="Stage" HorizontalAlignment="Left" Width="36" Padding="0" VerticalContentAlignment="Center" Margin="171,0,0,0" HorizontalContentAlignment="Center" Height="25" VerticalAlignment="Top"/>
-                                <Label Content="Max" Padding="0" VerticalContentAlignment="Center" Margin="212,0,0,0" HorizontalContentAlignment="Center" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="40"/>
-                                <Label Content="HP" HorizontalAlignment="Left" Width="67" Padding="0" VerticalContentAlignment="Center" Margin="0,30,0,0" HorizontalContentAlignment="Center" Height="25" VerticalAlignment="Top"/>
-                                <Label Content="Attack" HorizontalAlignment="Left" Width="67" Padding="0" VerticalContentAlignment="Center" Margin="0,55,0,0" HorizontalContentAlignment="Center" Height="25" VerticalAlignment="Top"/>
-                                <Label Content="Defence" HorizontalAlignment="Left" Width="67" Padding="0" VerticalContentAlignment="Center" Margin="0,80,0,0" HorizontalContentAlignment="Center" Height="25" VerticalAlignment="Top"/>
-                                <Label Content="Sp Attack" HorizontalAlignment="Left" Width="67" Padding="0" VerticalContentAlignment="Center" Margin="0,105,0,0" HorizontalContentAlignment="Center" Height="25" VerticalAlignment="Top"/>
-                                <Label Content="Sp Defence" HorizontalAlignment="Left" Width="67" Padding="0" VerticalContentAlignment="Center" Margin="0,130,0,0" HorizontalContentAlignment="Center" Height="25" VerticalAlignment="Top"/>
-                                <Label Content="Speed" HorizontalAlignment="Left" Width="67" Padding="0" VerticalContentAlignment="Center" Margin="0,155,0,0" HorizontalContentAlignment="Center" Height="25" VerticalAlignment="Top"/>
-                                <TextBox x:Name="Stats_HP_Add" HorizontalAlignment="Left" Height="25" Margin="107,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="Stats_HP_Max" HorizontalAlignment="Left" Height="25" Margin="212,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="Stats_Attack_Base" HorizontalAlignment="Left" Height="25" Margin="67,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="Stats_Attack_Add" HorizontalAlignment="Left" Height="25" Margin="107,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="Stats_Attack_CS" HorizontalAlignment="Left" Height="25" Margin="171,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" Text="6" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="Stats_Attack_Max" HorizontalAlignment="Left" Height="25" Margin="212,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="Stats_Defence_Base" HorizontalAlignment="Left" Height="25" Margin="67,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="Stats_Defence_Add" HorizontalAlignment="Left" Height="25" Margin="107,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="Stats_Defence_CS" HorizontalAlignment="Left" Height="25" Margin="171,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" Text="6" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="Stats_Defence_Max" HorizontalAlignment="Left" Height="25" Margin="212,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="Stats_SpAttack_Base" HorizontalAlignment="Left" Height="25" Margin="67,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="Stats_SpAttack_Add" HorizontalAlignment="Left" Height="25" Margin="107,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="Stats_SpAttack_CS" HorizontalAlignment="Left" Height="25" Margin="171,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" Text="6" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="Stats_SpAttack_Max" HorizontalAlignment="Left" Height="25" Margin="212,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="Stats_SpDefence_Base" HorizontalAlignment="Left" Height="25" Margin="67,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="Stats_SpDefence_Add" HorizontalAlignment="Left" Height="25" Margin="107,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="Stats_SpDefence_CS" HorizontalAlignment="Left" Height="25" Margin="171,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" Text="6" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="Stats_SpDefence_Max" HorizontalAlignment="Left" Height="25" Margin="212,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="Stats_Speed_Base" HorizontalAlignment="Left" Height="25" Margin="67,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="Stats_Speed_Add" HorizontalAlignment="Left" Height="25" Margin="107,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="Stats_Speed_CS" HorizontalAlignment="Left" Height="25" Margin="171,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" Text="6" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="Stats_Speed_Max" HorizontalAlignment="Left" Height="25" Margin="212,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                                <ListView x:Name="Capabilities_List" Grid.Column="2" Background="#FFE5E5E5" BorderBrush="#FFE5E5E5">
+                                <TextBox x:Name="Stats_HP_Base" HorizontalAlignment="Left" Height="25"
+                                         Margin="67,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35"
+                                         IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999"
+                                         VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+                                <Label Content="Stat" HorizontalAlignment="Left" Width="67" Padding="0"
+                                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                                       Height="25" VerticalAlignment="Top" />
+                                <Label Content="Base" HorizontalAlignment="Left" Width="35" Padding="0"
+                                       VerticalContentAlignment="Center" Margin="67,0,0,0"
+                                       HorizontalContentAlignment="Center" Height="25" VerticalAlignment="Top" />
+                                <Label Content="Allocated" HorizontalAlignment="Left" Width="59" Padding="0"
+                                       VerticalContentAlignment="Center" Margin="107,0,0,0"
+                                       HorizontalContentAlignment="Center" Height="25" VerticalAlignment="Top" />
+                                <Label Content="Stage" HorizontalAlignment="Left" Width="36" Padding="0"
+                                       VerticalContentAlignment="Center" Margin="171,0,0,0"
+                                       HorizontalContentAlignment="Center" Height="25" VerticalAlignment="Top" />
+                                <Label Content="Max" Padding="0" VerticalContentAlignment="Center" Margin="212,0,0,0"
+                                       HorizontalContentAlignment="Center" Height="25" VerticalAlignment="Top"
+                                       HorizontalAlignment="Left" Width="40" />
+                                <Label Content="HP" HorizontalAlignment="Left" Width="67" Padding="0"
+                                       VerticalContentAlignment="Center" Margin="0,30,0,0"
+                                       HorizontalContentAlignment="Center" Height="25" VerticalAlignment="Top" />
+                                <Label Content="Attack" HorizontalAlignment="Left" Width="67" Padding="0"
+                                       VerticalContentAlignment="Center" Margin="0,55,0,0"
+                                       HorizontalContentAlignment="Center" Height="25" VerticalAlignment="Top" />
+                                <Label Content="Defence" HorizontalAlignment="Left" Width="67" Padding="0"
+                                       VerticalContentAlignment="Center" Margin="0,80,0,0"
+                                       HorizontalContentAlignment="Center" Height="25" VerticalAlignment="Top" />
+                                <Label Content="Sp Attack" HorizontalAlignment="Left" Width="67" Padding="0"
+                                       VerticalContentAlignment="Center" Margin="0,105,0,0"
+                                       HorizontalContentAlignment="Center" Height="25" VerticalAlignment="Top" />
+                                <Label Content="Sp Defence" HorizontalAlignment="Left" Width="67" Padding="0"
+                                       VerticalContentAlignment="Center" Margin="0,130,0,0"
+                                       HorizontalContentAlignment="Center" Height="25" VerticalAlignment="Top" />
+                                <Label Content="Speed" HorizontalAlignment="Left" Width="67" Padding="0"
+                                       VerticalContentAlignment="Center" Margin="0,155,0,0"
+                                       HorizontalContentAlignment="Center" Height="25" VerticalAlignment="Top" />
+                                <TextBox x:Name="Stats_HP_Add" HorizontalAlignment="Left" Height="25"
+                                         Margin="107,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59"
+                                         Text="9999" VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center" />
+                                <TextBox x:Name="Stats_HP_Max" HorizontalAlignment="Left" Height="25"
+                                         Margin="212,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40"
+                                         IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999"
+                                         VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+                                <TextBox x:Name="Stats_Attack_Base" HorizontalAlignment="Left" Height="25"
+                                         Margin="67,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35"
+                                         IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999"
+                                         VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+                                <TextBox x:Name="Stats_Attack_Add" HorizontalAlignment="Left" Height="25"
+                                         Margin="107,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59"
+                                         Text="9999" VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center" />
+                                <TextBox x:Name="Stats_Attack_CS" HorizontalAlignment="Left" Height="25"
+                                         Margin="171,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36"
+                                         Text="6" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+                                <TextBox x:Name="Stats_Attack_Max" HorizontalAlignment="Left" Height="25"
+                                         Margin="212,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40"
+                                         IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999"
+                                         VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+                                <TextBox x:Name="Stats_Defence_Base" HorizontalAlignment="Left" Height="25"
+                                         Margin="67,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35"
+                                         IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999"
+                                         VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+                                <TextBox x:Name="Stats_Defence_Add" HorizontalAlignment="Left" Height="25"
+                                         Margin="107,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59"
+                                         Text="9999" VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center" />
+                                <TextBox x:Name="Stats_Defence_CS" HorizontalAlignment="Left" Height="25"
+                                         Margin="171,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36"
+                                         Text="6" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+                                <TextBox x:Name="Stats_Defence_Max" HorizontalAlignment="Left" Height="25"
+                                         Margin="212,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40"
+                                         IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999"
+                                         VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+                                <TextBox x:Name="Stats_SpAttack_Base" HorizontalAlignment="Left" Height="25"
+                                         Margin="67,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35"
+                                         IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999"
+                                         VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+                                <TextBox x:Name="Stats_SpAttack_Add" HorizontalAlignment="Left" Height="25"
+                                         Margin="107,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59"
+                                         Text="9999" VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center" />
+                                <TextBox x:Name="Stats_SpAttack_CS" HorizontalAlignment="Left" Height="25"
+                                         Margin="171,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36"
+                                         Text="6" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+                                <TextBox x:Name="Stats_SpAttack_Max" HorizontalAlignment="Left" Height="25"
+                                         Margin="212,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40"
+                                         IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999"
+                                         VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+                                <TextBox x:Name="Stats_SpDefence_Base" HorizontalAlignment="Left" Height="25"
+                                         Margin="67,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35"
+                                         IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999"
+                                         VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+                                <TextBox x:Name="Stats_SpDefence_Add" HorizontalAlignment="Left" Height="25"
+                                         Margin="107,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59"
+                                         Text="9999" VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center" />
+                                <TextBox x:Name="Stats_SpDefence_CS" HorizontalAlignment="Left" Height="25"
+                                         Margin="171,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36"
+                                         Text="6" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+                                <TextBox x:Name="Stats_SpDefence_Max" HorizontalAlignment="Left" Height="25"
+                                         Margin="212,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40"
+                                         IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999"
+                                         VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+                                <TextBox x:Name="Stats_Speed_Base" HorizontalAlignment="Left" Height="25"
+                                         Margin="67,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35"
+                                         IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999"
+                                         VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+                                <TextBox x:Name="Stats_Speed_Add" HorizontalAlignment="Left" Height="25"
+                                         Margin="107,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="59"
+                                         Text="9999" VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center" />
+                                <TextBox x:Name="Stats_Speed_CS" HorizontalAlignment="Left" Height="25"
+                                         Margin="171,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="36"
+                                         Text="6" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+                                <TextBox x:Name="Stats_Speed_Max" HorizontalAlignment="Left" Height="25"
+                                         Margin="212,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40"
+                                         IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="9999"
+                                         VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+                                <ListView x:Name="Capabilities_List" Grid.Column="2" Background="#FFE5E5E5"
+                                          BorderBrush="#FFE5E5E5">
                                     <ListView.View>
                                         <GridView>
-                                            <GridViewColumn Header="Capability" Width="160"/>
-                                            <GridViewColumn Header="Value" Width="80"/>
+                                            <GridViewColumn Header="Capability" Width="160" />
+                                            <GridViewColumn Header="Value" Width="80" />
                                         </GridView>
                                     </ListView.View>
-                                    <ListViewItem Content="Overland"/>
-                                    <ListViewItem Content="Swim"/>
-                                    <ListViewItem Content="Long Jump"/>
-                                    <ListViewItem Content="High Jump"/>
-                                    <ListViewItem Content="Power"/>
+                                    <ListViewItem Content="Overland" />
+                                    <ListViewItem Content="Swim" />
+                                    <ListViewItem Content="Long Jump" />
+                                    <ListViewItem Content="High Jump" />
+                                    <ListViewItem Content="Power" />
                                 </ListView>
                             </Grid>
-                            <Label Content="Status Conditions" HorizontalAlignment="Left" Margin="105,367,0,0" VerticalAlignment="Top" Width="510" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="Black" FontWeight="Bold" FontSize="14"/>
-                            <Grid HorizontalAlignment="Left" Height="339" Margin="105,396,0,0" VerticalAlignment="Top" Width="510">
+                            <Label Content="Status Conditions" HorizontalAlignment="Left" Margin="105,367,0,0"
+                                   VerticalAlignment="Top" Width="510" VerticalContentAlignment="Center"
+                                   HorizontalContentAlignment="Center" Foreground="White" Background="Black"
+                                   FontWeight="Bold" FontSize="14" />
+                            <Grid HorizontalAlignment="Left" Height="339" Margin="105,396,0,0" VerticalAlignment="Top"
+                                  Width="510">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="245"/>
-                                    <ColumnDefinition Width="20"/>
-                                    <ColumnDefinition Width="245"/>
+                                    <ColumnDefinition Width="245" />
+                                    <ColumnDefinition Width="20" />
+                                    <ColumnDefinition Width="245" />
                                 </Grid.ColumnDefinitions>
-                                <Label Content="Persistent Statuses" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Width="510" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="#FF7C7C7C" FontWeight="Bold" Grid.ColumnSpan="3"/>
-                                <CheckBox x:Name="Status_Persistent_Burned" Content="Burned" Margin="0,31,0,0" VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft" HorizontalContentAlignment="Right"/>
-                                <CheckBox x:Name="Status_Persistent_Frozen" Content="Frozen" Margin="0,31,0,0" VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft" HorizontalContentAlignment="Right" Grid.Column="2"/>
-                                <CheckBox x:Name="Status_Persistent_Paralsys" Content="Paralsys" Margin="0,51,0,0" VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft" HorizontalContentAlignment="Right"/>
-                                <CheckBox x:Name="Status_Persistent_Poisoned" Content="Poisoned" Margin="0,51,0,0" VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft" HorizontalContentAlignment="Right" Grid.Column="2"/>
-                                <Label Content="Volatile Statuses" HorizontalAlignment="Left" Margin="0,71,0,0" VerticalAlignment="Top" Width="510" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="#FF7C7C7C" FontWeight="Bold" Grid.ColumnSpan="3"/>
-                                <CheckBox x:Name="Status_Volatile_BadSleep" Content="Bad Sleep" Margin="0,102,0,0" VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft" HorizontalContentAlignment="Right"/>
-                                <CheckBox x:Name="Status_Volatile_Confused" Content="Confused" Margin="0,102,0,0" VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft" HorizontalContentAlignment="Right" Grid.Column="2"/>
-                                <CheckBox x:Name="Status_Volatile_Cursed" Content="Cursed" Margin="0,122,0,0" VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft" HorizontalContentAlignment="Right"/>
-                                <CheckBox x:Name="Status_Volatile_Disabled" Content="Disabled" Margin="0,122,0,0" VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft" HorizontalContentAlignment="Right" Grid.Column="2"/>
-                                <Label Content="Other Statuses" HorizontalAlignment="Left" Margin="0,202,0,0" VerticalAlignment="Top" Width="510" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="#FF7C7C7C" FontWeight="Bold" Grid.ColumnSpan="3"/>
-                                <Label Content="Custom Statuses (Coming Soon)" HorizontalAlignment="Left" Margin="0,313,0,0" VerticalAlignment="Top" Width="510" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="#FF7C7C7C" FontWeight="Bold" Grid.ColumnSpan="3"/>
-                                <CheckBox x:Name="Status_Volatile_Rage" Content="Rage" Margin="0,142,0,0" VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft" HorizontalContentAlignment="Right"/>
-                                <CheckBox x:Name="Status_Volatile_Flinch" Content="Flinch" Margin="0,142,0,0" VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft" HorizontalContentAlignment="Right" Grid.Column="2"/>
-                                <CheckBox x:Name="Status_Volatile_Infatuation" Content="Infatuation" Margin="0,162,0,0" VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft" HorizontalContentAlignment="Right"/>
-                                <CheckBox x:Name="Status_Volatile_Sleep" Content="Sleep" Margin="0,162,0,0" VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft" HorizontalContentAlignment="Right" Grid.Column="2"/>
-                                <CheckBox x:Name="Status_Volatile_Suppressed" Content="Suppressed" Margin="0,182,0,0" VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft" HorizontalContentAlignment="Right"/>
-                                <CheckBox x:Name="Status_Other_Fainted" Content="Fainted" Margin="0,233,0,0" VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft" HorizontalContentAlignment="Right"/>
-                                <CheckBox x:Name="Status_Other_Blindness" Content="Blindness" Margin="0,233,0,0" VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft" HorizontalContentAlignment="Right" Grid.Column="2"/>
-                                <CheckBox x:Name="Status_Other_TotalBlindness" Content="Total Blindness" Margin="0,253,0,0" VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft" HorizontalContentAlignment="Right"/>
-                                <CheckBox x:Name="Status_Other_Slowed" Content="Slowed" Margin="0,253,0,0" VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft" HorizontalContentAlignment="Right" Grid.Column="2"/>
-                                <CheckBox x:Name="Status_Other_Stuck" Content="Stuck" Margin="0,273,0,0" VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft" HorizontalContentAlignment="Right"/>
-                                <CheckBox x:Name="Status_Other_Trapped" Content="Trapped" Margin="0,273,0,0" VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft" HorizontalContentAlignment="Right" Grid.Column="2"/>
-                                <CheckBox x:Name="Status_Other_Tripped" Content="Tripped" Margin="0,293,0,0" VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft" HorizontalContentAlignment="Right"/>
-                                <CheckBox x:Name="Status_Other_Vulnerable" Content="Vulnerable" Margin="0,293,0,0" VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft" HorizontalContentAlignment="Right" Grid.Column="2"/>
+                                <Label Content="Persistent Statuses" HorizontalAlignment="Left" Margin="0,0,0,0"
+                                       VerticalAlignment="Top" Width="510" VerticalContentAlignment="Center"
+                                       HorizontalContentAlignment="Center" Foreground="White" Background="#FF7C7C7C"
+                                       FontWeight="Bold" Grid.ColumnSpan="3" />
+                                <CheckBox x:Name="Status_Persistent_Burned" Content="Burned" Margin="0,31,0,0"
+                                          VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft"
+                                          HorizontalContentAlignment="Right" />
+                                <CheckBox x:Name="Status_Persistent_Frozen" Content="Frozen" Margin="0,31,0,0"
+                                          VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft"
+                                          HorizontalContentAlignment="Right" Grid.Column="2" />
+                                <CheckBox x:Name="Status_Persistent_Paralsys" Content="Paralsys" Margin="0,51,0,0"
+                                          VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft"
+                                          HorizontalContentAlignment="Right" />
+                                <CheckBox x:Name="Status_Persistent_Poisoned" Content="Poisoned" Margin="0,51,0,0"
+                                          VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft"
+                                          HorizontalContentAlignment="Right" Grid.Column="2" />
+                                <Label Content="Volatile Statuses" HorizontalAlignment="Left" Margin="0,71,0,0"
+                                       VerticalAlignment="Top" Width="510" VerticalContentAlignment="Center"
+                                       HorizontalContentAlignment="Center" Foreground="White" Background="#FF7C7C7C"
+                                       FontWeight="Bold" Grid.ColumnSpan="3" />
+                                <CheckBox x:Name="Status_Volatile_BadSleep" Content="Bad Sleep" Margin="0,102,0,0"
+                                          VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft"
+                                          HorizontalContentAlignment="Right" />
+                                <CheckBox x:Name="Status_Volatile_Confused" Content="Confused" Margin="0,102,0,0"
+                                          VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft"
+                                          HorizontalContentAlignment="Right" Grid.Column="2" />
+                                <CheckBox x:Name="Status_Volatile_Cursed" Content="Cursed" Margin="0,122,0,0"
+                                          VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft"
+                                          HorizontalContentAlignment="Right" />
+                                <CheckBox x:Name="Status_Volatile_Disabled" Content="Disabled" Margin="0,122,0,0"
+                                          VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft"
+                                          HorizontalContentAlignment="Right" Grid.Column="2" />
+                                <Label Content="Other Statuses" HorizontalAlignment="Left" Margin="0,202,0,0"
+                                       VerticalAlignment="Top" Width="510" VerticalContentAlignment="Center"
+                                       HorizontalContentAlignment="Center" Foreground="White" Background="#FF7C7C7C"
+                                       FontWeight="Bold" Grid.ColumnSpan="3" />
+                                <Label Content="Custom Statuses (Coming Soon)" HorizontalAlignment="Left"
+                                       Margin="0,313,0,0" VerticalAlignment="Top" Width="510"
+                                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                                       Foreground="White" Background="#FF7C7C7C" FontWeight="Bold" Grid.ColumnSpan="3" />
+                                <CheckBox x:Name="Status_Volatile_Rage" Content="Rage" Margin="0,142,0,0"
+                                          VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft"
+                                          HorizontalContentAlignment="Right" />
+                                <CheckBox x:Name="Status_Volatile_Flinch" Content="Flinch" Margin="0,142,0,0"
+                                          VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft"
+                                          HorizontalContentAlignment="Right" Grid.Column="2" />
+                                <CheckBox x:Name="Status_Volatile_Infatuation" Content="Infatuation" Margin="0,162,0,0"
+                                          VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft"
+                                          HorizontalContentAlignment="Right" />
+                                <CheckBox x:Name="Status_Volatile_Sleep" Content="Sleep" Margin="0,162,0,0"
+                                          VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft"
+                                          HorizontalContentAlignment="Right" Grid.Column="2" />
+                                <CheckBox x:Name="Status_Volatile_Suppressed" Content="Suppressed" Margin="0,182,0,0"
+                                          VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft"
+                                          HorizontalContentAlignment="Right" />
+                                <CheckBox x:Name="Status_Other_Fainted" Content="Fainted" Margin="0,233,0,0"
+                                          VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft"
+                                          HorizontalContentAlignment="Right" />
+                                <CheckBox x:Name="Status_Other_Blindness" Content="Blindness" Margin="0,233,0,0"
+                                          VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft"
+                                          HorizontalContentAlignment="Right" Grid.Column="2" />
+                                <CheckBox x:Name="Status_Other_TotalBlindness" Content="Total Blindness"
+                                          Margin="0,253,0,0" VerticalAlignment="Top" Padding="4,-1,0,0"
+                                          FlowDirection="RightToLeft" HorizontalContentAlignment="Right" />
+                                <CheckBox x:Name="Status_Other_Slowed" Content="Slowed" Margin="0,253,0,0"
+                                          VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft"
+                                          HorizontalContentAlignment="Right" Grid.Column="2" />
+                                <CheckBox x:Name="Status_Other_Stuck" Content="Stuck" Margin="0,273,0,0"
+                                          VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft"
+                                          HorizontalContentAlignment="Right" />
+                                <CheckBox x:Name="Status_Other_Trapped" Content="Trapped" Margin="0,273,0,0"
+                                          VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft"
+                                          HorizontalContentAlignment="Right" Grid.Column="2" />
+                                <CheckBox x:Name="Status_Other_Tripped" Content="Tripped" Margin="0,293,0,0"
+                                          VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft"
+                                          HorizontalContentAlignment="Right" />
+                                <CheckBox x:Name="Status_Other_Vulnerable" Content="Vulnerable" Margin="0,293,0,0"
+                                          VerticalAlignment="Top" Padding="4,-1,0,0" FlowDirection="RightToLeft"
+                                          HorizontalContentAlignment="Right" Grid.Column="2" />
                             </Grid>
-                            <Label Content="HP" HorizontalAlignment="Left" Margin="105,735,0,0" VerticalAlignment="Top" Width="167" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="Black" FontWeight="Bold" FontSize="14"/>
-                            <Label Content="HP Markers" HorizontalAlignment="Left" Margin="277,735,0,0" VerticalAlignment="Top" Width="164" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="Black" FontWeight="Bold" FontSize="14"/>
-                            <Label Content="Evasions" HorizontalAlignment="Left" Margin="446,735,0,0" VerticalAlignment="Top" Width="169" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="White" Background="Black" FontWeight="Bold" FontSize="14"/>
-                            <Grid HorizontalAlignment="Left" Height="153" Margin="105,764,0,0" VerticalAlignment="Top" Width="510">
+                            <Label Content="HP" HorizontalAlignment="Left" Margin="105,735,0,0" VerticalAlignment="Top"
+                                   Width="167" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                                   Foreground="White" Background="Black" FontWeight="Bold" FontSize="14" />
+                            <Label Content="HP Markers" HorizontalAlignment="Left" Margin="277,735,0,0"
+                                   VerticalAlignment="Top" Width="164" VerticalContentAlignment="Center"
+                                   HorizontalContentAlignment="Center" Foreground="White" Background="Black"
+                                   FontWeight="Bold" FontSize="14" />
+                            <Label Content="Evasions" HorizontalAlignment="Left" Margin="446,735,0,0"
+                                   VerticalAlignment="Top" Width="169" VerticalContentAlignment="Center"
+                                   HorizontalContentAlignment="Center" Foreground="White" Background="Black"
+                                   FontWeight="Bold" FontSize="14" />
+                            <Grid HorizontalAlignment="Left" Height="153" Margin="105,764,0,0" VerticalAlignment="Top"
+                                  Width="510">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="167"/>
-                                    <ColumnDefinition Width="5"/>
-                                    <ColumnDefinition Width="164"/>
-                                    <ColumnDefinition Width="5"/>
-                                    <ColumnDefinition Width="169"/>
+                                    <ColumnDefinition Width="167" />
+                                    <ColumnDefinition Width="5" />
+                                    <ColumnDefinition Width="164" />
+                                    <ColumnDefinition Width="5" />
+                                    <ColumnDefinition Width="169" />
                                 </Grid.ColumnDefinitions>
-                                <Label Content="Current Hit Points" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="5,0,0,0" Height="26" VerticalContentAlignment="Center" Width="127"/>
-                                <TextBox x:Name="HP_Current" HorizontalAlignment="Left" Height="26" Margin="127,0,0,0" TextWrapping="Wrap" Text="9999" VerticalAlignment="Top" Width="40" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                                <Label Content="Current Max Hit Points" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,31,0,0" Width="127" Padding="5,0,0,0" Height="26" VerticalContentAlignment="Center"/>
-                                <TextBox x:Name="HP_Max_Current" HorizontalAlignment="Left" Height="26" Margin="127,31,0,0" TextWrapping="Wrap" Text="9999" VerticalAlignment="Top" Width="40" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                                <Label Content="Max Hit Points" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,62,0,0" Padding="5,0,0,0" Height="26" VerticalContentAlignment="Center" Width="127"/>
-                                <TextBox x:Name="HP_Max" HorizontalAlignment="Left" Height="26" Margin="127,62,0,0" TextWrapping="Wrap" Text="9999" VerticalAlignment="Top" Width="40" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                                <Label Content="Temporary Hit Points" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,93,0,0" Padding="5,0,0,0" Height="26" VerticalContentAlignment="Center" Width="127"/>
-                                <TextBox x:Name="HP_Temp" HorizontalAlignment="Left" Height="26" Margin="127,93,0,0" TextWrapping="Wrap" Text="9999" VerticalAlignment="Top" Width="40" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                                <Label Content="Injuries" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,124,0,0" Padding="5,0,0,0" Height="26" VerticalContentAlignment="Center" Width="127"/>
-                                <TextBox x:Name="Injuries_Count" HorizontalAlignment="Left" Height="26" Margin="127,124,0,0" TextWrapping="Wrap" Text="9999" VerticalAlignment="Top" Width="40" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                                <Label Content="75 %" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="5,0,0,0" Height="26" VerticalContentAlignment="Center" Width="42" Grid.Column="2"/>
-                                <TextBox x:Name="HPMarker_75P" HorizontalAlignment="Left" Height="26" Margin="42,0,0,0" TextWrapping="Wrap" Text="9999" VerticalAlignment="Top" Width="40" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="2"/>
-                                <Label Content="25 %" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="5,0,0,0" Height="26" VerticalContentAlignment="Center" Width="42" Grid.Column="2" Margin="0,31,0,0"/>
-                                <TextBox x:Name="HPMarker_25P" HorizontalAlignment="Left" Height="26" Margin="42,31,0,0" TextWrapping="Wrap" Text="9999" VerticalAlignment="Top" Width="40" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="2"/>
-                                <Label Content="1/6th" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="5,0,0,0" Height="26" VerticalContentAlignment="Center" Width="42" Grid.Column="2" Margin="0,62,0,0"/>
-                                <TextBox x:Name="HPMarker_6F" HorizontalAlignment="Left" Height="26" Margin="42,62,0,0" TextWrapping="Wrap" Text="9999" VerticalAlignment="Top" Width="40" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="2"/>
-                                <Label Content="1/10th" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="5,0,0,0" Height="26" VerticalContentAlignment="Center" Width="42" Grid.Column="2" Margin="0,93,0,0"/>
-                                <TextBox x:Name="HPMarker_10F" HorizontalAlignment="Left" Height="26" Margin="42,93,0,0" TextWrapping="Wrap" Text="9999" VerticalAlignment="Top" Width="40" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="2"/>
-                                <Label Content="50 %" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="5,0,0,0" Height="26" VerticalContentAlignment="Center" Width="42" Grid.Column="2" Grid.ColumnSpan="3" Margin="82,0,0,0"/>
-                                <TextBox x:Name="HPMarker_50P" HorizontalAlignment="Left" Height="26" Margin="124,0,0,0" TextWrapping="Wrap" Text="9999" VerticalAlignment="Top" Width="40" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="2"/>
-                                <Label Content="1/3rd" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="5,0,0,0" Height="26" VerticalContentAlignment="Center" Width="42" Grid.Column="2" Margin="82,31,0,0"/>
-                                <TextBox x:Name="HPMarker_3F" HorizontalAlignment="Left" Height="26" Margin="124,31,0,0" TextWrapping="Wrap" Text="9999" VerticalAlignment="Top" Width="40" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="2"/>
-                                <Label Content="1/8th" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="5,0,0,0" Height="26" VerticalContentAlignment="Center" Width="42" Grid.Column="2" Margin="82,62,0,0"/>
-                                <TextBox x:Name="HPMarker_8F" HorizontalAlignment="Left" Height="26" Margin="124,62,0,0" TextWrapping="Wrap" Text="9999" VerticalAlignment="Top" Width="40" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="2"/>
-                                <Label Content="1/16th" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="5,0,0,0" Height="26" VerticalContentAlignment="Center" Width="42" Grid.Column="2" Margin="82,93,0,0"/>
-                                <TextBox x:Name="HPMarker_16F" HorizontalAlignment="Left" Height="26" Margin="124,93,0,0" TextWrapping="Wrap" Text="9999" VerticalAlignment="Top" Width="40" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="2"/>
-                                <Label Content="Physical" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="5,0,0,0" Height="26" VerticalContentAlignment="Center" Width="49" Grid.Column="4"/>
-                                <TextBox x:Name="Evasion_Physical_Bonus" HorizontalAlignment="Left" Height="26" Margin="75,0,0,0" TextWrapping="Wrap" Text="999" VerticalAlignment="Top" Width="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="4"/>
-                                <Label Content="Special" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="5,0,0,0" Height="26" VerticalContentAlignment="Center" Width="49" Grid.Column="4" Margin="0,31,0,0"/>
-                                <Label Content="Speed" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="5,0,0,0" Height="26" VerticalContentAlignment="Center" Width="49" Grid.Column="4" Margin="0,62,0,0"/>
-                                <Label Content="+" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Height="26" VerticalContentAlignment="Center" Grid.Column="4" Margin="101,0,0,0" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="Evasion_Physical_Stat" HorizontalAlignment="Left" Height="26" Margin="109,0,0,0" TextWrapping="Wrap" Text="999" VerticalAlignment="Top" Width="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="4"/>
-                                <Label Content="=" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Height="26" VerticalContentAlignment="Center" Grid.Column="4" Margin="135,0,0,0" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="Evasion_Physical_Total" HorizontalAlignment="Left" Height="26" Margin="143,0,0,0" TextWrapping="Wrap" Text="999" VerticalAlignment="Top" Width="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="4"/>
-                                <TextBox x:Name="Evasion_Special_Bonus" HorizontalAlignment="Left" Height="26" Margin="75,31,0,0" TextWrapping="Wrap" Text="999" VerticalAlignment="Top" Width="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="4"/>
-                                <Label Content="+" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Height="26" VerticalContentAlignment="Center" Grid.Column="4" Margin="101,31,0,0" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="Evasion_Special_Stat" HorizontalAlignment="Left" Height="26" Margin="109,31,0,0" TextWrapping="Wrap" Text="999" VerticalAlignment="Top" Width="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="4"/>
-                                <Label Content="=" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Height="26" VerticalContentAlignment="Center" Grid.Column="4" Margin="135,31,0,0" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="Evasion_Special_Total" HorizontalAlignment="Left" Height="26" Margin="143,31,0,0" TextWrapping="Wrap" Text="999" VerticalAlignment="Top" Width="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="4"/>
-                                <TextBox x:Name="Evasion_Speed_Bonus" HorizontalAlignment="Left" Height="26" Margin="75,62,0,0" TextWrapping="Wrap" Text="999" VerticalAlignment="Top" Width="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="4"/>
-                                <Label Content="+" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Height="26" VerticalContentAlignment="Center" Grid.Column="4" Margin="101,62,0,0" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="Evasion_Speed_Stat" HorizontalAlignment="Left" Height="26" Margin="109,62,0,0" TextWrapping="Wrap" Text="999" VerticalAlignment="Top" Width="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="4"/>
-                                <Label Content="=" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0" Height="26" VerticalContentAlignment="Center" Grid.Column="4" Margin="135,62,0,0" HorizontalContentAlignment="Center"/>
-                                <TextBox x:Name="Evasion_Speed_Total" HorizontalAlignment="Left" Height="26" Margin="143,62,0,0" TextWrapping="Wrap" Text="999" VerticalAlignment="Top" Width="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="4"/>
+                                <Label Content="Current Hit Points" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                       Padding="5,0,0,0" Height="26" VerticalContentAlignment="Center" Width="127" />
+                                <TextBox x:Name="HP_Current" HorizontalAlignment="Left" Height="26" Margin="127,0,0,0"
+                                         TextWrapping="Wrap" Text="9999" VerticalAlignment="Top" Width="40"
+                                         VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+                                <Label Content="Current Max Hit Points" HorizontalAlignment="Left"
+                                       VerticalAlignment="Top" Margin="0,31,0,0" Width="127" Padding="5,0,0,0"
+                                       Height="26" VerticalContentAlignment="Center" />
+                                <TextBox x:Name="HP_Max_Current" HorizontalAlignment="Left" Height="26"
+                                         Margin="127,31,0,0" TextWrapping="Wrap" Text="9999" VerticalAlignment="Top"
+                                         Width="40" VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center" />
+                                <Label Content="Max Hit Points" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                       Margin="0,62,0,0" Padding="5,0,0,0" Height="26"
+                                       VerticalContentAlignment="Center" Width="127" />
+                                <TextBox x:Name="HP_Max" HorizontalAlignment="Left" Height="26" Margin="127,62,0,0"
+                                         TextWrapping="Wrap" Text="9999" VerticalAlignment="Top" Width="40"
+                                         VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+                                <Label Content="Temporary Hit Points" HorizontalAlignment="Left"
+                                       VerticalAlignment="Top" Margin="0,93,0,0" Padding="5,0,0,0" Height="26"
+                                       VerticalContentAlignment="Center" Width="127" />
+                                <TextBox x:Name="HP_Temp" HorizontalAlignment="Left" Height="26" Margin="127,93,0,0"
+                                         TextWrapping="Wrap" Text="9999" VerticalAlignment="Top" Width="40"
+                                         VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+                                <Label Content="Injuries" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                       Margin="0,124,0,0" Padding="5,0,0,0" Height="26"
+                                       VerticalContentAlignment="Center" Width="127" />
+                                <TextBox x:Name="Injuries_Count" HorizontalAlignment="Left" Height="26"
+                                         Margin="127,124,0,0" TextWrapping="Wrap" Text="9999" VerticalAlignment="Top"
+                                         Width="40" VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center" />
+                                <Label Content="75 %" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                       Padding="5,0,0,0" Height="26" VerticalContentAlignment="Center" Width="42"
+                                       Grid.Column="2" />
+                                <TextBox x:Name="HPMarker_75P" HorizontalAlignment="Left" Height="26" Margin="42,0,0,0"
+                                         TextWrapping="Wrap" Text="9999" VerticalAlignment="Top" Width="40"
+                                         VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                                         Grid.Column="2" />
+                                <Label Content="25 %" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                       Padding="5,0,0,0" Height="26" VerticalContentAlignment="Center" Width="42"
+                                       Grid.Column="2" Margin="0,31,0,0" />
+                                <TextBox x:Name="HPMarker_25P" HorizontalAlignment="Left" Height="26"
+                                         Margin="42,31,0,0" TextWrapping="Wrap" Text="9999" VerticalAlignment="Top"
+                                         Width="40" VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center" Grid.Column="2" />
+                                <Label Content="1/6th" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                       Padding="5,0,0,0" Height="26" VerticalContentAlignment="Center" Width="42"
+                                       Grid.Column="2" Margin="0,62,0,0" />
+                                <TextBox x:Name="HPMarker_6F" HorizontalAlignment="Left" Height="26" Margin="42,62,0,0"
+                                         TextWrapping="Wrap" Text="9999" VerticalAlignment="Top" Width="40"
+                                         VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                                         Grid.Column="2" />
+                                <Label Content="1/10th" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                       Padding="5,0,0,0" Height="26" VerticalContentAlignment="Center" Width="42"
+                                       Grid.Column="2" Margin="0,93,0,0" />
+                                <TextBox x:Name="HPMarker_10F" HorizontalAlignment="Left" Height="26"
+                                         Margin="42,93,0,0" TextWrapping="Wrap" Text="9999" VerticalAlignment="Top"
+                                         Width="40" VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center" Grid.Column="2" />
+                                <Label Content="50 %" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                       Padding="5,0,0,0" Height="26" VerticalContentAlignment="Center" Width="42"
+                                       Grid.Column="2" Grid.ColumnSpan="3" Margin="82,0,0,0" />
+                                <TextBox x:Name="HPMarker_50P" HorizontalAlignment="Left" Height="26"
+                                         Margin="124,0,0,0" TextWrapping="Wrap" Text="9999" VerticalAlignment="Top"
+                                         Width="40" VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center" Grid.Column="2" />
+                                <Label Content="1/3rd" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                       Padding="5,0,0,0" Height="26" VerticalContentAlignment="Center" Width="42"
+                                       Grid.Column="2" Margin="82,31,0,0" />
+                                <TextBox x:Name="HPMarker_3F" HorizontalAlignment="Left" Height="26"
+                                         Margin="124,31,0,0" TextWrapping="Wrap" Text="9999" VerticalAlignment="Top"
+                                         Width="40" VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center" Grid.Column="2" />
+                                <Label Content="1/8th" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                       Padding="5,0,0,0" Height="26" VerticalContentAlignment="Center" Width="42"
+                                       Grid.Column="2" Margin="82,62,0,0" />
+                                <TextBox x:Name="HPMarker_8F" HorizontalAlignment="Left" Height="26"
+                                         Margin="124,62,0,0" TextWrapping="Wrap" Text="9999" VerticalAlignment="Top"
+                                         Width="40" VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center" Grid.Column="2" />
+                                <Label Content="1/16th" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                       Padding="5,0,0,0" Height="26" VerticalContentAlignment="Center" Width="42"
+                                       Grid.Column="2" Margin="82,93,0,0" />
+                                <TextBox x:Name="HPMarker_16F" HorizontalAlignment="Left" Height="26"
+                                         Margin="124,93,0,0" TextWrapping="Wrap" Text="9999" VerticalAlignment="Top"
+                                         Width="40" VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center" Grid.Column="2" />
+                                <Label Content="Physical" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                       Padding="5,0,0,0" Height="26" VerticalContentAlignment="Center" Width="49"
+                                       Grid.Column="4" />
+                                <TextBox x:Name="Evasion_Physical_Bonus" HorizontalAlignment="Left" Height="26"
+                                         Margin="75,0,0,0" TextWrapping="Wrap" Text="999" VerticalAlignment="Top"
+                                         Width="26" VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center" Grid.Column="4" />
+                                <Label Content="Special" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                       Padding="5,0,0,0" Height="26" VerticalContentAlignment="Center" Width="49"
+                                       Grid.Column="4" Margin="0,31,0,0" />
+                                <Label Content="Speed" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                       Padding="5,0,0,0" Height="26" VerticalContentAlignment="Center" Width="49"
+                                       Grid.Column="4" Margin="0,62,0,0" />
+                                <Label Content="+" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0"
+                                       Height="26" VerticalContentAlignment="Center" Grid.Column="4" Margin="101,0,0,0"
+                                       HorizontalContentAlignment="Center" />
+                                <TextBox x:Name="Evasion_Physical_Stat" HorizontalAlignment="Left" Height="26"
+                                         Margin="109,0,0,0" TextWrapping="Wrap" Text="999" VerticalAlignment="Top"
+                                         Width="26" VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center" Grid.Column="4" />
+                                <Label Content="=" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0"
+                                       Height="26" VerticalContentAlignment="Center" Grid.Column="4" Margin="135,0,0,0"
+                                       HorizontalContentAlignment="Center" />
+                                <TextBox x:Name="Evasion_Physical_Total" HorizontalAlignment="Left" Height="26"
+                                         Margin="143,0,0,0" TextWrapping="Wrap" Text="999" VerticalAlignment="Top"
+                                         Width="26" VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center" Grid.Column="4" />
+                                <TextBox x:Name="Evasion_Special_Bonus" HorizontalAlignment="Left" Height="26"
+                                         Margin="75,31,0,0" TextWrapping="Wrap" Text="999" VerticalAlignment="Top"
+                                         Width="26" VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center" Grid.Column="4" />
+                                <Label Content="+" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0"
+                                       Height="26" VerticalContentAlignment="Center" Grid.Column="4"
+                                       Margin="101,31,0,0" HorizontalContentAlignment="Center" />
+                                <TextBox x:Name="Evasion_Special_Stat" HorizontalAlignment="Left" Height="26"
+                                         Margin="109,31,0,0" TextWrapping="Wrap" Text="999" VerticalAlignment="Top"
+                                         Width="26" VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center" Grid.Column="4" />
+                                <Label Content="=" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0"
+                                       Height="26" VerticalContentAlignment="Center" Grid.Column="4"
+                                       Margin="135,31,0,0" HorizontalContentAlignment="Center" />
+                                <TextBox x:Name="Evasion_Special_Total" HorizontalAlignment="Left" Height="26"
+                                         Margin="143,31,0,0" TextWrapping="Wrap" Text="999" VerticalAlignment="Top"
+                                         Width="26" VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center" Grid.Column="4" />
+                                <TextBox x:Name="Evasion_Speed_Bonus" HorizontalAlignment="Left" Height="26"
+                                         Margin="75,62,0,0" TextWrapping="Wrap" Text="999" VerticalAlignment="Top"
+                                         Width="26" VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center" Grid.Column="4" />
+                                <Label Content="+" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0"
+                                       Height="26" VerticalContentAlignment="Center" Grid.Column="4"
+                                       Margin="101,62,0,0" HorizontalContentAlignment="Center" />
+                                <TextBox x:Name="Evasion_Speed_Stat" HorizontalAlignment="Left" Height="26"
+                                         Margin="109,62,0,0" TextWrapping="Wrap" Text="999" VerticalAlignment="Top"
+                                         Width="26" VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center" Grid.Column="4" />
+                                <Label Content="=" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0"
+                                       Height="26" VerticalContentAlignment="Center" Grid.Column="4"
+                                       Margin="135,62,0,0" HorizontalContentAlignment="Center" />
+                                <TextBox x:Name="Evasion_Speed_Total" HorizontalAlignment="Left" Height="26"
+                                         Margin="143,62,0,0" TextWrapping="Wrap" Text="999" VerticalAlignment="Top"
+                                         Width="26" VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Center" Grid.Column="4" />
                             </Grid>
 
                         </Grid>
@@ -210,28 +545,26 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Moves">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5" />
             </TabItem>
             <TabItem Header="Skills">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5" />
             </TabItem>
             <TabItem Header="Edges/&#xD;&#xA;Features/&#xD;&#xA;Abilities">
                 <Grid Background="#FFE5E5E5">
                     <Grid>
-                        <ScrollViewer>
-
-                        </ScrollViewer>
+                        <ScrollViewer />
                     </Grid>
                 </Grid>
             </TabItem>
             <TabItem Header="Inventory">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5" />
             </TabItem>
             <TabItem Header="Other">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5" />
             </TabItem>
             <TabItem Header="Roll Page">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5" />
             </TabItem>
         </TabControl>
 

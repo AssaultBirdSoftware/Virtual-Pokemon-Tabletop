@@ -1,12 +1,19 @@
 ﻿using AssaultBird2454.VPTU.Networking.Server.TCP;
 using System;
+using System.Collections.Generic;
 
 namespace AssaultBird2454.VPTU.Networking.Server.Command_Handeler
 {
+    #region Delegates
     public delegate void Command_Callback(object Data, TCP_ClientNode Client);
+    public delegate void RateLimiting(string Command, bool Enabled, int Limit);
+    #endregion
 
     public class Command
     {
+        public event RateLimiting RateLimitChanged_Event;// Event invoked when ratelimiting settings changed
+        public event Command_Callback Command_Executed;// Event invoked when the command is executed
+
         /// <summary>
         /// Creates a new command object
         /// </summary>
@@ -17,10 +24,26 @@ namespace AssaultBird2454.VPTU.Networking.Server.Command_Handeler
             Name = _Name;
             DataType = T;
         }
+        private bool _Rate_Enable = false;
+        private int _Rate_Limit = 60;
+
+        public bool Rate_Enabled
+        {
+            get { return _Rate_Enable; }
+        }
+        public int Rate_Limit
+        {
+            get { return _Rate_Limit; }
+        }
+        public void SetRateLimit(bool Enabled, int Limit = 60)
+        {
+            _Rate_Enable = Enabled;
+            _Rate_Limit = Limit;
+            RateLimitChanged_Event?.Invoke(Name, Rate_Enabled, Rate_Limit);
+        }
 
         public string Name { get; set; }// Command Name
         public Type DataType { get; set; }// Command Data Type
-        public event Command_Callback Command_Executed;// Event invoked when the command is executed
 
         internal void Invoke(object Data, TCP_ClientNode Client)
         {

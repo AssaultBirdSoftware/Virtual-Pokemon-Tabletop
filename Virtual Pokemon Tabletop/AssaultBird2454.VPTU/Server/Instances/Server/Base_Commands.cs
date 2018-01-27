@@ -27,29 +27,48 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
         /// 
         public void Register_Commands(Networking.Server.Command_Handeler.Server_CommandHandeler CommandHandeler)
         {
+            // CommandHandeler.GetCommand("").SetRateLimit(true);
+
             CommandHandeler.RegisterCommand<CommandData.Connection.Connect>("ConnectionState");
+            CommandHandeler.GetCommand("ConnectionState").SetRateLimit(false);
             CommandHandeler.GetCommand("ConnectionState").Command_Executed += ConnectionState_Executed;
 
             #region Auth
             CommandHandeler.RegisterCommand<CommandData.Auth.Login>("Auth_Login");
+            CommandHandeler.GetCommand("Auth_Login").SetRateLimit(false);
             CommandHandeler.GetCommand("Auth_Login").Command_Executed += Auth_Login_Executed;
+            CommandHandeler.RegisterCommand<CommandData.Auth.Logout>("Auth_Logout");
+            CommandHandeler.GetCommand("Auth_Logout").SetRateLimit(false);
+            CommandHandeler.GetCommand("Auth_Logout").Command_Executed += Auth_Logout_Executed;
 
             CommandHandeler.RegisterCommand<object>("Auth_Create");
+            CommandHandeler.GetCommand("Auth_Create").SetRateLimit(false);
             CommandHandeler.RegisterCommand<object>("Auth_Delete");
+            CommandHandeler.GetCommand("Auth_Delete").SetRateLimit(false);
             CommandHandeler.RegisterCommand<object>("Auth_Edit");
+            CommandHandeler.GetCommand("Auth_Edit").SetRateLimit(false);
             CommandHandeler.RegisterCommand<object>("Auth_List");
+            CommandHandeler.GetCommand("Auth_List").SetRateLimit(true);
+            CommandHandeler.RegisterCommand<object>("Auth_Get");
+            CommandHandeler.GetCommand("Auth_Get").SetRateLimit(false);
             #endregion
 
             #region Base
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Base_SaveData_Save");
+            CommandHandeler.RegisterCommand<object>("Base_SaveData_Save");
+            CommandHandeler.GetCommand("Base_SaveData_Save").SetRateLimit(false);
             CommandHandeler.GetCommand("Base_SaveData_Save").Command_Executed += Base_SaveData_Save_Executed;
 
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Base_SaveData_Load");
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Base_SaveData_Upload");
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Base_SaveData_Download");
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Base_Settings_Get");
-            CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Base_Settings_Set");
-            // CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_Get>("");
+            CommandHandeler.RegisterCommand<object>("Base_SaveData_Load");
+            CommandHandeler.GetCommand("Base_SaveData_Load").SetRateLimit(false);
+            CommandHandeler.RegisterCommand<object>("Base_SaveData_Upload");
+            CommandHandeler.GetCommand("Base_SaveData_Upload").SetRateLimit(false);
+            CommandHandeler.RegisterCommand<object>("Base_SaveData_Download");
+            CommandHandeler.GetCommand("Base_SaveData_Download").SetRateLimit(false);
+            CommandHandeler.RegisterCommand<object>("Base_Settings_Get");
+            CommandHandeler.GetCommand("Base_Settings_Get").SetRateLimit(false);
+            CommandHandeler.RegisterCommand<object>("Base_Settings_Set");
+            CommandHandeler.GetCommand("Base_Settings_Set").SetRateLimit(false);
+            // CommandHandeler.RegisterCommand<object>("");
             #endregion
 
             #region Permissions (Not Implemented)
@@ -59,85 +78,119 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
             #region Pokedex
             // All
             CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Pokedex_Get");
+            CommandHandeler.GetCommand("Pokedex_Get").SetRateLimit(true, 10);
             CommandHandeler.GetCommand("Pokedex_Get").Command_Executed += Pokedex_Get_Executed;
 
             // Pokemon
             CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Pokedex_Pokemon_GetList");
+            CommandHandeler.GetCommand("Pokedex_Pokemon_GetList").SetRateLimit(true, 10);
             CommandHandeler.GetCommand("Pokedex_Pokemon_GetList").Command_Executed += Pokedex_Pokemon_GetList_Executed;
             CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon>("Pokedex_Pokemon_Get");
+            CommandHandeler.GetCommand("Pokedex_Pokemon_Get").SetRateLimit(true);
             CommandHandeler.GetCommand("Pokedex_Pokemon_Get").Command_Executed += Pokedex_Pokemon_Get_Executed;
 
             CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon>("Pokedex_Pokemon_Add");
+            CommandHandeler.GetCommand("Pokedex_Pokemon_Add").SetRateLimit(true, 100);
             CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon>("Pokedex_Pokemon_Edit");
+            CommandHandeler.GetCommand("Pokedex_Pokemon_Edit").SetRateLimit(true, 100);
             CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon>("Pokedex_Pokemon_Remove");
+            CommandHandeler.GetCommand("Pokedex_Pokemon_Remove").SetRateLimit(true, 100);
 
             // Moves
             CommandHandeler.RegisterCommand<string>("Pokedex_Moves_Get");
+            CommandHandeler.GetCommand("Pokedex_Moves_Get").SetRateLimit(true);
             CommandHandeler.GetCommand("Pokedex_Moves_Get").Command_Executed += Pokedex_Moves_Get_Executed;
 
             CommandHandeler.RegisterCommand<string>("Pokedex_Moves_Add");
+            CommandHandeler.GetCommand("Pokedex_Moves_Add").SetRateLimit(true, 100);
             CommandHandeler.RegisterCommand<string>("Pokedex_Moves_Edit");
+            CommandHandeler.GetCommand("Pokedex_Moves_Edit").SetRateLimit(true, 100);
             CommandHandeler.RegisterCommand<string>("Pokedex_Moves_Remove");
+            CommandHandeler.GetCommand("Pokedex_Moves_Remove").SetRateLimit(true, 100);
             #endregion
 
-            #region Entity
-            CommandHandeler.RegisterCommand<CommandData.Entity.Entity_All_GetList>("Entity_All_GetList");
-            CommandHandeler.GetCommand("Entity_All_GetList").Command_Executed += Entity_All_GetList_Executed;
+            #region Entities
+            CommandHandeler.RegisterCommand<CommandData.Entities.Entities_All_GetList>("Entities_All_GetList");
+            CommandHandeler.GetCommand("Entities_All_GetList").SetRateLimit(true, 5);
+            CommandHandeler.GetCommand("Entities_All_GetList").Command_Executed += Entities_All_GetList_Executed;
 
-            CommandHandeler.RegisterCommand<string>("Entity_Pokemon_GetList");
-            CommandHandeler.RegisterCommand<CommandData.Entity.Entity_Pokemon_Get>("Entity_Pokemon_Get");
-            CommandHandeler.GetCommand("Entity_Pokemon_Get").Command_Executed += Entity_Pokemon_Get_Executed;
-            CommandHandeler.RegisterCommand<string>("Entity_Pokemon_Create");
-            CommandHandeler.RegisterCommand<string>("Entity_Pokemon_Edit");
-            CommandHandeler.RegisterCommand<string>("Entity_Pokemon_Delete");
+            CommandHandeler.RegisterCommand<object>("Entities_Pokemon_GetList");
+            CommandHandeler.GetCommand("Entities_Pokemon_GetList").SetRateLimit(true, 10);
+            CommandHandeler.RegisterCommand<CommandData.Entities.Entities_Pokemon_Get>("Entities_Pokemon_Get");
+            CommandHandeler.GetCommand("Entities_Pokemon_Get").SetRateLimit(true);
+            CommandHandeler.GetCommand("Entities_Pokemon_Get").Command_Executed += Entities_Pokemon_Get_Executed;
+            CommandHandeler.RegisterCommand<object>("Entities_Pokemon_Create");
+            CommandHandeler.GetCommand("Entities_Pokemon_Create").SetRateLimit(true, 100);
+            CommandHandeler.RegisterCommand<object>("Entities_Pokemon_Edit");
+            CommandHandeler.GetCommand("Entities_Pokemon_Edit").SetRateLimit(true, 100);
+            CommandHandeler.RegisterCommand<object>("Entities_Pokemon_Delete");
+            CommandHandeler.GetCommand("Entities_Pokemon_Delete").SetRateLimit(true, 100);
 
-            CommandHandeler.RegisterCommand<string>("Entity_Trainer_GetList");
-            CommandHandeler.RegisterCommand<string>("Entity_Trainer_Get");
-            CommandHandeler.RegisterCommand<string>("Entity_Trainer_Create");
-            CommandHandeler.RegisterCommand<string>("Entity_Trainer_Edit");
-            CommandHandeler.RegisterCommand<string>("Entity_Trainer_Delete");
-            // CommandHandeler.RegisterCommand<string>("Entity_");
+            CommandHandeler.RegisterCommand<object>("Entities_Trainer_GetList");
+            CommandHandeler.GetCommand("Entities_Trainer_GetList").SetRateLimit(true, 10);
+            CommandHandeler.RegisterCommand<object>("Entities_Trainer_Get");
+            CommandHandeler.GetCommand("Entities_Trainer_Get").SetRateLimit(true);
+            CommandHandeler.RegisterCommand<object>("Entities_Trainer_Create");
+            CommandHandeler.GetCommand("Entities_Trainer_Create").SetRateLimit(true, 100);
+            CommandHandeler.RegisterCommand<object>("Entities_Trainer_Edit");
+            CommandHandeler.GetCommand("Entities_Trainer_Edit").SetRateLimit(true, 100);
+            CommandHandeler.RegisterCommand<object>("Entities_Trainer_Delete");
+            CommandHandeler.GetCommand("Entities_Trainer_Delete").SetRateLimit(true, 100);
+            // CommandHandeler.RegisterCommand<string>("Entities_");
             #endregion
 
             #region Battles
             // Battles
-            CommandHandeler.RegisterCommand<string>("Battle_Participants_Add");// Adds Participants to the Battle Instance
+            CommandHandeler.RegisterCommand<object>("Battle_Participants_Add");// Adds Participants to the Battle Instance
+            CommandHandeler.GetCommand("Battle_Participants_Add").SetRateLimit(true, 100);
             CommandHandeler.GetCommand("Battle_Participants_Add").Command_Executed += Battle_Participants_Add_Executed;
 
-            CommandHandeler.RegisterCommand<string>("Battle_Participants_Edit");// Edits a participant in the Battle Instnace
+            CommandHandeler.RegisterCommand<object>("Battle_Participants_Edit");// Edits a participant in the Battle Instnace
+            CommandHandeler.GetCommand("Battle_Participants_Edit").SetRateLimit(true, 100);
             CommandHandeler.GetCommand("Battle_Participants_Edit").Command_Executed += Battle_Participants_Edit_Executed;
 
-            CommandHandeler.RegisterCommand<string>("Battle_Participants_Remove");// Removes a participant from the Battle Instance
+            CommandHandeler.RegisterCommand<object>("Battle_Participants_Remove");// Removes a participant from the Battle Instance
+            CommandHandeler.GetCommand("Battle_Participants_Remove").SetRateLimit(true, 100);
             CommandHandeler.GetCommand("Battle_Participants_Remove").Command_Executed += Battle_Participants_Remove_Executed;
 
-            CommandHandeler.RegisterCommand<string>("Battle_Participants_Get");// Gets the participants in the Battle Instance
+            CommandHandeler.RegisterCommand<object>("Battle_Participants_Get");// Gets the participants in the Battle Instance
+            CommandHandeler.GetCommand("Battle_Participants_Get").SetRateLimit(true, 10);
             CommandHandeler.GetCommand("Battle_Participants_Get").Command_Executed += Battle_Participants_Get_Executed;
 
-            CommandHandeler.RegisterCommand<string>("Battle_TurnOrder_Get");// Gets the Turn Order of this Battle Instance
+            CommandHandeler.RegisterCommand<object>("Battle_TurnOrder_Get");// Gets the Turn Order of this Battle Instance
+            CommandHandeler.GetCommand("Battle_TurnOrder_Get").SetRateLimit(true, 180);
             CommandHandeler.GetCommand("Battle_TurnOrder_Get").Command_Executed += Battle_TurnOrder_Get_Executed;
 
-            CommandHandeler.RegisterCommand<string>("Battle_TurnOrder_Current");// Gets the current turn in the Battle Instance
+            CommandHandeler.RegisterCommand<object>("Battle_TurnOrder_Current");// Gets the current turn in the Battle Instance
+            CommandHandeler.GetCommand("Battle_TurnOrder_Current").SetRateLimit(true, 180);
             CommandHandeler.GetCommand("Battle_TurnOrder_Current").Command_Executed += Battle_TurnOrder_Current_Executed;
 
-            CommandHandeler.RegisterCommand<string>("Battle_TurnOrder_Next");// Next Turn in the Battle Instance Turn Order
+            CommandHandeler.RegisterCommand<object>("Battle_TurnOrder_Next");// Next Turn in the Battle Instance Turn Order
+            CommandHandeler.GetCommand("Battle_TurnOrder_Next").SetRateLimit(false);
             CommandHandeler.GetCommand("Battle_TurnOrder_Next").Command_Executed += Battle_TurnOrder_Next_Executed;
 
-            CommandHandeler.RegisterCommand<string>("Battle_TurnOrder_Prev");// Prev Turn in the Battle Instance Turn Order
+            CommandHandeler.RegisterCommand<object>("Battle_TurnOrder_Prev");// Prev Turn in the Battle Instance Turn Order
+            CommandHandeler.GetCommand("Battle_TurnOrder_Prev").SetRateLimit(false);
             CommandHandeler.GetCommand("Battle_TurnOrder_Prev").Command_Executed += Battle_TurnOrder_Prev_Executed;
 
-            CommandHandeler.RegisterCommand<string>("Battle_Action_Execute");// Executes a Battle Action
+            CommandHandeler.RegisterCommand<object>("Battle_Action_Execute");// Executes a Battle Action
+            CommandHandeler.GetCommand("Battle_Action_Execute").SetRateLimit(false);
             CommandHandeler.GetCommand("Battle_Action_Execute").Command_Executed += Battle_Action_Execute_Executed;
 
-            CommandHandeler.RegisterCommand<string>("Battle_Action_Interupt");// Executes a Battle Interupt
+            CommandHandeler.RegisterCommand<object>("Battle_Action_Interupt");// Executes a Battle Interupt
+            CommandHandeler.GetCommand("Battle_Action_Interupt").SetRateLimit(false);
             CommandHandeler.GetCommand("Battle_Action_Interupt").Command_Executed += Battle_Action_Interupt_Executed;
 
             CommandHandeler.RegisterCommand<CommandData.Battle.Battle_Instance_List>("Battle_Instance_List");// Starts the Battle Instance
+            CommandHandeler.GetCommand("Battle_Instance_List").SetRateLimit(true, 15);
             CommandHandeler.GetCommand("Battle_Instance_List").Command_Executed += Battle_Instance_List_Executed;
 
             CommandHandeler.RegisterCommand<CommandData.Battle.Battle_Instance>("Battle_Instance_Start");// Starts the Battle Instance
+            CommandHandeler.GetCommand("Battle_Instance_Start").SetRateLimit(true);
             CommandHandeler.GetCommand("Battle_Instance_Start").Command_Executed += Battle_Instance_Start_Executed;
 
             CommandHandeler.RegisterCommand<CommandData.Battle.Battle_Instance>("Battle_Instance_End");// Ends the Battle Instance
+            CommandHandeler.GetCommand("Battle_Instance_End").SetRateLimit(true);
             CommandHandeler.GetCommand("Battle_Instance_End").Command_Executed += Battle_Instance_End_Executed;
 
             // CommandHandeler.RegisterCommand<string>("Battle_");
@@ -145,16 +198,26 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
 
             #region Resources
             CommandHandeler.RegisterCommand<CommandData.Resources.ImageResource>("Resources_Image_Get");// Gets an Image Resource
+            CommandHandeler.GetCommand("Resources_Image_Get").SetRateLimit(false);
             CommandHandeler.GetCommand("Resources_Image_Get").Command_Executed += Resources_Image_Get_Executed;
 
             CommandHandeler.RegisterCommand<CommandData.Resources.ImageResource>("Resources_Image_Add");// Adds an Image Resource
+            CommandHandeler.GetCommand("Resources_Image_Add").SetRateLimit(false);
             CommandHandeler.RegisterCommand<CommandData.Resources.ImageResource>("Resources_Image_Edit");// Edits and Image Resource
+            CommandHandeler.GetCommand("Resources_Image_Edit").SetRateLimit(false);
             CommandHandeler.RegisterCommand<CommandData.Resources.ImageResource>("Resources_Image_Remove");// Removes and Image Resource
+            CommandHandeler.GetCommand("Resources_Image_Remove").SetRateLimit(false);
+
             CommandHandeler.RegisterCommand<string>("Resources_Audio_Play");// Play Audio Signal
+            CommandHandeler.GetCommand("Resources_Audio_Play").SetRateLimit(false);
             CommandHandeler.RegisterCommand<string>("Resources_Audio_Get");// Gets an Audio Resource
+            CommandHandeler.GetCommand("Resources_Audio_Get").SetRateLimit(false);
             CommandHandeler.RegisterCommand<string>("Resources_Audio_Add");// Adds an Audio Resource
+            CommandHandeler.GetCommand("Resources_Audio_Add").SetRateLimit(false);
             CommandHandeler.RegisterCommand<string>("Resources_Audio_Edit");// Edits and Audio Resource
+            CommandHandeler.GetCommand("Resources_Audio_Edit").SetRateLimit(false);
             CommandHandeler.RegisterCommand<string>("Resources_Audio_Remove");// Removes an Audio Resource
+            CommandHandeler.GetCommand("Resources_Audio_Remove").SetRateLimit(false);
             // CommandHandeler.RegisterCommand<string>("Resources_");
             #endregion
         }
@@ -168,20 +231,11 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
         #region Auth
         private void Auth_Login_Executed(object Data, TCP_ClientNode Client)
         {
-            CommandData.Auth.Login AuthData = (CommandData.Auth.Login)Data;
-
-            Authentication_Manager.Data.Identity ID = Instance.SaveManager.SaveData.Identitys.Find(x => x.Key == AuthData.Client_Key);
-            if (ID != null)
-            {
-                Authentication_Manager.Data.User user = Instance.SaveManager.SaveData.Users.Find(x => x.UserID == ID.UserID);
-                Instance.Authenticate_Client(Client, user);
-
-                Client.Send(new CommandData.Auth.Login() { Client_Key = ID.Key, Auth_State = CommandData.Auth.AuthState.Passed });
-            }
-            else
-            {
-                Client.Send(new CommandData.Auth.Login() { Client_Key = ID.Key, Auth_State = CommandData.Auth.AuthState.Failed });
-            }
+            Instance.Authenticate_Client(Client, (CommandData.Auth.Login)Data);
+        }
+        private void Auth_Logout_Executed(object Data, TCP_ClientNode Client)
+        {
+            Instance.DeAuthenticate_Client(Client);
         }
         #endregion
 
@@ -263,25 +317,25 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
         #endregion
         #endregion
 
-        #region Entity
-        private void Entity_All_GetList_Executed(object Data, TCP_ClientNode Client)
+        #region Entities
+        private void Entities_All_GetList_Executed(object Data, TCP_ClientNode Client)
         {
-            List<EntityManager.Entry_Data> Entitys = new List<EntityManager.Entry_Data>();
-            List<EntityManager.Folder> Folders = new List<EntityManager.Folder>();
+            List<EntitiesManager.Entry_Data> Entities = new List<EntitiesManager.Entry_Data>();
+            List<EntitiesManager.Folder> Folders = new List<EntitiesManager.Folder>();
             Authentication_Manager.Data.User User = Instance.Authenticated_Clients.Find(x => x.Key.ID == Client.ID).Value;
 
-            foreach (EntityManager.Pokemon.PokemonCharacter pokemon in Instance.SaveManager.SaveData.Pokemon)
+            foreach (EntitiesManager.Pokemon.PokemonCharacter pokemon in Instance.SaveManager.SaveData.Pokemon)
             {
                 if (pokemon.View.Contains(User.UserID) || User.isGM)// Change to check if the user has view permissions on the entry
                 {
-                    Entitys.Add(pokemon.EntryData);
+                    Entities.Add(pokemon.EntryData);
                 }
             }
-            foreach (EntityManager.Trainer.TrainerCharacter trainer in Instance.SaveManager.SaveData.Trainers)
+            foreach (EntitiesManager.Trainer.TrainerCharacter trainer in Instance.SaveManager.SaveData.Trainers)
             {
                 if (trainer.View.Contains(User.UserID) || User.isGM)// Change to check if the user has view permissions on the entry
                 {
-                    Entitys.Add(trainer.EntryData);
+                    Entities.Add(trainer.EntryData);
                 }
             }
 
@@ -292,9 +346,9 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
             else
             {
                 // Get only the folders needed
-                foreach (EntityManager.Entry_Data entry in Entitys)
+                foreach (EntitiesManager.Entry_Data entry in Entities)
                 {
-                    foreach (EntityManager.Folder folder in Instance.SaveManager.SaveData.Folders_GetTreeFrom(entry.Parent_Folder))
+                    foreach (EntitiesManager.Folder folder in Instance.SaveManager.SaveData.Folders_GetTreeFrom(entry.Parent_Folder))
                     {
                         if (!Folders.Contains(folder))
                         {
@@ -304,16 +358,17 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
                 }
             }
 
-            Client.Send(new CommandData.Entity.Entity_All_GetList()
+            Client.Send(new CommandData.Entities.Entities_All_GetList()
             {
-                Entrys = Entitys,
-                Folders = Folders
+                Entrys = Entities,
+                Folders = Folders,
+                UserList = Instance.SaveManager.SaveData.Users
             });
         }
 
-        private void Entity_Pokemon_Get_Executed(object Data, TCP_ClientNode Client)
+        private void Entities_Pokemon_Get_Executed(object Data, TCP_ClientNode Client)
         {
-            CommandData.Entity.Entity_Pokemon_Get Pokemon = (CommandData.Entity.Entity_Pokemon_Get)Data;
+            CommandData.Entities.Entities_Pokemon_Get Pokemon = (CommandData.Entities.Entities_Pokemon_Get)Data;
             Authentication_Manager.Data.User User = Instance.Authenticated_Clients.Find(x => x.Key.ID == Client.ID).Value;
 
             Pokemon.Pokemon = Instance.SaveManager.SaveData.Pokemon.Find(x => x.ID == Pokemon.ID);

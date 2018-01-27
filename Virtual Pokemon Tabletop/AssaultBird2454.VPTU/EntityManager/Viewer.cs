@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AssaultBird2454.VPTU.EntityManager
+namespace AssaultBird2454.VPTU.EntitiesManager
 {
-    public enum Entity_Type { Trainer = 0, Pokemon = 1 }
+    public enum Entities_Type { Trainer = 0, Pokemon = 1 }
 
     public class Folder
     {
@@ -34,7 +34,7 @@ namespace AssaultBird2454.VPTU.EntityManager
         /// <summary>
         /// Defines what type of entity this is
         /// </summary>
-        Entity_Type Entity_Type { get; }
+        Entities_Type Entities_Type { get; }
         /// <summary>
         /// The ID of the entity
         /// </summary>
@@ -66,7 +66,7 @@ namespace AssaultBird2454.VPTU.EntityManager
         /// <summary>
         /// Defines what type of entity this is
         /// </summary>
-        public Entity_Type Entity_Type { get; set; }
+        public Entities_Type Entities_Type { get; set; }
         /// <summary>
         /// The ID of the entity
         /// </summary>

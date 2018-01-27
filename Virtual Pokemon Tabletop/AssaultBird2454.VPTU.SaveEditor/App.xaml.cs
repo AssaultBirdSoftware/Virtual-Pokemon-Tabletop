@@ -1,65 +1,86 @@
-﻿using SharpRaven;
-using SharpRaven.Data;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Threading;
-using System.Windows;
+using System.Windows.Forms;
+using AssaultBird2454.VPTU.Sentry;
+using CommandLine;
+using SharpRaven;
+using SharpRaven.Data;
+using Application = System.Windows.Application;
 
 namespace AssaultBird2454.VPTU.SaveEditor
 {
     /// <summary>
-    /// Interaction logic for App.xaml
+    ///     Interaction logic for App.xaml
     /// </summary>
     public partial class App : Application
     {
-        private static string sentry_cid
-        {
-            get
-            {
-                using (Stream str = Assembly.GetExecutingAssembly().GetManifestResourceStream("AssaultBird2454.VPTU.SaveEditor.sentry_cid.txt"))
-                {
-                    using (StreamReader read = new StreamReader(str))
-                    {
-                        return read.ReadToEnd();
-                    }
-                }
-            }
-        }
-
-        private RavenClient ravenClient;
         private bool Debug = true;
 
-        private Thread thread;
+        private RavenClient ravenClient;
+
+        private readonly Thread thread;
 
         public App()
         {
-            thread = new Thread(new ThreadStart(() =>
+            thread = new Thread(() =>
             {
                 try
                 {
                     ravenClient = new RavenClient(sentry_cid);
-                    ravenClient.Release = VersionInfo.VersioningInfo.Version + " (" + VersionInfo.VersioningInfo.Compile_Commit + ")";
+                    ravenClient.Release = VersionInfo.VersioningInfo.Version + " (" +
+                                          VersionInfo.VersioningInfo.Compile_Commit + ")";
                     Debug = false;
                 }
-                catch { Debug = true; }
+                catch
+                {
+                    Debug = true;
+                }
 
                 try
                 {
-                    new MainWindow().ShowDialog();
+                    MainWindow window = new MainWindow();
+
+                    Parser.Default.ParseArguments<Options>(Environment.GetCommandLineArgs()).WithParsed<Options>(new Action<Options>((options) =>
+                    {
+                        #region OpenFile
+                        if (options.OpenFile != null && options.OpenFile != "")
+                        {
+                            if (File.Exists(options.OpenFile))
+                            {
+                                try
+                                {
+                                    window.Load(options.OpenFile);
+                                }
+                                catch (Exception e)
+                                {
+
+                                }
+                            }
+                            else
+                            {
+                                /* File does not exist */
+                            }
+                        }
+                        #endregion
+                    }));
+
+                    window.ShowDialog();
                 }
                 catch (Exception ex)
                 {
                     if (!Debug)
                     {
-                        VPTU.Sentry.Crash_Form cf = new Sentry.Crash_Form();
-                        System.Windows.Forms.DialogResult dr = cf.ShowDialog();
+                        var cf = new Crash_Form();
+                        var dr = cf.ShowDialog();
 
-                        if (dr == System.Windows.Forms.DialogResult.OK)
+                        if (dr == DialogResult.OK)
                         {
                             SentryEvent se = new SentryEvent(ex);
 
-                            se.Tags.Add(new System.Collections.Generic.KeyValuePair<string, string>("Discord Name", cf.ExtraData.DiscordName));
+                            se.Tags.Add(new KeyValuePair<string, string>("Discord Name", cf.ExtraData.DiscordName));
 
                             ravenClient.Capture(se);
                         }
@@ -69,13 +90,33 @@ namespace AssaultBird2454.VPTU.SaveEditor
                         throw ex;
                     }
                 }
-                return;
-            }));
+            });
             thread.SetApartmentState(ApartmentState.STA);
             thread.Start();
             thread.Join();
 
-            Application.Current.Shutdown();
+            Current.Shutdown();
         }
+
+        private static string sentry_cid
+        {
+            get
+            {
+                using (var str = Assembly.GetExecutingAssembly()
+                    .GetManifestResourceStream("AssaultBird2454.VPTU.SaveEditor.sentry_cid.txt"))
+                {
+                    using (var read = new StreamReader(str))
+                    {
+                        return read.ReadToEnd();
+                    }
+                }
+            }
+        }
+    }
+
+    class Options
+    {
+        [Option('o', "open", Required = false, HelpText = "Opens a file at startup", Default = "")]
+        public string OpenFile { get; set; }
     }
 }

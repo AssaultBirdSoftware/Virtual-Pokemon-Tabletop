@@ -76,7 +76,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         private bool TCP_AcceptClients;// Server Accept Connsctions
         private IPAddress TCP_ServerAddress;// Servers Address
         private int TCP_ServerPort;// Servers Port
-        private int TCP_MaxConnections = 1;// Servers Max Client Connections
+        private int TCP_MaxConnections = 50;// Servers Max Client Connections
         private X509Certificate TCP_SSLCert;// SSL Certificate
 
         public Command_Handeler.Server_CommandHandeler CommandHandeler;
@@ -153,6 +153,23 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
                 TCP_MaxConnections = value;
             }
         }
+        /// <summary>
+        /// A variable that returns the ammount of currently connected clients
+        /// </summary>
+        public int CurrentConnections
+        {
+            get
+            {
+                try
+                {
+                    return ClientNodes.Count;
+                }
+                catch
+                {
+                    return 0;
+                }
+            }
+        }
 
         public X509Certificate SSL_Cert
         {
@@ -200,6 +217,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
             Listener = new TcpListener(ServerAddress, ServerPort);// Create a new server object
             Listener.Start();// Starts the server
             Listener.BeginAcceptSocket(Client_Connected, Listener);// Creates an accept client callback
+            Fire_TCP_ServerState_Changed(Data.Server_Status.Online);// Send Server State Changed Event
         }
 
         /// <summary>
@@ -236,7 +254,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
 
             try
             {
-                if (AcceptClients && ClientNodes.Count < MaxConnections)
+                if (AcceptClients && CurrentConnections < MaxConnections)
                 {
                     tclient = Listener.EndAcceptTcpClient(ar);// Creates a client object to handel remote connection
 
@@ -264,7 +282,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
                     {
                         node.Send(new VPTU.Server.Instances.CommandData.Connection.Connect() { Connection_State = VPTU.Server.Instances.CommandData.Connection.ConnectionStatus.Rejected });// Sends the client rejected event
                     }
-                    else if (ClientNodes.Count < MaxConnections)
+                    else if (CurrentConnections < MaxConnections)
                     {
                         node.Send(new VPTU.Server.Instances.CommandData.Connection.Connect() { Connection_State = VPTU.Server.Instances.CommandData.Connection.ConnectionStatus.ServerFull });// Sends the server full error
                     }
@@ -296,10 +314,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
 
             node.Disconnect();// Disconnects the client from the server
 
-            lock (ClientNodes)
-            {
-                ClientNodes.Remove(node);// Removes from list
-            }
+            ClientNodes.Remove(node);// Removes from list
         }
         /// <summary>
         /// Disconnects all clients
@@ -307,7 +322,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         public void Disconnect_AllClients()
         {
 
-            while (ClientNodes.Count >= 1)
+            while (CurrentConnections >= 1)
             {
                 Disconnect_Client(ClientNodes[0]);
             }

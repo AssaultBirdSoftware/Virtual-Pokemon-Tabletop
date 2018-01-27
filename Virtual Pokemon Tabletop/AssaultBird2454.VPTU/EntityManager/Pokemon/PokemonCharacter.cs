@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace AssaultBird2454.VPTU.EntityManager.Pokemon
+namespace AssaultBird2454.VPTU.EntitiesManager.Pokemon
 {
-    public class PokemonCharacter : Entity, Entry
+    public class PokemonCharacter : Entities, Entry
     {
         public PokemonCharacter(string _ID)
         {
@@ -35,7 +35,7 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
                     Name = Name,
                     Parent_Folder = Parent_Folder,
                     Token_ResourceID = Token_ResourceID,
-                    Entity_Type = Entity_Type.Pokemon,
+                    Entities_Type = Entities_Type.Pokemon,
                     View = View,
                     Edit = Edit
                 };
@@ -61,7 +61,7 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         public string Parent_Folder { get; set; }
 
         [JsonIgnore]
-        public Entity_Type Entity_Type { get { return Entity_Type.Pokemon; } }
+        public Entities_Type Entities_Type { get { return Entities_Type.Pokemon; } }
         public string ID { get; set; }
         public string Name { get; set; }
         public string Notes { get; set; }
@@ -104,13 +104,13 @@ namespace AssaultBird2454.VPTU.EntityManager.Pokemon
         }
         public string Held_Item { get; set; }
         public int Loyalty { get; set; }
-        public Pokedex.Entity.Gender Gender { get; set; }
+        public Pokedex.Entities.Gender Gender { get; set; }
         public BattleManager.Data.Nature Nature { get; set; }
         public List<string> Abilitys { get; set; }
-        public Pokedex.Entity.SizeClass SizeClass { get; set; }
-        public Pokedex.Entity.WeightClass WeightClass { get; set; }
-        public Pokedex.Entity.Capability_Data Capabilities { get; set; }
-        public Pokedex.Entity.Skill_Data Skills { get; set; }
+        public Pokedex.Entities.SizeClass SizeClass { get; set; }
+        public Pokedex.Entities.WeightClass WeightClass { get; set; }
+        public Pokedex.Entities.Capability_Data Capabilities { get; set; }
+        public Pokedex.Entities.Skill_Data Skills { get; set; }
 
         #region Stats
         #region HP
