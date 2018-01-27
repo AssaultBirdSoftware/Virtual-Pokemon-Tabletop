@@ -1,0 +1,19 @@
+﻿<Window x:Class="AssaultBird2454.VPTU.Installer.Install.Setup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AssaultBird2454.VPTU.Installer.Install"
+        mc:Ignorable="d"
+        Title="Virtual PTU Setup" Height="560" Width="560" ResizeMode="NoResize">
+    <Grid>
+        <Label Content="Virtual PTU Setup" Margin="10,10,12,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="14"/>
+        <TextBox x:Name="Install_Directory" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Margin="110,47,10,0" IsReadOnly="True"/>
+        <Label Content="Install Directory:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,44,0,0"/>
+        <Button x:Name="Install_Button" Content="Next" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="75" Click="Install_Button_Click"/>
+        <Button x:Name="Cancel_Button" Content="Cancel" HorizontalAlignment="Left" Margin="90,0,0,10" VerticalAlignment="Bottom" Width="75" Click="Cancel_Button_Click"/>
+        <TextBox x:Name="License" Margin="10,127,10,35" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
+        <Label Content="License Agreement" Margin="10,93,12,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="11"/>
+
+    </Grid>
+</Window>

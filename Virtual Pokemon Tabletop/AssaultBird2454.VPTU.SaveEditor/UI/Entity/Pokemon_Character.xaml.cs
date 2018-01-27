@@ -55,7 +55,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
                         MainWindow.SaveManager.LoadImage(PokemonData.Token_ResourceID).GetHbitmap(), IntPtr.Zero,
                         Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
 
-                Token.Background = new ImageBrush(bitmapSource)
+                Token_Display.Background = new ImageBrush(bitmapSource)
                 {
                     Stretch = Stretch.Uniform,
                     TileMode = TileMode.None
@@ -321,7 +321,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
                         MainWindow.SaveManager.LoadImage(PokemonData.Token_ResourceID).GetHbitmap(), IntPtr.Zero,
                         Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
 
-                Token.Background = new ImageBrush(bitmapSource)
+                Token_Display.Background = new ImageBrush(bitmapSource)
                 {
                     Stretch = Stretch.Uniform,
                     TileMode = TileMode.None

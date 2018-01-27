@@ -33,14 +33,17 @@ namespace AssaultBird2454.VPTU.Installer
         public static string Path_InstallDir = (Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Virtual PTU\");
         public static string Path_UpdaterDir = (Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Virtual PTU\Updater\");
         public static string Path_VersionsDir = (Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Virtual PTU\Versions\");
+        public static string Path_OfflineUpdatesDir = (Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Virtual PTU\OfflineUpdates\");
 
         public App()
         {
             Parser.Default.ParseArguments<Options>(Environment.GetCommandLineArgs()).WithParsed<Options>(new Action<Options>((options) =>
             {
-                if (AssemblyDirectory != Path_InstallDir || AssemblyDirectory != Path_UpdaterDir || AssemblyDirectory != Path_VersionsDir)
+                if (AssemblyDirectory != Path_InstallDir || AssemblyDirectory != Path_UpdaterDir || AssemblyDirectory != Path_VersionsDir || AssemblyDirectory != Path_OfflineUpdatesDir)
                 {
-                    // Installer
+                    Install.Setup Setup = new Install.Setup();
+
+                    Setup.ShowDialog();
                 }
                 else
                 {

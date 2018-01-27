@@ -1,0 +1,36 @@
+﻿<Window x:Class="AssaultBird2454.VPTU.Installer.Install.Installer.Configure"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AssaultBird2454.VPTU.Installer.Install.Installer"
+        mc:Ignorable="d"
+        Title="Configure" Height="316.667" Width="670.614">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <ListView x:Name="Instance_List" Height="286" VerticalAlignment="Top">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="150"/>
+                    <GridViewColumn Header="Version" DisplayMemberBinding="{Binding Version_Name}" Width="150"/>
+                    <GridViewColumn Header="Updates" DisplayMemberBinding="{Binding AutoUpdating_Enabled}" Width="50"/>
+                    <GridViewColumn Header="Update Stream" DisplayMemberBinding="{Binding AutoUpdating_Config.ReleaseStream}" Width="85"/>
+                    <GridViewColumn Header="Update Mode" DisplayMemberBinding="{Binding AutoUpdating_Config.Update_Mode}" Width="85"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <GroupBox Grid.Column="1" Header="Controls" Margin="0,0,0,169">
+            <Grid Margin="0">
+                <Button x:Name="Add_Instance_Button" Content="Add Instance" VerticalAlignment="Top" Margin="0,10,0,0" Click="Add_Instance_Button_Click"/>
+                <Button x:Name="Edit_Instance_Button" Content="Edit Instance" VerticalAlignment="Top" Margin="0,35,0,0" Click="Edit_Instance_Button_Click"/>
+                <Button x:Name="Delete_Instance_Button" Content="Delete Instance" VerticalAlignment="Top" Margin="0,60,0,0"/>
+            </Grid>
+        </GroupBox>
+        <Button x:Name="Cancel_Button" Content="Cancel" Grid.Column="1" Margin="5,256,10,0" VerticalAlignment="Top"/>
+        <Button x:Name="Install_Button" Content="Install" Grid.Column="1" Margin="5,231,10,0" VerticalAlignment="Top" Click="Install_Button_Click"/>
+
+    </Grid>
+</Window>
