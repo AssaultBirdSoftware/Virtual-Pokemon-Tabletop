@@ -335,6 +335,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
 
             #region Permissions
 
+            MainWindow.SaveManager.SaveData.Users.Clear();
             foreach (var user in MainWindow.SaveManager.SaveData.Users)
             {
                 var db = new Permissions_DB(PokemonData, user);
