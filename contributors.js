@@ -20,7 +20,34 @@ initContributors([
             ptForum: "6000923",
             youtube: "channel/UCXqpxzR-2HYqaHpgtqOAFFg"
         }
+    },{
+        username: "Firechild513",
+        firstName: "",
+
+        shortDescription: "Is working on physical pokedex cards for the PTU system, and shared the graphical template for use with the VPTU project.",
+
+        tags: [
+            "graphics"
+        ],
+        links: {
+            ptForum: "6015913"
+        }
+    },{
+        username: "guswadsworth",
+        firstName: "",
+
+        shortDescription: "Provides support with PTU mechanics and informs developers on how it should be done.",
+
+        tags: [
+            "debug-qa",
+            "game-master-advice"
+        ],
+        links: {
+            ptForum: "4143438"
+        }
     }
+    
+    
 ]);
 
 /** 
