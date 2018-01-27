@@ -9,36 +9,52 @@
         Title="Users" Height="336" Width="445.6" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="150"/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="150" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="150"/>
+            <RowDefinition />
+            <RowDefinition Height="150" />
         </Grid.RowDefinitions>
-        <Label Content="Player Name" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Padding="0" VerticalContentAlignment="Center" Height="23"/>
-        <TextBox x:Name="Player_Name" Height="23" Margin="82,38,10.2,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="Player_Name_TextChanged"/>
-        <Label Content="Player ICN" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" Padding="0" VerticalContentAlignment="Center" Height="23"/>
-        <TextBox x:Name="Player_ICN" Height="23" Margin="82,66,10.2,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="Player_ICN_TextChanged"/>
+        <Label Content="Player Name" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Padding="0"
+               VerticalContentAlignment="Center" Height="23" />
+        <TextBox x:Name="Player_Name" Height="23" Margin="82,38,10.2,0" TextWrapping="Wrap" VerticalAlignment="Top"
+                 TextChanged="Player_Name_TextChanged" />
+        <Label Content="Player ICN" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" Padding="0"
+               VerticalContentAlignment="Center" Height="23" />
+        <TextBox x:Name="Player_ICN" Height="23" Margin="82,66,10.2,0" TextWrapping="Wrap" VerticalAlignment="Top"
+                 TextChanged="Player_ICN_TextChanged" />
         <ListView Height="150" VerticalAlignment="Top" Grid.Row="1">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn/>
+                    <GridViewColumn />
                 </GridView>
             </ListView.View>
         </ListView>
         <GroupBox Grid.Column="1" Header="Group Controls" Margin="0.4,0,0,0.4" Grid.Row="1">
             <Grid>
-                <Button Content="Add to Group" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="118"/>
-                <Button Content="Remove from Group" HorizontalAlignment="Left" Margin="10,34,0,0" VerticalAlignment="Top" Width="118"/>
+                <Button Content="Add to Group" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"
+                        Width="118" IsEnabled="False" />
+                <Button Content="Remove from Group" HorizontalAlignment="Left" Margin="10,34,0,0"
+                        VerticalAlignment="Top" Width="118" IsEnabled="False" />
             </Grid>
         </GroupBox>
-        <Label Content="Player Color" HorizontalAlignment="Left" Margin="10.4,10,0,0" VerticalAlignment="Top" Grid.Column="1" Width="130" HorizontalContentAlignment="Center"/>
-        <xctk:ColorPicker x:Name="PlayerColor_Picker" Margin="10.4,41,10,0" Grid.Column="1" SelectedColorChanged="PlayerColor_Picker_SelectedColorChanged" Height="30" VerticalContentAlignment="Stretch" VerticalAlignment="Top"/>
-        <Label Content="Player ID" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="23" VerticalContentAlignment="Center" Padding="0"/>
-        <TextBox x:Name="Player_ID" Height="23" Margin="82,10,10.2,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True"/>
-        <Button x:Name="View_PlayerKey" Content="View Player Key" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" Width="132" Click="View_PlayerKey_Click"/>
-        <Button x:Name="Export_PlayerKey" Content="Export Player Key" HorizontalAlignment="Left" Margin="10,118,0,0" VerticalAlignment="Top" Width="132" Click="Export_PlayerKey_Click"/>
-        <Button x:Name="ReGenerate_PlayerKey" Content="Re-generate Player Key" HorizontalAlignment="Left" Margin="147,94,0,0" VerticalAlignment="Top" Width="132" Click="ReGenerate_PlayerKey_Click"/>
+        <Label Content="Player Color" HorizontalAlignment="Left" Margin="10.4,10,0,0" VerticalAlignment="Top"
+               Grid.Column="1" Width="130" HorizontalContentAlignment="Center" />
+        <xctk:ColorPicker x:Name="PlayerColor_Picker" Margin="10.4,41,10,0" Grid.Column="1"
+                          SelectedColorChanged="PlayerColor_Picker_SelectedColorChanged" Height="30"
+                          VerticalContentAlignment="Stretch" VerticalAlignment="Top" />
+        <Label Content="Player ID" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="23"
+               VerticalContentAlignment="Center" Padding="0" />
+        <TextBox x:Name="Player_ID" Height="23" Margin="82,10,10.2,0" TextWrapping="Wrap" VerticalAlignment="Top"
+                 IsReadOnly="True" />
+        <Button x:Name="View_PlayerKey" Content="View Player Key" HorizontalAlignment="Left" Margin="10,94,0,0"
+                VerticalAlignment="Top" Width="132" Click="View_PlayerKey_Click" />
+        <Button x:Name="Export_PlayerKey" Content="Export Player Key" HorizontalAlignment="Left" Margin="10,118,0,0"
+                VerticalAlignment="Top" Width="132" Click="Export_PlayerKey_Click" />
+        <Button x:Name="ReGenerate_PlayerKey" Content="Re-generate Player Key" HorizontalAlignment="Left"
+                Margin="147,94,0,0" VerticalAlignment="Top" Width="132" Click="ReGenerate_PlayerKey_Click" />
+        <CheckBox x:Name="isGM" Content="Identity is GM" Grid.Column="1" HorizontalAlignment="Left" Margin="10,94,0,0"
+                  VerticalAlignment="Top" Width="130" Checked="isGM_Checked" Unchecked="isGM_Checked" />
     </Grid>
 </Window>

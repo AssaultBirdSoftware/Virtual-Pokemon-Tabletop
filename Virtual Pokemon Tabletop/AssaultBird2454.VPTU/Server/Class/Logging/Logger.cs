@@ -19,12 +19,28 @@ namespace AssaultBird2454.VPTU.Server.Class.Logging
         {
 
         }
-        public Console_Logger(bool Debug)
+        public Console_Logger(bool Debug, string Name = "Internal")
         {
             LogDebug = Debug;
+            ServerName = Name;
         }
 
         #region Variables, Properties & Events
+        private string _ServerName = "Internal Server";
+        /// <summary>
+        /// Gets and Sets the servers name
+        /// </summary>
+        public string ServerName
+        {
+            get
+            {
+                return _ServerName;
+            }
+            set
+            {
+                _ServerName = value;
+            }
+        }
         private string _LogFile_Dir = "";
         /// <summary>
         /// Gets the directory for the log file
@@ -72,7 +88,7 @@ namespace AssaultBird2454.VPTU.Server.Class.Logging
         {
             //TODO: Add an option to dissable logging to file
 
-            LogFile_Dir = Main.AssemblyDirectory + @"\Logs\" + DateTime.Now.ToLongDateString() + " at " + DateTime.Now.ToLongTimeString().Replace(':', ' ');
+            LogFile_Dir = Main.AssemblyDirectory + @"\Logs\" + ServerName + @"\" + DateTime.Now.ToLongDateString() + " at " + DateTime.Now.ToLongTimeString().Replace(':', ' ') + ".txt";
 
             if (!Directory.Exists(Path.GetDirectoryName(LogFile_Dir)))
                 Directory.CreateDirectory(Path.GetDirectoryName(LogFile_Dir));
@@ -122,7 +138,7 @@ namespace AssaultBird2454.VPTU.Server.Class.Logging
                 Console.BackgroundColor = ConsoleColor.Black;
             }
 
-            string Write = DateTime.Now.ToString() + " [" + Level.ToString() + "] -> " + Data;
+            string Write = DateTime.Now.ToString() + " (" + ServerName + ") [" + Level.ToString() + "] -> " + Data;
 
             Console.WriteLine(Write);
             try
@@ -140,6 +156,10 @@ namespace AssaultBird2454.VPTU.Server.Class.Logging
         /// Defines if the logger needs to display Debug Logs
         /// </summary>
         bool LogDebug { get; set; }
+        /// <summary>
+        /// Defines the name of the server instance
+        /// </summary>
+        string ServerName { get; set; }
 
         /// <summary>
         /// Configures the logging class

@@ -7,9 +7,11 @@
         mc:Ignorable="d"
         Title="String_Prompt" Height="100" Width="300" ResizeMode="NoResize">
     <Grid>
-        <TextBox x:Name="Value" Height="23" Margin="10,10,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-        <Button x:Name="Sumbit_Button" Content="Submit" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="75" Click="Sumbit_Button_Click"/>
-        <Button x:Name="Cancel_Button" Content="Cancel" HorizontalAlignment="Left" Margin="90,0,0,10" VerticalAlignment="Bottom" Width="75" Click="Cancel_Button_Click"/>
+        <TextBox x:Name="Value" Height="23" Margin="10,10,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" />
+        <Button x:Name="Sumbit_Button" Content="Submit" HorizontalAlignment="Left" Margin="10,0,0,10"
+                VerticalAlignment="Bottom" Width="75" Click="Sumbit_Button_Click" />
+        <Button x:Name="Cancel_Button" Content="Cancel" HorizontalAlignment="Left" Margin="90,0,0,10"
+                VerticalAlignment="Bottom" Width="75" Click="Cancel_Button_Click" />
 
     </Grid>
 </Window>

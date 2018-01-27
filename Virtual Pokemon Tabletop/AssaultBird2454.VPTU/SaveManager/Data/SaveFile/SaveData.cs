@@ -21,14 +21,17 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
             if (InitNewSave)
             {
                 Campaign_Data = new Campaign_Data(true);
+                Campaign_Settings = new Campaign_Settings(true);
+                Server_Settings = new Server_Settings(true);
 
-                Identitys = new List<Authentication_Manager.Data.Identity>();
+                Identities = new List<Authentication_Manager.Data.Identity>();
+                Permissions = new List<Authentication_Manager.Data.PermissionData>();
                 Users = new List<Authentication_Manager.Data.User>();
                 Groups = new List<Authentication_Manager.Data.Group>();
 
-                Folders = new List<EntityManager.Folder>();
-                Trainers = new List<EntityManager.Trainer.TrainerCharacter>();
-                Pokemon = new List<EntityManager.Pokemon.PokemonCharacter>();
+                Folders = new List<EntitiesManager.Folder>();
+                Trainers = new List<EntitiesManager.Trainer.TrainerCharacter>();
+                Pokemon = new List<EntitiesManager.Pokemon.PokemonCharacter>();
 
                 //MapFiles = new List<Resources.MapFileData>();
                 //Maps = new List<Resources.MapData>();
@@ -48,61 +51,62 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
             //MapFiles = new List<Resources.MapFileData>();
             //Maps = new List<Resources.MapData>();
 
-            if(Identitys == null)
-            {
-                Identitys = new List<Authentication_Manager.Data.Identity>();
-            }
+            if (Identities == null)
+                Identities = new List<Authentication_Manager.Data.Identity>();
+            if (Permissions == null)
+                Permissions = new List<Authentication_Manager.Data.PermissionData>();
             if (Users == null)
-            {
                 Users = new List<Authentication_Manager.Data.User>();
-            }
             if (Groups == null)
-            {
                 Groups = new List<Authentication_Manager.Data.Group>();
-            }
 
             if (AudioResources == null)
-            {
                 AudioResources = new List<SoundSystem.SaveData.AudioData>();
-            }
             if (ImageResources == null)
-            {
                 ImageResources = new List<Resource_Data.Resources>();
-            }
 
             if (Folders == null)
-            {
-                Folders = new List<EntityManager.Folder>();
-            }
+                Folders = new List<EntitiesManager.Folder>();
             if (Pokemon == null)
-            {
-                Pokemon = new List<EntityManager.Pokemon.PokemonCharacter>();
-            }
+                Pokemon = new List<EntitiesManager.Pokemon.PokemonCharacter>();
 
+            if (PokedexData == null)
+                PokedexData = new Pokedex.Save_Data.Pokedex(true);
             PokedexData.InitNullObjects();
+            if (Campaign_Data == null)
+                Campaign_Data = new Campaign_Data(true);
             Campaign_Data.InitNullObjects();
+            if (Campaign_Settings == null)
+                Campaign_Settings = new Campaign_Settings(true);
+            Campaign_Settings.InitNullObjects();
+            if (Server_Settings == null)
+                Server_Settings = new Server_Settings(true);
+            Server_Settings.InitNullObjects();
         }
 
         #region Data
         public Data.Campaign_Data Campaign_Data;
+        public Data.Campaign_Settings Campaign_Settings;
+        public Data.Server_Settings Server_Settings;
         #endregion
 
         #region Auth and Perms
-        public List<Authentication_Manager.Data.Identity> Identitys;
+        public List<Authentication_Manager.Data.Identity> Identities;
+        public List<Authentication_Manager.Data.PermissionData> Permissions;
         public List<Authentication_Manager.Data.User> Users;
         public List<Authentication_Manager.Data.Group> Groups;
 
         public string Identity_GetKey(string UserID)
         {
-            if(Identitys.FindAll(X => X.UserID == UserID).Count <= 0)
+            if (Identities.FindAll(X => X.UserID == UserID).Count <= 0)
             {
-                Identitys.Add(new Authentication_Manager.Data.Identity()
+                Identities.Add(new Authentication_Manager.Data.Identity()
                 {
                     UserID = UserID
                 });
             }
 
-            Authentication_Manager.Data.Identity ID = Identitys.Find(x => x.UserID == UserID);
+            Authentication_Manager.Data.Identity ID = Identities.Find(x => x.UserID == UserID);
             if (ID == null)
                 return "";
 
@@ -112,24 +116,24 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
 
         public Pokedex.Save_Data.Pokedex PokedexData;
 
-        #region Entity Data
-        public List<EntityManager.Folder> Folders;
-        public List<EntityManager.Trainer.TrainerCharacter> Trainers;
-        public List<EntityManager.Pokemon.PokemonCharacter> Pokemon;
+        #region Entities Data
+        public List<EntitiesManager.Folder> Folders;
+        public List<EntitiesManager.Trainer.TrainerCharacter> Trainers;
+        public List<EntitiesManager.Pokemon.PokemonCharacter> Pokemon;
 
         /// <summary>
         /// Helper Function, This function will return the tree of folders to get to the child folder specified
         /// </summary>
         /// <param name="Child">The ID of the folder that is trying to be retrieved</param>
         /// <returns>List of folders to the desired child folder</returns>
-        public List<EntityManager.Folder> Folders_GetTreeFrom(string Child)
+        public List<EntitiesManager.Folder> Folders_GetTreeFrom(string Child)
         {
-            List<EntityManager.Folder> list;
-            EntityManager.Folder folder = Folders.Find(x => x.ID == Child);
+            List<EntitiesManager.Folder> list;
+            EntitiesManager.Folder folder = Folders.Find(x => x.ID == Child);
 
             if (folder.Parent == null)
             {
-                list = new List<EntityManager.Folder>();
+                list = new List<EntitiesManager.Folder>();
             }
             else
             {

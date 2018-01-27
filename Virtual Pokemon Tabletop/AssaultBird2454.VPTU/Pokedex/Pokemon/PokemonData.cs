@@ -11,8 +11,8 @@ namespace AssaultBird2454.VPTU.Pokedex.Pokemon
     {
         public PokemonData()
         {
-            Species_Capability_Data = new Entity.Capability_Data();
-            Species_Skill_Data = new Entity.Skill_Data();
+            Species_Capability_Data = new Entities.Capability_Data();
+            Species_Skill_Data = new Entities.Skill_Data();
             Moves = new List<Link_Moves>();
             Abilitys = new List<Link_Ability>();
             Evolutions = new List<Pokemon.Link_Evolutions>();
@@ -35,11 +35,11 @@ namespace AssaultBird2454.VPTU.Pokedex.Pokemon
         /// <summary>
         /// Data Class for tracking Skill Data
         /// </summary>
-        public Entity.Skill_Data Species_Skill_Data { get; set; }
+        public Entities.Skill_Data Species_Skill_Data { get; set; }
         /// <summary>
         /// Data Class for tracking Capability's
         /// </summary>
-        public Entity.Capability_Data Species_Capability_Data { get; set; }
+        public Entities.Capability_Data Species_Capability_Data { get; set; }
         /// <summary>
         /// List for tracking Special Capabilities and their values (If no value is kept with it then the value = null)
         /// </summary>
@@ -53,19 +53,26 @@ namespace AssaultBird2454.VPTU.Pokedex.Pokemon
             {
                 int i = 0;
                 string s = "";
-                foreach (BattleManager.Data.Type type in Species_Types)
+                try
                 {
-                    if (i != 0)
-                        s = s + ", ";
-                    s = s + type.ToString();
-                    i++;
+                    foreach (BattleManager.Data.Type type in Species_Types)
+                    {
+                        if (i != 0)
+                            s = s + ", ";
+                        s = s + type.ToString();
+                        i++;
+                    }
+                }
+                catch
+                {
+                    return "Error (Null Object)";
                 }
 
                 return s;
             }
         }
-        public Entity.SizeClass Species_SizeClass { get; set; }
-        public Entity.WeightClass Species_WeightClass { get; set; }
+        public Entities.SizeClass Species_SizeClass { get; set; }
+        public Entities.WeightClass Species_WeightClass { get; set; }
 
         #region Breeding and Gender
         public PokemonGender Species_Genders { get; set; }

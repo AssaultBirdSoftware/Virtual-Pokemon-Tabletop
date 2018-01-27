@@ -1,367 +1,789 @@
 ﻿<Window
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Entity"
-        xmlns:System="clr-namespace:System;assembly=mscorlib"
-        xmlns:StatusEffects_Data="clr-namespace:AssaultBird2454.VPTU.BattleManager.Data;assembly=AssaultBird2454.VPTU"
-        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:MultiSelectComboBox="clr-namespace:MultiSelectComboBox;assembly=MultiSelectComboBox" x:Class="AssaultBird2454.VPTU.SaveEditor.UI.Entity.Pokemon_Character"
-        mc:Ignorable="d"
-        Title="Character Designer - Pokemon" Height="691.263" Width="996.626" ResizeMode="NoResize">
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Entities"
+    xmlns:System="clr-namespace:System;assembly=mscorlib"
+    xmlns:StatusEffects_Data="clr-namespace:AssaultBird2454.VPTU.BattleManager.Data;assembly=AssaultBird2454.VPTU"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+    xmlns:MultiSelectComboBox="clr-namespace:MultiSelectComboBox;assembly=MultiSelectComboBox"
+    x:Class="AssaultBird2454.VPTU.SaveEditor.UI.Entities.Pokemon_Character"
+    mc:Ignorable="d"
+    Title="Character Designer - Pokemon" Height="691.263" Width="996.626" ResizeMode="NoResize">
     <Window.Resources>
         <ObjectDataProvider x:Key="StatusEffects" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
             <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="StatusEffects_Data:Status_Afflictions"/>
+                <x:Type TypeName="StatusEffects_Data:Status_Afflictions" />
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
     </Window.Resources>
 
     <Grid>
 
-        <GroupBox x:Name="G_BasicInfo" Header="Basic Information" HorizontalAlignment="Left" VerticalAlignment="Top" Width="849" Height="189">
+        <GroupBox x:Name="G_BasicInfo" Header="Basic Information" HorizontalAlignment="Left" VerticalAlignment="Top"
+                  Width="849" Height="189">
             <Grid Margin="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="250"/>
-                    <ColumnDefinition Width="250"/>
-                    <ColumnDefinition Width="200"/>
-                    <ColumnDefinition Width="135"/>
+                    <ColumnDefinition Width="250" />
+                    <ColumnDefinition Width="250" />
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="135" />
                 </Grid.ColumnDefinitions>
-                <TextBox x:Name="Basic_Name" Margin="90,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Height="18" TextChanged="Basic_Name_TextChanged"/>
-                <Label Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="85" Margin="0,23,0,0"/>
-                <Label Content="Species" Margin="0,49,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="50"/>
-                <Label Content="Type" HorizontalAlignment="Left" Margin="0,75,0,0" VerticalAlignment="Top" Height="26" Width="45"/>
-                <Label Content="Size Class" HorizontalAlignment="Left" Margin="0,106,0,0" VerticalAlignment="Top" Height="26" Width="61"/>
-                <ComboBox x:Name="Basic_Size" Margin="90,107,0,0" HorizontalAlignment="Left" Width="150" VerticalAlignment="Top" Height="22" SelectionChanged="Basic_Size_SelectionChanged"/>
-                <Label Content="Weight Class" Margin="0,133,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="78"/>
-                <ComboBox x:Name="Basic_Weight" Margin="90,134,0,0" HorizontalAlignment="Left" Width="150" VerticalAlignment="Top" Height="22" SelectionChanged="Basic_Weight_SelectionChanged"/>
-                <Label x:Name="label3" Content="Pokedex Notes" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="183" Grid.Column="2" HorizontalContentAlignment="Center" Height="26"/>
-                <TextBox x:Name="Basic_Desc" HorizontalAlignment="Left" Height="119" Margin="10,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Grid.Column="2"/>
-                <RadioButton x:Name="Basic_SexMale" Content="Male" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="3" Margin="10,7,0,0" Height="15" Width="45" Checked="Basic_SexMale_Checked" IsChecked="True"/>
-                <RadioButton x:Name="Basic_SexFemale" Content="Female" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,27,0,0" Grid.Column="3" Height="15" Width="57" Checked="Basic_SexFemale_Checked"/>
-                <RadioButton x:Name="Basic_SexNone" Content="Genderless" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,47,0,0" Grid.Column="3" Height="15" Width="77" Checked="Basic_SexNone_Checked"/>
-                <Label Content="Nature" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="51" Grid.Column="1"/>
-                <ComboBox x:Name="Basic_Nature" Margin="56,2,0,0" HorizontalAlignment="Left" Width="185" VerticalAlignment="Top" Height="22" Grid.Column="1" SelectionChanged="Basic_Nature_SelectionChanged"/>
-                <MultiSelectComboBox:MultiSelectComboBox x:Name="Basic_Types" HorizontalAlignment="Left" Height="24" Margin="90,77,0,0" VerticalAlignment="Top" Width="150"/>
-                <Label Content="XP" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="51" Grid.Column="1" Margin="0,31,0,0"/>
-                <Label Content="HP" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="51" Grid.Column="1" Margin="0.4,88,0,0"/>
-                <xctk:IntegerUpDown x:Name="Basic_CurrentHP" HorizontalAlignment="Left" Margin="56.4,88,0,0" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Minimum="0" Maximum="99999" Value="0" TextAlignment="Center" ValueChanged="Basic_CurrentHP_ValueChanged"/>
-                <Label x:Name="Basic_MaxHP" Content="/ 500" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="76" Grid.Column="1" Margin="141.4,88,0,0"/>
-                <xctk:IntegerUpDown x:Name="Basic_EXP" HorizontalAlignment="Left" Margin="56,31,0,0" VerticalAlignment="Top" Width="74" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Minimum="0" Maximum="20555" Value="0" TextAlignment="Center" ValueChanged="Basic_XP_ValueChanged"/>
-                <Label x:Name="Basic_REXP" Content="Remaining: 20555" VerticalAlignment="Top" HorizontalAlignment="Left" Width="106" Grid.Column="1" Margin="135,29,0,0"/>
-                <Label x:Name="Basic_Level" Content="Level: 100" VerticalAlignment="Top" HorizontalAlignment="Left" Width="106" Grid.Column="1" Margin="135,55,0,0"/>
-                <Label Content="Injuries" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="51" Grid.Column="1" Margin="0.4,119,0,0"/>
-                <xctk:IntegerUpDown x:Name="Basic_Injuries" HorizontalAlignment="Left" Margin="56.4,119,0,0" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Minimum="0" Maximum="10" Value="0" TextAlignment="Center" ValueChanged="Basic_Injuries_ValueChanged"/>
-                <Label x:Name="Basic_Species" Content="Species Undefined" HorizontalAlignment="Left" Margin="90,50,0,0" VerticalAlignment="Top" Height="25"/>
-                <Button x:Name="Change_Species" Content="Change" HorizontalAlignment="Left" Margin="195,54,0,0" VerticalAlignment="Top" Width="45" Click="Change_Species_Click"/>
-                <TextBox x:Name="Basic_ID" Margin="90,4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150" Height="18" IsReadOnly="True"/>
-                <Label Content="ID" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="85"/>
+                <TextBox x:Name="Basic_Name" Margin="90,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top"
+                         HorizontalAlignment="Left" Width="150" Height="18" TextChanged="Basic_Name_TextChanged" />
+                <Label Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="85"
+                       Margin="0,23,0,0" />
+                <Label Content="Species" Margin="0,49,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"
+                       Height="26" Width="50" />
+                <Label Content="Type" HorizontalAlignment="Left" Margin="0,75,0,0" VerticalAlignment="Top" Height="26"
+                       Width="45" />
+                <Label Content="Size Class" HorizontalAlignment="Left" Margin="0,106,0,0" VerticalAlignment="Top"
+                       Height="26" Width="61" />
+                <ComboBox x:Name="Basic_Size" Margin="90,107,0,0" HorizontalAlignment="Left" Width="150"
+                          VerticalAlignment="Top" Height="22" SelectionChanged="Basic_Size_SelectionChanged" />
+                <Label Content="Weight Class" Margin="0,133,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"
+                       Height="26" Width="78" />
+                <ComboBox x:Name="Basic_Weight" Margin="90,134,0,0" HorizontalAlignment="Left" Width="150"
+                          VerticalAlignment="Top" Height="22" SelectionChanged="Basic_Weight_SelectionChanged" />
+                <Label x:Name="label3" Content="Pokedex Notes" HorizontalAlignment="Left" Margin="10,0,0,0"
+                       VerticalAlignment="Top" Width="183" Grid.Column="2" HorizontalContentAlignment="Center"
+                       Height="26" />
+                <TextBox x:Name="Basic_Desc" HorizontalAlignment="Left" Height="119" Margin="10,31,0,0"
+                         TextWrapping="Wrap" VerticalAlignment="Top" Width="183" Grid.Column="2" />
+                <RadioButton x:Name="Basic_SexMale" Content="Male" HorizontalAlignment="Left" VerticalAlignment="Top"
+                             Grid.Column="3" Margin="10,7,0,0" Height="15" Width="45" Checked="Basic_SexMale_Checked"
+                             IsChecked="True" />
+                <RadioButton x:Name="Basic_SexFemale" Content="Female" HorizontalAlignment="Left"
+                             VerticalAlignment="Top" Margin="10,27,0,0" Grid.Column="3" Height="15" Width="57"
+                             Checked="Basic_SexFemale_Checked" />
+                <RadioButton x:Name="Basic_SexNone" Content="Genderless" HorizontalAlignment="Left"
+                             VerticalAlignment="Top" Margin="10,47,0,0" Grid.Column="3" Height="15" Width="77"
+                             Checked="Basic_SexNone_Checked" />
+                <Label Content="Nature" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="51"
+                       Grid.Column="1" />
+                <ComboBox x:Name="Basic_Nature" Margin="56,2,0,0" HorizontalAlignment="Left" Width="185"
+                          VerticalAlignment="Top" Height="22" Grid.Column="1"
+                          SelectionChanged="Basic_Nature_SelectionChanged" />
+                <MultiSelectComboBox:MultiSelectComboBox x:Name="Basic_Types" HorizontalAlignment="Left" Height="24"
+                                                         Margin="90,77,0,0" VerticalAlignment="Top" Width="150" />
+                <Label Content="XP" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="51"
+                       Grid.Column="1" Margin="0,31,0,0" />
+                <Label Content="HP" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="51"
+                       Grid.Column="1" Margin="0.4,88,0,0" />
+                <xctk:IntegerUpDown x:Name="Basic_CurrentHP" HorizontalAlignment="Left" Margin="56.4,88,0,0"
+                                    VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center"
+                                    Grid.Column="1" Height="26" Minimum="0" Maximum="99999" Value="0"
+                                    TextAlignment="Center" ValueChanged="Basic_CurrentHP_ValueChanged" />
+                <Label x:Name="Basic_MaxHP" Content="/ 500" VerticalAlignment="Top" HorizontalAlignment="Left"
+                       Height="26" Width="76" Grid.Column="1" Margin="141.4,88,0,0" />
+                <xctk:IntegerUpDown x:Name="Basic_EXP" HorizontalAlignment="Left" Margin="56,31,0,0"
+                                    VerticalAlignment="Top" Width="74" HorizontalContentAlignment="Center"
+                                    Grid.Column="1" Height="26" Minimum="0" Maximum="20555" Value="0"
+                                    TextAlignment="Center" ValueChanged="Basic_XP_ValueChanged" />
+                <Label x:Name="Basic_REXP" Content="Remaining: 20555" VerticalAlignment="Top"
+                       HorizontalAlignment="Left" Width="106" Grid.Column="1" Margin="135,29,0,0" />
+                <Label x:Name="Basic_Level" Content="Level: 100" VerticalAlignment="Top" HorizontalAlignment="Left"
+                       Width="106" Grid.Column="1" Margin="135,55,0,0" />
+                <Label Content="Injuries" VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Width="51"
+                       Grid.Column="1" Margin="0.4,119,0,0" />
+                <xctk:IntegerUpDown x:Name="Basic_Injuries" HorizontalAlignment="Left" Margin="56.4,119,0,0"
+                                    VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center"
+                                    Grid.Column="1" Height="26" Minimum="0" Maximum="10" Value="0"
+                                    TextAlignment="Center" ValueChanged="Basic_Injuries_ValueChanged" />
+                <Label x:Name="Basic_Species" Content="Species Undefined" HorizontalAlignment="Left" Margin="90,50,0,0"
+                       VerticalAlignment="Top" Height="25" />
+                <Button x:Name="Change_Species" Content="Change" HorizontalAlignment="Left" Margin="195,54,0,0"
+                        VerticalAlignment="Top" Width="45" Click="Change_Species_Click" />
+                <TextBox x:Name="Basic_ID" Margin="90,4,0,0" TextWrapping="Wrap" VerticalAlignment="Top"
+                         HorizontalAlignment="Left" Width="150" Height="18" IsReadOnly="True" />
+                <Label Content="ID" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="85" />
             </Grid>
         </GroupBox>
         <TabControl Margin="2,194,0.4,-0.2">
             <TabItem Header="Moves">
                 <Grid>
-                    <ListView x:Name="Moves_List" HorizontalAlignment="Left" Height="437" VerticalAlignment="Top" Width="882">
+                    <ListView x:Name="Moves_List" HorizontalAlignment="Left" Height="437" VerticalAlignment="Top"
+                              Width="882">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Move Name" Width="150" DisplayMemberBinding="{Binding Name}"/>
-                                <GridViewColumn Header="Move Range" Width="200" DisplayMemberBinding="{Binding Range}"/>
-                                <GridViewColumn Header="Move Frequency" Width="100" DisplayMemberBinding="{Binding Frequency}"/>
-                                <GridViewColumn Header="Move Type" Width="100" DisplayMemberBinding="{Binding Type}"/>
-                                <GridViewColumn Header="Move Class" Width="100" DisplayMemberBinding="{Binding Class}"/>
-                                <GridViewColumn Header="DB" Width="50" DisplayMemberBinding="{Binding DB}"/>
-                                <GridViewColumn Header="AC" Width="50" DisplayMemberBinding="{Binding AC}"/>
+                                <GridViewColumn Header="Move Name" Width="150" DisplayMemberBinding="{Binding Name}" />
+                                <GridViewColumn Header="Move Range" Width="200" DisplayMemberBinding="{Binding Range}" />
+                                <GridViewColumn Header="Move Frequency" Width="100"
+                                                DisplayMemberBinding="{Binding Frequency}" />
+                                <GridViewColumn Header="Move Type" Width="100" DisplayMemberBinding="{Binding Type}" />
+                                <GridViewColumn Header="Move Class" Width="100" DisplayMemberBinding="{Binding Class}" />
+                                <GridViewColumn Header="DB" Width="50" DisplayMemberBinding="{Binding DB}" />
+                                <GridViewColumn Header="AC" Width="50" DisplayMemberBinding="{Binding AC}" />
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <Button x:Name="Moves_Add" Content="Add Move" HorizontalAlignment="Left" Margin="887,10,0,0" VerticalAlignment="Top" Width="75" Click="Moves_Add_Click"/>
-                    <Button x:Name="Moves_Remove" Content="Delete Move" HorizontalAlignment="Left" Margin="887,35,0,0" VerticalAlignment="Top" Width="75" Click="Moves_Remove_Click"/>
+                    <Button x:Name="Moves_Add" Content="Add Move" HorizontalAlignment="Left" Margin="887,10,0,0"
+                            VerticalAlignment="Top" Width="75" Click="Moves_Add_Click" />
+                    <Button x:Name="Moves_Remove" Content="Delete Move" HorizontalAlignment="Left" Margin="887,35,0,0"
+                            VerticalAlignment="Top" Width="75" Click="Moves_Remove_Click" />
                 </Grid>
             </TabItem>
             <TabItem Header="Abilities" IsEnabled="False">
-                <Grid/>
+                <Grid />
             </TabItem>
             <TabItem Header="Stats" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top">
                 <Grid>
-                    <GroupBox Header="Base Stats" HorizontalAlignment="Left" Height="236" VerticalAlignment="Top" Width="972">
+                    <GroupBox Header="Base Stats" HorizontalAlignment="Left" Height="236" VerticalAlignment="Top"
+                              Width="972">
                         <Grid Margin="0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="71.2"/>
-                                <ColumnDefinition Width="80"/>
-                                <ColumnDefinition Width="80"/>
-                                <ColumnDefinition Width="80"/>
-                                <ColumnDefinition Width="80"/>
-                                <ColumnDefinition Width="80"/>
-                                <ColumnDefinition Width="80"/>
-                                <ColumnDefinition Width="80"/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="71.2" />
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Label Content="HP" VerticalAlignment="Top" Margin="0,31,0,0" HorizontalAlignment="Left" Width="71" HorizontalContentAlignment="Center"/>
-                            <Label Content="Attack" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,62,0,0" Width="71" HorizontalContentAlignment="Center"/>
-                            <Label Content="Defence" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,93,0,0" Width="71" HorizontalContentAlignment="Center"/>
-                            <Label Content="Sp Attack" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,124,0,0" Width="71" HorizontalContentAlignment="Center"/>
-                            <Label Content="Sp Defence" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,155,0,0" Width="71" HorizontalContentAlignment="Center"/>
-                            <Label Content="Speed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,186,0,0" Width="71" HorizontalContentAlignment="Center"/>
-                            <Label x:Name="Stats_SBase_HP" Content="0" HorizontalAlignment="Left" Margin="71,31,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center"/>
-                            <Label x:Name="Stats_SBase_Attack" Content="0" HorizontalAlignment="Left" Margin="71,62,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center"/>
-                            <Label x:Name="Stats_SBase_Defence" Content="0" HorizontalAlignment="Left" Margin="71,93,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center"/>
-                            <Label x:Name="Stats_SBase_SpAttack" Content="0" HorizontalAlignment="Left" Margin="71,124,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center"/>
-                            <Label x:Name="Stats_SBase_SpDefence" Content="0" HorizontalAlignment="Left" Margin="71,155,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center"/>
-                            <Label x:Name="Stats_SBase_Speed" Content="0" HorizontalAlignment="Left" Margin="71,186,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center"/>
-                            <Label Content="Stat Name" HorizontalAlignment="Left" VerticalAlignment="Top" Width="71"/>
-                            <Label Content="Species Base" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="71,0,0.2,0"/>
-                            <Label Content="Mod" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="79.8,0,0.2,0" Grid.Column="1" HorizontalContentAlignment="Center"/>
-                            <Label Content="Base" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="79.8,0,0.2,0" Grid.Column="2" HorizontalContentAlignment="Center"/>
-                            <Label Content="Add" VerticalAlignment="Top" Margin="79.8,0,0.2,0" Grid.Column="3" HorizontalContentAlignment="Center" Grid.ColumnSpan="2"/>
-                            <Label Content="Max / Total" VerticalAlignment="Top" Margin="79.8,0,0.2,0" Grid.Column="4" HorizontalContentAlignment="Center" Grid.ColumnSpan="2"/>
-                            <Label x:Name="Stats_Base_HP" Content="0" HorizontalAlignment="Left" Margin="79.8,31,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="2"/>
-                            <Label x:Name="Stats_Base_Attack" Content="0" HorizontalAlignment="Left" Margin="79.8,62,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="2"/>
-                            <Label x:Name="Stats_Base_Defence" Content="0" HorizontalAlignment="Left" Margin="79.8,93,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="2"/>
-                            <Label x:Name="Stats_Base_SpAttack" Content="0" HorizontalAlignment="Left" Margin="79.8,124,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="2"/>
-                            <Label x:Name="Stats_Base_SpDefence" Content="0" HorizontalAlignment="Left" Margin="79.8,155,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="2"/>
-                            <Label x:Name="Stats_Base_Speed" Content="0" HorizontalAlignment="Left" Margin="79.8,186,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="2"/>
-                            <Label x:Name="Stats_Total_HP" Content="0" HorizontalAlignment="Left" Margin="79.8,31,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="4"/>
-                            <Label x:Name="Stats_Total_Attack" Content="0" HorizontalAlignment="Left" Margin="79.8,62,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="4"/>
-                            <Label x:Name="Stats_Total_Defence" Content="0" HorizontalAlignment="Left" Margin="79.8,93,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="4"/>
-                            <Label x:Name="Stats_Total_SpAttack" Content="0" HorizontalAlignment="Left" Margin="79.8,124,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="4"/>
-                            <Label x:Name="Stats_Total_SpDefence" Content="0" HorizontalAlignment="Left" Margin="79.8,155,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="4"/>
-                            <Label x:Name="Stats_Total_Speed" Content="0" HorizontalAlignment="Left" Margin="79.8,186,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="4"/>
-                            <xctk:IntegerUpDown x:Name="Stats_Mod_HP" HorizontalAlignment="Left" Margin="79.8,31,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Mod_HP_ValueChanged"/>
-                            <xctk:IntegerUpDown x:Name="Stats_Mod_Attack" HorizontalAlignment="Left" Margin="0,62,0,0" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center" Grid.Column="2" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Mod_Attack_ValueChanged"/>
-                            <xctk:IntegerUpDown x:Name="Stats_Mod_Defence" HorizontalAlignment="Left" Margin="79.8,93,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Mod_Defence_ValueChanged"/>
-                            <xctk:IntegerUpDown x:Name="Stats_Mod_SpAttack" HorizontalAlignment="Left" Margin="79.8,124,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Mod_SpAttack_ValueChanged"/>
-                            <xctk:IntegerUpDown x:Name="Stats_Mod_SpDefence" HorizontalAlignment="Left" Margin="79.8,155,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Mod_SpDefence_ValueChanged"/>
-                            <xctk:IntegerUpDown x:Name="Stats_Mod_Speed" HorizontalAlignment="Left" Margin="79.8,186,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Mod_Speed_ValueChanged"/>
-                            <xctk:IntegerUpDown x:Name="Stats_Add_HP" HorizontalAlignment="Left" Margin="79.8,31,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="3" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Add_HP_ValueChanged"/>
-                            <xctk:IntegerUpDown x:Name="Stats_Add_Attack" HorizontalAlignment="Left" Margin="0,62,0,0" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center" Grid.Column="4" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Add_Attack_ValueChanged"/>
-                            <xctk:IntegerUpDown x:Name="Stats_Add_Defence" HorizontalAlignment="Left" Margin="79.8,93,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="3" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Add_Defence_ValueChanged"/>
-                            <xctk:IntegerUpDown x:Name="Stats_Add_SpAttack" HorizontalAlignment="Left" Margin="79.8,124,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="3" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Add_SpAttack_ValueChanged"/>
-                            <xctk:IntegerUpDown x:Name="Stats_Add_SpDefence" HorizontalAlignment="Left" Margin="79.8,155,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="3" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Add_SpDefence_ValueChanged"/>
-                            <xctk:IntegerUpDown x:Name="Stats_Add_Speed" HorizontalAlignment="Left" Margin="79.8,186,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="3" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Add_Speed_ValueChanged"/>
-                            <Label Content="CS Points" VerticalAlignment="Top" Margin="79.8,0,0.4,0" Grid.Column="5" HorizontalContentAlignment="Center" Grid.ColumnSpan="2"/>
-                            <Label Content="Adjusted" VerticalAlignment="Top" Margin="79.8,0,0.2,0" Grid.Column="6" HorizontalContentAlignment="Center" Grid.ColumnSpan="2"/>
-                            <Label Content="N / A" HorizontalAlignment="Left" Margin="79.8,31,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="5" Foreground="Red"/>
-                            <xctk:IntegerUpDown x:Name="Stats_CS_Attack" HorizontalAlignment="Left" Margin="79.8,62,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="5" Height="26" Minimum="-6" Maximum="6" Value="0" TextAlignment="Center" ValueChanged="Stats_CS_Attack_ValueChanged"/>
-                            <xctk:IntegerUpDown x:Name="Stats_CS_Defence" HorizontalAlignment="Left" Margin="79.8,93,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="5" Height="26" Minimum="-6" Maximum="6" Value="0" TextAlignment="Center" ValueChanged="Stats_CS_Defence_ValueChanged"/>
-                            <xctk:IntegerUpDown x:Name="Stats_CS_SpAttack" HorizontalAlignment="Left" Margin="79.8,124,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="5" Height="26" Minimum="-6" Maximum="6" Value="0" TextAlignment="Center" ValueChanged="Stats_CS_SpAttack_ValueChanged"/>
-                            <xctk:IntegerUpDown x:Name="Stats_CS_SpDefence" HorizontalAlignment="Left" Margin="79.8,155,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="5" Height="26" Minimum="-6" Maximum="6" Value="0" TextAlignment="Center" ValueChanged="Stats_CS_SpDefence_ValueChanged"/>
-                            <xctk:IntegerUpDown x:Name="Stats_CS_Speed" HorizontalAlignment="Left" Margin="79.8,186,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="5" Height="26" Minimum="-6" Maximum="6" Value="0" TextAlignment="Center" ValueChanged="Stats_CS_Speed_ValueChanged"/>
-                            <Label x:Name="Stats_Adj_Attack" Content="0" Margin="79.8,62,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="6" HorizontalAlignment="Left" Width="80"/>
-                            <Label x:Name="Stats_Adj_Defence" Content="0" HorizontalAlignment="Left" Margin="79.8,93,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="6"/>
-                            <Label x:Name="Stats_Adj_SpAttack" Content="0" HorizontalAlignment="Left" Margin="79.8,124,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="6"/>
-                            <Label x:Name="Stats_Adj_SpDefence" Content="0" HorizontalAlignment="Left" Margin="79.8,155,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="6"/>
-                            <Label x:Name="Stats_Adj_Speed" Content="0" HorizontalAlignment="Left" Margin="79.8,186,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="6"/>
-                            <Label Content="N / A" HorizontalAlignment="Left" Margin="0,31,0,0" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center" Grid.Column="7" Foreground="Red"/>
+                            <Label Content="HP" VerticalAlignment="Top" Margin="0,31,0,0" HorizontalAlignment="Left"
+                                   Width="71" HorizontalContentAlignment="Center" />
+                            <Label Content="Attack" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                   Margin="0,62,0,0" Width="71" HorizontalContentAlignment="Center" />
+                            <Label Content="Defence" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                   Margin="0,93,0,0" Width="71" HorizontalContentAlignment="Center" />
+                            <Label Content="Sp Attack" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                   Margin="0,124,0,0" Width="71" HorizontalContentAlignment="Center" />
+                            <Label Content="Sp Defence" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                   Margin="0,155,0,0" Width="71" HorizontalContentAlignment="Center" />
+                            <Label Content="Speed" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                   Margin="0,186,0,0" Width="71" HorizontalContentAlignment="Center" />
+                            <Label x:Name="Stats_SBase_HP" Content="0" HorizontalAlignment="Left" Margin="71,31,0,0"
+                                   VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"
+                                   HorizontalContentAlignment="Center" />
+                            <Label x:Name="Stats_SBase_Attack" Content="0" HorizontalAlignment="Left"
+                                   Margin="71,62,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"
+                                   HorizontalContentAlignment="Center" />
+                            <Label x:Name="Stats_SBase_Defence" Content="0" HorizontalAlignment="Left"
+                                   Margin="71,93,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"
+                                   HorizontalContentAlignment="Center" />
+                            <Label x:Name="Stats_SBase_SpAttack" Content="0" HorizontalAlignment="Left"
+                                   Margin="71,124,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"
+                                   HorizontalContentAlignment="Center" />
+                            <Label x:Name="Stats_SBase_SpDefence" Content="0" HorizontalAlignment="Left"
+                                   Margin="71,155,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"
+                                   HorizontalContentAlignment="Center" />
+                            <Label x:Name="Stats_SBase_Speed" Content="0" HorizontalAlignment="Left"
+                                   Margin="71,186,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"
+                                   HorizontalContentAlignment="Center" />
+                            <Label Content="Stat Name" HorizontalAlignment="Left" VerticalAlignment="Top" Width="71" />
+                            <Label Content="Species Base" VerticalAlignment="Top" Grid.ColumnSpan="2"
+                                   Margin="71,0,0.2,0" />
+                            <Label Content="Mod" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="79.8,0,0.2,0"
+                                   Grid.Column="1" HorizontalContentAlignment="Center" />
+                            <Label Content="Base" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="79.8,0,0.2,0"
+                                   Grid.Column="2" HorizontalContentAlignment="Center" />
+                            <Label Content="Add" VerticalAlignment="Top" Margin="79.8,0,0.2,0" Grid.Column="3"
+                                   HorizontalContentAlignment="Center" Grid.ColumnSpan="2" />
+                            <Label Content="Max / Total" VerticalAlignment="Top" Margin="79.8,0,0.2,0" Grid.Column="4"
+                                   HorizontalContentAlignment="Center" Grid.ColumnSpan="2" />
+                            <Label x:Name="Stats_Base_HP" Content="0" HorizontalAlignment="Left" Margin="79.8,31,0,0"
+                                   VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"
+                                   HorizontalContentAlignment="Center" Grid.Column="2" />
+                            <Label x:Name="Stats_Base_Attack" Content="0" HorizontalAlignment="Left"
+                                   Margin="79.8,62,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"
+                                   HorizontalContentAlignment="Center" Grid.Column="2" />
+                            <Label x:Name="Stats_Base_Defence" Content="0" HorizontalAlignment="Left"
+                                   Margin="79.8,93,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"
+                                   HorizontalContentAlignment="Center" Grid.Column="2" />
+                            <Label x:Name="Stats_Base_SpAttack" Content="0" HorizontalAlignment="Left"
+                                   Margin="79.8,124,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"
+                                   HorizontalContentAlignment="Center" Grid.Column="2" />
+                            <Label x:Name="Stats_Base_SpDefence" Content="0" HorizontalAlignment="Left"
+                                   Margin="79.8,155,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"
+                                   HorizontalContentAlignment="Center" Grid.Column="2" />
+                            <Label x:Name="Stats_Base_Speed" Content="0" HorizontalAlignment="Left"
+                                   Margin="79.8,186,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"
+                                   HorizontalContentAlignment="Center" Grid.Column="2" />
+                            <Label x:Name="Stats_Total_HP" Content="0" HorizontalAlignment="Left" Margin="79.8,31,0,0"
+                                   VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"
+                                   HorizontalContentAlignment="Center" Grid.Column="4" />
+                            <Label x:Name="Stats_Total_Attack" Content="0" HorizontalAlignment="Left"
+                                   Margin="79.8,62,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"
+                                   HorizontalContentAlignment="Center" Grid.Column="4" />
+                            <Label x:Name="Stats_Total_Defence" Content="0" HorizontalAlignment="Left"
+                                   Margin="79.8,93,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"
+                                   HorizontalContentAlignment="Center" Grid.Column="4" />
+                            <Label x:Name="Stats_Total_SpAttack" Content="0" HorizontalAlignment="Left"
+                                   Margin="79.8,124,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"
+                                   HorizontalContentAlignment="Center" Grid.Column="4" />
+                            <Label x:Name="Stats_Total_SpDefence" Content="0" HorizontalAlignment="Left"
+                                   Margin="79.8,155,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"
+                                   HorizontalContentAlignment="Center" Grid.Column="4" />
+                            <Label x:Name="Stats_Total_Speed" Content="0" HorizontalAlignment="Left"
+                                   Margin="79.8,186,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"
+                                   HorizontalContentAlignment="Center" Grid.Column="4" />
+                            <xctk:IntegerUpDown x:Name="Stats_Mod_HP" HorizontalAlignment="Left" Margin="79.8,31,0,0"
+                                                VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"
+                                                HorizontalContentAlignment="Center" Grid.Column="1" Height="26"
+                                                Value="0" TextAlignment="Center"
+                                                ValueChanged="Stats_Mod_HP_ValueChanged" />
+                            <xctk:IntegerUpDown x:Name="Stats_Mod_Attack" HorizontalAlignment="Left" Margin="0,62,0,0"
+                                                VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center"
+                                                Grid.Column="2" Height="26" Value="0" TextAlignment="Center"
+                                                ValueChanged="Stats_Mod_Attack_ValueChanged" />
+                            <xctk:IntegerUpDown x:Name="Stats_Mod_Defence" HorizontalAlignment="Left"
+                                                Margin="79.8,93,0,0" VerticalAlignment="Top" Width="80"
+                                                Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="1"
+                                                Height="26" Value="0" TextAlignment="Center"
+                                                ValueChanged="Stats_Mod_Defence_ValueChanged" />
+                            <xctk:IntegerUpDown x:Name="Stats_Mod_SpAttack" HorizontalAlignment="Left"
+                                                Margin="79.8,124,0,0" VerticalAlignment="Top" Width="80"
+                                                Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="1"
+                                                Height="26" Value="0" TextAlignment="Center"
+                                                ValueChanged="Stats_Mod_SpAttack_ValueChanged" />
+                            <xctk:IntegerUpDown x:Name="Stats_Mod_SpDefence" HorizontalAlignment="Left"
+                                                Margin="79.8,155,0,0" VerticalAlignment="Top" Width="80"
+                                                Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="1"
+                                                Height="26" Value="0" TextAlignment="Center"
+                                                ValueChanged="Stats_Mod_SpDefence_ValueChanged" />
+                            <xctk:IntegerUpDown x:Name="Stats_Mod_Speed" HorizontalAlignment="Left"
+                                                Margin="79.8,186,0,0" VerticalAlignment="Top" Width="80"
+                                                Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="1"
+                                                Height="26" Value="0" TextAlignment="Center"
+                                                ValueChanged="Stats_Mod_Speed_ValueChanged" />
+                            <xctk:IntegerUpDown x:Name="Stats_Add_HP" HorizontalAlignment="Left" Margin="79.8,31,0,0"
+                                                VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"
+                                                HorizontalContentAlignment="Center" Grid.Column="3" Height="26"
+                                                Value="0" TextAlignment="Center"
+                                                ValueChanged="Stats_Add_HP_ValueChanged" />
+                            <xctk:IntegerUpDown x:Name="Stats_Add_Attack" HorizontalAlignment="Left" Margin="0,62,0,0"
+                                                VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center"
+                                                Grid.Column="4" Height="26" Value="0" TextAlignment="Center"
+                                                ValueChanged="Stats_Add_Attack_ValueChanged" />
+                            <xctk:IntegerUpDown x:Name="Stats_Add_Defence" HorizontalAlignment="Left"
+                                                Margin="79.8,93,0,0" VerticalAlignment="Top" Width="80"
+                                                Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="3"
+                                                Height="26" Value="0" TextAlignment="Center"
+                                                ValueChanged="Stats_Add_Defence_ValueChanged" />
+                            <xctk:IntegerUpDown x:Name="Stats_Add_SpAttack" HorizontalAlignment="Left"
+                                                Margin="79.8,124,0,0" VerticalAlignment="Top" Width="80"
+                                                Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="3"
+                                                Height="26" Value="0" TextAlignment="Center"
+                                                ValueChanged="Stats_Add_SpAttack_ValueChanged" />
+                            <xctk:IntegerUpDown x:Name="Stats_Add_SpDefence" HorizontalAlignment="Left"
+                                                Margin="79.8,155,0,0" VerticalAlignment="Top" Width="80"
+                                                Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="3"
+                                                Height="26" Value="0" TextAlignment="Center"
+                                                ValueChanged="Stats_Add_SpDefence_ValueChanged" />
+                            <xctk:IntegerUpDown x:Name="Stats_Add_Speed" HorizontalAlignment="Left"
+                                                Margin="79.8,186,0,0" VerticalAlignment="Top" Width="80"
+                                                Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="3"
+                                                Height="26" Value="0" TextAlignment="Center"
+                                                ValueChanged="Stats_Add_Speed_ValueChanged" />
+                            <Label Content="CS Points" VerticalAlignment="Top" Margin="79.8,0,0.4,0" Grid.Column="5"
+                                   HorizontalContentAlignment="Center" Grid.ColumnSpan="2" />
+                            <Label Content="Adjusted" VerticalAlignment="Top" Margin="79.8,0,0.2,0" Grid.Column="6"
+                                   HorizontalContentAlignment="Center" Grid.ColumnSpan="2" />
+                            <Label Content="N / A" HorizontalAlignment="Left" Margin="79.8,31,0,0"
+                                   VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"
+                                   HorizontalContentAlignment="Center" Grid.Column="5" Foreground="Red" />
+                            <xctk:IntegerUpDown x:Name="Stats_CS_Attack" HorizontalAlignment="Left"
+                                                Margin="79.8,62,0,0" VerticalAlignment="Top" Width="80"
+                                                Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="5"
+                                                Height="26" Minimum="-6" Maximum="6" Value="0" TextAlignment="Center"
+                                                ValueChanged="Stats_CS_Attack_ValueChanged" />
+                            <xctk:IntegerUpDown x:Name="Stats_CS_Defence" HorizontalAlignment="Left"
+                                                Margin="79.8,93,0,0" VerticalAlignment="Top" Width="80"
+                                                Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="5"
+                                                Height="26" Minimum="-6" Maximum="6" Value="0" TextAlignment="Center"
+                                                ValueChanged="Stats_CS_Defence_ValueChanged" />
+                            <xctk:IntegerUpDown x:Name="Stats_CS_SpAttack" HorizontalAlignment="Left"
+                                                Margin="79.8,124,0,0" VerticalAlignment="Top" Width="80"
+                                                Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="5"
+                                                Height="26" Minimum="-6" Maximum="6" Value="0" TextAlignment="Center"
+                                                ValueChanged="Stats_CS_SpAttack_ValueChanged" />
+                            <xctk:IntegerUpDown x:Name="Stats_CS_SpDefence" HorizontalAlignment="Left"
+                                                Margin="79.8,155,0,0" VerticalAlignment="Top" Width="80"
+                                                Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="5"
+                                                Height="26" Minimum="-6" Maximum="6" Value="0" TextAlignment="Center"
+                                                ValueChanged="Stats_CS_SpDefence_ValueChanged" />
+                            <xctk:IntegerUpDown x:Name="Stats_CS_Speed" HorizontalAlignment="Left"
+                                                Margin="79.8,186,0,0" VerticalAlignment="Top" Width="80"
+                                                Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="5"
+                                                Height="26" Minimum="-6" Maximum="6" Value="0" TextAlignment="Center"
+                                                ValueChanged="Stats_CS_Speed_ValueChanged" />
+                            <Label x:Name="Stats_Adj_Attack" Content="0" Margin="79.8,62,0,0" VerticalAlignment="Top"
+                                   Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Column="6"
+                                   HorizontalAlignment="Left" Width="80" />
+                            <Label x:Name="Stats_Adj_Defence" Content="0" HorizontalAlignment="Left"
+                                   Margin="79.8,93,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"
+                                   HorizontalContentAlignment="Center" Grid.Column="6" />
+                            <Label x:Name="Stats_Adj_SpAttack" Content="0" HorizontalAlignment="Left"
+                                   Margin="79.8,124,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"
+                                   HorizontalContentAlignment="Center" Grid.Column="6" />
+                            <Label x:Name="Stats_Adj_SpDefence" Content="0" HorizontalAlignment="Left"
+                                   Margin="79.8,155,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"
+                                   HorizontalContentAlignment="Center" Grid.Column="6" />
+                            <Label x:Name="Stats_Adj_Speed" Content="0" HorizontalAlignment="Left"
+                                   Margin="79.8,186,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2"
+                                   HorizontalContentAlignment="Center" Grid.Column="6" />
+                            <Label Content="N / A" HorizontalAlignment="Left" Margin="0,31,0,0" VerticalAlignment="Top"
+                                   Width="80" HorizontalContentAlignment="Center" Grid.Column="7" Foreground="Red" />
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="Evasion Stats" HorizontalAlignment="Left" Height="172" VerticalAlignment="Top" Width="266" Margin="0,236,0,0">
+                    <GroupBox Header="Evasion Stats" HorizontalAlignment="Left" Height="172" VerticalAlignment="Top"
+                              Width="266" Margin="0,236,0,0">
                         <Grid Margin="0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="95"/>
-                                <ColumnDefinition Width="80"/>
-                                <ColumnDefinition Width="80"/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="95" />
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Label Content="Physical Evasion" VerticalAlignment="Top" Margin="0,31,0,0" HorizontalContentAlignment="Center"/>
-                            <Label Content="Special Evasion" VerticalAlignment="Top" Margin="0,62,0,0" HorizontalContentAlignment="Center"/>
-                            <Label Content="Speed Evasion" VerticalAlignment="Top" Margin="0,93,0,0" HorizontalContentAlignment="Center"/>
-                            <Label Content="Stat Name" VerticalAlignment="Top" HorizontalContentAlignment="Center"/>
-                            <Label Content="Mod" VerticalAlignment="Top" Grid.Column="1" HorizontalContentAlignment="Center"/>
-                            <xctk:IntegerUpDown x:Name="Stats_Mod_PhyEvasion" Margin="0,31,0,0" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Mod_PhyEvasion_ValueChanged"/>
-                            <xctk:IntegerUpDown x:Name="Stats_Mod_SpEvasion" Margin="0,62,0,0" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Mod_SpEvasion_ValueChanged"/>
-                            <xctk:IntegerUpDown x:Name="Stats_Mod_SpeedEvasion" Margin="0,93,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Mod_SpeedEvasion_ValueChanged"/>
-                            <Label x:Name="Stats_Value_PhyEvasion" Content="0" Margin="0,31,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Grid.Column="2"/>
-                            <Label x:Name="Stats_Value_SpEvasion" Content="0" Margin="0,62,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Grid.Column="2"/>
-                            <Label x:Name="Stats_Value_SpeedEvasion" Content="0" Margin="0,93,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Grid.Column="2"/>
-                            <Label Content="Value" VerticalAlignment="Top" Grid.Column="2" HorizontalContentAlignment="Center"/>
+                            <Label Content="Physical Evasion" VerticalAlignment="Top" Margin="0,31,0,0"
+                                   HorizontalContentAlignment="Center" />
+                            <Label Content="Special Evasion" VerticalAlignment="Top" Margin="0,62,0,0"
+                                   HorizontalContentAlignment="Center" />
+                            <Label Content="Speed Evasion" VerticalAlignment="Top" Margin="0,93,0,0"
+                                   HorizontalContentAlignment="Center" />
+                            <Label Content="Stat Name" VerticalAlignment="Top" HorizontalContentAlignment="Center" />
+                            <Label Content="Mod" VerticalAlignment="Top" Grid.Column="1"
+                                   HorizontalContentAlignment="Center" />
+                            <xctk:IntegerUpDown x:Name="Stats_Mod_PhyEvasion" Margin="0,31,0,0" VerticalAlignment="Top"
+                                                Width="80" HorizontalContentAlignment="Center" Grid.Column="1"
+                                                Height="26" Value="0" TextAlignment="Center"
+                                                ValueChanged="Stats_Mod_PhyEvasion_ValueChanged" />
+                            <xctk:IntegerUpDown x:Name="Stats_Mod_SpEvasion" Margin="0,62,0,0" VerticalAlignment="Top"
+                                                Width="80" HorizontalContentAlignment="Center" Grid.Column="1"
+                                                Height="26" Value="0" TextAlignment="Center"
+                                                ValueChanged="Stats_Mod_SpEvasion_ValueChanged" />
+                            <xctk:IntegerUpDown x:Name="Stats_Mod_SpeedEvasion" Margin="0,93,0,0"
+                                                VerticalAlignment="Top" HorizontalContentAlignment="Center"
+                                                Grid.Column="1" Height="26" Value="0" TextAlignment="Center"
+                                                ValueChanged="Stats_Mod_SpeedEvasion_ValueChanged" />
+                            <Label x:Name="Stats_Value_PhyEvasion" Content="0" Margin="0,31,0,0"
+                                   VerticalAlignment="Top" HorizontalContentAlignment="Center" Grid.Column="2" />
+                            <Label x:Name="Stats_Value_SpEvasion" Content="0" Margin="0,62,0,0" VerticalAlignment="Top"
+                                   HorizontalContentAlignment="Center" Grid.Column="2" />
+                            <Label x:Name="Stats_Value_SpeedEvasion" Content="0" Margin="0,93,0,0"
+                                   VerticalAlignment="Top" HorizontalContentAlignment="Center" Grid.Column="2" />
+                            <Label Content="Value" VerticalAlignment="Top" Grid.Column="2"
+                                   HorizontalContentAlignment="Center" />
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="Personality Stats" HorizontalAlignment="Left" Height="172" VerticalAlignment="Top" Width="266" Margin="271,236,0,0">
+                    <GroupBox Header="Personality Stats" HorizontalAlignment="Left" Height="172"
+                              VerticalAlignment="Top" Width="266" Margin="271,236,0,0">
                         <Grid Margin="0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="95"/>
-                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="95" />
+                                <ColumnDefinition Width="80" />
                             </Grid.ColumnDefinitions>
-                            <Label Content="Loyalty" VerticalAlignment="Top" Margin="0,31,0,0" HorizontalContentAlignment="Center"/>
-                            <Label Content="" VerticalAlignment="Top" Margin="0,62,0,0" HorizontalContentAlignment="Center"/>
-                            <Label Content="" VerticalAlignment="Top" Margin="0,93,0,0" HorizontalContentAlignment="Center"/>
-                            <Label Content="Stat Name" VerticalAlignment="Top" HorizontalContentAlignment="Center"/>
-                            <Label Content="Mod" VerticalAlignment="Top" Grid.Column="1" HorizontalContentAlignment="Center"/>
-                            <xctk:IntegerUpDown x:Name="Stats_Mod_PhyEvasion1" Margin="0,31,0,0" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Mod_PhyEvasion_ValueChanged" Minimum="0" Maximum="6"/>
-                            <xctk:IntegerUpDown x:Name="Stats_Mod_SpEvasion1" Margin="0,62,0,0" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Mod_SpEvasion_ValueChanged" IsEnabled="False"/>
-                            <xctk:IntegerUpDown x:Name="Stats_Mod_SpeedEvasion1" Margin="0,93,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Grid.Column="1" Height="26" Value="0" TextAlignment="Center" ValueChanged="Stats_Mod_SpeedEvasion_ValueChanged" IsEnabled="False"/>
+                            <Label Content="Loyalty" VerticalAlignment="Top" Margin="0,31,0,0"
+                                   HorizontalContentAlignment="Center" />
+                            <Label Content="" VerticalAlignment="Top" Margin="0,62,0,0"
+                                   HorizontalContentAlignment="Center" />
+                            <Label Content="" VerticalAlignment="Top" Margin="0,93,0,0"
+                                   HorizontalContentAlignment="Center" />
+                            <Label Content="Stat Name" VerticalAlignment="Top" HorizontalContentAlignment="Center" />
+                            <Label Content="Mod" VerticalAlignment="Top" Grid.Column="1"
+                                   HorizontalContentAlignment="Center" />
+                            <xctk:IntegerUpDown x:Name="Stats_Mod_PhyEvasion1" Margin="0,31,0,0"
+                                                VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Center"
+                                                Grid.Column="1" Height="26" Value="0" TextAlignment="Center"
+                                                ValueChanged="Stats_Mod_PhyEvasion_ValueChanged" Minimum="0"
+                                                Maximum="6" />
+                            <xctk:IntegerUpDown x:Name="Stats_Mod_SpEvasion1" Margin="0,62,0,0" VerticalAlignment="Top"
+                                                Width="80" HorizontalContentAlignment="Center" Grid.Column="1"
+                                                Height="26" Value="0" TextAlignment="Center"
+                                                ValueChanged="Stats_Mod_SpEvasion_ValueChanged" IsEnabled="False" />
+                            <xctk:IntegerUpDown x:Name="Stats_Mod_SpeedEvasion1" Margin="0,93,0,0"
+                                                VerticalAlignment="Top" HorizontalContentAlignment="Center"
+                                                Grid.Column="1" Height="26" Value="0" TextAlignment="Center"
+                                                ValueChanged="Stats_Mod_SpeedEvasion_ValueChanged" IsEnabled="False" />
                         </Grid>
                     </GroupBox>
                 </Grid>
             </TabItem>
             <TabItem Header="Skills" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top">
                 <Grid>
-                    <GroupBox x:Name="G_Skills_B" Header="Body" HorizontalAlignment="Left" Width="320" Height="437" VerticalAlignment="Top">
+                    <GroupBox x:Name="G_Skills_B" Header="Body" HorizontalAlignment="Left" Width="320" Height="437"
+                              VerticalAlignment="Top">
                         <Grid Margin="0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="103.104"/>
-                                <ColumnDefinition Width="104.92"/>
-                                <ColumnDefinition Width="98.636"/>
+                                <ColumnDefinition Width="103.104" />
+                                <ColumnDefinition Width="104.92" />
+                                <ColumnDefinition Width="98.636" />
                             </Grid.ColumnDefinitions>
-                            <Label x:Name="label1" Content="Acrobatics" VerticalAlignment="Top" Height="26" Margin="0,0,37,0"/>
-                            <Label x:Name="label1_Copy" Content="Athletics" Margin="0,30.96,47.27,0" VerticalAlignment="Top" Height="25.96" d:LayoutOverrides="Width"/>
-                            <Label x:Name="label1_Copy1" Content="Combat" Margin="0,61.92,50.636,0" VerticalAlignment="Top" Height="25.96" d:LayoutOverrides="Width"/>
-                            <Label x:Name="label1_Copy2" Content="Intimidate" Margin="0,92.88,38.943,0" VerticalAlignment="Top" Height="25.96" d:LayoutOverrides="Width"/>
-                            <Label x:Name="label1_Copy3" Content="Stealth" Margin="0,123.84,0,0" VerticalAlignment="Top" Height="25.96" HorizontalAlignment="Left"/>
-                            <Label x:Name="label1_Copy4" Content="Survival" Margin="0,154.8,0,0" VerticalAlignment="Top" Height="25.96" HorizontalAlignment="Left"/>
-                            <ComboBox x:Name="Skill_Acrobatics_Rank" Grid.Column="1" Margin="0,4,0,0" VerticalAlignment="Top" Height="21.96" HorizontalAlignment="Left" Width="104.92" SelectionChanged="Skill_Acrobatics_Rank_SelectionChanged"/>
-                            <ComboBox x:Name="Skill_Athletics_Rank" Grid.Column="1" Margin="0,34.96,0,0" VerticalAlignment="Top" Height="21.96" HorizontalAlignment="Left" Width="104.92" SelectionChanged="Skill_Athletics_Rank_SelectionChanged"/>
-                            <ComboBox x:Name="Skill_Combat_Rank" Grid.Column="1" Margin="0,65.92,0,0" VerticalAlignment="Top" Height="21.96" d:LayoutOverrides="TopMargin, BottomMargin" HorizontalAlignment="Left" Width="104.92" SelectionChanged="Skill_Combat_Rank_SelectionChanged"/>
-                            <ComboBox x:Name="Skill_Intimidate_Rank" Grid.Column="1" Margin="0,96.88,0,0" VerticalAlignment="Top" Height="21.96" d:LayoutOverrides="TopMargin, BottomMargin" HorizontalAlignment="Left" Width="104.92" SelectionChanged="Skill_Intimidate_Rank_SelectionChanged"/>
-                            <ComboBox x:Name="Skill_Stealth_Rank" Grid.Column="1" Margin="0,127.84,0,0" VerticalAlignment="Top" Height="21.96" d:LayoutOverrides="TopMargin, BottomMargin" HorizontalAlignment="Left" Width="104.92" SelectionChanged="Skill_Stealth_Rank_SelectionChanged"/>
-                            <ComboBox x:Name="Skill_Survival_Rank" Grid.Column="1" Margin="0,158.8,0,0" VerticalAlignment="Top" Height="21.96" d:LayoutOverrides="TopMargin, BottomMargin" HorizontalAlignment="Left" Width="104.92" SelectionChanged="Skill_Survival_Rank_SelectionChanged"/>
-                            <xctk:DecimalUpDown x:Name="Skill_Acrobatics_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,5.96,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center" ValueChanged="Skill_Acrobatics_Mod_ValueChanged"/>
-                            <xctk:DecimalUpDown x:Name="Skill_Athletics_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,36.92,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center" ValueChanged="Skill_Athletics_Mod_ValueChanged"/>
-                            <xctk:DecimalUpDown x:Name="Skill_Combat_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,67.88,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center" ValueChanged="Skill_Combat_Mod_ValueChanged"/>
-                            <xctk:DecimalUpDown x:Name="Skill_Intimidate_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,98.84,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center" ValueChanged="Skill_Intimidate_Mod_ValueChanged"/>
-                            <xctk:DecimalUpDown x:Name="Skill_Stealth_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,129.8,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center" ValueChanged="Skill_Stealth_Mod_ValueChanged"/>
-                            <xctk:DecimalUpDown x:Name="Skill_Survival_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,160.76,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center" ValueChanged="Skill_Survival_Mod_ValueChanged"/>
+                            <Label x:Name="label1" Content="Acrobatics" VerticalAlignment="Top" Height="26"
+                                   Margin="0,0,37,0" />
+                            <Label x:Name="label1_Copy" Content="Athletics" Margin="0,30.96,47.27,0"
+                                   VerticalAlignment="Top" Height="25.96" d:LayoutOverrides="Width" />
+                            <Label x:Name="label1_Copy1" Content="Combat" Margin="0,61.92,50.636,0"
+                                   VerticalAlignment="Top" Height="25.96" d:LayoutOverrides="Width" />
+                            <Label x:Name="label1_Copy2" Content="Intimidate" Margin="0,92.88,38.943,0"
+                                   VerticalAlignment="Top" Height="25.96" d:LayoutOverrides="Width" />
+                            <Label x:Name="label1_Copy3" Content="Stealth" Margin="0,123.84,0,0"
+                                   VerticalAlignment="Top" Height="25.96" HorizontalAlignment="Left" />
+                            <Label x:Name="label1_Copy4" Content="Survival" Margin="0,154.8,0,0"
+                                   VerticalAlignment="Top" Height="25.96" HorizontalAlignment="Left" />
+                            <ComboBox x:Name="Skill_Acrobatics_Rank" Grid.Column="1" Margin="0,4,0,0"
+                                      VerticalAlignment="Top" Height="21.96" HorizontalAlignment="Left" Width="104.92"
+                                      SelectionChanged="Skill_Acrobatics_Rank_SelectionChanged" />
+                            <ComboBox x:Name="Skill_Athletics_Rank" Grid.Column="1" Margin="0,34.96,0,0"
+                                      VerticalAlignment="Top" Height="21.96" HorizontalAlignment="Left" Width="104.92"
+                                      SelectionChanged="Skill_Athletics_Rank_SelectionChanged" />
+                            <ComboBox x:Name="Skill_Combat_Rank" Grid.Column="1" Margin="0,65.92,0,0"
+                                      VerticalAlignment="Top" Height="21.96"
+                                      d:LayoutOverrides="TopMargin, BottomMargin" HorizontalAlignment="Left"
+                                      Width="104.92" SelectionChanged="Skill_Combat_Rank_SelectionChanged" />
+                            <ComboBox x:Name="Skill_Intimidate_Rank" Grid.Column="1" Margin="0,96.88,0,0"
+                                      VerticalAlignment="Top" Height="21.96"
+                                      d:LayoutOverrides="TopMargin, BottomMargin" HorizontalAlignment="Left"
+                                      Width="104.92" SelectionChanged="Skill_Intimidate_Rank_SelectionChanged" />
+                            <ComboBox x:Name="Skill_Stealth_Rank" Grid.Column="1" Margin="0,127.84,0,0"
+                                      VerticalAlignment="Top" Height="21.96"
+                                      d:LayoutOverrides="TopMargin, BottomMargin" HorizontalAlignment="Left"
+                                      Width="104.92" SelectionChanged="Skill_Stealth_Rank_SelectionChanged" />
+                            <ComboBox x:Name="Skill_Survival_Rank" Grid.Column="1" Margin="0,158.8,0,0"
+                                      VerticalAlignment="Top" Height="21.96"
+                                      d:LayoutOverrides="TopMargin, BottomMargin" HorizontalAlignment="Left"
+                                      Width="104.92" SelectionChanged="Skill_Survival_Rank_SelectionChanged" />
+                            <xctk:DecimalUpDown x:Name="Skill_Acrobatics_Mod" Grid.Column="2"
+                                                HorizontalAlignment="Left" Margin="10,5.96,0,0" VerticalAlignment="Top"
+                                                Width="80" Value="0" TextAlignment="Center"
+                                                ValueChanged="Skill_Acrobatics_Mod_ValueChanged" />
+                            <xctk:DecimalUpDown x:Name="Skill_Athletics_Mod" Grid.Column="2" HorizontalAlignment="Left"
+                                                Margin="10,36.92,0,0" VerticalAlignment="Top" Width="80" Value="0"
+                                                TextAlignment="Center" ValueChanged="Skill_Athletics_Mod_ValueChanged" />
+                            <xctk:DecimalUpDown x:Name="Skill_Combat_Mod" Grid.Column="2" HorizontalAlignment="Left"
+                                                Margin="10,67.88,0,0" VerticalAlignment="Top" Width="80" Value="0"
+                                                TextAlignment="Center" ValueChanged="Skill_Combat_Mod_ValueChanged" />
+                            <xctk:DecimalUpDown x:Name="Skill_Intimidate_Mod" Grid.Column="2"
+                                                HorizontalAlignment="Left" Margin="10,98.84,0,0"
+                                                VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"
+                                                ValueChanged="Skill_Intimidate_Mod_ValueChanged" />
+                            <xctk:DecimalUpDown x:Name="Skill_Stealth_Mod" Grid.Column="2" HorizontalAlignment="Left"
+                                                Margin="10,129.8,0,0" VerticalAlignment="Top" Width="80" Value="0"
+                                                TextAlignment="Center" ValueChanged="Skill_Stealth_Mod_ValueChanged" />
+                            <xctk:DecimalUpDown x:Name="Skill_Survival_Mod" Grid.Column="2" HorizontalAlignment="Left"
+                                                Margin="10,160.76,0,0" VerticalAlignment="Top" Width="80" Value="0"
+                                                TextAlignment="Center" ValueChanged="Skill_Survival_Mod_ValueChanged" />
                         </Grid>
                     </GroupBox>
-                    <GroupBox x:Name="G_Skills_M" Header="Mind" Margin="325,0,0,0" HorizontalAlignment="Left" Width="320" Height="437" VerticalAlignment="Top">
+                    <GroupBox x:Name="G_Skills_M" Header="Mind" Margin="325,0,0,0" HorizontalAlignment="Left"
+                              Width="320" Height="437" VerticalAlignment="Top">
                         <Grid Margin="0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="103.104"/>
-                                <ColumnDefinition Width="104.92"/>
-                                <ColumnDefinition Width="98.636"/>
+                                <ColumnDefinition Width="103.104" />
+                                <ColumnDefinition Width="104.92" />
+                                <ColumnDefinition Width="98.636" />
                             </Grid.ColumnDefinitions>
-                            <Label x:Name="label1_Copy5" Content="General Edu" VerticalAlignment="Top" Height="26" HorizontalAlignment="Left"/>
-                            <Label x:Name="label1_Copy6" Content="Medicine Edu" Margin="0,31,0,0" VerticalAlignment="Top" Height="26" HorizontalAlignment="Left"/>
-                            <Label x:Name="label1_Copy7" Content="Occult Edu" Margin="0,62,0,0" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top"/>
-                            <Label x:Name="label1_Copy8" Content="Pokemon Edu" Margin="0,93,0,0" VerticalAlignment="Top" Height="26" HorizontalAlignment="Left"/>
-                            <Label x:Name="label1_Copy9" Content="Technology Edu" Margin="0,124,0,0" VerticalAlignment="Top" Height="26" HorizontalAlignment="Left"/>
-                            <Label x:Name="label1_Copy10" Content="Gulie" Margin="0,155,0,0" VerticalAlignment="Top" Height="26" HorizontalAlignment="Left"/>
-                            <Label x:Name="label1_Copy15" Content="Perception" Margin="0,186,0,0" VerticalAlignment="Top" Height="26" HorizontalAlignment="Left"/>
-                            <ComboBox x:Name="Skill_GeneralEDU_Rank" Grid.Column="1" VerticalAlignment="Top" Height="22" SelectionChanged="Skill_GeneralEDU_Rank_SelectionChanged"/>
-                            <ComboBox x:Name="Skill_MedicineEDU_Rank" Grid.Column="1" Margin="0,31,0,0" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105" SelectionChanged="Skill_MedicineEDU_Rank_SelectionChanged"/>
-                            <ComboBox x:Name="Skill_OccultEDU_Rank" Grid.Column="1" Margin="0,62,0,0" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105" SelectionChanged="Skill_OccultEDU_Rank_SelectionChanged"/>
-                            <ComboBox x:Name="Skill_PokemonEDU_Rank" Grid.Column="1" Margin="0,93,0,0" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105" SelectionChanged="Skill_PokemonEDU_Rank_SelectionChanged"/>
-                            <ComboBox x:Name="Skill_TechnologyEDU_Rank" Grid.Column="1" Margin="0,124,0,0" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105" SelectionChanged="Skill_TechnologyEDU_Rank_SelectionChanged"/>
-                            <ComboBox x:Name="Skill_Gulie_Rank" Grid.Column="1" Margin="0,155,0,0" VerticalAlignment="Top" Height="22" SelectionChanged="Skill_Gulie_Rank_SelectionChanged"/>
-                            <ComboBox x:Name="Skill_Perception_Rank" Grid.Column="1" Margin="0,186,0,0" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105" SelectionChanged="Skill_Perception_Rank_SelectionChanged"/>
-                            <xctk:DecimalUpDown x:Name="Skill_GeneralEDU_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center" ValueChanged="Skill_GeneralEDU_Mod_ValueChanged"/>
-                            <xctk:DecimalUpDown x:Name="Skill_MedicineEDU_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center" ValueChanged="Skill_MedicineEDU_Mod_ValueChanged"/>
-                            <xctk:DecimalUpDown x:Name="Skill_OccultEDU_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,62,0,0" Width="80" VerticalAlignment="Top" Value="0" TextAlignment="Center" ValueChanged="Skill_OccultEDU_Mod_ValueChanged"/>
-                            <xctk:DecimalUpDown x:Name="Skill_PokemonEDU_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,93,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center" ValueChanged="Skill_PokemonEDU_Mod_ValueChanged"/>
-                            <xctk:DecimalUpDown x:Name="Skill_TechnologyEDU_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,124,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center" ValueChanged="Skill_TechnologyEDU_Mod_ValueChanged"/>
-                            <xctk:DecimalUpDown x:Name="Skill_Gulie_Mod" Grid.Column="2" HorizontalAlignment="Left" Margin="10,155,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center" ValueChanged="Skill_Gulie_Mod_ValueChanged"/>
-                            <xctk:DecimalUpDown x:Name="Skill_Perception_Mod" HorizontalAlignment="Left" Margin="10,186,0,0" VerticalAlignment="Top" Width="80" Grid.Column="2" Value="0" TextAlignment="Center" ValueChanged="Skill_Perception_Mod_ValueChanged"/>
+                            <Label x:Name="label1_Copy5" Content="General Edu" VerticalAlignment="Top" Height="26"
+                                   HorizontalAlignment="Left" />
+                            <Label x:Name="label1_Copy6" Content="Medicine Edu" Margin="0,31,0,0"
+                                   VerticalAlignment="Top" Height="26" HorizontalAlignment="Left" />
+                            <Label x:Name="label1_Copy7" Content="Occult Edu" Margin="0,62,0,0"
+                                   HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" />
+                            <Label x:Name="label1_Copy8" Content="Pokemon Edu" Margin="0,93,0,0"
+                                   VerticalAlignment="Top" Height="26" HorizontalAlignment="Left" />
+                            <Label x:Name="label1_Copy9" Content="Technology Edu" Margin="0,124,0,0"
+                                   VerticalAlignment="Top" Height="26" HorizontalAlignment="Left" />
+                            <Label x:Name="label1_Copy10" Content="Gulie" Margin="0,155,0,0" VerticalAlignment="Top"
+                                   Height="26" HorizontalAlignment="Left" />
+                            <Label x:Name="label1_Copy15" Content="Perception" Margin="0,186,0,0"
+                                   VerticalAlignment="Top" Height="26" HorizontalAlignment="Left" />
+                            <ComboBox x:Name="Skill_GeneralEDU_Rank" Grid.Column="1" VerticalAlignment="Top"
+                                      Height="22" SelectionChanged="Skill_GeneralEDU_Rank_SelectionChanged" />
+                            <ComboBox x:Name="Skill_MedicineEDU_Rank" Grid.Column="1" Margin="0,31,0,0"
+                                      VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105"
+                                      SelectionChanged="Skill_MedicineEDU_Rank_SelectionChanged" />
+                            <ComboBox x:Name="Skill_OccultEDU_Rank" Grid.Column="1" Margin="0,62,0,0"
+                                      VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105"
+                                      SelectionChanged="Skill_OccultEDU_Rank_SelectionChanged" />
+                            <ComboBox x:Name="Skill_PokemonEDU_Rank" Grid.Column="1" Margin="0,93,0,0"
+                                      VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105"
+                                      SelectionChanged="Skill_PokemonEDU_Rank_SelectionChanged" />
+                            <ComboBox x:Name="Skill_TechnologyEDU_Rank" Grid.Column="1" Margin="0,124,0,0"
+                                      VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105"
+                                      SelectionChanged="Skill_TechnologyEDU_Rank_SelectionChanged" />
+                            <ComboBox x:Name="Skill_Gulie_Rank" Grid.Column="1" Margin="0,155,0,0"
+                                      VerticalAlignment="Top" Height="22"
+                                      SelectionChanged="Skill_Gulie_Rank_SelectionChanged" />
+                            <ComboBox x:Name="Skill_Perception_Rank" Grid.Column="1" Margin="0,186,0,0"
+                                      VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105"
+                                      SelectionChanged="Skill_Perception_Rank_SelectionChanged" />
+                            <xctk:DecimalUpDown x:Name="Skill_GeneralEDU_Mod" Grid.Column="2"
+                                                HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"
+                                                Width="80" Value="0" TextAlignment="Center"
+                                                ValueChanged="Skill_GeneralEDU_Mod_ValueChanged" />
+                            <xctk:DecimalUpDown x:Name="Skill_MedicineEDU_Mod" Grid.Column="2"
+                                                HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top"
+                                                Width="80" Value="0" TextAlignment="Center"
+                                                ValueChanged="Skill_MedicineEDU_Mod_ValueChanged" />
+                            <xctk:DecimalUpDown x:Name="Skill_OccultEDU_Mod" Grid.Column="2" HorizontalAlignment="Left"
+                                                Margin="10,62,0,0" Width="80" VerticalAlignment="Top" Value="0"
+                                                TextAlignment="Center" ValueChanged="Skill_OccultEDU_Mod_ValueChanged" />
+                            <xctk:DecimalUpDown x:Name="Skill_PokemonEDU_Mod" Grid.Column="2"
+                                                HorizontalAlignment="Left" Margin="10,93,0,0" VerticalAlignment="Top"
+                                                Width="80" Value="0" TextAlignment="Center"
+                                                ValueChanged="Skill_PokemonEDU_Mod_ValueChanged" />
+                            <xctk:DecimalUpDown x:Name="Skill_TechnologyEDU_Mod" Grid.Column="2"
+                                                HorizontalAlignment="Left" Margin="10,124,0,0" VerticalAlignment="Top"
+                                                Width="80" Value="0" TextAlignment="Center"
+                                                ValueChanged="Skill_TechnologyEDU_Mod_ValueChanged" />
+                            <xctk:DecimalUpDown x:Name="Skill_Gulie_Mod" Grid.Column="2" HorizontalAlignment="Left"
+                                                Margin="10,155,0,0" VerticalAlignment="Top" Width="80" Value="0"
+                                                TextAlignment="Center" ValueChanged="Skill_Gulie_Mod_ValueChanged" />
+                            <xctk:DecimalUpDown x:Name="Skill_Perception_Mod" HorizontalAlignment="Left"
+                                                Margin="10,186,0,0" VerticalAlignment="Top" Width="80" Grid.Column="2"
+                                                Value="0" TextAlignment="Center"
+                                                ValueChanged="Skill_Perception_Mod_ValueChanged" />
                         </Grid>
                     </GroupBox>
-                    <GroupBox x:Name="G_Skills_S" Header="Spirit" Margin="645,0,0,0" HorizontalAlignment="Left" Width="320" Height="437" VerticalAlignment="Top">
+                    <GroupBox x:Name="G_Skills_S" Header="Spirit" Margin="645,0,0,0" HorizontalAlignment="Left"
+                              Width="320" Height="437" VerticalAlignment="Top">
                         <Grid Margin="0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="103.104"/>
-                                <ColumnDefinition Width="104.92"/>
-                                <ColumnDefinition Width="98.636"/>
+                                <ColumnDefinition Width="103.104" />
+                                <ColumnDefinition Width="104.92" />
+                                <ColumnDefinition Width="98.636" />
                             </Grid.ColumnDefinitions>
-                            <Label x:Name="label1_Copy11" Content="Charm" VerticalAlignment="Top" Height="26" HorizontalAlignment="Left" Width="45"/>
-                            <Label x:Name="label1_Copy12" Content="Command" Margin="0,31,36,0" VerticalAlignment="Top" Height="26"/>
-                            <Label x:Name="label1_Copy13" Content="Focus" Margin="0,62,0,0" VerticalAlignment="Top" Height="26" HorizontalAlignment="Left" Width="40"/>
-                            <Label x:Name="label1_Copy14" Content="Intuition" Margin="0,93,49,0" VerticalAlignment="Top" Height="26"/>
-                            <ComboBox x:Name="Skill_Charm_Rank" Grid.Column="1" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105" SelectionChanged="Skill_Charm_Rank_SelectionChanged"/>
-                            <ComboBox x:Name="Skill_Command_Rank" Grid.Column="1" Margin="0,31,0,0" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105" SelectionChanged="Skill_Command_Rank_SelectionChanged"/>
-                            <ComboBox x:Name="Skill_Focus_Rank" Grid.Column="1" Margin="0,62,0,0" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105" SelectionChanged="Skill_Focus_Rank_SelectionChanged"/>
-                            <ComboBox x:Name="Skill_Intuition_Rank" Grid.Column="1" Margin="0,93,0,0" VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105" SelectionChanged="Skill_Intuition_Rank_SelectionChanged"/>
-                            <xctk:DecimalUpDown x:Name="Skill_Charm_Mod" HorizontalAlignment="Left" Margin="10,0,0,0" Width="80" Grid.Column="2" VerticalAlignment="Top" Value="0" TextAlignment="Center" ValueChanged="Skill_Charm_Mod_ValueChanged"/>
-                            <xctk:DecimalUpDown x:Name="Skill_Command_Mod" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Width="80" Grid.Column="2" Value="0" TextAlignment="Center" ValueChanged="Skill_Command_Mod_ValueChanged"/>
-                            <xctk:DecimalUpDown x:Name="Skill_Focus_Mod" HorizontalAlignment="Left" Margin="10,62,0,0" Width="80" Grid.Column="2" VerticalAlignment="Top" Value="0" TextAlignment="Center" ValueChanged="Skill_Focus_Mod_ValueChanged"/>
-                            <xctk:DecimalUpDown x:Name="Skill_Intuition_Mod" HorizontalAlignment="Left" Margin="10,93,0,0" VerticalAlignment="Top" Width="80" Grid.Column="2" Value="0" TextAlignment="Center" ValueChanged="Skill_Intuition_Mod_ValueChanged"/>
+                            <Label x:Name="label1_Copy11" Content="Charm" VerticalAlignment="Top" Height="26"
+                                   HorizontalAlignment="Left" Width="45" />
+                            <Label x:Name="label1_Copy12" Content="Command" Margin="0,31,36,0" VerticalAlignment="Top"
+                                   Height="26" />
+                            <Label x:Name="label1_Copy13" Content="Focus" Margin="0,62,0,0" VerticalAlignment="Top"
+                                   Height="26" HorizontalAlignment="Left" Width="40" />
+                            <Label x:Name="label1_Copy14" Content="Intuition" Margin="0,93,49,0"
+                                   VerticalAlignment="Top" Height="26" />
+                            <ComboBox x:Name="Skill_Charm_Rank" Grid.Column="1" VerticalAlignment="Top" Height="22"
+                                      HorizontalAlignment="Left" Width="105"
+                                      SelectionChanged="Skill_Charm_Rank_SelectionChanged" />
+                            <ComboBox x:Name="Skill_Command_Rank" Grid.Column="1" Margin="0,31,0,0"
+                                      VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105"
+                                      SelectionChanged="Skill_Command_Rank_SelectionChanged" />
+                            <ComboBox x:Name="Skill_Focus_Rank" Grid.Column="1" Margin="0,62,0,0"
+                                      VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105"
+                                      SelectionChanged="Skill_Focus_Rank_SelectionChanged" />
+                            <ComboBox x:Name="Skill_Intuition_Rank" Grid.Column="1" Margin="0,93,0,0"
+                                      VerticalAlignment="Top" Height="22" HorizontalAlignment="Left" Width="105"
+                                      SelectionChanged="Skill_Intuition_Rank_SelectionChanged" />
+                            <xctk:DecimalUpDown x:Name="Skill_Charm_Mod" HorizontalAlignment="Left" Margin="10,0,0,0"
+                                                Width="80" Grid.Column="2" VerticalAlignment="Top" Value="0"
+                                                TextAlignment="Center" ValueChanged="Skill_Charm_Mod_ValueChanged" />
+                            <xctk:DecimalUpDown x:Name="Skill_Command_Mod" HorizontalAlignment="Left"
+                                                Margin="10,31,0,0" VerticalAlignment="Top" Width="80" Grid.Column="2"
+                                                Value="0" TextAlignment="Center"
+                                                ValueChanged="Skill_Command_Mod_ValueChanged" />
+                            <xctk:DecimalUpDown x:Name="Skill_Focus_Mod" HorizontalAlignment="Left" Margin="10,62,0,0"
+                                                Width="80" Grid.Column="2" VerticalAlignment="Top" Value="0"
+                                                TextAlignment="Center" ValueChanged="Skill_Focus_Mod_ValueChanged" />
+                            <xctk:DecimalUpDown x:Name="Skill_Intuition_Mod" HorizontalAlignment="Left"
+                                                Margin="10,93,0,0" VerticalAlignment="Top" Width="80" Grid.Column="2"
+                                                Value="0" TextAlignment="Center"
+                                                ValueChanged="Skill_Intuition_Mod_ValueChanged" />
                         </Grid>
                     </GroupBox>
                 </Grid>
             </TabItem>
             <TabItem Header="Capabilities" HorizontalAlignment="Left" VerticalAlignment="Top">
                 <Grid>
-                    <ComboBox x:Name="Capabilities_NatureWalk_2" HorizontalAlignment="Left" Margin="172,163,0,0" VerticalAlignment="Top" Width="79"/>
-                    <ComboBox x:Name="Capabilities_NatureWalk_1" HorizontalAlignment="Left" Margin="88,163,0,0" VerticalAlignment="Top" Width="79"/>
-                    <Label x:Name="label2" Content="Nature Walks" HorizontalAlignment="Left" Margin="2,159,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="label1_Copy16" Content="Overland" VerticalAlignment="Top" Height="26" Margin="2,4,0,0" HorizontalAlignment="Left"/>
-                    <xctk:DecimalUpDown x:Name="Capabilities_Overland" HorizontalAlignment="Left" Margin="65,8,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
-                    <Label x:Name="label1_Copy17" Content="Swim" VerticalAlignment="Top" Height="26" Margin="2,35,0,0" HorizontalAlignment="Left"/>
-                    <xctk:DecimalUpDown x:Name="Capabilities_Swim" HorizontalAlignment="Left" Margin="65,39,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
-                    <Label x:Name="label1_Copy18" Content="Jump (L)" VerticalAlignment="Top" Height="26" Margin="2,66,0,0" HorizontalAlignment="Left"/>
-                    <xctk:DecimalUpDown x:Name="Capabilities_LongJump" HorizontalAlignment="Left" Margin="65,70,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
-                    <Label x:Name="label1_Copy19" Content="Jump (H)" VerticalAlignment="Top" Height="26" Margin="2,97,0,0" HorizontalAlignment="Left"/>
-                    <xctk:DecimalUpDown x:Name="Capabilities_HighJump" HorizontalAlignment="Left" Margin="65,101,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
-                    <Label x:Name="label1_Copy20" Content="Power" VerticalAlignment="Top" Height="26" Margin="2,128,0,0" HorizontalAlignment="Left"/>
-                    <xctk:DecimalUpDown x:Name="Capabilities_Power" HorizontalAlignment="Left" Margin="65,132,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
-                    <Label x:Name="label1_Copy21" Content="Burrow" VerticalAlignment="Top" Height="26" Margin="158,4,0,0" HorizontalAlignment="Left"/>
-                    <xctk:DecimalUpDown x:Name="Capabilities_Burrow" HorizontalAlignment="Left" Margin="259,8,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
-                    <Label x:Name="label1_Copy22" Content="Sky" VerticalAlignment="Top" Height="26" Margin="158,35,0,0" HorizontalAlignment="Left"/>
-                    <xctk:DecimalUpDown x:Name="Capabilities_Sky" HorizontalAlignment="Left" Margin="259,39,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
-                    <Label x:Name="label1_Copy23" Content="Levitate" VerticalAlignment="Top" Height="26" Margin="158,66,0,0" HorizontalAlignment="Left"/>
-                    <xctk:DecimalUpDown x:Name="Capabilities_Levitate" HorizontalAlignment="Left" Margin="259,70,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
-                    <Label x:Name="label1_Copy24" Content="Teleport" VerticalAlignment="Top" Height="26" Margin="158,97,0,0" HorizontalAlignment="Left"/>
-                    <xctk:DecimalUpDown x:Name="Capabilities_Teleport" HorizontalAlignment="Left" Margin="259,101,0,0" VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center"/>
-                    <Label x:Name="label1_Copy25" Content="Throwing Range" VerticalAlignment="Top" Margin="158,128,0,0" Height="26" HorizontalAlignment="Left"/>
-                    <xctk:DecimalUpDown x:Name="Capabilities_ThrowingRange" HorizontalAlignment="Left" Margin="259,132,0,0" VerticalAlignment="Top" Width="80" IsReadOnly="True" Value="0" TextAlignment="Center"/>
+                    <ComboBox x:Name="Capabilities_NatureWalk_2" HorizontalAlignment="Left" Margin="172,163,0,0"
+                              VerticalAlignment="Top" Width="79" />
+                    <ComboBox x:Name="Capabilities_NatureWalk_1" HorizontalAlignment="Left" Margin="88,163,0,0"
+                              VerticalAlignment="Top" Width="79" />
+                    <Label x:Name="label2" Content="Nature Walks" HorizontalAlignment="Left" Margin="2,159,0,0"
+                           VerticalAlignment="Top" />
+                    <Label x:Name="label1_Copy16" Content="Overland" VerticalAlignment="Top" Height="26"
+                           Margin="2,4,0,0" HorizontalAlignment="Left" />
+                    <xctk:DecimalUpDown x:Name="Capabilities_Overland" HorizontalAlignment="Left" Margin="65,8,0,0"
+                                        VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center" />
+                    <Label x:Name="label1_Copy17" Content="Swim" VerticalAlignment="Top" Height="26" Margin="2,35,0,0"
+                           HorizontalAlignment="Left" />
+                    <xctk:DecimalUpDown x:Name="Capabilities_Swim" HorizontalAlignment="Left" Margin="65,39,0,0"
+                                        VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center" />
+                    <Label x:Name="label1_Copy18" Content="Jump (L)" VerticalAlignment="Top" Height="26"
+                           Margin="2,66,0,0" HorizontalAlignment="Left" />
+                    <xctk:DecimalUpDown x:Name="Capabilities_LongJump" HorizontalAlignment="Left" Margin="65,70,0,0"
+                                        VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center" />
+                    <Label x:Name="label1_Copy19" Content="Jump (H)" VerticalAlignment="Top" Height="26"
+                           Margin="2,97,0,0" HorizontalAlignment="Left" />
+                    <xctk:DecimalUpDown x:Name="Capabilities_HighJump" HorizontalAlignment="Left" Margin="65,101,0,0"
+                                        VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center" />
+                    <Label x:Name="label1_Copy20" Content="Power" VerticalAlignment="Top" Height="26"
+                           Margin="2,128,0,0" HorizontalAlignment="Left" />
+                    <xctk:DecimalUpDown x:Name="Capabilities_Power" HorizontalAlignment="Left" Margin="65,132,0,0"
+                                        VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center" />
+                    <Label x:Name="label1_Copy21" Content="Burrow" VerticalAlignment="Top" Height="26"
+                           Margin="158,4,0,0" HorizontalAlignment="Left" />
+                    <xctk:DecimalUpDown x:Name="Capabilities_Burrow" HorizontalAlignment="Left" Margin="259,8,0,0"
+                                        VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center" />
+                    <Label x:Name="label1_Copy22" Content="Sky" VerticalAlignment="Top" Height="26" Margin="158,35,0,0"
+                           HorizontalAlignment="Left" />
+                    <xctk:DecimalUpDown x:Name="Capabilities_Sky" HorizontalAlignment="Left" Margin="259,39,0,0"
+                                        VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center" />
+                    <Label x:Name="label1_Copy23" Content="Levitate" VerticalAlignment="Top" Height="26"
+                           Margin="158,66,0,0" HorizontalAlignment="Left" />
+                    <xctk:DecimalUpDown x:Name="Capabilities_Levitate" HorizontalAlignment="Left" Margin="259,70,0,0"
+                                        VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center" />
+                    <Label x:Name="label1_Copy24" Content="Teleport" VerticalAlignment="Top" Height="26"
+                           Margin="158,97,0,0" HorizontalAlignment="Left" />
+                    <xctk:DecimalUpDown x:Name="Capabilities_Teleport" HorizontalAlignment="Left" Margin="259,101,0,0"
+                                        VerticalAlignment="Top" Width="80" Value="0" TextAlignment="Center" />
+                    <Label x:Name="label1_Copy25" Content="Throwing Range" VerticalAlignment="Top" Margin="158,128,0,0"
+                           Height="26" HorizontalAlignment="Left" />
+                    <xctk:DecimalUpDown x:Name="Capabilities_ThrowingRange" HorizontalAlignment="Left"
+                                        Margin="259,132,0,0" VerticalAlignment="Top" Width="80" IsReadOnly="True"
+                                        Value="0" TextAlignment="Center" />
                 </Grid>
             </TabItem>
             <TabItem Header="Status Effects" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top">
                 <Grid>
-                    <GroupBox Header="Persistent Status" HorizontalAlignment="Left" Height="437" VerticalAlignment="Top" Width="321">
+                    <GroupBox Header="Persistent Status" HorizontalAlignment="Left" Height="437"
+                              VerticalAlignment="Top" Width="321">
                         <Grid Margin="0,0,1,0">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="215"/>
-                                <RowDefinition/>
+                                <RowDefinition Height="215" />
+                                <RowDefinition />
                             </Grid.RowDefinitions>
-                            <CheckBox x:Name="Status_Persistant_Burned" Content="Burned" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Checked="Status_Persistant_Burned_Checked" Unchecked="Status_Persistant_Burned_Unchecked"/>
-                            <CheckBox x:Name="Status_Persistant_Frozen" Content="Frozen" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" Checked="Status_Persistant_Frozen_Checked" Unchecked="Status_Persistant_Frozen_Unchecked"/>
-                            <CheckBox x:Name="Status_Persistant_Paralysis" Content="Paralysis" HorizontalAlignment="Left" Margin="0,50,0,0" VerticalAlignment="Top" Checked="Status_Persistant_Paralysis_Checked" Unchecked="Status_Persistant_Paralysis_Unchecked"/>
-                            <CheckBox x:Name="Status_Persistant_Poisioned" Content="Poisoned" HorizontalAlignment="Left" Margin="0,70,0,0" VerticalAlignment="Top" Checked="Status_Persistant_Poisioned_Checked" Unchecked="Status_Persistant_Poisioned_Unchecked"/>
-                            <Label Content="No Options Available for &quot;Persistant&quot; Status Effects" Margin="10,10,10,0" Grid.Row="1" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                            <CheckBox x:Name="Status_Persistant_Burned" Content="Burned" HorizontalAlignment="Left"
+                                      Margin="0,10,0,0" VerticalAlignment="Top"
+                                      Checked="Status_Persistant_Burned_Checked"
+                                      Unchecked="Status_Persistant_Burned_Unchecked" />
+                            <CheckBox x:Name="Status_Persistant_Frozen" Content="Frozen" HorizontalAlignment="Left"
+                                      Margin="0,30,0,0" VerticalAlignment="Top"
+                                      Checked="Status_Persistant_Frozen_Checked"
+                                      Unchecked="Status_Persistant_Frozen_Unchecked" />
+                            <CheckBox x:Name="Status_Persistant_Paralysis" Content="Paralysis"
+                                      HorizontalAlignment="Left" Margin="0,50,0,0" VerticalAlignment="Top"
+                                      Checked="Status_Persistant_Paralysis_Checked"
+                                      Unchecked="Status_Persistant_Paralysis_Unchecked" />
+                            <CheckBox x:Name="Status_Persistant_Poisioned" Content="Poisoned"
+                                      HorizontalAlignment="Left" Margin="0,70,0,0" VerticalAlignment="Top"
+                                      Checked="Status_Persistant_Poisioned_Checked"
+                                      Unchecked="Status_Persistant_Poisioned_Unchecked" />
+                            <Label Content="No Options Available for &quot;Persistant&quot; Status Effects"
+                                   Margin="10,10,10,0" Grid.Row="1" VerticalAlignment="Top"
+                                   VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="Volatile Status" HorizontalAlignment="Left" Height="437" VerticalAlignment="Top" Width="320" Margin="326,0,0,0">
+                    <GroupBox Header="Volatile Status" HorizontalAlignment="Left" Height="437" VerticalAlignment="Top"
+                              Width="320" Margin="326,0,0,0">
                         <Grid Margin="0">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="215"/>
-                                <RowDefinition/>
+                                <RowDefinition Height="215" />
+                                <RowDefinition />
                             </Grid.RowDefinitions>
-                            <CheckBox x:Name="Status_Volatile_BadSleep" Content="Bad Sleep" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Height="15" Width="72" Checked="Status_Volatile_BadSleep_Checked" Unchecked="Status_Volatile_BadSleep_Unchecked"/>
-                            <CheckBox x:Name="Status_Volatile_Confused" Content="Confused" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" Height="15" Width="70" Checked="Status_Volatile_Confused_Checked" Unchecked="Status_Volatile_Confused_Unchecked"/>
-                            <CheckBox x:Name="Status_Volatile_Cursed" Content="Cursed" HorizontalAlignment="Left" Margin="0,50,0,0" VerticalAlignment="Top" Height="15" Width="57" Checked="Status_Volatile_Cursed_Checked" Unchecked="Status_Volatile_Cursed_Unchecked"/>
-                            <CheckBox x:Name="Status_Volatile_Disable" Content="Disabled" HorizontalAlignment="Left" Margin="0,70,0,0" VerticalAlignment="Top" Height="15" Width="66" Checked="Status_Volatile_Disable_Checked" Unchecked="Status_Volatile_Disable_Unchecked"/>
-                            <CheckBox x:Name="Status_Volatile_Rage" Content="Rage" HorizontalAlignment="Left" Margin="0,90,0,0" VerticalAlignment="Top" Height="15" Width="47" Checked="Status_Volatile_Rage_Checked" Unchecked="Status_Volatile_Rage_Unchecked"/>
-                            <CheckBox x:Name="Status_Volatile_Flinch" Content="Flinch" HorizontalAlignment="Left" Margin="0,110,0,0" VerticalAlignment="Top" Height="15" Width="51" Checked="Status_Volatile_Flinch_Checked" Unchecked="Status_Volatile_Flinch_Unchecked"/>
-                            <CheckBox x:Name="Status_Volatile_Inflatuation" Content="Inflatuation" HorizontalAlignment="Left" Margin="0,130,0,0" VerticalAlignment="Top" Height="15" Width="81" Checked="Status_Volatile_Inflatuation_Checked" Unchecked="Status_Volatile_Inflatuation_Unchecked"/>
-                            <CheckBox x:Name="Status_Volatile_Sleep" Content="Sleep" HorizontalAlignment="Left" Margin="0,150,0,0" VerticalAlignment="Top" Height="15" Width="49" Checked="Status_Volatile_Sleep_Checked" Unchecked="Status_Volatile_Sleep_Unchecked"/>
-                            <CheckBox x:Name="Status_Volatile_Suppressed" Content="Suppressed" HorizontalAlignment="Left" Margin="0,170,0,0" VerticalAlignment="Top" Height="15" Width="81" Checked="Status_Volatile_Suppressed_Checked" Unchecked="Status_Volatile_Suppressed_Unchecked"/>
-                            <CheckBox x:Name="Status_Volatile_TemporaryHitPoints" Content="Temporary Hit Points" HorizontalAlignment="Left" Margin="0,190,0,0" VerticalAlignment="Top" Height="15" Width="132" Checked="Status_Volatile_TemporaryHitPoints_Checked" Unchecked="Status_Volatile_TemporaryHitPoints_Unchecked"/>
-                            <Button x:Name="Status_Volatile_ClearAll" Content="Clear All" Margin="0,0,10,10" VerticalAlignment="Bottom" Grid.Row="1" HorizontalAlignment="Right" Width="75" Height="20"/>
-                            <Label Content="Disabled Moves" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Grid.Row="1" Height="26" Width="94"/>
-                            <MultiSelectComboBox:MultiSelectComboBox x:Name="Status_Volatile_Disable_Value" Margin="99,10,10,0" Grid.Row="1" VerticalAlignment="Top" Height="29" IsEnabled="False" SelectionChangedEvent="Status_Volatile_Disable_Value_SelectionChangedEvent"/>
-                            <Label Content="Inflatuation Subject:" Margin="0,44,0,0" VerticalAlignment="Top" Grid.Row="1" HorizontalAlignment="Left" Width="115" Height="26"/>
-                            <Label x:Name="Status_Volatile_Inflatuation_Value" Content="No Selected Entity" Margin="120,44,59,0" VerticalAlignment="Top" Grid.Row="1" Height="26"/>
-                            <Button x:Name="Status_Volatile_Inflatuation_Select" Content="Select" Margin="0,46.8,11.2,0" Grid.Row="1" HorizontalAlignment="Right" Width="44" Height="20" VerticalAlignment="Top" IsEnabled="False" Click="Status_Volatile_Inflatuation_Select_Click"/>
-                            <Label Content="Sleep Duration" HorizontalAlignment="Left" Margin="0,75,0,0" VerticalAlignment="Top" Grid.Row="1" Height="26" Width="88"/>
-                            <xctk:IntegerUpDown x:Name="Status_Volatile_Sleep_Duration" Margin="93,75,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Value="0" TextAlignment="Center" Maximum="9999" Minimum="-1" HorizontalAlignment="Left" Width="89" IsEnabled="False" ValueChanged="Status_Volatile_Sleep_Duration_ValueChanged"/>
-                            <Label Content="Temp Hit Points" HorizontalAlignment="Left" Margin="0,106,0,0" VerticalAlignment="Top" Grid.Row="1" Height="26" Width="95"/>
-                            <xctk:IntegerUpDown x:Name="Status_Volatile_TemporaryHitPoints_Value" HorizontalAlignment="Left" Margin="100,106,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="89" Value="0" TextAlignment="Center" Maximum="9999" Minimum="0" IsEnabled="False" ValueChanged="Status_Volatile_TemporaryHitPoints_Value_ValueChanged"/>
+                            <CheckBox x:Name="Status_Volatile_BadSleep" Content="Bad Sleep" HorizontalAlignment="Left"
+                                      Margin="0,10,0,0" VerticalAlignment="Top" Height="15" Width="72"
+                                      Checked="Status_Volatile_BadSleep_Checked"
+                                      Unchecked="Status_Volatile_BadSleep_Unchecked" />
+                            <CheckBox x:Name="Status_Volatile_Confused" Content="Confused" HorizontalAlignment="Left"
+                                      Margin="0,30,0,0" VerticalAlignment="Top" Height="15" Width="70"
+                                      Checked="Status_Volatile_Confused_Checked"
+                                      Unchecked="Status_Volatile_Confused_Unchecked" />
+                            <CheckBox x:Name="Status_Volatile_Cursed" Content="Cursed" HorizontalAlignment="Left"
+                                      Margin="0,50,0,0" VerticalAlignment="Top" Height="15" Width="57"
+                                      Checked="Status_Volatile_Cursed_Checked"
+                                      Unchecked="Status_Volatile_Cursed_Unchecked" />
+                            <CheckBox x:Name="Status_Volatile_Disable" Content="Disabled" HorizontalAlignment="Left"
+                                      Margin="0,70,0,0" VerticalAlignment="Top" Height="15" Width="66"
+                                      Checked="Status_Volatile_Disable_Checked"
+                                      Unchecked="Status_Volatile_Disable_Unchecked" />
+                            <CheckBox x:Name="Status_Volatile_Rage" Content="Rage" HorizontalAlignment="Left"
+                                      Margin="0,90,0,0" VerticalAlignment="Top" Height="15" Width="47"
+                                      Checked="Status_Volatile_Rage_Checked" Unchecked="Status_Volatile_Rage_Unchecked" />
+                            <CheckBox x:Name="Status_Volatile_Flinch" Content="Flinch" HorizontalAlignment="Left"
+                                      Margin="0,110,0,0" VerticalAlignment="Top" Height="15" Width="51"
+                                      Checked="Status_Volatile_Flinch_Checked"
+                                      Unchecked="Status_Volatile_Flinch_Unchecked" />
+                            <CheckBox x:Name="Status_Volatile_Inflatuation" Content="Inflatuation"
+                                      HorizontalAlignment="Left" Margin="0,130,0,0" VerticalAlignment="Top" Height="15"
+                                      Width="81" Checked="Status_Volatile_Inflatuation_Checked"
+                                      Unchecked="Status_Volatile_Inflatuation_Unchecked" />
+                            <CheckBox x:Name="Status_Volatile_Sleep" Content="Sleep" HorizontalAlignment="Left"
+                                      Margin="0,150,0,0" VerticalAlignment="Top" Height="15" Width="49"
+                                      Checked="Status_Volatile_Sleep_Checked"
+                                      Unchecked="Status_Volatile_Sleep_Unchecked" />
+                            <CheckBox x:Name="Status_Volatile_Suppressed" Content="Suppressed"
+                                      HorizontalAlignment="Left" Margin="0,170,0,0" VerticalAlignment="Top" Height="15"
+                                      Width="81" Checked="Status_Volatile_Suppressed_Checked"
+                                      Unchecked="Status_Volatile_Suppressed_Unchecked" />
+                            <CheckBox x:Name="Status_Volatile_TemporaryHitPoints" Content="Temporary Hit Points"
+                                      HorizontalAlignment="Left" Margin="0,190,0,0" VerticalAlignment="Top" Height="15"
+                                      Width="132" Checked="Status_Volatile_TemporaryHitPoints_Checked"
+                                      Unchecked="Status_Volatile_TemporaryHitPoints_Unchecked" />
+                            <Button x:Name="Status_Volatile_ClearAll" Content="Clear All" Margin="0,0,10,10"
+                                    VerticalAlignment="Bottom" Grid.Row="1" HorizontalAlignment="Right" Width="75"
+                                    Height="20" />
+                            <Label Content="Disabled Moves" HorizontalAlignment="Left" Margin="0,10,0,0"
+                                   VerticalAlignment="Top" Grid.Row="1" Height="26" Width="94" />
+                            <MultiSelectComboBox:MultiSelectComboBox x:Name="Status_Volatile_Disable_Value"
+                                                                     Margin="99,10,10,0" Grid.Row="1"
+                                                                     VerticalAlignment="Top" Height="29"
+                                                                     IsEnabled="False"
+                                                                     SelectionChangedEvent="Status_Volatile_Disable_Value_SelectionChangedEvent" />
+                            <Label Content="Inflatuation Subject:" Margin="0,44,0,0" VerticalAlignment="Top"
+                                   Grid.Row="1" HorizontalAlignment="Left" Width="115" Height="26" />
+                            <Label x:Name="Status_Volatile_Inflatuation_Value" Content="No Selected Entities"
+                                   Margin="120,44,59,0" VerticalAlignment="Top" Grid.Row="1" Height="26" />
+                            <Button x:Name="Status_Volatile_Inflatuation_Select" Content="Select"
+                                    Margin="0,46.8,11.2,0" Grid.Row="1" HorizontalAlignment="Right" Width="44"
+                                    Height="20" VerticalAlignment="Top" IsEnabled="False"
+                                    Click="Status_Volatile_Inflatuation_Select_Click" />
+                            <Label Content="Sleep Duration" HorizontalAlignment="Left" Margin="0,75,0,0"
+                                   VerticalAlignment="Top" Grid.Row="1" Height="26" Width="88" />
+                            <xctk:IntegerUpDown x:Name="Status_Volatile_Sleep_Duration" Margin="93,75,0,0" Grid.Row="1"
+                                                VerticalAlignment="Top" Height="26" Value="0" TextAlignment="Center"
+                                                Maximum="9999" Minimum="-1" HorizontalAlignment="Left" Width="89"
+                                                IsEnabled="False"
+                                                ValueChanged="Status_Volatile_Sleep_Duration_ValueChanged" />
+                            <Label Content="Temp Hit Points" HorizontalAlignment="Left" Margin="0,106,0,0"
+                                   VerticalAlignment="Top" Grid.Row="1" Height="26" Width="95" />
+                            <xctk:IntegerUpDown x:Name="Status_Volatile_TemporaryHitPoints_Value"
+                                                HorizontalAlignment="Left" Margin="100,106,0,0" Grid.Row="1"
+                                                VerticalAlignment="Top" Height="26" Width="89" Value="0"
+                                                TextAlignment="Center" Maximum="9999" Minimum="0" IsEnabled="False"
+                                                ValueChanged="Status_Volatile_TemporaryHitPoints_Value_ValueChanged" />
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="Other Status" HorizontalAlignment="Left" Height="437" VerticalAlignment="Top" Width="321" Margin="651,0,0,0">
+                    <GroupBox Header="Other Status" HorizontalAlignment="Left" Height="437" VerticalAlignment="Top"
+                              Width="321" Margin="651,0,0,0">
                         <Grid Margin="0">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="215"/>
-                                <RowDefinition/>
+                                <RowDefinition Height="215" />
+                                <RowDefinition />
                             </Grid.RowDefinitions>
-                            <Button x:Name="Status_Other_ClearAll" Content="Clear All" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Grid.Row="1"/>
-                            <CheckBox x:Name="Status_Other_Fainted" Content="Fainted" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Checked="Status_Other_Fainted_Checked" Unchecked="Status_Other_Fainted_Unchecked"/>
-                            <CheckBox x:Name="Status_Other_Blindness" Content="Blindness" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" Checked="Status_Other_Blindness_Checked" Unchecked="Status_Other_Blindness_Unchecked"/>
-                            <CheckBox x:Name="Status_Other_TotalBlindness" Content="Total Blindness" HorizontalAlignment="Left" Margin="0,50,0,0" VerticalAlignment="Top" Checked="Status_Other_TotalBlindness_Checked" Unchecked="Status_Other_TotalBlindness_Unchecked"/>
-                            <CheckBox x:Name="Status_Other_Slowed" Content="Slowed" HorizontalAlignment="Left" Margin="0,70,0,0" VerticalAlignment="Top" Checked="Status_Other_Slowed_Checked" Unchecked="Status_Other_Slowed_Unchecked"/>
-                            <CheckBox x:Name="Status_Other_Stuck" Content="Stuck" HorizontalAlignment="Left" Margin="0,90,0,0" VerticalAlignment="Top" Checked="Status_Other_Stuck_Checked" Unchecked="Status_Other_Stuck_Unchecked"/>
-                            <CheckBox x:Name="Status_Other_Trapped" Content="Trapped" HorizontalAlignment="Left" Margin="0,110,0,0" VerticalAlignment="Top" Checked="Status_Other_Trapped_Checked" Unchecked="Status_Other_Trapped_Unchecked"/>
-                            <CheckBox x:Name="Status_Other_Tripped" Content="Tripped" HorizontalAlignment="Left" Margin="0,130,0,0" VerticalAlignment="Top" Checked="Status_Other_Tripped_Checked" Unchecked="Status_Other_Tripped_Unchecked"/>
-                            <CheckBox x:Name="Status_Other_Vulnerable" Content="Vulnerable" HorizontalAlignment="Left" Margin="0,150,0,0" VerticalAlignment="Top" Checked="Status_Other_Vulnerable_Checked" Unchecked="Status_Other_Vulnerable_Unchecked"/>
-                            <Label Content="No Options Available for &quot;Other&quot; Status Effects" Margin="10,10,10,0" Grid.Row="1" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                            <Button x:Name="Status_Other_ClearAll" Content="Clear All" HorizontalAlignment="Right"
+                                    Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Grid.Row="1" />
+                            <CheckBox x:Name="Status_Other_Fainted" Content="Fainted" HorizontalAlignment="Left"
+                                      Margin="0,10,0,0" VerticalAlignment="Top" Checked="Status_Other_Fainted_Checked"
+                                      Unchecked="Status_Other_Fainted_Unchecked" />
+                            <CheckBox x:Name="Status_Other_Blindness" Content="Blindness" HorizontalAlignment="Left"
+                                      Margin="0,30,0,0" VerticalAlignment="Top"
+                                      Checked="Status_Other_Blindness_Checked"
+                                      Unchecked="Status_Other_Blindness_Unchecked" />
+                            <CheckBox x:Name="Status_Other_TotalBlindness" Content="Total Blindness"
+                                      HorizontalAlignment="Left" Margin="0,50,0,0" VerticalAlignment="Top"
+                                      Checked="Status_Other_TotalBlindness_Checked"
+                                      Unchecked="Status_Other_TotalBlindness_Unchecked" />
+                            <CheckBox x:Name="Status_Other_Slowed" Content="Slowed" HorizontalAlignment="Left"
+                                      Margin="0,70,0,0" VerticalAlignment="Top" Checked="Status_Other_Slowed_Checked"
+                                      Unchecked="Status_Other_Slowed_Unchecked" />
+                            <CheckBox x:Name="Status_Other_Stuck" Content="Stuck" HorizontalAlignment="Left"
+                                      Margin="0,90,0,0" VerticalAlignment="Top" Checked="Status_Other_Stuck_Checked"
+                                      Unchecked="Status_Other_Stuck_Unchecked" />
+                            <CheckBox x:Name="Status_Other_Trapped" Content="Trapped" HorizontalAlignment="Left"
+                                      Margin="0,110,0,0" VerticalAlignment="Top" Checked="Status_Other_Trapped_Checked"
+                                      Unchecked="Status_Other_Trapped_Unchecked" />
+                            <CheckBox x:Name="Status_Other_Tripped" Content="Tripped" HorizontalAlignment="Left"
+                                      Margin="0,130,0,0" VerticalAlignment="Top" Checked="Status_Other_Tripped_Checked"
+                                      Unchecked="Status_Other_Tripped_Unchecked" />
+                            <CheckBox x:Name="Status_Other_Vulnerable" Content="Vulnerable" HorizontalAlignment="Left"
+                                      Margin="0,150,0,0" VerticalAlignment="Top"
+                                      Checked="Status_Other_Vulnerable_Checked"
+                                      Unchecked="Status_Other_Vulnerable_Unchecked" />
+                            <Label Content="No Options Available for &quot;Other&quot; Status Effects"
+                                   Margin="10,10,10,0" Grid.Row="1" VerticalAlignment="Top"
+                                   VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
                         </Grid>
                     </GroupBox>
                 </Grid>
@@ -374,29 +796,32 @@
                                 <GridViewColumn Header="View" Width="50px">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <CheckBox Margin="5, 0" IsChecked="{Binding View}"/>
+                                            <CheckBox Margin="5, 0" IsChecked="{Binding View}" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                                 <GridViewColumn Header="Edit" Width="50px">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <CheckBox Margin="5, 0" IsChecked="{Binding Edit}"/>
+                                            <CheckBox Margin="5, 0" IsChecked="{Binding Edit}" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="UserID" Width="100px" DisplayMemberBinding="{Binding ID}"/>
-                                <GridViewColumn Header="User Name" Width="200px" DisplayMemberBinding="{Binding Name}"/>
-                                <GridViewColumn Header="Character Name" Width="200px" DisplayMemberBinding="{Binding ICN}"/>
-                                <GridViewColumn Header="Groups" Width="300px" DisplayMemberBinding="{Binding Groups}"/>
+                                <GridViewColumn Header="UserID" Width="100px" DisplayMemberBinding="{Binding ID}" />
+                                <GridViewColumn Header="User Name" Width="200px" DisplayMemberBinding="{Binding Name}" />
+                                <GridViewColumn Header="Character Name" Width="200px"
+                                                DisplayMemberBinding="{Binding ICN}" />
+                                <GridViewColumn Header="Groups" Width="300px" DisplayMemberBinding="{Binding Groups}" />
                             </GridView>
                         </ListView.View>
                     </ListView>
                 </Grid>
             </TabItem>
         </TabControl>
-        <Border x:Name="Token" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="124" Margin="854,10,0,0" VerticalAlignment="Top" Width="124"/>
-        <Button x:Name="Button_SelectToken" Content="Change Token" Margin="854,139,12.4,0" VerticalAlignment="Top" Click="Button_SelectToken_Click"/>
+        <Border x:Name="Token" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="124"
+                Margin="854,10,0,0" VerticalAlignment="Top" Width="124" />
+        <Button x:Name="Button_SelectToken" Content="Change Token" Margin="854,139,12.4,0" VerticalAlignment="Top"
+                Click="Button_SelectToken_Click" />
 
     </Grid>
 </Window>

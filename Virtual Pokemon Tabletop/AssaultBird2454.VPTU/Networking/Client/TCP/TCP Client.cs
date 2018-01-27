@@ -70,6 +70,10 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
             }
             set
             {
+                if (Client.Connected)
+                {
+                    return;
+                }
                 //Event Trigger Here
                 TCP_IPAddress = value;
             }
@@ -86,6 +90,10 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
             }
             set
             {
+                if (Client.Connected)
+                {
+                    return;
+                }
                 //Event Trigger
                 TCP_Port = value;
             }
