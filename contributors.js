@@ -1,7 +1,8 @@
 /**
  * When you contribute to Virtual-Pokemon-Tabletop, please add your info to this. You don't need to include `firstName`,
- * or any of the links if you don't want to, but include everything else. Note: If you don't pull request into Dev,
- * you won't be put in the credits list (because it uses Dev for data).
+ * or any of the links if you don't want to (if you don't include something please don't just put in an empty string),
+ * but include everything else.
+ * Note: If you don't pull request into Dev, you won't be put in the credits list (because it uses Dev for data).
  */
 
 /** 
@@ -37,7 +38,7 @@ initContributors([
             ptForum: "6000923",
             youtube: "channel/UCXqpxzR-2HYqaHpgtqOAFFg"
         }
-    },{
+    }, {
         username: "zoweb",
         firstName: "Zach",
 
@@ -50,9 +51,9 @@ initContributors([
         ],
         links: {
             github: "zoweb"
-    },{
+        }
+    }, {
         username: "Firechild513",
-        firstName: "",
 
         shortDescription: "Is working on physical pokedex cards for the PTU system, and shared the graphical template for use with the VPTU project.",
 
@@ -62,9 +63,8 @@ initContributors([
         links: {
             ptForum: "6015913"
         }
-    },{
+    }, {
         username: "guswadsworth",
-        firstName: "",
 
         shortDescription: "Provides support with PTU mechanics and informs developers on how it should be done.",
 
@@ -75,5 +75,5 @@ initContributors([
         links: {
             ptForum: "4143438"
         }
-    }    
+    }
 ]);
