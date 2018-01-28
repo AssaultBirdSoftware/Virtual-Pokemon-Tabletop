@@ -38,7 +38,7 @@ initContributors([
             ptForum: "6000923",
             youtube: "channel/UCXqpxzR-2HYqaHpgtqOAFFg"
         }
-    },{
+    }, {
         username: "zoweb",
         firstName: "Zach",
 
@@ -51,7 +51,8 @@ initContributors([
         ],
         links: {
             github: "zoweb"
-    },{
+        }
+    }, {
         username: "Firechild513",
 
         shortDescription: "Is working on physical pokedex cards for the PTU system, and shared the graphical template for use with the VPTU project.",
@@ -62,7 +63,7 @@ initContributors([
         links: {
             ptForum: "6015913"
         }
-    },{
+    }, {
         username: "guswadsworth",
 
         shortDescription: "Provides support with PTU mechanics and informs developers on how it should be done.",
@@ -74,5 +75,5 @@ initContributors([
         links: {
             ptForum: "4143438"
         }
-    }    
+    }
 ]);
