@@ -18,11 +18,6 @@ namespace AssaultBird2454.VPTU.BattleManager.BattleEffect
         public string Function_Comment { get; set; }
 
         /// <summary>
-        /// Lists all the triggers that will trigger this function
-        /// </summary>
-        public List<Data.Triggers> Triggers { get; set; }
-
-        /// <summary>
         /// List of Actions to take to perform this function
         /// </summary>
         public List<Data.Action> Actions { get; set; }
