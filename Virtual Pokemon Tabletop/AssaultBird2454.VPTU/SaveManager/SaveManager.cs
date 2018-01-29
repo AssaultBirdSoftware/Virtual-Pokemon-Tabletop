@@ -66,10 +66,26 @@ namespace AssaultBird2454.VPTU.SaveManager
 
                 SaveData.InitNullObjects();
             }
-            catch (Exception e)
+            catch (FileNotFoundException ex)
             {
-                MessageBox.Show("There was an error while loading the save file...\nPlease confirm that the savefile has no errors...", "Save file loading error");
-                MessageBox.Show(e.ToString());
+                MessageBox.Show("The file that was specified was not found and couldent be opened... Please check the file path and try again", "SaveFile Not Found");
+            }
+            catch (DirectoryNotFoundException ex)
+            {
+                MessageBox.Show("The directory that was specified does not exist... Please check the path and try again", "SaveFile Not Found");
+            }
+            catch (PathTooLongException ex)
+            {
+                MessageBox.Show("The file path specified is too long... Please check the path and try again", "SaveFile Path Too Long");
+            }
+            catch (InvalidDataException ex)
+            {
+                MessageBox.Show("There was an error while loading the save file...\nPlease confirm that the savefile has no errors and is packed correctly...", "Save file loading error");
+                MessageBox.Show(ex.ToString());
+            }
+            catch (System.Security.SecurityException ex)
+            {
+                MessageBox.Show("You dont have permission to access the file that was specified... Please check the file and try again", "SaveFile Permissions Error");
             }
         }
         /// <summary>
