@@ -5,7 +5,6 @@ using AssaultBird2454.VPTU.BattleManager.Data;
 using AssaultBird2454.VPTU.ContestManager.Data;
 using AssaultBird2454.VPTU.Pokedex.Moves;
 using AssaultBird2454.VPTU.Pokedex.Pokemon;
-using AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect;
 using AssaultBird2454.VPTU.SaveManager.Data.SaveFile;
 using Type = AssaultBird2454.VPTU.BattleManager.Data.Type;
 
@@ -918,11 +917,11 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
 
         private void Effect_Designer_Click(object sender, RoutedEventArgs e)
         {
-            var designer = new BattleEffect_Designer(MoveData.Move_Effects);
-            var save = designer.ShowDialog();
+            //var designer = new BattleEffect_Designer(MoveData.Move_Effects);
+            //var save = designer.ShowDialog();
 
-            if (save == true)
-                MoveData.Move_Effects = designer.EffectData; // Save Designer
+            //if (save == true)
+            //    MoveData.Move_Effects = designer.EffectData; // Save Designer
         }
     }
 }
