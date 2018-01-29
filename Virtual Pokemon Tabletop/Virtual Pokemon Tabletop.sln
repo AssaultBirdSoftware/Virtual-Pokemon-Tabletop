@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PTU Libs", "PTU Libs", "{C1729FAC-DB65-4179-9817-EDCE648E5D11}"
 EndProject
@@ -13,13 +13,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaveEditor", "AssaultBird24
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CB6F0048-E047-4F2C-B13B-1942E22A74D2}"
 	ProjectSection(SolutionItems) = preProject
-		..\DISCLAMER = ..\DISCLAMER
-		..\LEGAL NOTICE = ..\LEGAL NOTICE
 		..\LICENSE = ..\LICENSE
 		NuGet.Config = NuGet.Config
 		..\README.md = ..\README.md
 		..\Release x64.yml = ..\Release x64.yml
 		..\Release x86.yml = ..\Release x86.yml
+		..\Third Party Graphics = ..\Third Party Graphics
+		..\Third Party Software = ..\Third Party Software
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External Libs", "External Libs", "{71F3832E-44F5-447B-96F7-8E29D83B9DA8}"
@@ -74,6 +74,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Chapter 2 (Character Creati
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Installer", "AssaultBird2454.VPTU.Installer\Installer.csproj", "{96F1A781-853B-4591-8CE3-4846E6FB37B5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "License Agreements", "License Agreements", "{3BE56D45-74CA-4D28-85CB-07AF7905193B}"
+	ProjectSection(SolutionItems) = preProject
+		Attribution 3.0.txt = Attribution 3.0.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -152,6 +157,7 @@ Global
 		{200830E4-F5D2-4876-8FEF-6DF901F3FD6C} = {52A1749A-565A-49BF-9D8B-D9E23413A440}
 		{0DD766F2-800F-438E-9209-5D73BCF2D9ED} = {52A1749A-565A-49BF-9D8B-D9E23413A440}
 		{96F1A781-853B-4591-8CE3-4846E6FB37B5} = {BE5EB1E2-3DE9-4DFB-ABA9-20C1CF7A99C8}
+		{3BE56D45-74CA-4D28-85CB-07AF7905193B} = {CB6F0048-E047-4F2C-B13B-1942E22A74D2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B03AC055-AAE8-481E-B0C7-E216BFB6B988}
