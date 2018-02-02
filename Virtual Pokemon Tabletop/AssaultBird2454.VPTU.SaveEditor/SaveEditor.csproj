@@ -146,15 +146,6 @@
     <Compile Include="UI\About\License.xaml.cs">
       <DependentUpon>License.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\BattleEffect\BattleEffect_Designer.xaml.cs">
-      <DependentUpon>BattleEffect_Designer.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\BattleEffect\EffectAction_Designer.xaml.cs">
-      <DependentUpon>EffectAction_Designer.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\BattleEffect\EffectFunction_Designer.xaml.cs">
-      <DependentUpon>EffectFunction_Designer.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UI\Battlers\Participant.xaml.cs">
       <DependentUpon>Participant.xaml</DependentUpon>
     </Compile>
@@ -223,18 +214,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\About\License.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\BattleEffect\BattleEffect_Designer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\BattleEffect\EffectAction_Designer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\BattleEffect\EffectFunction_Designer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -381,6 +360,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="sentry_cid.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UI\BattleEffect\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

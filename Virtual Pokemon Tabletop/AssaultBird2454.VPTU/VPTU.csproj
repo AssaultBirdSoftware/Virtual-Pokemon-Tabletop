@@ -134,48 +134,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authentication Manager\Data\Data.cs" />
-    <Compile Include="BattleManager\Battle Instance\Battle_Logger.xaml.cs">
-      <DependentUpon>Battle_Logger.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="BattleManager\Battle Instance\Instance.cs" />
-    <Compile Include="BattleManager\Battle Instance\Logger\Move_Executed.xaml.cs">
-      <DependentUpon>Move_Executed.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="BattleManager\BattleEffect\Data\Action.cs" />
-    <Compile Include="BattleManager\BattleEffect\Data\Actions\AddStatusEffect.cs" />
-    <Compile Include="BattleManager\BattleEffect\Data\Actions\HasStatus.cs" />
-    <Compile Include="BattleManager\BattleEffect\Data\Actions\RemoveStatusEffect.cs" />
-    <Compile Include="BattleManager\BattleEffect\Data\Actions\SetAC.cs" />
-    <Compile Include="BattleManager\BattleEffect\Data\Actions\SetDB.cs" />
-    <Compile Include="BattleManager\BattleEffect\Data\Actions\Static_HealthChange.cs" />
-    <Compile Include="BattleManager\BattleEffect\Data\Actions\UI\EffectAction_Designer.cs" />
-    <Compile Include="BattleManager\BattleEffect\Data\Actions\UI\HasStatus.xaml.cs">
-      <DependentUpon>HasStatus.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="BattleManager\BattleEffect\Data\Actions\UI\SetAC.xaml.cs">
-      <DependentUpon>SetAC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="BattleManager\BattleEffect\Data\Actions\UI\SetDB.xaml.cs">
-      <DependentUpon>SetDB.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="BattleManager\BattleEffect\Data\Actions\UI\Static_HealthChange.xaml.cs">
-      <DependentUpon>Static_HealthChange.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="BattleManager\BattleEffect\Data\Actions\UI\StatusEffect_Add.xaml.cs">
-      <DependentUpon>StatusEffect_Add.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="BattleManager\BattleEffect\Data\Actions\UI\StatusEffect_Remove.xaml.cs">
-      <DependentUpon>StatusEffect_Remove.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="BattleManager\BattleEffect\Data\Command Handeler\Command.cs" />
-    <Compile Include="BattleManager\BattleEffect\Data\Command Handeler\CommandHandeler.cs" />
-    <Compile Include="BattleManager\BattleEffect\Data\Data.cs" />
-    <Compile Include="BattleManager\BattleEffect\Data\Trigger.xaml.cs">
-      <DependentUpon>Trigger.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="BattleManager\BattleEffect\Data\Variable.cs" />
-    <Compile Include="BattleManager\BattleEffect\EffectData.cs" />
-    <Compile Include="BattleManager\BattleEffect\EffectFunction.cs" />
     <Compile Include="BattleManager\Type\Type Manager.cs" />
     <Compile Include="BattleManager\Type\Type.cs" />
     <Compile Include="ContestManager\Data\Data.cs" />
@@ -273,42 +231,6 @@
     <EmbeddedResource Include="ProjectVariables.json" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="BattleManager\Battle Instance\Battle_Logger.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="BattleManager\Battle Instance\Logger\Move_Executed.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="BattleManager\BattleEffect\Data\Actions\UI\HasStatus.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="BattleManager\BattleEffect\Data\Actions\UI\SetAC.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="BattleManager\BattleEffect\Data\Actions\UI\SetDB.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="BattleManager\BattleEffect\Data\Actions\UI\Static_HealthChange.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="BattleManager\BattleEffect\Data\Actions\UI\StatusEffect_Add.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="BattleManager\BattleEffect\Data\Actions\UI\StatusEffect_Remove.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="BattleManager\BattleEffect\Data\Trigger.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Tabletop\Map\Table.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
