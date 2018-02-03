@@ -5,7 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor"
     xmlns:Battlers="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Battlers"
-    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="AssaultBird2454.VPTU.SaveEditor.MainWindow"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:Settings="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Settings" x:Class="AssaultBird2454.VPTU.SaveEditor.MainWindow"
     mc:Ignorable="d"
     Title="Virtual Pokemon Tabletop - SaveEditor (Version: _____ _._._ Build _) (Commit: _______)" Height="710"
     Width="997.5" Closed="Window_Closed">
@@ -110,14 +110,10 @@
                                                     VerticalContentAlignment="Center" />
                             </Grid>
                         </TabItem>
-                        <TabItem Header="Advanced Server Settings">
-                            <Grid Background="#FFE5E5E5" />
-                        </TabItem>
-                        <TabItem Header="Features">
-                            <Grid Background="#FFE5E5E5" />
-                        </TabItem>
-                        <TabItem Header="Save File Settings">
-                            <Grid Background="#FFE5E5E5" />
+                        <TabItem Header="Advanced Settings">
+                            <Grid Background="#FFE5E5E5" >
+                                <Settings:Settings_Panel x:Name="OverviewSettings_"/>
+                            </Grid>
                         </TabItem>
                         <TabItem Header="Users and Groups">
                             <Grid Background="#FFE5E5E5">
