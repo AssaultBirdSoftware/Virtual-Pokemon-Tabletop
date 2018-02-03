@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AssaultBird2454.VPTU.BattleManager.Type
+namespace AssaultBird2454.VPTU.BattleManager.Typing
 {
     public class Typing_Data
     {
@@ -15,7 +15,16 @@ namespace AssaultBird2454.VPTU.BattleManager.Type
         /// <summary>
         /// The hex color code for the type
         /// </summary>
-        public string Type_Color { get; set; }
+        public System.Windows.Media.Color Type_Color { get; set; }
+
+        /// <summary>
+        /// The Resource ID for the Typeing Icon
+        /// </summary>
+        public string Resource_Icon { get; set; }
+        /// <summary>
+        /// The Resource ID for the Typeing Badge
+        /// </summary>
+        public string Resource_Badge { get; set; }
 
         /// <summary>
         /// List other types that have no effect against this type

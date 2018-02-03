@@ -11,10 +11,6 @@ namespace AssaultBird2454.VPTU.BattleManager.Data
     /// </summary>
     public enum Nature { Cuddly = 1, Distracted, Proud, Decisive, Patient, Desperate, Lonely, Adamant, Naughty, Brave, Stark, Bold, Impish, Lax, Relaxed, Curious, Modest, Mild, Rash, Quiet, Dreamy, Calm, Gentle, Careful, Sassy, Skittish, Timid, Hasty, Jolly, Naive, Composed, Hardy, Docile, Bashful, Quirky, Serious }
     /// <summary>
-    /// Defines Pokemon & Move Types
-    /// </summary>
-    public enum Type { Normal = 1, Fire, Fighting, Water, Flying, Grass, Poison, Electric, Ground, Psychic, Rock, Ice, Bug, Dragon, Ghost, Dark, Steel, Fairy }
-    /// <summary>
     /// Defines all the different status conditions
     /// </summary>
     public enum Status_Afflictions { Burned = 1, Frozen, Paralysis, Poision, Sleep, BadSleep, Suppressed, Confusion, Cursed, Dissabled, Rage, Flinch, Inflatuation, Fainted, Slowed, Stuck, Blindness, TotalBlindness, Trapped, Tripped, Vulnerable, Vortex, TemporaryHitPoints }

@@ -134,8 +134,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authentication Manager\Data\Data.cs" />
-    <Compile Include="BattleManager\Type\Type Manager.cs" />
-    <Compile Include="BattleManager\Type\Type.cs" />
+    <Compile Include="BattleManager\Typing\Type Manager.cs" />
+    <Compile Include="BattleManager\Typing\Type.cs" />
     <Compile Include="ContestManager\Data\Data.cs" />
     <Compile Include="BattleManager\Data\Data.cs" />
     <Compile Include="EntityManager\Entity.cs" />

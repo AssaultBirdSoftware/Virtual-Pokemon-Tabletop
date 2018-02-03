@@ -15,7 +15,6 @@ using AssaultBird2454.VPTU.RNG.Generators;
 using AssaultBird2454.VPTU.SaveEditor.UI.Entities.Pokemon;
 using AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Select;
 using AssaultBird2454.VPTU.SaveEditor.UI.Resources;
-using Type = AssaultBird2454.VPTU.BattleManager.Data.Type;
 
 namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
 {
@@ -87,10 +86,10 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
 
             #endregion
 
-            var itemso = new Dictionary<string, object>();
-            foreach (Type effect in Enum.GetValues(typeof(Type)))
-                itemso.Add(effect.ToString(), effect);
-            Basic_Types.ItemsSource = itemso;
+            var itemSource = new Dictionary<string, object>();
+            foreach (BattleManager.Typing.Typing_Data type in MainWindow.SaveManager.SaveData.Typing_Manager.Types)
+                itemSource.Add(type.Type_Name, type.Type_Name);
+            Basic_Types.ItemsSource = itemSource;
 
             Basic_Weight.ItemsSource = Enum.GetValues(typeof(WeightClass));
             Basic_Size.ItemsSource = Enum.GetValues(typeof(SizeClass));
@@ -187,8 +186,8 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
                 #region Pokemon Types
 
                 var itemso = new Dictionary<string, object>();
-                foreach (var type in PokemonData.PokemonType)
-                    itemso.Add(type.ToString(), type);
+                foreach (string type in PokemonData.PokemonType)
+                    itemso.Add(type, type);
                 Basic_Types.SelectedItems = itemso;
 
                 #endregion
@@ -364,9 +363,10 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 #region Pokemon Types
 
-                PokemonData.PokemonType.Clear();
-                foreach (var type in NewPokemon.Species_Types)
-                    PokemonData.PokemonType.Add(type);
+                var itemso = new Dictionary<string, object>();
+                foreach (string type in PokemonData.PokemonType)
+                    itemso.Add(type, type);
+                Basic_Types.SelectedItems = itemso;
 
                 #endregion
             }
@@ -876,11 +876,11 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             if (Ready)
             {
                 if (PokemonData.PokemonType == null)
-                    PokemonData.PokemonType = new List<Type>();
+                    PokemonData.PokemonType = new List<string>();
 
                 PokemonData.PokemonType.Clear();
                 foreach (var seltype in Basic_Types.SelectedItems)
-                    PokemonData.PokemonType.Add((Type)seltype.Value);
+                    PokemonData.PokemonType.Add((string)seltype.Value);
             }
         }
 

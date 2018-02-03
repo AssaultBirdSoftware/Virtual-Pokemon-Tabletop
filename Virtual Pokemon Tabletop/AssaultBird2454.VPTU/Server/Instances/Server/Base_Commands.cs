@@ -433,7 +433,7 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
 
         private void Battle_Instance_List_Executed(object Data, TCP_ClientNode Client)
         {
-            Client.Send(new CommandData.Battle.Battle_Instance_List() { Instances = Instance.GetInstances });
+            Client.Send(new CommandData.Battle.Battle_Instance_List() { /*Instances = Instance.GetInstances*/ });
         }
 
         private void Battle_Instance_Start_Executed(object Data, TCP_ClientNode Client)
