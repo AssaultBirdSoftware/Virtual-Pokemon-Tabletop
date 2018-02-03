@@ -191,6 +191,24 @@
     <Compile Include="UI\Resources\Search_Resources.xaml.cs">
       <DependentUpon>Search_Resources.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Settings\Settings Panel.xaml.cs">
+      <DependentUpon>Settings Panel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Settings\Setting_Value_Bool.xaml.cs">
+      <DependentUpon>Setting_Value_Bool.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Settings\Setting_Value_Button.xaml.cs">
+      <DependentUpon>Setting_Value_Button.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Settings\Setting_Value_Decimal.xaml.cs">
+      <DependentUpon>Setting_Value_Decimal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Settings\Setting_Value_DropDown.xaml.cs">
+      <DependentUpon>Setting_Value_DropDown.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Settings\Setting_Value_String.xaml.cs">
+      <DependentUpon>Setting_Value_String.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\String Prompt.xaml.cs">
       <DependentUpon>String Prompt.xaml</DependentUpon>
     </Compile>
@@ -274,6 +292,30 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Resources\Search_Resources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Settings\Settings Panel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Settings\Setting_Value_Bool.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Settings\Setting_Value_Button.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Settings\Setting_Value_Decimal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Settings\Setting_Value_DropDown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Settings\Setting_Value_String.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
