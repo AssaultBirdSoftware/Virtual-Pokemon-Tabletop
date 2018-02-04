@@ -1,0 +1,23 @@
+﻿<Window x:Class="AssaultBird2454.VPTU.SaveEditor.UI.Battle.Typing_Editor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Battle"
+        mc:Ignorable="d"
+        Title="Typing_Editor" Height="489.474" Width="525.439" ResizeMode="NoResize">
+    <Grid>
+        <ListView x:Name="Type_List" MouseDoubleClick="Type_List_MouseDoubleClick">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Type" Width="125" DisplayMemberBinding="{Binding Type_Name}"/>
+                    <GridViewColumn Header="Effective" Width="75" DisplayMemberBinding="{Binding Effect_SuperEffective.Count}"/>
+                    <GridViewColumn Header="Neutral" Width="75" DisplayMemberBinding="{Binding Effect_Normal.Count}"/>
+                    <GridViewColumn Header="Not Effective" Width="75" DisplayMemberBinding="{Binding Effect_NotVery.Count}"/>
+                    <GridViewColumn Header="No Effect" Width="75" DisplayMemberBinding="{Binding Effect_NoEffect.Count}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </Grid>
+</Window>

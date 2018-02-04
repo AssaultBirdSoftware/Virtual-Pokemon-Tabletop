@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 
 namespace AssaultBird2454.VPTU.SaveEditor.UI.Settings
 {
+    public enum Setting_Type { Bool, Button, Decimal, DropDown, String }
     /// <summary>
     /// Interaction logic for Settings_Panel.xaml
     /// </summary>
@@ -25,18 +26,32 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Settings
             InitializeComponent();
         }
 
-        public void Register_SettingNode(Setting_Node Node)
+        public object Register_SettingNode(string node, Setting_Type type)
         {
-            string[] NodeDir = Node.Dir.Split('/');
-        }
-        public void UnRegister_SettingNode(string Node)
-        {
+            object control;
 
-        }
+            switch (type)
+            {
+                case Setting_Type.Bool:
+                    control = new Setting_Value_Bool();
+                    break;
+                case Setting_Type.Button:
+                    control = new Setting_Value_Button();
+                    break;
+                case Setting_Type.Decimal:
+                    control = new Setting_Value_Decimal();
+                    break;
+                case Setting_Type.DropDown:
+                    control = new Setting_Value_DropDown();
+                    break;
+                case Setting_Type.String:
+                    control = new Setting_Value_String();
+                    break;
+                default:
+                    return null;
+            }
 
-        public object Get_SettingValue(string Node)
-        {
-            return null;
+            return control;
         }
     }
 }

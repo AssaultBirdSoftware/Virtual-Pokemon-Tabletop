@@ -146,8 +146,11 @@
     <Compile Include="UI\About\License.xaml.cs">
       <DependentUpon>License.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Battlers\Participant.xaml.cs">
-      <DependentUpon>Participant.xaml</DependentUpon>
+    <Compile Include="UI\Battle\Typing Details.xaml.cs">
+      <DependentUpon>Typing Details.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Battle\Typing Editor.xaml.cs">
+      <DependentUpon>Typing Editor.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Entity\EntityListItem.xaml.cs">
       <DependentUpon>EntityListItem.xaml</DependentUpon>
@@ -194,7 +197,6 @@
     <Compile Include="UI\Settings\Settings Panel.xaml.cs">
       <DependentUpon>Settings Panel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Settings\Setting_Node.cs" />
     <Compile Include="UI\Settings\Setting_Value_Bool.xaml.cs">
       <DependentUpon>Setting_Value_Bool.xaml</DependentUpon>
     </Compile>
@@ -236,7 +238,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Battlers\Participant.xaml">
+    <Page Include="UI\Battle\Typing Details.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Battle\Typing Editor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
