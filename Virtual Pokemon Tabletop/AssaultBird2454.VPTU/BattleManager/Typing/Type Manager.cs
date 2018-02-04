@@ -26,6 +26,20 @@ namespace AssaultBird2454.VPTU.BattleManager.Typing
         public List<Typing_Data> Types { get; set; }
 
         /// <summary>
+        /// Returns a list of all types in the savefile
+        /// </summary>
+        public List<string> Type_Names
+        {
+            get
+            {
+                List<string> list = new List<string>();
+                foreach (Typing_Data type in Types)
+                    list.Add(type.Type_Name);
+                return list;
+            }
+        }
+
+        /// <summary>
         /// Calculates what the bonus for attacks should be
         /// </summary>
         /// <param name="AttackingType">The Type of the attack</param>
