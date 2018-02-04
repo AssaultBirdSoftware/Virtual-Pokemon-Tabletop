@@ -39,7 +39,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Battle
                 itemSource.Add(type.Type_Name, type.Type_Name);
             Type_SE.ItemsSource = itemSource;
             Type_NVE.ItemsSource = itemSource;
-            Type_NE.ItemsSource = itemSource;
+            Type_IE.ItemsSource = itemSource;
 
             Load();
         }
@@ -92,15 +92,15 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Battle
             }
             Type_NVE.SelectedItems = NVE_Selection;
             #endregion
-            #region No Effect
-            Dictionary<string, object> NE_Selection = new Dictionary<string, object>();
-            foreach (string type in TypeData.Effect_NoEffect)
+            #region Immune
+            Dictionary<string, object> IE_Selection = new Dictionary<string, object>();
+            foreach (string type in TypeData.Effect_Immune)
             {
                 if (MainWindow.SaveManager.SaveData.Typing_Manager.Types.Find(x => x.Type_Name == type) == null)
                     continue;
-                NE_Selection.Add(type, type);
+                IE_Selection.Add(type, type);
             }
-            Type_NE.SelectedItems = NE_Selection;
+            Type_IE.SelectedItems = IE_Selection;
             #endregion
         }
 
@@ -139,7 +139,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Battle
             TypeData.Effect_Normal = MainWindow.SaveManager.SaveData.Typing_Manager.Type_Names;
             TypeData.Effect_SuperEffective.Clear();
             TypeData.Effect_NotVery.Clear();
-            TypeData.Effect_NoEffect.Clear();
+            TypeData.Effect_Immune.Clear();
 
             foreach (KeyValuePair<string, object> SE in Type_SE.SelectedItems)
             {
@@ -157,12 +157,12 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Battle
                     TypeData.Effect_NotVery.Add(NVE.Key);
                 }
             }
-            foreach (KeyValuePair<string, object> NE in Type_NE.SelectedItems)
+            foreach (KeyValuePair<string, object> NE in Type_IE.SelectedItems)
             {
                 if (TypeData.Effect_Normal.Contains(NE.Key))
                 {
                     TypeData.Effect_Normal.Remove(NE.Key);
-                    TypeData.Effect_NoEffect.Add(NE.Key);
+                    TypeData.Effect_Immune.Add(NE.Key);
                 }
             }
         }

@@ -29,7 +29,7 @@ namespace AssaultBird2454.VPTU.BattleManager.Typing
         /// <summary>
         /// List other types that have no effect against this type
         /// </summary>
-        public List<string> Effect_NoEffect { get; set; }
+        public List<string> Effect_Immune { get; set; }
         /// <summary>
         /// List other types that are not very effective against this type
         /// </summary>

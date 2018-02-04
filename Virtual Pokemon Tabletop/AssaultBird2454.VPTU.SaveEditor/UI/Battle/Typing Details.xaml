@@ -17,8 +17,8 @@
         <MultiSelectComboBox:MultiSelectComboBox x:Name="Type_SE" HorizontalAlignment="Left" Margin="93,88,0,0" VerticalAlignment="Top" Width="153" SelectionChangedEvent="Effective_Changed"/>
         <Label Content="Not Effective" HorizontalAlignment="Left" Margin="0,117,0,0" VerticalAlignment="Top" Height="24" VerticalContentAlignment="Center"/>
         <MultiSelectComboBox:MultiSelectComboBox x:Name="Type_NVE" HorizontalAlignment="Left" Margin="93,117,0,0" VerticalAlignment="Top" Width="153" SelectionChangedEvent="Effective_Changed"/>
-        <Label Content="No Effect" HorizontalAlignment="Left" Margin="0,146,0,0" VerticalAlignment="Top" Height="24" VerticalContentAlignment="Center"/>
-        <MultiSelectComboBox:MultiSelectComboBox x:Name="Type_NE" HorizontalAlignment="Left" Margin="93,146,0,0" VerticalAlignment="Top" Width="153" SelectionChangedEvent="Effective_Changed"/>
+        <Label Content="Immune" HorizontalAlignment="Left" Margin="0,146,0,0" VerticalAlignment="Top" Height="24" VerticalContentAlignment="Center"/>
+        <MultiSelectComboBox:MultiSelectComboBox x:Name="Type_IE" HorizontalAlignment="Left" Margin="93,146,0,0" VerticalAlignment="Top" Width="153" SelectionChangedEvent="Effective_Changed"/>
         <Label Content="Type Color" HorizontalAlignment="Left" Margin="0,42,0,0" VerticalAlignment="Top" Height="30" VerticalContentAlignment="Center"/>
 
         <xctk:ColorPicker x:Name="Type_Color" Margin="93,42,0,0" Height="30"
