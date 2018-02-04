@@ -11,8 +11,8 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Setting Name"/>
-        <ComboBox Grid.Column="1" SelectedIndex="0" VerticalContentAlignment="Center" MinWidth="150"/>
+        <Label x:Name="Node_Name" Content="Setting Name"/>
+        <ComboBox x:Name="Node_ComboBox" Grid.Column="1" SelectedIndex="0" VerticalContentAlignment="Center" MinWidth="150"/>
 
     </Grid>
 </UserControl>

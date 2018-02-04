@@ -24,5 +24,19 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Settings
         {
             InitializeComponent();
         }
+
+        public void Register_SettingNode(Setting_Node Node)
+        {
+            string[] NodeDir = Node.Dir.Split('/');
+        }
+        public void UnRegister_SettingNode(string Node)
+        {
+
+        }
+
+        public object Get_SettingValue(string Node)
+        {
+            return null;
+        }
     }
 }

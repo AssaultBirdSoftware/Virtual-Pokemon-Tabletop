@@ -11,9 +11,9 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Setting Name"/>
+        <Label x:Name="Node_Name" Content="Setting Name"/>
 
-        <xctk:IntegerUpDown x:Name="OverViewSettings_Server_Port" Grid.Column="1"
+        <xctk:IntegerUpDown x:Name="Node_Decimal" Grid.Column="1"
             HorizontalContentAlignment="Center" Value="0"
             VerticalContentAlignment="Center" MinWidth="150" TextAlignment="Center" />
     </Grid>

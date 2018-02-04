@@ -11,8 +11,8 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Label"/>
-        <Button Content="Button" Grid.Column="1" Margin="20,0,0,0"/>
+        <Label x:Name="Node_Name" Content="Label"/>
+        <Button x:Name="Node_Button" Content="Button" Grid.Column="1" Margin="20,0,0,0"/>
 
     </Grid>
 </UserControl>
