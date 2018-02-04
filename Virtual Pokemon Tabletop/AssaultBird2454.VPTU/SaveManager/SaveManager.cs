@@ -290,7 +290,10 @@ namespace AssaultBird2454.VPTU.SaveManager
                     return bmp;// Return Image
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+
+            }
             return null;
         }
         #endregion

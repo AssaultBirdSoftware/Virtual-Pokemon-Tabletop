@@ -4,7 +4,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor"
-    xmlns:Battlers="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Battlers"
     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:Settings="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Settings" x:Class="AssaultBird2454.VPTU.SaveEditor.MainWindow"
     mc:Ignorable="d"
     Title="Virtual Pokemon Tabletop - SaveEditor (Version: _____ _._._ Build _) (Commit: _______)" Height="710"
@@ -112,7 +111,8 @@
                         </TabItem>
                         <TabItem Header="Advanced Settings">
                             <Grid Background="#FFE5E5E5" >
-                                <Settings:Settings_Panel x:Name="OverviewSettings_"/>
+                                <Label Content="Types &amp; Matchups" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top"/>
+                                <Button x:Name="OverviewSettings_Advanced_Types_Edit" Content="Edit" HorizontalAlignment="Left" Margin="114,13,0,0" VerticalAlignment="Top" Width="75" Click="OverviewSettings_Advanced_Types_Edit_Click"/>
                             </Grid>
                         </TabItem>
                         <TabItem Header="Users and Groups">

@@ -12,7 +12,7 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Label x:Name="Node_Name" Content="Label"/>
-        <Button x:Name="Node_Button" Content="Button" Grid.Column="1" Margin="20,0,0,0"/>
+        <Button x:Name="Node_Button" Content="Button" Grid.Column="1" Margin="20,0,0,0" Click="Node_Button_Click"/>
 
     </Grid>
 </UserControl>
