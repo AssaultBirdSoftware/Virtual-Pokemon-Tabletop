@@ -8,18 +8,18 @@
         mc:Ignorable="d"
         Title="Type Details" Width="389.99" Height="221.717" ResizeMode="NoResize">
     <Grid>
-        <Label Content="Type Name" HorizontalAlignment="Left" Margin="0,14,0,0" VerticalAlignment="Top" Height="23" VerticalContentAlignment="Center"/>
+        <Label Content="Type Name" HorizontalAlignment="Left" Margin="0,14,0,0" VerticalAlignment="Top" Height="23" VerticalContentAlignment="Center" Padding="0"/>
         <TextBox x:Name="Type_Name" HorizontalAlignment="Left" Height="23" Margin="93,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" TextChanged="Type_Name_TextChanged"/>
         <Border x:Name="Type_Icon" BorderThickness="1" Height="75" Margin="0,10,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" BorderBrush="Black"/>
         <Button x:Name="Type_ChangeIcon" Content="Change Icon" HorizontalAlignment="Right" Margin="0,90,10,0" VerticalAlignment="Top" Width="75" Click="Type_ChangeIcon_Click"/>
-        <Label Content="Super Effective" HorizontalAlignment="Left" Margin="0,88,0,0" VerticalAlignment="Top" Height="24" VerticalContentAlignment="Center"/>
+        <Label Content="Super Effective" HorizontalAlignment="Left" Margin="0,88,0,0" VerticalAlignment="Top" Height="24" VerticalContentAlignment="Center" Padding="0"/>
 
         <MultiSelectComboBox:MultiSelectComboBox x:Name="Type_SE" HorizontalAlignment="Left" Margin="93,88,0,0" VerticalAlignment="Top" Width="153" SelectionChangedEvent="Effective_Changed"/>
-        <Label Content="Not Effective" HorizontalAlignment="Left" Margin="0,117,0,0" VerticalAlignment="Top" Height="24" VerticalContentAlignment="Center"/>
+        <Label Content="Not Effective" HorizontalAlignment="Left" Margin="0,117,0,0" VerticalAlignment="Top" Height="24" VerticalContentAlignment="Center" Padding="0"/>
         <MultiSelectComboBox:MultiSelectComboBox x:Name="Type_NVE" HorizontalAlignment="Left" Margin="93,117,0,0" VerticalAlignment="Top" Width="153" SelectionChangedEvent="Effective_Changed"/>
-        <Label Content="Immune" HorizontalAlignment="Left" Margin="0,146,0,0" VerticalAlignment="Top" Height="24" VerticalContentAlignment="Center"/>
+        <Label Content="Immune" HorizontalAlignment="Left" Margin="0,146,0,0" VerticalAlignment="Top" Height="24" VerticalContentAlignment="Center" Padding="0"/>
         <MultiSelectComboBox:MultiSelectComboBox x:Name="Type_IE" HorizontalAlignment="Left" Margin="93,146,0,0" VerticalAlignment="Top" Width="153" SelectionChangedEvent="Effective_Changed"/>
-        <Label Content="Type Color" HorizontalAlignment="Left" Margin="0,42,0,0" VerticalAlignment="Top" Height="30" VerticalContentAlignment="Center"/>
+        <Label Content="Type Color" HorizontalAlignment="Left" Margin="0,42,0,0" VerticalAlignment="Top" Height="30" VerticalContentAlignment="Center" Padding="0"/>
 
         <xctk:ColorPicker x:Name="Type_Color" Margin="93,42,0,0" Height="30"
             VerticalContentAlignment="Stretch" VerticalAlignment="Top" HorizontalAlignment="Left" Width="153" SelectedColorChanged="Type_Color_SelectedColorChanged" />
