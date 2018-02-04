@@ -194,6 +194,7 @@
     <Compile Include="UI\Settings\Settings Panel.xaml.cs">
       <DependentUpon>Settings Panel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Settings\Setting_Node.cs" />
     <Compile Include="UI\Settings\Setting_Value_Bool.xaml.cs">
       <DependentUpon>Setting_Value_Bool.xaml</DependentUpon>
     </Compile>

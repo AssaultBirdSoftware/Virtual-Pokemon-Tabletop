@@ -11,8 +11,8 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Setting Name"/>
-        <TextBox Grid.Column="1" TextWrapping="Wrap" Text="Value" VerticalContentAlignment="Center" MinWidth="150"/>
+        <Label x:Name="Node_Name" Content="Setting Name"/>
+        <TextBox x:Name="Node_String" Grid.Column="1" TextWrapping="Wrap" Text="Value" VerticalContentAlignment="Center" MinWidth="150"/>
 
     </Grid>
 </UserControl>
