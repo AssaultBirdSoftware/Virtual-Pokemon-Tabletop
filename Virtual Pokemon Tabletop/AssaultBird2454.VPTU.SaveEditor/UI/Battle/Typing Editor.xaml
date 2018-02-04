@@ -14,7 +14,7 @@
                     <GridViewColumn Header="Effective" Width="75" DisplayMemberBinding="{Binding Effect_SuperEffective.Count}"/>
                     <GridViewColumn Header="Neutral" Width="75" DisplayMemberBinding="{Binding Effect_Normal.Count}"/>
                     <GridViewColumn Header="Not Effective" Width="75" DisplayMemberBinding="{Binding Effect_NotVery.Count}"/>
-                    <GridViewColumn Header="No Effect" Width="75" DisplayMemberBinding="{Binding Effect_NoEffect.Count}"/>
+                    <GridViewColumn Header="Immune" Width="75" DisplayMemberBinding="{Binding Effect_Immune.Count}"/>
                 </GridView>
             </ListView.View>
         </ListView>

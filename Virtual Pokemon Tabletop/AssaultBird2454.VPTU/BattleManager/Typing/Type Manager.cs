@@ -65,7 +65,7 @@ namespace AssaultBird2454.VPTU.BattleManager.Typing
                 {
                     d_type = Types.Find(x => x.Type_Name == type);
 
-                    if (d_type.Effect_NoEffect.Contains(a_type.Type_Name))
+                    if (d_type.Effect_Immune.Contains(a_type.Type_Name))
                     {
                         return 0;
                     }
