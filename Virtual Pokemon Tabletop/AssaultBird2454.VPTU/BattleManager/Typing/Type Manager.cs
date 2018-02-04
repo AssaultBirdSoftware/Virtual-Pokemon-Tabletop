@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,6 +29,7 @@ namespace AssaultBird2454.VPTU.BattleManager.Typing
         /// <summary>
         /// Returns a list of all types in the savefile
         /// </summary>
+        [JsonIgnore]
         public List<string> Type_Names
         {
             get
