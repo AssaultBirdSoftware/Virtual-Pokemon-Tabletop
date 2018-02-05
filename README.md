@@ -41,9 +41,6 @@ I am making this software for you for free. I do not expect anything from you ju
 \* - This software costs money to make so it will cost a onetime $0.99 to purchase (IOS & Android Apps Only)  
 \*\* - This API will be private, and you will need to register with me to get the API for the IOS & Android Platforms (Security Reasons)
 
-This software is supported on x64 architecture (64 Bit) systems only! Sorry if you are using a system that is x86 (32 Bit)
-This software may support x86 in the future but for now, only x64 is officially supported
-
 ## Links
 Road Map: https://trello.com/b/G8V5Musv/  
 Forum Post About This: http://forums.pokemontabletop.com/topic/30059453/1/  
