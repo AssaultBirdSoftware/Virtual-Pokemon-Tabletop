@@ -20,7 +20,7 @@ namespace AssaultBird2454.VPTU.Pokedex.Moves
         /// <summary>
         /// Defines what type of move it is
         /// </summary>
-        public BattleManager.Data.Type Move_Type { get; set; }
+        public string Move_Type { get; set; }
         /// <summary>
         /// Defines what class of move it is
         /// </summary>
@@ -75,7 +75,7 @@ namespace AssaultBird2454.VPTU.Pokedex.Moves
         /// <summary>
         /// Defines when effect are used
         /// </summary>
-        public BattleManager.BattleEffect.EffectData Move_Effects { get; set; }
+        public object Move_Effects { get; set; }
 
         public void Dispose()
         {

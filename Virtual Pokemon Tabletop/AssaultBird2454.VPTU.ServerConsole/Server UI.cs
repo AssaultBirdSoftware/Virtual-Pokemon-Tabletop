@@ -1,5 +1,4 @@
-﻿using AssaultBird2454.VPTU.BattleManager.Battle_Instance;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
