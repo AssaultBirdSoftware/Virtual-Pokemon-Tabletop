@@ -5,9 +5,7 @@ using AssaultBird2454.VPTU.BattleManager.Data;
 using AssaultBird2454.VPTU.ContestManager.Data;
 using AssaultBird2454.VPTU.Pokedex.Moves;
 using AssaultBird2454.VPTU.Pokedex.Pokemon;
-using AssaultBird2454.VPTU.SaveEditor.UI.BattleEffect;
 using AssaultBird2454.VPTU.SaveManager.Data.SaveFile;
-using Type = AssaultBird2454.VPTU.BattleManager.Data.Type;
 
 namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
 {
@@ -540,7 +538,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
             MoveData.Move_ActionType = (Action_Type) Battle_ActionType.SelectedItem;
             MoveData.Move_Class = (MoveClass) Battle_Class.SelectedItem;
             MoveData.Move_Frequency = (Move_Frequency) Battle_Frequency.SelectedItem;
-            MoveData.Move_Type = (Type) Battle_Type.SelectedItem;
+            MoveData.Move_Type = (string) Battle_Type.SelectedItem;
 
             MoveData.Move_Accuracy = (int) Battle_AC.Value;
             MoveData.Move_DamageBase = (DamageBase) Battle_DB.Value;
@@ -918,11 +916,6 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
 
         private void Effect_Designer_Click(object sender, RoutedEventArgs e)
         {
-            var designer = new BattleEffect_Designer(MoveData.Move_Effects);
-            var save = designer.ShowDialog();
-
-            if (save == true)
-                MoveData.Move_Effects = designer.EffectData; // Save Designer
         }
     }
 }

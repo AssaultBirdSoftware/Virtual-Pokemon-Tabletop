@@ -45,7 +45,7 @@ namespace AssaultBird2454.VPTU.Pokedex.Pokemon
         /// </summary>
         public List<KeyValuePair<Pokemon_Capabilities, object>> Species_SpecialCapability { get; set; }
 
-        public List<BattleManager.Data.Type> Species_Types { get; set; }
+        public List<string> Species_Types { get; set; }
         [JsonIgnore]
         public string Species_TypeString
         {
@@ -55,11 +55,11 @@ namespace AssaultBird2454.VPTU.Pokedex.Pokemon
                 string s = "";
                 try
                 {
-                    foreach (BattleManager.Data.Type type in Species_Types)
+                    foreach (string type in Species_Types)
                     {
                         if (i != 0)
-                            s = s + ", ";
-                        s = s + type.ToString();
+                            s += ", ";
+                        s += type;
                         i++;
                     }
                 }

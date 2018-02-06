@@ -14,7 +14,7 @@ namespace AssaultBird2454.VPTU.EntitiesManager.Pokemon
 
             View = new List<string>();
             Edit = new List<string>();
-            PokemonType = new List<BattleManager.Data.Type>();
+            PokemonType = new List<string>();
             Abilitys = new List<string>();
             Moves = new List<string>();
             Status = new List<KeyValuePair<BattleManager.Data.Status_Afflictions, object>>();
@@ -66,7 +66,7 @@ namespace AssaultBird2454.VPTU.EntitiesManager.Pokemon
         public string Name { get; set; }
         public string Notes { get; set; }
         public decimal Species_DexID { get; set; }
-        public List<VPTU.BattleManager.Data.Type> PokemonType { get; set; }
+        public List<string> PokemonType { get; set; }
         [JsonIgnore]
         public string TypeString
         {
@@ -74,11 +74,11 @@ namespace AssaultBird2454.VPTU.EntitiesManager.Pokemon
             {
                 int i = 0;
                 string s = "";
-                foreach (BattleManager.Data.Type type in PokemonType)
+                foreach (string type in PokemonType)
                 {
                     if (i != 0)
-                        s = s + ", ";
-                    s = s + type.ToString();
+                        s += ", ";
+                    s += type;
                     i++;
                 }
 

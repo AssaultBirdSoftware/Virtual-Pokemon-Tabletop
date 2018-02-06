@@ -1364,12 +1364,12 @@ namespace AssaultBird2454.VPTU.SaveEditor
 
         #endregion
 
-        #region Features
-
-        #endregion
-
-        #region Save File Settings
-
+        #region Advanced
+        private void OverviewSettings_Advanced_Types_Edit_Click(object sender, RoutedEventArgs e)
+        {
+            UI.Battle.Typing_Editor Editor = new UI.Battle.Typing_Editor();
+            Editor.ShowDialog();
+        }
         #endregion
 
         #region Users & Groups

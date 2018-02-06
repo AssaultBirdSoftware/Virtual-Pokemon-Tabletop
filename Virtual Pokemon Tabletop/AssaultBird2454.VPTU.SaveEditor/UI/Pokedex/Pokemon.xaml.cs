@@ -10,7 +10,6 @@ using AssaultBird2454.VPTU.Pokedex.Entities;
 using AssaultBird2454.VPTU.Pokedex.Pokemon;
 using AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Link;
 using AssaultBird2454.VPTU.SaveEditor.UI.Resources;
-using Type = AssaultBird2454.VPTU.BattleManager.Data.Type;
 
 namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
 {
@@ -162,8 +161,8 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
             #region Types
 
             var itemSource = new Dictionary<string, object>();
-            foreach (Type effect in Enum.GetValues(typeof(Type)))
-                itemSource.Add(effect.ToString(), effect);
+            foreach (BattleManager.Typing.Typing_Data type in MainWindow.SaveManager.SaveData.Typing_Manager.Types)
+                itemSource.Add(type.Type_Name, type.Type_Name);
             Basic_Types.ItemsSource = itemSource;
 
             #endregion
@@ -288,8 +287,8 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
             try
             {
                 var itemso = new Dictionary<string, object>();
-                foreach (var type in PokemonData.Species_Types)
-                    itemso.Add(type.ToString(), type);
+                foreach (string type in PokemonData.Species_Types)
+                    itemso.Add(type, type);
                 Basic_Types.SelectedItems = itemso;
             }
             catch
@@ -845,7 +844,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
             #region Pokemon Types
 
             if (PokemonData.Species_Types == null)
-                PokemonData.Species_Types = new List<Type>();
+                PokemonData.Species_Types = new List<string>();
 
             PokemonData.Species_Types.Clear();
 
@@ -853,7 +852,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
             {
                 foreach (var typesel in Basic_Types.SelectedItems)
                 {
-                    var type = (Type) typesel.Value;
+                    var type = (string) typesel.Value;
 
                     PokemonData.Species_Types.Add(type);
                 }
