@@ -872,23 +872,30 @@ namespace AssaultBird2454.VPTU.SaveEditor
 
                             lvi.ToolTipOpening += new ToolTipEventHandler((sender, e) =>
                             {
-                                ((StackPanel)lvi.ToolTip).Children.Clear();
-
-                                ((StackPanel)lvi.ToolTip).Children.Add(new Image()
+                                if (res.Type == VPTU.SaveManager.Resource_Data.Resource_Type.Image)
                                 {
-                                    Source = Imaging.CreateBitmapSourceFromHBitmap(SaveManager.LoadImage(res.ID).GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions()),
-                                    MaxHeight = 150,
-                                    MaxWidth = 150,
-                                    Stretch = Stretch.Uniform
-                                }
-                                );
+                                    ((StackPanel)lvi.ToolTip).Children.Clear();
 
-                                ((StackPanel)lvi.ToolTip).Children.Add(
-                                new TextBlock()
-                                {
-                                    Text = "ID: " + res.ID + "\nName: " + res.Name
+                                    ((StackPanel)lvi.ToolTip).Children.Add(new Image()
+                                    {
+                                        Source = Imaging.CreateBitmapSourceFromHBitmap(SaveManager.LoadImage(res.ID).GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions()),
+                                        MaxHeight = 150,
+                                        MaxWidth = 150,
+                                        Stretch = Stretch.Uniform
+                                    }
+                                    );
+
+                                    ((StackPanel)lvi.ToolTip).Children.Add(
+                                    new TextBlock()
+                                    {
+                                        Text = "ID: " + res.ID + "\nName: " + res.Name
+                                    }
+                                    );
                                 }
-                                );
+                                else if (res.Type == VPTU.SaveManager.Resource_Data.Resource_Type.Audio)
+                                {
+                                    /* Load Audio Preview ToolTip */
+                                }
                             });
                             ResourceManager_List.Items.Add(lvi);
                         }
