@@ -1,9 +1,9 @@
 [![Master Build branch](https://img.shields.io/appveyor/ci/TasmanLeach/virtual-pokemon-tabletop-2/master.svg?label=Master%20Build)](https://ci.appveyor.com/project/TasmanLeach/virtual-pokemon-tabletop-2)
 [![Beta Build branch](https://img.shields.io/appveyor/ci/TasmanLeach/virtual-pokemon-tabletop-2/Beta.svg?label=Beta%20Build)](https://ci.appveyor.com/project/TasmanLeach/virtual-pokemon-tabletop-2)
 [![Alpha Build branch](https://img.shields.io/appveyor/ci/TasmanLeach/virtual-pokemon-tabletop-2/Alpha.svg?label=Alpha%20Build)](https://ci.appveyor.com/project/TasmanLeach/virtual-pokemon-tabletop-2)
-[![GitHub release](https://img.shields.io/github/release/AssaultBird2454/Virtual-Pokemon-Tabletop/all.svg?label=Latest%20Version)](https://github.com/AssaultBird2454/Virtual-Pokemon-Tabletop/releases)
-[![Libraries.io for GitHub](https://img.shields.io/librariesio/github/AssaultBird2454/Virtual-Pokemon-Tabletop.svg)](https://github.com/AssaultBird2454/Virtual-Pokemon-Tabletop)
-[![license](https://img.shields.io/github/license/AssaultBird2454/virtual-pokemon-tabletop.svg?label=Licence)](https://github.com/AssaultBird2454/Virtual-Pokemon-Tabletop/blob/master/LICENSE)
+[![GitHub release](https://img.shields.io/github/release/Virtual-PTU/Virtual-Pokemon-Tabletop/all.svg?label=Latest%20Version)](https://github.com/Virtual-PTU/Virtual-Pokemon-Tabletop/releases)
+[![Libraries.io for GitHub](https://img.shields.io/librariesio/github/Virtual-PTU/Virtual-Pokemon-Tabletop.svg)](https://github.com/Virtual-PTU/Virtual-Pokemon-Tabletop)
+[![license](https://img.shields.io/github/license/Virtual-PTU/virtual-pokemon-tabletop.svg?label=Licence)](https://github.com/Virtual-PTU/Virtual-Pokemon-Tabletop/blob/master/LICENSE)
 [![Discord](https://img.shields.io/discord/277549582961868800.svg?colorB=7289DA&label=Discord)](https://discord.gg/fYExGbz)
 
 
@@ -40,9 +40,6 @@ I am making this software for you for free. I do not expect anything from you ju
 
 \* - This software costs money to make so it will cost a onetime $0.99 to purchase (IOS & Android Apps Only)  
 \*\* - This API will be private, and you will need to register with me to get the API for the IOS & Android Platforms (Security Reasons)
-
-This software is supported on x64 architecture (64 Bit) systems only! Sorry if you are using a system that is x86 (32 Bit)
-This software may support x86 in the future but for now, only x64 is officially supported
 
 ## Links
 Road Map: https://trello.com/b/G8V5Musv/  
