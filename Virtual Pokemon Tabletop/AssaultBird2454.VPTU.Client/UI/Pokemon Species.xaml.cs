@@ -31,20 +31,20 @@ namespace AssaultBird2454.VPTU.Client.UI
             BaseStats_SpDefence.Content = Data.Species_BaseStats_SpDefence;
             BaseStats_Speed.Content = Data.Species_BaseStats_Speed;
 
-            Skills_Athl.Content = (int) Data.Species_Skill_Data.Athletics_Rank + "D6+" +
+            Skills_Athl.Content = (int)Data.Species_Skill_Data.Athletics_Rank + "D6+" +
                                   Data.Species_Skill_Data.Athletics_Mod;
-            Skills_Acro.Content = (int) Data.Species_Skill_Data.Acrobatics_Rank + "D6+" +
+            Skills_Acro.Content = (int)Data.Species_Skill_Data.Acrobatics_Rank + "D6+" +
                                   Data.Species_Skill_Data.Acrobatics_Mod;
-            Skills_Combat.Content = (int) Data.Species_Skill_Data.Combat_Rank + "D6+" +
+            Skills_Combat.Content = (int)Data.Species_Skill_Data.Combat_Rank + "D6+" +
                                     Data.Species_Skill_Data.Combat_Mod;
-            Skills_Stealth.Content = (int) Data.Species_Skill_Data.Stealth_Rank + "D6+" +
+            Skills_Stealth.Content = (int)Data.Species_Skill_Data.Stealth_Rank + "D6+" +
                                      Data.Species_Skill_Data.Stealth_Mod;
-            Skills_Percep.Content = (int) Data.Species_Skill_Data.Perception_Rank + "D6+" +
+            Skills_Percep.Content = (int)Data.Species_Skill_Data.Perception_Rank + "D6+" +
                                     Data.Species_Skill_Data.Perception_Mod;
-            Skills_Focus.Content = (int) Data.Species_Skill_Data.Focus_Rank + "D6+" + Data.Species_Skill_Data.Focus_Mod;
+            Skills_Focus.Content = (int)Data.Species_Skill_Data.Focus_Rank + "D6+" + Data.Species_Skill_Data.Focus_Mod;
 
             Biology_Height.Content = Data.Species_SizeClass;
-            Biology_Weight.Content = "Weight Class " + (int) Data.Species_WeightClass;
+            Biology_Weight.Content = "Weight Class " + (int)Data.Species_WeightClass;
             //foreach(VPTU.Pokedex.Pokemon.Pokemon_Diets diet in )
             Biology_Diet.Content = "No Data Found";
             Biology_Habitat1.Content = "No Data Found";
@@ -92,6 +92,19 @@ namespace AssaultBird2454.VPTU.Client.UI
             var bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(bmp.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty,
                 BitmapSizeOptions.FromEmptyOptions());
             Image.Background = new ImageBrush(bitmapSource);
+        }
+        public void UpdateTypeIcon(int Type, Bitmap bmp)
+        {
+            var bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(bmp.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            switch (Type)
+            {
+                case 1:
+                    Type_Icon1.Fill = new ImageBrush(bitmapSource);
+                    break;
+                case 2:
+                    Type_Icon2.Fill = new ImageBrush(bitmapSource);
+                    break;
+            }
         }
     }
 }

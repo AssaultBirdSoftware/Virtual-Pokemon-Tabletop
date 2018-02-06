@@ -129,6 +129,9 @@
                VerticalContentAlignment="Center" />
         <Label Content="Breeding Information" HorizontalAlignment="Left" Margin="122,236,0,0" VerticalAlignment="Top"
                Width="199" FontSize="8" Padding="5,0,0,0" Height="16" VerticalContentAlignment="Center" />
+        <Ellipse Fill="White" HorizontalAlignment="Left" Height="31" Margin="155,14,0,0" VerticalAlignment="Top" Width="56" d:IsLocked="True"/>
+        <Ellipse x:Name="Type_Icon2" Fill="White" Margin="156,17,160.4,425"/>
+        <Ellipse x:Name="Type_Icon1" Fill="White" Margin="182,17,134.4,425"/>
 
     </Grid>
 </UserControl>

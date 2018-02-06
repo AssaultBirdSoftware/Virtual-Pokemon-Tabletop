@@ -140,6 +140,11 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
             #endregion
 
             #region Battles
+            // Typing
+            CommandHandeler.RegisterCommand<CommandData.Battle.Get_Typing>("Battle_Typing_Get");// Adds Participants to the Battle Instance
+            CommandHandeler.GetCommand("Battle_Typing_Get").SetRateLimit(true, 100);
+            CommandHandeler.GetCommand("Battle_Typing_Get").Command_Executed += Battle_Typing_Get_Executed;
+
             // Battles
             CommandHandeler.RegisterCommand<object>("Battle_Participants_Add");// Adds Participants to the Battle Instance
             CommandHandeler.GetCommand("Battle_Participants_Add").SetRateLimit(true, 100);
@@ -381,6 +386,15 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
         #endregion
 
         #region Battles
+        private void Battle_Typing_Get_Executed(object Data, TCP_ClientNode Client)
+        {
+            CommandData.Battle.Get_Typing typing = (CommandData.Battle.Get_Typing)Data;
+            typing.Type = Instance.SaveManager.SaveData.Typing_Manager.Types.Find(x => x.Type_Name == typing.Type_Name);
+            typing.Type_Icon_Image = Instance.SaveManager.LoadImage(typing.Type.Resource_Icon);
+            typing.Type_Badge_Image = Instance.SaveManager.LoadImage(typing.Type.Resource_Badge);
+            Client.Send(typing);
+        }
+
         private void Battle_Participants_Add_Executed(object Data, TCP_ClientNode Client)
         {
 

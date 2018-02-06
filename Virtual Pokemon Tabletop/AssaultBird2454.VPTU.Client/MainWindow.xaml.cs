@@ -131,7 +131,7 @@ namespace AssaultBird2454.VPTU.Client
 
         private void PokedexSpecies_Window_Closing(object sender, RoutedEventArgs e)
         {
-            _Species_List.Remove(_Species_List.Find(x => x.Value == (MdiChild) sender));
+            _Species_List.Remove(_Species_List.Find(x => x.Value == (MdiChild)sender));
         }
 
         #endregion
@@ -237,7 +237,7 @@ namespace AssaultBird2454.VPTU.Client
 
         private void PokedexCharacterSheet_Window_Closing(object sender, RoutedEventArgs e)
         {
-            _CharacterSheet_List.Remove(_CharacterSheet_List.Find(x => x.Value == (MdiChild) sender));
+            _CharacterSheet_List.Remove(_CharacterSheet_List.Find(x => x.Value == (MdiChild)sender));
         }
 
         #endregion
@@ -612,7 +612,7 @@ namespace AssaultBird2454.VPTU.Client
 
         internal void Auth_Login_Executed(object Data)
         {
-            var loginData = (Login) Data;
+            var loginData = (Login)Data;
 
             if (loginData.Auth_State == AuthState.Passed)
                 Status_Set_PlayerName(loginData.UserData.IC_Name);
@@ -622,7 +622,7 @@ namespace AssaultBird2454.VPTU.Client
 
         internal void Auth_Logout_Executed(object Data)
         {
-            var loginData = (Login) Data;
+            var loginData = (Login)Data;
 
             if (loginData.Auth_State == AuthState.DeAuthenticated)
                 Status_Set_PlayerName("Not Authenticated");
@@ -630,35 +630,42 @@ namespace AssaultBird2454.VPTU.Client
 
         #endregion
 
+        #region Battle
+        internal void Battle_Typing_Get_Executed(object Data)
+        {
+            
+        }
+        #endregion
+
         #region Pokedex
 
         internal void Pokedex_Pokemon_GetList_Executed(object Data)
         {
-            PokedexList_Form().Pokedex_Pokemon_Get_Executed(((Pokedex_Pokemon_GetList) Data).Pokemon_Dex);
+            PokedexList_Form().Pokedex_Pokemon_Get_Executed(((Pokedex_Pokemon_GetList)Data).Pokemon_Dex);
         }
 
         internal void Pokedex_Pokemon_Get_Executed(object Data)
         {
-            var pdata = ((Pokedex_Pokemon) Data).PokemonData;
+            var pdata = ((Pokedex_Pokemon)Data).PokemonData;
 
             Dispatcher.Invoke(() =>
             {
                 var Window = Species_List(pdata.Species_DexID);
 
                 Window.Title = "Pokedex Entry - " + pdata.Species_Name;
-                ((Pokemon_Species) Window.Content).Update(pdata);
+                ((Pokemon_Species)Window.Content).Update(pdata);
             });
         }
 
         internal void Resources_Image_Get_Pokedex_Executed(object Data)
         {
-            var IRD = (ImageResource) Data;
+            var IRD = (ImageResource)Data;
 
             if (IRD.UseCommand == "Pokedex_Species") // Pokedex Card Viewer
                 try
                 {
                     var id = decimal.Parse(IRD.UseID);
-                    Dispatcher.Invoke(() => ((Pokemon_Species) Species_List(id).Content).UpdateImage(IRD.Image));
+                    Dispatcher.Invoke(() => ((Pokemon_Species)Species_List(id).Content).UpdateImage(IRD.Image));
                 }
                 catch
                 {
@@ -671,19 +678,19 @@ namespace AssaultBird2454.VPTU.Client
 
         internal void Entities_All_GetList_Executed(object Data)
         {
-            var EAGL = (Entities_All_GetList) Data;
+            var EAGL = (Entities_All_GetList)Data;
 
             Dispatcher.Invoke(() => EntitiesList_Form().EntitiesManager_ReloadList(EAGL.Folders, EAGL.Entrys, EAGL.UserList));
         }
 
         internal void Entities_Pokemon_Get_Executed(object Data)
         {
-            var Pokemon = (Entities_Pokemon_Get) Data;
+            var Pokemon = (Entities_Pokemon_Get)Data;
 
             Dispatcher.Invoke(() =>
             {
                 var Window = CharacterSheet_List(Pokemon.ID);
-                var EntitiesForm = (Entities) Window.Content;
+                var EntitiesForm = (Entities)Window.Content;
 
                 var bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(Pokemon.Image.GetHbitmap(), IntPtr.Zero,
                     Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
@@ -697,7 +704,7 @@ namespace AssaultBird2454.VPTU.Client
 
         internal void Resources_Image_Get_Entities_Executed(object Data)
         {
-            var IRD = (ImageResource) Data;
+            var IRD = (ImageResource)Data;
 
             if (IRD.UseCommand == "Entities_List") // Pokedex Card Viewer
                 try

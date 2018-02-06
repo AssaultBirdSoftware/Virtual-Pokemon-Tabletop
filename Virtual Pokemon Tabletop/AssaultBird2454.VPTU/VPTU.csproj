@@ -134,8 +134,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authentication Manager\Data\Data.cs" />
+    <Compile Include="BattleManager\Battle\Battle_Instance.cs" />
+    <Compile Include="BattleManager\Battle\Battle_Participant.cs" />
     <Compile Include="BattleManager\Effect\Action Handeler\Action.cs" />
     <Compile Include="BattleManager\Effect\Action Handeler\ActionHandeler.cs" />
+    <Compile Include="BattleManager\Effect\Effect_Action.cs" />
+    <Compile Include="BattleManager\Effect\Effect_Function.cs" />
     <Compile Include="BattleManager\Typing\Type Manager.cs" />
     <Compile Include="BattleManager\Typing\Type.cs" />
     <Compile Include="ContestManager\Data\Data.cs" />
@@ -244,6 +248,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="BattleManager\Effect\Base Actions\" />
     <Folder Include="BattleManager\UI\" />
     <Folder Include="Discord\" />
     <Folder Include="EntityManager\Data\" />
