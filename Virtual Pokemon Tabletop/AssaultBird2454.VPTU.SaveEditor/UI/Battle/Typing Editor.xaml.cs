@@ -39,7 +39,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Battle
             }
         }
 
-        private void Type_List_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        public void Edit()
         {
             if (Type_List.SelectedItem != null)
             {
@@ -48,6 +48,60 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Battle
                 details.ShowDialog();
 
                 Load();
+            }
+            else
+            {
+                MessageBox.Show("You cant edit nothing...", "Why nothing?");
+            }
+        }
+
+        private void Type_List_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Edit();
+        }
+
+        private void Type_Add_Click(object sender, RoutedEventArgs e)
+        {
+            BattleManager.Typing.Typing_Data Data = new BattleManager.Typing.Typing_Data(true);
+            Typing_Details TD = new Typing_Details(Data);
+            TD.ShowDialog();
+            if (!String.IsNullOrWhiteSpace(Data.Type_Name))
+            {
+                foreach (BattleManager.Typing.Typing_Data type in MainWindow.SaveManager.SaveData.Typing_Manager.Types)
+                {
+                    type.Effect_Normal.Add(Data.Type_Name);
+                }
+
+                MainWindow.SaveManager.SaveData.Typing_Manager.Types.Add(Data);
+                Load();
+            }
+        }
+
+        private void Type_Edit_Click(object sender, RoutedEventArgs e)
+        {
+            Edit();
+        }
+
+        private void Type_Delete_Click(object sender, RoutedEventArgs e)
+        {
+            if (Type_List.SelectedItem != null)
+            {
+                BattleManager.Typing.Typing_Data Data = (BattleManager.Typing.Typing_Data)Type_List.SelectedItem;
+
+                MainWindow.SaveManager.SaveData.Typing_Manager.Types.Remove(Data);
+                foreach (BattleManager.Typing.Typing_Data type in MainWindow.SaveManager.SaveData.Typing_Manager.Types)
+                {
+                    type.Effect_SuperEffective.RemoveAll(x => x == Data.Type_Name);
+                    type.Effect_Normal.RemoveAll(x => x == Data.Type_Name);
+                    type.Effect_NotVery.RemoveAll(x => x == Data.Type_Name);
+                    type.Effect_Immune.RemoveAll(x => x == Data.Type_Name);
+                }
+
+                Load();
+            }
+            else
+            {
+                MessageBox.Show("You cant delete nothing...", "How do you delete nothing?");
             }
         }
     }

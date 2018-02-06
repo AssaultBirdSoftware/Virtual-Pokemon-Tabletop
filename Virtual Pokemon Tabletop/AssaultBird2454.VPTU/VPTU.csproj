@@ -203,6 +203,7 @@
     <Compile Include="Server\Instances\Client\Base_Commands.cs" />
     <Compile Include="Server\Instances\CommandData\Auth\Auth.cs" />
     <Compile Include="Server\Instances\CommandData\Battle\Battle_Instance.cs" />
+    <Compile Include="Server\Instances\CommandData\Battle\Typing.cs" />
     <Compile Include="Server\Instances\CommandData\Connection\Connect.cs" />
     <Compile Include="Server\Instances\CommandData\Entity\Entity_All.cs" />
     <Compile Include="Server\Instances\CommandData\Entity\Entity_Pokemon.cs" />
