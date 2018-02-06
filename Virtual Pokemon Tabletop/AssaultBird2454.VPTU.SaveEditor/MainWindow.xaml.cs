@@ -799,7 +799,10 @@ namespace AssaultBird2454.VPTU.SaveEditor
         {
             if (ResourceManager_List.SelectedItem != null)
             {
-                SaveManager.SaveData.ImageResources.Remove((SaveManager.Resource_Data.Resources)((System.Windows.Controls.ListViewItem)ResourceManager_List.SelectedItem).Content);
+                SaveManager.Resource_Data.Resources res = (SaveManager.Resource_Data.Resources)((System.Windows.Controls.ListViewItem)ResourceManager_List.SelectedItem).Content;
+
+                SaveManager.Delete_Resource(res.ID);
+                SaveManager.SaveData.ImageResources.Remove(res);
                 ResourceManager_List.Items.Remove(ResourceManager_List.SelectedItem);
             }
         }
