@@ -798,7 +798,10 @@ namespace AssaultBird2454.VPTU.SaveEditor
         private void ResourceManager_ManageRes_Delete_Click(object sender, RoutedEventArgs e)
         {
             if (ResourceManager_List.SelectedItem != null)
+            {
+                SaveManager.SaveData.ImageResources.Remove((SaveManager.Resource_Data.Resources)((System.Windows.Controls.ListViewItem)ResourceManager_List.SelectedItem).Content);
                 ResourceManager_List.Items.Remove(ResourceManager_List.SelectedItem);
+            }
         }
 
         private void ResourceManager_SearchRes_Images_Checked(object sender, RoutedEventArgs e)
