@@ -8,6 +8,17 @@ namespace AssaultBird2454.VPTU.BattleManager.Typing
 {
     public class Typing_Data
     {
+        public Typing_Data(bool Init = false)
+        {
+            if (Init)
+            {
+                Effect_SuperEffective = new List<string>();
+                Effect_Normal = new List<string>();
+                Effect_NotVery = new List<string>();
+                Effect_Immune = new List<string>();
+            }
+        }
+
         /// <summary>
         /// The name of the type
         /// </summary>
