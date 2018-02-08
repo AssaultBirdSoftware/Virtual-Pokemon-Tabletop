@@ -90,11 +90,6 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
                 StateObject.Reset();// resets the State Object
                 StateObject.workSocket.BeginReceive(StateObject.buffer, 0, StateObject.BUFFER_SIZE, 0, new AsyncCallback(Client_ReadData), StateObject);
             }
-            else if (NetMode == NetworkMode.SSL)
-            {
-                StateObject.SSL_Reset();// resets the State Object
-                StateObject.SSL.BeginRead(StateObject.buffer, 0, StateObject.BUFFER_SIZE, new AsyncCallback(Client_ReadSslData), StateObject);
-            }
         }
         private void StopListening()
         {
@@ -107,44 +102,6 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
             int read;
 
             try { read = s.EndReceive(ar); }
-            catch
-            {
-                Server.Disconnect_Client(this);// Disconnects
-                return;
-            }
-
-            if (read > 0)
-            {
-                so.sb.Append(Encoding.ASCII.GetString(so.buffer, 0, read));// Appends Data
-
-                if (so.sb.ToString().Contains("|<EOD>|"))
-                {
-                    if (so.sb.Length > 1)
-                    {
-                        string data = Helper.GetUntilOrEmpty(so.sb, "|<EOD>|");
-                        if (!String.IsNullOrWhiteSpace(data))
-                        {
-                            DataQue.Enqueue(data);// Ques the data
-                            ReadQueWait.Set();// Signals new data is avaliable
-                        }
-                    }
-                }
-
-                StartListening();// Starts Listening Again
-            }
-            else
-            {
-                Server.Disconnect_Client(this);// Disconnects
-                return;
-            }
-        }
-        private void Client_ReadSslData(IAsyncResult ar)
-        {
-            StateObject so = (StateObject)ar.AsyncState;// gets the state object
-            SslStream s = so.SSL;// Gets the stream used
-            int read;
-
-            try { read = s.EndRead(ar); }
             catch
             {
                 Server.Disconnect_Client(this);// Disconnects
@@ -193,13 +150,6 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
                     byte[] Tx = Encoding.UTF8.GetBytes(JSONData + "|<EOD>|");
                     Client.GetStream().BeginWrite(Tx, 0, Tx.Length, OnWrite, Client);// Sends the data to the client
                 }
-                else if (NetMode == NetworkMode.SSL)
-                {
-                    string JSONData = Newtonsoft.Json.JsonConvert.SerializeObject(Data);
-                    TCP_Data_Event?.Invoke(JSONData, this, DataDirection.Send);
-                    byte[] Tx = Encoding.UTF8.GetBytes(JSONData + "|<EOD>|");
-                    StateObject.SSL.BeginWrite(Tx, 0, Tx.Length, OnSslWrite, StateObject.SSL);// Sends the data to the client
-                }
             }
             else
             {
@@ -212,19 +162,6 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
             {
                 TcpClient tcpc = (TcpClient)ar.AsyncState;//Gets the client data is going to
                 tcpc.GetStream().EndWrite(ar);//Ends client write stream
-            }
-            catch (Exception e)
-            {
-                TCP_Data_Error_Event?.Invoke(e, DataDirection.Send);
-                /* Transmition Error */
-            }
-        }
-        private void OnSslWrite(IAsyncResult ar)
-        {
-            try
-            {
-                SslStream tcpc = (SslStream)ar.AsyncState;//Gets the client data is going to
-                tcpc.EndWrite(ar);//Ends client write stream
             }
             catch (Exception e)
             {
@@ -246,61 +183,6 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
                 StateObject = null;
             }
             catch { }// Closes Client
-        }
-
-        internal void EnableSSL(Data.ResponseCode code)
-        {
-            if (NetMode == NetworkMode.SSL)
-            {
-                Send(new Data.InternalNetworkCommand(Data.Commands.SSL_Enable, Data.ResponseCode.Error));// SSL Already Enabled
-                return;// End
-            }
-
-            if (code == Data.ResponseCode.None)// SSL Setup Started by Client
-            {
-                if (Server.SSL_Cert != null)// Checks if the cert is set
-                {
-                    Send(new Data.InternalNetworkCommand(Data.Commands.SSL_Enable, Data.ResponseCode.Avaliable));// Cert Avaliable, Signal SSL Avaliablity
-                }
-                else
-                {
-                    Send(new Data.InternalNetworkCommand(Data.Commands.SSL_Enable, Data.ResponseCode.Not_Avaliable));// Cert Not Avaliable, Signal SSL Unavaliability
-                }
-            }
-            else if (code == Data.ResponseCode.Ready)// Client is ready to accept SSL
-            {
-                StateObject.SSL = new SslStream(Client.GetStream(), true);// Creates a new SSL Stream
-                StateObject.SSL.AuthenticateAsServer(Server.SSL_Cert, false, System.Security.Authentication.SslProtocols.Default, true);// Authenticate Server
-            }
-            else if (code == Data.ResponseCode.OK)
-            {
-                Send(new Data.InternalNetworkCommand(Data.Commands.SSL_Enable, Data.ResponseCode.OK));// Error
-            }
-            else
-            {
-                Send(new Data.InternalNetworkCommand(Data.Commands.SSL_Enable, Data.ResponseCode.Error));// Error
-            }
-        }
-        private void SSL_ActiveCallback(IAsyncResult ar)
-        {
-            StateObject so = (StateObject)ar.AsyncState;// gets the state object
-
-            NetMode = NetworkMode.SSL;// Sets the NetMode
-
-            StartListening();// Starts Listening
-
-            Send(new Data.InternalNetworkCommand(Data.Commands.SSL_Enable, Data.ResponseCode.Ready));// Ready To Use SSL
-        }
-
-        internal void DissableSSL()
-        {
-            if (NetMode == NetworkMode.Standard)
-            {
-                Send(new Data.InternalNetworkCommand(Data.Commands.SSL_Dissable, Data.ResponseCode.Error));
-                return;
-            }
-
-            NetMode = NetworkMode.Standard;
         }
     }
 }

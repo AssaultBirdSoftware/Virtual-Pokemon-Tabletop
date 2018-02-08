@@ -194,13 +194,6 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
             TCP_ServerPort = Port;// Sets the port
             TCP_AcceptClients = true;// Allows clients to connect
             CommandHandeler = _CommandHandeler;// Sets the Command Callback
-
-            if (!CommandHandeler.HasCommandName("Network Command"))
-            {
-                CommandHandeler.RegisterCommand<Data.InternalNetworkCommand>("Network Command");
-
-                CommandHandeler.GetCommand("Network Command").Command_Executed += Server_Commands;
-            }
         }
 
         #region Server Methods
@@ -349,33 +342,5 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
             }
         }
         #endregion
-
-        /// <summary>
-        /// Handels Network Commands
-        /// </summary>
-        /// <param name="_Data">The Data that needs to be handeled</param>
-        /// <param name="node">The client that sent it</param>
-        internal void Server_Commands(object _Data, TCP_ClientNode node)
-        {
-            Data.InternalNetworkCommand Data = (Data.InternalNetworkCommand)_Data;
-
-            if (Data.CommandType == Networking.Data.Commands.SSL_Enable)
-            {
-                node.EnableSSL(Data.Response);
-            }
-            else if (Data.CommandType == Networking.Data.Commands.SSL_Dissable)
-            {
-                node.DissableSSL();
-            }
-            else if (Data.CommandType == Networking.Data.Commands.SSL_Active)
-            {
-
-            }
-            else if (Data.CommandType == Networking.Data.Commands.SetBufferSize)
-            {
-                //Command Not Implemented
-                node.Send(new Data.InternalNetworkCommand(Networking.Data.Commands.SetBufferSize, Networking.Data.ResponseCode.Not_Implemented));
-            }
-        }
     }
 }
