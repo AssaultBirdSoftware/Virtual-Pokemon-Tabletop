@@ -106,9 +106,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.Command_Handeler
         {
             try
             {
-                var DataForm = new { Command = "" };
-
-                var CommandData = Newtonsoft.Json.JsonConvert.DeserializeAnonymousType(Data, DataForm);// Deserializes an interface for command pharsing
+                Data.NetworkCommand CommandData = Newtonsoft.Json.JsonConvert.DeserializeObject<Data.NetworkCommand>(Data);// Deserializes an interface for command pharsing
 
                 Command cmd = Commands.First(x => x.Key == CommandData.Command).Value;// Gets the command by searching
                 RateTracker RateTracker = RateTracking.Find(x => x.ClientID == node.ID);
@@ -127,6 +125,12 @@ namespace AssaultBird2454.VPTU.Networking.Server.Command_Handeler
                 else
                 {
                     RateLimitHit_Event?.Invoke(CommandData.Command, node);
+
+                    if (CommandData.Waiting)
+                    {
+                        CommandData.Response = Networking.Data.ResponseCode.RateLimitHit;
+                        node.Send(CommandData);
+                    }
                 }
             }
             catch (Exception ex)

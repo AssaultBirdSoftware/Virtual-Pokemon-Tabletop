@@ -136,10 +136,32 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         #endregion
         #region TX
         /// <summary>
-        /// Sends data to this client, No Encryption or Serialization is performed at this step
+        /// Sends an object to this client
         /// </summary>
-        /// <param name="Data">The String being transmitted</param>
+        /// <param name="Data">The object being transmitted</param>
         public void Send(object Data)
+        {
+            if (Data is Data.NetworkCommand)
+            {
+                if (NetMode == NetworkMode.Standard)
+                {
+                    string JSONData = Newtonsoft.Json.JsonConvert.SerializeObject(Data);
+                    TCP_Data_Event?.Invoke(JSONData, this, DataDirection.Send);
+                    byte[] Tx = Encoding.UTF8.GetBytes(JSONData + "|<EOD>|");
+                    Client.GetStream().BeginWrite(Tx, 0, Tx.Length, OnWrite, Client);// Sends the data to the client
+                }
+            }
+            else
+            {
+                throw new NotNetworkDataException();
+            }
+        }
+        /// <summary>
+        /// Sends an object to this client, and invokes an Action when a response is recieved
+        /// </summary>
+        /// <param name="Data">The object being transmitted</param>
+        /// <param name="Callback">The action to perform when a response has been recieved</param>
+        public void Send(object Data, Action Callback)
         {
             if (Data is Data.NetworkCommand)
             {
