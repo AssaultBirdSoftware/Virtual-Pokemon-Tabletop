@@ -139,7 +139,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         /// Sends an object to this client
         /// </summary>
         /// <param name="Data">The object being transmitted</param>
-        public void Send(object Data)
+        public void Send(object Data, string Command)
         {
             if (Data is Data.NetworkCommand)
             {
@@ -161,7 +161,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         /// </summary>
         /// <param name="Data">The object being transmitted</param>
         /// <param name="Callback">The action to perform when a response has been recieved</param>
-        public void Send(object Data, Action Callback)
+        public void Send(object Data, string Command, Action Callback)
         {
             if (Data is Data.NetworkCommand)
             {

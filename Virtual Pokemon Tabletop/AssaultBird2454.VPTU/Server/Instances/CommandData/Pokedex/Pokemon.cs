@@ -7,7 +7,7 @@ namespace AssaultBird2454.VPTU.Server.Instances.CommandData.Pokedex
     {
         public Pokedex_Pokemon_GetList()
         {
-            Command = "Pokedex_Pokemon_GetList";
+            Command = "";
         }
 
         public string Command { get; set; }

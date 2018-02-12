@@ -120,7 +120,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.Command_Handeler
                 if (RateTracker.CommandExecutions(CommandData.Command) <= cmd.Rate_Limit && cmd.Rate_Enabled == true || cmd.Rate_Enabled == false)
                 {
                     RateTracker.CommandExecuted(CommandData.Command);
-                    cmd.Invoke(Newtonsoft.Json.JsonConvert.DeserializeObject(Data, cmd.DataType), node);
+                    cmd.Invoke(CommandData, node);
                 }
                 else
                 {

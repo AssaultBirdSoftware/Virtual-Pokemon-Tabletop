@@ -90,13 +90,13 @@ namespace AssaultBird2454.VPTU.Server.Instances
                 Authenticated_Clients.Add(new KeyValuePair<Networking.Server.TCP.TCP_ClientNode, Authentication_Manager.Data.User>(cn, user));
 
                 ((Class.Logging.I_Logger)Server_Logger).Log("Client @ " + cn.ID + " Passed authenticated as User " + user.Name + " (" + user.IC_Name + ")", Class.Logging.LoggerLevel.Audit);
-                cn.Send(new CommandData.Auth.Login() { Client_Key = ID.Key, Auth_State = CommandData.Auth.AuthState.Passed, UserData = user });
+                cn.Send(new CommandData.Auth.Login() { Client_Key = ID.Key, Auth_State = CommandData.Auth.AuthState.Passed, UserData = user }, "Auth_Login");
                 return true;
             }
             else
             {
                 ((Class.Logging.I_Logger)Server_Logger).Log("Client @ " + cn.ID + " Failed authentication", Class.Logging.LoggerLevel.Audit);
-                cn.Send(new CommandData.Auth.Login() { Client_Key = "", Auth_State = CommandData.Auth.AuthState.Failed });
+                cn.Send(new CommandData.Auth.Login() { Client_Key = "", Auth_State = CommandData.Auth.AuthState.Failed }, "Auth_Login");
                 return false;
             }
         }
@@ -104,7 +104,7 @@ namespace AssaultBird2454.VPTU.Server.Instances
         {
             Authenticated_Clients.RemoveAll(x => x.Key == cn);
             ((Class.Logging.I_Logger)Server_Logger).Log("Client @ " + cn.ID + " DeAuthenticated", Class.Logging.LoggerLevel.Audit);
-            cn.Send(new CommandData.Auth.Logout() { Auth_State = CommandData.Auth.AuthState.DeAuthenticated });
+            cn.Send(new CommandData.Auth.Logout() { Auth_State = CommandData.Auth.AuthState.DeAuthenticated }, "Auth_Logout");
         }
         public bool CheckAuthentication_Client(Networking.Server.TCP.TCP_ClientNode cn)
         {

@@ -8,13 +8,6 @@ namespace AssaultBird2454.VPTU.Server.Instances.CommandData.SaveData
 {
     public class Save : Networking.Data.NetworkCommand
     {
-        public string Command
-        {
-            get
-            {
-                return "Base_SaveData_Save";
-            }
-        }
         public SaveStates State { get; set; }
     }
 }

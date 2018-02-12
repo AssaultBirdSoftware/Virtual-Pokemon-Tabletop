@@ -243,7 +243,7 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
         private void Base_SaveData_Save_Executed(object Data, Networking.Server.TCP.TCP_ClientNode Client)
         {
             Instance.SaveManager.Save_SaveData();
-            Client.Send(new Instances.CommandData.SaveData.Save() { State = CommandData.SaveData.SaveStates.Save_Passed });
+            Client.Send(new Instances.CommandData.SaveData.Save() { State = CommandData.SaveData.SaveStates.Save_Passed }, "Base_SaveData_Save");
         }
         #endregion
 
@@ -261,9 +261,8 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
 
             Client.Send(new CommandData.Pokedex.Pokedex_Pokemon_GetList()
             {
-                Command = "Pokedex_Get",
                 Pokemon_Dex = PokedexData
-            });
+            }, "Pokedex_Pokemon_GetList");
         }
         #endregion
 
@@ -453,7 +452,7 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
             CommandData.Resources.ImageResource IRD = (CommandData.Resources.ImageResource)Data;
             IRD.Image = Instance.SaveManager.LoadImage(IRD.Resource_ID);
 
-            Client.Send(IRD);
+            Client.Send(IRD, "Resources_Image_Get");
         }
         #endregion
         #endregion

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace AssaultBird2454.VPTU.Networking.Server.Command_Handeler
 {
     #region Delegates
-    public delegate void Command_Callback(object Data, TCP_ClientNode Client);
+    public delegate Data.Response Command_Callback(object Data, TCP_ClientNode Client);
     public delegate void RateLimiting(string Command, bool Enabled, int Limit);
     #endregion
 
@@ -45,9 +45,15 @@ namespace AssaultBird2454.VPTU.Networking.Server.Command_Handeler
         public string Name { get; set; }// Command Name
         public Type DataType { get; set; }// Command Data Type
 
-        internal void Invoke(object Data, TCP_ClientNode Client)
+        internal void Invoke(Data.NetworkCommand Data, TCP_ClientNode Client)
         {
-            Command_Executed?.Invoke(Data, Client);
+            Data.Response response = Command_Executed?.Invoke(Data.Data, Client);
+
+            if (Data.Waiting)
+            {
+                Data.Response = response.Code;
+                Client.Send(Data, Data.Command);
+            }
         }
     }
 }

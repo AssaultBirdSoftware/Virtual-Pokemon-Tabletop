@@ -24,10 +24,18 @@ namespace AssaultBird2454.VPTU.Networking.Data
 
     public class NetworkCommand
     {
-        public string Command { get; }
+        public string Command { get; set; }
         public bool Waiting { get; }
         public string Waiting_Code { get; }
         public ResponseCode Response { get; set; }
+
+        public object Data { get; set; }
+    }
+
+    public class Response
+    {
+        public ResponseCode Code { get; set; }
+        public string Message { get; set; }
 
         public object Data { get; set; }
     }
