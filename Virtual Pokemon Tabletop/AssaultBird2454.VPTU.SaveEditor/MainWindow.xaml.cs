@@ -8,7 +8,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using AssaultBird2454.VPTU.Authentication_Manager.Data;
 using AssaultBird2454.VPTU.EntitiesManager;
 using AssaultBird2454.VPTU.EntitiesManager.Pokemon;
@@ -796,7 +798,13 @@ namespace AssaultBird2454.VPTU.SaveEditor
         private void ResourceManager_ManageRes_Delete_Click(object sender, RoutedEventArgs e)
         {
             if (ResourceManager_List.SelectedItem != null)
+            {
+                SaveManager.Resource_Data.Resources res = (SaveManager.Resource_Data.Resources)((System.Windows.Controls.ListViewItem)ResourceManager_List.SelectedItem).Content;
+
+                SaveManager.Delete_Resource(res.ID);
+                SaveManager.SaveData.ImageResources.Remove(res);
                 ResourceManager_List.Items.Remove(ResourceManager_List.SelectedItem);
+            }
         }
 
         private void ResourceManager_SearchRes_Images_Checked(object sender, RoutedEventArgs e)
@@ -855,9 +863,50 @@ namespace AssaultBird2454.VPTU.SaveEditor
                 ResourceManager_List.Items.Clear();
 
                 if (ResourceManager_SearchRes_Images.IsChecked == true)
+                {
                     foreach (var res in SaveManager.SaveData.ImageResources)
+                    {
                         if (res.Name.ToLower().Contains(ResourceManager_SearchRes_Search.Text.ToLower()))
-                            ResourceManager_List.Items.Add(res);
+                        {
+                            System.Windows.Controls.ListViewItem lvi = new System.Windows.Controls.ListViewItem();
+                            lvi.Content = res;
+                            lvi.ToolTip = new StackPanel();
+                            lvi.ToolTipClosing += new ToolTipEventHandler((sender, e) =>
+                            {
+                                ((StackPanel)lvi.ToolTip).Children.Clear();
+                            });
+
+                            lvi.ToolTipOpening += new ToolTipEventHandler((sender, e) =>
+                            {
+                                if (res.Type == VPTU.SaveManager.Resource_Data.Resource_Type.Image)
+                                {
+                                    ((StackPanel)lvi.ToolTip).Children.Clear();
+
+                                    ((StackPanel)lvi.ToolTip).Children.Add(new Image()
+                                    {
+                                        Source = Imaging.CreateBitmapSourceFromHBitmap(SaveManager.LoadImage(res.ID).GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions()),
+                                        MaxHeight = 150,
+                                        MaxWidth = 150,
+                                        Stretch = Stretch.Uniform
+                                    }
+                                    );
+
+                                    ((StackPanel)lvi.ToolTip).Children.Add(
+                                    new TextBlock()
+                                    {
+                                        Text = "ID: " + res.ID + "\nName: " + res.Name
+                                    }
+                                    );
+                                }
+                                else if (res.Type == VPTU.SaveManager.Resource_Data.Resource_Type.Audio)
+                                {
+                                    /* Load Audio Preview ToolTip */
+                                }
+                            });
+                            ResourceManager_List.Items.Add(lvi);
+                        }
+                    }
+                }
             }
             catch
             {
