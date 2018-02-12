@@ -273,11 +273,11 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
 
                     if (!AcceptClients)
                     {
-                        node.Send(new VPTU.Server.Instances.CommandData.Connection.Connect() { Connection_State = VPTU.Server.Instances.CommandData.Connection.ConnectionStatus.Rejected });// Sends the client rejected event
+                        node.Send(new VPTU.Server.Instances.CommandData.Connection.Connect() { Connection_State = VPTU.Server.Instances.CommandData.Connection.ConnectionStatus.Rejected }, "ConnectionState");// Sends the client rejected event
                     }
                     else if (CurrentConnections < MaxConnections)
                     {
-                        node.Send(new VPTU.Server.Instances.CommandData.Connection.Connect() { Connection_State = VPTU.Server.Instances.CommandData.Connection.ConnectionStatus.ServerFull });// Sends the server full error
+                        node.Send(new VPTU.Server.Instances.CommandData.Connection.Connect() { Connection_State = VPTU.Server.Instances.CommandData.Connection.ConnectionStatus.ServerFull }, "ConnectionState");// Sends the server full error
                     }
 
                     tclient.Close();// Closes the connection (if full or not accepting, this will change latter)
@@ -327,18 +327,18 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         /// <summary>
         /// 
         /// </summary>
-        public void Client_SendData(object Data, TCP_ClientNode node = null)
+        public void Client_SendData(object Data, string Command, TCP_ClientNode node = null)
         {
             if (node == null)
             {
                 foreach (TCP_ClientNode cn in ClientNodes)
                 {
-                    cn.Send(Data);// Send the data to everybody
+                    cn.Send(Data, Command);// Send the data to everybody
                 }
             }
             else
             {
-                node.Send(Data);// Send the data to a single client
+                node.Send(Data, Command);// Send the data to a single client
             }
         }
         #endregion

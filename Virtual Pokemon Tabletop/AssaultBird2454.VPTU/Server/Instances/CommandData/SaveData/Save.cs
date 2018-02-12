@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AssaultBird2454.VPTU.Server.Instances.CommandData.SaveData
 {
-    public class Save : Networking.Data.NetworkCommand
+    public class Save
     {
         public SaveStates State { get; set; }
     }

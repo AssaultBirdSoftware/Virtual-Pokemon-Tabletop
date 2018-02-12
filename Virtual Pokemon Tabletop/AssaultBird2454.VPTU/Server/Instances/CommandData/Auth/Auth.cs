@@ -13,7 +13,7 @@ namespace AssaultBird2454.VPTU.Server.Instances.CommandData.Auth
         public Authentication_Manager.Data.User UserData { get; set; }
         public AuthState Auth_State { get; set; }
     }
-    public class Logout : Networking.Data.NetworkCommand
+    public class Logout
     {
         public AuthState Auth_State { get; set; }
     }

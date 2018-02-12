@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AssaultBird2454.VPTU.Server.Instances.CommandData.Resources
 {
-    public class ImageResource : VPTU.Networking.Data.NetworkCommand
+    public class ImageResource
     {
         public string UseCommand { get; set; }
         public string UseID { get; set; }

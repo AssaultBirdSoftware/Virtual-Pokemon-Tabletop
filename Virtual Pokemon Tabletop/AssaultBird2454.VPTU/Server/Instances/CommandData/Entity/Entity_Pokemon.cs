@@ -9,16 +9,8 @@ using System.Threading.Tasks;
 
 namespace AssaultBird2454.VPTU.Server.Instances.CommandData.Entities
 {
-    public class Entities_Pokemon_Get : Networking.Data.NetworkCommand
+    public class Entities_Pokemon_Get
     {
-        public string Command
-        {
-            get
-            {
-                return "Entities_Pokemon_Get";
-            }
-        }
-
         public string ID { get; set; }
         public EntitiesManager.Pokemon.PokemonCharacter Pokemon { get; set; }
         public byte[] ImageData { get; set; }

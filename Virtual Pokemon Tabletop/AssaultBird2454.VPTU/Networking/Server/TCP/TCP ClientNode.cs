@@ -153,7 +153,16 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
             }
             else
             {
-                throw new NotNetworkDataException();
+                Data.NetworkCommand cmd = new Networking.Data.NetworkCommand()
+                {
+                    Data = Data,
+                    Command = Command
+                };
+
+                string JSONData = Newtonsoft.Json.JsonConvert.SerializeObject(cmd);
+                TCP_Data_Event?.Invoke(JSONData, this, DataDirection.Send);
+                byte[] Tx = Encoding.UTF8.GetBytes(JSONData + "|<EOD>|");
+                Client.GetStream().BeginWrite(Tx, 0, Tx.Length, OnWrite, Client);// Sends the data to the client
             }
         }
         /// <summary>
@@ -163,20 +172,9 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         /// <param name="Callback">The action to perform when a response has been recieved</param>
         public void Send(object Data, string Command, Action Callback)
         {
-            if (Data is Data.NetworkCommand)
-            {
-                if (NetMode == NetworkMode.Standard)
-                {
-                    string JSONData = Newtonsoft.Json.JsonConvert.SerializeObject(Data);
-                    TCP_Data_Event?.Invoke(JSONData, this, DataDirection.Send);
-                    byte[] Tx = Encoding.UTF8.GetBytes(JSONData + "|<EOD>|");
-                    Client.GetStream().BeginWrite(Tx, 0, Tx.Length, OnWrite, Client);// Sends the data to the client
-                }
-            }
-            else
-            {
-                throw new NotNetworkDataException();
-            }
+            //TODO: Handel creating responses
+
+            Send(Data, Command);
         }
         private void OnWrite(IAsyncResult ar)
         {

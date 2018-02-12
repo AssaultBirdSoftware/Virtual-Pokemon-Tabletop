@@ -5,14 +5,14 @@ using System.Collections.Generic;
 namespace AssaultBird2454.VPTU.Networking.Server.Command_Handeler
 {
     #region Delegates
-    public delegate Data.Response Command_Callback(object Data, TCP_ClientNode Client);
+    public delegate Data.Response Command_Callback(object Data, TCP_ClientNode Client, bool Waiting);
     public delegate void RateLimiting(string Command, bool Enabled, int Limit);
     #endregion
 
     public class Command
     {
         public event RateLimiting RateLimitChanged_Event;// Event invoked when ratelimiting settings changed
-        public event Command_Callback Command_Executed;// Event invoked when the command is executed
+        public Command_Callback Command_Executed;// Event invoked when the command is executed
 
         /// <summary>
         /// Creates a new command object
@@ -47,7 +47,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.Command_Handeler
 
         internal void Invoke(Data.NetworkCommand Data, TCP_ClientNode Client)
         {
-            Data.Response response = Command_Executed?.Invoke(Data.Data, Client);
+            Data.Response response = Command_Executed?.Invoke(Data.Data, Client, Data.Waiting);
 
             if (Data.Waiting)
             {
