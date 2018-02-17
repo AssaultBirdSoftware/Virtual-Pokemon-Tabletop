@@ -36,6 +36,7 @@ namespace AssaultBird2454.VPTU.Client
                 catch
                 {
                     Debug = true;
+                    MessageBox.Show("Client running in Debug Mode...\n\nNo Telemetry events will be sent");
                 }
 
                 try
