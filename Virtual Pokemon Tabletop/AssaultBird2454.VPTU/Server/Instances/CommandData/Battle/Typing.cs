@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using AssaultBird2454.VPTU.Networking.Data;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -9,24 +10,24 @@ using System.Threading.Tasks;
 
 namespace AssaultBird2454.VPTU.Server.Instances.CommandData.Battle
 {
-    public class List_Typing : Networking.Data.NetworkCommand
+    public class List_Typing : NetworkCommand
     {
-        public List_Typing()
-        {
-            Command = "Battle_Typing_List";
-        }
+        public string Command { get { return "Battle_Typing_List"; } }
+        public bool Waiting { get; set; }
+        public string Waiting_Code { get; set; }
+        public ResponseCode Response { get; set; }
+        public string Response_Message { get; set; }
 
-        public string Command { get; }
         public List<BattleManager.Typing.Typing_Data> Types { get; set; }
     }
-    public class Get_Typing : Networking.Data.NetworkCommand
+    public class Get_Typing : NetworkCommand
     {
-        public Get_Typing()
-        {
-            Command = "Battle_Typing_Get";
-        }
+        public string Command { get { return "Battle_Typing_Get"; } }
+        public bool Waiting { get; set; }
+        public string Waiting_Code { get; set; }
+        public ResponseCode Response { get; set; }
+        public string Response_Message { get; set; }
 
-        public string Command { get; }
         public string Type_Name { get; set; }
         public BattleManager.Typing.Typing_Data Type { get; set; }
         public byte[] Type_Icon { get; set; }
