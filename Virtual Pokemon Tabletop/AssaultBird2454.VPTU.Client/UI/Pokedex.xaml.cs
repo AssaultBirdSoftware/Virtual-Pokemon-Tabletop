@@ -91,7 +91,6 @@ namespace AssaultBird2454.VPTU.Client.UI
             {
                 Program.ClientInstance.Client.SendData(new Pokedex_Pokemon // Gets the Pokemon Selected
                 {
-                    Command = "Pokedex_Pokemon_Get", // Sets the command
                     DexID = ((PokemonData)List.SelectedItems[0]).Species_DexID // Sets the Pokemon ID to get
                 });
             }

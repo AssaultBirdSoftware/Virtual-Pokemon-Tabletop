@@ -45,14 +45,14 @@ namespace AssaultBird2454.VPTU.Networking.Server.Command_Handeler
         public string Name { get; set; }// Command Name
         public Type DataType { get; set; }// Command Data Type
 
-        internal void Invoke(Data.NetworkCommand Data, TCP_ClientNode Client)
+        internal void Invoke(object Data, TCP_ClientNode Client)
         {
-            Data.Response response = Command_Executed?.Invoke(Data.Data, Client, Data.Waiting);
+            Data.Response response = Command_Executed?.Invoke(Data, Client, ((Data.NetworkCommand)Data).Waiting);
 
-            if (Data.Waiting)
+            if (((Data.NetworkCommand)Data).Waiting)
             {
-                Data.Response = response.Code;
-                Client.Send(Data, Data.Command);
+                ((Data.NetworkCommand)Data).Response = response.Code;
+                Client.Send(Data);
             }
         }
     }

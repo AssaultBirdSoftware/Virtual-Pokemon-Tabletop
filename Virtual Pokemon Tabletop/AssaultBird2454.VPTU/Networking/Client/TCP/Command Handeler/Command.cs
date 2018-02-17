@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AssaultBird2454.VPTU.Networking.Client.TCP;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AssaultBird2454.VPTU.Networking.Client.Command_Handeler
 {
-    public delegate void Command_Callback(object Data);
+    public delegate Data.Response Command_Callback(object Data, bool Waiting);
 
     public class Command
     {
@@ -29,9 +30,15 @@ namespace AssaultBird2454.VPTU.Networking.Client.Command_Handeler
         /// Invokes the callback
         /// </summary>
         /// <param name="Data">The Data to send the callback</param>
-        internal void Invoke(object Data)
+        internal void Invoke(object Data, TCP_Client Client)
         {
-            Command_Executed?.Invoke(Data);// Invokes the callback
+            Data.Response response = Command_Executed?.Invoke(Data, ((Data.NetworkCommand)Data).Waiting);
+
+            if (((Data.NetworkCommand)Data).Waiting)
+            {
+                ((Data.NetworkCommand)Data).Response = response.Code;
+                Client.SendData(Data);
+            }
         }
     }
 }

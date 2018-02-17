@@ -229,7 +229,7 @@ namespace AssaultBird2454.VPTU.Server.Instances
         {
             ((Class.Logging.I_Logger)Server_Logger).Log("Base Network is " + Server_State.ToString(), Class.Logging.LoggerLevel.Debug);
         }
-        private void Server_TCP_Data_Event(string Data, Networking.Server.TCP.TCP_ClientNode Client, Networking.Server.TCP.DataDirection Direction)
+        private void Server_TCP_Data_Event(Networking.Data.NetworkCommand Data, Networking.Server.TCP.TCP_ClientNode Client, Networking.Server.TCP.DataDirection Direction)
         {
             if (Direction == Networking.Server.TCP.DataDirection.Recieve)
             {

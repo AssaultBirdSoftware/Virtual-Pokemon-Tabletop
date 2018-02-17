@@ -102,12 +102,10 @@ namespace AssaultBird2454.VPTU.Networking.Server.Command_Handeler
             return Commands.First(x => x.Key.ToLower() == Name.ToLower()).Value;
         }
 
-        internal void InvokeCommand(string Data, TCP_ClientNode node)
+        internal void InvokeCommand(dynamic CommandData, TCP_ClientNode node)
         {
             try
             {
-                Data.NetworkCommand CommandData = Newtonsoft.Json.JsonConvert.DeserializeObject<Data.NetworkCommand>(Data);// Deserializes an interface for command pharsing
-
                 Command cmd = Commands.First(x => x.Key == CommandData.Command).Value;// Gets the command by searching
                 RateTracker RateTracker = RateTracking.Find(x => x.ClientID == node.ID);
 
@@ -129,7 +127,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.Command_Handeler
                     if (CommandData.Waiting)
                     {
                         CommandData.Response = Networking.Data.ResponseCode.RateLimitHit;
-                        node.Send(CommandData, "");
+                        node.Send(CommandData);
                     }
                 }
             }

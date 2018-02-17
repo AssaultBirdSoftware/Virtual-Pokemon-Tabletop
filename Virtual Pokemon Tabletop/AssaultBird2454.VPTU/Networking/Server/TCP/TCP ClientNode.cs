@@ -13,6 +13,8 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
 {
     public enum NetworkMode { Standard, SSL }
 
+    public delegate void AwaitingCallback_Invoked(object Data);
+
     public class TCP_ClientNode
     {
         #region Events
@@ -39,6 +41,8 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         private readonly EventWaitHandle ReadQueWait;// An event to signal when data is avaliable
 
         private string[] delimiter = new string[] { "|<EOD>|" };// End Of Data Signal
+
+        internal List<KeyValuePair<string, AwaitingCallback_Invoked>> Awaiting_Callbacks;
         #endregion
 
         public TCP_ClientNode(TcpClient _Client, string _ID, TCP_Server _Server)
@@ -49,6 +53,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
             ID = _ID;// Sets the ID
             ReadQueWait = new EventWaitHandle(false, EventResetMode.AutoReset, ID + " ReadQue");// Creates the handel event
             NetMode = NetworkMode.Standard;
+            Awaiting_Callbacks = new List<KeyValuePair<string, AwaitingCallback_Invoked>>();
 
             StartListening();// Starts Listening
 
@@ -71,9 +76,18 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
 
                 while (DataQue.Count >= 1)// While there is data avaliable
                 {
-                    string Data = DataQue.Dequeue();// Gets the Data
-                    TCP_Data_Event?.Invoke(Data, this, DataDirection.Recieve);
-                    Server.CommandHandeler.InvokeCommand(Data, this);// Process the data
+                    dynamic cmd = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(DataQue.Dequeue());
+                    Data.ResponseCode response = cmd.Response;
+
+                    if (cmd.Response == Data.ResponseCode.Nothing)
+                    {
+                        TCP_Data_Event?.Invoke(cmd, this, DataDirection.Recieve);
+                        Server.CommandHandeler.InvokeCommand(cmd, this);// Process the data
+                    }
+                    else
+                    {
+                        Awaiting_Callbacks.Find(x => x.Key == cmd.Waiting_Code).Value.Invoke(cmd);
+                    }
                 }
             }
         }
@@ -139,30 +153,18 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         /// Sends an object to this client
         /// </summary>
         /// <param name="Data">The object being transmitted</param>
-        public void Send(object Data, string Command)
+        public void Send(object Data)
         {
             if (Data is Data.NetworkCommand)
             {
-                if (NetMode == NetworkMode.Standard)
-                {
-                    string JSONData = Newtonsoft.Json.JsonConvert.SerializeObject(Data);
-                    TCP_Data_Event?.Invoke(JSONData, this, DataDirection.Send);
-                    byte[] Tx = Encoding.UTF8.GetBytes(JSONData + "|<EOD>|");
-                    Client.GetStream().BeginWrite(Tx, 0, Tx.Length, OnWrite, Client);// Sends the data to the client
-                }
+                string JSONData = Newtonsoft.Json.JsonConvert.SerializeObject(Data);
+                TCP_Data_Event?.Invoke((Data.NetworkCommand)Data, this, DataDirection.Send);
+                byte[] Tx = Encoding.UTF8.GetBytes(JSONData + "|<EOD>|");
+                Client.GetStream().BeginWrite(Tx, 0, Tx.Length, OnWrite, Client);// Sends the data to the client
             }
             else
             {
-                Data.NetworkCommand cmd = new Networking.Data.NetworkCommand()
-                {
-                    Data = Data,
-                    Command = Command
-                };
-
-                string JSONData = Newtonsoft.Json.JsonConvert.SerializeObject(cmd);
-                TCP_Data_Event?.Invoke(JSONData, this, DataDirection.Send);
-                byte[] Tx = Encoding.UTF8.GetBytes(JSONData + "|<EOD>|");
-                Client.GetStream().BeginWrite(Tx, 0, Tx.Length, OnWrite, Client);// Sends the data to the client
+                throw new NotNetworkDataException();
             }
         }
         /// <summary>
@@ -170,11 +172,29 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         /// </summary>
         /// <param name="Data">The object being transmitted</param>
         /// <param name="Callback">The action to perform when a response has been recieved</param>
-        public void Send(object Data, string Command, Action Callback)
+        public void Send(object Data, AwaitingCallback_Invoked Callback)
         {
             //TODO: Handel creating responses
+            if (Callback != null)
+            {
+                if (Data is Data.NetworkCommand)
+                {
+                    string CallbackID = RNG.Generators.RSG.GenerateString(12);
 
-            Send(Data, Command);
+                    Awaiting_Callbacks.Add(new KeyValuePair<string, AwaitingCallback_Invoked>(CallbackID, Callback));
+                    ((Data.NetworkCommand)Data).Waiting = true;
+                    ((Data.NetworkCommand)Data).Waiting_Code = CallbackID;
+                    ((Data.NetworkCommand)Data).Response = Networking.Data.ResponseCode.Nothing;
+                    ((Data.NetworkCommand)Data).Response_Message = "";
+
+                    Send(Data);
+                    return;
+                }
+                else
+                {
+                    throw new NotNetworkDataException();
+                }
+            }
         }
         private void OnWrite(IAsyncResult ar)
         {

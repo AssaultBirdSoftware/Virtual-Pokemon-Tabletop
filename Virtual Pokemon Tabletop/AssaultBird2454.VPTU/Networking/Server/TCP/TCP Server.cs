@@ -38,29 +38,6 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         /// An event that is fired when a data error occures
         /// </summary>
         public event TCP_Data_Error TCP_Data_Error_Event;
-
-        #region Trigger Event Methods
-        protected void Fire_TCP_AcceptClients_Changed(bool Accepting_Connections)
-        {
-            TCP_AcceptClients_Changed?.Invoke(Accepting_Connections);
-        }
-        protected void Fire_TCP_ClientState_Changed(TCP_ClientNode Client, Data.Client_ConnectionStatus Client_State)
-        {
-            TCP_ClientState_Changed?.Invoke(Client, Client_State);
-        }
-        protected void Fire_TCP_ServerState_Changed(Data.Server_Status Server_State)
-        {
-            TCP_ServerState_Changed?.Invoke(Server_State);
-        }
-        protected void Fire_TCP_Data_Event(string Data, TCP_ClientNode Client, DataDirection Direction)
-        {
-            TCP_Data_Event?.Invoke(Data, Client, Direction);
-        }
-        protected void Fire_TCP_Data_Error_Event(Exception ex, DataDirection Direction)
-        {
-            TCP_Data_Error_Event?.Invoke(ex, Direction);
-        }
-        #endregion
         #endregion
 
         #region Variables
@@ -94,7 +71,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
             }
             set
             {
-                Fire_TCP_AcceptClients_Changed(value);
+                TCP_AcceptClients_Changed?.Invoke(value);
                 TCP_AcceptClients = value;
             }
         }
@@ -204,13 +181,13 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         {
             try { Stop(); } catch { }// Executes the stop server method to check that it is not running and to clear it
 
-            Fire_TCP_ServerState_Changed(Data.Server_Status.Starting);// Send Server State Changed Event
+            TCP_ServerState_Changed?.Invoke(Data.Server_Status.Starting);// Send Server State Changed Event
 
             ClientNodes = new List<TCP_ClientNode>();
             Listener = new TcpListener(ServerAddress, ServerPort);// Create a new server object
             Listener.Start();// Starts the server
             Listener.BeginAcceptSocket(Client_Connected, Listener);// Creates an accept client callback
-            Fire_TCP_ServerState_Changed(Data.Server_Status.Online);// Send Server State Changed Event
+            TCP_ServerState_Changed?.Invoke(Data.Server_Status.Online);// Send Server State Changed Event
         }
 
         /// <summary>
@@ -227,7 +204,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
                 Listener.Stop();// Stop the server if it is running
                 Listener = null;// Delete the server object if it exists
 
-                Fire_TCP_ServerState_Changed(Data.Server_Status.Offline);// Send Server State Changed Event
+                TCP_ServerState_Changed?.Invoke(Data.Server_Status.Offline);// Send Server State Changed Event
             }
             catch (Exception e)
             { /* Dont Care, this is just to check that the server is stopped */ }
@@ -261,7 +238,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
                         node.TCP_Data_Error_Event += Node_TCP_Data_Error_Event;
                     }
 
-                    Fire_TCP_ClientState_Changed(node, Data.Client_ConnectionStatus.Connected);// Sends the client connected event
+                    TCP_ClientState_Changed?.Invoke(node, Data.Client_ConnectionStatus.Connected);// Sends the client connected event
                 }
                 else
                 {
@@ -273,11 +250,11 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
 
                     if (!AcceptClients)
                     {
-                        node.Send(new VPTU.Server.Instances.CommandData.Connection.Connect() { Connection_State = VPTU.Server.Instances.CommandData.Connection.ConnectionStatus.Rejected }, "ConnectionState");// Sends the client rejected event
+                        node.Send(new VPTU.Server.Instances.CommandData.Connection.Connect() { Connection_State = VPTU.Server.Instances.CommandData.Connection.ConnectionStatus.Rejected });// Sends the client rejected event
                     }
                     else if (CurrentConnections < MaxConnections)
                     {
-                        node.Send(new VPTU.Server.Instances.CommandData.Connection.Connect() { Connection_State = VPTU.Server.Instances.CommandData.Connection.ConnectionStatus.ServerFull }, "ConnectionState");// Sends the server full error
+                        node.Send(new VPTU.Server.Instances.CommandData.Connection.Connect() { Connection_State = VPTU.Server.Instances.CommandData.Connection.ConnectionStatus.ServerFull });// Sends the server full error
                     }
 
                     tclient.Close();// Closes the connection (if full or not accepting, this will change latter)
@@ -290,11 +267,11 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         }
         private void Node_TCP_Data_Error_Event(Exception ex, DataDirection Direction)
         {
-            Fire_TCP_Data_Error_Event(ex, Direction);
+            TCP_Data_Error_Event?.Invoke(ex, Direction);
         }
-        private void Node_TCP_Data_Event(string Data, TCP_ClientNode Client, DataDirection Direction)
+        private void Node_TCP_Data_Event(Data.NetworkCommand Data, TCP_ClientNode Client, DataDirection Direction)
         {
-            Fire_TCP_Data_Event(Data, Client, Direction);
+            TCP_Data_Event?.Invoke(Data, Client, Direction);
         }
 
         /// <summary>
@@ -303,7 +280,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         /// <param name="node">The client being disconected</param>
         public void Disconnect_Client(TCP_ClientNode node)
         {
-            Fire_TCP_ClientState_Changed(node, Data.Client_ConnectionStatus.Disconnected);// Sends Client Disconnect Event
+            TCP_ClientState_Changed?.Invoke(node, Data.Client_ConnectionStatus.Disconnected);// Sends Client Disconnect Event
 
             node.Disconnect();// Disconnects the client from the server
 
@@ -333,12 +310,12 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
             {
                 foreach (TCP_ClientNode cn in ClientNodes)
                 {
-                    cn.Send(Data, Command);// Send the data to everybody
+                    cn.Send(Data);// Send the data to everybody
                 }
             }
             else
             {
-                node.Send(Data, Command);// Send the data to a single client
+                node.Send(Data);// Send the data to a single client
             }
         }
         #endregion
