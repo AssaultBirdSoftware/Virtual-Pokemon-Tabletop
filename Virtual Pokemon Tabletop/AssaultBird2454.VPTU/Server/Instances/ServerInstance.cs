@@ -51,31 +51,6 @@ namespace AssaultBird2454.VPTU.Server.Instances
         public SaveManager.SaveManager SaveManager { get; private set; }
         #endregion
 
-        #region Base VPTU
-        #region Battle
-        private List<BattleManager.Battle_Instance.Instance> BattleInstances { get; set; }
-        public IEnumerable<BattleManager.Battle_Instance.Instance> GetInstances
-        {
-            get
-            {
-                foreach (var Inst in BattleInstances) yield return Inst;
-            }
-        }
-
-        public BattleManager.Battle_Instance.Instance CreateBattle()
-        {
-            BattleManager.Battle_Instance.Instance inst = new BattleManager.Battle_Instance.Instance();// Create Instance
-            BattleInstances.Add(inst);// Adds to List
-            return inst;// Return the instance to get used
-        }
-        public void DeleteBattle(BattleManager.Battle_Instance.Instance instance)
-        {
-            instance.End();// End Battle
-            BattleInstances.Remove(instance);// Remove instance
-        }
-        #endregion
-        #endregion
-
         #region Authentication
         public List<KeyValuePair<Networking.Server.TCP.TCP_ClientNode, Authentication_Manager.Data.User>> Authenticated_Clients;
 

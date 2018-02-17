@@ -146,17 +146,11 @@
     <Compile Include="UI\About\License.xaml.cs">
       <DependentUpon>License.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\BattleEffect\BattleEffect_Designer.xaml.cs">
-      <DependentUpon>BattleEffect_Designer.xaml</DependentUpon>
+    <Compile Include="UI\Battle\Typing Details.xaml.cs">
+      <DependentUpon>Typing Details.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\BattleEffect\EffectAction_Designer.xaml.cs">
-      <DependentUpon>EffectAction_Designer.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\BattleEffect\EffectFunction_Designer.xaml.cs">
-      <DependentUpon>EffectFunction_Designer.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Battlers\Participant.xaml.cs">
-      <DependentUpon>Participant.xaml</DependentUpon>
+    <Compile Include="UI\Battle\Typing Editor.xaml.cs">
+      <DependentUpon>Typing Editor.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Entity\EntityListItem.xaml.cs">
       <DependentUpon>EntityListItem.xaml</DependentUpon>
@@ -200,6 +194,24 @@
     <Compile Include="UI\Resources\Search_Resources.xaml.cs">
       <DependentUpon>Search_Resources.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Settings\Settings Panel.xaml.cs">
+      <DependentUpon>Settings Panel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Settings\Setting_Value_Bool.xaml.cs">
+      <DependentUpon>Setting_Value_Bool.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Settings\Setting_Value_Button.xaml.cs">
+      <DependentUpon>Setting_Value_Button.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Settings\Setting_Value_Decimal.xaml.cs">
+      <DependentUpon>Setting_Value_Decimal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Settings\Setting_Value_DropDown.xaml.cs">
+      <DependentUpon>Setting_Value_DropDown.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Settings\Setting_Value_String.xaml.cs">
+      <DependentUpon>Setting_Value_String.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\String Prompt.xaml.cs">
       <DependentUpon>String Prompt.xaml</DependentUpon>
     </Compile>
@@ -226,19 +238,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\BattleEffect\BattleEffect_Designer.xaml">
+    <Page Include="UI\Battle\Typing Details.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\BattleEffect\EffectAction_Designer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\BattleEffect\EffectFunction_Designer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Battlers\Participant.xaml">
+    <Page Include="UI\Battle\Typing Editor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -295,6 +299,30 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Resources\Search_Resources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Settings\Settings Panel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Settings\Setting_Value_Bool.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Settings\Setting_Value_Button.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Settings\Setting_Value_Decimal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Settings\Setting_Value_DropDown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Settings\Setting_Value_String.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -381,6 +409,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="sentry_cid.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UI\BattleEffect\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

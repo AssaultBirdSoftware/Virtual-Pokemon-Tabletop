@@ -14,7 +14,7 @@ namespace AssaultBird2454.VPTU.Server.Instances.CommandData.Battle
         public string Waiting_Code { get; set; }
         public ResponseCode Response { get; set; }
         public string Response_Message { get; set; }
-
+        
         public IEnumerable<BattleManager.Battle_Instance.Instance> Instances { get; set; }
     }
     public class Battle_Instance : NetworkCommand

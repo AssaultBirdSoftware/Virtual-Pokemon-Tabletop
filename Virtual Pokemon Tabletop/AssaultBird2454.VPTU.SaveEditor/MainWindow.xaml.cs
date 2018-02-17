@@ -8,7 +8,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using AssaultBird2454.VPTU.Authentication_Manager.Data;
 using AssaultBird2454.VPTU.EntitiesManager;
 using AssaultBird2454.VPTU.EntitiesManager.Pokemon;
@@ -51,7 +53,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
         {
             try
             {
-                SaveManager.SaveData.Campaign_Data.Server_Port = (int) OverViewSettings_Server_Port.Value;
+                SaveManager.SaveData.Campaign_Data.Server_Port = (int)OverViewSettings_Server_Port.Value;
             }
             catch
             {
@@ -536,18 +538,18 @@ namespace AssaultBird2454.VPTU.SaveEditor
         {
             try
             {
-                if (((PokedexList_DataBind) PokedexManager_List.SelectedValue).DataType == PokedexList_DataType.Pokemon)
+                if (((PokedexList_DataBind)PokedexManager_List.SelectedValue).DataType == PokedexList_DataType.Pokemon)
                 {
-                    var Data = (PokemonData) ((PokedexList_DataBind) PokedexManager_List.SelectedValue).DataTag;
+                    var Data = (PokemonData)((PokedexList_DataBind)PokedexManager_List.SelectedValue).DataTag;
                     SaveManager.SaveData.PokedexData.Pokemon.Remove(Data);
 
                     Data.Dispose();
                     Data = null;
                 }
-                else if (((PokedexList_DataBind) PokedexManager_List.SelectedValue).DataType ==
+                else if (((PokedexList_DataBind)PokedexManager_List.SelectedValue).DataType ==
                          PokedexList_DataType.Move)
                 {
-                    var Data = (MoveData) ((PokedexList_DataBind) PokedexManager_List.SelectedValue).DataTag;
+                    var Data = (MoveData)((PokedexList_DataBind)PokedexManager_List.SelectedValue).DataTag;
                     SaveManager.SaveData.PokedexData.Moves.Remove(Data);
 
                     #region Remove Links to the move
@@ -717,9 +719,9 @@ namespace AssaultBird2454.VPTU.SaveEditor
             try
             {
                 //Edit Pokemon Here!
-                if (((PokedexList_DataBind) PokedexManager_List.SelectedValue).DataType == PokedexList_DataType.Pokemon)
+                if (((PokedexList_DataBind)PokedexManager_List.SelectedValue).DataType == PokedexList_DataType.Pokemon)
                 {
-                    var Data = (PokemonData) ((PokedexList_DataBind) PokedexManager_List.SelectedValue)
+                    var Data = (PokemonData)((PokedexList_DataBind)PokedexManager_List.SelectedValue)
                         .DataTag; // Gets the Data
                     var pokemon = new Pokemon(SaveManager.SaveData.PokedexData, Data); // Creates a new window
                     pokemon.ShowDialog(); // Shows the window
@@ -727,10 +729,10 @@ namespace AssaultBird2454.VPTU.SaveEditor
                     PokedexManager_ReloadList(); // Updates the list
                 }
                 //Edit Moves Here!
-                else if (((PokedexList_DataBind) PokedexManager_List.SelectedValue).DataType ==
+                else if (((PokedexList_DataBind)PokedexManager_List.SelectedValue).DataType ==
                          PokedexList_DataType.Move)
                 {
-                    var Data = (MoveData) ((PokedexList_DataBind) PokedexManager_List.SelectedItem)
+                    var Data = (MoveData)((PokedexList_DataBind)PokedexManager_List.SelectedItem)
                         .DataTag; // Gets the Data
                     var move = new Moves(SaveManager.SaveData, Data); // Creates a new window
                     move.ShowDialog(); // Shows the window
@@ -796,7 +798,13 @@ namespace AssaultBird2454.VPTU.SaveEditor
         private void ResourceManager_ManageRes_Delete_Click(object sender, RoutedEventArgs e)
         {
             if (ResourceManager_List.SelectedItem != null)
+            {
+                SaveManager.Resource_Data.Resources res = (SaveManager.Resource_Data.Resources)((System.Windows.Controls.ListViewItem)ResourceManager_List.SelectedItem).Content;
+
+                SaveManager.Delete_Resource(res.ID);
+                SaveManager.SaveData.ImageResources.Remove(res);
                 ResourceManager_List.Items.Remove(ResourceManager_List.SelectedItem);
+            }
         }
 
         private void ResourceManager_SearchRes_Images_Checked(object sender, RoutedEventArgs e)
@@ -855,9 +863,50 @@ namespace AssaultBird2454.VPTU.SaveEditor
                 ResourceManager_List.Items.Clear();
 
                 if (ResourceManager_SearchRes_Images.IsChecked == true)
+                {
                     foreach (var res in SaveManager.SaveData.ImageResources)
+                    {
                         if (res.Name.ToLower().Contains(ResourceManager_SearchRes_Search.Text.ToLower()))
-                            ResourceManager_List.Items.Add(res);
+                        {
+                            System.Windows.Controls.ListViewItem lvi = new System.Windows.Controls.ListViewItem();
+                            lvi.Content = res;
+                            lvi.ToolTip = new StackPanel();
+                            lvi.ToolTipClosing += new ToolTipEventHandler((sender, e) =>
+                            {
+                                ((StackPanel)lvi.ToolTip).Children.Clear();
+                            });
+
+                            lvi.ToolTipOpening += new ToolTipEventHandler((sender, e) =>
+                            {
+                                if (res.Type == VPTU.SaveManager.Resource_Data.Resource_Type.Image)
+                                {
+                                    ((StackPanel)lvi.ToolTip).Children.Clear();
+
+                                    ((StackPanel)lvi.ToolTip).Children.Add(new Image()
+                                    {
+                                        Source = Imaging.CreateBitmapSourceFromHBitmap(SaveManager.LoadImage(res.ID).GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions()),
+                                        MaxHeight = 150,
+                                        MaxWidth = 150,
+                                        Stretch = Stretch.Uniform
+                                    }
+                                    );
+
+                                    ((StackPanel)lvi.ToolTip).Children.Add(
+                                    new TextBlock()
+                                    {
+                                        Text = "ID: " + res.ID + "\nName: " + res.Name
+                                    }
+                                    );
+                                }
+                                else if (res.Type == VPTU.SaveManager.Resource_Data.Resource_Type.Audio)
+                                {
+                                    /* Load Audio Preview ToolTip */
+                                }
+                            });
+                            ResourceManager_List.Items.Add(lvi);
+                        }
+                    }
+                }
             }
             catch
             {
@@ -909,64 +958,64 @@ namespace AssaultBird2454.VPTU.SaveEditor
 
         private void Ctxm_Entities_Delete_Click(object sender, RoutedEventArgs e)
         {
-            var ctxm = (ContextMenu) ((MenuItem) sender).Parent;
+            var ctxm = (ContextMenu)((MenuItem)sender).Parent;
 
-            EntitiesManager_DeleteEntry(((Entry_Data) ctxm.Tag).ID);
+            EntitiesManager_DeleteEntry(((Entry_Data)ctxm.Tag).ID);
         }
 
         private void Ctxm_Entities_Duplicate_Click(object sender, RoutedEventArgs e)
         {
-            var ctxm = (ContextMenu) ((MenuItem) sender).Parent;
+            var ctxm = (ContextMenu)((MenuItem)sender).Parent;
         }
 
         private void Ctxm_Entities_Edit_Click(object sender, RoutedEventArgs e)
         {
-            var ctxm = (ContextMenu) ((MenuItem) sender).Parent;
+            var ctxm = (ContextMenu)((MenuItem)sender).Parent;
 
             EntitiesManager_EditPokemonEntities(
-                SaveManager.SaveData.Pokemon.Find(x => x.ID == ((Entry_Data) ctxm.Tag).ID));
+                SaveManager.SaveData.Pokemon.Find(x => x.ID == ((Entry_Data)ctxm.Tag).ID));
         }
 
         private void Ctxm_Folder_Delete_Click(object sender, RoutedEventArgs e)
         {
-            var ctxm = (ContextMenu) ((MenuItem) sender).Parent;
+            var ctxm = (ContextMenu)((MenuItem)sender).Parent;
 
-            EntitiesManager_DeleteDir(((Folder) ctxm.Tag).ID);
+            EntitiesManager_DeleteDir(((Folder)ctxm.Tag).ID);
         }
 
         private void Ctxm_Folder_CreatePokemonEntities_Click(object sender, RoutedEventArgs e)
         {
-            var ctxm = (ContextMenu) ((MenuItem) sender).Parent;
+            var ctxm = (ContextMenu)((MenuItem)sender).Parent;
 
-            EntitiesManager_CreatePokemonEntities(((Folder) ctxm.Tag).ID);
+            EntitiesManager_CreatePokemonEntities(((Folder)ctxm.Tag).ID);
         }
 
         private void Ctxm_Folder_CreateTrainerEntities_Click(object sender, RoutedEventArgs e)
         {
-            var ctxm = (ContextMenu) ((MenuItem) sender).Parent;
+            var ctxm = (ContextMenu)((MenuItem)sender).Parent;
         }
 
         private void Ctxm_Folder_CreateFolder_Click(object sender, RoutedEventArgs e)
         {
-            var ctxm = (ContextMenu) ((MenuItem) sender).Parent;
+            var ctxm = (ContextMenu)((MenuItem)sender).Parent;
 
             var SP = new String_Prompt("Folder Name");
             var Pass = SP.ShowDialog();
 
             if (Pass == true)
-                EntitiesManager_CreateDir(SP.Input, ((Folder) ctxm.Tag).ID);
+                EntitiesManager_CreateDir(SP.Input, ((Folder)ctxm.Tag).ID);
         }
 
         private void Ctxm_Root_CreatePokemonEntities_Click(object sender, RoutedEventArgs e)
         {
-            var ctxm = (ContextMenu) ((MenuItem) sender).Parent;
+            var ctxm = (ContextMenu)((MenuItem)sender).Parent;
 
             EntitiesManager_CreatePokemonEntities();
         }
 
         private void Ctxm_Root_CreateTrainerEntities_Click(object sender, RoutedEventArgs e)
         {
-            var ctxm = (ContextMenu) ((MenuItem) sender).Parent;
+            var ctxm = (ContextMenu)((MenuItem)sender).Parent;
         }
 
         private void Ctxm_Root_CreateFolder_Click(object sender, RoutedEventArgs e)
@@ -1018,7 +1067,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
 
             if (Parent != null)
             {
-                var ParentTVI = EntitiesManager_Folders.Find(x => ((Folder) x.Tag).ID == Parent);
+                var ParentTVI = EntitiesManager_Folders.Find(x => ((Folder)x.Tag).ID == Parent);
                 var TVI = new TreeViewItem
                 {
                     Header = folder.Name,
@@ -1056,14 +1105,14 @@ namespace AssaultBird2454.VPTU.SaveEditor
 
             var Folder = SaveManager.SaveData.Folders.Find(x => x.ID == ID);
 
-            var TVI = EntitiesManager_Folders.Find(x => ((Folder) x.Tag).ID == Folder.ID);
+            var TVI = EntitiesManager_Folders.Find(x => ((Folder)x.Tag).ID == Folder.ID);
             if (Folder.Parent == null)
             {
                 EntitiesManager_Tree.Items.Remove(TVI);
             }
             else
             {
-                var ParentTVI = EntitiesManager_Folders.Find(x => ((Folder) x.Tag).ID == Folder.Parent);
+                var ParentTVI = EntitiesManager_Folders.Find(x => ((Folder)x.Tag).ID == Folder.Parent);
                 ParentTVI.Items.Remove(TVI);
             }
 
@@ -1073,7 +1122,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
 
         public void EntitiesManager_DeleteEntry(string ID)
         {
-            var Entry = (Entry_Data) EntitiesManager_Entrys.Find(x => ((Entry_Data) x.Tag).ID == ID).Tag;
+            var Entry = (Entry_Data)EntitiesManager_Entrys.Find(x => ((Entry_Data)x.Tag).ID == ID).Tag;
 
             if (Entry.Entities_Type == Entities_Type.Pokemon)
                 try
@@ -1096,14 +1145,14 @@ namespace AssaultBird2454.VPTU.SaveEditor
                     /* Dont Care */
                 }
 
-            var TVI = EntitiesManager_Entrys.Find(x => ((Entry_Data) x.Tag).ID == ID);
+            var TVI = EntitiesManager_Entrys.Find(x => ((Entry_Data)x.Tag).ID == ID);
             if (Entry.Parent_Folder == null)
             {
                 EntitiesManager_Tree.Items.Remove(TVI);
             }
             else
             {
-                var Parent = EntitiesManager_Folders.Find(x => ((Folder) x.Tag).ID == Entry.Parent_Folder);
+                var Parent = EntitiesManager_Folders.Find(x => ((Folder)x.Tag).ID == Entry.Parent_Folder);
                 Parent.Items.Remove(TVI);
             }
 
@@ -1139,7 +1188,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
 
             #endregion
 
-            var Parent = EntitiesManager_Folders.Find(x => ((Folder) x.Tag).ID == folder.Parent);
+            var Parent = EntitiesManager_Folders.Find(x => ((Folder)x.Tag).ID == folder.Parent);
 
             var Child = new TreeViewItem
             {
@@ -1181,8 +1230,8 @@ namespace AssaultBird2454.VPTU.SaveEditor
                 View.Add(new KeyValuePair<Color, string>(UData.UserColor, UData.IC_Name));
             }
 
-            var TVI = EntitiesManager_Entrys.Find(x => ((Entry_Data) x.Tag).ID == Pokemon.ID);
-            var ELI = (EntitiesListItem) TVI.Header;
+            var TVI = EntitiesManager_Entrys.Find(x => ((Entry_Data)x.Tag).ID == Pokemon.ID);
+            var ELI = (EntitiesListItem)TVI.Header;
 
             ELI.Update(SaveManager.LoadImage(Pokemon.Token_ResourceID), Pokemon.Name, View);
         }
@@ -1241,7 +1290,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
             }
             else
             {
-                var Parent = EntitiesManager_Folders.Find(x => ((Folder) x.Tag).ID == entry.Parent_Folder);
+                var Parent = EntitiesManager_Folders.Find(x => ((Folder)x.Tag).ID == entry.Parent_Folder);
                 Parent.Items.Add(TVI);
             }
             EntitiesManager_Entrys.Add(TVI);
@@ -1315,12 +1364,12 @@ namespace AssaultBird2454.VPTU.SaveEditor
 
         #endregion
 
-        #region Features
-
-        #endregion
-
-        #region Save File Settings
-
+        #region Advanced
+        private void OverviewSettings_Advanced_Types_Edit_Click(object sender, RoutedEventArgs e)
+        {
+            UI.Battle.Typing_Editor Editor = new UI.Battle.Typing_Editor();
+            Editor.ShowDialog();
+        }
         #endregion
 
         #region Users & Groups
@@ -1349,7 +1398,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
 
         private void OverViewSettings_UsersGroups_EditUser_Click(object sender, RoutedEventArgs e)
         {
-            var User = new Users((User) OverViewSettings_UsersGroups_UserList.SelectedItems[0]);
+            var User = new Users((User)OverViewSettings_UsersGroups_UserList.SelectedItems[0]);
             var Pass = User.ShowDialog();
 
             UserGroup_Users_Reload();

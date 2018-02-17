@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AssaultBird2454.VPTU.SaveManager.Resource_Data;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -12,7 +13,7 @@ using System.Windows;
 
 namespace AssaultBird2454.VPTU.SaveManager
 {
-    public enum SaveData_Dir { Pokedex_Pokemon, Pokedex_Moves, Pokedex_Abilitys, Pokedex_Items, Resource_Image, Entities_Pokemon, Entities_Trainers, Entities_Folder, Server_Settings, Basic_CampaignInfo, Basic_CampaignSettings, Auth_Users, Auth_Groups, Auth_Identities, Auth_Permissions }
+    public enum SaveData_Dir { Pokedex_Pokemon, Pokedex_Moves, Pokedex_Abilitys, Pokedex_Items, Resource_Image, Entities_Pokemon, Entities_Trainers, Entities_Folder, Server_Settings, Basic_CampaignInfo, Basic_CampaignSettings, Auth_Users, Auth_Groups, Auth_Identities, Auth_Permissions, Battle_Typing }
 
     public class No_Data_Found_In_Save_Exception : Exception { }
 
@@ -49,6 +50,8 @@ namespace AssaultBird2454.VPTU.SaveManager
                 try { SaveData.Campaign_Settings = LoadData_FromSave<Data.Campaign_Settings>(GetSaveFile_DataDir(SaveData_Dir.Basic_CampaignSettings)); } catch (No_Data_Found_In_Save_Exception) { SaveData.Campaign_Settings = new Data.Campaign_Settings(true); }// Basic Campaign Settings
                 try { SaveData.Server_Settings = LoadData_FromSave<Data.Server_Settings>(GetSaveFile_DataDir(SaveData_Dir.Server_Settings)); } catch (No_Data_Found_In_Save_Exception) { SaveData.Server_Settings = new Data.Server_Settings(true); }// Basic Server Settings
 
+                try { SaveData.Typing_Manager = LoadData_FromSave<BattleManager.Typing.Manager>(GetSaveFile_DataDir(SaveData_Dir.Battle_Typing)); } catch (No_Data_Found_In_Save_Exception) { SaveData.Typing_Manager = new BattleManager.Typing.Manager(true); }
+
                 try { SaveData.Identities = LoadData_FromSave<List<Authentication_Manager.Data.Identity>>(GetSaveFile_DataDir(SaveData_Dir.Auth_Identities)); } catch (No_Data_Found_In_Save_Exception) { SaveData.Identities = new List<Authentication_Manager.Data.Identity>(); }
                 try { SaveData.Permissions = LoadData_FromSave<List<Authentication_Manager.Data.PermissionData>>(GetSaveFile_DataDir(SaveData_Dir.Auth_Permissions)); } catch (No_Data_Found_In_Save_Exception) { SaveData.Permissions = new List<Authentication_Manager.Data.PermissionData>(); }
                 try { SaveData.Users = LoadData_FromSave<List<Authentication_Manager.Data.User>>(GetSaveFile_DataDir(SaveData_Dir.Auth_Users)); } catch (No_Data_Found_In_Save_Exception) { SaveData.Users = new List<Authentication_Manager.Data.User>(); }
@@ -80,6 +83,8 @@ namespace AssaultBird2454.VPTU.SaveManager
             SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Basic_CampaignInfo), SaveData.Campaign_Data);
             SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Basic_CampaignSettings), SaveData.Campaign_Settings);
             SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Server_Settings), SaveData.Server_Settings);
+
+            SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Battle_Typing), SaveData.Typing_Manager);
 
             SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Auth_Identities), SaveData.Identities);
             SaveData_ToSave(GetSaveFile_DataDir(SaveData_Dir.Auth_Permissions), SaveData.Permissions);
@@ -197,6 +202,8 @@ namespace AssaultBird2454.VPTU.SaveManager
                     return "Auth/Identities.json";
                 case SaveData_Dir.Auth_Permissions:
                     return "Auth/Permissions.json";
+                case SaveData_Dir.Battle_Typing:
+                    return "Battle/TypingData.json";
 
                 default:
                     return null;
@@ -227,6 +234,20 @@ namespace AssaultBird2454.VPTU.SaveManager
         public void ExportFile()
         {
 
+        }
+        public void Delete_Resource(string ID)
+        {
+            using (FileStream stream = new FileStream(SaveFileDir, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+            {
+                using (ZipArchive archive = new ZipArchive(stream, ZipArchiveMode.Update))
+                {
+                    Resources res = SaveData.ImageResources.Find(x => x.ID == ID);
+                    if (res.Path.StartsWith("save:"))
+                    {
+                        archive.Entries.First(x => x.FullName == res.Path.Remove(0, 5)).Delete();
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -284,7 +305,10 @@ namespace AssaultBird2454.VPTU.SaveManager
                     return bmp;// Return Image
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+
+            }
             return null;
         }
         #endregion

@@ -490,7 +490,7 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
         private Networking.Data.Response Battle_Instance_List_Executed(object Data, TCP_ClientNode Client, bool Waiting)
         {
             return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.Not_Implemented, Data = null, Message = "Not Implemened" };
-            //Client.Send(new CommandData.Battle.Battle_Instance_List() { Instances = Instance.GetInstances });
+            //Client.Send(new CommandData.Battle.Battle_Instance_List() { /*Instances = Instance.GetInstances*/ });
         }
 
         private Networking.Data.Response Battle_Instance_Start_Executed(object Data, TCP_ClientNode Client, bool Waiting)

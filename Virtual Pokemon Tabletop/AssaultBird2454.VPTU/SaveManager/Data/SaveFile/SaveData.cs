@@ -24,6 +24,8 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
                 Campaign_Settings = new Campaign_Settings(true);
                 Server_Settings = new Server_Settings(true);
 
+                Typing_Manager = new BattleManager.Typing.Manager(true);
+
                 Identities = new List<Authentication_Manager.Data.Identity>();
                 Permissions = new List<Authentication_Manager.Data.PermissionData>();
                 Users = new List<Authentication_Manager.Data.User>();
@@ -82,6 +84,10 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
             if (Server_Settings == null)
                 Server_Settings = new Server_Settings(true);
             Server_Settings.InitNullObjects();
+
+            if (Typing_Manager == null)
+                Typing_Manager = new BattleManager.Typing.Manager(true);
+            Typing_Manager.InitNullObjects();
         }
 
         #region Data
@@ -112,6 +118,10 @@ namespace AssaultBird2454.VPTU.SaveManager.Data.SaveFile
 
             return ID.Key;
         }
+        #endregion
+
+        #region Battles
+        public BattleManager.Typing.Manager Typing_Manager;
         #endregion
 
         public Pokedex.Save_Data.Pokedex PokedexData;
