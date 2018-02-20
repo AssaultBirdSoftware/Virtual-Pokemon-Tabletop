@@ -102,11 +102,15 @@ namespace AssaultBird2454.VPTU.Networking.Server.Command_Handeler
             return Commands.First(x => x.Key.ToLower() == Name.ToLower()).Value;
         }
 
-        internal void InvokeCommand(dynamic CommandData, TCP_ClientNode node)
+        internal void InvokeCommand(string Data, TCP_ClientNode node)
         {
             try
             {
-                Command cmd = Commands.First(x => x.Key == CommandData.Command).Value;// Gets the command by searching
+                var DataForm = new { Command = "" };
+
+                var CommandName = Newtonsoft.Json.JsonConvert.DeserializeAnonymousType(Data, DataForm);// Deserializes an interface for command pharsing
+
+                Command cmd = Commands.First(x => x.Key == CommandName.Command).Value;// Gets the command by searching
                 RateTracker RateTracker = RateTracking.Find(x => x.ClientID == node.ID);
 
                 if (RateTracker == null)
@@ -115,20 +119,29 @@ namespace AssaultBird2454.VPTU.Networking.Server.Command_Handeler
                     RateTracking.Add(RateTracker);
                 }
 
-                if (RateTracker.CommandExecutions(CommandData.Command) <= cmd.Rate_Limit && cmd.Rate_Enabled == true || cmd.Rate_Enabled == false)
+                object CommandData = Newtonsoft.Json.JsonConvert.DeserializeObject(Data, cmd.DataType);
+
+                if (((Data.NetworkCommand)CommandData).Response == Networking.Data.ResponseCode.Nothing)
                 {
-                    RateTracker.CommandExecuted(CommandData.Command);
-                    cmd.Invoke(CommandData, node);
+                    if (RateTracker.CommandExecutions(CommandName.Command) <= cmd.Rate_Limit && cmd.Rate_Enabled == true || cmd.Rate_Enabled == false)
+                    {
+                        RateTracker.CommandExecuted(CommandName.Command);
+                        cmd.Invoke(CommandData, node);
+                    }
+                    else
+                    {
+                        RateLimitHit_Event?.Invoke(CommandName.Command, node);
+
+                        if (((Data.NetworkCommand)CommandData).Waiting)
+                        {
+                            ((Data.NetworkCommand)CommandData).Response = Networking.Data.ResponseCode.RateLimitHit;
+                            node.Send(CommandData);
+                        }
+                    }
                 }
                 else
                 {
-                    RateLimitHit_Event?.Invoke(CommandData.Command, node);
-
-                    if (CommandData.Waiting)
-                    {
-                        CommandData.Response = Networking.Data.ResponseCode.RateLimitHit;
-                        node.Send(CommandData);
-                    }
+                    node.Awaiting_Callbacks.Find(x => x.Key == ((Data.NetworkCommand)CommandData).Waiting_Code).Value.Invoke(cmd);
                 }
             }
             catch (Exception ex)

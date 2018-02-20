@@ -143,7 +143,7 @@ namespace AssaultBird2454.VPTU.Server.Instances
             ((Class.Logging.I_Logger)Client_Logger).Log("Command Registered -> Command: " + Command, Class.Logging.LoggerLevel.Debug);
         }
 
-        private void Client_DataEvent(Networking.Data.NetworkCommand Data, Networking.Client.TCP.DataDirection Direction)
+        private void Client_DataEvent(string Data, Networking.Client.TCP.DataDirection Direction)
         {
             if (Direction == Networking.Client.TCP.DataDirection.Recieve)
             {

@@ -12,7 +12,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
 
     public delegate void TCP_ServerState_Handeler(Data.Server_Status Server_State);
     
-    public delegate void TCP_Data(Data.NetworkCommand Data, TCP_ClientNode Client, DataDirection Direction);
+    public delegate void TCP_Data(string Data, TCP_ClientNode Client, DataDirection Direction);
 
     public delegate void TCP_Data_Error(Exception ex, DataDirection Direction);
 }

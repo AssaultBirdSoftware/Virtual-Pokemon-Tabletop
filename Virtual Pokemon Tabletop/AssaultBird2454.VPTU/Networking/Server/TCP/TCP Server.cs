@@ -269,7 +269,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         {
             TCP_Data_Error_Event?.Invoke(ex, Direction);
         }
-        private void Node_TCP_Data_Event(Data.NetworkCommand Data, TCP_ClientNode Client, DataDirection Direction)
+        private void Node_TCP_Data_Event(dynamic Data, TCP_ClientNode Client, DataDirection Direction)
         {
             TCP_Data_Event?.Invoke(Data, Client, Direction);
         }

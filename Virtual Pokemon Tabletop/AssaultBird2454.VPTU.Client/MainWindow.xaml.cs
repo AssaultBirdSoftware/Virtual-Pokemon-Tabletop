@@ -614,9 +614,9 @@ namespace AssaultBird2454.VPTU.Client
         {
             var loginData = (Login)Data;
 
-            if (loginData.Auth_State == AuthState.Passed)
+            if (loginData.Auth_State == AuthState.Authenticated && loginData.Response == Networking.Data.ResponseCode.OK)
                 Status_Set_PlayerName(loginData.UserData.IC_Name);
-            else if (loginData.Auth_State != AuthState.Passed)
+            else if (loginData.Auth_State != AuthState.DeAuthenticated && loginData.Response == Networking.Data.ResponseCode.Failed)
                 Status_Set_PlayerName("Not Authenticated");
 
             return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.OK, Data = null, Message = "" };

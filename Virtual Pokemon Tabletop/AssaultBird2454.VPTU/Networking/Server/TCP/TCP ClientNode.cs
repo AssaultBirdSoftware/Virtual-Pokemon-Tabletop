@@ -76,18 +76,10 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
 
                 while (DataQue.Count >= 1)// While there is data avaliable
                 {
-                    dynamic cmd = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(DataQue.Dequeue());
-                    Data.ResponseCode response = cmd.Response;
+                    string CommandStr = DataQue.Dequeue();
 
-                    if (cmd.Response == Data.ResponseCode.Nothing)
-                    {
-                        TCP_Data_Event?.Invoke(cmd, this, DataDirection.Recieve);
-                        Server.CommandHandeler.InvokeCommand(cmd, this);// Process the data
-                    }
-                    else
-                    {
-                        Awaiting_Callbacks.Find(x => x.Key == cmd.Waiting_Code).Value.Invoke(cmd);
-                    }
+                    TCP_Data_Event?.Invoke(CommandStr, this, DataDirection.Recieve);
+                    Server.CommandHandeler.InvokeCommand(CommandStr, this);// Process the data
                 }
             }
         }
@@ -158,7 +150,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
             if (Data is Data.NetworkCommand)
             {
                 string JSONData = Newtonsoft.Json.JsonConvert.SerializeObject(Data);
-                TCP_Data_Event?.Invoke((Data.NetworkCommand)Data, this, DataDirection.Send);
+                TCP_Data_Event?.Invoke(JSONData, this, DataDirection.Send);
                 byte[] Tx = Encoding.UTF8.GetBytes(JSONData + "|<EOD>|");
                 Client.GetStream().BeginWrite(Tx, 0, Tx.Length, OnWrite, Client);// Sends the data to the client
             }

@@ -235,11 +235,11 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
         {
             CommandData.Auth.Login state = Instance.Authenticate_Client(Client, (CommandData.Auth.Login)Data);
 
-            if (state.Auth_State == CommandData.Auth.AuthState.Passed)
+            if (state.Auth_State == CommandData.Auth.AuthState.Authenticated)
             {
                 return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.OK, Data = state, Message = "Authentication Passed" };
             }
-            else if (state.Auth_State == CommandData.Auth.AuthState.Failed)
+            else if (state.Auth_State == CommandData.Auth.AuthState.DeAuthenticated)
             {
                 return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.Failed, Data = state, Message = "Authentication Failed" };
             }

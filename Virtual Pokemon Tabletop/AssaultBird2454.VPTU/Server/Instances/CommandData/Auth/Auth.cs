@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AssaultBird2454.VPTU.Server.Instances.CommandData.Auth
 {
-    public enum AuthState { Passed, Failed, DeAuthenticated }
+    public enum AuthState { Authenticated, DeAuthenticated }
     public class Login : NetworkCommand
     {
         public string Command { get { return "Auth_Login"; } }

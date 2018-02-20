@@ -288,7 +288,7 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
                 if (IsConnected)
                 {
                     string JSONData = Newtonsoft.Json.JsonConvert.SerializeObject(Data);// Serialises the data to be sent
-                    DataEvent?.Invoke((Data.NetworkCommand)Data, DataDirection.Send);// Invokes the data recieved event
+                    DataEvent?.Invoke(JSONData, DataDirection.Send);// Invokes the data recieved event
                     byte[] Tx = Encoding.UTF8.GetBytes(JSONData + "|<EOD>|");
                     Client.GetStream().BeginWrite(Tx, 0, Tx.Length, Client_DataTran, Client);// Sneds the data to the server
                 }
@@ -330,18 +330,22 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
 
                 while (DataQue.Count >= 1)// While there is data
                 {
-                    dynamic cmd = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(DataQue.Dequeue());
-                    Data.Response response = cmd.Response;
+                    string CommandStr = DataQue.Dequeue();
 
-                    if (cmd.Response == Data.ResponseCode.Nothing)
-                    {
-                        DataEvent?.Invoke(cmd, DataDirection.Recieve);// Invokes the data recieved event
-                        CommandHandeler.InvokeCommand(this, cmd);// Handels the data
-                    }
-                    else
-                    {
-                        Awaiting_Callbacks.Find(x => x.Key == cmd.Waiting_Code).Value.Invoke(cmd);
-                    }
+                    DataEvent?.Invoke(CommandStr, DataDirection.Recieve);// Invokes the data recieved event
+                    CommandHandeler.InvokeCommand(this, CommandStr);// Handels the data
+
+                    //dynamic cmd = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(DataQue.Dequeue());
+                    //Data.Response response = cmd.Response;
+
+                    //if (cmd.Response == Data.ResponseCode.Nothing)
+                    //{
+                        
+                    //}
+                    //else
+                    //{
+                    //    Awaiting_Callbacks.Find(x => x.Key == cmd.Waiting_Code).Value.Invoke(cmd);
+                    //}
                 }
             }
         }

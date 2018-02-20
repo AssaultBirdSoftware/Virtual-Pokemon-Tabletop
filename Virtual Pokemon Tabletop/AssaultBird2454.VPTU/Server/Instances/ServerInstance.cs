@@ -65,12 +65,12 @@ namespace AssaultBird2454.VPTU.Server.Instances
                 Authenticated_Clients.Add(new KeyValuePair<Networking.Server.TCP.TCP_ClientNode, Authentication_Manager.Data.User>(cn, user));
 
                 ((Class.Logging.I_Logger)Server_Logger).Log("Client @ " + cn.ID + " Passed authenticated as User " + user.Name + " (" + user.IC_Name + ")", Class.Logging.LoggerLevel.Audit);
-                return new CommandData.Auth.Login() { Client_Key = ID.Key, Auth_State = CommandData.Auth.AuthState.Passed, UserData = user };
+                return new CommandData.Auth.Login() { Client_Key = ID.Key, Auth_State = CommandData.Auth.AuthState.Authenticated, UserData = user };
             }
             else
             {
                 ((Class.Logging.I_Logger)Server_Logger).Log("Client @ " + cn.ID + " Failed authentication", Class.Logging.LoggerLevel.Audit);
-                return new CommandData.Auth.Login() { Client_Key = "", Auth_State = CommandData.Auth.AuthState.Failed };
+                return new CommandData.Auth.Login() { Client_Key = "", Auth_State = CommandData.Auth.AuthState.DeAuthenticated };
             }
         }
         public bool DeAuthenticate_Client(Networking.Server.TCP.TCP_ClientNode cn)
@@ -204,7 +204,7 @@ namespace AssaultBird2454.VPTU.Server.Instances
         {
             ((Class.Logging.I_Logger)Server_Logger).Log("Base Network is " + Server_State.ToString(), Class.Logging.LoggerLevel.Debug);
         }
-        private void Server_TCP_Data_Event(Networking.Data.NetworkCommand Data, Networking.Server.TCP.TCP_ClientNode Client, Networking.Server.TCP.DataDirection Direction)
+        private void Server_TCP_Data_Event(dynamic Data, Networking.Server.TCP.TCP_ClientNode Client, Networking.Server.TCP.DataDirection Direction)
         {
             if (Direction == Networking.Server.TCP.DataDirection.Recieve)
             {
