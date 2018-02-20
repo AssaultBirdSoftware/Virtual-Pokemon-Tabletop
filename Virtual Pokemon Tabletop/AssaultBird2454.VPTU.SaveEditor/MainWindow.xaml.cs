@@ -63,6 +63,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
         #region Form Code
 
         public static SaveManager.SaveManager SaveManager;
+        public static bool DeveloperMode { get; private set; }
         public ProjectInfo VersioningInfo;
 
         /// <summary>
@@ -105,21 +106,6 @@ namespace AssaultBird2454.VPTU.SaveEditor
 
             InitializeComponent();
             Create_EntitiesManager_ContextMenu();
-
-            #region Versioning Info
-
-            using (var str = Assembly.GetExecutingAssembly()
-                .GetManifestResourceStream("AssaultBird2454.VPTU.SaveEditor.ProjectVariables.json"))
-            {
-                using (var read = new StreamReader(str))
-                {
-                    VersioningInfo = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectInfo>(read.ReadToEnd());
-                    Title = "Virtual Pokemon Tabletop - SaveEditor (Version: " + VersioningInfo.Version +
-                            ") (Commit: " + VersioningInfo.Compile_Commit.Remove(7) + ")";
-                }
-            }
-
-            #endregion
 
             Setup();
         }
@@ -175,6 +161,33 @@ namespace AssaultBird2454.VPTU.SaveEditor
 
         private void Setup()
         {
+            #region Developer Mode
+            #region Check
+            if (Keyboard.IsKeyDown(Key.LeftCtrl))
+                DeveloperMode = true;
+            else
+                DeveloperMode = false;
+            #endregion
+            #region Show Dev Tools
+
+            #endregion
+            #endregion
+
+            #region Versioning Info
+            using (var str = Assembly.GetExecutingAssembly()
+                .GetManifestResourceStream("AssaultBird2454.VPTU.SaveEditor.ProjectVariables.json"))
+            {
+                using (var read = new StreamReader(str))
+                {
+                    VersioningInfo = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectInfo>(read.ReadToEnd());
+                    Title = "Virtual Pokemon Tabletop - SaveEditor (Version: " + VersioningInfo.Version +
+                            ") (Commit: " + VersioningInfo.Compile_Commit.Remove(7) + ")";
+
+                    if (DeveloperMode)
+                        Title += " -> Developer Mode";
+                }
+            }
+            #endregion
         }
 
         #endregion
