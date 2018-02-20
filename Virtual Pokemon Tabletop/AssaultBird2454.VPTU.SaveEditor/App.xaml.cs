@@ -4,6 +4,7 @@ using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
+using System.Windows.Input;
 using AssaultBird2454.VPTU.Sentry;
 using CommandLine;
 using SharpRaven;
@@ -17,7 +18,8 @@ namespace AssaultBird2454.VPTU.SaveEditor
     /// </summary>
     public partial class App : Application
     {
-        private bool Debug = true;
+        private bool Debug = false;
+        private bool Telemetry_Enabled = true;
 
         private RavenClient ravenClient;
 
@@ -32,10 +34,16 @@ namespace AssaultBird2454.VPTU.SaveEditor
                     ravenClient = new RavenClient(sentry_cid);
                     ravenClient.Release = VersionInfo.VersioningInfo.Version + " (" +
                                           VersionInfo.VersioningInfo.Compile_Commit + ")";
-                    Debug = false;
+                    Telemetry_Enabled = true;
                 }
                 catch
                 {
+                    Telemetry_Enabled = false;
+                }
+
+                if (Keyboard.IsKeyDown(Key.LeftShift))
+                {
+                    MessageBox.Show("Entering Debug Mode...");
                     Debug = true;
                 }
 
@@ -71,7 +79,11 @@ namespace AssaultBird2454.VPTU.SaveEditor
                 }
                 catch (Exception ex)
                 {
-                    if (!Debug)
+                    if (Debug)
+                    {
+                        MessageBox.Show(ex.ToString(), "Application Crash Report...");
+                    }
+                    else if (Telemetry_Enabled)
                     {
                         var cf = new Crash_Form();
                         var dr = cf.ShowDialog();
