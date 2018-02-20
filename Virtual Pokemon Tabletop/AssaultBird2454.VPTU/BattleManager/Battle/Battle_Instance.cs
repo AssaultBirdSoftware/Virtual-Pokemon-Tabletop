@@ -13,6 +13,6 @@ namespace AssaultBird2454.VPTU.BattleManager.Battle
 
         }
 
-        private List<Battle_Participant>
+        //private List<Battle_Participant>
     }
 }

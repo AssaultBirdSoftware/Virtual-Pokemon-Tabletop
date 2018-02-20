@@ -119,7 +119,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
 
             #endregion
 
-            Setup();
+            //Setup();
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -170,11 +170,11 @@ namespace AssaultBird2454.VPTU.SaveEditor
         }
 
         #region Setup Code
-
         private void Setup()
         {
+            BattleManager.Effect.Effect_Function fnc = new BattleManager.Effect.Effect_Function();
+            fnc.Attack_AoE_Invoked(SaveManager.SaveData.PokedexData.Moves[0], SaveManager.SaveData.Pokemon[0], new List<object>() { SaveManager.SaveData.Pokemon[0] });
         }
-
         #endregion
 
         #region Help
@@ -380,6 +380,8 @@ namespace AssaultBird2454.VPTU.SaveEditor
             ResourceManager_ReloadList(); //Reload Resource List
             EntitiesManager_ReloadList(); // Reload Characters List
             UserGroup_Users_Reload(); // Reload Users List
+
+            Setup();
         }
 
         #region Save Data Tools
