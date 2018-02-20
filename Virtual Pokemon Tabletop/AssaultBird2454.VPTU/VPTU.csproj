@@ -142,10 +142,8 @@
     <Compile Include="Authentication Manager\Data\Data.cs" />
     <Compile Include="BattleManager\Battle\Battle_Instance.cs" />
     <Compile Include="BattleManager\Battle\Battle_Participant.cs" />
-    <Compile Include="BattleManager\Effect\Action Handeler\Action.cs" />
-    <Compile Include="BattleManager\Effect\Action Handeler\ActionHandeler.cs" />
-    <Compile Include="BattleManager\Effect\Effect_Action.cs" />
     <Compile Include="BattleManager\Effect\Effect_Function.cs" />
+    <Compile Include="BattleManager\Effect\Effect_Handler.cs" />
     <Compile Include="BattleManager\Typing\Type Manager.cs" />
     <Compile Include="BattleManager\Typing\Type.cs" />
     <Compile Include="ContestManager\Data\Data.cs" />
@@ -267,4 +265,12 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>

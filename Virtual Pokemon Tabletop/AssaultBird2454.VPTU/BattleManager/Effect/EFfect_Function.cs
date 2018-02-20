@@ -15,18 +15,42 @@ namespace AssaultBird2454.VPTU.BattleManager.Effect
 
         public void Attack_AoE_Invoked(Pokedex.Moves.MoveData MoveData, object User, List<object> Targets)
         {
-            Lua lua = new Lua();
-            lua.RegisterFunction("InflictStatus", this, GetType().GetMethod("InflictStatus"));
-            lua.DoFile(@"C:\Users\Tasman Leach\Desktop\EFfect LUA Files\j7KCS9Bd8DBlWgDL.lua");
-            LuaFunction myFunction = lua["Attack_Invoked"] as LuaFunction;
 
-            foreach (object obj in Targets)
-                myFunction.Call(MoveData, obj, User);
         }
 
-        public void InflictStatus(Pokedex.Moves.MoveData Target, string Effect)
+        public void StatusAfflictions_Add(object Target, object Effect)
         {
-            System.Windows.MessageBox.Show(Target.Name + " is now " + Effect);
+            System.Windows.MessageBox.Show("Add");
+
+            if(Target is EntitiesManager.Pokemon.PokemonCharacter)
+            {
+                Data.Status_Afflictions status = (Data.Status_Afflictions)Enum.Parse(typeof(Data.Status_Afflictions), (string)Effect);
+
+                ((EntitiesManager.Pokemon.PokemonCharacter)Target).AddStatus(status, true);
+            }
+            else if((Target is EntitiesManager.Trainer.TrainerCharacter))
+            {
+                Data.Status_Afflictions status = (Data.Status_Afflictions)Enum.Parse(typeof(Data.Status_Afflictions), (string)Effect);
+
+                ((EntitiesManager.Pokemon.PokemonCharacter)Target).AddStatus(status, true);
+            }
+        }
+        public void StatusAfflictions_Remove(object Target, object Effect)
+        {
+            System.Windows.MessageBox.Show("Remove");
+
+            if (Target is EntitiesManager.Pokemon.PokemonCharacter)
+            {
+                Data.Status_Afflictions status = (Data.Status_Afflictions)Enum.Parse(typeof(Data.Status_Afflictions), (string)Effect);
+
+                ((EntitiesManager.Pokemon.PokemonCharacter)Target).RemoveStatus(status);
+            }
+            else if ((Target is EntitiesManager.Trainer.TrainerCharacter))
+            {
+                Data.Status_Afflictions status = (Data.Status_Afflictions)Enum.Parse(typeof(Data.Status_Afflictions), (string)Effect);
+
+                ((EntitiesManager.Pokemon.PokemonCharacter)Target).RemoveStatus(status);
+            }
         }
 
         public void Attack_Range_Invoked(object User, List<object> Targets)

@@ -12,7 +12,7 @@ using System.Windows;
 
 namespace AssaultBird2454.VPTU.SaveManager
 {
-    public enum SaveData_Dir { Pokedex_Pokemon, Pokedex_Moves, Pokedex_Abilitys, Pokedex_Items, Resource_Image, Entities_Pokemon, Entities_Trainers, Entities_Folder, Server_Settings, Basic_CampaignInfo, Basic_CampaignSettings, Auth_Users, Auth_Groups, Auth_Identities, Auth_Permissions, Battle_Typing }
+    public enum SaveData_Dir { Pokedex_Pokemon, Pokedex_Moves, Pokedex_Abilitys, Pokedex_Items, Resource_Image, Entities_Pokemon, Entities_Trainers, Entities_Folder, Server_Settings, Basic_CampaignInfo, Basic_CampaignSettings, Auth_Users, Auth_Groups, Auth_Identities, Auth_Permissions, Battle_Typing, Battle_Scripts }
 
     public class No_Data_Found_In_Save_Exception : Exception { }
 
@@ -203,7 +203,8 @@ namespace AssaultBird2454.VPTU.SaveManager
                     return "Auth/Permissions.json";
                 case SaveData_Dir.Battle_Typing:
                     return "Battle/TypingData.json";
-
+                case SaveData_Dir.Battle_Scripts:
+                    return "Battle_Scripts/";
                 default:
                     return null;
             }
@@ -260,7 +261,7 @@ namespace AssaultBird2454.VPTU.SaveManager
             return false;
         }
         #endregion
-        #region Load File
+        #region Image Resources
         public Bitmap LoadImage(string ID)
         {
             try
@@ -295,6 +296,53 @@ namespace AssaultBird2454.VPTU.SaveManager
 
             }
             return null;
+        }
+        #endregion
+        #region Battle Effect Scripts
+        public string LoadEffect_LuaScript(string ID)
+        {
+            //Creates a stream to read the save file from
+            using (FileStream Reader = new FileStream(SaveFileDir, FileMode.OpenOrCreate))
+            {
+                //Creates an object to read the archive data from
+                using (ZipArchive archive = new ZipArchive(Reader, ZipArchiveMode.Update))
+                {
+                    StreamReader reader = new StreamReader((archive.GetEntry(GetSaveFile_DataDir(SaveData_Dir.Battle_Scripts) + ID + ".lua")).Open());
+                    return reader.ReadToEnd();
+                }
+            }
+        }
+        public void SaveEffect_LuaScript(string ID, string Script)
+        {
+            //Creates a stream to read the save file from
+            using (FileStream Reader = new FileStream(SaveFileDir, FileMode.OpenOrCreate))
+            {
+                //Creates an object to read the archive data from
+                using (ZipArchive archive = new ZipArchive(Reader, ZipArchiveMode.Update))
+                {
+                    StreamWriter writer = new StreamWriter((archive.GetEntry(GetSaveFile_DataDir(SaveData_Dir.Battle_Scripts) + ID + ".lua")).Open());
+                    writer.WriteLine(Script);
+                }
+            }
+        }
+        public List<string> ListEffect_LuaScripts()
+        {
+            //Creates a stream to read the save file from
+            using (FileStream Reader = new FileStream(SaveFileDir, FileMode.OpenOrCreate))
+            {
+                //Creates an object to read the archive data from
+                using (ZipArchive archive = new ZipArchive(Reader, ZipArchiveMode.Update))
+                {
+                    string Dir = GetSaveFile_DataDir(SaveData_Dir.Battle_Scripts);
+                    List<string> files = new List<string>();
+
+                    foreach (ZipArchiveEntry file in archive.Entries.ToList().FindAll(x => x.FullName.StartsWith(Dir))){
+                        files.Add(file.Name);
+                    }
+
+                    return files;
+                }
+            }
         }
         #endregion
         #endregion
