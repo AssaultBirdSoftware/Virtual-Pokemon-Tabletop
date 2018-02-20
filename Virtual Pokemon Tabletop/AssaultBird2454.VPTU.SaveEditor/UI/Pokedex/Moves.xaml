@@ -6,9 +6,9 @@
     xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Pokedex"
     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Moves"
     mc:Ignorable="d"
-    Title="Moves" Height="802" Width="614" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+    Title="Moves" Height="676.4" Width="614" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
     <Grid>
-        <GroupBox x:Name="groupBox" Header="GroupBox" HorizontalAlignment="Left" VerticalAlignment="Top"
+        <GroupBox x:Name="groupBox" Header="Basic Details" HorizontalAlignment="Left" VerticalAlignment="Top"
                   Margin="10,10,0,0" Height="101" Width="383">
             <Grid Margin="0">
                 <Grid.ColumnDefinitions>
