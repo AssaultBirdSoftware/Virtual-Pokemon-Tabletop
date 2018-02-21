@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AssaultBird2454.VPTU.SaveManager.Resource_Data;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -234,6 +235,20 @@ namespace AssaultBird2454.VPTU.SaveManager
         public void ExportFile()
         {
 
+        }
+        public void Delete_Resource(string ID)
+        {
+            using (FileStream stream = new FileStream(SaveFileDir, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+            {
+                using (ZipArchive archive = new ZipArchive(stream, ZipArchiveMode.Update))
+                {
+                    Resources res = SaveData.ImageResources.Find(x => x.ID == ID);
+                    if (res.Path.StartsWith("save:"))
+                    {
+                        archive.Entries.First(x => x.FullName == res.Path.Remove(0, 5)).Delete();
+                    }
+                }
+            }
         }
 
         /// <summary>
