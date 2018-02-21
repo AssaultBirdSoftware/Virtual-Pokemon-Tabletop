@@ -85,17 +85,17 @@ namespace AssaultBird2454.VPTU.SaveEditor
                     }
                     else if (Telemetry_Enabled)
                     {
-                        var cf = new Crash_Form();
-                        var dr = cf.ShowDialog();
+                        //var cf = new Crash_Form();
+                        //var dr = cf.ShowDialog();
 
-                        if (dr == DialogResult.OK)
-                        {
+                        //if (dr == DialogResult.OK)
+                        //{
                             SentryEvent se = new SentryEvent(ex);
 
-                            se.Tags.Add(new KeyValuePair<string, string>("Discord Name", cf.ExtraData.DiscordName));
+                            //se.Tags.Add(new KeyValuePair<string, string>("Discord Name", cf.ExtraData.DiscordName));
 
                             ravenClient.Capture(se);
-                        }
+                        //}
                     }
                     else
                     {
