@@ -23,6 +23,7 @@ namespace AssaultBird2454.VPTU.BattleManager.Effect
         {
             return lua.GetFunction("TriggerName");
         }
+
         public void Set_GlobalVariable(string Name, object Value)
         {
             lua[Name] = Value;

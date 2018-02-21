@@ -106,7 +106,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
 
             InitializeComponent();
             Create_EntitiesManager_ContextMenu();
-            
+
             Setup();
         }
 
@@ -186,10 +186,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
                         Title += " -> Developer Mode";
                 }
             }
-            #endregion
-            
-            BattleManager.Effect.Effect_Function fnc = new BattleManager.Effect.Effect_Function();
-            fnc.Attack_AoE_Invoked(SaveManager.SaveData.PokedexData.Moves[0], SaveManager.SaveData.Pokemon[0], new List<object>() { SaveManager.SaveData.Pokemon[0] });
+            #endregion   
         }
         #endregion
 
@@ -397,7 +394,11 @@ namespace AssaultBird2454.VPTU.SaveEditor
             EntitiesManager_ReloadList(); // Reload Characters List
             UserGroup_Users_Reload(); // Reload Users List
 
-            Setup();
+            if (DeveloperMode)
+            {
+                //BattleManager.Effect.Effect_Function fnc = new BattleManager.Effect.Effect_Function();
+                //fnc.Attack_AoE_Invoked(SaveManager.SaveData.PokedexData.Moves[0], SaveManager.SaveData.Pokemon[0], new List<object>() { SaveManager.SaveData.Pokemon[0] });
+            }
         }
 
         #region Save Data Tools
