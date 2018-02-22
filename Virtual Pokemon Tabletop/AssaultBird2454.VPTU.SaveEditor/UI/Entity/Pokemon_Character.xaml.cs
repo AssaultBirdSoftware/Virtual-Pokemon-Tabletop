@@ -350,7 +350,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
 
             if (MainWindow.DeveloperMode)
             {
-                VPTU.BattleManager.Effect.Effect_Handler handle = new BattleManager.Effect.Effect_Handler(@"C:\Users\Tasman Leach\Desktop\EFfect LUA Files\j7KCS9Bd8DBlWgDL.lua", true);
+                VPTU.BattleManager.Effect.Effect_Handler handle = new BattleManager.Effect.Effect_Handler(@"C:\Users\Assau\Desktop\Effect LUA Files\j7KCS9Bd8DBlWgRM.lua", true);
                 handle.Get_Trigger("Attack_Invoked").Call(null, PokemonData, PokemonData);
             }
         }

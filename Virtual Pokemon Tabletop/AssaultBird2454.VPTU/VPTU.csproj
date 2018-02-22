@@ -142,6 +142,7 @@
     <Compile Include="Authentication Manager\Data\Data.cs" />
     <Compile Include="BattleManager\Battle\Battle_Instance.cs" />
     <Compile Include="BattleManager\Battle\Battle_Participant.cs" />
+    <Compile Include="BattleManager\Effect\Base Actions\Random.cs" />
     <Compile Include="BattleManager\Effect\Base Actions\Status.cs" />
     <Compile Include="BattleManager\Effect\Effect_Function.cs" />
     <Compile Include="BattleManager\Effect\Effect_Handler.cs" />

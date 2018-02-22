@@ -31,5 +31,13 @@ namespace AssaultBird2454.VPTU.BattleManager.Effect.Base_Actions
             }
             catch { return false; }
         }
+        public static object GetStatus(object Character, object Condition)
+        {
+            try
+            {
+                return ((Entities)Character).GetStatusData((string)Condition);
+            }
+            catch { return null; }
+        }
     }
 }

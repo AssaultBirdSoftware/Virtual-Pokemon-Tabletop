@@ -396,8 +396,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
 
             if (DeveloperMode)
             {
-                //BattleManager.Effect.Effect_Function fnc = new BattleManager.Effect.Effect_Function();
-                //fnc.Attack_AoE_Invoked(SaveManager.SaveData.PokedexData.Moves[0], SaveManager.SaveData.Pokemon[0], new List<object>() { SaveManager.SaveData.Pokemon[0] });
+
             }
         }
 
