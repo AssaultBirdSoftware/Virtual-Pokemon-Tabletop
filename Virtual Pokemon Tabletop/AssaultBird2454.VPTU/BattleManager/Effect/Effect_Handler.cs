@@ -10,12 +10,17 @@ namespace AssaultBird2454.VPTU.BattleManager.Effect
     {
         private NLua.Lua lua = new NLua.Lua();
 
-        public Effect_Handler(string Script)
+        public Effect_Handler(string Script, bool File = false)
         {
-            lua.DoString(Script);
+            if (!File)
+                lua.DoString(Script);
+            else
+                lua.DoFile(Script);
 
             #region Register Base Actions
-            
+            Register_Action("StatusEffect_Add", null, typeof(Base_Actions.Status).GetMethod("AddStatus"));
+            Register_Action("StatusEffect_Remove", null, typeof(Base_Actions.Status).GetMethod("RemoveStatus"));
+            Register_Action("StatusEffect_Has", null, typeof(Base_Actions.Status).GetMethod("HasStatus"));
             #endregion
         }
 

@@ -9,12 +9,27 @@ namespace AssaultBird2454.VPTU.BattleManager.Effect.Base_Actions
 {
     public static class Status
     {
-        public static void AddStatus(object Character, string Condition, object Data)
+        public static void AddStatus(object Character, object Condition, object Data = null)
         {
-            if(Character is Entities)
+            if (Character is Entities)
             {
-                ((Entities)Character).AddStatus();
+                ((Entities)Character).AddStatus((string)Condition, Data);
             }
+        }
+        public static void RemoveStatus(object Character, object Condition)
+        {
+            if (Character is Entities)
+            {
+                ((Entities)Character).RemoveStatus((string)Condition);
+            }
+        }
+        public static bool HasStatus(object Character, object Condition)
+        {
+            try
+            {
+                return ((Entities)Character).HasStatus((string)Condition);
+            }
+            catch { return false; }
         }
     }
 }
