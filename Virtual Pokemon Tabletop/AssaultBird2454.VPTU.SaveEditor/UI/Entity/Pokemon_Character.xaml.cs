@@ -350,7 +350,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
 
             if (MainWindow.DeveloperMode)
             {
-                BattleManager.Battle.Action_Handler.Attack.Invoke_AoE_Attack(null, new List<EntitiesManager.Entry>() { PokemonData }, PokemonData);
+                BattleManager.Battle.Action_Handler.Attack.Invoke_AoE_Attack(null, new List<EntitiesManager.Entities>() { PokemonData }, PokemonData);
             }
         }
 
