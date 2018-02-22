@@ -55,7 +55,7 @@ namespace AssaultBird2454.VPTU.EntitiesManager
         int SpDefence_AddStat { get; set; }
         int SpDefence_Total { get; }
         int SpDefence_CombatStage { get; set; }
-        int SpDefence_Adjusted { get; set; }
+        int SpDefence_Adjusted { get; }
         #endregion
         #region Speed
         int Speed_SpeciesBase { get; set; }
