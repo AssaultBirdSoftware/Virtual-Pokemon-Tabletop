@@ -59,12 +59,12 @@ namespace AssaultBird2454.VPTU.EntitiesManager
         /// Key: Status Condition
         /// Value: Duration in turns (0 = Ended, -1 = No Limit)
         /// </summary>
-        List<KeyValuePair<BattleManager.Data.Status_Afflictions, object>> Status { get; set; }
+        List<KeyValuePair<string, object>> Status { get; set; }
 
-        void AddStatus(BattleManager.Data.Status_Afflictions Effect, object Effect_Data = null);
-        object GetStatusData(BattleManager.Data.Status_Afflictions Effect);
-        void SetStatusData(BattleManager.Data.Status_Afflictions Effect, object Effect_Data);
-        bool HasStatus(BattleManager.Data.Status_Afflictions Effect);
-        void RemoveStatus(BattleManager.Data.Status_Afflictions Effect);
+        void AddStatus(string Effect, object Effect_Data = null);
+        object GetStatusData(string Effect);
+        void SetStatusData(string Effect, object Effect_Data);
+        bool HasStatus(string Effect);
+        void RemoveStatus(string Effect);
     }
 }
