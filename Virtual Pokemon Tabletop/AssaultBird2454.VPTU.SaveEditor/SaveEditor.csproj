@@ -416,9 +416,7 @@
   <ItemGroup>
     <EmbeddedResource Include="sentry_cid.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UI\BattleEffect\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

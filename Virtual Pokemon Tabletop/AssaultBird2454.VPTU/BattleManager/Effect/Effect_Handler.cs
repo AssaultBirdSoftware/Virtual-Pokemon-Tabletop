@@ -24,6 +24,17 @@ namespace AssaultBird2454.VPTU.BattleManager.Effect
             Register_Action("StatusEffect_Remove", null, typeof(Base_Actions.Status).GetMethod("RemoveStatus"));// Exposes an interface to remove status conditions to entities
             Register_Action("StatusEffect_Has", null, typeof(Base_Actions.Status).GetMethod("HasStatus"));// Exposes and interface to check if an entitie has a status condition
             Register_Action("StatusEffect_Get", null, typeof(Base_Actions.Status).GetMethod("GetStatus"));// Exposes and interface to get data associated with a status condition
+
+            Register_Action("Stat_Attack_CS_Set", null, typeof(Base_Actions.Stats).GetMethod("Attack_CS_Set"));
+            Register_Action("Stat_Attack_CS_Get", null, typeof(Base_Actions.Stats).GetMethod("Attack_CS_Get"));
+            Register_Action("Stat_Defence_CS_Set", null, typeof(Base_Actions.Stats).GetMethod("Defence_CS_Set"));
+            Register_Action("Stat_Defence_CS_Get", null, typeof(Base_Actions.Stats).GetMethod("Defence_CS_Get"));
+            Register_Action("Stat_SpAttack_CS_Set", null, typeof(Base_Actions.Stats).GetMethod("SpAttack_CS_Set"));
+            Register_Action("Stat_SpAttack_CS_Get", null, typeof(Base_Actions.Stats).GetMethod("SpAttack_CS_Get"));
+            Register_Action("Stat_SpDefence_CS_Set", null, typeof(Base_Actions.Stats).GetMethod("SpDefence_CS_Set"));
+            Register_Action("Stat_SpDefence_CS_Get", null, typeof(Base_Actions.Stats).GetMethod("SpDefence_CS_Get"));
+            Register_Action("Stat_Speed_CS_Set", null, typeof(Base_Actions.Stats).GetMethod("Speed_CS_Set"));
+            Register_Action("Stat_Speed_CS_Get", null, typeof(Base_Actions.Stats).GetMethod("Speed_CS_Get"));
             #endregion
         }
 
