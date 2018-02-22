@@ -13,6 +13,10 @@ namespace AssaultBird2454.VPTU.BattleManager.Effect
         public Effect_Handler(string Script)
         {
             lua.DoString(Script);
+
+            #region Register Base Actions
+            
+            #endregion
         }
 
         public void Register_Action(string Function, object Target, System.Reflection.MethodBase Method)
@@ -21,7 +25,7 @@ namespace AssaultBird2454.VPTU.BattleManager.Effect
         }
         public NLua.LuaFunction Get_Trigger(string TriggerName)
         {
-            return lua.GetFunction("TriggerName");
+            return lua.GetFunction(TriggerName);
         }
 
         public void Set_GlobalVariable(string Name, object Value)

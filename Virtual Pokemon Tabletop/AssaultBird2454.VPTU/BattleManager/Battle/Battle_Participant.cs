@@ -8,6 +8,6 @@ namespace AssaultBird2454.VPTU.BattleManager.Battle
 {
     public class Battle_Participant
     {
-
+        public string ID;
     }
 }
