@@ -37,9 +37,8 @@ namespace AssaultBird2454.VPTU.RNG.Generators
 
             int val = 0;
 
-            for (int i = 0; i >= dice; i++)
+            for (int i = 0; i <= dice; i++)
             {
-                try { val *= 10; } catch { }
                 val += GenerateNumber(Convert.ToByte(sides));
             }
 

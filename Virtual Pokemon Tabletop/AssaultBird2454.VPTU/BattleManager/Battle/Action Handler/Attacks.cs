@@ -125,7 +125,7 @@ namespace AssaultBird2454.VPTU.BattleManager.Battle.Action_Handler
             if (!(bool)handle.Get_GlobalVariable("Cancel") && (bool)handle.Get_GlobalVariable("Hit"))
             {
                 #region Calculate DMG
-                int Damage = 0;
+                decimal Damage = 0;
                 // Initial DMG
                 // Apply "Five Strike" / "Double Strike"
 
@@ -157,12 +157,31 @@ namespace AssaultBird2454.VPTU.BattleManager.Battle.Action_Handler
 
                 // Subtract Defence & Other dmg reduction
                 if (Move.Move_Class == Data.MoveClass.Physical)
-                    Damage += Target.Defence_Adjusted;
+                    Damage -= Target.Defence_Adjusted;
                 else if (Move.Move_Class == Data.MoveClass.Special)
-                    Damage += Target.SpDefence_Adjusted;
+                    Damage -= Target.SpDefence_Adjusted;
 
                 // Apply weekness and resistance
+                if (Target is EntitiesManager.Pokemon.PokemonCharacter)
+                    Damage *= mgr.SaveData.Typing_Manager.Calculate_TypeBonus(Move.Move_Type, ((EntitiesManager.Pokemon.PokemonCharacter)Target).PokemonType);
+
                 // Subtract dmg from targets HP
+                int CHP = Target.Current_HP;
+                int MAX = Target.Stat_HP_Max;
+
+                if (Target.Injuries >= 5)
+                    Target.Current_HP -= Convert.ToInt32(Math.Floor(Damage)) + Target.Injuries;// Apply DMG while Injured
+                else
+                    Target.Current_HP -= Convert.ToInt32(Math.Floor(Damage));// Apply DMG
+
+                // Add Injuries
+                int Injuries = 0;
+                int Current_Injuries = (Target.Stat_HP_Max - Target.Current_HP) / (Target.Stat_HP_Max / 2);// Gets the current injuries from HP Markers
+                if ((MAX / 2) <= Damage)// Checks if dmg is more than or equil to half max HP
+                    Injuries += 1;// Add one injurie
+                Injuries += (int)Math.Floor(((Target.Stat_HP_Max - (Target.Current_HP - Damage)) / (Target.Stat_HP_Max / 2)) - Current_Injuries);// Calculates the ammount of injuries that was gained this attack from HP Markers
+
+                Target.Injuries += Injuries;// Applys the injuries
                 #endregion
 
                 handle.Call_Function("Post_Attack_Invoked", Move, Target, User);// Invoke effects to be executed before damage is delt

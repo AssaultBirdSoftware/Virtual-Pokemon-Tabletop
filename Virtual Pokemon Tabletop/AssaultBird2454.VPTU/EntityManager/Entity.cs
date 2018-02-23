@@ -12,6 +12,8 @@ namespace AssaultBird2454.VPTU.EntitiesManager
         string ID { get; set; }
         string Name { get; set; }
         string Notes { get; set; }
+        int Current_HP { get; set; }
+        int Injuries { get; set; }
 
         #region Stats
         #region HP
