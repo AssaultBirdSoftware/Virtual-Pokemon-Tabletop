@@ -314,6 +314,11 @@ namespace AssaultBird2454.VPTU.SaveManager
         }
         #endregion
         #region Battle Effect Scripts
+        /// <summary>
+        /// Returns the lua script in string form
+        /// </summary>
+        /// <param name="ID">The ID of the script</param>
+        /// <returns>The Secipt in string form</returns>
         public string LoadEffect_LuaScript(string ID)
         {
             //Creates a stream to read the save file from
@@ -335,8 +340,31 @@ namespace AssaultBird2454.VPTU.SaveManager
                 //Creates an object to read the archive data from
                 using (ZipArchive archive = new ZipArchive(Reader, ZipArchiveMode.Update))
                 {
-                    StreamWriter writer = new StreamWriter((archive.GetEntry(GetSaveFile_DataDir(SaveData_Dir.Battle_Scripts) + ID + ".lua")).Open());
-                    writer.WriteLine(Script);
+                    ZipArchiveEntry entry = archive.GetEntry(GetSaveFile_DataDir(SaveData_Dir.Battle_Scripts) + ID + ".lua");// Gets the specified entry if it exists ready to write to
+                    if (entry != null)
+                    {
+                        entry.Delete();// Removes the entry. Delete then create a new entry to save
+                    }
+
+                    entry = archive.CreateEntry(GetSaveFile_DataDir(SaveData_Dir.Battle_Scripts) + ID + ".lua");
+
+                    using (StreamWriter writer = new StreamWriter(entry.Open()))
+                    {
+                        writer.WriteLine(Script);
+                    }
+                }
+            }
+        }
+        public void CreateEffect_LuaScript(string ID)
+        {
+            //Creates a stream to read the save file from
+            using (FileStream Reader = new FileStream(SaveFileDir, FileMode.OpenOrCreate))
+            {
+                //Creates an object to read the archive data from
+                using (ZipArchive archive = new ZipArchive(Reader, ZipArchiveMode.Update))
+                {
+                    StreamWriter writer = new StreamWriter((archive.CreateEntry(GetSaveFile_DataDir(SaveData_Dir.Battle_Scripts) + ID + ".lua")).Open());
+                    writer.WriteLine("");
                 }
             }
         }
@@ -351,7 +379,8 @@ namespace AssaultBird2454.VPTU.SaveManager
                     string Dir = GetSaveFile_DataDir(SaveData_Dir.Battle_Scripts);
                     List<string> files = new List<string>();
 
-                    foreach (ZipArchiveEntry file in archive.Entries.ToList().FindAll(x => x.FullName.StartsWith(Dir))){
+                    foreach (ZipArchiveEntry file in archive.Entries.ToList().FindAll(x => x.FullName.StartsWith(Dir)))
+                    {
                         files.Add(file.Name);
                     }
 

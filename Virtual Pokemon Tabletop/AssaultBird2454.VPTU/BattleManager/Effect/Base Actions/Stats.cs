@@ -11,7 +11,14 @@ namespace AssaultBird2454.VPTU.BattleManager.Effect.Base_Actions
         #region Attack
         public static void Attack_CS_Set(object Entity, object Mod)
         {
-            ((EntitiesManager.Entities)Entity).Attack_CombatStage += (int)Mod;
+            if ((int)Mod > 0 || (int)Mod < 0)
+            {
+                ((EntitiesManager.Entities)Entity).Attack_CombatStage += (int)Mod;
+            }
+            else
+            {
+                ((EntitiesManager.Entities)Entity).Attack_CombatStage = 0;
+            }
         }
         public static int Attack_CS_Get(object Entity)
         {
@@ -21,7 +28,14 @@ namespace AssaultBird2454.VPTU.BattleManager.Effect.Base_Actions
         #region Defence
         public static void Defence_CS_Set(object Entity, object Mod)
         {
-            ((EntitiesManager.Entities)Entity).Defence_CombatStage += (int)Mod;
+            if ((int)Mod > 0 || (int)Mod < 0)
+            {
+                ((EntitiesManager.Entities)Entity).Defence_CombatStage += (int)Mod;
+            }
+            else
+            {
+                ((EntitiesManager.Entities)Entity).Defence_CombatStage = 0;
+            }
         }
         public static int Defence_CS_Get(object Entity)
         {
@@ -31,7 +45,14 @@ namespace AssaultBird2454.VPTU.BattleManager.Effect.Base_Actions
         #region SpAttack
         public static void SpAttack_CS_Set(object Entity, object Mod)
         {
-            ((EntitiesManager.Entities)Entity).SpAttack_CombatStage += (int)Mod;
+            if ((int)Mod > 0 || (int)Mod < 0)
+            {
+                ((EntitiesManager.Entities)Entity).SpAttack_CombatStage += (int)Mod;
+            }
+            else
+            {
+                ((EntitiesManager.Entities)Entity).SpAttack_CombatStage = 0;
+            }
         }
         public static int SpAttack_CS_Get(object Entity)
         {
@@ -41,7 +62,14 @@ namespace AssaultBird2454.VPTU.BattleManager.Effect.Base_Actions
         #region SpDefence
         public static void SpDefence_CS_Set(object Entity, object Mod)
         {
-            ((EntitiesManager.Entities)Entity).SpDefence_CombatStage += (int)Mod;
+            if ((int)Mod > 0 || (int)Mod < 0)
+            {
+                ((EntitiesManager.Entities)Entity).SpDefence_CombatStage += (int)Mod;
+            }
+            else
+            {
+                ((EntitiesManager.Entities)Entity).SpDefence_CombatStage = 0;
+            }
         }
         public static int SpDefence_CS_Get(object Entity)
         {
@@ -51,7 +79,14 @@ namespace AssaultBird2454.VPTU.BattleManager.Effect.Base_Actions
         #region Speed
         public static void Speed_CS_Set(object Entity, object Mod)
         {
-            ((EntitiesManager.Entities)Entity).Speed_CombatStage += (int)Mod;
+            if ((int)Mod > 0 || (int)Mod < 0)
+            {
+                ((EntitiesManager.Entities)Entity).Speed_CombatStage += (int)Mod;
+            }
+            else
+            {
+                ((EntitiesManager.Entities)Entity).Speed_CombatStage = 0;
+            }
         }
         public static int Speed_CS_Get(object Entity)
         {

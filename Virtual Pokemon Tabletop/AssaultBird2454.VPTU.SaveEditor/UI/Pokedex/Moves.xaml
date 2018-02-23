@@ -150,7 +150,7 @@
                 <xctk:DecimalUpDown x:Name="Battle_AC" HorizontalAlignment="Right" Margin="0,173,10,0" Width="117"
                                     Watermark="Pokedex ID" TextAlignment="Center" VerticalAlignment="Top" Value="0"
                                     Text="" Minimum="0" Maximum="28" />
-                <Button x:Name="Effect_Designer" Content="Open Effect Designer" HorizontalAlignment="Left"
+                <Button x:Name="Effect_Designer" Content="Edit Moves Effect Script" HorizontalAlignment="Left"
                         Margin="372.47,200.96,0,0" VerticalAlignment="Top" Width="191.53" Click="Effect_Designer_Click" />
             </Grid>
         </GroupBox>

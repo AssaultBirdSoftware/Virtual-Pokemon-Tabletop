@@ -53,9 +53,17 @@ namespace AssaultBird2454.VPTU.BattleManager.Effect
         /// </summary>
         /// <param name="TriggerName">Name of the function in the script</param>
         /// <returns>An object that wit ha call function</returns>
-        public NLua.LuaFunction Get_Trigger(string TriggerName)
+        private NLua.LuaFunction Get_Trigger(string TriggerName)
         {
             return lua.GetFunction(TriggerName);
+        }
+        public void Call_Function(string TriggerName, params object[] objects)
+        {
+            try
+            {
+                lua.GetFunction(TriggerName).Call(objects);
+            }
+            catch (NullReferenceException nre) { }
         }
 
         /// <summary>
@@ -74,7 +82,9 @@ namespace AssaultBird2454.VPTU.BattleManager.Effect
         /// <returns>The Value</returns>
         public object Get_GlobalVariable(string Name)
         {
-            return lua[Name];
+            object obj = lua[Name];
+            Type type = obj.GetType();
+            return obj;
         }
     }
 }

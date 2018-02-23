@@ -75,7 +75,7 @@ namespace AssaultBird2454.VPTU.Pokedex.Moves
         /// <summary>
         /// Defines when effect are used
         /// </summary>
-        public object Move_Effects { get; set; }
+        public string Move_EffectsScript_ID { get; set; }
 
         public void Dispose()
         {

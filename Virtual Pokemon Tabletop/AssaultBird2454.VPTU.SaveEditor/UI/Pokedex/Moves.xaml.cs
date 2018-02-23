@@ -15,14 +15,14 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
     public partial class Moves : Window
     {
         public MoveData MoveData;
-        private readonly PTUSaveData SaveData;
+        private readonly SaveManager.SaveManager Mgr;
         private readonly bool Update;
 
-        public Moves(PTUSaveData _SaveData, MoveData _MoveData = null)
+        public Moves(SaveManager.SaveManager _SaveMgr, MoveData _MoveData = null)
         {
             InitializeComponent(); // Creates the Window
 
-            SaveData = _SaveData;
+            Mgr = _SaveMgr;
 
             Setup(); // Executes the setup script
 
@@ -48,7 +48,9 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
             Battle_ActionType.ItemsSource = Enum.GetValues(typeof(Action_Type));
             Battle_Class.ItemsSource = Enum.GetValues(typeof(MoveClass));
             Battle_Frequency.ItemsSource = Enum.GetValues(typeof(Move_Frequency));
-            Battle_Type.ItemsSource = Enum.GetValues(typeof(Type));
+
+            foreach (BattleManager.Typing.Typing_Data type in MainWindow.SaveManager.SaveData.Typing_Manager.Types)
+                Battle_Type.Items.Add(type.Type_Name);
 
             Contest_Effect.ItemsSource = Enum.GetValues(typeof(Contest_Effects));
             Contest_Type.ItemsSource = Enum.GetValues(typeof(Contest_Type));
@@ -88,7 +90,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
             Battle_Type.SelectedItem = MoveData.Move_Type;
 
             Battle_AC.Value = MoveData.Move_Accuracy;
-            Battle_DB.Value = (int) MoveData.Move_DamageBase;
+            Battle_DB.Value = (int)MoveData.Move_DamageBase;
             Battle_UseLimit.Value = MoveData.Move_Frequency_Limit;
 
             #endregion
@@ -273,42 +275,42 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
 
             try
             {
-                Keyword_Aura.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Aura).Value;
+                Keyword_Aura.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Aura).Value;
             }
             catch
             {
             }
             try
             {
-                Keyword_Berry.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Berry).Value;
+                Keyword_Berry.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Berry).Value;
             }
             catch
             {
             }
             try
             {
-                Keyword_Blessing.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Blessing).Value;
+                Keyword_Blessing.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Blessing).Value;
             }
             catch
             {
             }
             try
             {
-                Keyword_Coat.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Coat).Value;
+                Keyword_Coat.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Coat).Value;
             }
             catch
             {
             }
             try
             {
-                Keyword_Dash.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Dash).Value;
+                Keyword_Dash.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Dash).Value;
             }
             catch
             {
             }
             try
             {
-                Keyword_DubleStrike.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.DubleStrike)
+                Keyword_DubleStrike.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.DubleStrike)
                     .Value;
             }
             catch
@@ -316,14 +318,14 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
             }
             try
             {
-                Keyword_Environ.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Environ).Value;
+                Keyword_Environ.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Environ).Value;
             }
             catch
             {
             }
             try
             {
-                Keyword_Execute.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Execute).Value;
+                Keyword_Execute.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Execute).Value;
             }
             catch
             {
@@ -331,7 +333,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
             //try { Keyword_Exhaust.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Exhaust).Value; } catch { }
             try
             {
-                Keyword_FiveStrike.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.FiveStrike)
+                Keyword_FiveStrike.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.FiveStrike)
                     .Value;
             }
             catch
@@ -339,21 +341,21 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
             }
             try
             {
-                Keyword_Fling.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Fling).Value;
+                Keyword_Fling.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Fling).Value;
             }
             catch
             {
             }
             try
             {
-                Keyword_Friendly.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Friendly).Value;
+                Keyword_Friendly.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Friendly).Value;
             }
             catch
             {
             }
             try
             {
-                Keyword_GroundSource.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Groundsource)
+                Keyword_GroundSource.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Groundsource)
                     .Value;
             }
             catch
@@ -361,49 +363,49 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
             }
             try
             {
-                Keyword_Hail.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Hail).Value;
+                Keyword_Hail.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Hail).Value;
             }
             catch
             {
             }
             try
             {
-                Keyword_Hazard.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Hazard).Value;
+                Keyword_Hazard.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Hazard).Value;
             }
             catch
             {
             }
             try
             {
-                Keyword_Illusion.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Illusion).Value;
+                Keyword_Illusion.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Illusion).Value;
             }
             catch
             {
             }
             try
             {
-                Keyword_Interupt.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Interupt).Value;
+                Keyword_Interupt.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Interupt).Value;
             }
             catch
             {
             }
             try
             {
-                Keyword_Pass.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Pass).Value;
+                Keyword_Pass.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Pass).Value;
             }
             catch
             {
             }
             try
             {
-                Keyword_Pledge.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Pledge).Value;
+                Keyword_Pledge.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Pledge).Value;
             }
             catch
             {
             }
             try
             {
-                Keyword_Powder.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Powder).Value;
+                Keyword_Powder.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Powder).Value;
             }
             catch
             {
@@ -413,21 +415,21 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
                 Keyword_Priority.IsChecked = true;
             try
             {
-                Keyword_Push.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Push).Value;
+                Keyword_Push.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Push).Value;
             }
             catch
             {
             }
             try
             {
-                Keyword_Rainy.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Rainy).Value;
+                Keyword_Rainy.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Rainy).Value;
             }
             catch
             {
             }
             try
             {
-                Keyword_Reaction.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Reaction).Value;
+                Keyword_Reaction.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Reaction).Value;
             }
             catch
             {
@@ -438,42 +440,42 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
             //try { Keyword_SandStorm.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.SandStorm).Value; } catch { }
             try
             {
-                Keyword_Setup.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.SetUp).Value;
+                Keyword_Setup.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.SetUp).Value;
             }
             catch
             {
             }
             try
             {
-                Keyword_Shield.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Shield).Value;
+                Keyword_Shield.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Shield).Value;
             }
             catch
             {
             }
             try
             {
-                Keyword_Smite.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Smite).Value;
+                Keyword_Smite.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Smite).Value;
             }
             catch
             {
             }
             try
             {
-                Keyword_Social.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Social).Value;
+                Keyword_Social.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Social).Value;
             }
             catch
             {
             }
             try
             {
-                Keyword_Sonic.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Sonic).Value;
+                Keyword_Sonic.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Sonic).Value;
             }
             catch
             {
             }
             try
             {
-                Keyword_SpiritSurge.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.SpiritSurge)
+                Keyword_SpiritSurge.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.SpiritSurge)
                     .Value;
             }
             catch
@@ -481,41 +483,49 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
             }
             try
             {
-                Keyword_Sunny.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Sunny).Value;
+                Keyword_Sunny.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Sunny).Value;
             }
             catch
             {
             }
             try
             {
-                Keyword_Trigger.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Trigger).Value;
+                Keyword_Trigger.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Trigger).Value;
             }
             catch
             {
             }
             try
             {
-                Keyword_Vortex.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Vortex).Value;
+                Keyword_Vortex.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Vortex).Value;
             }
             catch
             {
             }
             try
             {
-                Keyword_Weather.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Weather).Value;
+                Keyword_Weather.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.Weather).Value;
             }
             catch
             {
             }
             try
             {
-                Keyword_WeightClass.IsChecked = (bool) MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.WeightClass)
+                Keyword_WeightClass.IsChecked = (bool)MoveData.KeyWords.Find(x => x.Key == Move_KeyWords.WeightClass)
                     .Value;
             }
             catch
             {
             }
 
+            #endregion
+
+            #region Battle Effects
+            if (String.IsNullOrWhiteSpace(MoveData.Move_EffectsScript_ID))
+            {
+                MoveData.Move_EffectsScript_ID = "Move_" + MoveData.Name + "_" + RNG.Generators.RNG.GenerateNumber(255);
+                Mgr.CreateEffect_LuaScript(MoveData.Move_EffectsScript_ID);
+            }
             #endregion
         }
 
@@ -535,21 +545,21 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
 
             #region Battle Details
 
-            MoveData.Move_ActionType = (Action_Type) Battle_ActionType.SelectedItem;
-            MoveData.Move_Class = (MoveClass) Battle_Class.SelectedItem;
-            MoveData.Move_Frequency = (Move_Frequency) Battle_Frequency.SelectedItem;
-            MoveData.Move_Type = (string) Battle_Type.SelectedItem;
+            MoveData.Move_ActionType = (Action_Type)Battle_ActionType.SelectedItem;
+            MoveData.Move_Class = (MoveClass)Battle_Class.SelectedItem;
+            MoveData.Move_Frequency = (Move_Frequency)Battle_Frequency.SelectedItem;
+            MoveData.Move_Type = (string)Battle_Type.SelectedItem;
 
-            MoveData.Move_Accuracy = (int) Battle_AC.Value;
-            MoveData.Move_DamageBase = (DamageBase) Battle_DB.Value;
-            MoveData.Move_Frequency_Limit = (int) Battle_UseLimit.Value;
+            MoveData.Move_Accuracy = (int)Battle_AC.Value;
+            MoveData.Move_DamageBase = (DamageBase)Battle_DB.Value;
+            MoveData.Move_Frequency_Limit = (int)Battle_UseLimit.Value;
 
             #endregion
 
             #region Contest Details
 
-            MoveData.Contest_Effect = (Contest_Effects) Contest_Effect.SelectedItem;
-            MoveData.Contest_Type = (Contest_Type) Contest_Type.SelectedItem;
+            MoveData.Contest_Effect = (Contest_Effects)Contest_Effect.SelectedItem;
+            MoveData.Contest_Type = (Contest_Type)Contest_Type.SelectedItem;
 
             #endregion
 
@@ -561,9 +571,9 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
 
             try
             {
-                if ((bool) AllAdj_Enabled.IsChecked)
+                if ((bool)AllAdj_Enabled.IsChecked)
                 {
-                    var Data = new Move_RangeData(Move_Range.All_Adjacent_Foes, (bool) AllAdj_Enabled.IsChecked, 0, 0);
+                    var Data = new Move_RangeData(Move_Range.All_Adjacent_Foes, (bool)AllAdj_Enabled.IsChecked, 0, 0);
                     MoveData.Range_Data.Add(Data);
                 }
             }
@@ -577,9 +587,9 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
 
             try
             {
-                if ((bool) AnyTarget_Enabled.IsChecked)
+                if ((bool)AnyTarget_Enabled.IsChecked)
                 {
-                    var Data = new Move_RangeData(Move_Range.Any, (bool) AnyTarget_Enabled.IsChecked, 0, 0);
+                    var Data = new Move_RangeData(Move_Range.Any, (bool)AnyTarget_Enabled.IsChecked, 0, 0);
                     MoveData.Range_Data.Add(Data);
                 }
             }
@@ -593,10 +603,10 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
 
             try
             {
-                if ((bool) Burst_Enabled.IsChecked)
+                if ((bool)Burst_Enabled.IsChecked)
                 {
-                    var Data = new Move_RangeData(Move_Range.Burst, (bool) Burst_Enabled.IsChecked, 0,
-                        Convert.ToInt32(decimal.Floor((decimal) Burst_Size.Value)));
+                    var Data = new Move_RangeData(Move_Range.Burst, (bool)Burst_Enabled.IsChecked, 0,
+                        Convert.ToInt32(decimal.Floor((decimal)Burst_Size.Value)));
                     MoveData.Range_Data.Add(Data);
                 }
             }
@@ -610,10 +620,10 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
 
             try
             {
-                if ((bool) CardinallyAdj_Enabled.IsChecked)
+                if ((bool)CardinallyAdj_Enabled.IsChecked)
                 {
                     var Data = new Move_RangeData(Move_Range.Cardinally_Adjacent,
-                        (bool) CardinallyAdj_Enabled.IsChecked, 0, 0);
+                        (bool)CardinallyAdj_Enabled.IsChecked, 0, 0);
                     MoveData.Range_Data.Add(Data);
                 }
             }
@@ -627,10 +637,10 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
 
             try
             {
-                if ((bool) CloseBlast_Enabled.IsChecked)
+                if ((bool)CloseBlast_Enabled.IsChecked)
                 {
-                    var Data = new Move_RangeData(Move_Range.Close_Blast, (bool) CloseBlast_Enabled.IsChecked, 0,
-                        Convert.ToInt32(decimal.Floor((decimal) CloseBlast_Size.Value)));
+                    var Data = new Move_RangeData(Move_Range.Close_Blast, (bool)CloseBlast_Enabled.IsChecked, 0,
+                        Convert.ToInt32(decimal.Floor((decimal)CloseBlast_Size.Value)));
                     MoveData.Range_Data.Add(Data);
                 }
             }
@@ -644,10 +654,10 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
 
             try
             {
-                if ((bool) Cone_Enabled.IsChecked)
+                if ((bool)Cone_Enabled.IsChecked)
                 {
-                    var Data = new Move_RangeData(Move_Range.Cone, (bool) Cone_Enabled.IsChecked, 0,
-                        Convert.ToInt32(decimal.Floor((decimal) Cone_Size.Value)));
+                    var Data = new Move_RangeData(Move_Range.Cone, (bool)Cone_Enabled.IsChecked, 0,
+                        Convert.ToInt32(decimal.Floor((decimal)Cone_Size.Value)));
                     MoveData.Range_Data.Add(Data);
                 }
             }
@@ -661,9 +671,9 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
 
             try
             {
-                if ((bool) Field_Enabled.IsChecked)
+                if ((bool)Field_Enabled.IsChecked)
                 {
-                    var Data = new Move_RangeData(Move_Range.Field, (bool) Field_Enabled.IsChecked, 0, 0);
+                    var Data = new Move_RangeData(Move_Range.Field, (bool)Field_Enabled.IsChecked, 0, 0);
                     MoveData.Range_Data.Add(Data);
                 }
             }
@@ -677,10 +687,10 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
 
             try
             {
-                if ((bool) Line_Enabled.IsChecked)
+                if ((bool)Line_Enabled.IsChecked)
                 {
-                    var Data = new Move_RangeData(Move_Range.Line, (bool) Line_Enabled.IsChecked,
-                        Convert.ToInt32(decimal.Floor((decimal) Line_Size.Value)), 0);
+                    var Data = new Move_RangeData(Move_Range.Line, (bool)Line_Enabled.IsChecked,
+                        Convert.ToInt32(decimal.Floor((decimal)Line_Size.Value)), 0);
                     MoveData.Range_Data.Add(Data);
                 }
             }
@@ -694,9 +704,9 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
 
             try
             {
-                if ((bool) Mele_Enabled.IsChecked)
+                if ((bool)Mele_Enabled.IsChecked)
                 {
-                    var Data = new Move_RangeData(Move_Range.Melee, (bool) Mele_Enabled.IsChecked, 0, 0);
+                    var Data = new Move_RangeData(Move_Range.Melee, (bool)Mele_Enabled.IsChecked, 0, 0);
                     MoveData.Range_Data.Add(Data);
                 }
             }
@@ -710,10 +720,10 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
 
             try
             {
-                if ((bool) Range_Enabled.IsChecked)
+                if ((bool)Range_Enabled.IsChecked)
                 {
-                    var Data = new Move_RangeData(Move_Range.Range, (bool) Range_Enabled.IsChecked, 0,
-                        Convert.ToInt32(decimal.Floor((decimal) Range_Distance.Value)));
+                    var Data = new Move_RangeData(Move_Range.Range, (bool)Range_Enabled.IsChecked, 0,
+                        Convert.ToInt32(decimal.Floor((decimal)Range_Distance.Value)));
                     MoveData.Range_Data.Add(Data);
                 }
             }
@@ -727,11 +737,11 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
 
             try
             {
-                if ((bool) RangedBlast_Enabled.IsChecked)
+                if ((bool)RangedBlast_Enabled.IsChecked)
                 {
-                    var Data = new Move_RangeData(Move_Range.Range_Blast, (bool) RangedBlast_Enabled.IsChecked,
-                        Convert.ToInt32(decimal.Floor((decimal) RangedBlast_Size.Value)),
-                        Convert.ToInt32(decimal.Floor((decimal) RangedBlast_Distance.Value)));
+                    var Data = new Move_RangeData(Move_Range.Range_Blast, (bool)RangedBlast_Enabled.IsChecked,
+                        Convert.ToInt32(decimal.Floor((decimal)RangedBlast_Size.Value)),
+                        Convert.ToInt32(decimal.Floor((decimal)RangedBlast_Distance.Value)));
                     MoveData.Range_Data.Add(Data);
                 }
             }
@@ -745,9 +755,9 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
 
             try
             {
-                if ((bool) Self_Enabled.IsChecked)
+                if ((bool)Self_Enabled.IsChecked)
                 {
-                    var Data = new Move_RangeData(Move_Range.Self, (bool) Self_Enabled.IsChecked, 0, 0);
+                    var Data = new Move_RangeData(Move_Range.Self, (bool)Self_Enabled.IsChecked, 0, 0);
                     MoveData.Range_Data.Add(Data);
                 }
             }
@@ -839,6 +849,14 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
 
             #endregion
 
+            #region Battle Effects
+            if (String.IsNullOrWhiteSpace(MoveData.Move_EffectsScript_ID))
+            {
+                MoveData.Move_EffectsScript_ID = "Move_" + MoveData.Name + "_" + RNG.Generators.RNG.GenerateNumber(255);
+                Mgr.CreateEffect_LuaScript(MoveData.Move_EffectsScript_ID);
+            }
+            #endregion
+
             //Update links in different parts of the save data
 
             #region Update
@@ -847,7 +865,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
             {
                 if (Update)
                     if (MoveData.Name != OldName)
-                        foreach (var pokemon in SaveData.PokedexData.Pokemon)
+                        foreach (var pokemon in Mgr.SaveData.PokedexData.Pokemon)
                         {
                             if (pokemon.Moves == null)
                             {
@@ -916,6 +934,8 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Pokedex
 
         private void Effect_Designer_Click(object sender, RoutedEventArgs e)
         {
+            Battle.Effect_Script_Editor script_editor = new Battle.Effect_Script_Editor(Mgr, MoveData.Move_EffectsScript_ID);
+            script_editor.ShowDialog();
         }
     }
 }
