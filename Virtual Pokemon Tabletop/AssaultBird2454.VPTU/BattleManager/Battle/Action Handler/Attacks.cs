@@ -12,33 +12,31 @@ namespace AssaultBird2454.VPTU.BattleManager.Battle.Action_Handler
         public static void Invoke_AoE_Attack(SaveManager.SaveManager mgr, Pokedex.Moves.MoveData Move, List<EntitiesManager.Entities> Targets, EntitiesManager.Entities User)
         {
             int AC = RNG.Generators.RNG.GenerateNumber(20);// Rolls the AC
-            int DB = RNG.Generators.RNG.GenerateNumber(20);// Rolls the DB
+            int DB = (int)Move.Move_DamageBase;// Rolls the DB
 
             foreach (EntitiesManager.Entities e in Targets)
             {
-                Invoke(mgr, Move, e, User, AC, DB);
+                Effect.Effect_Handler handle = new Effect.Effect_Handler(mgr.LoadEffect_LuaScript(Move.Move_EffectsScript_ID), false);
+
+                Invoke_Pre(handle, mgr, Move, e, User, AC, DB);// Invoke Attack
+                Invoke_Post(handle, mgr, Move, e, User, AC, Convert.ToInt32(handle.Get_GlobalVariable("DB")));// Invoke Attack
             }
         }
-
         public static void Invoke_Range_Attack(SaveManager.SaveManager mgr, Pokedex.Moves.MoveData Move, List<EntitiesManager.Entities> Targets, EntitiesManager.Entities User)
         {
             foreach (EntitiesManager.Entities e in Targets)// for each target
             {
+                Effect.Effect_Handler handle = new Effect.Effect_Handler(mgr.LoadEffect_LuaScript(Move.Move_EffectsScript_ID), false);
                 int AC = RNG.Generators.RNG.GenerateNumber(20);// Rolls the AC
-                int DB = RNG.Generators.RNG.GenerateNumber(20);// Rolls the DB
+                int DB = (int)Move.Move_DamageBase;// Rolls the DB
 
-                bool Hit = Invoke(mgr, Move, e, User, AC, DB);// Invoke Attack
-                if ((bool)(Move.KeyWords.Find(x => x.Key == Data.Move_KeyWords.DubleStrike).Value) == true && Hit)
-                {
-                    Invoke(mgr, Move, e, User, AC, DB);// Invoke Attack Again
-                }// If DubleStrike & Hit first hit
+                Invoke_Pre(handle, mgr, Move, e, User, AC, DB);// Invoke Attack
+                Invoke_Post(handle, mgr, Move, e, User, AC, (int)handle.Get_GlobalVariable("DB"));// Invoke Attack
             }
         }
 
-        private static bool Invoke(SaveManager.SaveManager mgr, Pokedex.Moves.MoveData Move, EntitiesManager.Entities Target, EntitiesManager.Entities User, int AC, int DB)
+        private static void Invoke_Pre(Effect.Effect_Handler handle, SaveManager.SaveManager mgr, Pokedex.Moves.MoveData Move, EntitiesManager.Entities Target, EntitiesManager.Entities User, int AC, int DB)
         {
-            VPTU.BattleManager.Effect.Effect_Handler handle = new BattleManager.Effect.Effect_Handler(mgr.LoadEffect_LuaScript(Move.Move_EffectsScript_ID), false);
-
             handle.Set_GlobalVariable("Cancel", false);// Creates a global variable to cancel the attack
             handle.Set_GlobalVariable("Hit", false);// Set Hit
             handle.Set_GlobalVariable("Damage", 0);// Damage to be delt
@@ -53,75 +51,81 @@ namespace AssaultBird2454.VPTU.BattleManager.Battle.Action_Handler
             {
                 if (Target.Evasion_Physical >= Target.Evasion_Speed)
                 {
-                    handle.Set_GlobalVariable("DC_AC", Move.Move_Accuracy + Target.Evasion_Physical);// DC for move with physical evasion
+                    handle.Set_GlobalVariable("DC", Move.Move_Accuracy + Target.Evasion_Physical);// DC for move with physical evasion
                 }
                 else
                 {
-                    handle.Set_GlobalVariable("DC_AC", Move.Move_Accuracy + Target.Evasion_Speed);// DC for move with speed evasion
+                    handle.Set_GlobalVariable("DC", Move.Move_Accuracy + Target.Evasion_Speed);// DC for move with speed evasion
                 }
             }// Phiycical Move
             else if (Move.Move_Class == Data.MoveClass.Special)
             {
                 if (Target.Evasion_Special >= Target.Evasion_Speed)
                 {
-                    handle.Set_GlobalVariable("DC_AC", Move.Move_Accuracy + Target.Evasion_Special);// DC for move with Special evasion
+                    handle.Set_GlobalVariable("DC", Move.Move_Accuracy + Target.Evasion_Special);// DC for move with Special evasion
                 }
                 else
                 {
-                    handle.Set_GlobalVariable("DC_AC", Move.Move_Accuracy + Target.Evasion_Speed);// DC for move with speed evasion
+                    handle.Set_GlobalVariable("DC", Move.Move_Accuracy + Target.Evasion_Speed);// DC for move with speed evasion
                 }
             }// Special Move
             else if (Move.Move_Class == Data.MoveClass.Status)
             {
-                handle.Set_GlobalVariable("DC_AC", Move.Move_Accuracy + Target.Evasion_Speed);// DC for move with speed evasion
+                handle.Set_GlobalVariable("DC", Move.Move_Accuracy + Target.Evasion_Speed);// DC for move with speed evasion
             }// Status Move
             else
             {
                 // What to do if move is static?
             }// Static
 
-            if ((bool)(Move.KeyWords.Find(x => x.Key == Data.Move_KeyWords.FiveStrike).Value) == true)
+            try
             {
-                int _strike = RNG.Generators.RNG.GenerateNumber(8);
-                switch (_strike)
+                if ((bool)(Move.KeyWords.Find(x => x.Key == Data.Move_KeyWords.FiveStrike).Value) == true)
                 {
-                    case 1:
-                        handle.Set_GlobalVariable("Strikes", 1);// Set Strikes
-                        break;
-                    case 2:
-                        handle.Set_GlobalVariable("Strikes", 2);// Set Strikes
-                        break;
-                    case 3:
-                        handle.Set_GlobalVariable("Strikes", 2);// Set Strikes
-                        break;
-                    case 4:
-                        handle.Set_GlobalVariable("Strikes", 3);// Set Strikes
-                        break;
-                    case 5:
-                        handle.Set_GlobalVariable("Strikes", 3);// Set Strikes
-                        break;
-                    case 6:
-                        handle.Set_GlobalVariable("Strikes", 4);// Set Strikes
-                        break;
-                    case 7:
-                        handle.Set_GlobalVariable("Strikes", 4);// Set Strikes
-                        break;
-                    case 8:
-                        handle.Set_GlobalVariable("Strikes", 5);// Set Strikes
-                        break;
-                    default:
-                        handle.Set_GlobalVariable("Strikes", 5);// Set Strikes
-                        break;
+                    int _strike = RNG.Generators.RNG.GenerateNumber(8);
+                    switch (_strike)
+                    {
+                        case 1:
+                            handle.Set_GlobalVariable("Strikes", 1);// Set Strikes
+                            break;
+                        case 2:
+                            handle.Set_GlobalVariable("Strikes", 2);// Set Strikes
+                            break;
+                        case 3:
+                            handle.Set_GlobalVariable("Strikes", 2);// Set Strikes
+                            break;
+                        case 4:
+                            handle.Set_GlobalVariable("Strikes", 3);// Set Strikes
+                            break;
+                        case 5:
+                            handle.Set_GlobalVariable("Strikes", 3);// Set Strikes
+                            break;
+                        case 6:
+                            handle.Set_GlobalVariable("Strikes", 4);// Set Strikes
+                            break;
+                        case 7:
+                            handle.Set_GlobalVariable("Strikes", 4);// Set Strikes
+                            break;
+                        case 8:
+                            handle.Set_GlobalVariable("Strikes", 5);// Set Strikes
+                            break;
+                        default:
+                            handle.Set_GlobalVariable("Strikes", 5);// Set Strikes
+                            break;
+                    }
                 }
             }
+            catch { }
 
             if (AC == 20)// If Critical hit
                 handle.Set_GlobalVariable("Crit", true);// Set Critical Hit
-            if (AC >= ((double)handle.Get_GlobalVariable("DC_AC")))
+            if (AC >= ((double)handle.Get_GlobalVariable("DC")))
                 handle.Set_GlobalVariable("Hit", true);// Set Hit
 
             handle.Call_Function("Pre_Attack_Invoked", Move, Target, User);// Invoke effects to be executed before damage is delt
-
+        }
+        private static bool Invoke_Post(Effect.Effect_Handler handle, SaveManager.SaveManager mgr, Pokedex.Moves.MoveData Move, EntitiesManager.Entities Target, EntitiesManager.Entities User, int AC, int DB)
+        {
             if (!(bool)handle.Get_GlobalVariable("Cancel") && (bool)handle.Get_GlobalVariable("Hit"))
             {
                 #region Calculate DMG
@@ -132,16 +136,18 @@ namespace AssaultBird2454.VPTU.BattleManager.Battle.Action_Handler
                 // Add DB Mods (STAB), Modify DB Roll for crit & Roll dmg
                 if (User is EntitiesManager.Pokemon.PokemonCharacter)
                 {
-                    if (((EntitiesManager.Pokemon.PokemonCharacter)User).PokemonType.Find(x => x.ToLower() == Move.Move_Type.ToLower()) != null)
+                    try
                     {
-                        // Stab
-                        Damage = Roll_DB(((int)Move.Move_DamageBase) + 2 + Convert.ToInt32((double)handle.Get_GlobalVariable("DB_Mod")), (bool)handle.Get_GlobalVariable("Crit"));
+                        if (((EntitiesManager.Pokemon.PokemonCharacter)User).PokemonType.Find(x => x.ToLower() == Move.Move_Type.ToLower()) != null)
+                        {
+                            Damage = Roll_DB(((int)Move.Move_DamageBase) + 2 + Convert.ToInt32((double)handle.Get_GlobalVariable("DB_Mod")), (bool)handle.Get_GlobalVariable("Crit"));
+                        }
+                        else
+                        {
+                            Damage = Roll_DB(((int)Move.Move_DamageBase) + Convert.ToInt32((double)handle.Get_GlobalVariable("DB_Mod")), (bool)handle.Get_GlobalVariable("Crit"));
+                        }
                     }
-                    else
-                    {
-                        // Not Stab
-                        Damage = Roll_DB(((int)Move.Move_DamageBase) + Convert.ToInt32((double)handle.Get_GlobalVariable("DB_Mod")), (bool)handle.Get_GlobalVariable("Crit"));
-                    }
+                    catch { Damage = Roll_DB(((int)Move.Move_DamageBase) + Convert.ToInt32((double)handle.Get_GlobalVariable("DB_Mod")), (bool)handle.Get_GlobalVariable("Crit")); }
                 }
                 else
                 {
@@ -187,9 +193,9 @@ namespace AssaultBird2454.VPTU.BattleManager.Battle.Action_Handler
                 handle.Call_Function("Post_Attack_Invoked", Move, Target, User);// Invoke effects to be executed before damage is delt
                 return true;
             }// Check if the attack is not canceled
-
             return false;
         }
+
         private static int Roll_DB(Data.DamageBase DB, bool Crit)
         {
             if (Crit)

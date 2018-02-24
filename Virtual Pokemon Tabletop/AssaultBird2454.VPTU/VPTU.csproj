@@ -143,6 +143,24 @@
     <Compile Include="BattleManager\Battle\Action Handler\Attacks.cs" />
     <Compile Include="BattleManager\Battle\Battle_Instance.cs" />
     <Compile Include="BattleManager\Battle\Battle_Participant.cs" />
+    <Compile Include="BattleManager\Debug\MainMenu.xaml.cs">
+      <DependentUpon>MainMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BattleManager\Debug\Tabs\Attack Debugger.xaml.cs">
+      <DependentUpon>Attack Debugger.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BattleManager\Debug\Tools\TreeMap_Componants\TreeMap_Componant_Bool.xaml.cs">
+      <DependentUpon>TreeMap_Componant_Bool.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BattleManager\Debug\Tools\TreeMap_Componants\TreeMap_Componant_Number.xaml.cs">
+      <DependentUpon>TreeMap_Componant_Number.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BattleManager\Debug\Tools\TreeMap_Componants\TreeMap_Componant_String.xaml.cs">
+      <DependentUpon>TreeMap_Componant_String.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BattleManager\Debug\Tools\TreeMap_Entitie.xaml.cs">
+      <DependentUpon>TreeMap_Entitie.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BattleManager\Effect\Base Actions\Random.cs" />
     <Compile Include="BattleManager\Effect\Base Actions\Stats.cs" />
     <Compile Include="BattleManager\Effect\Base Actions\Status.cs" />
@@ -246,6 +264,30 @@
     <EmbeddedResource Include="ProjectVariables.json" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="BattleManager\Debug\MainMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BattleManager\Debug\Tabs\Attack Debugger.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BattleManager\Debug\Tools\TreeMap_Componants\TreeMap_Componant_Bool.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BattleManager\Debug\Tools\TreeMap_Componants\TreeMap_Componant_Number.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BattleManager\Debug\Tools\TreeMap_Componants\TreeMap_Componant_String.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BattleManager\Debug\Tools\TreeMap_Entitie.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Tabletop\Map\Table.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -168,7 +168,12 @@ namespace AssaultBird2454.VPTU.SaveEditor
                 DeveloperMode = false;
             #endregion
             #region Show Dev Tools
+            if (DeveloperMode)
+            {
+                Menu_Dev.Visibility = Visibility.Visible;
 
+                DebugDev_Menu.AD
+            }
             #endregion
             #endregion
 

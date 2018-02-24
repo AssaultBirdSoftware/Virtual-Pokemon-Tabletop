@@ -1,0 +1,28 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AssaultBird2454.VPTU.BattleManager.Debug"
+             xmlns:Tools="clr-namespace:AssaultBird2454.VPTU.BattleManager.Debug.Tools" x:Class="AssaultBird2454.VPTU.BattleManager.Debug.MainMenu"
+             mc:Ignorable="d" Width="750" Height="400">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Attack Debugger">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Tools:TreeMap_Entitie x:Name="AD_User_View" Height="266" VerticalAlignment="Top" Grid.Column="0" Margin="0,26,0,0"/>
+                    <Tools:TreeMap_Entitie x:Name="AD_Target_View" Height="266" VerticalAlignment="Top" Grid.Column="2" Margin="0,26,0,0"/>
+                    <Label Content="User" VerticalAlignment="Top" FontWeight="Bold" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0"/>
+                    <Label Content="Target" VerticalAlignment="Top" Grid.Column="2" FontWeight="Bold" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0"/>
+                    <Button x:Name="AD_User_LoadEntity_Button" Content="Load Entity" HorizontalAlignment="Left" Margin="0,297,0,0" VerticalAlignment="Top" Width="75" Click="AD_User_LoadEntity_Button_Click"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</UserControl>

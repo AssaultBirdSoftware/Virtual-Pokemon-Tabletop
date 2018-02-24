@@ -155,6 +155,11 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
         /// </summary>
         public void Load()
         {
+            if (MainWindow.DeveloperMode)
+            {
+                try { BattleManager.Battle.Action_Handler.Attack.Invoke_AoE_Attack(Manager, Manager.SaveData.PokedexData.Moves.Find(x => x.Name == PokemonData.Moves[0]), new List<EntitiesManager.Entities>() { PokemonData }, PokemonData); } catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+            }
+
             Ready = false;
 
             try
@@ -347,11 +352,6 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             LoadStatusEffects();
 
             Ready = true;
-
-            if (MainWindow.DeveloperMode)
-            {
-                BattleManager.Battle.Action_Handler.Attack.Invoke_AoE_Attack(Manager, Manager.SaveData.PokedexData.Moves[0], new List<EntitiesManager.Entities>() { PokemonData }, PokemonData);
-            }
         }
 
         /// <summary>
@@ -1780,7 +1780,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
                 //if (rd.Range == BattleManager.Data.Move_Range) { }
             }
             Range = RangeSB;
-            Type = Move.Move_Type.ToString();
+            Type = Move.Move_Type;
             Class = Move.Move_Class.ToString();
             DB = (int)Move.Move_DamageBase;
             AC = Move.Move_Accuracy;
