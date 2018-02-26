@@ -18,7 +18,8 @@ namespace AssaultBird2454.VPTU.BattleManager.Effect
                 lua.DoFile(Script);
 
             #region Register Base Actions
-            Register_Action("Roll", null, typeof(Base_Actions.Random).GetMethod("GenerateNumber"));// Exposes an interface to get a random number or roll dice
+            Register_Action("Generate_Number", null, typeof(Base_Actions.Random).GetMethod("GenerateNumber"));// Exposes an interface to get a random number
+            Register_Action("Roll", null, typeof(Base_Actions.Random).GetMethod("Roll"));// Exposes an interface to roll dice
 
             Register_Action("StatusEffect_Add", null, typeof(Base_Actions.Status).GetMethod("AddStatus"));// Exposes an interface to add status conditions to entities
             Register_Action("StatusEffect_Remove", null, typeof(Base_Actions.Status).GetMethod("RemoveStatus"));// Exposes an interface to remove status conditions to entities

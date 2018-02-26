@@ -8,7 +8,22 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <TreeView x:Name="Display_Tree"/>
-
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TreeView x:Name="Display_Tree" Grid.ColumnSpan="2"/>
+        <Button x:Name="Import_Button" Content="Import" Height="20" VerticalAlignment="Bottom" Grid.Row="2" Click="Import_Button_Click"/>
+        <Button x:Name="Export_Button" Content="Export" Height="20" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="2"/>
+        <TextBox x:Name="Data_Text" Margin="0,31,0,45" Grid.Row="1" TextWrapping="Wrap" Grid.ColumnSpan="2" AcceptsReturn="True" AcceptsTab="True"/>
+        <Label Content="Import / Export" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="300" FontWeight="Bold" FontSize="16" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Label Content="Object Type" Margin="0,0,0,5" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="73" Height="35" VerticalContentAlignment="Center"/>
+        <RadioButton x:Name="Type_Selection_Pokemon" Content="Pokemon" Margin="78,0,0,25" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="69"/>
+        <RadioButton x:Name="Type_Selection_Trainer" Content="Trainer" HorizontalAlignment="Left" Margin="78,0,0,10" Grid.Row="1" VerticalAlignment="Bottom"/>
     </Grid>
 </UserControl>

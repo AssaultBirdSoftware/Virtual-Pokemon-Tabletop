@@ -26,11 +26,7 @@ namespace AssaultBird2454.VPTU.BattleManager.Debug
         }
 
         #region Attack Debugger
-        private void AD_User_LoadEntity_Button_Click(object sender, RoutedEventArgs e)
-        {
 
-            AD_User_View.Load();
-        }
         #endregion
     }
 }

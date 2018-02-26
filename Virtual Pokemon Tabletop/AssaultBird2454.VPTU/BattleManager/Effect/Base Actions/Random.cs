@@ -16,5 +16,14 @@ namespace AssaultBird2454.VPTU.BattleManager.Effect.Base_Actions
             }
             catch { return 0; }
         }
+
+        public static int Roll(object DiceFormula)
+        {
+            try
+            {
+                return RNG.Generators.RNG.RollDice((string)DiceFormula);
+            }
+            catch { return 0; }
+        }
     }
 }
