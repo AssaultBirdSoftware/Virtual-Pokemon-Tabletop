@@ -11,9 +11,9 @@ namespace AssaultBird2454.VPTU.BattleManager.Effect.Base_Actions
         #region Attack
         public static void Attack_CS_Set(object Entity, object Mod)
         {
-            if ((int)Mod > 0 || (int)Mod < 0)
+            if (Convert.ToInt32(Mod) > 0 || Convert.ToInt32(Mod) < 0)
             {
-                ((EntitiesManager.Entities)Entity).Attack_CombatStage += (int)Mod;
+                ((EntitiesManager.Entities)Entity).Attack_CombatStage += Convert.ToInt32(Mod);
             }
             else
             {
@@ -28,9 +28,9 @@ namespace AssaultBird2454.VPTU.BattleManager.Effect.Base_Actions
         #region Defence
         public static void Defence_CS_Set(object Entity, object Mod)
         {
-            if ((int)Mod > 0 || (int)Mod < 0)
+            if (Convert.ToInt32(Mod) > 0 || Convert.ToInt32(Mod) < 0)
             {
-                ((EntitiesManager.Entities)Entity).Defence_CombatStage += (int)Mod;
+                ((EntitiesManager.Entities)Entity).Defence_CombatStage += Convert.ToInt32(Mod);
             }
             else
             {
@@ -45,9 +45,9 @@ namespace AssaultBird2454.VPTU.BattleManager.Effect.Base_Actions
         #region SpAttack
         public static void SpAttack_CS_Set(object Entity, object Mod)
         {
-            if ((int)Mod > 0 || (int)Mod < 0)
+            if (Convert.ToInt32(Mod) > 0 || Convert.ToInt32(Mod) < 0)
             {
-                ((EntitiesManager.Entities)Entity).SpAttack_CombatStage += (int)Mod;
+                ((EntitiesManager.Entities)Entity).SpAttack_CombatStage += Convert.ToInt32(Mod);
             }
             else
             {
@@ -62,9 +62,9 @@ namespace AssaultBird2454.VPTU.BattleManager.Effect.Base_Actions
         #region SpDefence
         public static void SpDefence_CS_Set(object Entity, object Mod)
         {
-            if ((int)Mod > 0 || (int)Mod < 0)
+            if (Convert.ToInt32(Mod) > 0 || Convert.ToInt32(Mod) < 0)
             {
-                ((EntitiesManager.Entities)Entity).SpDefence_CombatStage += (int)Mod;
+                ((EntitiesManager.Entities)Entity).SpDefence_CombatStage += Convert.ToInt32(Mod);
             }
             else
             {
@@ -79,9 +79,9 @@ namespace AssaultBird2454.VPTU.BattleManager.Effect.Base_Actions
         #region Speed
         public static void Speed_CS_Set(object Entity, object Mod)
         {
-            if ((int)Mod > 0 || (int)Mod < 0)
+            if (Convert.ToInt32(Mod) > 0 || Convert.ToInt32(Mod) < 0)
             {
-                ((EntitiesManager.Entities)Entity).Speed_CombatStage += (int)Mod;
+                ((EntitiesManager.Entities)Entity).Speed_CombatStage += Convert.ToInt32(Mod);
             }
             else
             {
@@ -93,5 +93,14 @@ namespace AssaultBird2454.VPTU.BattleManager.Effect.Base_Actions
             return ((EntitiesManager.Entities)Entity).Speed_CombatStage;
         }
         #endregion
+
+        public static int GetHealth(object Entitie)
+        {
+            return ((Entities)Entitie).Current_HP;
+        }
+        public static void SetHealth(object Entitie, object Value)
+        {
+            ((Entities)Entitie).Current_HP = (int)Value;
+        }
     }
 }

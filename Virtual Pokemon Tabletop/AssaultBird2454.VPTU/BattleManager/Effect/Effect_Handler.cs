@@ -26,17 +26,20 @@ namespace AssaultBird2454.VPTU.BattleManager.Effect
             Register_Action("StatusEffect_Has", null, typeof(Base_Actions.Status).GetMethod("HasStatus"));// Exposes and interface to check if an entitie has a status condition
             Register_Action("StatusEffect_Get", null, typeof(Base_Actions.Status).GetMethod("GetStatus"));// Exposes and interface to get data associated with a status condition
 
-            Register_Action("Stat_Attack_CS_Set", null, typeof(Base_Actions.Stats).GetMethod("Attack_CS_Set"));
-            Register_Action("Stat_Attack_CS_Get", null, typeof(Base_Actions.Stats).GetMethod("Attack_CS_Get"));
-            Register_Action("Stat_Defence_CS_Set", null, typeof(Base_Actions.Stats).GetMethod("Defence_CS_Set"));
-            Register_Action("Stat_Defence_CS_Get", null, typeof(Base_Actions.Stats).GetMethod("Defence_CS_Get"));
-            Register_Action("Stat_SpAttack_CS_Set", null, typeof(Base_Actions.Stats).GetMethod("SpAttack_CS_Set"));
-            Register_Action("Stat_SpAttack_CS_Get", null, typeof(Base_Actions.Stats).GetMethod("SpAttack_CS_Get"));
-            Register_Action("Stat_SpDefence_CS_Set", null, typeof(Base_Actions.Stats).GetMethod("SpDefence_CS_Set"));
-            Register_Action("Stat_SpDefence_CS_Get", null, typeof(Base_Actions.Stats).GetMethod("SpDefence_CS_Get"));
-            Register_Action("Stat_Speed_CS_Set", null, typeof(Base_Actions.Stats).GetMethod("Speed_CS_Set"));
-            Register_Action("Stat_Speed_CS_Get", null, typeof(Base_Actions.Stats).GetMethod("Speed_CS_Get"));
+            Register_Action("Stat_Attack_CS_Set", null, typeof(Base_Actions.Stats).GetMethod("Attack_CS_Set"));// Exposes and interface to Set Attack CS
+            Register_Action("Stat_Attack_CS_Get", null, typeof(Base_Actions.Stats).GetMethod("Attack_CS_Get"));// Exposes and interface to Get Attack CS
+            Register_Action("Stat_Defence_CS_Set", null, typeof(Base_Actions.Stats).GetMethod("Defence_CS_Set"));// Exposes and interface to Set Defence CS
+            Register_Action("Stat_Defence_CS_Get", null, typeof(Base_Actions.Stats).GetMethod("Defence_CS_Get"));// Exposes and interface to Get Defence CS
+            Register_Action("Stat_SpAttack_CS_Set", null, typeof(Base_Actions.Stats).GetMethod("SpAttack_CS_Set"));// Exposes and interface to Set SpAttack CS
+            Register_Action("Stat_SpAttack_CS_Get", null, typeof(Base_Actions.Stats).GetMethod("SpAttack_CS_Get"));// Exposes and interface to Get SpAttack CS
+            Register_Action("Stat_SpDefence_CS_Set", null, typeof(Base_Actions.Stats).GetMethod("SpDefence_CS_Set"));// Exposes and interface to Set SpDefence CS
+            Register_Action("Stat_SpDefence_CS_Get", null, typeof(Base_Actions.Stats).GetMethod("SpDefence_CS_Get"));// Exposes and interface to Get SpDefence CS
+            Register_Action("Stat_Speed_CS_Set", null, typeof(Base_Actions.Stats).GetMethod("Speed_CS_Set"));// Exposes and interface to Set Speed CS
+            Register_Action("Stat_Speed_CS_Get", null, typeof(Base_Actions.Stats).GetMethod("Speed_CS_Get"));// Exposes and interface to Get Speed CS
+            Register_Action("Current_HP_Get", null, typeof(Base_Actions.Stats).GetMethod("GetHealth"));// Exposes and interface to Get the entities health
+            Register_Action("Current_HP_Set", null, typeof(Base_Actions.Stats).GetMethod("SetHealth"));// Exposes and interface to Set the entities health
             #endregion
+            // Register_Action("", null, typeof().GetMethod(""));
         }
 
         /// <summary>
