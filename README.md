@@ -27,6 +27,16 @@ All help would be appreciated. and this project is done in C# Using WPF.
 ### Supporting future Development
 I am making this software for you for free. I do not expect anything from you just your feedback. If you want to pledge more than just feedback to support future development then donations will be accepted... No Donations will be accepted prior to the official release of **Beta_0.0.1 - Build 1**
 
+### Documentation Contributors
+If you think the documentation needs work, follow the steps below to add some docs:
+
+1. Fork the repo.
+2. Make some documentation in the `docs` directory in Markdown. Make sure it is understandable!
+3. Give it a descriptive file name, separating words with underscores.
+4. Add the page to the `docs/pages.js` file, following the instructions there.
+5. Make sure that any aliases don't already exist, and that the file name isn't an alias already.
+  a. If the file name is already an alias, make an issue.
+
 ## Platform Status
 
 ### Supported Platform Status

@@ -15,6 +15,7 @@ using AssaultBird2454.VPTU.Server.Instances.CommandData.Pokedex;
 using AssaultBird2454.VPTU.Server.Instances.CommandData.Resources;
 using WPF.MDI;
 using Console = AssaultBird2454.VPTU.Client.UI.Console;
+using SharpRaven.Data;
 
 namespace AssaultBird2454.VPTU.Client
 {
@@ -28,6 +29,7 @@ namespace AssaultBird2454.VPTU.Client
             if (DateTime.Now.Month == 4 && DateTime.Now.Day == 1)
             {
                 Process.Start("https://goo.gl/Y35Z8p");
+                App.ravenClient.Capture(new SentryEvent($"April_Fools{DateTime.Now.Year}"));
                 Thread.Sleep(5000);
                 MessageBox.Show("April Fools!\n\nApril 1st Joke from the Dev :P", "Troll");
             }
