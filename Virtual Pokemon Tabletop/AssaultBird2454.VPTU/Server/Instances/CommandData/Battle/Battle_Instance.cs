@@ -14,7 +14,7 @@ namespace AssaultBird2454.VPTU.Server.Instances.CommandData.Battle
         }
 
         public string Command { get; set; }
-        public IEnumerable<BattleManager.Battle_Instance.Instance> Instances { get; set; }
+        //public IEnumerable<BattleManager.Battle_Instance.Instance> Instances { get; set; }
     }
     public class Battle_Instance : Networking.Data.NetworkCommand
     {

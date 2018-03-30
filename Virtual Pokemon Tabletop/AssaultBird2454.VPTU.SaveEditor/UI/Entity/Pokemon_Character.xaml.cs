@@ -15,7 +15,6 @@ using AssaultBird2454.VPTU.RNG.Generators;
 using AssaultBird2454.VPTU.SaveEditor.UI.Entities.Pokemon;
 using AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Select;
 using AssaultBird2454.VPTU.SaveEditor.UI.Resources;
-using Type = AssaultBird2454.VPTU.BattleManager.Data.Type;
 
 namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
 {
@@ -87,10 +86,10 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
 
             #endregion
 
-            var itemso = new Dictionary<string, object>();
-            foreach (Type effect in Enum.GetValues(typeof(Type)))
-                itemso.Add(effect.ToString(), effect);
-            Basic_Types.ItemsSource = itemso;
+            var itemSource = new Dictionary<string, object>();
+            foreach (BattleManager.Typing.Typing_Data type in MainWindow.SaveManager.SaveData.Typing_Manager.Types)
+                itemSource.Add(type.Type_Name, type.Type_Name);
+            Basic_Types.ItemsSource = itemSource;
 
             Basic_Weight.ItemsSource = Enum.GetValues(typeof(WeightClass));
             Basic_Size.ItemsSource = Enum.GetValues(typeof(SizeClass));
@@ -187,8 +186,8 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
                 #region Pokemon Types
 
                 var itemso = new Dictionary<string, object>();
-                foreach (var type in PokemonData.PokemonType)
-                    itemso.Add(type.ToString(), type);
+                foreach (string type in PokemonData.PokemonType)
+                    itemso.Add(type, type);
                 Basic_Types.SelectedItems = itemso;
 
                 #endregion
@@ -364,9 +363,10 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 #region Pokemon Types
 
-                PokemonData.PokemonType.Clear();
-                foreach (var type in NewPokemon.Species_Types)
-                    PokemonData.PokemonType.Add(type);
+                var itemso = new Dictionary<string, object>();
+                foreach (string type in PokemonData.PokemonType)
+                    itemso.Add(type, type);
+                Basic_Types.SelectedItems = itemso;
 
                 #endregion
             }
@@ -876,11 +876,11 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             if (Ready)
             {
                 if (PokemonData.PokemonType == null)
-                    PokemonData.PokemonType = new List<Type>();
+                    PokemonData.PokemonType = new List<string>();
 
                 PokemonData.PokemonType.Clear();
                 foreach (var seltype in Basic_Types.SelectedItems)
-                    PokemonData.PokemonType.Add((Type)seltype.Value);
+                    PokemonData.PokemonType.Add((string)seltype.Value);
             }
         }
 
@@ -1345,35 +1345,35 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
 
         public void LoadStatusEffects()
         {
-            Status_Persistant_Burned.IsChecked = PokemonData.HasStatus(Status_Afflictions.Burned);
-            Status_Persistant_Frozen.IsChecked = PokemonData.HasStatus(Status_Afflictions.Frozen);
-            Status_Persistant_Paralysis.IsChecked = PokemonData.HasStatus(Status_Afflictions.Paralysis);
-            Status_Persistant_Poisioned.IsChecked = PokemonData.HasStatus(Status_Afflictions.Poision);
+            Status_Persistant_Burned.IsChecked = PokemonData.HasStatus("Burned");
+            Status_Persistant_Frozen.IsChecked = PokemonData.HasStatus("Frozen");
+            Status_Persistant_Paralysis.IsChecked = PokemonData.HasStatus("Paralysis");
+            Status_Persistant_Poisioned.IsChecked = PokemonData.HasStatus("Poision");
 
-            Status_Volatile_BadSleep.IsChecked = PokemonData.HasStatus(Status_Afflictions.BadSleep);
-            Status_Volatile_Confused.IsChecked = PokemonData.HasStatus(Status_Afflictions.Confusion);
-            Status_Volatile_Cursed.IsChecked = PokemonData.HasStatus(Status_Afflictions.Cursed);
-            Status_Volatile_Disable.IsChecked = PokemonData.HasStatus(Status_Afflictions.Dissabled);
-            Status_Volatile_Rage.IsChecked = PokemonData.HasStatus(Status_Afflictions.Rage);
-            Status_Volatile_Flinch.IsChecked = PokemonData.HasStatus(Status_Afflictions.Flinch);
-            Status_Volatile_Inflatuation.IsChecked = PokemonData.HasStatus(Status_Afflictions.Inflatuation);
-            Status_Volatile_Sleep.IsChecked = PokemonData.HasStatus(Status_Afflictions.Sleep);
-            Status_Volatile_Suppressed.IsChecked = PokemonData.HasStatus(Status_Afflictions.Suppressed);
-            Status_Volatile_TemporaryHitPoints.IsChecked = PokemonData.HasStatus(Status_Afflictions.TemporaryHitPoints);
+            Status_Volatile_BadSleep.IsChecked = PokemonData.HasStatus("BadSleep");
+            Status_Volatile_Confused.IsChecked = PokemonData.HasStatus("Confusion");
+            Status_Volatile_Cursed.IsChecked = PokemonData.HasStatus("Cursed");
+            Status_Volatile_Disable.IsChecked = PokemonData.HasStatus("Dissabled");
+            Status_Volatile_Rage.IsChecked = PokemonData.HasStatus("Rage");
+            Status_Volatile_Flinch.IsChecked = PokemonData.HasStatus("Flinch");
+            Status_Volatile_Inflatuation.IsChecked = PokemonData.HasStatus("Inflatuation");
+            Status_Volatile_Sleep.IsChecked = PokemonData.HasStatus("Sleep");
+            Status_Volatile_Suppressed.IsChecked = PokemonData.HasStatus("Suppressed");
+            Status_Volatile_TemporaryHitPoints.IsChecked = PokemonData.HasStatus("TemporaryHitPoints");
 
-            Status_Other_Fainted.IsChecked = PokemonData.HasStatus(Status_Afflictions.Fainted);
-            Status_Other_Blindness.IsChecked = PokemonData.HasStatus(Status_Afflictions.Blindness);
-            Status_Other_TotalBlindness.IsChecked = PokemonData.HasStatus(Status_Afflictions.TotalBlindness);
-            Status_Other_Slowed.IsChecked = PokemonData.HasStatus(Status_Afflictions.Slowed);
-            Status_Other_Stuck.IsChecked = PokemonData.HasStatus(Status_Afflictions.Stuck);
-            Status_Other_Trapped.IsChecked = PokemonData.HasStatus(Status_Afflictions.Trapped);
-            Status_Other_Tripped.IsChecked = PokemonData.HasStatus(Status_Afflictions.Tripped);
-            Status_Other_Vulnerable.IsChecked = PokemonData.HasStatus(Status_Afflictions.Vulnerable);
+            Status_Other_Fainted.IsChecked = PokemonData.HasStatus("Fainted");
+            Status_Other_Blindness.IsChecked = PokemonData.HasStatus("Blindness");
+            Status_Other_TotalBlindness.IsChecked = PokemonData.HasStatus("TotalBlindness");
+            Status_Other_Slowed.IsChecked = PokemonData.HasStatus("Slowed");
+            Status_Other_Stuck.IsChecked = PokemonData.HasStatus("Stuck");
+            Status_Other_Trapped.IsChecked = PokemonData.HasStatus("Trapped");
+            Status_Other_Tripped.IsChecked = PokemonData.HasStatus("Tripped");
+            Status_Other_Vulnerable.IsChecked = PokemonData.HasStatus("Vulnerable");
 
             try
             {
                 Status_Volitile_Inflatuation_PokemonID =
-                    (string)PokemonData.GetStatusData(Status_Afflictions.Inflatuation);
+                    (string)PokemonData.GetStatusData("Inflatuation");
                 Status_Volatile_Inflatuation_Value.Content = Manager.SaveData.Pokemon
                     .Find(x => x.ID == Status_Volitile_Inflatuation_PokemonID).Name;
             }
@@ -1383,7 +1383,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
 
             try
             {
-                Status_Volatile_Sleep_Duration.Value = (int)PokemonData.GetStatusData(Status_Afflictions.Sleep);
+                Status_Volatile_Sleep_Duration.Value = (int)PokemonData.GetStatusData("Sleep");
             }
             catch
             {
@@ -1392,7 +1392,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             try
             {
                 Status_Volatile_TemporaryHitPoints_Value.Value =
-                    (int)PokemonData.GetStatusData(Status_Afflictions.TemporaryHitPoints);
+                    (int)PokemonData.GetStatusData("TemporaryHitPoints");
             }
             catch
             {
@@ -1401,7 +1401,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             try
             {
                 var dis_moves = new Dictionary<string, object>();
-                foreach (var move in (List<string>)PokemonData.GetStatusData(Status_Afflictions.Dissabled))
+                foreach (var move in (List<string>)PokemonData.GetStatusData("Dissabled"))
                     if (PokemonData.Moves.Contains(move))
                         dis_moves.Add(move, move);
                 Status_Volatile_Disable_Value.SelectedItems = dis_moves;
@@ -1416,49 +1416,49 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
         private void Status_Persistant_Burned_Checked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.AddStatus(Status_Afflictions.Burned);
+                PokemonData.AddStatus("Burned");
         }
 
         private void Status_Persistant_Burned_Unchecked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.RemoveStatus(Status_Afflictions.Burned);
+                PokemonData.RemoveStatus("Burned");
         }
 
         private void Status_Persistant_Frozen_Checked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.AddStatus(Status_Afflictions.Frozen);
+                PokemonData.AddStatus("Frozen");
         }
 
         private void Status_Persistant_Frozen_Unchecked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.RemoveStatus(Status_Afflictions.Frozen);
+                PokemonData.RemoveStatus("Frozen");
         }
 
         private void Status_Persistant_Paralysis_Checked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.AddStatus(Status_Afflictions.Paralysis);
+                PokemonData.AddStatus("Paralysis");
         }
 
         private void Status_Persistant_Paralysis_Unchecked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.RemoveStatus(Status_Afflictions.Paralysis);
+                PokemonData.RemoveStatus("Paralysis");
         }
 
         private void Status_Persistant_Poisioned_Checked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.AddStatus(Status_Afflictions.Poision);
+                PokemonData.AddStatus("Poision");
         }
 
         private void Status_Persistant_Poisioned_Unchecked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.RemoveStatus(Status_Afflictions.Poision);
+                PokemonData.RemoveStatus("Poision");
         }
 
         #endregion
@@ -1468,37 +1468,37 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
         private void Status_Volatile_BadSleep_Checked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.AddStatus(Status_Afflictions.BadSleep);
+                PokemonData.AddStatus("BadSleep");
         }
 
         private void Status_Volatile_BadSleep_Unchecked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.RemoveStatus(Status_Afflictions.BadSleep);
+                PokemonData.RemoveStatus("BadSleep");
         }
 
         private void Status_Volatile_Confused_Checked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.AddStatus(Status_Afflictions.Confusion);
+                PokemonData.AddStatus("Confusion");
         }
 
         private void Status_Volatile_Confused_Unchecked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.RemoveStatus(Status_Afflictions.Confusion);
+                PokemonData.RemoveStatus("Confusion");
         }
 
         private void Status_Volatile_Cursed_Checked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.AddStatus(Status_Afflictions.Cursed);
+                PokemonData.AddStatus("Cursed");
         }
 
         private void Status_Volatile_Cursed_Unchecked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.RemoveStatus(Status_Afflictions.Cursed);
+                PokemonData.RemoveStatus("Cursed");
         }
 
         private void Status_Volatile_Disable_Checked(object sender, RoutedEventArgs e)
@@ -1515,7 +1515,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
                 {
                 }
 
-                PokemonData.AddStatus(Status_Afflictions.Dissabled, Moves);
+                PokemonData.AddStatus("Dissabled", Moves);
             }
             Status_Volatile_Disable_Value.IsEnabled = true;
         }
@@ -1523,7 +1523,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
         private void Status_Volatile_Disable_Unchecked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.RemoveStatus(Status_Afflictions.Dissabled);
+                PokemonData.RemoveStatus("Dissabled");
             Status_Volatile_Disable_Value.IsEnabled = false;
             Status_Volatile_Disable_Value.SelectedItems = null;
         }
@@ -1531,38 +1531,38 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
         private void Status_Volatile_Rage_Checked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.AddStatus(Status_Afflictions.Rage);
+                PokemonData.AddStatus("Rage");
         }
 
         private void Status_Volatile_Rage_Unchecked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.RemoveStatus(Status_Afflictions.Rage);
+                PokemonData.RemoveStatus("Rage");
         }
 
         private void Status_Volatile_Flinch_Checked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.AddStatus(Status_Afflictions.Flinch);
+                PokemonData.AddStatus("Flinch");
         }
 
         private void Status_Volatile_Flinch_Unchecked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.RemoveStatus(Status_Afflictions.Flinch);
+                PokemonData.RemoveStatus("Flinch");
         }
 
         private void Status_Volatile_Inflatuation_Checked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.AddStatus(Status_Afflictions.Inflatuation, Status_Volitile_Inflatuation_PokemonID);
+                PokemonData.AddStatus("Inflatuation", Status_Volitile_Inflatuation_PokemonID);
             Status_Volatile_Inflatuation_Select.IsEnabled = true;
         }
 
         private void Status_Volatile_Inflatuation_Unchecked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.RemoveStatus(Status_Afflictions.Inflatuation);
+                PokemonData.RemoveStatus("Inflatuation");
             Status_Volatile_Inflatuation_Select.IsEnabled = false;
             Status_Volatile_Inflatuation_Value.Content = "No Selected Entities";
             Status_Volitile_Inflatuation_PokemonID = "";
@@ -1571,14 +1571,14 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
         private void Status_Volatile_Sleep_Checked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.AddStatus(Status_Afflictions.Sleep, Status_Volatile_Sleep_Duration.Value);
+                PokemonData.AddStatus("Sleep", Status_Volatile_Sleep_Duration.Value);
             Status_Volatile_Sleep_Duration.IsEnabled = true;
         }
 
         private void Status_Volatile_Sleep_Unchecked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.RemoveStatus(Status_Afflictions.Sleep);
+                PokemonData.RemoveStatus("Sleep");
             Status_Volatile_Sleep_Duration.IsEnabled = false;
             Status_Volatile_Sleep_Duration.Value = 0;
         }
@@ -1586,19 +1586,19 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
         private void Status_Volatile_Suppressed_Checked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.AddStatus(Status_Afflictions.Suppressed);
+                PokemonData.AddStatus("Suppressed");
         }
 
         private void Status_Volatile_Suppressed_Unchecked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.RemoveStatus(Status_Afflictions.Suppressed);
+                PokemonData.RemoveStatus("Suppressed");
         }
 
         private void Status_Volatile_TemporaryHitPoints_Checked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.AddStatus(Status_Afflictions.TemporaryHitPoints,
+                PokemonData.AddStatus("TemporaryHitPoints",
                     Status_Volatile_TemporaryHitPoints_Value.Value);
             Status_Volatile_TemporaryHitPoints_Value.IsEnabled = true;
         }
@@ -1606,7 +1606,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
         private void Status_Volatile_TemporaryHitPoints_Unchecked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.RemoveStatus(Status_Afflictions.TemporaryHitPoints);
+                PokemonData.RemoveStatus("TemporaryHitPoints");
             Status_Volatile_TemporaryHitPoints_Value.IsEnabled = false;
             Status_Volatile_TemporaryHitPoints_Value.Value = 0;
         }
@@ -1620,7 +1620,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             {
                 Status_Volitile_Inflatuation_PokemonID = select.SelectedPokemon.ID;
                 Status_Volatile_Inflatuation_Value.Content = select.SelectedPokemon.Name;
-                PokemonData.SetStatusData(Status_Afflictions.Inflatuation, select.SelectedPokemon.ID);
+                PokemonData.SetStatusData("Inflatuation", select.SelectedPokemon.ID);
             }
         }
 
@@ -1631,97 +1631,97 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
         private void Status_Other_Fainted_Checked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.AddStatus(Status_Afflictions.Fainted);
+                PokemonData.AddStatus("Fainted");
         }
 
         private void Status_Other_Fainted_Unchecked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.RemoveStatus(Status_Afflictions.Fainted);
+                PokemonData.RemoveStatus("Fainted");
         }
 
         private void Status_Other_Blindness_Checked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.AddStatus(Status_Afflictions.Blindness);
+                PokemonData.AddStatus("Blindness");
         }
 
         private void Status_Other_Blindness_Unchecked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.RemoveStatus(Status_Afflictions.Blindness);
+                PokemonData.RemoveStatus("Blindness");
         }
 
         private void Status_Other_TotalBlindness_Checked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.AddStatus(Status_Afflictions.TotalBlindness);
+                PokemonData.AddStatus("TotalBlindness");
         }
 
         private void Status_Other_TotalBlindness_Unchecked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.RemoveStatus(Status_Afflictions.TotalBlindness);
+                PokemonData.RemoveStatus("TotalBlindness");
         }
 
         private void Status_Other_Slowed_Checked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.AddStatus(Status_Afflictions.Slowed);
+                PokemonData.AddStatus("Slowed");
         }
 
         private void Status_Other_Slowed_Unchecked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.RemoveStatus(Status_Afflictions.Slowed);
+                PokemonData.RemoveStatus("Slowed");
         }
 
         private void Status_Other_Stuck_Checked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.AddStatus(Status_Afflictions.Stuck);
+                PokemonData.AddStatus("Stuck");
         }
 
         private void Status_Other_Stuck_Unchecked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.RemoveStatus(Status_Afflictions.Stuck);
+                PokemonData.RemoveStatus("Stuck");
         }
 
         private void Status_Other_Trapped_Checked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.AddStatus(Status_Afflictions.Trapped);
+                PokemonData.AddStatus("Trapped");
         }
 
         private void Status_Other_Trapped_Unchecked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.RemoveStatus(Status_Afflictions.Trapped);
+                PokemonData.RemoveStatus("Trapped");
         }
 
         private void Status_Other_Tripped_Checked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.AddStatus(Status_Afflictions.Tripped);
+                PokemonData.AddStatus("Tripped");
         }
 
         private void Status_Other_Tripped_Unchecked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.RemoveStatus(Status_Afflictions.Tripped);
+                PokemonData.RemoveStatus("Tripped");
         }
 
         private void Status_Other_Vulnerable_Checked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.AddStatus(Status_Afflictions.Vulnerable);
+                PokemonData.AddStatus("Vulnerable");
         }
 
         private void Status_Other_Vulnerable_Unchecked(object sender, RoutedEventArgs e)
         {
             if (Ready)
-                PokemonData.RemoveStatus(Status_Afflictions.Vulnerable);
+                PokemonData.RemoveStatus("Vulnerable");
         }
 
         #endregion
@@ -1733,7 +1733,7 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
                 var dis_moves = new List<string>();
                 foreach (var obj in Status_Volatile_Disable_Value.SelectedItems)
                     dis_moves.Add((string)obj.Value);
-                PokemonData.SetStatusData(Status_Afflictions.Dissabled, dis_moves);
+                PokemonData.SetStatusData("Dissabled", dis_moves);
             }
         }
 
@@ -1741,14 +1741,14 @@ namespace AssaultBird2454.VPTU.SaveEditor.UI.Entities
             RoutedPropertyChangedEventArgs<object> e)
         {
             if (Ready)
-                PokemonData.SetStatusData(Status_Afflictions.Sleep, (int)Status_Volatile_Sleep_Duration.Value);
+                PokemonData.SetStatusData("Sleep", (int)Status_Volatile_Sleep_Duration.Value);
         }
 
         private void Status_Volatile_TemporaryHitPoints_Value_ValueChanged(object sender,
             RoutedPropertyChangedEventArgs<object> e)
         {
             if (Ready)
-                PokemonData.SetStatusData(Status_Afflictions.TemporaryHitPoints,
+                PokemonData.SetStatusData("TemporaryHitPoints",
                     (int)Status_Volatile_TemporaryHitPoints_Value.Value);
         }
 

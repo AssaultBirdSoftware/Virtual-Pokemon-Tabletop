@@ -15,15 +15,15 @@ namespace AssaultBird2454.VPTU.Client
     ///     Interaction logic for App.xaml
     /// </summary>
     public partial class App : Application
-    {
+    {    
         private bool Debug = true;
 
-        private RavenClient ravenClient;
+        static internal RavenClient ravenClient;
 
         private readonly Thread thread;
 
         public App()
-        {
+        {        
             thread = new Thread(() =>
             {
                 try

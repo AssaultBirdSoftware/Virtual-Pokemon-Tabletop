@@ -1,9 +1,9 @@
 [![Master Build branch](https://img.shields.io/appveyor/ci/TasmanLeach/virtual-pokemon-tabletop-2/master.svg?label=Master%20Build)](https://ci.appveyor.com/project/TasmanLeach/virtual-pokemon-tabletop-2)
 [![Beta Build branch](https://img.shields.io/appveyor/ci/TasmanLeach/virtual-pokemon-tabletop-2/Beta.svg?label=Beta%20Build)](https://ci.appveyor.com/project/TasmanLeach/virtual-pokemon-tabletop-2)
 [![Alpha Build branch](https://img.shields.io/appveyor/ci/TasmanLeach/virtual-pokemon-tabletop-2/Alpha.svg?label=Alpha%20Build)](https://ci.appveyor.com/project/TasmanLeach/virtual-pokemon-tabletop-2)
-[![GitHub release](https://img.shields.io/github/release/AssaultBird2454/Virtual-Pokemon-Tabletop/all.svg?label=Latest%20Version)](https://github.com/AssaultBird2454/Virtual-Pokemon-Tabletop/releases)
-[![Libraries.io for GitHub](https://img.shields.io/librariesio/github/AssaultBird2454/Virtual-Pokemon-Tabletop.svg)](https://github.com/AssaultBird2454/Virtual-Pokemon-Tabletop)
-[![license](https://img.shields.io/github/license/AssaultBird2454/virtual-pokemon-tabletop.svg?label=Licence)](https://github.com/AssaultBird2454/Virtual-Pokemon-Tabletop/blob/master/LICENSE)
+[![GitHub release](https://img.shields.io/github/release/Virtual-PTU/Virtual-Pokemon-Tabletop/all.svg?label=Latest%20Version)](https://github.com/Virtual-PTU/Virtual-Pokemon-Tabletop/releases)
+[![Libraries.io for GitHub](https://img.shields.io/librariesio/github/Virtual-PTU/Virtual-Pokemon-Tabletop.svg)](https://github.com/Virtual-PTU/Virtual-Pokemon-Tabletop)
+[![license](https://img.shields.io/github/license/Virtual-PTU/virtual-pokemon-tabletop.svg?label=Licence)](https://github.com/Virtual-PTU/Virtual-Pokemon-Tabletop/blob/master/LICENSE)
 [![Discord](https://img.shields.io/discord/277549582961868800.svg?colorB=7289DA&label=Discord)](https://discord.gg/fYExGbz)
 
 
@@ -27,6 +27,16 @@ All help would be appreciated. and this project is done in C# Using WPF.
 ### Supporting future Development
 I am making this software for you for free. I do not expect anything from you just your feedback. If you want to pledge more than just feedback to support future development then donations will be accepted... No Donations will be accepted prior to the official release of **Beta_0.0.1 - Build 1**
 
+### Documentation Contributors
+If you think the documentation needs work, follow the steps below to add some docs:
+
+1. Fork the repo.
+2. Make some documentation in the `docs` directory in Markdown. Make sure it is understandable!
+3. Give it a descriptive file name, separating words with underscores.
+4. Add the page to the `docs/pages.js` file, following the instructions there.
+5. Make sure that any aliases don't already exist, and that the file name isn't an alias already.
+  a. If the file name is already an alias, make an issue.
+
 ## Platform Status
 
 ### Supported Platform Status
@@ -40,9 +50,6 @@ I am making this software for you for free. I do not expect anything from you ju
 
 \* - This software costs money to make so it will cost a onetime $0.99 to purchase (IOS & Android Apps Only)  
 \*\* - This API will be private, and you will need to register with me to get the API for the IOS & Android Platforms (Security Reasons)
-
-This software is supported on x64 architecture (64 Bit) systems only! Sorry if you are using a system that is x86 (32 Bit)
-This software may support x86 in the future but for now, only x64 is officially supported
 
 ## Links
 Road Map: https://trello.com/b/G8V5Musv/  

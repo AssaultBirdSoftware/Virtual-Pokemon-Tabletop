@@ -36,14 +36,10 @@ namespace AssaultBird2454.VPTU.SaveManager
             {
                 using (ZipArchive Archive = new ZipArchive(stream, ZipArchiveMode.Update))// Creates a ZipArchive to execute save file modifications inside the Archive
                 {
-                    Archive.CreateEntryFromFile(SaveData_DIR + @"\" + SaveManager.GetSaveFile_DataDir(SaveData_Dir.Pokedex_Abilitys), SaveManager.GetSaveFile_DataDir(SaveData_Dir.Pokedex_Abilitys));// Copys the Pokedex/Abilitys data file into the Save File
-                    Archive.CreateEntryFromFile(SaveData_DIR + @"\" + SaveManager.GetSaveFile_DataDir(SaveData_Dir.Pokedex_Items), SaveManager.GetSaveFile_DataDir(SaveData_Dir.Pokedex_Items));// Copys the Pokedex/Items data file into the Save File
-                    Archive.CreateEntryFromFile(SaveData_DIR + @"\" + SaveManager.GetSaveFile_DataDir(SaveData_Dir.Pokedex_Moves), SaveManager.GetSaveFile_DataDir(SaveData_Dir.Pokedex_Moves));// Copys the Pokedex/Moves data file into the Save File
-                    Archive.CreateEntryFromFile(SaveData_DIR + @"\" + SaveManager.GetSaveFile_DataDir(SaveData_Dir.Pokedex_Pokemon), SaveManager.GetSaveFile_DataDir(SaveData_Dir.Pokedex_Pokemon));// Copys the Pokedex/Pokemon data file into the Save File
-
-                    Archive.CreateEntryFromFile(SaveData_DIR + @"\" + SaveManager.GetSaveFile_DataDir(SaveData_Dir.Resource_Image), SaveManager.GetSaveFile_DataDir(SaveData_Dir.Resource_Image));// Copys the Resources/Images data file into the Save File
-
-                    //Code to copy Images that are in the structure here
+                    foreach (string File in Directory.GetFiles(SaveData_DIR))
+                    {
+                        Archive.CreateEntryFromFile(File, File.Remove(0, SaveData_DIR.Length));
+                    }
                 }
             }
         }
