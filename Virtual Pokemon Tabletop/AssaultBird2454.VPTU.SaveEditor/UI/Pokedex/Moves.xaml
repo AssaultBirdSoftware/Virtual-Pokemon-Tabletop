@@ -6,9 +6,9 @@
     xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Pokedex"
     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="AssaultBird2454.VPTU.SaveEditor.UI.Pokedex.Moves"
     mc:Ignorable="d"
-    Title="Moves" Height="802" Width="614" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+    Title="Moves" Height="676.4" Width="614" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
     <Grid>
-        <GroupBox x:Name="groupBox" Header="GroupBox" HorizontalAlignment="Left" VerticalAlignment="Top"
+        <GroupBox x:Name="groupBox" Header="Basic Details" HorizontalAlignment="Left" VerticalAlignment="Top"
                   Margin="10,10,0,0" Height="101" Width="383">
             <Grid Margin="0">
                 <Grid.ColumnDefinitions>
@@ -150,7 +150,7 @@
                 <xctk:DecimalUpDown x:Name="Battle_AC" HorizontalAlignment="Right" Margin="0,173,10,0" Width="117"
                                     Watermark="Pokedex ID" TextAlignment="Center" VerticalAlignment="Top" Value="0"
                                     Text="" Minimum="0" Maximum="28" />
-                <Button x:Name="Effect_Designer" Content="Open Effect Designer" HorizontalAlignment="Left"
+                <Button x:Name="Effect_Designer" Content="Edit Moves Effect Script" HorizontalAlignment="Left"
                         Margin="372.47,200.96,0,0" VerticalAlignment="Top" Width="191.53" Click="Effect_Designer_Click" />
             </Grid>
         </GroupBox>

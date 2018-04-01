@@ -158,7 +158,6 @@ namespace AssaultBird2454.VPTU.SaveEditor
         }
 
         #region Setup Code
-
         private void Setup()
         {
             #region Developer Mode
@@ -169,7 +168,10 @@ namespace AssaultBird2454.VPTU.SaveEditor
                 DeveloperMode = false;
             #endregion
             #region Show Dev Tools
-
+            if (DeveloperMode)
+            {
+                Menu_Dev.Visibility = Visibility.Visible;
+            }
             #endregion
             #endregion
 
@@ -187,9 +189,8 @@ namespace AssaultBird2454.VPTU.SaveEditor
                         Title += " -> Developer Mode";
                 }
             }
-            #endregion
+            #endregion   
         }
-
         #endregion
 
         #region Help
@@ -395,6 +396,11 @@ namespace AssaultBird2454.VPTU.SaveEditor
             ResourceManager_ReloadList(); //Reload Resource List
             EntitiesManager_ReloadList(); // Reload Characters List
             UserGroup_Users_Reload(); // Reload Users List
+
+            if (DeveloperMode)
+            {
+
+            }
         }
 
         #region Save Data Tools
@@ -512,7 +518,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
         //When The "Add Move" Button is clicked
         private void PokedexManager_AddDex_Move_Click(object sender, RoutedEventArgs e)
         {
-            var move = new Moves(SaveManager.SaveData); // Creates Move Editor Page
+            var move = new Moves(SaveManager); // Creates Move Editor Page
             var OK = move.ShowDialog(); // Shows the Dialog, waits for return
 
             if (OK == true) // When Return
@@ -747,7 +753,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
                 {
                     var Data = (MoveData)((PokedexList_DataBind)PokedexManager_List.SelectedItem)
                         .DataTag; // Gets the Data
-                    var move = new Moves(SaveManager.SaveData, Data); // Creates a new window
+                    var move = new Moves(SaveManager, Data); // Creates a new window
                     move.ShowDialog(); // Shows the window
 
                     PokedexManager_ReloadList(); // Updates the list

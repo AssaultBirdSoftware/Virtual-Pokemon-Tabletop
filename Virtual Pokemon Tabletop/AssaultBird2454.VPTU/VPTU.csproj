@@ -52,11 +52,17 @@
     <Reference Include="Box2DX, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Box2DX.2.0.2.0\lib\net40\Box2DX.dll</HintPath>
     </Reference>
+    <Reference Include="KeraLua, Version=1.3.2.0, Culture=neutral, PublicKeyToken=04d04586786c6f34, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLua.1.3.2.1\lib\net45\KeraLua.dll</HintPath>
+    </Reference>
     <Reference Include="NAudio, Version=1.8.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NAudio.1.8.4\lib\net35\NAudio.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.1-beta3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLua, Version=1.3.2.0, Culture=neutral, PublicKeyToken=8df2ab518030ea95, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLua.1.3.2.1\lib\net45\NLua.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore">
       <Private>True</Private>
@@ -134,8 +140,32 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authentication Manager\Data\Data.cs" />
-    <Compile Include="BattleManager\Effect\Action Handeler\Action.cs" />
-    <Compile Include="BattleManager\Effect\Action Handeler\ActionHandeler.cs" />
+    <Compile Include="BattleManager\Battle\Action Handler\Attacks.cs" />
+    <Compile Include="BattleManager\Battle\Battle_Instance.cs" />
+    <Compile Include="BattleManager\Battle\Battle_Participant.cs" />
+    <Compile Include="BattleManager\Debug\MainMenu.xaml.cs">
+      <DependentUpon>MainMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BattleManager\Debug\Tabs\Attack Debugger.xaml.cs">
+      <DependentUpon>Attack Debugger.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BattleManager\Debug\Tools\TreeMap_Componants\TreeMap_Componant_Bool.xaml.cs">
+      <DependentUpon>TreeMap_Componant_Bool.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BattleManager\Debug\Tools\TreeMap_Componants\TreeMap_Componant_Number.xaml.cs">
+      <DependentUpon>TreeMap_Componant_Number.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BattleManager\Debug\Tools\TreeMap_Componants\TreeMap_Componant_String.xaml.cs">
+      <DependentUpon>TreeMap_Componant_String.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BattleManager\Debug\Tools\TreeMap_Entitie.xaml.cs">
+      <DependentUpon>TreeMap_Entitie.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BattleManager\Effect\Base Actions\Random.cs" />
+    <Compile Include="BattleManager\Effect\Base Actions\Stats.cs" />
+    <Compile Include="BattleManager\Effect\Base Actions\Status.cs" />
+    <Compile Include="BattleManager\Effect\Effect_Function.cs" />
+    <Compile Include="BattleManager\Effect\Effect_Handler.cs" />
     <Compile Include="BattleManager\Typing\Type Manager.cs" />
     <Compile Include="BattleManager\Typing\Type.cs" />
     <Compile Include="ContestManager\Data\Data.cs" />
@@ -234,6 +264,30 @@
     <EmbeddedResource Include="ProjectVariables.json" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="BattleManager\Debug\MainMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BattleManager\Debug\Tabs\Attack Debugger.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BattleManager\Debug\Tools\TreeMap_Componants\TreeMap_Componant_Bool.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BattleManager\Debug\Tools\TreeMap_Componants\TreeMap_Componant_Number.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BattleManager\Debug\Tools\TreeMap_Componants\TreeMap_Componant_String.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BattleManager\Debug\Tools\TreeMap_Entitie.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Tabletop\Map\Table.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -256,4 +310,12 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>

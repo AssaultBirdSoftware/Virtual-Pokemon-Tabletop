@@ -82,6 +82,9 @@ namespace AssaultBird2454.VPTU.Server.Instances.Client
             #endregion
 
             #region Battles
+            // Typing
+            CommandHandeler.RegisterCommand<CommandData.Battle.Get_Typing>("Battle_Typing_Get");// Adds Participants to the Battle Instance
+
             // Battles
             CommandHandeler.RegisterCommand<string>("Battle_Participants_Add");// Adds Participants to the Battle Instance
             CommandHandeler.RegisterCommand<string>("Battle_Participants_Edit");// Edits a participant in the Battle Instnace

@@ -12,11 +12,6 @@
     mc:Ignorable="d"
     Title="Character Designer - Pokemon" Height="691.263" Width="996.626" ResizeMode="NoResize">
     <Window.Resources>
-        <ObjectDataProvider x:Key="StatusEffects" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
-            <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="StatusEffects_Data:Status_Afflictions" />
-            </ObjectDataProvider.MethodParameters>
-        </ObjectDataProvider>
     </Window.Resources>
 
     <Grid>
@@ -115,6 +110,13 @@
                                 <GridViewColumn Header="Move Class" Width="100" DisplayMemberBinding="{Binding Class}" />
                                 <GridViewColumn Header="DB" Width="50" DisplayMemberBinding="{Binding DB}" />
                                 <GridViewColumn Header="AC" Width="50" DisplayMemberBinding="{Binding AC}" />
+                                <GridViewColumn Header="" Width="120">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <!--<Button Content="Execute" Click=""/>-->
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>

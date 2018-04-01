@@ -23,7 +23,7 @@ namespace AssaultBird2454.VPTU.BattleManager.Data
     /// <summary>
     /// Defines DamageBases used to identify what Set or Rolled Damage Formula to use
     /// </summary>
-    public enum DamageBase { DB0, DB1, DB2, DB3, DB4, DB5, DB6, DB7, DB8, DB9, DB10, DB11, DB12, DB13, DB14, DB15, DB16, DB17, DB18, DB19, DB20, DB21, DB22, DB23, DB24 }
+    public enum DamageBase { DB0, DB1, DB2, DB3, DB4, DB5, DB6, DB7, DB8, DB9, DB10, DB11, DB12, DB13, DB14, DB15, DB16, DB17, DB18, DB19, DB20, DB21, DB22, DB23, DB24, DB25, DB26, DB27, DB28 }
     /// <summary>
     /// Defines the possible frequency that a move can be used at
     /// </summary>

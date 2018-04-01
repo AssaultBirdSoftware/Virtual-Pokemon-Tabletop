@@ -141,6 +141,11 @@ namespace AssaultBird2454.VPTU.Client
 
             #endregion
 
+            #region Battle
+            ClientInstance.Client_CommandHandeler.GetCommand("Battle_Typing_Get").Command_Executed += 
+                MainWindow.Battle_Typing_Get_Executed;
+            #endregion
+
             #region Pokedex
 
             ClientInstance.Client_CommandHandeler.GetCommand("Pokedex_Pokemon_GetList").Command_Executed +=

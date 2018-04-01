@@ -28,6 +28,34 @@ namespace AssaultBird2454.VPTU.RNG.Generators
             }
         }
 
+        public static int RollDice(string DiceForumla)
+        {
+            int dice = Convert.ToInt32(DiceForumla.Split('d')[0]);
+            int sides = Convert.ToInt32(DiceForumla.Split('d')[1].Split('+', '-')[0]);
+            int mod = Convert.ToInt32(DiceForumla.Split('+', '-')[1]);
+            char mod_opp = DiceForumla.ToCharArray().First(x => x == '+' || x == '-');
+
+            int val = 0;
+
+            for (int i = 0; i <= dice; i++)
+            {
+                val += GenerateNumber(Convert.ToByte(sides));
+            }
+
+            if (mod_opp == '+')
+            {
+                return val + mod;
+            }
+            else if (mod_opp == '-')
+            {
+                return val - mod;
+            }
+            else
+            {
+                return val + mod;
+            }
+        }
+
         private static bool IsFairRoll(byte roll, byte numSides)
         {
             // There are MaxValue / numSides full sets of numbers that can come up

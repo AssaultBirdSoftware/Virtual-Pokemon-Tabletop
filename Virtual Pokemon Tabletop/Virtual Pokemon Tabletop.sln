@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PTU Libs", "PTU Libs", "{C1729FAC-DB65-4179-9817-EDCE648E5D11}"
 EndProject
@@ -14,15 +14,19 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CB6F0048-E047-4F2C-B13B-1942E22A74D2}"
 	ProjectSection(SolutionItems) = preProject
 		..\DISCLAMER = ..\DISCLAMER
-		..\LEGAL NOTICE = ..\LEGAL NOTICE
 		..\LICENSE = ..\LICENSE
 		NuGet.Config = NuGet.Config
 		..\README.md = ..\README.md
 		..\Release x64.yml = ..\Release x64.yml
 		..\Release x86.yml = ..\Release x86.yml
+		..\Third Party Software = ..\Third Party Software
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External Libs", "External Libs", "{71F3832E-44F5-447B-96F7-8E29D83B9DA8}"
+	ProjectSection(SolutionItems) = preProject
+		External\lua52 x32.dll = External\lua52 x32.dll
+		External\lua52 x64.dll = External\lua52 x64.dll
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiSelectComboBox", "External\MultiSelectComboBox\MultiSelectComboBox.csproj", "{CE17A54E-0661-429F-AFDC-272E8668B14E}"
 EndProject

@@ -4,7 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:AssaultBird2454.VPTU.SaveEditor"
-    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:Settings="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Settings" x:Class="AssaultBird2454.VPTU.SaveEditor.MainWindow"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:Settings="clr-namespace:AssaultBird2454.VPTU.SaveEditor.UI.Settings" xmlns:Debug="clr-namespace:AssaultBird2454.VPTU.BattleManager.Debug;assembly=AssaultBird2454.VPTU" x:Class="AssaultBird2454.VPTU.SaveEditor.MainWindow"
     mc:Ignorable="d"
     Title="Virtual Pokemon Tabletop - SaveEditor (Version: _____ _._._ Build _) (Commit: _______)" Height="710"
     Width="997.5" Closed="Window_Closed">
@@ -362,6 +362,11 @@
             </TabItem>
             <TabItem Header="Story Manager">
                 <Grid Background="#FFE5E5E5" />
+            </TabItem>
+            <TabItem x:Name="Menu_Dev" Header="Debug / Developer" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Visibility="Hidden">
+                <Grid Background="#FFE5E5E5">
+                    <Debug:MainMenu x:Name="DebugDev_Menu" Width="Auto" Height="Auto"/>
+                </Grid>
             </TabItem>
         </TabControl>
         <StatusBar VerticalAlignment="Bottom">
