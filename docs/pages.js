@@ -6,7 +6,7 @@
  * Titles are automatically generated from the original page's name.
  */
 loadDocs([
-    ["index", "home", "/"],
+  ["index", "home", "/"],
 	["features/battle-resolution-engine", "effects", "features"],
 	["features/battle-resolution-engine/attacks", "attack-triggers", "features/battle-resolution-engine"]
 ]);
