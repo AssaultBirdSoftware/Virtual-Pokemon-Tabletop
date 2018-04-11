@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AssaultBird2454.VPTU.Networking.Client.TCP;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -79,21 +80,29 @@ namespace AssaultBird2454.VPTU.Networking.Client.Command_Handeler
             return Commands.First(x => x.Key.ToLower() == Name.ToLower()).Value;
         }
 
-        internal void InvokeCommand(string Data)
+        internal void InvokeCommand(TCP_Client Client, string Data)
         {
             try
             {
                 var DataForm = new { Command = "" };
 
-                var CommandData = Newtonsoft.Json.JsonConvert.DeserializeAnonymousType(Data, DataForm);// Deserializes an interface for command pharsing
+                var CommandName = Newtonsoft.Json.JsonConvert.DeserializeAnonymousType(Data, DataForm);// Deserializes an interface for command pharsing
 
-                Command cmd = (Command)Commands.First(x => x.Key == CommandData.Command).Value;// Gets the command by searching
+                Command cmd = Commands.First(x => x.Key == CommandName.Command).Value;// Gets the command by searching
+                var CommandData = Newtonsoft.Json.JsonConvert.DeserializeAnonymousType(Data, cmd.DataType);// Deserializes an interface for command pharsing
 
-                cmd.Invoke(Newtonsoft.Json.JsonConvert.DeserializeObject(Data, cmd.DataType));
+                if (((Data.NetworkCommand)CommandData).Response == Networking.Data.ResponseCode.Nothing)
+                {
+                    cmd.Invoke(CommandData, Client);
+                }
+                else
+                {
+                    Client.Awaiting_Callbacks.Find(x => x.Key == ((Data.NetworkCommand)CommandData).Waiting_Code).Value.Invoke(cmd);
+                }
             }
             catch (Exception ex)
             {
-                /* Command does not exist */
+
             }
         }
     }

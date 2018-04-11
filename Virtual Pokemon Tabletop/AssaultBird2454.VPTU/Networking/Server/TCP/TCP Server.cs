@@ -38,29 +38,6 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         /// An event that is fired when a data error occures
         /// </summary>
         public event TCP_Data_Error TCP_Data_Error_Event;
-
-        #region Trigger Event Methods
-        protected void Fire_TCP_AcceptClients_Changed(bool Accepting_Connections)
-        {
-            TCP_AcceptClients_Changed?.Invoke(Accepting_Connections);
-        }
-        protected void Fire_TCP_ClientState_Changed(TCP_ClientNode Client, Data.Client_ConnectionStatus Client_State)
-        {
-            TCP_ClientState_Changed?.Invoke(Client, Client_State);
-        }
-        protected void Fire_TCP_ServerState_Changed(Data.Server_Status Server_State)
-        {
-            TCP_ServerState_Changed?.Invoke(Server_State);
-        }
-        protected void Fire_TCP_Data_Event(string Data, TCP_ClientNode Client, DataDirection Direction)
-        {
-            TCP_Data_Event?.Invoke(Data, Client, Direction);
-        }
-        protected void Fire_TCP_Data_Error_Event(Exception ex, DataDirection Direction)
-        {
-            TCP_Data_Error_Event?.Invoke(ex, Direction);
-        }
-        #endregion
         #endregion
 
         #region Variables
@@ -94,7 +71,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
             }
             set
             {
-                Fire_TCP_AcceptClients_Changed(value);
+                TCP_AcceptClients_Changed?.Invoke(value);
                 TCP_AcceptClients = value;
             }
         }
@@ -194,13 +171,6 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
             TCP_ServerPort = Port;// Sets the port
             TCP_AcceptClients = true;// Allows clients to connect
             CommandHandeler = _CommandHandeler;// Sets the Command Callback
-
-            if (!CommandHandeler.HasCommandName("Network Command"))
-            {
-                CommandHandeler.RegisterCommand<Data.InternalNetworkCommand>("Network Command");
-
-                CommandHandeler.GetCommand("Network Command").Command_Executed += Server_Commands;
-            }
         }
 
         #region Server Methods
@@ -211,13 +181,13 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         {
             try { Stop(); } catch { }// Executes the stop server method to check that it is not running and to clear it
 
-            Fire_TCP_ServerState_Changed(Data.Server_Status.Starting);// Send Server State Changed Event
+            TCP_ServerState_Changed?.Invoke(Data.Server_Status.Starting);// Send Server State Changed Event
 
             ClientNodes = new List<TCP_ClientNode>();
             Listener = new TcpListener(ServerAddress, ServerPort);// Create a new server object
             Listener.Start();// Starts the server
             Listener.BeginAcceptSocket(Client_Connected, Listener);// Creates an accept client callback
-            Fire_TCP_ServerState_Changed(Data.Server_Status.Online);// Send Server State Changed Event
+            TCP_ServerState_Changed?.Invoke(Data.Server_Status.Online);// Send Server State Changed Event
         }
 
         /// <summary>
@@ -234,7 +204,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
                 Listener.Stop();// Stop the server if it is running
                 Listener = null;// Delete the server object if it exists
 
-                Fire_TCP_ServerState_Changed(Data.Server_Status.Offline);// Send Server State Changed Event
+                TCP_ServerState_Changed?.Invoke(Data.Server_Status.Offline);// Send Server State Changed Event
             }
             catch (Exception e)
             { /* Dont Care, this is just to check that the server is stopped */ }
@@ -268,7 +238,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
                         node.TCP_Data_Error_Event += Node_TCP_Data_Error_Event;
                     }
 
-                    Fire_TCP_ClientState_Changed(node, Data.Client_ConnectionStatus.Connected);// Sends the client connected event
+                    TCP_ClientState_Changed?.Invoke(node, Data.Client_ConnectionStatus.Connected);// Sends the client connected event
                 }
                 else
                 {
@@ -297,11 +267,11 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         }
         private void Node_TCP_Data_Error_Event(Exception ex, DataDirection Direction)
         {
-            Fire_TCP_Data_Error_Event(ex, Direction);
+            TCP_Data_Error_Event?.Invoke(ex, Direction);
         }
-        private void Node_TCP_Data_Event(string Data, TCP_ClientNode Client, DataDirection Direction)
+        private void Node_TCP_Data_Event(dynamic Data, TCP_ClientNode Client, DataDirection Direction)
         {
-            Fire_TCP_Data_Event(Data, Client, Direction);
+            TCP_Data_Event?.Invoke(Data, Client, Direction);
         }
 
         /// <summary>
@@ -310,7 +280,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         /// <param name="node">The client being disconected</param>
         public void Disconnect_Client(TCP_ClientNode node)
         {
-            Fire_TCP_ClientState_Changed(node, Data.Client_ConnectionStatus.Disconnected);// Sends Client Disconnect Event
+            TCP_ClientState_Changed?.Invoke(node, Data.Client_ConnectionStatus.Disconnected);// Sends Client Disconnect Event
 
             node.Disconnect();// Disconnects the client from the server
 
@@ -334,7 +304,7 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
         /// <summary>
         /// 
         /// </summary>
-        public void Client_SendData(object Data, TCP_ClientNode node = null)
+        public void Client_SendData(object Data, string Command, TCP_ClientNode node = null)
         {
             if (node == null)
             {
@@ -349,33 +319,5 @@ namespace AssaultBird2454.VPTU.Networking.Server.TCP
             }
         }
         #endregion
-
-        /// <summary>
-        /// Handels Network Commands
-        /// </summary>
-        /// <param name="_Data">The Data that needs to be handeled</param>
-        /// <param name="node">The client that sent it</param>
-        internal void Server_Commands(object _Data, TCP_ClientNode node)
-        {
-            Data.InternalNetworkCommand Data = (Data.InternalNetworkCommand)_Data;
-
-            if (Data.CommandType == Networking.Data.Commands.SSL_Enable)
-            {
-                node.EnableSSL(Data.Response);
-            }
-            else if (Data.CommandType == Networking.Data.Commands.SSL_Dissable)
-            {
-                node.DissableSSL();
-            }
-            else if (Data.CommandType == Networking.Data.Commands.SSL_Active)
-            {
-
-            }
-            else if (Data.CommandType == Networking.Data.Commands.SetBufferSize)
-            {
-                //Command Not Implemented
-                node.Send(new Data.InternalNetworkCommand(Networking.Data.Commands.SetBufferSize, Networking.Data.ResponseCode.Not_Implemented));
-            }
-        }
     }
 }

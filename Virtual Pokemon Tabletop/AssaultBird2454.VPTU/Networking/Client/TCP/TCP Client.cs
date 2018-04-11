@@ -15,6 +15,8 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
 {
     public enum NetworkMode { Standard, SSL }
 
+    public delegate void AwaitingCallbacks_Invoke(object Data);
+
     public class TCP_Client
     {
         #region Events
@@ -31,10 +33,6 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
         /// An Event that is fired when the client transmitts or recieves data from the server
         /// </summary>
         public event TCP_Data DataEvent;
-        private void Fire_DataEvent(string Data, DataDirection Direction)
-        {
-            DataEvent?.Invoke(Data, Direction);
-        }
 
         #endregion
 
@@ -44,6 +42,8 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
         private StateObject StateObject;// Client State Object
         private string[] delimiter = new string[] { "|<EOD>|" };// The Delimiting string for commands
         private int TCP_Port;// The portnumber that the server is running on
+
+        internal List<KeyValuePair<string, AwaitingCallbacks_Invoke>> Awaiting_Callbacks;// Stores all the callbacks for commands
 
         private NetworkMode NetMode;
         #region Data Que
@@ -126,63 +126,7 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
             TCP_IPAddress = Address;// Sets the IPAddress
             TCP_Port = Port;// Sets the Port
             CommandHandeler = _CommandHandeler;// Sets the Command Callback
-
-            try
-            {
-                CommandHandeler.RegisterCommand<Data.InternalNetworkCommand>("Network Command");
-
-                CommandHandeler.GetCommand("Network Command").Command_Executed += Client_Commands;
-            }
-            catch (Networking.Client.Command_Handeler.CommandNameTakenException e)
-            {
-
-            }
-        }
-
-        private void Client_Commands(object _Data)
-        {
-            Data.InternalNetworkCommand Data = (Data.InternalNetworkCommand)_Data;
-
-            if (Data.CommandType == Networking.Data.Commands.SSL_Enable)
-            {
-                if (Data.Response == Networking.Data.ResponseCode.Not_Avaliable)
-                {
-                    // Not Avaliable
-                }
-                else if (Data.Response == Networking.Data.ResponseCode.Avaliable)
-                {
-                    SslStream sslStream = new SslStream(Client.GetStream(), true, ValidateCert);
-                    StateObject.SSL = sslStream;
-                    //new SslStream(Client.GetStream(), true, new RemoteCertificateValidationCallback(ValidateCert), null, EncryptionPolicy.RequireEncryption);
-                    SendData(new Data.InternalNetworkCommand(Networking.Data.Commands.SSL_Enable, Networking.Data.ResponseCode.Ready));
-                }
-                else if (Data.Response == Networking.Data.ResponseCode.Ready)
-                {
-                    NetMode = NetworkMode.SSL;
-                    SendData(new Data.InternalNetworkCommand(Networking.Data.Commands.SSL_Enable, Networking.Data.ResponseCode.OK));
-                    Fire_ConnectionStateEvent(Networking.Data.Client_ConnectionStatus.Encrypted);
-                }
-                else if (Data.Response == Networking.Data.ResponseCode.Error)
-                {
-                    // Error
-                }
-            }
-            else if (Data.CommandType == Networking.Data.Commands.SSL_Dissable)
-            {
-
-            }
-            else if (Data.CommandType == Networking.Data.Commands.SSL_Active)
-            {
-
-            }
-            else if (Data.CommandType == Networking.Data.Commands.SetBufferSize)
-            {
-
-            }
-            else
-            {
-
-            }
+            Awaiting_Callbacks = new List<KeyValuePair<string, AwaitingCallbacks_Invoke>>();
         }
 
         private bool ValidateCert(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
@@ -249,18 +193,13 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
             }
         }
 
-        public void Enable_SSL()
-        {
-            SendData(new Data.InternalNetworkCommand(Data.Commands.SSL_Enable));
-        }
-
         public long PingServer
         {
             get
             {
                 long pingTime = 0;
                 Ping pingSender = new Ping();
-                
+
                 PingReply reply = pingSender.Send(IPAddress);
 
                 if (reply.Status == IPStatus.Success)
@@ -283,51 +222,9 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
             {
                 Client.GetStream().BeginRead(StateObject.buffer, 0, StateObject.BUFFER_SIZE, Client_DataRecv, StateObject);
             }
-            else if (NetMode == NetworkMode.SSL)
-            {
-                StateObject.SSL.BeginRead(StateObject.buffer, 0, StateObject.BUFFER_SIZE, Client_DataSslRecv, StateObject);
-            }
         }
 
         private void Client_DataRecv(IAsyncResult ar)
-        {
-            StateObject so = (StateObject)ar.AsyncState;
-            Socket s = so.workSocket;
-            int read;
-
-            try { read = s.EndReceive(ar); }
-            catch
-            {
-                Disconnect();// Disconnects
-                return;
-            }
-
-            if (read > 0)
-            {
-                so.sb.Append(Encoding.ASCII.GetString(so.buffer, 0, read));
-
-                if (so.sb.ToString().Contains("|<EOD>|"))
-                {
-                    if (so.sb.Length > 1)
-                    {
-                        string data = Helper.GetUntilOrEmpty(so.sb, "|<EOD>|");
-                        if (!String.IsNullOrWhiteSpace(data))
-                        {
-                            DataQue.Enqueue(data);// Ques the data
-                            ReadQueWait.Set();// Signals new data is avaliable
-                        }
-                    }
-                }
-
-                StartListening();
-            }
-            else
-            {
-                Disconnect();// Disconnects
-                return;
-            }
-        }
-        private void Client_DataSslRecv(IAsyncResult ar)
         {
             StateObject so = (StateObject)ar.AsyncState;
             Socket s = so.workSocket;
@@ -379,19 +276,6 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
                 /* Transmition Error */
             }
         }
-        private void Client_DataSslTran(IAsyncResult ar)
-        {
-            try
-            {
-                TcpClient tcpc = (TcpClient)ar.AsyncState;//Gets the client data is going to
-                tcpc.GetStream().EndWrite(ar);//Ends client write stream
-            }
-            catch (Exception e)
-            {
-                //TCP_Data_Error_Event.Invoke(e, DataDirection.Send);
-                /* Transmition Error */
-            }
-        }
 
         /// <summary>
         /// Sends data to the server
@@ -403,21 +287,32 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
             {
                 if (IsConnected)
                 {
-                    if (NetMode == NetworkMode.Standard)
-                    {
-                        string JSONData = Newtonsoft.Json.JsonConvert.SerializeObject(Data);// Serialises the data to be sent
-                        Fire_DataEvent(JSONData, DataDirection.Send);// Invokes the data recieved event
-                        byte[] Tx = Encoding.UTF8.GetBytes(JSONData + "|<EOD>|");
-                        Client.GetStream().BeginWrite(Tx, 0, Tx.Length, Client_DataTran, Client);// Sneds the data to the server
-                    }
-                    else
-                    {
-                        string JSONData = Newtonsoft.Json.JsonConvert.SerializeObject(Data);// Serialises the data to be sent
-                        Fire_DataEvent(JSONData, DataDirection.Send);// Invokes the data recieved event
-                        byte[] Tx = Encoding.UTF8.GetBytes(JSONData + "|<EOD>|");
-                        StateObject.SSL.BeginWrite(Tx, 0, Tx.Length, Client_DataSslTran, StateObject.SSL);// Sneds the data to the server
-                    }
+                    string JSONData = Newtonsoft.Json.JsonConvert.SerializeObject(Data);// Serialises the data to be sent
+                    DataEvent?.Invoke(JSONData, DataDirection.Send);// Invokes the data recieved event
+                    byte[] Tx = Encoding.UTF8.GetBytes(JSONData + "|<EOD>|");
+                    Client.GetStream().BeginWrite(Tx, 0, Tx.Length, Client_DataTran, Client);// Sneds the data to the server
                 }
+            }
+            else
+            {
+                throw new NotNetworkDataException();
+            }
+        }
+
+        public void SendData(object Data, AwaitingCallbacks_Invoke Callback)
+        {
+            if (Data is Data.NetworkCommand)
+            {
+                string CallbackID = VPTU.RNG.Generators.RSG.GenerateString(12);
+
+                Awaiting_Callbacks.Add(new KeyValuePair<string, AwaitingCallbacks_Invoke>(CallbackID, Callback));
+                ((Data.NetworkCommand)Data).Waiting = true;
+                ((Data.NetworkCommand)Data).Waiting_Code = CallbackID;
+                ((Data.NetworkCommand)Data).Response = Networking.Data.ResponseCode.Nothing;
+                ((Data.NetworkCommand)Data).Response_Message = "";
+
+                SendData(Data);
+                return;
             }
             else
             {
@@ -435,9 +330,22 @@ namespace AssaultBird2454.VPTU.Networking.Client.TCP
 
                 while (DataQue.Count >= 1)// While there is data
                 {
-                    string Data = DataQue.Dequeue();// Gets the data and then removes it from the que
-                    Fire_DataEvent(Data, DataDirection.Recieve);// Invokes the data recieved event
-                    CommandHandeler.InvokeCommand(Data);// Handels the data
+                    string CommandStr = DataQue.Dequeue();
+
+                    DataEvent?.Invoke(CommandStr, DataDirection.Recieve);// Invokes the data recieved event
+                    CommandHandeler.InvokeCommand(this, CommandStr);// Handels the data
+
+                    //dynamic cmd = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(DataQue.Dequeue());
+                    //Data.Response response = cmd.Response;
+
+                    //if (cmd.Response == Data.ResponseCode.Nothing)
+                    //{
+                        
+                    //}
+                    //else
+                    //{
+                    //    Awaiting_Callbacks.Find(x => x.Key == cmd.Waiting_Code).Value.Invoke(cmd);
+                    //}
                 }
             }
         }

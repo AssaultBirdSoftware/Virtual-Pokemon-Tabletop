@@ -114,9 +114,9 @@ namespace AssaultBird2454.VPTU.Server.Instances.Client
 
 
 
-        private void Base_Commands_Command_Executed(object Data)
+        private Networking.Data.Response Base_Commands_Command_Executed(object Data, bool Waiting)
         {
-
+            return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.Not_Implemented, Data = null, Message = "Not Implemened" };
         }
 
         public void Unregister_Commands(Networking.Client.Command_Handeler.Client_CommandHandeler CommandHandeler)

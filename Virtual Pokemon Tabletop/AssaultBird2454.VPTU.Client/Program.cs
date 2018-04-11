@@ -131,40 +131,25 @@ namespace AssaultBird2454.VPTU.Client
 
         private static void Setup_Commands()
         {
-            ClientInstance.Client_CommandHandeler.GetCommand("ConnectionState").Command_Executed +=
-                ConnectionState_Executed;
+            ClientInstance.Client_CommandHandeler.GetCommand("ConnectionState").Command_Executed += ConnectionState_Executed;
 
             #region Auth
 
-            ClientInstance.Client_CommandHandeler.GetCommand("Auth_Login").Command_Executed +=
-                MainWindow.Auth_Login_Executed;
+            ClientInstance.Client_CommandHandeler.GetCommand("Auth_Login").Command_Executed += MainWindow.Auth_Login_Executed;
 
             #endregion
 
             #region Pokedex
 
-            ClientInstance.Client_CommandHandeler.GetCommand("Pokedex_Pokemon_GetList").Command_Executed +=
-                MainWindow.Pokedex_Pokemon_GetList_Executed;
-            ClientInstance.Client_CommandHandeler.GetCommand("Pokedex_Pokemon_Get").Command_Executed +=
-                MainWindow.Pokedex_Pokemon_Get_Executed;
-
-            #endregion
-
-            #region Resources
-
-            ClientInstance.Client_CommandHandeler.GetCommand("Resources_Image_Get").Command_Executed +=
-                MainWindow.Resources_Image_Get_Pokedex_Executed;
+            ClientInstance.Client_CommandHandeler.GetCommand("Pokedex_Pokemon_GetList").Command_Executed += MainWindow.Pokedex_Pokemon_GetList_Executed;
+            ClientInstance.Client_CommandHandeler.GetCommand("Pokedex_Pokemon_Get").Command_Executed += MainWindow.Pokedex_Pokemon_Get_Executed;
 
             #endregion
 
             #region Entities
 
-            ClientInstance.Client_CommandHandeler.GetCommand("Entities_All_GetList").Command_Executed +=
-                MainWindow.Entities_All_GetList_Executed;
-            ClientInstance.Client_CommandHandeler.GetCommand("Entities_Pokemon_Get").Command_Executed +=
-                MainWindow.Entities_Pokemon_Get_Executed;
-            ClientInstance.Client_CommandHandeler.GetCommand("Resources_Image_Get").Command_Executed +=
-                MainWindow.Resources_Image_Get_Entities_Executed;
+            ClientInstance.Client_CommandHandeler.GetCommand("Entities_All_GetList").Command_Executed += MainWindow.Entities_All_GetList_Executed;
+            ClientInstance.Client_CommandHandeler.GetCommand("Entities_Pokemon_Get").Command_Executed += MainWindow.Entities_Pokemon_Get_Executed;
 
             #endregion
         }
@@ -230,7 +215,7 @@ namespace AssaultBird2454.VPTU.Client
             }
         }
 
-        private static void ConnectionState_Executed(object Data)
+        private static Networking.Data.Response ConnectionState_Executed(object Data, bool Waiting)
         {
             var Connect = (Connect)Data;
 
@@ -238,6 +223,8 @@ namespace AssaultBird2454.VPTU.Client
                 MessageBox.Show("The server rejected your connection request...\n\nReason: Server Locked");
             else if (Connect.Connection_State == ConnectionStatus.ServerFull)
                 MessageBox.Show("The server rejected your connection request...\n\nReason: Server Full");
+
+            return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.OK, Data = null, Message = "" };
         }
     }
 }

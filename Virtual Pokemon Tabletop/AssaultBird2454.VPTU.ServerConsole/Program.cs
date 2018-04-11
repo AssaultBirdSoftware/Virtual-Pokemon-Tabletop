@@ -44,7 +44,11 @@ namespace AssaultBird2454.VPTU.ServerConsole
                 ravenClient.Release = VersionInfo.VersioningInfo.Version + " (" + VersionInfo.VersioningInfo.Compile_Commit + ")";
                 Debug = false;
             }
-            catch { Debug = true; }
+            catch
+            {
+                Debug = true;
+                MessageBox.Show("Server Console running in Debug Mode...\n\nNo Telemetry events will be sent");
+            }
 
             try
             {

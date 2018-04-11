@@ -46,7 +46,7 @@ namespace AssaultBird2454.VPTU.Client.UI
             try
             {
                 Program.ClientInstance = new ClientInstance(Program.MainWindow.ClientConsole_Form(),
-                    IPAddress.Parse(Server_Address.Text), (int) Server_Port.Value);
+                    IPAddress.Parse(Server_Address.Text), (int)Server_Port.Value);
                 Program.Setup_Client();
                 var thread = new Thread(() =>
                 {
@@ -63,8 +63,22 @@ namespace AssaultBird2454.VPTU.Client.UI
                         if (User_Identity.SelectedIndex >= 1)
                             Program.ClientInstance.Client.SendData(new Login
                             {
-                                Client_Key = ((ClientIdentity) ((ComboBoxItem) User_Identity.SelectedItem).Tag).AuthKey
-                            });
+                                Client_Key = ((ClientIdentity)((ComboBoxItem)User_Identity.SelectedItem).Tag).AuthKey
+                            }, new Networking.Client.TCP.AwaitingCallbacks_Invoke((data) =>
+                            {
+                                var loginData = (Login)data;
+
+                                if (loginData.Auth_State == AuthState.Authenticated)
+                                {
+                                    Program.MainWindow.Dispatcher.Invoke(() => Program.MainWindow.Status_Set_PlayerName(loginData.UserData.IC_Name));
+                                    MessageBox.Show("Auth Passed");
+                                }
+                                else if (loginData.Auth_State != AuthState.DeAuthenticated)
+                                {
+                                    Program.MainWindow.Dispatcher.Invoke(() => Program.MainWindow.Status_Set_PlayerName("Not Authenticated"));
+                                    MessageBox.Show("Failed Auth");
+                                }
+                            }));
                     });
                 });
                 thread.IsBackground = true;
@@ -87,7 +101,7 @@ namespace AssaultBird2454.VPTU.Client.UI
             }
             else
             {
-                var Data = (ClientIdentity) ((ComboBoxItem) User_Identity.SelectedItem).Tag;
+                var Data = (ClientIdentity)((ComboBoxItem)User_Identity.SelectedItem).Tag;
 
                 Server_Address.IsEnabled = false;
                 Server_Address.Text = Data.Server_Address;

@@ -31,15 +31,15 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
 
             CommandHandeler.RegisterCommand<CommandData.Connection.Connect>("ConnectionState");
             CommandHandeler.GetCommand("ConnectionState").SetRateLimit(false);
-            CommandHandeler.GetCommand("ConnectionState").Command_Executed += ConnectionState_Executed;
+            CommandHandeler.GetCommand("ConnectionState").Command_Executed = ConnectionState_Executed;
 
             #region Auth
             CommandHandeler.RegisterCommand<CommandData.Auth.Login>("Auth_Login");
             CommandHandeler.GetCommand("Auth_Login").SetRateLimit(false);
-            CommandHandeler.GetCommand("Auth_Login").Command_Executed += Auth_Login_Executed;
+            CommandHandeler.GetCommand("Auth_Login").Command_Executed = Auth_Login_Executed;
             CommandHandeler.RegisterCommand<CommandData.Auth.Logout>("Auth_Logout");
             CommandHandeler.GetCommand("Auth_Logout").SetRateLimit(false);
-            CommandHandeler.GetCommand("Auth_Logout").Command_Executed += Auth_Logout_Executed;
+            CommandHandeler.GetCommand("Auth_Logout").Command_Executed = Auth_Logout_Executed;
 
             CommandHandeler.RegisterCommand<object>("Auth_Create");
             CommandHandeler.GetCommand("Auth_Create").SetRateLimit(false);
@@ -56,7 +56,7 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
             #region Base
             CommandHandeler.RegisterCommand<object>("Base_SaveData_Save");
             CommandHandeler.GetCommand("Base_SaveData_Save").SetRateLimit(false);
-            CommandHandeler.GetCommand("Base_SaveData_Save").Command_Executed += Base_SaveData_Save_Executed;
+            CommandHandeler.GetCommand("Base_SaveData_Save").Command_Executed = Base_SaveData_Save_Executed;
 
             CommandHandeler.RegisterCommand<object>("Base_SaveData_Load");
             CommandHandeler.GetCommand("Base_SaveData_Load").SetRateLimit(false);
@@ -79,15 +79,15 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
             // All
             CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Pokedex_Get");
             CommandHandeler.GetCommand("Pokedex_Get").SetRateLimit(true, 10);
-            CommandHandeler.GetCommand("Pokedex_Get").Command_Executed += Pokedex_Get_Executed;
+            CommandHandeler.GetCommand("Pokedex_Get").Command_Executed = Pokedex_Get_Executed;
 
             // Pokemon
             CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon_GetList>("Pokedex_Pokemon_GetList");
             CommandHandeler.GetCommand("Pokedex_Pokemon_GetList").SetRateLimit(true, 10);
-            CommandHandeler.GetCommand("Pokedex_Pokemon_GetList").Command_Executed += Pokedex_Pokemon_GetList_Executed;
+            CommandHandeler.GetCommand("Pokedex_Pokemon_GetList").Command_Executed = Pokedex_Pokemon_GetList_Executed;
             CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon>("Pokedex_Pokemon_Get");
             CommandHandeler.GetCommand("Pokedex_Pokemon_Get").SetRateLimit(true);
-            CommandHandeler.GetCommand("Pokedex_Pokemon_Get").Command_Executed += Pokedex_Pokemon_Get_Executed;
+            CommandHandeler.GetCommand("Pokedex_Pokemon_Get").Command_Executed = Pokedex_Pokemon_Get_Executed;
 
             CommandHandeler.RegisterCommand<CommandData.Pokedex.Pokedex_Pokemon>("Pokedex_Pokemon_Add");
             CommandHandeler.GetCommand("Pokedex_Pokemon_Add").SetRateLimit(true, 100);
@@ -99,7 +99,7 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
             // Moves
             CommandHandeler.RegisterCommand<string>("Pokedex_Moves_Get");
             CommandHandeler.GetCommand("Pokedex_Moves_Get").SetRateLimit(true);
-            CommandHandeler.GetCommand("Pokedex_Moves_Get").Command_Executed += Pokedex_Moves_Get_Executed;
+            CommandHandeler.GetCommand("Pokedex_Moves_Get").Command_Executed = Pokedex_Moves_Get_Executed;
 
             CommandHandeler.RegisterCommand<string>("Pokedex_Moves_Add");
             CommandHandeler.GetCommand("Pokedex_Moves_Add").SetRateLimit(true, 100);
@@ -112,13 +112,13 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
             #region Entities
             CommandHandeler.RegisterCommand<CommandData.Entities.Entities_All_GetList>("Entities_All_GetList");
             CommandHandeler.GetCommand("Entities_All_GetList").SetRateLimit(true, 5);
-            CommandHandeler.GetCommand("Entities_All_GetList").Command_Executed += Entities_All_GetList_Executed;
+            CommandHandeler.GetCommand("Entities_All_GetList").Command_Executed = Entities_All_GetList_Executed;
 
             CommandHandeler.RegisterCommand<object>("Entities_Pokemon_GetList");
             CommandHandeler.GetCommand("Entities_Pokemon_GetList").SetRateLimit(true, 10);
             CommandHandeler.RegisterCommand<CommandData.Entities.Entities_Pokemon_Get>("Entities_Pokemon_Get");
             CommandHandeler.GetCommand("Entities_Pokemon_Get").SetRateLimit(true);
-            CommandHandeler.GetCommand("Entities_Pokemon_Get").Command_Executed += Entities_Pokemon_Get_Executed;
+            CommandHandeler.GetCommand("Entities_Pokemon_Get").Command_Executed = Entities_Pokemon_Get_Executed;
             CommandHandeler.RegisterCommand<object>("Entities_Pokemon_Create");
             CommandHandeler.GetCommand("Entities_Pokemon_Create").SetRateLimit(true, 100);
             CommandHandeler.RegisterCommand<object>("Entities_Pokemon_Edit");
@@ -143,55 +143,55 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
             // Battles
             CommandHandeler.RegisterCommand<object>("Battle_Participants_Add");// Adds Participants to the Battle Instance
             CommandHandeler.GetCommand("Battle_Participants_Add").SetRateLimit(true, 100);
-            CommandHandeler.GetCommand("Battle_Participants_Add").Command_Executed += Battle_Participants_Add_Executed;
+            CommandHandeler.GetCommand("Battle_Participants_Add").Command_Executed = Battle_Participants_Add_Executed;
 
             CommandHandeler.RegisterCommand<object>("Battle_Participants_Edit");// Edits a participant in the Battle Instnace
             CommandHandeler.GetCommand("Battle_Participants_Edit").SetRateLimit(true, 100);
-            CommandHandeler.GetCommand("Battle_Participants_Edit").Command_Executed += Battle_Participants_Edit_Executed;
+            CommandHandeler.GetCommand("Battle_Participants_Edit").Command_Executed = Battle_Participants_Edit_Executed;
 
             CommandHandeler.RegisterCommand<object>("Battle_Participants_Remove");// Removes a participant from the Battle Instance
             CommandHandeler.GetCommand("Battle_Participants_Remove").SetRateLimit(true, 100);
-            CommandHandeler.GetCommand("Battle_Participants_Remove").Command_Executed += Battle_Participants_Remove_Executed;
+            CommandHandeler.GetCommand("Battle_Participants_Remove").Command_Executed = Battle_Participants_Remove_Executed;
 
             CommandHandeler.RegisterCommand<object>("Battle_Participants_Get");// Gets the participants in the Battle Instance
             CommandHandeler.GetCommand("Battle_Participants_Get").SetRateLimit(true, 10);
-            CommandHandeler.GetCommand("Battle_Participants_Get").Command_Executed += Battle_Participants_Get_Executed;
+            CommandHandeler.GetCommand("Battle_Participants_Get").Command_Executed = Battle_Participants_Get_Executed;
 
             CommandHandeler.RegisterCommand<object>("Battle_TurnOrder_Get");// Gets the Turn Order of this Battle Instance
             CommandHandeler.GetCommand("Battle_TurnOrder_Get").SetRateLimit(true, 180);
-            CommandHandeler.GetCommand("Battle_TurnOrder_Get").Command_Executed += Battle_TurnOrder_Get_Executed;
+            CommandHandeler.GetCommand("Battle_TurnOrder_Get").Command_Executed = Battle_TurnOrder_Get_Executed;
 
             CommandHandeler.RegisterCommand<object>("Battle_TurnOrder_Current");// Gets the current turn in the Battle Instance
             CommandHandeler.GetCommand("Battle_TurnOrder_Current").SetRateLimit(true, 180);
-            CommandHandeler.GetCommand("Battle_TurnOrder_Current").Command_Executed += Battle_TurnOrder_Current_Executed;
+            CommandHandeler.GetCommand("Battle_TurnOrder_Current").Command_Executed = Battle_TurnOrder_Current_Executed;
 
             CommandHandeler.RegisterCommand<object>("Battle_TurnOrder_Next");// Next Turn in the Battle Instance Turn Order
             CommandHandeler.GetCommand("Battle_TurnOrder_Next").SetRateLimit(false);
-            CommandHandeler.GetCommand("Battle_TurnOrder_Next").Command_Executed += Battle_TurnOrder_Next_Executed;
+            CommandHandeler.GetCommand("Battle_TurnOrder_Next").Command_Executed = Battle_TurnOrder_Next_Executed;
 
             CommandHandeler.RegisterCommand<object>("Battle_TurnOrder_Prev");// Prev Turn in the Battle Instance Turn Order
             CommandHandeler.GetCommand("Battle_TurnOrder_Prev").SetRateLimit(false);
-            CommandHandeler.GetCommand("Battle_TurnOrder_Prev").Command_Executed += Battle_TurnOrder_Prev_Executed;
+            CommandHandeler.GetCommand("Battle_TurnOrder_Prev").Command_Executed = Battle_TurnOrder_Prev_Executed;
 
             CommandHandeler.RegisterCommand<object>("Battle_Action_Execute");// Executes a Battle Action
             CommandHandeler.GetCommand("Battle_Action_Execute").SetRateLimit(false);
-            CommandHandeler.GetCommand("Battle_Action_Execute").Command_Executed += Battle_Action_Execute_Executed;
+            CommandHandeler.GetCommand("Battle_Action_Execute").Command_Executed = Battle_Action_Execute_Executed;
 
             CommandHandeler.RegisterCommand<object>("Battle_Action_Interupt");// Executes a Battle Interupt
             CommandHandeler.GetCommand("Battle_Action_Interupt").SetRateLimit(false);
-            CommandHandeler.GetCommand("Battle_Action_Interupt").Command_Executed += Battle_Action_Interupt_Executed;
+            CommandHandeler.GetCommand("Battle_Action_Interupt").Command_Executed = Battle_Action_Interupt_Executed;
 
             CommandHandeler.RegisterCommand<CommandData.Battle.Battle_Instance_List>("Battle_Instance_List");// Starts the Battle Instance
             CommandHandeler.GetCommand("Battle_Instance_List").SetRateLimit(true, 15);
-            CommandHandeler.GetCommand("Battle_Instance_List").Command_Executed += Battle_Instance_List_Executed;
+            CommandHandeler.GetCommand("Battle_Instance_List").Command_Executed = Battle_Instance_List_Executed;
 
             CommandHandeler.RegisterCommand<CommandData.Battle.Battle_Instance>("Battle_Instance_Start");// Starts the Battle Instance
             CommandHandeler.GetCommand("Battle_Instance_Start").SetRateLimit(true);
-            CommandHandeler.GetCommand("Battle_Instance_Start").Command_Executed += Battle_Instance_Start_Executed;
+            CommandHandeler.GetCommand("Battle_Instance_Start").Command_Executed = Battle_Instance_Start_Executed;
 
             CommandHandeler.RegisterCommand<CommandData.Battle.Battle_Instance>("Battle_Instance_End");// Ends the Battle Instance
             CommandHandeler.GetCommand("Battle_Instance_End").SetRateLimit(true);
-            CommandHandeler.GetCommand("Battle_Instance_End").Command_Executed += Battle_Instance_End_Executed;
+            CommandHandeler.GetCommand("Battle_Instance_End").Command_Executed = Battle_Instance_End_Executed;
 
             // CommandHandeler.RegisterCommand<string>("Battle_");
             #endregion
@@ -199,7 +199,7 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
             #region Resources
             CommandHandeler.RegisterCommand<CommandData.Resources.ImageResource>("Resources_Image_Get");// Gets an Image Resource
             CommandHandeler.GetCommand("Resources_Image_Get").SetRateLimit(false);
-            CommandHandeler.GetCommand("Resources_Image_Get").Command_Executed += Resources_Image_Get_Executed;
+            CommandHandeler.GetCommand("Resources_Image_Get").Command_Executed = Resources_Image_Get_Executed;
 
             CommandHandeler.RegisterCommand<CommandData.Resources.ImageResource>("Resources_Image_Add");// Adds an Image Resource
             CommandHandeler.GetCommand("Resources_Image_Add").SetRateLimit(false);
@@ -223,33 +223,62 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
         }
 
         #region Callbacks
-        private void ConnectionState_Executed(object Data, TCP_ClientNode Client)
+        // return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.OK, Data = null, Message = "" };
+        // return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.Not_Implemented, Data = null, Message = "Not Implemened" };
+        private Networking.Data.Response ConnectionState_Executed(object Data, TCP_ClientNode Client, bool Waiting)
         {
-
+            return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.Not_Implemented, Data = null, Message = "Not Implemened" };
         }
 
         #region Auth
-        private void Auth_Login_Executed(object Data, TCP_ClientNode Client)
+        private Networking.Data.Response Auth_Login_Executed(object Data, TCP_ClientNode Client, bool Waiting)
         {
-            Instance.Authenticate_Client(Client, (CommandData.Auth.Login)Data);
+            CommandData.Auth.Login state = Instance.Authenticate_Client(Client, (CommandData.Auth.Login)Data);
+
+            if (state.Auth_State == CommandData.Auth.AuthState.Authenticated)
+            {
+                return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.OK, Data = state, Message = "Authentication Passed" };
+            }
+            else if (state.Auth_State == CommandData.Auth.AuthState.DeAuthenticated)
+            {
+                return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.Failed, Data = state, Message = "Authentication Failed" };
+            }
+            else
+            {
+                return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.Error, Data = null, Message = "Authentication Error" };
+            }
         }
-        private void Auth_Logout_Executed(object Data, TCP_ClientNode Client)
+        private Networking.Data.Response Auth_Logout_Executed(object Data, TCP_ClientNode Client, bool Waiting)
         {
-            Instance.DeAuthenticate_Client(Client);
+            if (Instance.DeAuthenticate_Client(Client))
+            {
+                return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.OK, Data = new CommandData.Auth.Logout() { Auth_State = CommandData.Auth.AuthState.DeAuthenticated }, Message = "Client Deauthenticated" };
+            }
+            else
+            {
+                return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.Error, Data = null, Message = "Client Deauthention Failed" };
+            }
         }
         #endregion
 
         #region Base Commands
-        private void Base_SaveData_Save_Executed(object Data, Networking.Server.TCP.TCP_ClientNode Client)
+        private Networking.Data.Response Base_SaveData_Save_Executed(object Data, TCP_ClientNode Client, bool Waiting)
         {
-            Instance.SaveManager.Save_SaveData();
-            Client.Send(new Instances.CommandData.SaveData.Save() { State = CommandData.SaveData.SaveStates.Save_Passed });
+            try
+            {
+                Instance.SaveManager.Save_SaveData();
+                return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.OK, Data = new Instances.CommandData.SaveData.Save() { State = CommandData.SaveData.SaveStates.Save_Passed }, Message = "Campaign Saved Succsfully" };
+            }
+            catch
+            {
+                return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.Failed, Data = new Instances.CommandData.SaveData.Save() { State = CommandData.SaveData.SaveStates.Save_Failed }, Message = "Client Failed to Save" };
+            }
         }
         #endregion
 
         #region Pokedex
         #region All
-        private void Pokedex_Get_Executed(object Data, Networking.Server.TCP.TCP_ClientNode Client)
+        private Networking.Data.Response Pokedex_Get_Executed(object Data, TCP_ClientNode Client, bool Waiting)
         {
             List<Pokedex.Pokemon.PokemonData> PokedexData = new List<Pokedex.Pokemon.PokemonData>();
 
@@ -259,16 +288,19 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
                 PokedexData.Add(pokemon);
             }
 
-            Client.Send(new CommandData.Pokedex.Pokedex_Pokemon_GetList()
+            return new Networking.Data.Response()
             {
-                Command = "Pokedex_Get",
-                Pokemon_Dex = PokedexData
-            });
+                Code = Networking.Data.ResponseCode.OK,
+                Data = new CommandData.Pokedex.Pokedex_Pokemon_GetList()
+                {
+                    Pokemon_Dex = PokedexData
+                }
+            };
         }
         #endregion
 
         #region Pokemon
-        private void Pokedex_Pokemon_GetList_Executed(object Data, TCP_ClientNode Client)
+        private Networking.Data.Response Pokedex_Pokemon_GetList_Executed(object Data, TCP_ClientNode Client, bool Waiting)
         {
             List<Pokedex.Pokemon.PokemonData> PokedexData = new List<Pokedex.Pokemon.PokemonData>();
 
@@ -278,27 +310,33 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
                 PokedexData.Add(pokemon);
             }
 
-            Client.Send(new CommandData.Pokedex.Pokedex_Pokemon_GetList()
+            return new Networking.Data.Response()
             {
-                Command = "Pokedex_Pokemon_GetList",
-                Pokemon_Dex = PokedexData
-            });
+                Code = Networking.Data.ResponseCode.OK,
+                Data = new CommandData.Pokedex.Pokedex_Pokemon_GetList()
+                {
+                    Pokemon_Dex = PokedexData
+                }
+            };
         }
-        private void Pokedex_Pokemon_Get_Executed(object Data, TCP_ClientNode Client)
+        private Networking.Data.Response Pokedex_Pokemon_Get_Executed(object Data, TCP_ClientNode Client, bool Waiting)
         {
             Pokedex.Pokemon.PokemonData PokemonData = Instance.SaveManager.SaveData.PokedexData.Pokemon.Find(x => x.Species_DexID == ((Pokedex_Pokemon)Data).DexID);
 
-            Client.Send(new Pokedex_Pokemon()
+            return new Networking.Data.Response()
             {
-                Command = "Pokedex_Pokemon_Get",
-                PokemonData = PokemonData,
-                DexID = PokemonData.Species_DexID
-            });
+                Code = Networking.Data.ResponseCode.Failed,
+                Data = new Pokedex_Pokemon()
+                {
+                    PokemonData = PokemonData,
+                    DexID = PokemonData.Species_DexID
+                }
+            };
         }
         #endregion
 
         #region Moves
-        private void Pokedex_Moves_Get_Executed(object Data, TCP_ClientNode Client)
+        private Networking.Data.Response Pokedex_Moves_Get_Executed(object Data, TCP_ClientNode Client, bool Waiting)
         {
             List<Pokedex.Moves.MoveData> MoveData = new List<Pokedex.Moves.MoveData>();
 
@@ -308,17 +346,21 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
                 MoveData.Add(move);
             }
 
-            Client.Send(new CommandData.Pokedex.Pokedex_Moves_Get()
+            return new Networking.Data.Response()
             {
-                Command = "Pokedex_Moves_Get",
-                Move_Dex = MoveData
-            });
+                Code = Networking.Data.ResponseCode.OK,
+                Data = new CommandData.Pokedex.Pokedex_Moves_Get()
+                {
+                    Command = "Pokedex_Moves_Get",
+                    Move_Dex = MoveData
+                }
+            };
         }
         #endregion
         #endregion
 
         #region Entities
-        private void Entities_All_GetList_Executed(object Data, TCP_ClientNode Client)
+        private Networking.Data.Response Entities_All_GetList_Executed(object Data, TCP_ClientNode Client, bool Waiting)
         {
             List<EntitiesManager.Entry_Data> Entities = new List<EntitiesManager.Entry_Data>();
             List<EntitiesManager.Folder> Folders = new List<EntitiesManager.Folder>();
@@ -358,102 +400,121 @@ namespace AssaultBird2454.VPTU.Server.Instances.Server
                 }
             }
 
-            Client.Send(new CommandData.Entities.Entities_All_GetList()
+            return new Networking.Data.Response()
             {
-                Entrys = Entities,
-                Folders = Folders,
-                UserList = Instance.SaveManager.SaveData.Users
-            });
+                Code = Networking.Data.ResponseCode.OK,
+                Data = new CommandData.Entities.Entities_All_GetList()
+                {
+                    Entrys = Entities,
+                    Folders = Folders,
+                    UserList = Instance.SaveManager.SaveData.Users
+                }
+            };
         }
 
-        private void Entities_Pokemon_Get_Executed(object Data, TCP_ClientNode Client)
+        private Networking.Data.Response Entities_Pokemon_Get_Executed(object Data, TCP_ClientNode Client, bool Waiting)
         {
-            CommandData.Entities.Entities_Pokemon_Get Pokemon = (CommandData.Entities.Entities_Pokemon_Get)Data;
-            Authentication_Manager.Data.User User = Instance.Authenticated_Clients.Find(x => x.Key.ID == Client.ID).Value;
+            try
+            {
+                CommandData.Entities.Entities_Pokemon_Get Pokemon = (CommandData.Entities.Entities_Pokemon_Get)Data;
+                Authentication_Manager.Data.User User = Instance.Authenticated_Clients.Find(x => x.Key.ID == Client.ID).Value;
 
-            Pokemon.Pokemon = Instance.SaveManager.SaveData.Pokemon.Find(x => x.ID == Pokemon.ID);
-            Pokemon.Image = Instance.SaveManager.LoadImage(Pokemon.Pokemon.Token_ResourceID);
+                Pokemon.Pokemon = Instance.SaveManager.SaveData.Pokemon.Find(x => x.ID == Pokemon.ID);
+                Pokemon.Image = Instance.SaveManager.LoadImage(Pokemon.Pokemon.Token_ResourceID);
 
+                if (Pokemon.Pokemon == null)
+                    return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.Not_Found, Data = null, Message = "Does Not Exist" };
 
-            if (Pokemon.Pokemon.View.Contains(User.UserID) || User.isGM)
-                Client.Send(Pokemon);
+                if (Pokemon.Pokemon.View.Contains(User.UserID) || User.isGM)
+                    return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.OK, Data = Pokemon, Message = "" };
+            }
+            catch
+            {
+                return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.Error, Data = null, Message = "Error" };
+            }
+            return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.Forbiden, Data = null, Message = "Insufficient Permission" };
         }
         #endregion
 
         #region Battles
-        private void Battle_Participants_Add_Executed(object Data, TCP_ClientNode Client)
+        private Networking.Data.Response Battle_Participants_Add_Executed(object Data, TCP_ClientNode Client, bool Waiting)
         {
-
+            return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.Not_Implemented, Data = null, Message = "Not Implemened" };
         }
 
-        private void Battle_Participants_Edit_Executed(object Data, TCP_ClientNode Client)
+        private Networking.Data.Response Battle_Participants_Edit_Executed(object Data, TCP_ClientNode Client, bool Waiting)
         {
-
+            return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.Not_Implemented, Data = null, Message = "Not Implemened" };
         }
 
-        private void Battle_Participants_Remove_Executed(object Data, TCP_ClientNode Client)
+        private Networking.Data.Response Battle_Participants_Remove_Executed(object Data, TCP_ClientNode Client, bool Waiting)
         {
-
+            return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.Not_Implemented, Data = null, Message = "Not Implemened" };
         }
 
-        private void Battle_Participants_Get_Executed(object Data, TCP_ClientNode Client)
+        private Networking.Data.Response Battle_Participants_Get_Executed(object Data, TCP_ClientNode Client, bool Waiting)
         {
-
+            return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.Not_Implemented, Data = null, Message = "Not Implemened" };
         }
 
-        private void Battle_TurnOrder_Get_Executed(object Data, TCP_ClientNode Client)
+        private Networking.Data.Response Battle_TurnOrder_Get_Executed(object Data, TCP_ClientNode Client, bool Waiting)
         {
-
+            return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.Not_Implemented, Data = null, Message = "Not Implemened" };
         }
 
-        private void Battle_TurnOrder_Current_Executed(object Data, TCP_ClientNode Client)
+        private Networking.Data.Response Battle_TurnOrder_Current_Executed(object Data, TCP_ClientNode Client, bool Waiting)
         {
-
+            return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.Not_Implemented, Data = null, Message = "Not Implemened" };
         }
 
-        private void Battle_TurnOrder_Next_Executed(object Data, TCP_ClientNode Client)
+        private Networking.Data.Response Battle_TurnOrder_Next_Executed(object Data, TCP_ClientNode Client, bool Waiting)
         {
-
+            return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.Not_Implemented, Data = null, Message = "Not Implemened" };
         }
 
-        private void Battle_TurnOrder_Prev_Executed(object Data, TCP_ClientNode Client)
+        private Networking.Data.Response Battle_TurnOrder_Prev_Executed(object Data, TCP_ClientNode Client, bool Waiting)
         {
-
+            return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.Not_Implemented, Data = null, Message = "Not Implemened" };
         }
 
-        private void Battle_Action_Execute_Executed(object Data, TCP_ClientNode Client)
+        private Networking.Data.Response Battle_Action_Execute_Executed(object Data, TCP_ClientNode Client, bool Waiting)
         {
-
+            return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.Not_Implemented, Data = null, Message = "Not Implemened" };
         }
 
-        private void Battle_Action_Interupt_Executed(object Data, TCP_ClientNode Client)
+        private Networking.Data.Response Battle_Action_Interupt_Executed(object Data, TCP_ClientNode Client, bool Waiting)
         {
-
+            return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.Not_Implemented, Data = null, Message = "Not Implemened" };
         }
 
-        private void Battle_Instance_List_Executed(object Data, TCP_ClientNode Client)
+        private Networking.Data.Response Battle_Instance_List_Executed(object Data, TCP_ClientNode Client, bool Waiting)
         {
-            Client.Send(new CommandData.Battle.Battle_Instance_List() { /*Instances = Instance.GetInstances*/ });
+            return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.Not_Implemented, Data = null, Message = "Not Implemened" };
+            //Client.Send(new CommandData.Battle.Battle_Instance_List() { /*Instances = Instance.GetInstances*/ });
         }
 
-        private void Battle_Instance_Start_Executed(object Data, TCP_ClientNode Client)
+        private Networking.Data.Response Battle_Instance_Start_Executed(object Data, TCP_ClientNode Client, bool Waiting)
         {
+            return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.Not_Implemented, Data = null, Message = "Not Implemened" };
             //Client.Send(new CommandData.Battle.Battle_Instance() { Command = "", });
         }
 
-        private void Battle_Instance_End_Executed(object Data, TCP_ClientNode Client)
+        private Networking.Data.Response Battle_Instance_End_Executed(object Data, TCP_ClientNode Client, bool Waiting)
         {
-
+            return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.Not_Implemented, Data = null, Message = "Not Implemened" };
         }
         #endregion
 
         #region Resources
-        private void Resources_Image_Get_Executed(object Data, TCP_ClientNode Client)
+        private Networking.Data.Response Resources_Image_Get_Executed(object Data, TCP_ClientNode Client, bool Waiting)
         {
+            if (!Waiting)
+                return null;
+
             CommandData.Resources.ImageResource IRD = (CommandData.Resources.ImageResource)Data;
             IRD.Image = Instance.SaveManager.LoadImage(IRD.Resource_ID);
 
-            Client.Send(IRD);
+            return new Networking.Data.Response() { Code = Networking.Data.ResponseCode.OK, Data = IRD, Message = "" };
         }
         #endregion
         #endregion

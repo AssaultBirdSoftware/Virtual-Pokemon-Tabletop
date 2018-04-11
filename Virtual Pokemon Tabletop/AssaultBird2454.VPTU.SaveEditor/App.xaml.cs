@@ -45,6 +45,7 @@ namespace AssaultBird2454.VPTU.SaveEditor
                 {
                     MessageBox.Show("Entering Debug Mode...");
                     Debug = true;
+                    MessageBox.Show("SaveEditor running in Debug Mode...\n\nNo Telemetry events will be sent");
                 }
 
                 try

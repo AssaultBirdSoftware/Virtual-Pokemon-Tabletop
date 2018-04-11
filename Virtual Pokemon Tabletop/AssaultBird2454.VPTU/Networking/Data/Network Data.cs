@@ -6,31 +6,37 @@ using System.Threading.Tasks;
 
 namespace AssaultBird2454.VPTU.Networking.Data
 {
-    internal enum Commands { SetBufferSize = 1, SSL_Enable = 2, SSL_Dissable = 3, SSL_Active = 4 }
-    internal enum ResponseCode { OK = 0, Ready = 1, None = 2, Avaliable = 100, Not_Implemented = 501, Not_Avaliable = 503, Forbiden = 403, Not_Found = 404, Error = 500 }
-
-    internal class InternalNetworkCommand : NetworkCommand
+    /// <summary>
+    /// 1xx -> All (State)
+    /// 2xx -> All (Response)
+    /// 3xx -> Errors
+    /// 4xx -> Accessability
+    /// 
+    /// 399 -> Custom Error
+    /// </summary>
+    public enum ResponseCode
     {
-        public InternalNetworkCommand(Commands _Command, ResponseCode _Response = ResponseCode.None)
-        {
-            CommandType = _Command;
-            Response = _Response;
-        }
-
-        public string Command
-        {
-            get
-            {
-                return "Network Command";
-            }
-        }
-
-        public Commands CommandType { get; set; }
-        public ResponseCode Response { get; set; }
+        Nothing = 0,
+        Processing = 100,
+        OK = 200, Ready = 201, Avaliable = 202, Failed = 203,
+        Error = 300, Not_Implemented = 301, Not_Avaliable = 302, RateLimitHit = 303, Custom_Error = 399,
+        Forbiden = 403, Not_Found = 404,
     }
 
     public interface NetworkCommand
     {
         string Command { get; }
+        bool Waiting { get; set; }
+        string Waiting_Code { get; set; }
+        ResponseCode Response { get; set; }
+        string Response_Message { get; set; }
+    }
+
+    public class Response
+    {
+        public ResponseCode Code { get; set; }
+        public string Message { get; set; }
+
+        public object Data { get; set; }
     }
 }
