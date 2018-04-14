@@ -40,16 +40,15 @@ If you think the documentation needs work, follow the steps below to add some do
 ## Platform Status
 
 ### Supported Platform Status
-| Platform Type   | Server       | Save Editor   | Client        | API           |
-|-----------------|--------------|---------------|---------------|---------------|
-| PC (Windows)    | Alpha Stages | Alpha Stages  | Alpha Stages  | In Design     |
-| PC (Mac)        | Not Started  | Not Started   | Not Started   | Not Started   |
-| PC (Linux)      | Not Started  | Not Started   | Not Started   | Not Started   |
-| Mobile (IOS)    |              |               | In Design\*   | In Design\*\* |
-| Mobile (Android)|              |               | In Design\*   | In Design\*\* |
+| Platform Type   | Server       | Save Editor   | Client         | API           |
+|-----------------|--------------|---------------|----------------|---------------|
+| PC (Windows)    | Alpha Stages | Alpha Stages  |In Development  | In Design     |
+| PC (Mac)        | Not Started  | Not Started   |In Development  | Not Started   |
+| PC (Linux)      | Not Started  | Not Started   |In Development  | Not Started   |
+| Mobile (IOS)    |              |               |In Development\*| Not Started   |
+| Mobile (Android)|              |               |In Development\*| Not Started   |
 
-\* - This software costs money to make so it will cost a onetime $0.99 to purchase (IOS & Android Apps Only)  
-\*\* - This API will be private, and you will need to register with me to get the API for the IOS & Android Platforms (Security Reasons)
+\* - This software costs money to make so it will cost a onetime $0.99 to purchase (IOS & Android Apps Only)
 
 ## Links
 Road Map: https://trello.com/b/G8V5Musv/  
